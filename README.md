@@ -1,7 +1,9 @@
 # Pymetheus
-An AI assistant for python coding 
+Synthetic Dataset of Python Code for Reinforcement Learning
 
-## Setup 
+## Setup
+```bash
 conda create --name pymetheus python=3.8
 conda activate pymetheus
 pip install ollama jsonschema pynvml
+```

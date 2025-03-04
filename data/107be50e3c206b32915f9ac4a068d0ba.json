@@ -1,0 +1,11 @@
+{
+    "title": "Easy - Count Vowels",
+    "description": "Write a function `count_vowels` that counts the number of vowels (a, e, i, o, u) in a given string. The function should be case-insensitive.\n\n#### Function Signature\n```python\ndef count_vowels(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the number of vowels in the input string.\n",
+    "code": "def count_vowels(s: str) -> int:\n    vowels = 'aeiou'\n    return sum(1 for char in s.lower() if char in vowels)\n",
+    "tests": [
+        "assert count_vowels('Hello, World!') == 3",
+        "assert count_vowels('Python programming is fun') == 4",
+        "assert count_vowels('Quick brown fox jumps over the lazy dog') == 9",
+        "assert count_vowels('The quick brown fox jumps over the lazy dog') == 9"
+    ]
+}

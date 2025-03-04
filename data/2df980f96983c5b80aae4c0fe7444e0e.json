@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Spiral Matrix Traversal",
+    "description": "Given an `n x n` matrix, write a function to traverse it in a spiral order. A spiral order starts at the top-left corner of the matrix and goes right, down, left, up, and continues this pattern until all elements are visited.\n\n#### Function Signature\n```python\ndef spiral_traversal(matrix: List[List[int]]) -> List[int]:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A 2D list where each sublist represents a row in the matrix.\n\n#### Output\n- Returns a list of integers representing the elements in spiral order.\n",
+    "code": "from typing import List\n\ndef spiral_traversal(matrix: List[List[int]]) -> List[int]:\n    if not matrix or not matrix[0]:\n        return []\n\n    rows, cols = len(matrix), len(matrix[0])\n    top, bottom, left, right = 0, rows - 1, 0, cols - 1\n    spiral_order = []\n\n    while top <= bottom and left <= right:\n        # Traverse from left to right\n        for col in range(left, right + 1):\n            spiral_order.append(matrix[top][col])\n        top += 1\n        \n        # Traverse downwards\n        for row in range(top, bottom + 1):\n            spiral_order.append(matrix[row][right])\n        right -= 1\n        \n        if top <= bottom:\n            # Traverse from right to left\n            for col in range(right, left - 1, -1):\n                spiral_order.append(matrix[bottom][col])\n            bottom -= 1\n        \n        if left <= right:\n            # Traverse upwards\n            for row in range(bottom, top - 1, -1):\n                spiral_order.append(matrix[row][left])\n            left += 1\n    \n    return spiral_order\n",
+    "tests": [
+        "assert spiral_traversal([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == [1, 2, 3, 6, 9, 8, 7, 4, 5]",
+        "assert spiral_traversal([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]) == [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]",
+        "assert spiral_traversal([[1, 2], [3, 4]]) == [1, 2, 4, 3]",
+        "assert spiral_traversal([[1]]) == [1]"
+    ]
+}
