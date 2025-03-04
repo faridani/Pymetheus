@@ -1,0 +1,14 @@
+{
+    "title": "Hard - Minimum Steps to Reach Target",
+    "description": "You are given two integers `start` and `target`. You can perform the following operations:\n\n1.  **Increment:** Increase `current` by 1.\n2.  **Double:** Multiply `current` by 2.\n\n\nFind the minimum number of steps required to reach `target` from `start`. Return this minimum number of steps. If it's impossible to reach `target`, return -1.\n\n#### Function Signature\n```python\ndef min_steps(start: int, target: int) -> int:\n```\n\n\n#### Input\n- `start` (int): The starting integer.\n- `target` (int): The target integer.\n\n\n#### Output\n- Returns the minimum number of steps required to reach `target` from `start`, or -1 if it's impossible.\n\n",
+    "code": "def min_steps(start: int, target: int) -> int:\n    queue = [(start, 0)]  # (number, steps)\n    visited = set([start])\n\n    while queue:\n        current, steps = queue.pop(0)\n        if current == target:\n            return steps\n        if current * 2 <= target and current * 2 not in visited:\n            queue.append((current * 2, steps + 1))\n            visited.add(current * 2)\n        if current + 1 <= target and current + 1 not in visited:\n            queue.append((current + 1, steps + 1))\n            visited.add(current + 1)\n\n    return -1",
+    "tests": [
+        "assert min_steps(3, 10) == 2",
+        "assert min_steps(5, 8) == 1",
+        "assert min_steps(1, 1000) == 9",
+        "assert min_steps(10, 5) == -1"
+    ],
+    "difficulty": "hard",
+    "model": "gemma2:27b",
+    "style": "ACM-ICPC"
+}

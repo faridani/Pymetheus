@@ -1,0 +1,14 @@
+{
+    "title": "Turing Number Checker",
+    "description": "A Turing number is defined as a number that equals the sum of its digits each raised to their own power. Write a function `is_turing_number(n: int) -> bool` which returns True if a given integer is a Turing number and False otherwise.\n\n#### Function Signature\n```python\ndef is_turing_number(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer that can be as large as 10^9.\n\n#### Output\n- Returns `True` if the input number is a Turing number, `False` otherwise.\n",
+    "code": "def is_turing_number(n: int) -> bool:\n    def digit_power_sum(digit: int, power: int) -> int:\n        return pow(digit, power)\n\n    sum_of_digits = 0\n    original_number = n\n    while n > 0:\n        remainder = n % 10\n        sum_of_digits += digit_power_sum(remainder, len(str(original_number)))\n        n //= 10\n    return sum_of_digits == original_number",
+    "tests": [
+        "assert is_turing_number(135) == True",
+        "assert is_turing_number(9474) == True",
+        "assert is_turing_number(68) == False",
+        "assert is_turing_number(1234) == False"
+    ],
+    "difficulty": "super hard",
+    "model": "qwen2:7b",
+    "style": "Codecademy"
+}

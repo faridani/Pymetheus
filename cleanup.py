@@ -86,7 +86,11 @@ def correct_json_using_deepseek_r1(s: str) -> str:
         'content': content 
     }])
     mkdown = response['message']['content']
-    json_str = mkdown.split('```json')[1].split('```')[0].strip()
+    if "```json" in mkdown:
+        json_str = mkdown.split('```json')[1].split('```')[0].strip()
+    else:
+        json_str = mkdown
+        
     return json_str
 
  

@@ -51,23 +51,25 @@ def ask_codellama(model, content):
            print("here 4 - valid response that needs to be saved ")
            return json.loads(response_content_cleaned, strict=False)
         else:
-            print("here 5 - invalid response that needs to be corrected by deepseek_r1")
-            corrected_using_deepseek_r1 = correct_json_using_deepseek_r1(response_content_cleaned)
-            try:
-                is_valid, directory = validate_response_content(corrected_using_deepseek_r1)
-                if is_valid:
-                    return json.loads(corrected_using_deepseek_r1, strict=False)
-                else:
-                    # save_response_to_file(corrected_using_deepseek_r1, directory=directory)
-                    return None
-            except (json.JSONDecodeError, ValidationError) as e:
-                print("\n\n\n")
-                print(">>>"*40)
-                print(corrected_using_deepseek_r1)
-                print("<<<"*40)
-                print("\n\n\n")
-                print(f"Invalid JSON or schema: {e}")
-                return None
+            save_response_to_file(response_content_cleaned, directory="needs_postprocessing")
+
+            # # this line is so enefficient due to deep seek being so heavy. We will do it in postprocessing instead
+            # # corrected_using_deepseek_r1 = correct_json_using_deepseek_r1(response_content_cleaned)
+            # try:
+            #     is_valid, directory = validate_response_content(corrected_using_deepseek_r1)
+            #     if is_valid:
+            #         return json.loads(corrected_using_deepseek_r1, strict=False)
+            #     else:
+            #         # save_response_to_file(corrected_using_deepseek_r1, directory=directory)
+            #         return None
+            # except (json.JSONDecodeError, ValidationError) as e:
+            #     print("\n\n\n")
+            #     print(">>>"*40)
+            #     print(corrected_using_deepseek_r1)
+            #     print("<<<"*40)
+            #     print("\n\n\n")
+            #     print(f"Invalid JSON or schema: {e}")
+            #     return None
             
     except (json.JSONDecodeError, ValidationError) as e:
         print("\n\n\n")

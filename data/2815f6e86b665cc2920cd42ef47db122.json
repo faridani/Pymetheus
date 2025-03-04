@@ -1,0 +1,14 @@
+{
+    "title": "Hard Python Challenge: Unique Anagram Checker (Medium)",
+    "description": "Given a string, determine if it can be rearranged to form a palindrome. A palindrome is a word that reads the same backward as forward. For this challenge, consider only alphanumeric characters and ignore cases.",
+    "code": "def can_form_palindrome(s: str) -> bool:\n    from collections import Counter\n    # Count occurrences of each character, ignoring non-alphanumeric characters\n    char_count = Counter(c.lower() for c in s if c.isalnum())\n    odd_count_chars = [char_count[char] % 2 !=  0 for char in char_count]\n    # If more than one character has an odd count, it cannot form a palindrome\n    return sum(odd_count_chars) <= 1\n",
+    "tests": [
+        "assert can_form_palindrome(\"Tact Coa\") == True",
+        "assert can_form_palindrome(\"Able was I ere I saw Elba\") == True",
+        "assert can_form_palindrome(\"Hello World!\") == False",
+        "assert can_form_palindrome(\"12345, 67890\") == False"
+    ],
+    "difficulty": "super hard",
+    "model": "phi3:14b",
+    "style": "HackerRank"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Number Reverser (Hard)",
+    "description": "Given a positive integer as a string, write a function `reverse_number` that returns the number with its digits reversed. Do not use any built-in functions or methods to reverse the string.\n\n#### Function Signature\n```python\ndef reverse_number(num_str: str) -> int:\n```\n\n#### Input\n- `num_str` (str): A positive integer represented as a string. For example, '12345' or '9876'.\n\n#### Output\n- Returns an integer, which is the reversed version of the input number.\n",
+    "code": "def reverse_number(num_str: str) -> int:\n    # Initialize a variable to store the reversed number\n    reversed_num = 0\n    # Iterate through each digit of the input string from right to left\n    for i in range(len(num_str) - 1, -1, -1):\n        digit = int(num_str[i])\n        # Add the digit to the reversed number by shifting the position and adding the digit\n        reversed_num = reversed_num * 10 + digit\n    return reversed_num\n",
+    "tests": [
+        "assert reverse_number('1234') == 4321",
+        "assert reverse_number('56789') == 98765",
+        "assert reverse_number('102938') == 839201"
+    ],
+    "difficulty": "hard",
+    "model": "aya:35b",
+    "style": "Codewars"
+}

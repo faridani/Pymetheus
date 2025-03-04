@@ -1,0 +1,16 @@
+{
+    "title": "Medium Python Coding Question: Balanced Brackets Checker",
+    "description": "A string of brackets is considered balanced if all types of brackets are closed by the correct closing bracket and in the correct order. Write a function `is_balanced` that checks whether an input string containing only brackets ('(', ')', '[', ']', '{', '}') has balanced brackets.\n\n#### Function Signature\n```python\ndef is_balanced(brackets: str) -> bool:\n```\n\n#### Input\n- `brackets` (str): A string that contains only characters from the set {'(', ')', '[', ']', '{', '}'}.\n\n#### Output\n- Returns `True` if all types of brackets in the input string are balanced, `False` otherwise.\n",
+    "code": "def is_balanced(brackets: str) -> bool:\n    stack = []\n    bracket_map = {')': '(', ']': '[', '}': '{'}\n    openers = set(['(', '[', '{'])\n\n    for bracket in brackets:\n        if bracket in openers:\n            stack.append(bracket)\n        elif bracket in bracket_hemap.keys() and (not stack or bracket_map[bracket] != stack[-1]):\n            return False\n        else:\n            stack.pop()\n    \n    return not stack\n",
+    "tests": [
+        "assert is_balanced('([{}])') == True",
+        "assert is_balanced('({[]})') == True",
+        "assert is_balanced('(([{}]))') == True",
+        "assert is_balanced('([)]') == False",
+        "assert is_balanced('{[()]}') == True",
+        "assert is_balanced('{]') == False"
+    ],
+    "difficulty": "medium",
+    "model": "phi3:14b",
+    "style": "HackerRank"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Number Reversal (Hard)",
+    "description": "Given a positive integer, write a function `reverse_number` that reverses the digits of the number and returns the new number.\n\n#### Function Signature\n```python\ndef reverse_number(num: int) -> int:\n```\n\n#### Input\n- `num` (int): A positive integer.\n\n#### Output\n- Returns a new integer with its digits reversed.\n\n#### Example\nGiven the input `123`, the function should return `321`.\n",
+    "code": "def reverse_number(num: int) -> int:\n    # Convert the integer to a string\n    num_str = str(num)\n    \n    # Reverse the string\n    reversed_str = num_str[::-1]\n    \n    # Convert the reversed string back to an integer\n    reversed_num = int(reversed_str)\n    \n    return reversed_num\n",
+    "tests": [
+        "assert reverse_number(123) == 321",
+        "assert reverse_number(4567) == 7654",
+        "assert reverse_number(10293) == 39201",
+        "assert reverse_number(1) == 1"
+    ],
+    "difficulty": "super hard",
+    "model": "aya:35b",
+    "style": "SPOJ"
+}

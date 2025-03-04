@@ -1,0 +1,13 @@
+{
+    "title": "Capitalize First Letter of Each Word",
+    "description": "Write a function `capitalize_each_word` that takes a string as input and returns the same string with the first letter of each word capitalized. Words are separated by any number of spaces, commas or periods.\n\n#### Function Signature\n```python\ndef capitalize_each_word(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string containing words separated by one or more spaces, commas or periods.\n\n#### Output\n- Returns the input string with each word starting with a capital letter.",
+    "code": "def capitalize_each_word(s: str) -> str:\n    # Split the string into words\n    words = s.split()\n    # Capitalize each word and join them back together\n    return ' '.join(word.capitalize() for word in words)",
+    "tests": [
+        "assert capitalize_each_word('hello world') == 'Hello World'",
+        "assert capitalize_each_word('hi there, world!') == 'Hi There, World!'",
+        "assert capitalize_each_word('a, b, c, d') == 'A, B, C, D'"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Interview Query"
+}
