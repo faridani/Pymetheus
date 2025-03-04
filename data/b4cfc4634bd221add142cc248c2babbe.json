@@ -1,0 +1,18 @@
+{
+    "title": "Medium - Fibonacci Sequence with Recursion (or Iteration) and Test Cases",
+    "description": "Write a Python function `fibonacci` that takes an integer `n` as input and returns the `n`th number in the Fibonacci sequence. The Fibonacci sequence is a series of numbers in which each number is the sum of the two preceding ones, usually starting with 0 and 1.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> int:\n```\n\n#### Input\n- `n` (int): An integer representing the position in the Fibonacci sequence to find, starting from 0. For example, `fibonacci(0)` returns 0, and `fibonacci(1)` returns 1.\n\n#### Output\n- Returns the `n`th number in the Fibonacci sequence as an integer.\n",
+    "code": "def fibonacci(n: int) -> int:\n    # Check if n is less than 0, and return None if it is.\n    if n < 0:\n        return None\n    \n    # Initialize the first two Fibonacci numbers\n    a, b = 0, 1\n    \n    # Loop from 2 to n (inclusive)\n    for _ in range(2, n+1):\n        # Update the current Fibonacci number\n        a, b = b, a + b\n    \n    # Return the nth Fibonacci number\n    return a",
+    "tests": [
+        "assert fibonacci(0) == 0",
+        "assert fibonacci(1) == 1",
+        "assert fibonacci(2) == 1",
+        "assert fibonacci(3) == 2",
+        "assert fibonacci(4) == 3",
+        "assert fibonacci(5) == 5",
+        "assert fibonacci(6) == 8",
+        "assert fibonacci(7) == 13",
+        "assert fibonacci(8) == 21",
+        "assert fibonacci(9) == 34",
+        "assert fibonacci(10) == 55"
+    ]
+}

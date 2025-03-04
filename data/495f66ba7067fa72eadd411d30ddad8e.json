@@ -1,0 +1,10 @@
+{
+    "title": "Medium - Fibonacci Sequence with a Twist",
+    "description": "Write a function `fibonacci_with_twist` that generates a Fibonacci sequence up to n, but with the following twist: If the number is divisible by 3, replace it with 'Fizz', if the number is divisible by 5, replace it with 'Buzz', and if the number is divisible by both 3 and 5, replace it with 'FizzBuzz'. \n\n#### Function Signature\n```python\ndef fibonacci_with_twist(n: int) -> list:\n```\n\n#### Input\n- `n` (int): A non-negative integer. The sequence will be generated up to this number.\n\n#### Output\n- Returns a list of integers, replaced with 'Fizz' for multiples of 3, 'Buzz' for multiples of 5, and 'FizzBuzz' for multiples of both 3 and 5.\n",
+    "code": "def fibonacci_with_twist(n: int) -> list:\n    sequence = []\n    a, b = 0, 1\n    while len(sequence) < n:\n        next_number = a + b\n        if next_number > n:\n            break\n        sequence.append(next_number)\n        a, b = b, next_number\n        if next_number % 3 == 0 and next_number not in (0, next_number):\n            sequence[-1] = 'Fizz'\n        elif next_number % 5 == 0 and next_number not in (0, next_number):\n            sequence[-1] = 'Buzz'\n        elif next_number % 15 == 0:\n            sequence[-1] = 'FizzBuzz'\n    return sequence",
+    "tests": [
+        "assert fibonacci_with_twist(10) == [0, 1, 1, 2, 3, 2, 5, Fizz, 8, 3]",
+        "assert fibonacci_with_twist(15) == [0, 1, 1, 2, 3, 5, 8, Fizz, 13, 21, Fizz, 34, FizzBuzz, 55]",
+        "assert fibonacci_with_twist(20) == [0, 1, 1, 2, 3, 5, 8, Fizz, 13, 21, Fizz, 34, FizzBuzz, 55, 68, Fizz, 97, Fizz, 122]"
+    ]
+}

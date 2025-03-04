@@ -1,0 +1,13 @@
+{
+    "title": "Hard - Fibonacci Decreasing Sequence Generator",
+    "description": "Write a function `generate_fib_decreasing` that generates an infinite decreasing Fibonacci sequence.\n\n#### Function Signature\n```python\ndef generate_fib_decreasing() -> Iterable:\n```\n\n#### Input\n- None (or void input)\n\n#### Output\n- An iterable that yields the decreasing Fibonacci numbers in order.\n\n#### Constraints and Hints\n- The first two values of the sequence are 1, 1.\n- Each subsequent number is the sum of the previous two numbers in the sequence.\n- Negative numbers should be avoided.\n",
+    "code": "def fibonacci():\n    a, b = 1, 1\n    while True:\n        yield a\n        a, b = b, a - b\n\ndef generate_fib_decreasing() -> Iterable:\n    fib = list(fibonacci())\n    return reversed(fib[1:])",
+    "tests": [
+        "assert next(generate_fib_decreasing()) == 1",
+        "assert next(generate_fib_decreasing()) == 1",
+        "assert next(generate_fib_decreasing()) == 2",
+        "assert next(generate_fib_decreasing()) == 3",
+        "assert next(generate_fib_decreasing()) == 5",
+        "assert next(generate_fib_decreasing()) == 8"
+    ]
+}

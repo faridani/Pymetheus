@@ -1,0 +1,14 @@
+{
+    "title": "Medium - Fibonacci Number with Recursion and Iteration",
+    "description": "Write a function called `fibonacci` that calculates the nth Fibonacci number using both recursive and iterative methods. The function should take an integer as input, `n`, and return the nth Fibonacci number.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> (int|None):\n```\n\n#### Input\n- `n` (int): A non-negative integer that represents the Fibonacci number to calculate.\n\n#### Output\n- Returns the nth Fibonacci number as an integer if it exists, or `None` if the input is negative.\n\n**Hint**: Use the following formulas for the recursive and iterative solutions:\n- Recursive: `f(n) = f(n - 1) + f(n - 2)`, with `f(0) = 0` and `f(1) = 1`\n- Iterative: Initialize two variables, one for the current Fibonacci number (say, `a`) and another for the previous Fibonacci number (say, `b`), and keep looping until you reach `n`th iteration. In each iteration, swap the values of `a` and `b`, and add `b` to `a`. The final value of `a` will be the nth Fibonacci number.\n\n**Note**: The function should also provide an implementation for both recursive and iterative methods within the same code.",
+    "code": "def fibonacci(n: int) -> (int|None):\n    # Base case for recursive solution\n    if n < 0:\n        return None\n    elif n <= 1:\n        return n\n    else:\n        # Recursive part\n        def fib_rec(n: int) -> int:\n            if n == 2:\n                return 1\n            else:\n                return fib_rec(n - 1) + fib_rec(n - 2)\n        # Calculate using recursion\n        result = fib_rec(n)\n    # Iterative part\n    if n > 2:\n        a, b = 0, 1\n        for _ in range(2, n):\n            a, b = b, a + b\n        result = a",
+    "tests": [
+        "assert fibonacci(0) == 0",
+        "assert fibonacci(1) == 1",
+        "assert fibonacci(2) == 1",
+        "assert fibonacci(3) == 2",
+        "assert fibonacci(5) == 5",
+        "assert fibonacci(10) == 55",
+        "assert fibonacci(-1) is None"
+    ]
+}

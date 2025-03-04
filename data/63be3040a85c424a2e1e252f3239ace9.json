@@ -1,0 +1,11 @@
+{
+    "title": "Easy - Is it a Pyramid Number?",
+    "description": "A pyramidal number or triangular number is a positive integer that is equal to the sum of an arithmetic series of integers. Write a function `is_pyramidal` that checks if a given number is a pyramidal number.\n\n#### Function Signature\n```python\ndef is_pyramidal(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns `True` if the input number is a pyramidal number, `False` otherwise.\n",
+    "code": "def is_pyramidal(n: int) -> bool:\n    # Check if the number is greater than or equal to 0\n    if n < 0: return False\n    # Calculate the sum of an arithmetic series from 1 to n\n    total = sum(range(1, n+1))\n    # Check if the input number equals the calculated total\n    return total == n",
+    "tests": [
+        "assert is_pyramidal(1) == True",
+        "assert is_pyramidal(4) == True",
+        "assert is_pyramidal(5) == False",
+        "assert is_pyramidal(10) == True"
+    ]
+}
