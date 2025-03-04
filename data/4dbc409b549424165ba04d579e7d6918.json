@@ -1,0 +1,19 @@
+{
+    "title": "Fibonacci Number Finder (Easy)",
+    "description": "Write a function `find_fibonacci` that takes an integer as input and returns the corresponding Fibonacci number.\n\n#### Function Signature\n```python\ndef find_fibonacci(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A non-negative integer that is less than 40.\n\n#### Output\n- Returns the corresponding Fibonacci number if the input is valid, raises a ValueError otherwise.\n",
+    "code": "def find_fibonacci(n: int) -> int:\n    if n < 0 or n >= 40:\n        raise ValueError('Input must be a non-negative integer less than 40')\n    fib = [0, 1]\n    for i in range(2, n+1):\n        fib.append(fib[i-1] + fib[i-2])\n    return fib[n]",
+    "tests": [
+        "assert find_fibonacci(0) == 0",
+        "assert find_fibonacci(1) == 1",
+        "assert find_fibonacci(2) == 1",
+        "assert find_fibonacci(3) == 2",
+        "assert find_fibonacci(4) == 3",
+        "assert find_fibonacci(5) == 5",
+        "assert find_fibonacci(6) == 8",
+        "assert find_fibonacci(7) == 13",
+        "assert find_fibonacci(10) == 34",
+        "assert find_fibonacci(20) == 6765"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest"
+}

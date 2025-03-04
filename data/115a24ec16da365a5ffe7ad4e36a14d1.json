@@ -1,0 +1,13 @@
+{
+    "title": "Python Level: Medium - Fibonacci Sequence Generator",
+    "description": "Write a Python function `generate_fibonacci` that takes an integer `n` as input and generates the first `n` Fibonacci numbers. The function should return a list of integers.\n\n#### Function Signature\n```python\ndef generate_fibonacci(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A positive integer representing the number of Fibonacci numbers to generate.\n\n#### Output\n- Returns a list of the first `n` Fibonacci numbers.\n",
+    "code": "def generate_fibonacci(n: int) -> List[int]:\n    # Initialize the sequence with the first two Fibonacci numbers\n    fibonacci = [0, 1]\n    \n    # Generate the remaining numbers in the sequence up to `n`\n    for i in range(2, n):\n        # Add the next number to the sequence\n        next_number = fibonacci[i] + fibonacci[i - 1]\n        fibonacci.append(next_number)\n    \n    # Return the generated Fibonacci numbers up to `n`\n    return fibonacci[:n]",
+    "tests": [
+        "assert generate_fibonacci(5) == [0, 1, 1, 2, 3, 5]",
+        "assert generate_fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]",
+        "assert generate_fibonacci(20) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765]",
+        "assert generate_fibonacci(1) == [0]"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest"
+}

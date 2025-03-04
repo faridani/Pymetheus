@@ -1,0 +1,11 @@
+{
+    "title": "Fibonacci Sequence Generator (Easy)",
+    "description": "Create a function `fibonacci` that generates the Fibonacci sequence up to n. The first two numbers in the sequence are 0 and 1.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> list:\n```\n\n#### Input\n- `n` (int): A positive integer representing the number of terms to generate from the Fibonacci sequence.\n\n#### Output\n- Returns a list containing the first n numbers in the Fibonacci sequence.\n",
+    "code": "def fibonacci(n: int) -> list:\n    # Initialize the sequence with 0 and 1\n    sequence = [0, 1]\n    \n    # Generate the rest of the terms\n    for i in range(2, n):\n        next_term = sequence[i] + sequence[i - 1]\n        sequence.append(next_term)\n    \n    return sequence",
+    "tests": [
+        "assert fibonacci(5) == [0, 1, 1, 2, 3, 5]",
+        "assert fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest"
+}

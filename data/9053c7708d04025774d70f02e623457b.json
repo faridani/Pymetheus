@@ -1,0 +1,20 @@
+{
+    "title": "'Find the Fibonacci Number at a Given Index (Easy)'",
+    "description": "Write a function `find_fibonacci` that finds the Fibonacci number at a given index. The function should take an integer as input and return the corresponding Fibonacci number.\n\n#### Function Signature\n```python\ndef find_fibonacci(n: int) -> int:\n```\n\n#### Input\n- `n` (int): An index for which you want to find the Fibonacci number.\n\n#### Output\n- Returns the nth Fibonacci number as an integer.\n",
+    "code": "def find_fibonacci(n: int) -> int:\n    # Base case: Fibonacci sequence starts with 0 and 1\n    if n <= 1: return n\n    # Initialize first two numbers of the sequence\n    fib = [0, 1]\n    # Loop until we reach the desired index\n    for i in range(2, n + 1):\n        # Calculate the next number in the Fibonacci sequence by adding the previous two numbers\n        fib.append(fib[i - 1] + fib[i - 2])\n    # Return the desired Fibonacci number at the given index\n    return fib[n]",
+    "tests": [
+        "assert find_fibonacci(0) == 0",
+        "assert find_fibonacci(1) == 1",
+        "assert find_fibonacci(2) == 1",
+        "assert find_fibonacci(3) == 2",
+        "assert find_fibonacci(4) == 3",
+        "assert find_fibonacci(5) == 5",
+        "assert find_fibonacci(6) == 8",
+        "assert find_fibonacci(7) == 13",
+        "assert find_fibonacci(8) == 21",
+        "assert find_fibonacci(9) == 34",
+        "assert find_fibonacci(10) == 55"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest"
+}

@@ -7,6 +7,7 @@ import os
 import json
 from ollama import ListResponse, list
 import random 
+from collections import Counter
 
 
 def save_response_to_file(response_content, directory):
@@ -148,6 +149,7 @@ while True:
                     response['model'] = model
                     save_response_to_file(response, directory="data")
                     fail_counter -= 1
+                    useful_models.append(model) #increase the probability of using this model again
                 else:
                     print(f"Response missing required keys for {difficulty} question")
             except Exception as e:
@@ -155,3 +157,10 @@ while True:
         else:
             print(f"Failed to generate {difficulty} question")
             fail_counter += 1
+            
+        model_counts = Counter(useful_models)
+        sorted_model_counts = sorted(model_counts.items(), key=lambda x: x[1], descending=True)
+
+        print("Model usage counts in descending order:")
+        for model, count in sorted_model_counts:
+            print(f"{model}: {count}")

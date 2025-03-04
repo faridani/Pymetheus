@@ -1,0 +1,14 @@
+{
+    "title": "Prime Factorization Generator (Hard)",
+    "description": "Write a function `prime_factorization` that generates the prime factorization of a given number.\n\n#### Function Signature\n```python\ndef prime_factorization(n: int) -> list[int]:\n```\n\n#### Input\n- `n` (int): A positive integer greater than 1.\n\n#### Output\n- Returns a list containing the prime numbers that multiply to give the input number, in decreasing order of their occurrence.\n",
+    "code": "def prime_factorization(n: int) -> list[int]:\n    def is_prime(num: int) -> bool:\n        if num <= 1: return False\n        for i in range(2, int(num**0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n    factors = []\n    for candidate in range(2, n + 1):\n        if is_prime(candidate) and (n % candidate == 0):\n            factors.append(candidate)\n            n //= candidate\n    if n > 1:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factorization(4) == [2, 2]",
+        "assert prime_factorization(8) == [2, 2, 2, 2]",
+        "assert prime_factorization(9) == [3, 3]",
+        "assert prime_factorization(16) == [2, 2, 4]",
+        "assert prime_factorization(25) == [5, 5]"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest"
+}

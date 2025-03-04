@@ -1,0 +1,10 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "Write a function `is_anagram` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str), `str2` (str): Two strings that may contain letters in any case and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "import itertools\ndef is_anagram(str1: str, str2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    str1 = ''.join(char for char in str1.lower() if char not in ' '\n    str2 = ''.join(char for char in str2.lower() if char not in ' '\n    # Ensure the two strings have the same length\n    if len(str1) != len(str2):\n        return False\n    # Create a set of characters from the first string and remove them from the second string to check if they match\n    str1_chars = set(str1)\n    for char in str1_chars:\n        if char not in str2: \n            return False\n        str2 = str2.replace(char, '')\n    # If all characters from the first string have been removed from the second string, they are anagrams\n    return True",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello world', 'world hello') == True",
+        "assert is_anagram('apple', 'appel') == False"
+    ]
+}
