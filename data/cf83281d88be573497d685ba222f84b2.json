@@ -1,0 +1,10 @@
+{
+    "title": "Hard - Matrix Zigzag Traversal",
+    "description": "Given a 2D matrix, write a function to traverse it in a zigzag manner. The traversal should start from the top-left corner and move towards the bottom-right corner, changing direction at each step.\n\n#### Function Signature\n```python\ndef zigzag_traversal(matrix: List[List[int]]) -> List[int]:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A 2D list where each sublist represents a row in the matrix.\n\n#### Output\n- Returns a list of integers representing the elements in a zigzag traversal order.\n",
+    "code": "def zigzag_traversal(matrix: List[List[int]]) -> List[int]:\n    if not matrix or not matrix[0]:\n        return []\n\n    rows, cols = len(matrix), len(matrix[0])\n    result = []\n    row, col = 0, 0\n    down = True\n\n    while row < rows and col < cols:\n        result.append(matrix[row][col])\n        if down:\n            if col == 0 or row == rows - 1:\n                down = False\n                if row == rows - 1:\n                    col += 1\n                else:\n                    row += 1\n            else:\n                row += 1\n                col -= 1\n        else:\n            if row == 0 or col == cols - 1:\n                down = True\n                if col == cols - 1:\n                    row += 1\n                else:\n                    col += 1\n            else:\n                row -= 1\n                col += 1\n    return result\n",
+    "tests": [
+        "assert zigzag_traversal([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == [1, 2, 4, 7, 5, 3, 6, 8, 9]",
+        "assert zigzag_traversal([[1, 2], [3, 4], [5, 6]]) == [1, 2, 3, 5, 4, 6]",
+        "assert zigzag_traversal([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]) == [1, 2, 5, 9, 6, 3, 4, 7, 10, 11, 8, 12]"
+    ]
+}

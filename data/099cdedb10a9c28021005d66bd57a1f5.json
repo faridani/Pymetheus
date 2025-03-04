@@ -1,0 +1,11 @@
+{
+    "title": "Medium - Reverse Integer",
+    "description": "Given a signed 32-bit integer x, return its reverse. If reversing x causes the value to go outside the signed 32-bit range [-2^31, 2^31 - 1], then return 0.\n\n#### Function Signature\n```python\ndef reverse_integer(x: int) -> int:\n```\n\n#### Input\n- `x` (int): A signed 32-bit integer that may be negative, positive or zero.\n\n#### Output\n- Returns the reversed integer if it falls within the 32-bit range, otherwise returns 0.",
+    "code": "def reverse_integer(x: int) -> int:\n    # Define the upper and lower limits for a signed 32-bit integer\n    INT_MAX = 2**31 - 1\n    INT_MIN = -2**31\n     \n    if x < 0:\n        sign = -1\n        x = abs(x)\n    else:\n        sign = 1\n     \n    # Reverse the integer\n    reversed_int = int(str(x)[::-1]) * sign\n     \n    # Check if the reversed integer is within the 32-bit range\n    if INT_MIN <= reversed_int <= INT_MAX:\n        return reversed_int\n    else:\n        return 0\n",
+    "tests": [
+        "assert reverse_integer(123) == 321",
+        "assert reverse_integer(-123) == -321",
+        "assert reverse_integer(1534236469) == 0",
+        "assert reverse_integer(-2147483648) == -8463847412"
+    ]
+}
