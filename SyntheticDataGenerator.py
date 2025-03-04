@@ -85,9 +85,6 @@ def ask_codellama(model, content):
     print(response['message']['content'])
     try:
         response_content = json.loads(response['message']['content'])
-        
-        
-
         validate(instance=response_content, schema=schema)
         try:
             compile(response_content['code'], '<string>', 'exec')
@@ -107,7 +104,7 @@ def ask_codellama(model, content):
             return None
         
     except (json.JSONDecodeError, ValidationError) as e:
-        save_response_to_file(response_content, directory="invalid_json")
+        save_response_to_file(response['message']['content'], directory="invalid_json")
 
         print(f"Invalid JSON or schema: {e}")
         return None
@@ -132,6 +129,9 @@ while True:
         In the title you should also include whether the problem is easy, medium or hard. 
         Please don\'t just create the same palindrome checker that I have provided as an example, you are supposed to create a new question. 
         And you are also supposed to provide the answer to the question in the code section.
+        Make sure that your output is in the form of a json string without any extra characters that break the json format. 
+        For example avoid using texts like "sure here is your json file" and just give me the json string.
+        Also avoid adding the string "json" to the output string as it will break the json format.
         This is the template: 
         """+str(template)
         difficulty = random.choice(difficulties)
