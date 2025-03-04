@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Binary Search Tree Validation",
+    "description": "Given the root node of a binary tree, determine if it is a valid binary search tree (BST). \n\n#### Function Signature\n```python\ndef is_valid_bst(root):\n```\n\n#### Input\n- `root` (TreeNode): The root node of the binary tree. Each node has attributes `val` (integer), `left` (TreeNode or None), and `right` (TreeNode or None).\n\n#### Output\n- Returns `True` if the input tree is a valid BST, `False` otherwise.\nA valid BST is defined as follows:\n* The left subtree of a node contains only nodes with keys less than the node's key.\n* The right subtree of a node contains only nodes with keys greater than the node's key.\n* Both the left and right subtrees must also be binary search trees.\n",
+    "code": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, lower_bound, upper_bound):\n        if not node:\n            return True\n        if node.val <= lower_bound or node.val >= upper_bound:\n            return False\n        return validate(node.left, lower_bound, node.val) and validate(node.right, node.val, upper_bound)\n    return validate(root, float('-inf'), float('inf'))",
+    "tests": [
+        "root = TreeNode(2, TreeNode(1), TreeNode(3))\nassert is_valid_bst(root) == True",
+        "root = TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3), TreeNode(6)))\nassert is_valid_bst(root) == False",
+        "root = TreeNode(2, None, TreeNode(2))\n assert is_valid_bst(root) == False"
+    ]
+}

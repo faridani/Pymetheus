@@ -90,10 +90,21 @@ def ask_codellama(model, content):
         
         response_content_raw = response['message']['content']
         # --- RULES ---
-        response_content_raw.replace("Here's your new Python coding question:","")
+        strings_to_remove = ["Here's your new Python coding question:",
+                             "Here is your new Python coding question:",
+                             "Here is your new Python coding question:",
+                             "Here is the Python coding question:"
+                             "```json"]
+        response_content_raw = response_content_raw.replace("Here's your new Python coding question:","")
+        response_content_raw = response_content_raw.replace("Here is your new Python coding question:", "")
+        response_content_raw = response_content_raw.replace("Here is your new Python coding question:", "")
+        response_content_raw = response_content_raw.replace("```json","")
         response_content_raw = response_content_raw.strip()
+        response_content_raw = response_content_raw.rstrip("```")
         # END OF RULES 
+        
         response_content = json.loads(response_content_raw)
+
         validate(instance=response_content, schema=schema)
         try:
             compile(response_content['code'], '<string>', 'exec')
@@ -114,13 +125,21 @@ def ask_codellama(model, content):
         
     except (json.JSONDecodeError, ValidationError) as e:
         # save_response_to_file(response['message']['content'], directory="invalid_json")
-
+        print("\n\n\n")
+        print(">>>"*40)
+        print(response_content_raw)
+        print("<<<"*40)
+        print("\n\n\n")
         print(f"Invalid JSON or schema: {e}")
         return None
     
     except ValueError as e:
         # save_response_to_file(response['message']['content'], directory="invalid_json")
-
+        print("\n\n\n")
+        print(">>>"*40)
+        print(response_content_raw)
+        print("<<<"*40)
+        print("\n\n\n")
         print(f"Invalid JSON or schema: {e}")
         return None
     
@@ -148,6 +167,7 @@ while True:
         For example avoid using texts like "sure here is your json file" and just give me the json string.
         Also avoid adding the string "```json" to the output string as it will break the json format.
         Absolutely do not reply by "Here's a new Python coding question for you" and instead just give me a json string right away 
+        Make sure keys and values of the json string are in double quotes.
         This is the template: 
         """+str(template)
         difficulty = random.choice(difficulties)
@@ -177,4 +197,5 @@ while True:
         sorted_model_counts = sorted(model_counts.items(), key=lambda x: x[1], reverse=True)
         print("Model usage counts in descending order:")
         for model, count in sorted_model_counts:
-            print(f"{model}: {count}")
+            print(f"{model}: {count}", end=", ")
+        print("\n\n\n\n\n\n\n\n\n")

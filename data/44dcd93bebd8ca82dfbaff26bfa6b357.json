@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Check",
+    "description": "A function that checks if two strings are anagrams of each other, considering letter case and spaces. For example, \u2018Listen\u2019 and \u2018Silent\u2019 are anagrams while \u2018Eleven plus Two\u2019 is not. Write a function `is_anagram` that takes in two strings as arguments.\n\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings with letters and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other considering case sensitivity, `False` otherwise.",
+    "code": "import collections\n\ndef is_anagram(str1: str, str2: str) -> bool:\n    # Remove non-alphanumeric characters and convert to lowercase\n    clean_str1 = ''.join(char.lower() for char in str1 if char.isalnum())\n    clean_str2 = ''.join(char.lower() for char in str2 if char.isalnum())\n    # Count the occurrences of each character in both strings\n    return collections.Counter(clean_str1) == collections.Counter(clean_str2)",
+    "tests": [
+        "assert is_anagram('Listen', 'Silent') == True",
+        "assert is_anagram('Eleven plus Two', 'Twelve plus one') == False",
+        "assert is_anagram('Programming', 'Gaming Program') == True",
+        "assert is_anagram('Listen', 'Silents') == False"
+    ],
+    "difficulty": "super hard",
+    "model": "qwen2:7b"
+}

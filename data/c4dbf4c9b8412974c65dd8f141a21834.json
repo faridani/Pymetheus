@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Counting Substrings with Unique Characters",
+    "description": "Given a string, count the number of substrings with unique characters. A substring is a contiguous part of the string. A substring with unique characters is a substring where each character appears only once.\n\n#### Function Signature\n```python\ndef count_unique_substrings(s: str) -> int:\n```\n\n#### Input\n- `s` (str): The input string.\n\n#### Output\n- Returns the number of unique substrings in the input string.\n",
+    "code": "def count_unique_substrings(s: str) -> int:\n    seen = set()\n    count = 0\n    start = 0\n\n    for i in range(len(s)):\n        if s[i] in seen:\n            start = max(start, s.index(s[i], start)) + 1\n        else:\n            count += i - start + 1\n            seen.add(s[i])\n\n    return count\n",
+    "tests": [
+        "assert count_unique_substrings('abcde') == 7",
+        "assert count_unique_substrings('aaabbb') == 3",
+        "assert count_unique_substrings('abababa') == 4",
+        "assert count_unique_substrings('pwwkew') == 4"
+    ],
+    "difficulty": "hard",
+    "model": "codegemma:7b"
+}

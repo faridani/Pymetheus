@@ -1,0 +1,13 @@
+{
+    "title": "Maximum Sublist Sum",
+    "description": "Given a list of integers, find the maximum sum of a sublist (contiguous or non-contiguous).\n\n#### Function Signature\n```python\ndef max_sublist_sum(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum of a sublist.\n",
+    "code": "def max_sublist_sum(nums: list[int]) -> int:\n    if not nums:\n        return 0\n\n    max_sum = float('-inf')\n    current_sum = 0\n\n    for num in nums:\n        current_sum = max(num, current_sum + num)\n        max_sum = max(max_sum, current_sum)\n\n    return max_sum",
+    "tests": [
+        "assert max_sublist_sum([1, -2, 3, 4, -5, 6]) == 7",
+        "assert max_sublist_sum([-1, -2, -3, -4, -5]) == -1",
+        "assert max_sublist_sum([1] * 100) == 100",
+        "assert max_sublist_sum([]) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3.1:8b"
+}

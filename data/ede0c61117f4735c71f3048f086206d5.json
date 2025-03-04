@@ -1,0 +1,12 @@
+{
+    "title": "'Find the Fibonacci Sequence up to N (Easy)',",
+    "description": "Write a function `fibonacci` that takes an integer `n` as an argument and returns a list of the Fibonacci sequence up to `n`. The sequence starts with 0 and 1, and each subsequent number is the sum of the previous two numbers.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A positive integer that specifies how many terms of the Fibonacci sequence to calculate.\n\n#### Output\n- Returns a list containing the first `n` numbers in the Fibonacci sequence.\n",
+    "code": "def fibonacci(n: int) -> List[int]:\n    sequence = [0, 1]\n    while len(sequence) < n:\n        next_number = sequence[-1] + sequence[-2]\n        sequence.append(next_number)\n    return sequence[:n]",
+    "tests": [
+        "assert fibonacci(5) == [0, 1, 1, 2, 3, 5]",
+        "assert fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]",
+        "assert fibonacci(20) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765]"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest"
+}

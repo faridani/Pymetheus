@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Counting Islands",
+    "description": "An island is a group of connected pixels that are all the same color. Write a function `count_islands` that takes a 2D list of pixel colors as input and returns the number of islands.\n\n#### Function Signature\n```python\ndef count_islands(grid: list[list[str]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[str]]): A 2D list where each element is either 'W' for white or 'B' for black. The grid may contain islands.\n\n#### Output\n- Returns the number of islands in the input grid.\n",
+    "code": "def count_islands(grid: list[list[str]]) -> int:\n    if not grid:\n        return 0\n    visited = [[False for _ in range(len(grid[0]))] for _ in range(len(grid))]\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == 'B' and not visited[i][j]:\n                dfs(grid, visited, i, j)\n                count += 1\n    return count\n\ndef dfs(grid: list[list[str]], visited: list[list[bool]], x: int, y: int):\n    if x < 0 or x >= len(grid) or y < 0 or y >= len(grid[0]) or visited[x][y]:\n        return\n    visited[x][y] = True\n    for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n        nx, ny = x + dx, y + dy\n        if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]) and grid[nx][ny] == 'B' and not visited[nx][ny]:\n            dfs(grid, visited, nx, ny)",
+    "tests": [
+        "assert count_islands([['W'], ['B']]) == 1",
+        "assert count_islands([['B', 'B'], ['B', 'B']]) == 1",
+        "assert count_islands([['W', 'W', 'W'], ['W', 'B', 'W'], ['W', 'W', 'W']]) == 1",
+        "assert count_islands([]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest"
+}

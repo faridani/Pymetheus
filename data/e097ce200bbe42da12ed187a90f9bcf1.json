@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Count Unique Capitalization Variations",
+    "description": "Given a string consisting of letters, digits and special characters, write a function that counts the number of unique capitalization variations within the string. Consider only the alphabetic characters while counting uniqueness, ignoring case sensitivity for other parts of the string.\n\n#### Function Signature\n```python\ndef count_unique_capitalizations(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing letters, digits and special characters.\n\n#### Output\n- Returns an integer representing the number of unique capitalization variations found in the input string.\n",
+    "code": "from collections import Counter\ndef count_unique_capitalizations(s: str) -> int:\n    alphabetic_chars = ''.join(ch for ch in s if ch.isalpha())  # Extract alphabetic characters\n    capitalizations = [''.join(sorted(c.lower())) for c in set(alphabetic_chars.split())]  # Get unique sorted lowercase versions\n    return len(capitalizations)\n",
+    "tests": [
+        "assert count_unique_capitalizations('aBc') == 1",
+        "assert count_unique_capitalizations('abC Abc') == 3",
+        "assert count_unique_capitalizations('Hello World!!!') == 6",
+        "assert count_unique_capitalizations('PyTHoN') == 1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "qwen2:7b"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Inorder Successor in Binary Tree",
+    "description": "Given a node in a binary tree, find its successor. If the given node has no successor (i.e., it's the rightmost node in the tree), return `None`.\n\n#### Function Signature\n```python\ndef inorder_successor(node: 'Node') -> 'Node':\n```\n\n#### Input\n- `node` ('Node'): A node in a binary tree.\n\n#### Output\n- Returns the successor of the given node, or `None` if it has no successor.\n\n#### Node Definition\n```python\nclass Node:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n```",
+    "code": "def inorder_successor(node: 'Node') -> 'Node':\n    if node.right:\n        curr = node.right\n        while curr.left:\n            curr = curr.left\n        return curr\n    parent, curr = None, node\n    while curr and curr != node:\n        parent = curr\n        curr = curr.parent\n    return None if not curr or curr == node else parent.right",
+    "tests": [
+        "assert inorder_successor(Node(2)) is Node(3)",
+        "assert inorder_successor(Node(1, right=Node(3))) is None",
+        "assert inorder_successor(Node(5, left=Node(3), right=Node(6))) is Node(6)"
+    ],
+    "difficulty": "hard",
+    "model": "mistral-nemo:latest"
+}

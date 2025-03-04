@@ -1,0 +1,11 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Given two strings `s` and `t`, find the minimum window in `s` that contains all characters of `t`. If there is no such window, return an empty string.\n\n#### Function Signature\n```python\ndef min_window(s: str, t: str) -> str:\n```\n\n#### Input\n- `s` (str): The string to search in.\n- `t` (str): The string containing characters to search for.\n\n#### Output\n- Returns the minimum window substring in `s` that contains all characters of `t`. If no such window exists, return an empty string.",
+    "code": "import string\n\ndef min_window(s: str, t: str) -> str:\n    # Create a set of unique characters in t\n    t_set = set(t)\n    # Initialize the minimum window substring and its length\n    min_win = ''\n    min_len = float('inf')\n    \n    # Initialize the left and right pointers for the sliding window\n    left = 0\n    right = 0\n    \n    # Expand the window to the right until it contains all characters of t\n    while right < len(s):\n        # Check if the current window contains all characters of t\n        if set(s[left:right + 1]).issuperset(t_set):\n            # Update the minimum window substring and its length if necessary\n            min_win = s[left:right + 1]\n            min_len = min(min_len, right - left + 1)\n            \n        # Move the right pointer to expand the window\n        right += 1\n    \n    # Return the minimum window substring or an empty string if no such window exists\n    return s[min_len:if min_len == float('inf') else len(s)]",
+    "tests": [
+        "assert min_window('ADOBECOC', 'ABC') == 'BCA'",
+        "assert min_window('a', 'aa') == ''",
+        "assert min_window('bba', 'ab') == 'ab'",
+        "assert min_window('abba', 'bb') == 'bb'"
+    ]
+}

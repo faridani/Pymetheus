@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Longest Palindromic Substring",
+    "description": "Given a string s, return the longest palindromic substring in s.\n\n#### Function Signature\n```python\ndef longest_palindrome(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string containing lowercase English letters.\n\n#### Output\n- Returns the longest palindromic substring in s.",
+    "code": "def longest_palindrome(s: str) -> str:\n    n = len(s)\n    if n < 2:\n        return s\n    longest = ''\n    for i in range(n):\n        # Check for odd length palindromes\n        l, r = i, i\n        while l >= 0 and r < n and s[l] == s[r]:\n            if (r - l + 1) > len(longest):\n                longest = s[l : r + 1]\n            l -= 1\n            r += 1\n        # Check for even length palindromes\n        l, r = i, i + 1\n        while l >= 0 and r < n and s[l] == s[r]:\n            if (r - l + 1) > len(longest):\n                longest = s[l : r + 1]\n            l -= 1\n            r += 1\n    return longest",
+    "tests": [
+        "assert longest_palindrome('babad') == 'bab'",
+        "assert longest_palindrome('cbbd') == 'bb'",
+        "assert longest_palindrome('a') == 'a'",
+        "assert longest_palindrome('ac') == 'a'"
+    ],
+    "difficulty": "hard",
+    "model": "gemma2:27b"
+}

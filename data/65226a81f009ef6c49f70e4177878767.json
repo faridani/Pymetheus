@@ -1,0 +1,12 @@
+{
+    "title": "Medium - Longest Common Prefix",
+    "description": "Write a function `longest_common_prefix` that finds the longest common prefix string amongst an array of strings.\n\n#### Function Signature\n```python\ndef longest_common_prefix(strs: List[str]) -> str:\n```\n\n#### Input\n- `strs` (List[str]): A list of strings.\n\n#### Output\n- Returns the longest common prefix string amongst all input strings. If there is no common prefix, return an empty string ''. Assume that all input strings are non-empty and only consist of lowercase English letters a-z.\n",
+    "code": "from typing import List\n\ndef longest_common_prefix(strs: List[str]) -> str:\n    if not strs:\n        return \"\"\n \n    shortest = min(strs, key=len)\n    for i, ch in enumerate(shortest):\n        for other in strs:\n            if other[i] != ch:\n                return shortest[:i]\n    return shortest\n",
+    "tests": [
+        "assert longest_common_prefix(['flower', 'flow', 'flight']) == 'fl'",
+        "assert longest_common_prefix(['dog', 'racecar', 'car']) == ''",
+        "assert longest_common_prefix(['hello', 'helloworld', 'helo']) == 'hel'"
+    ],
+    "difficulty": "medium",
+    "model": "deepseek-coder:33b"
+}

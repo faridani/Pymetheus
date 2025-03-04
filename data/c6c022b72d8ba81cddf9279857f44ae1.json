@@ -1,0 +1,12 @@
+{
+    "title": "Hard -  Word Ladder Solver",
+    "description": "Given two words of equal length, begin with the first word and transform it into the second word by changing only one letter at a time. Each intermediate word must be a valid English word found in a given dictionary. Return the shortest sequence of words that connects the start word to the end word.\n\n#### Function Signature\n```python\ndef find_shortest_path(start_word: str, end_word: str, dictionary: set[str]) -> list[str]:\n```\n\n#### Input\n- `start_word` (str): The starting word.\n- `end_word` (str): The target word.\n- `dictionary` (set[str]): A set of valid English words.\n\n#### Output\n- Returns a list of words representing the shortest path from `start_word` to `end_word`, or an empty list if no such path exists.\n",
+    "code": "from collections import deque\n\ndef find_shortest_path(start_word: str, end_word: str, dictionary: set[str]) -> list[str]:\n    if end_word not in dictionary:\n        return []\n    \n    dictionary.add(end_word)\n    queue = deque([(start_word, [start_word])])\n    while queue:\n        current_word, path = queue.popleft()\n        if current_word == end_word:\n            return path\n        for i in range(len(current_word)):\n            for letter in 'abcdefghijklmnopqrstuvwxyz':\n                next_word = current_word[:i] + letter + current_word[i+1:]\n                if next_word in dictionary and next_word not in path:\n                    queue.append((next_word, path + [next_word]))\n    return []",
+    "tests": [
+        "assert find_shortest_path('hit', 'cog', {'hot', 'dot', 'dog', 'lot', 'log', 'cog'}) == ['hit', 'hot', 'dot', 'dog', 'cog']",
+        "assert find_shortest_path('cat', 'dog', {'cot', 'cog', 'dog'}) == ['cat', 'cot', 'cog', 'dog']",
+        "assert find_shortest_path('ball', 'fall', {'call', 'tall', 'wall'}) == []"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "gemma2:27b-instruct-q5_K_S"
+}

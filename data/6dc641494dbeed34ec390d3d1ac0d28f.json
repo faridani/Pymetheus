@@ -1,0 +1,13 @@
+{
+    "title": "Binary String Symmetry Check",
+    "description": "A binary string symmetry check function determines whether the input string can be divided into two equal halves that are mirror images of each other. This problem doesn't consider leading zeroes as affecting the symmetry.\n\n#### Function Signature\n```python\ndef is_symmetric_binary(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A binary string containing only '0's and '1's.\n\n#### Output\n- Returns `True` if the input string can be symmetrically divided into two halves that are mirror images of each other, `False` otherwise. The function should ignore leading zeroes.",
+    "code": "def is_symmetric_binary(s: str) -> bool:\n    # Remove leading zeros for simplicity\n    s = s.lstrip('0')\n    # Check if the string length is even and first half mirrors second half\n    return len(s) % 2 == 0 and all(a == b for a, b in zip(s[:len(s)//2], reversed(s[len(s)//2:])))",
+    "tests": [
+        "assert is_symmetric_binary(\"1010\") == True",
+        "assert is_symmetric_binary(\"1001\") == False",
+        "assert is_symmetric_binary(\"0000\") == True",
+        "assert is_symmetric_binary(\"1111\") == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "qwen2:7b"
+}

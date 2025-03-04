@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Sum of Digits",
+    "description": "Write a function `sum_of_digits` that calculates the sum of the digits of an integer. The function should take an integer as input and return the sum of its digits.\n\n#### Function Signature:\n```python\ndef sum_of_digits(n: int) -> int:\n```\n\n#### Input:\n- `n` (int): An integer for which you want to calculate the sum of its digits.\n\n#### Output:\n- Returns the sum of the digits of the input integer.\n",
+    "code": "def sum_of_digits(n: int) -> int:\n    # Initialize a variable to store the sum\n    sum = 0\n    # While the number is not zero\n    while n > 0:\n        # Get the last digit and add it to the sum\n        digit = n % 10\n        sum += digit\n        # Remove the last digit from the number\n        n //= 10\n    # Return the sum\n    return sum\n",
+    "tests": [
+        "assert sum_of_digits(457) == 16",
+        "assert sum_of_digits(123098) == 28",
+        "assert sum_of_digits(5) == 5",
+        "assert sum_of_digits(0) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "aya:35b"
+}

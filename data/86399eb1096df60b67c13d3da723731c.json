@@ -1,0 +1,15 @@
+{
+    "title": "Matrix Spiral Traversal (Hard)",
+    "description": "Given an `m x n` matrix, write a function `spiral_traverse(matrix)` that returns all the elements of the matrix in spiral order. The spiral order starts from the top-left corner and proceeds towards the right, then down the last column, then left along the bottom row, and finally up the first column, repeating this pattern until all elements have been visited.\n\n#### Function Signature\n```python\ndef spiral_traverse(matrix: List[List[int]]) -> List[int]:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A 2D list of integers representing an `m x n` matrix where `1 <= m, n <= 100`.\n\n#### Output\n- Returns a list of integers representing the elements of the matrix in spiral order.\n\n#### Constraints\n- The function should handle edge cases such as empty matrices or matrices with only one row or column efficiently.\n- Assume all elements are integers and can be positive, negative, or zero.\n",
+    "code": "from typing import List\n\ndef spiral_traverse(matrix: List[List[int]]) -> List[int]:\n    result = []\n    while matrix:\n        # Add the first row to the result\n        result += matrix.pop(0)\n        if matrix and matrix[0]:\n            # Add the last element of each remaining row\n            for row in matrix:\n                result.append(row.pop())\n        if matrix:\n            # Add the last row in reverse order\n            result += matrix.pop()[::-1]\n        if matrix and matrix[0]:\n            # Add the first element of each remaining row (in reverse order)\n            for row in matrix[::-1]:\n                result.append(row.pop(0))\n    return result",
+    "tests": [
+        "assert spiral_traverse([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == [1, 2, 3, 6, 9, 8, 7, 4, 5]",
+        "assert spiral_traverse([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]) == [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]",
+        "assert spiral_traverse([[1]]) == [1]",
+        "assert spiral_traverse([[]]) == []",
+        "assert spiral_traverse([[1], [2], [3]]) == [1, 2, 3]",
+        "assert spiral_traverse([[1, 2], [3, 4]]) == [1, 2, 4, 3]"
+    ],
+    "difficulty": "hard",
+    "model": "phi4:latest"
+}

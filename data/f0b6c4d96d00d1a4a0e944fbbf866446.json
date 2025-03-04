@@ -1,0 +1,13 @@
+{
+    "title": "Prime Factorization",
+    "description": "Given an integer `n`, write a function `prime_factors` that returns all the prime factors of `n`. The output should be returned as a sorted list.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns a sorted list of all the prime factors of `n`.\n\n#### Constraints\n- The input number will be between 1 and 2^31 - 1.\n\n#### Hints\n- You may want to use a while loop that divides `n` by the smallest possible factor until it can't be divided anymore.",
+    "code": "from typing import List\n\ndef prime_factors(n: int) -> List[int]:\n    factors = []\n    d = 2\n    while d * d <= n:\n        if n % d == 0:\n            factors.append(d)\n            n //= d\n        else:\n            d += 1\n    if n > 1:\n        factors.append(n)\n    return sorted(factors)",
+    "tests": [
+        "assert prime_factors(36) == [2, 2, 3, 3]",
+        "assert prime_factors(50) == [2, 5, 5]",
+        "assert prime_factors(97) == [97]",
+        "assert prime_factors(100) == [2, 2, 5, 5]"
+    ],
+    "difficulty": "hard",
+    "model": "mistral-nemo:latest"
+}
