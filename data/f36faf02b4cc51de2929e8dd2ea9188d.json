@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Reverse Integer Sum",
+    "description": "Write a function `reverse_sum` that takes two integers as input and returns their sum with the digits reversed. The input numbers can be negative.\n\n#### Function Signature\n```python\ndef reverse_sum(a: int, b: int) -> int:\n```\n\n#### Input\n- `a` (int): First integer\n- `b` (int): Second integer\n\n#### Output\n- Returns the sum of `a` and `b` with the digits reversed.\n",
+    "code": "def reverse_sum(a: int, b: int) -> int:\n    def reverse(num):\n        return int(str(-num)[::-1]) if num < 0 else int(str(num)[::-1])\n    sum = a + b\n    rev_sum = reverse(sum)\n    return rev_sum",
+    "tests": [
+        "assert reverse_sum(123, 456) == 579",
+        "assert reverse_sum(-123, 456) == 333",
+        "assert reverse_sum(0, 0) == 0",
+        "assert reverse_sum(-999, 999) == 99"
+    ],
+    "difficulty": "hard",
+    "model": "command-r7b:latest"
+}

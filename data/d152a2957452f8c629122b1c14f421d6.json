@@ -1,0 +1,17 @@
+{
+    "title": "'Find the Fibonacci-like Sequence' - Medium",
+    "description": "Write a function `fibonacci_sequence` that takes an integer `n` and returns the first `n` terms of a sequence where each term is obtained by adding two previous terms in the sequence. However, unlike the traditional Fibonacci sequence, this sequence has a different starting point.\n\n#### Function Signature\n```python\ndef fibonacci_sequence(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): An integer that represents the number of terms in the sequence to return.\n\n#### Output\n- Returns a list of integers representing the first `n` terms of the given sequence.\n\n#### Constraints and Hints\n- The first term of the sequence is always 1.\n- The second term of the sequence is always 2.\n- If `n` is less than or equal to 1, return a list containing just the starting terms (i.e., [1]).",
+    "code": "def fibonacci_sequence(n: int) -> List[int]:\n    # Initialize the sequence with the first two terms\n    sequence = [1, 2]\n    \n    # If n is less than or equal to 1, return the initialized sequence\n    if n <= 1:\n        return sequence\n    \n    # Iterate through the remaining terms\n    for _ in range(2, n):\n        # Add the last two terms to get the next term\n        sequence.append(sequence[-1] + sequence[-2])\n    \n    # Return the complete sequence",
+    "tests": [
+        "assert fibonacci_sequence(1) == [1]",
+        "assert fibonacci_sequence(2) == [1, 2]",
+        "assert fibonacci_sequence(3) == [1, 2, 3]",
+        "assert fibonacci_sequence(4) == [1, 2, 3, 5]",
+        "assert fibonacci_sequence(5) == [1, 2, 3, 5, 8]",
+        "assert fibonacci_sequence(6) == [1, 2, 3, 5, 8, 13]",
+        "assert fibonacci_sequence(7) == [1, 2, 3, 5, 8, 13, 21]",
+        "assert fibonacci_sequence(8) == [1, 2, 3, 5, 8, 13, 21, 34]"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:7b-instruct"
+}

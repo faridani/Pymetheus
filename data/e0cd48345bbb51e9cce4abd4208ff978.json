@@ -1,0 +1,11 @@
+{
+    "title": "Hard - String Permutations",
+    "description": "Given a string, write a function `string_permutations` that returns a list of all possible permutations of the input string. The order of permutations in the output list does not matter.\n\n#### Function Signature\n```python\ndef string_permutations(s: str) -> list[str]:\n```\n\n#### Input\n- `s` (str): A string consisting of unique characters.\n\n#### Output\n- Returns a list containing all possible permutations of the input string.",
+    "code": "def string_permutations(s: str) -> list[str]:\n    if len(s) <= 1:\n        return [s]\n\n    permutations = []\n    for i, char in enumerate(s):\n        remaining_chars = s[:i] + s[i+1:]\n        for perm in string_permutations(remaining_chars):\n            permutations.append(char + perm)\n    return permutations",
+    "tests": [
+        "assert set(string_permutations('abc')) == {'abc', 'acb', 'bac', 'bca', 'cab', 'cba'}",
+        "assert set(string_permutations('abcd')) == {'abcd', 'abdc', 'acbd', 'acdb', 'adbc', 'adcb', 'bacd', 'badc', 'bcad', 'bcda', 'bdac', 'bdca', 'cbad', 'cbda', 'cabd', 'cadb', 'cdab', 'cdba', 'dbac', 'dbca', 'dacb', 'dabc', 'dcab', 'dcba'}"
+    ],
+    "difficulty": "hard",
+    "model": "gemma2:27b"
+}

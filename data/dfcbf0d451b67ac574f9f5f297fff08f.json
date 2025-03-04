@@ -1,0 +1,13 @@
+{
+    "title": "Capital Letter Count",
+    "description": "Count the number of capital letters in a given string. The function should ignore any characters that are not uppercase English letters.\n\n#### Function Signature\n```python\ndef count_capitals(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing zero or more characters. \n\n#### Output\n- Returns the number of uppercase English letters in the input string.\n",
+    "code": "def count_capitals(s: str) -> int:\n    # Count and return the number of capital letters\n    return sum(1 for char in s if 'A' <= char <= 'Z')",
+    "tests": [
+        "assert count_cuplits(\"Hello, World!\") == 2",
+        "assert count_capitals(\"Python Is Awesome!\") == 3",
+        "assert count_capitals('1234567890') == 0",
+        "assert count_cuplits('This is a Test.') == 2"
+    ],
+    "difficulty": "easy",
+    "model": "phi3:14b"
+}

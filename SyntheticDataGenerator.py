@@ -8,7 +8,9 @@ import json
 from ollama import ListResponse, list
 import random 
 from collections import Counter
-
+import re
+import ast
+import json
 
 def save_response_to_file(response_content, directory):
     # Generate a hash of the title
@@ -85,7 +87,13 @@ def ask_codellama(model, content):
     }
     print(response['message']['content'])
     try:
-        response_content = json.loads(response['message']['content'])
+        
+        response_content_raw = response['message']['content']
+        # --- RULES ---
+        response_content_raw.replace("Here's your new Python coding question:","")
+        response_content_raw = response_content_raw.strip()
+        # END OF RULES 
+        response_content = json.loads(response_content_raw)
         validate(instance=response_content, schema=schema)
         try:
             compile(response_content['code'], '<string>', 'exec')
@@ -105,7 +113,13 @@ def ask_codellama(model, content):
             return None
         
     except (json.JSONDecodeError, ValidationError) as e:
-        save_response_to_file(response['message']['content'], directory="invalid_json")
+        # save_response_to_file(response['message']['content'], directory="invalid_json")
+
+        print(f"Invalid JSON or schema: {e}")
+        return None
+    
+    except ValueError as e:
+        # save_response_to_file(response['message']['content'], directory="invalid_json")
 
         print(f"Invalid JSON or schema: {e}")
         return None
@@ -133,6 +147,7 @@ while True:
         Make sure that your output is in the form of a json string without any extra characters that break the json format. 
         For example avoid using texts like "sure here is your json file" and just give me the json string.
         Also avoid adding the string "```json" to the output string as it will break the json format.
+        Absolutely do not reply by "Here's a new Python coding question for you" and instead just give me a json string right away 
         This is the template: 
         """+str(template)
         difficulty = random.choice(difficulties)
@@ -159,8 +174,7 @@ while True:
             fail_counter += 1
             
         model_counts = Counter(useful_models)
-        sorted_model_counts = sorted(model_counts.items(), key=lambda x: x[1], descending=True)
-
+        sorted_model_counts = sorted(model_counts.items(), key=lambda x: x[1], reverse=True)
         print("Model usage counts in descending order:")
         for model, count in sorted_model_counts:
             print(f"{model}: {count}")

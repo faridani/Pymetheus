@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "An anagram is a word or phrase that consists of the same letters as another, but arranged differently. Write a function `is_anagram` that checks if two given strings are anagrams.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s1 = ''.join(char for char in s1 if char.isalpha()).lower()\n    s2 = ''.join(char for char in s2 if char.isalpha()).lower()\n    # Check the lengths of the strings are equal\n    if len(s1) != len(s2):\n        return False\n    # Create a dictionary to count the frequency of each character in `s1`\n    count_dict = {char: s1.count(char) for char in sorted(set(s1))}\n    # Decrease the count of each character in the dictionary that appears in `s2` and check if any counts become negative\n    for char in sorted(set(s2)):\n        if char in count_dict and count_dict[char] > 0:\n            count_dict[char] -= 1\n        else:\n            return False\n    # If no characters were found that didn't match the frequency, then the strings are anagrams\n    return True",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'olleh') == True",
+        "assert is_anagram('racecar', 'carrace') == True",
+        "assert is_anagram('cat', 'act') == False"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:7b-instruct"
+}

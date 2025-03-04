@@ -1,0 +1,12 @@
+{
+    "title": "Binary Representation of Numbers",
+    "description": "A function that takes an integer as input and returns the binary representation of this number. The function should consider negative numbers by converting them to their 2's complement binary representation.\n\n#### Function Signature\n```python\ndef binary_representation(n: int) -> str:\n```\n\n#### Input\n- `n` (int): An integer which can be positive or negative.\n\n#### Output\n- Returns the string representation of the binary number.",
+    "code": "def binary_representation(n: int) -> str:\n    if n >= 0:\n        return bin(n)[2:]   # Convert to binary and remove the '0b' prefix\n    else:\n        max_val = (1 << 32) - 1 if n.bit_length() == 32 else (1 << 64) - 1\n        return '{:b}'.format(max_val + n)",
+    "tests": [
+        "assert binary_representation(5) == '101'",
+        "assert binary_representation(-5) == '11111111111111111111111111111101'",
+        "assert binary_representation(2**31 - 1) == '1111111111111111111111111111111'"
+    ],
+    "difficulty": "hard",
+    "model": "qwen2:7b"
+}

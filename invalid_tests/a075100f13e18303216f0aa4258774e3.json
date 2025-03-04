@@ -1,0 +1,11 @@
+{
+    "title": "Hard: N-Queens Problem",
+    "description": "The N-queens puzzle is a problem of placing N queens on an N\u00d7N chessboard such that no two queens attack each other. Given an integer N, write a function `solve_n_queens` that returns all distinct solutions to the N-queens puzzle.\n\n#### Function Signature\n```python\ndef solve_n_queens(N: int) -> List[List[str]]:\n```\n\n#### Input\n- `N` (int): The size of the chessboard and the number of queens.\n\n#### Output\n- Returns a list of lists. Each inner list represents a distinct solution to the N-queens puzzle as a list of strings, where each string consists only of characters '.' and 'Q'. In each string, 'Q' denotes a queen position, while '.' denotes an empty square.\n",
+    "code": "from typing import List\ndef solve_n_queens(N: int) -> List[List[str]]:\n    def is_safe(board, row, col):\n        # Check this row on left side\n        for i in range(col):\n            if board[row][i] == 'Q':\n                return False\n        # Check upper diagonal on left side\n        for i, j in zip(range(row, -1, -1), range(col, -1, -1)):\n            if board[i][j] == 'Q':\n                return False\n        # Check lower diagonal on left side\n        for i, j in zip(range(row, N, 1), range(col, -1, -1)):\n            if board[i][j] == 'Q':\n                return False\n        return True\n    \n    def solve_n_queens_util(board, col):\n        if col >= N:\n            solutions.append([''.join(row) for row in board])\n            return\n        for i in range(N):\n            if is_safe(board, i, col):\n                board[i][col] = 'Q'\n                solve_n_queens_util(board, col + 1)\n                board[i][col] = '.'\n    \n    solutions = []\n    board = [['.' for _ in range(N)] for _ in range(N)]\n    solve_n_queens_util(board, 0)\n    return solutions",
+    "tests": [
+        "assert len(solve_n_queens(4)) == 2",
+        "assert 'Q...\n..Q.\n...Q\n.Q..' in solve_n_queens(4)",
+        "assert '..Q.\nQ...\n...Q\n.Q..' in solve_n_queens(4)",
+        "assert len(solve_n_queens(5)) == 10"
+    ]
+}
