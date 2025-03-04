@@ -1,0 +1,11 @@
+{
+    "title": "Hard - String Compression",
+    "description": "Implement a function `compress` that compresses a string by replacing consecutive duplicate characters with the character followed by the count of those characters. If the compressed string is not shorter than the original, return the original string.\n\n#### Function Signature\n```python\ndef compress(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string with possible consecutive duplicate characters.\n\n#### Output\n- Returns the compressed string if it is shorter than the original, otherwise returns the original string.\n",
+    "code": "def compress(s: str) -> str:\n    if not s:  # If the string is empty, return it immediately\n        return s\n\n    compressed = []  # Initialize a list to hold characters in the compressed form\n    count = 1  # Start with a count of 1 for the first character\n\n    for i in range(1, len(s)):  # Iterate through the string starting from the second character\n        if s[i] == s[i - 1]:  # If the current character is the same as the previous one\n            count += 1  # Increment the count\n        else:  # If it's different\n            compressed.append(s[i - 1])  # Add the previous character to the compressed list\n            if count > 1:  # If there were multiple duplicates, add the count\n                compressed.append(str(count))\n            count = 1  # Reset the count for the next character sequence\n\n    # After the loop, add the last character and its count (if any)\n    compressed.append(s[-1])\n    if count > 1:\n        compressed.append(str(count))\n\n    # Convert the list back to a string and compare lengths\n    return s if len(s) <= len(compressed) else ''.join(compressed)\n",
+    "tests": [
+        "assert compress('aaabbbcc') == 'a3b3c2'",
+        "assert compress('aabbbaacc') == 'a2b3a2c2'",
+        "assert compress('abc') == 'abc'",
+        "assert compress('aaa') == 'a3'"
+    ]
+}
