@@ -1,0 +1,12 @@
+{
+    "title": "'Is it a Pangram or Not? (Medium)'",
+    "description": "A pangram is a sentence that uses every letter of the alphabet at least once. Write a function `is_pangram` that checks if a given string is a pangram.\n\n#### Function Signature\n```python\ndef is_pangram(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A non-empty string containing only lowercase English alphabet characters (a-z).\n\n#### Output\n- Returns `True` if the input string is a pangram, `False` otherwise.\n",
+    "code": "def is_pangram(s: str) -> bool:\n    # Initialize an empty set to store unique characters\n    chars = set()\n    \n    # Loop through each character in the input string\n    for char in s:\n        # If the character is not already in the set, add it and continue\n        if char not in chars:\n            chars.add(char)\n            continue\n        \n        # If a duplicate character is found, return False immediately\n        else:\n            return False\n    \n    # If no duplicates were found, the string must be a pangram and we can return True\n    return len(chars) == 26",
+    "tests": [
+        "assert is_pangram('the quick brown fox jumps over the lazy dog') == True",
+        "assert is_pangram('a very long time ago the big dog chased the little cat') == True",
+        "assert is_pangram('apple') == False"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Prime Factorization (Hard)",
+    "description": "Write a function `prime_factors` that takes a positive integer as input and returns a list of its prime factors.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A positive integer greater than 1.\n\n#### Output\n- Returns a list of the prime numbers that multiply to form the input number.\n",
+    "code": "def prime_factors(n: int) -> List[int]:\n    factors = []\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            factors.append(i)\n            n //= i\n        else:\n            i += 1\n    if n > 1:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factors(12) == [2, 2, 3]",
+        "assert prime_factors(25) == [5]",
+        "assert prime_factors(17) == [17]",
+        "assert prime_factors(49) == [7, 7]"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest"
+}

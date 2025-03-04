@@ -1,0 +1,10 @@
+{
+    "title": "'Number Palindromes Sum Finder (Medium)'",
+    "description": "Write a function `find_sum_of_palindromes` that finds and returns the sum of all palindrome numbers between two given integers within a certain range.\n\n#### Function Signature\n```python\ndef find_sum_of_palindromes(start: int, end: int) -> int:\n```\n\n#### Input\n- `start` (int): The starting integer of the range.\n- `end` (int): The ending integer of the range.\n\n#### Output\n- Returns an integer that is the sum of all palindrome numbers between `start` and `end`.\n\n#### Constraints\n- The range should contain only positive integers.\n",
+    "code": "def find_sum_of_palindromes(start: int, end: int) -> int:\n    # Check if the input is valid\n    if start < 0 or end <= 0:\n        return None\n    # Initialize the sum and the number variable\n    sum = 0\nnum = start\n    \n    while num <= end:\n        # Check if the number is a palindrome\n        if str(num) == str(num)[::-1]:\n            sum += num\n            # Increment the number variable to check the next number in the range\n            num += 1\n        else:\n            # If it's not a palindrome, increment the number variable to check the next number in the range\n            num += 1\n    return sum",
+    "tests": [
+        "assert find_sum_of_palindromes(100, 900) == 2378\n",
+        "assert find_sum_of_palindromes(1, 567) == None",
+        "assert find_sum_of_palindromes(111, 1234123) == 1220"
+    ]
+}

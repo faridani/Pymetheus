@@ -1,0 +1,12 @@
+{
+    "title": "Fibonacci Sequence Generator (Hard)",
+    "description": "Write a function `fibonacci` that generates the Fibonacci sequence up to a given number. The sequence starts with 0 and 1, and each subsequent number is the sum of the previous two.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> list:\n```\n\n#### Input\n- `n` (int): The maximum number in the Fibonacci sequence to generate. For example, if `n = 10`, the function should return [0, 1, 1, 2, 3, 5, 8, 13, 21, 34].\n\n#### Output\n- Returns a list of integers representing the Fibonacci sequence up to `n`.",
+    "code": "def fibonacci(n: int) -> list:\n    sequence = [0, 1]\n    while len(sequence) < n:\n        next_number = sequence[-1] + sequence[-2]\n        sequence.append(next_number)\n    return sequence[:n]",
+    "tests": [
+        "assert fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]",
+        "assert fibonacci(20) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181]",
+        "assert fibonacci(1) == [0]"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest"
+}

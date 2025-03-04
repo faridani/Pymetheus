@@ -41,7 +41,7 @@ useful_models = []
 
 for model in  response.models:
     size = model.size.real
-    if size < nvram_size*2: # this will call some swapping but it is fine
+    if size < nvram_size:
         print(model["model"] + "----" + str(f'{size/ (1024 ** 3):.2f} GB'))
         useful_models.append(model["model"])
 
@@ -131,7 +131,7 @@ while True:
         And you are also supposed to provide the answer to the question in the code section.
         Make sure that your output is in the form of a json string without any extra characters that break the json format. 
         For example avoid using texts like "sure here is your json file" and just give me the json string.
-        Also avoid adding the string "json" to the output string as it will break the json format.
+        Also avoid adding the string "```json" to the output string as it will break the json format.
         This is the template: 
         """+str(template)
         difficulty = random.choice(difficulties)
@@ -147,6 +147,7 @@ while True:
                     response['difficulty'] = difficulty
                     response['model'] = model
                     save_response_to_file(response, directory="data")
+                    fail_counter -= 1
                 else:
                     print(f"Response missing required keys for {difficulty} question")
             except Exception as e:

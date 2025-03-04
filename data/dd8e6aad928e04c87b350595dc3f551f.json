@@ -1,0 +1,13 @@
+{
+    "title": "'Is it a Pangram Checker (Easy)'",
+    "description": "A pangram is a sentence that uses every letter of the alphabet at least once. Write a function `is_pangram` that checks if a given string is a pangram.\n\n#### Function Signature\n```python\ndef is_pangram(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that contains lowercase letters (a to z).\n\n#### Output\n- Returns `True` if the input string is a pangram, `False` otherwise.\n",
+    "code": "def is_pangram(s: str) -> bool:\n    # Check if all alphabets are present in the given string\n    s_set = set(s.lower())\n    return len(s_set) == 26",
+    "tests": [
+        "assert is_pangram('The quick brown fox jumps over the lazy dog') == True",
+        "assert is_pangram('A very eager ant eats many ants') == True",
+        "assert is_pangram('abcdefghijklmnopqrstuvwxyz') == False",
+        "assert is_pangram('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ') == False"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest"
+}

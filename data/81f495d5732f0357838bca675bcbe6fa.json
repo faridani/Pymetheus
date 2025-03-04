@@ -1,0 +1,13 @@
+{
+    "title": "'Reverse a List of Strings (Medium)'",
+    "description": "Given a list of strings, write a function `reverse_list` that takes the input list and returns a new list with the same elements but in reverse order.\n\n#### Function Signature\n```python\ndef reverse_list(lst: List[str]) -> List[str]:\n```\n\n#### Input\n- `lst` (List[str]): A list of strings that may contain any number of elements.\n\n#### Output\n- Returns a new list with the same elements as input but in reverse order.\n",
+    "code": "def reverse_list(lst: List[str]) -> List[str]:\n    return lst[::-1]",
+    "tests": [
+        "assert reverse_list(['hello', 'world', 'python']) == ['python', 'world', 'hello']",
+        "assert reverse_list(['a', 'b', 'c']) == ['c', 'b', 'a']",
+        "assert reverse_list([]) == []",
+        "assert reverse_list(['x', 'y', 'z', 'w']) == ['w', 'z', 'y', 'x']"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest"
+}

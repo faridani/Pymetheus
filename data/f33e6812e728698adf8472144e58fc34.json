@@ -1,0 +1,12 @@
+{
+    "title": "Even Fibonacci Numbers",
+    "description": "Write a function `even_fibonacci` that returns a list of all even numbers in the Fibonacci sequence up to and including n. The Fibonacci sequence starts with 0 and 1, and each subsequent number is the sum of the previous two.\n\n#### Function Signature\n```python\ndef even_fibonacci(n: int) -> list:\n```\n\n#### Input\n- `n` (int): An integer that represents the maximum number in the Fibonacci sequence to consider. For example, if n is 10, the function should return [0, 2, 8].\n\n#### Output\n- Returns a list of all even numbers in the Fibonacci sequence up to and including n.\n",
+    "code": "def even_fibonacci(n: int) -> list:\n    # Initialize the list with the first two Fibonacci numbers (0 and 1)\n    fib = [0, 1]\n    result = []\n    # Loop through up to n\n    for i in range(2, n + 1):\n        # Calculate the next number in the sequence\n        next_number = fib[i - 1] + fib[i - 2]\n        # If the calculated number is even, add it to the result list\n        if next_number % 2 == 0:\n            result.append(next_number)\n    return result",
+    "tests": [
+        "assert even_fibonacci(10) == [0, 2, 8]",
+        "assert even_fibonacci(15) == [0, 2, 8, 10, 14]",
+        "assert even_fibonacci(20) == [0, 2, 8, 10, 14, 16, 20]"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest"
+}

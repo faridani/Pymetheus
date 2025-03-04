@@ -1,0 +1,13 @@
+{
+    "title": "'Is it a Leap Year?' - A Medium Python Problem",
+    "description": "Write a function `is_leap_year` that checks if a given year is a leap year. The function should accept an integer representing the year as input and return `True` if the year is a leap year, `False` otherwise.\n\n#### Function Signature\n```python\ndef is_leap_year(y: int) -> bool:\n```\n\n#### Input\n- `y` (int): A four-digit year.\n\n#### Output\n- Returns `True` if the input year is a leap year, `False` otherwise.\n\n#### Hints\n- To be a leap year, a year must be divisible by 4. However, years that are also divisible by 100 are not leap years unless they are also divisible by 400.\n",
+    "code": "def is_leap_year(y: int) -> bool:\n    # Check if the year is divisible by 4\n    if y % 4 != 0:\n        return False\n    # If the year is divisible by 100, check if it's also divisible by 400\n    if y % 100 == 0:\n        if y % 400 != 0:\n            return False\n    return True",
+    "tests": [
+        "assert is_leap_year(2000) == True",
+        "assert is_leap_year(1998) == False",
+        "assert is_leap_year(2016) == True",
+        "assert is_leap_year(1700) == False"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest"
+}

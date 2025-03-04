@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Write a function `are_anagrams` that determines if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string containing only lowercase alphabetic characters.\n- `str2` (str): Another string containing only lowercase alphabetic characters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def are_anagrams(str1: str, str2: str) -> bool:\n    # Remove spaces and convert to set\n    set1 = set(str1.replace(' ', ''))\n    set2 = set(str2.replace(' ', ''))\n    \n    # Check if the number of characters in each set is equal (since anagrams have the same number of unique characters)\n    if len(set1) != len(set2):\n        return False\n    \n    # Check if both sets are identical\n    else:\n        return set1 == set2",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'olleh') == True",
+        "assert are_anagrams('racecar', 'carrace') == True",
+        "assert are_anagrams('test', 'tset') == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest"
+}

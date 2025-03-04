@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Write a function `anagram_checker` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef anagram_checker(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain letters and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n\nNote: Consider capitalization and ignore any spaces and special characters when checking for anagrams.\n",
+    "code": "def anagram_checker(str1: str, str2: str) -> bool:\n    # Remove non-alphabetic characters from strings and convert to lowercase\n    str1 = ''.join(char.lower() for char in str1 if char.isalpha())\n    str2 = ''.join(char.lower() for char in str2 if char.isalpha())\n    # Sort the resulting strings\n    sorted_str1 = sorted(list(str1))\n    sorted_str2 = sorted(list(str2))\n    # Compare the sorted strings to check if they are anagrams of each other\n    return len(sorted_str1) == len(sorted_str2) and sorted_str1 == sorted_str2",
+    "tests": [
+        "assert anagram_checker(\"listen\", \"silent\") == True",
+        "assert anagram_checker(\"racecar\", \"carracer\") == True",
+        "assert anagram_checker(\"hello\", \"world\") == False",
+        "assert anagram_checker(\"Mary had a little lamb\", \"lamb little a had Mary\") == True"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest"
+}

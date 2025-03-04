@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "Write a function `anagram_checker` that checks if two given strings are anagrams of each other. An anagram is a word or phrase that consists of the same letters as another, but arranged differently.\n\n#### Function Signature\n```python\ndef anagram_checker(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain letters, numbers, spaces and punctuation.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n\nHint: You can remove all non-alphabetic characters from a string using the `filter()` function and a character set containing only alphabets. Also remember that you need to convert both strings to lowercase before comparing them.\n",
+    "code": "import string\ndef anagram_checker(str1: str, str2: str) -> bool:\n    # Remove non-alphabetic characters from the given strings\n    str1 = ''.join(filter(lambda char: char in string.ascii_letters, str1)).lower()\n    str2 = ''.join(filter(lambda char: char in string.ascii_letters, str2)).lower()\n    # Check if the two strings have the same number of characters and are equal after sorting them\n    return len(str1) == len(str2) and sorted(str1) == sorted(str2)",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('love', 'evil') == False",
+        "assert anagram_checker('Amazon', 'zomaN') == True"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest"
+}

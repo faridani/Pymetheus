@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Reverse Integer Checker",
+    "description": "Write a function `is_reverse_integer` that checks if two given integers can be reversed to form each other. Note that the function should handle negative numbers and zeros.\n\n#### Function Signature\n```python\ndef is_reverse_integer(a: int, b: int) -> bool:\n```\n\n#### Input\n- `a` (int): The first integer to check.\n- `b` (int): The second integer to check.\n\n#### Output\n- Returns `True` if the integers can be reversed to form each other, `False` otherwise.\n",
+    "code": "def is_reverse_integer(a: int, b: int) -> bool:\n    return str(a) == str(b)[::-1]",
+    "tests": [
+        "assert is_reverse_integer(123, 321) == True",
+        "assert is_reverse_integer(-123, 123) == False",
+        "assert is_reverse_integer(0, 0) == True",
+        "assert is_reverse_integer(-123456789, 987654321) == False"
+    ],
+    "difficulty": "super hard",
+    "model": "command-r7b:latest"
+}

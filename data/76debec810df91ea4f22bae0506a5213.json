@@ -1,0 +1,14 @@
+{
+    "title": "Roman Numerals Conversion",
+    "description": "Write a function `convert_to_roman` that converts an integer into its Roman numeral representation.\n\n#### Function Signature\n```python\ndef convert_to_roman(num: int) -> str:\n```\n\n#### Input\n- `num` (int): An integer within the range of 1 and 3999.\n\n#### Output\n- Returns a string representing the Roman numeral equivalent of the input integer.\n",
+    "code": "def convert_to_roman(num: int) -> str:\n    roman_numerals = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    result = ''\n    for roman, value in roman_numerals.items():\n        if num >= value:\n            result += roman * (num // value)\n            num %= value\n    return result",
+    "tests": [
+        "assert convert_to_roman(3) == 'III'",
+        "assert convert_to_roman(4) == 'IV'",
+        "assert convert_to_roman(9) == 'IX'",
+        "assert convert_to_roman(58) == 'LVIII'",
+        "assert convert_to_roman(1994) == 'MCMXCIV'"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest"
+}

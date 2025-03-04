@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "Given two strings, write a function `anagram` that determines if the two strings are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def anagram(s1: str, s2: str) -> bool:\n    # Remove non-alphanumeric characters and convert to lowercase\n    s1 = ''.join(char for char in s1.lower() if char in string.ascii_letters + string.digits)\n    s2 = ''.join(char for char in s2.lower() if char in string.ascii_letters + string.digits)\n    # Sort the letters in both strings\n    if len(s1) != len(s2):\n        return False\n    s1_sorted = sorted(list(s1))\n    s2_sorted = sorted(list(s2))\n    # Compare the sorted lists\n    return s1_sorted == s2_sorted",
+    "tests": [
+        "assert anagram('listen', 'silent') == True",
+        "assert anagram('hello', 'olleh') == True",
+        "assert anagram('racecar', 'carrace') == True",
+        "assert anagram('a man, a plan, a canal, Panama', 'amanaplanacanalpanama') == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest"
+}

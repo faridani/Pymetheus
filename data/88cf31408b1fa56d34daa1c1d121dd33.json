@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "Write a function `find_anagrams` that finds all the anagrams of a given string. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str) -> list[str]:\n```\n\n#### Input\n- `word` (str): A string consisting of lowercase letters only.\n\n#### Output\n- Returns a list of strings, where each string is an anagram of the input word.\n",
+    "code": "from collections import Counter\n\ndef find_anagrams(word: str) -> list[str]:\n    # Create a counter for each letter in the word\n    counter = Counter(word)\n    anagrams = []\n    # Iterate through all possible permutations of the letters in the word\n    for perm in itertools.permutations(word):\n        # Check if the permutation has the same number of each letter as the original word\n        if Counter(perm) == counter:\n            anagram = ''.join(perm)\n            # Check if the anagram is not already in the list and it is a valid word (using a pre-built dictionary, for example `words` from the NLTK library)\n            if anagram not in anagrams and anagram in set(nltk.corpus.words.words()):\n                anagrams.append(anagram)\n    return anagrams",
+    "tests": [
+        "assert find_anagrams('listen') == ['silent', 'enlist']",
+        "assert find_anagrams('abc') == []",
+        "assert find_anagrams('movie') == ['evilom']"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest"
+}

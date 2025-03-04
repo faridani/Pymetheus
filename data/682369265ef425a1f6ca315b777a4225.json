@@ -1,0 +1,15 @@
+{
+    "title": "Fibonacci Number Sequence Generator (Easy)",
+    "description": "Create a function called `fibonacci` that generates the Fibonacci sequence up to the nth term, given an integer input `n`. The function should return a list containing the Fibonacci numbers up to and including the nth term. \n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): An integer representing the position of the Fibonacci number in the sequence to be generated.\n\n#### Output\n- Returns a list containing the Fibonacci numbers up to and including the nth term as integers.\n",
+    "code": "def fibonacci(n: int) -> List[int]:\n    # Base case: if n <= 1, return [n]\n    sequence = []\n    if n <= 1:\n        sequence.append(n)\n        return sequence\n    else:\n        sequence.extend(fibonacci(n-1))\n        previous = sequence[-1] # the last element of the sequence so far\n        current = sequence[-2] # the second to last element of the sequence so far\n        sequence.append(previous + current)\n    return sequence",
+    "tests": [
+        "assert fibonacci(0) == [0]",
+        "assert fibonacci(1) == [0, 1]",
+        "assert fibonacci(2) == [0, 1, 1]",
+        "assert fibonacci(3) == [0, 1, 1, 2]",
+        "assert fibonacci(4) == [0, 1, 1, 2, 3]",
+        "assert fibonacci(5) == [0, 1, 1, 2, 3, 5]"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Even Fibonacci Sequence Summer",
+    "description": "Write a function `even_fibonacci_sum` that finds the sum of all even numbers in the Fibonacci sequence up to n (inclusive).\n\n#### Function Signature\n```python\ndef even_fibonacci_sum(n: int) -> int:\n```\n\n#### Input\n- `n` (int): An integer representing the maximum value of the Fibonacci sequence to find the sum of even numbers.\n\n#### Output\n- Returns the sum of all even numbers in the Fibonacci sequence up to n (inclusive).",
+    "code": "def even_fibonacci_sum(n: int) -> int:\n    # Define a list to store the Fibonacci sequence\n    fib = [0, 1]\n    sum = 0\n    for i in range(2, n + 1):\n        next = fib[i - 1] + fib[i - 2]\n        if not i % 2:\n            # If the index is even, check if the next number is even and add it to the sum\n            if next % 2 == 0:\n                sum += next\n        fib.append(next)\n    return sum",
+    "tests": [
+        "assert even_fibonacci_sum(10) == 0",
+        "assert even_fibonacci_sum(20) == 44",
+        "assert even_fibonacci_sum(30) == 55"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest"
+}

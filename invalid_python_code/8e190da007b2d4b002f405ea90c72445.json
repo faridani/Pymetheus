@@ -1,0 +1,16 @@
+{
+    "title": "Prime Number Finder (Hard)",
+    "description": "Write a function `is_prime` that checks if a given number is prime.\n\n#### Function Signature\n```python\ndef is_prime(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns `True` if the input number is a prime, `False` otherwise.\n\nNote: For large numbers, you may assume that the input will always be positive and less than 2^64.\n\nHint: A prime number is only divisible by itself and 1. The smallest prime number is 2.",
+    "code": "def is_prime(n: int) -> bool:\n    # If the number is less than 2 or equal to 1, it's not a prime\n    if n < 2: return False\n    # Check for divisibility by 2 and 3 (only need to check up to sqrt(n))\n    if n % 2 == 0: return n == 2 or n % 3 == 0 else False\n    i = 5\n    while i * i <= n:\n        # Check for divisibility by all odd numbers starting from i*i\n        if n % i == 0 or n % (i + 2) == 0: return False\n        i += 6\n    return True",
+    "tests": [
+        "assert is_prime(2) == True",
+        "assert is_prime(3) == True",
+        "assert is_prime(4) == False",
+        "assert is_prime(5) == True",
+        "assert is_prime(7) == True",
+        "assert is_prime(10) == False",
+        "assert is_prime(11) == True",
+        "assert is_prime(19) == True",
+        "assert is_prime(23) == True"
+    ]
+}

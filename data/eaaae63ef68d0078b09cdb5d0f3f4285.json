@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "An anagram is a word or phrase that consists of the same letters as another, but arranged differently. Write a function `anagram_checker` that checks if two given strings are anagrams.\n\n#### Function Signature\n```python\ndef anagram_checker(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string containing only letters (no spaces, punctuation or numbers).\n- `str2` (str): Another string containing only letters (no spaces, punctuation or numbers).\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def anagram_checker(str1: str, str2: str) -> bool:\n    # Convert both strings to lowercase and remove duplicates\n    set1 = set(sorted(str1.lower().replace(' ', '')))\n    set2 = set(sorted(str2.lower().replace(' ', '')))\n    \n    # Check if the number of unique characters in both sets is equal\n    return len(set1) == len(set2)\n",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('hello', 'world') == False",
+        "assert anagram_checker('actors', 'starcraft') == True"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest"
+}

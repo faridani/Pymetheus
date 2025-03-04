@@ -1,0 +1,12 @@
+{
+    "title": "List of Fibonacci Numbers",
+    "description": "Write a function `fibonacci` that generates the first n fibonacci numbers.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> list:\n```\n\n#### Input\n- `n` (int): The number of Fibonacci numbers you want to generate, with a minimum value of 1.\n\n#### Output\n- Returns a list containing the first n Fibonacci numbers.\n\nHint: The Fibonacci sequence starts with 0 and 1, and each subsequent number is the sum of the previous two.\n",
+    "code": "def fibonacci(n: int) -> list:\n    # Initialize the first two numbers in the sequence\n    fib_sequence = [0, 1]\n    # Loop to generate the rest of the sequence\n    for _ in range(2, n):\n        # Add the next number to the sequence\n        last = fib_sequence[-1]\n        next_number = last + fib_sequence[-2]\n        fib_sequence.append(next_number)\n    # Return the generated sequence\n    return fib_sequence",
+    "tests": [
+        "assert fibonacci(5) == [0, 1, 1, 2, 3, 5]",
+        "assert fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]",
+        "assert fibonacci(1) == [0]"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest"
+}

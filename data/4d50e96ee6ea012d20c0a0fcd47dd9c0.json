@@ -1,0 +1,12 @@
+{
+    "title": "Reversed Word Order Checker (Easy)",
+    "description": "Write a function `is_reversed` that checks if the words in a given string are in reverse order. Ignore punctuation, digits, and case sensitivity.\n\n#### Function Signature\n```python\ndef is_reversed(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that contains words separated by spaces, whitespace or punctuation.\n\n#### Output\n- Returns `True` if the words in the input string are in reverse order, `False` otherwise.\n",
+    "code": "import re\ndef is_reversed(s: str) -> bool:\n    # Remove non-alphanumeric characters and convert to lowercase\n    s = re.sub('[^a-zA-Z]+', ' ', s).strip().lower()\n    # Split the string into words\n    words = s.split()\n    # Check if the list of words is in reverse order\n    return words == words[::-1]",
+    "tests": [
+        "assert is_reversed('Words order is not correct') == False",
+        "assert is_reversed('correct order of words') == True",
+        "assert is_reversed('Is this a palindrome?') == False"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest"
+}

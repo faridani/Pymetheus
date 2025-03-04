@@ -1,0 +1,12 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Write a function `anagram_detector` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef anagram_detector(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): The first string to compare as a potential anagram.\n- `str2` (str): The second string to compare as a potential anagram.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def anagram_detector(str1: str, str2: str) -> bool:\n    # Remove spaces and punctuation from both strings\n    str1 = ''.join(char for char in str1 if char.isalnum()).lower()\n    str2 = ''.join(char for char in str2 if char.isalnum()).lower()\n    # Sort each string's characters and compare them\n    return sorted(str1) == sorted(str2)",
+    "tests": [
+        "assert anagram_detector('listen', 'silent') == True",
+        "assert anagram_detector('hello', 'world') == False",
+        "assert anagram_detector('Wow, what a great show!', 'Show great wow, what a lot!') == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest"
+}

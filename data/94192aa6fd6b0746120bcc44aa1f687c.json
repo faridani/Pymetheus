@@ -1,0 +1,17 @@
+{
+    "title": "Prime Factorization (Hard)",
+    "description": "Write a function `prime_factors` that takes an integer as input and returns a list of its prime factors.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns a list of prime numbers that multiply to give the input number, in sorted order and without duplicates.\n",
+    "code": "def prime_factors(n: int) -> List[int]:\n    # Edge case: 1 has no factors\n    if n == 1:\n        return []\n\n    # Initialize list to store the prime factors\n    factors = []\n    i = 2\n\n    while i*i <= n:\n        # If the number is divisible by i, it's a factor\n        if n % i == 0:\n            factors.append(i)\n            n //= i\n        else:\n            i += 1\n\n    # If there is still a remainder after checking up to the square root of the number,\n    # that remaining factor must be prime, so add it to the list.\n    if n > 1:\n        factors.append(n)\n    return sorted(factors)",
+    "tests": [
+        "assert prime_factors(1) == []",
+        "assert prime_factors(2) == [2]",
+        "assert prime_factors(4) == [2, 2]",
+        "assert prime_factors(7) == [7]",
+        "assert prime_factors(9) == [3, 3]",
+        "assert prime_factors(15) == [3, 5]",
+        "assert prime_factors(18) == [2, 3, 3, 3]",
+        "assert prime_factors(20) == [2, 2, 5]"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest"
+}

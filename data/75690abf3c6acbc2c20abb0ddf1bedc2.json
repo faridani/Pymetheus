@@ -1,0 +1,13 @@
+{
+    "title": "Fibonacci Sequence Generator (Hard)",
+    "description": "Write a function `fibonacci` that generates the Fibonacci sequence up to and including the `nth` term. The function should take an integer `n` as its argument.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): An integer greater than or equal to 0 specifying the index of the term in the sequence you want to generate.\n\n#### Output\n- Returns a list containing the first `n` terms of the Fibonacci sequence.\n",
+    "code": "def fibonacci(n: int) -> List[int]:\n    # Initialize the sequence with the first two terms\n    sequence = [0, 1]\n    \n    # Generate the remaining terms up to and including the `nth` term\n    while len(sequence) < n:\n        next_term = sequence[-1] + sequence[-2]\n        sequence.append(next_term)\n    \n    # Remove the first two terms (since they are already included in the sequence)\n    sequence = sequence[2:]\n    \n    return sequence",
+    "tests": [
+        "assert fibonacci(0) == [0]",
+        "assert fibonacci(1) == [0, 1]",
+        "assert fibonacci(5) == [0, 1, 1, 2, 3, 5]",
+        "assert fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest"
+}

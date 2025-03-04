@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detector (Medium)",
+    "description": "Write a function `anagram_detector` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef anagram_detector(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain only letters (no numbers, spaces, or punctuation).\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def anagram_detector(s1: str, s2: str) -> bool:\n    # Remove any duplicates and store in a dictionary\n    dict1 = {char: s1.count(char) for char in sorted(set(s1))}\n    dict2 = {char: s2.count(char) for char in sorted(set(s2))}\n    # Check if dictionaries are the same\n    return dict1 == dict2",
+    "tests": [
+        "assert anagram_detector(\"listen\", \"silent\") == True",
+        "assert anagram_detector(\"python\", \"typhon\") == True",
+        "assert anagram_detector(\"hello\", \"world\") == False"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest"
+}

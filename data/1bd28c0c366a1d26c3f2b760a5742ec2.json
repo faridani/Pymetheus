@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "Write a function `is_anagram` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings containing only lowercase letters without any spaces or punctuation.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove spaces and punctuation from both strings\n    s1 = ''.join(char for char in s1 if char.isalpha())\n    s2 = ''.join(char for char in s2 if char.isalpha())\n    # If the two strings have different lengths, they cannot be anagrams\n    if len(s1) != len(s2):\n        return False\n    \n    # Count the frequency of each character in both strings\n    s1_count = {}\n    s2_count = {}\n    for char in s1:\n        if char not in s1_count:\n            s1_count[char] = 1\n        else:\n            s1_count[char] += 1\n    for char in s2:\n        if char not in s2_count:\n            s2_count[char] = 1\n        else:\n            s2_count[char] += 1\n    \n    # If the counts of characters do not match, the strings are not anagrams\n    for key, value in s1_count.items():\n        if key not in s2_count or s1_count[key] != s2_count[key]:\n            return False\n    \n    # If all counts match, the strings are anagrams\n    return True",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('act', 'cat') == True"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest"
+}

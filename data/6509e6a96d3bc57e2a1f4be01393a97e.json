@@ -1,0 +1,14 @@
+{
+    "title": "Prime Factor Decomposition (Hard)",
+    "description": "Write a function `prime_factors` that takes an integer as input and returns a list of prime factors for the given number. The input number may be greater than 1.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A positive integer greater than 1.\n\n#### Output\n- Returns a list of prime numbers that can multiply together to produce the input number. The list should be sorted in ascending order.\n",
+    "code": "def prime_factors(n: int) -> List[int]:\n    # Edge case: 1 is not a prime number and has no factors\n    if n == 1:\n        return []\n    # Initialize factors list\n    factors = [2]\n    i = 3\n    \n    # Loop through all possible factors starting from 3\n    while i * i <= n:\n        # Check if the number is divisible by current factor\n        if n % i == 0:\n            # Add the factor to the list and divide the number by it\n            factors.append(i)\n            n //= i\n        else:\n            # Increment the current factor\n            i += 2\n    \n    # If the number is still greater than 1 after the loop, it must be a prime number\n    if n > 1:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factors(3) == [3]",
+        "assert prime_factors(4) == [2, 2]",
+        "assert prime_factors(6) == [2, 3]",
+        "assert prime_factors(15) == [3, 5]",
+        "assert prime_factors(96) == [2, 2, 2, 2, 2, 2, 3, 7]"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest"
+}

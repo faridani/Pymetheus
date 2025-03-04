@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two strings are anagrams.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s1 = ''.join(char for char in s1 if char.isalpha()).lower()\n    s2 = ''.join(char for char in s2 if char.isalpha()).lower()\n    \n    # If the lengths are not equal, they cannot be anagrams\n    if len(s1) != len(s2):\n        return False\n    \n    # Create two dictionaries to count characters in each string\n    char_count1 = {char: s1.count(char) for char in set(s1)}\n    char_count2 = {char: s2.count(char) for char in set(s2)}\n    \n    # Compare the dictionaries to see if they have the same characters and counts\n    return char_count1 == char_count2",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('A man, a plan, a canal: Panama', 'Panama cannal: a plan a mana') == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest"
+}
