@@ -1,0 +1,16 @@
+{
+    "title": "Hard: Multi-Level Dictionary Merge",
+    "description": "Write a function `deep_merge_dicts` that merges multiple dictionaries into one. The merge should be deep, meaning it recursively combines nested dictionaries instead of overwriting them. If two keys at the same level in different dictionaries both map to values that are themselves dictionaries, these sub-dictionaries should also be merged recursively. For non-dictionary values, if a key exists in more than one dictionary, the value from the last dictionary provided should take precedence.\n\n#### Function Signature\n```python\ndef deep_merge_dicts(*dicts: dict) -> dict:\n```\n\n#### Input\n- `*dicts` (dict): A variable number of dictionaries to merge.\n\n#### Output\n- Returns a single dictionary that represents the deep merge of all input dictionaries.\n\n#### Constraints\n- The keys in the dictionaries are strings.\n- Values can be any type, including other dictionaries.\n\n#### Hints\n- Consider using recursion for merging nested dictionaries.",
+    "code": "def deep_merge_dicts(*dicts: dict) -> dict:\n    def merge(d1: dict, d2: dict) -> dict:\n        result = d1.copy()\n        for key, value in d2.items():\n            if key in result and isinstance(result[key], dict) and isinstance(value, dict):\n                result[key] = merge(result[key], value)\n            else:\n                result[key] = value\n        return result\n    \n    merged_dict = {}\n    for dictionary in dicts:\n        merged_dict = merge(merged_dict, dictionary)\n    return merged_dict",
+    "tests": [
+        "assert deep_merge_dicts({'a': 1}, {'b': 2}) == {'a': 1, 'b': 2}",
+        "assert deep_merge_dicts({'a': {'x': 1}}, {'a': {'y': 2}}) == {'a': {'x': 1, 'y': 2}}",
+        "assert deep_merge_dicts({'a': {'b': {'c': 3}}}, {'a': {'b': {'d': 4}}}) == {'a': {'b': {'c': 3, 'd': 4}}}",
+        "assert deep_merge_dicts({'a': {'x': 1}}, {'a': 2}) == {'a': 2}",
+        "assert deep_merge_dicts({}, {'nested': {'level': {'deep': 'value'}}}) == {'nested': {'level': {'deep': 'value'}}}",
+        "assert deep_merge_dicts({'a': {'b': 1}}, {'a': {'c': 2}, 'd': 3}, {'a': {'b': 4}}) == {'a': {'b': 4, 'c': 2}, 'd': 3}"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "phi4:latest",
+    "style": "Interview Query"
+}

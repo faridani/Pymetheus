@@ -1,0 +1,11 @@
+{
+    "title": "A Knight's Quest",
+    "description": "You are given a list of moves that a knight can make on a chessboard. Write a function that checks if the knight has reached the starting position after moving. \n\n#### Function Signature\n```python\ndef reach_start(moves: List[Tuple]) -> bool:\n```\n\n#### Input\n- `moves` (List[Tuple]): A list of tuples representing the moves that the knight can make, where each tuple contains the row and column of the square where the knight is currently located and the row and column of the square where the knight wants to move. \n\n#### Output\n- Returns `True` if the knight has reached the starting position, `False` otherwise.\n",
+    "code": "import collections\n\ndef reach_start(moves: List[Tuple]) -> bool:\n    # Initialize a stack to keep track of the knight's moves\n    stack = collections.Stack()\n    # Iterate through the list of moves and check if the knight has reached the starting position\n    for move in moves:\n        curr_row, curr_col = move\n        new_row, new_col = move[1], move[0])\n        if stack.contains(curr_row, curr_col): return True else:\n            stack.push((new_row, new_col))\n    # If the knight has not reached the starting position, return False\n    return False",
+    "tests": [
+        "assert reach_start([(0, 0), (1, 1), (2, 0), (1, 2)]) == True",
+        "assert reach_start([(0, 0), (1, 1), (2, 2), (3, 3)]) == False",
+        "assert reach_start([(0, 0), (1, 1), (2, 0), (1, 2), (2, 1)]) == True",
+        "assert reach_start([(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]) == False"
+    ]
+}

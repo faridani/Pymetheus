@@ -1,0 +1,12 @@
+{
+    "title": "Hardest Coding Problem",
+    "description": "Given a binary tree, find the path from the root node to the node with the maximum sum. The path may contain any number of nodes and may not be unique.\n\n#### Function Signature\n```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef max_path_sum(root: TreeNode) -> int:\n```\n\n#### Input\n- `root` (TreeNode): The root node of the binary tree.\n\n#### Output\n- Returns the maximum sum of the path from the root node to the node with the maximum sum.\n",
+    "code": "def max_path_sum(root: TreeNode) -> int:\n    max_sum = float('-inf')\n\n    def dfs(node: TreeNode) -> int:\n        if node is None:\n            return 0\n\nonly_left = dfs(node.left)\nonly_right = dfs(node.right)\nmax_sum = max(max_sum, only_left + only_right + node.val)\nreturn max(only_left, only_right) + node.val\n\n    dfs(root)\n    return max_sum\n",
+    "tests": [
+        "assert max_path_sum(None) == 0",
+        "assert max_path_sum(TreeNode(1)) == 1",
+        "assert max_path_sum(TreeNode(1, TreeNode(2), TreeNode(3))) == 6",
+        "assert max_path_sum(TreeNode(1, TreeNode(-2), TreeNode(3))) == 2",
+        "assert max_path_sum(TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3))) == 14"
+    ]
+}

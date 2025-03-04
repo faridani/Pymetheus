@@ -1,0 +1,14 @@
+{
+    "title": "Determine If a Given String Is a Permutation of Its Reverse",
+    "description": "Given a string, determine if it is a permutation of its reverse. A permutation is an arrangement of elements in which each element is used once and the order of the elements matters. Write a function `is_permutation` that takes a string as input and returns `True` if the input string is a permutation of its reverse, and `False` otherwise.",
+    "code": "def is_permutation(s: str) -> bool:\n    # Convert to lowercase\n    s = s.lower()\n    # Split the string into individual characters\n    char_list = list(s)\n    # Sort the character list in alphabetical order\n    sorted_char_list = sorted(char_list)\n    # Join the sorted character list back into a string\n    rev_str = ''.join(sorted_char_list)\n    # Check if the original string is equal to its reverse\n    return s == rev_str\n",
+    "tests": [
+        "assert is_permutation('racecar') == True",
+        "assert is_permutation('hello') == False",
+        "assert is_permutation('level') == False",
+        "assert is_permutation('rat') == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "codeup:latest",
+    "style": "Competitive Programming"
+}

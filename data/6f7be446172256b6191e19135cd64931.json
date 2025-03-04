@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Is Prime",
+    "description": "Write a function `is_prime` that checks if a given number is prime.\n\n#### Function Signature\n```python\ndef is_prime(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A non-negative integer to check for primality.\n\n#### Output\n- Returns `True` if the input number is prime, `False` otherwise.\n",
+    "code": "def is_prime(n: int) -> bool:\n    if n <= 1:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    divisor = 3\n    while divisor * divisor <= n:\n        if n % divisor == 0:\n            return False\n        divisor += 2\n    return True",
+    "tests": [
+        "assert is_prime(1) == False",
+        "assert is_prime(2) == True",
+        "assert is_prime(10) == False",
+        "assert is_prime(17) == True"
+    ],
+    "difficulty": "medium",
+    "model": "codeqwen:7b",
+    "style": "HackerEarth"
+}

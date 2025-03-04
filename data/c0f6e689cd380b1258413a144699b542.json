@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Array Rotation",
+    "description": "Given an array of integers `nums` and an integer `k`, rotate the array to the right by `k` steps.\n\n#### Function Signature\n```python\ndef rotate_array(nums: list[int], k: int) -> None:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers. The function modifies this list in-place.\n- `k` (int): The number of steps to rotate the array to the right.\n\n#### Output\n- Modifies the input list `nums` by rotating its elements to the right by `k` steps.",
+    "code": "def rotate_array(nums: list[int], k: int) -> None:\n    n = len(nums)\n    k %= n\n    nums[:] = nums[-k:] + nums[:-k]",
+    "tests": [
+        "rotate_array([1,2,3,4,5,6,7], 3); assert [5,6,7,1,2,3,4] == nums",
+        "rotate_array([-1,-100,3,99], 2); assert [3,99,-1,-100] == nums"
+    ],
+    "difficulty": "medium",
+    "model": "gemma2:27b",
+    "style": "CodeWars"
+}

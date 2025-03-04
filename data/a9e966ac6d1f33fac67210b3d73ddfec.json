@@ -1,0 +1,12 @@
+{
+    "title": "Unique Substring Finder (Medium)",
+    "description": "Write a function `find_unique_substrings` that finds all unique substrings of a given string.\n\n#### Function Signature\n```python\ndef find_unique_substrings(s: str) -> List[str]:\n```\n\n#### Input\n- `s` (str): A string containing lowercase and uppercase English alphabets and digits.\n\n#### Output\n- Returns a list of unique substrings in the order they appear.\n\n#### Constraints\n- The length of the input string is at most 10^4.\n\n#### Hint\nUse a set to store seen substrings and iterate through the string while checking for uniqueness.\n",
+    "code": "from typing import List\n\ndef find_unique_substrings(s: str) -> List[str]:\n    substrings = set()\n    n = len(s)\n    for i in range(n):\n        for j in range(i + 1, n + 1):\n            substrings.add(s[i:j])\n    return list(substrings)\n",
+    "tests": [
+        "assert find_unique_substrings('abc') == ['a', 'ab', 'abc', 'b', 'bc', 'c']",
+        "assert find_unique_substrings('aaa') == ['a', 'aa', 'aaa', 'a', 'a', 'a']"
+    ],
+    "difficulty": "hard",
+    "model": "codebooga:latest",
+    "style": "AtCoder"
+}

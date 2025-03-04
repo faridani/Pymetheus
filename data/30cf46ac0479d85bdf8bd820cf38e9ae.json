@@ -1,0 +1,13 @@
+{
+    "title": "String Rotation Checker",
+    "description": "Write a function `is_rotation` that checks if two given strings are rotations of each other. A string is considered to be a rotation of another string if it can be obtained by rotating the first string 180 degrees, so for example, \"dog\" and \"god\" are rotations of each other.\n\n#### Function Signature\n```python\ndef is_rotation(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): The first string.\n- `s2` (str): The second string.\n\n#### Output\n- Returns `True` if the two input strings are rotations of each other, `False` otherwise.",
+    "code": "def is_rotation(s1: str, s2: str) -> bool:\n    # If the two strings have different lengths, they cannot be rotations of each other.\n    if len(s1) != len(s2):\n        return False\n    # Check if one string is a rotation of the other by concatenating the first string with itself and checking if the second string is a substring of the concatenated string.\n    return s2 in s1 + s1",
+    "tests": [
+        "assert is_rotation('dog', 'god') == True",
+        "assert is_rotation('hello', 'ohell') == True",
+        "assert is_rotation('a', 'b') == False"
+    ],
+    "difficulty": "easy",
+    "model": "llama3.1:8b",
+    "style": "Codecademy"
+}

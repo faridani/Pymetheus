@@ -1,0 +1,9 @@
+{
+    "title": "Medium: Maximal Non-Overlapping Subarray",
+    "description": "Given an array of integers, find the sum of the maximal non-overlapping subarray. A subarray is considered non-overlapping if it does not contain any other subarray. For example, in the array [1, 2, -3, 4, 5, -6], the maximal non-overlapping subarray is [-3, 4, 5] with a sum of 6.\n\n#### Function Signature\n```\ndef max_sum_subarray(arr: list[int)) -> int:\n```\n\n#### Input\n- `arr` (list[int]): An array of integers.\n\n#### Output\n- Returns the sum of the maximal non-overlapping subarray.",
+    "code": "def max_sum_subarray(arr: list[int)) -> int:\n    if not arr:\n        return 0\n    max_sum = float('-inf')\n    current_sum = 0\n    for num in arr:\n        current_sum += num\n        if current_sum > max_sum:\n            max_sum = current_sum\n        elif current_sum < 0:\n            current_sum = 0\n    return max_sum",
+    "tests": [
+        "assert max_sum_subarray([1, 2, -3, 4, 5, -6]) == 6",
+        "assert max_sum_subarray([-1, 2, 3, -10, 8, 4, -5]) == 9"
+    ]
+}

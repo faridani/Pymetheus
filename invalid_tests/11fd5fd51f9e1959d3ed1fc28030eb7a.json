@@ -1,0 +1,11 @@
+{
+    "title": "Palindrome Checker (Hard)",
+    "description": "A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization). Write a function `is_palindrome` that checks if a given string is a palindrome. The function should also be able to handle unicode strings. Additionally, create another function `count_palindromes` that takes in a list of strings and returns the count of palindromes in the list.\n\n#### Function Signature\n```python\ndef is_palindrome(s: str) -> bool:\n    # Your implementation here\n\ndef count_palindromes(strings: List[str]) -> int:\n    # Your implementation here\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n- `strings` (List[str]): A list of strings to be checked for palindromes.\n\n#### Output\n- Returns a boolean value for `is_palindrome` function and an integer representing the count of palindromes in the list for `count_palindromes` function.\n",
+    "code": "import string\nfrom typing import List\n\ndef is_palindrome(s: str) -> bool:\n    # Convert to lowercase\n    s = s.lower()\n    # Remove non-alphanumeric characters and spaces\n    s = ''.join(char for char in s if char in string.ascii_letters + string.digits)\n    # Check if the string reads the same forwards and backwards\n    return s == s[::-1]\n\ndef count_palindromes(strings: List[str]) -> int:\n    count = 0\n    for s in strings:\n        if is_palindrome(s):\n            count += 1\n    return count\n",
+    "tests": [
+        "assert is_palindrome(\"A man, a plan, A canal, Panama!\") == True",
+        "assert is_palindrome(\"No 'x' in Nixon\") == True",
+        "assert is_palindrome(\"hello world\") == False",
+        "assert count_palindromes(['racecar', 'level', '12321', 'Was it a car or a cat I saw?', 'Madam, in Eden, I'm Adam!']) == 4"
+    ]
+}

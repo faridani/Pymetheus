@@ -1,0 +1,10 @@
+{
+    "title": "Easy Python Coding Question: Odd Occurrences In Array",
+    "description": "Given an array with odd number of elements, write a function that finds and returns the element that occurs an odd number of times in the array. Assume there is always exactly one such element.\n\n#### Function Signature\n```python\ndef find_odd_occurrences(arr: List[int]) -> int:\n```\n\n#### Input\n- `arr` (List[int]): A list of integers where the length of the list is odd, and there exists exactly one element that occurs an odd number of times.\n\n#### Output\n- Returns the integer that appears an odd number of times in the input array.",
+    "code": "from typing import List\ndef find_odd_occurrences(arr: List[int]) -> int:\n    result = 0\n    for num in arr:\n        result ^= num\n    return result",
+    "tests": [
+        "assert find_odd_occurrences([2, 3, 4, 3, 2]) == 4",
+        "assert find_od occurrences([1, 1, 1, 10, 5, 1, 5]) == 10",
+        "assert find_odd_occurrences([9, 3, 9, 3, 9, 7, 9]) == 7"
+    ]
+}

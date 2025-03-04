@@ -1,0 +1,14 @@
+{
+    "title": "Hard Python Coding Question",
+    "description": "You are given a string `s` that represents a mathematical expression. The task is to evaluate the expression and return its result. However, this problem is not straightforward as it involves handling multiple types of operators including addition (`+`), subtraction (`-`), multiplication (`*`), division (`/`), exponentiation (`**`), modulus (`%`), and parentheses for grouping. Additionally, there might be unary plus (`+`) and minus (`-`) signs that affect the sign of numbers.\n\n#### Function Signature\n```python\ndef evaluate_expression(s: str) -> float:\n```\n\n#### Input\n- `s` (str): A string representing a mathematical expression. The expression may include numbers, operators mentioned above, and spaces.\n\n#### Output\n- Returns the result of the evaluated expression as a float.\n",
+    "code": "import re\n\ndef evaluate_expression(s: str) -> float:\n    # Remove all spaces from the string\n    s = s.replace(' ', '')\n    \n    # Handle unary operators\n    def eval_part(expr):\n        while '(' in expr:\n            expr = re.sub(r'\\(([^,]+),([^)]+)', lambda m: str(eval(m.group(1) + m.group(2)), 80),\n                          expr)\n        return eval(expr)\n    \n    # Evaluate the expression inside parentheses first\n    while '(' in s or ')' in s:\n        s = re.sub(r'\\(([^,]+),([^)]+)', lambda m: str(eval_part(m.group(1))), s)\n        s = re.sub(r'\\(([^,]+),([^)]+)', lambda m: str(eval_part(m.group(2))), s)\n    \n    # Evaluate the expression\n    return eval_part(s)\n",
+    "tests": [
+        "assert evaluate_expression('3 + 5 * (4 - 2)') == 11.0",
+        "assert evaluate_expression('-6 / 2') == -3.0",
+        "assert evaluate_expression('1 + 2 * (-3 + 4) ** 2') == 9.0",
+        "assert evaluate_expression('(5 - 3) * (8 / (2 + 2))') == 4.0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "deepseek-coder-v2:16b",
+    "style": "ICPC"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "'Mad Libs Word Scrambler (Easy)'",
+    "description": "'In the game of Mad Libs, players fill in words for blanks within a story template. Given a list of words and an unscrambled sentence using those words, write a function `word_scramble` that scrambles the words to match the given sentence.\n\n#### Function Signature\n```python\ndef word_scramble(sentence: str, words: List[str]) -> List[str]:\n```\n\n#### Input\n- `sentence` (str): A string containing the unscrambled sentence.\n- `words` (List[str]): A list of strings representing the unique words in the sentence, in no particular order.\n\n#### Output\n- Returns a list of strings representing the scrambled words to match the given sentence.\n",
+    "code": "def word_scramble(sentence: str, words: List[str]) -> List[str]:\n    # Remove punctuation and convert to lowercase\n    sentence = sentence.lower().translate(str.maketrans('', '', string.punctuation))\n    # Create a dictionary to map each word to its index in the words list\n    mapping = {word: i for i, word in enumerate(words)}\n    # Initialize an empty list to store the scrambled words\n    scrambled_words = []\n    # Iterate through the characters of the sentence\n    for char in sentence:\n        # If a word starts with the current character, add it to the scrambled_words and continue\n        if char == sentence[0] and char in mapping:\n            current_word = ''\n            while char in sentence[i:]:\n                current_word += sentence[i]\n                i += 1\n            # Add the scrambled word to the list, using the dictionary to get the correct ordering of words\n            scrambled_words.append(words[mapping[current_word]])\n        else:\n            # If we hit a space or other non-word character, reset the current word and continue\n            if char == ' ':\n                current_word = ''\n    return scrambled_words",
+    "tests": [
+        "assert word_scramble('the quick brown fox jumps over the lazy dog', ['the', 'quick', 'brown', 'fox', 'jumps', 'over', 'lazy', 'dog']) == ['the', 'quick', 'brown', 'fox', 'jumps', 'over', 'lazy', 'dog']",
+        "assert word_scramble('This is a test', ['this', 'is', 'a', 'test']) == ['this', 'is', 'a', 'test']"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Interview Query"
+}

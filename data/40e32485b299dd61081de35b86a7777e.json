@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Write a function `anagram_check` that checks if two given strings are anagrams of each other. Two strings are anagrams when they contain the same letters in the same frequency, ignoring case. For example, 'listen' and 'silent' are anagrams because both have 4 s's, 3 i's, 2 l's, 2 n's, 1 t, and 1 e.\n\n#### Function Signature\n```python\ndef anagram_check(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing only letters.\n- `s2` (str): Another string containing only letters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams, `False` otherwise.\n",
+    "code": "from collections import Counter\n\ndef anagram_check(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length and only contain letters\n    if len(s1) != len(s2) or not (set(s1).issubset(set(s2)) and set(s2).issubset(set(s1))):\n        return False\n    # Count the frequency of each letter in both strings\n    c1 = Counter(s1)\n    c2 = Counter(s2)\n    # Check if the frequencies are the same\n    return c1 == c2",
+    "tests": [
+        "assert anagram_check('listen', 'silent') == True",
+        "assert anagram_check('act', 'cat') == True",
+        "assert anagram_check('hello', 'world') == False"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "ACM-ICPC"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Hardest Anagram Grouping (Hard)",
+    "description": "Given a list of strings, your task is to group the anagrams together. An anagram is a word or phrase formed by rearranging the letters of another, such as 'listen' and 'silent'. Implement a function `group_anagrams` that takes in a list of strings and returns a list of groups, where each group is a list of words that are anagrams of each other.\n\n#### Function Signature\n```python\ndef group_anagrams(strs: List[str]) -> List[List[str]]:\n```\n\n#### Input\n- `strs` (List[str]): A list of strings containing only lowercase alphabets. The length of the list is at most 10^4, and each string's length is between 1 and 100.\n\n#### Output\n- Returns a list of lists, where each sublist contains words that are anagrams of each other. Each word should appear in exactly one group, and groups can be returned in any order.\n\n#### Constraints\n- All inputs will be in lowercase.\n- The number of strings is at most 10^4.\n- The length of each string is between 1 and 100.\n\n#### Example\n```python\ngroup_anagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat'])\n# Returns [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\n```\n\n### Hints\n- Consider using a dictionary to map sorted tuples of characters as keys.\n- Each key will correspond to a list of words that are anagrams.",
+    "code": "from typing import List\ndef group_anagrams(strs: List[str]) -> List[List[str]]:\n    from collections import defaultdict\n    \n    # Create a dictionary to hold lists of anagram groups\n    anagrams = defaultdict(list)\n    \n    for word in strs:\n        # Sort the tuple of characters in each word and use it as a key\n        sorted_word_tuple = tuple(sorted(word))\n        anagrams[sorted_word_tuple].append(word)\n    \n    # Return all lists of grouped anagrams\n    return list(anagrams.values())",
+    "tests": [
+        "assert group_anagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']) == [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']] or group_anagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']) == [['tan', 'nat'], ['eat', 'tea', 'ate'], ['bat']]",
+        "assert group_anagrams(['']) == [['']]",
+        "assert group_anagrams(['a']) == [['a']]",
+        "assert len(group_anagrams(['abc', 'bca', 'cab', 'bac', 'acb'])) > 1 and all(len(group) > 1 for group in group_anagrams(['abc', 'bca', 'cab', 'bac', 'acb']))"
+    ],
+    "difficulty": "super hard",
+    "model": "phi4:latest",
+    "style": "Codewars"
+}

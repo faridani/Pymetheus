@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Prime Factorization",
+    "description": "Write a function `prime_factors` that takes an integer `n` and returns a list of its prime factors.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A positive integer greater than 1.\n\n#### Output\n- Returns a list of unique prime factors in ascending order.\n\n#### Constraints\n- The input number will be between 2 and 1,000,000 inclusive.\n\n#### Hints\n- You can use the modulo operator `%` to check if a number is divisible by another.\n- Keep dividing the input number by its smallest prime factor until it becomes 1.",
+    "code": "from typing import List\ndef prime_factors(n: int) -> List[int]:\n    factors = []\n    while n % 2 == 0:\n        factors.append(2)\n        n /= 2\n    for i in range(3, int(n**0.5) + 1, 2):\n        while n % i == 0:\n            factors.append(i)\n            n /= i\n    if n > 1:\n        factors.append(int(n))\n    return sorted(set(factors))",
+    "tests": [
+        "assert prime_factors(36) == [2, 3]",
+        "assert prime_factors(48) == [2, 2, 3]",
+        "assert prime_factors(97) == [97]",
+        "assert prime_factors(100) == [2, 5, 5]"
+    ],
+    "difficulty": "hard",
+    "model": "mistral-nemo:latest",
+    "style": "Exercism"
+}

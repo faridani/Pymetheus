@@ -1,0 +1,13 @@
+{
+    "title": "Find the Longest Substring with K Distinct Characters",
+    "description": "Given a string s and an integer k, find the length of the longest substring of s that contains at most k distinct characters.\n\n#### Function Signature\n```python\ndef longest_substring_with_k_distinct_characters(s: str, k: int) -> int:\n```\n\n#### Input\n- `s` (str): A string of lowercase English letters.\n- `k` (int): The maximum number of distinct characters allowed in the substring.\n\n#### Output\n- Returns an integer representing the length of the longest substring with at most k distinct characters.\n",
+    "code": "def longest_substring_with_k_distinct_characters(s: str, k: int) -> int:\n    if len(set(s)) <= k:\n        return len(s)\n\n    char_count = {}\n    left, right = 0, 0\n    max_len = 0\n\n    while right < len(s):\n        if s[right] not in char_count:\n            char_count[s[right]] = 1\n        else:\n            char_count[s[right]] += 1\n\n        while len(char_count) > k:\n            char_count[s[left]] -= 1\n            if char_count[s[left]] == 0:\n                del char_count[s[left]]\n            left += 1\n\n        max_len = max(max_len, right - left + 1)\n        right += 1\n\n    return max_len\n",
+    "tests": [
+        "assert longest_substring_with_k_distinct_characters('abcabcbb', 2) == 3",
+        "assert longest_substring_with_k_distinct_characters('abcbcbcbb', 1) == 3",
+        "assert longest_substring_with_k_distinct_characters('pwwkew', 2) == 3"
+    ],
+    "difficulty": "medium",
+    "model": "codebooga:latest",
+    "style": "CodeChef"
+}

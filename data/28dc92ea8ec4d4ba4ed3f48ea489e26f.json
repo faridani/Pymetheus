@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Matrix Rotation",
+    "description": "You are given a 2D matrix, and your task is to rotate it by 90 degrees clockwise. Write a function `rotate_matrix` that takes the matrix as input and returns the rotated matrix.\n\n#### Function Signature\n```python\ndef rotate_matrix(matrix: List[List[int]]) -> List[List[int]]:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A 2D list of integers representing the matrix.\n\n#### Output\n- Returns a new 2D list of integers that represents the rotated matrix.",
+    "code": "from typing import List\n\ndef rotate_matrix(matrix: List[List[int]]) -> List[List[int]]:\n    return [list(row) for row in zip(*matrix[::-1])]",
+    "tests": [
+        "assert rotate_matrix([[1, 2], [3, 4]]) == [[3, 1], [4, 2]]",
+        "assert rotate_matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == [[7, 4, 1], [8, 5, 2], [9, 6, 3]]"
+    ],
+    "difficulty": "super hard",
+    "model": "codestral:22b",
+    "style": "Codecademy"
+}

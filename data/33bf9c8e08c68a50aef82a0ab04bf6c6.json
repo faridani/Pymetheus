@@ -1,0 +1,13 @@
+{
+    "title": "Medium - Maximum Product Subarray",
+    "description": "Given an array of integers, find the contiguous subarray that has the maximum product and return that product.\n\n#### Function Signature\n```python\ndef max_product_subarray(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum product of a contiguous subarray within the input array. ",
+    "code": "def max_product_subarray(nums: list[int]) -> int:\n    if not nums:\n        return 0\n\n    max_so_far = nums[0]\n    min_so_far = nums[0]\n    max_product = nums[0]\n\n    for i in range(1, len(nums)):\n        curr = nums[i]\n        temp_max = max(curr, curr * max_so_far, curr * min_so_far)\n        min_so_far = min(curr, curr * max_so_far, curr * min_so_far)\n\n        max_so_far = temp_max\n        max_product = max(max_product, max_so_far)\n\n    return max_product",
+    "tests": [
+        "assert max_product_subarray([2, 3, -2, 4]) == 6",
+        "assert max_product_subarray([-2, 0, -1]) == 0",
+        "assert max_product_subarray([2, -5, 3, 1, -4, 2]) == 6"
+    ],
+    "difficulty": "medium",
+    "model": "gemma2:27b",
+    "style": "CodeChef"
+}

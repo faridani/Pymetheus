@@ -1,0 +1,13 @@
+{
+    "title": "Longest Increasing Subsequence",
+    "description": "Given an unsorted array of integers, find the length of the longest increasing subsequence. A subsequence is a sequence that appears in the original array without necessarily being contiguous.\n\n#### Function Signature\n```python\ndef longest_increasing_subsequence(seq: List[int]) -> int:\n```\n\n#### Input\n- `seq` (List[int]): A list of integers with length between 1 and 20. The values are within the range [-10, 10].\n\n#### Output\n- Returns an integer representing the length of the longest increasing subsequence.",
+    "code": "from typing import List\n\ndef longest_increasing_subsequence(seq: List[int]) -> int:\n    if not seq:\n        return 0\n    dp = [1] * len(seq)\n    for i in range(1, len(seq)):\n        for j in range(i):\n            if seq[i] > seq[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    return max(dp)",
+    "tests": [
+        "assert longest_increasing_subsequence([10, 22, 9, 33, 21, 50, 41, 60]) == 5",
+        "assert longest_increasing_subsequence([70, 40, 90, 80, 60, 50, 30, 10, 20]) == 4",
+        "assert longest_increasing_subsequence([-10, -20, -10, -40]) == 1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral-nemo:latest",
+    "style": "CodeWars"
+}

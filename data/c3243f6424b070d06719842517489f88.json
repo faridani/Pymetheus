@@ -1,0 +1,15 @@
+{
+    "title": "Subsequence Checker (Hard)",
+    "description": "Given two strings, `s` and `t`, and an integer `k`, check if there are at least `k` distinct subsequences of `s` that equal `t`. A subsequence is a sequence of characters from the original string that may not necessarily be consecutive. Return True if this condition holds, and False otherwise.\n\n#### Function Signature\n```python\ndef check_subsequence(s: str, t: str, k: int) -> bool:\n```\n\n#### Input\n- `s` (str): The source string from which subsequences are formed.\n- `t` (str): The target string that the subsequences should equal.\n- `k` (int): The minimum number of distinct subsequences required to match `t`.\n\n#### Output\n- Returns `True` if there are at least `k` distinct subsequences of `s` that equal `t`, `False` otherwise.\n\n### Hint\nYou may want to use a dynamic programming approach to solve this problem.",
+    "code": "def check_subsequence(s, t, k):\n    n, m = len(s), len(t)\n    dp = [[0] * (m + 1) for _ in range(n + 1)]\n    for i in range(n + 1):\n        dp[i][0] = True\n    for i in range(1, n + 1):\n        for j in range(1, m + 1):\n            if t[j - 1] == s[i - 1]:\n                dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]\n            else:\n                dp[i][j] = dp[i - 1][j]\n    return dp[n][m] >= k\n",
+    "tests": [
+        "assert check_subsequence('abc', 'a', 2) == True",
+        "assert check_subsequence('abc', 'b', 3) == False",
+        "assert check_subsequence('abc', 'ab', 1) == True",
+        "assert check_subsequence('abc', 'ac', 2) == True",
+        "assert check_subsequence('abcde', 'ace', 2) == True"
+    ],
+    "difficulty": "hard",
+    "model": "aya:35b",
+    "style": "CodeChef"
+}

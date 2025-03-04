@@ -1,0 +1,13 @@
+{
+    "title": "Easy Python: Array of Strings to Single String",
+    "description": "Write a function that takes an array of strings and concatenates them into a single string. The function should handle any number of input strings, including empty strings.\n\n#### Function Signature\n```python\ndef concat_strings(strings: list[str]) -> str:\n    # Your code here\n",
+    "code": "def concat_strings(strings: list[str]) -> str:\n    return ''.join(strings)\n",
+    "tests": [
+        "assert concat_strings(['Hello', 'World']) == 'HelloWorld'",
+        "assert concat_strings(['a', '', 'b', 'c']) == 'abc'",
+        "assert concat_strings([]) == ''"
+    ],
+    "difficulty": "easy",
+    "model": "command-r7b:latest",
+    "style": "Codewars"
+}

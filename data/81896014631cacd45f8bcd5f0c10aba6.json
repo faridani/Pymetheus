@@ -1,0 +1,12 @@
+{
+    "title": "Circuit Simulator (Hard)",
+    "description": "Write a function that simulates an electrical circuit. The input is a dictionary where each key represents a component of the circuit, such as 'R' for resistor, 'L' for inductor, and 'C' for capacitor. The value associated with each key is a list containing the component's resistance, inductance, or capacitance (in ohms, henries, or farads respectively), its current, and its voltage.\n\n#### Function Signature\n```python\ndef simulate_circuit(circuit: dict) -> dict:\n```\n\n#### Input\n- `circuit` (dict): A dictionary representing the electrical circuit. Each key-value pair represents a component of the circuit.\n- The value associated with each key is a list containing the component's resistance, inductance, or capacitance, its current, and its voltage.\n\n#### Output\n- Returns a new dictionary where each key is a component of the circuit and the value associated with each key is a tuple containing the updated current and voltage for that component.\n",
+    "code": "import math\ndef simulate_circuit(circuit: dict) -> dict:\n    result = {}\n    for component, values in circuit.items():\n        resistance, inductance, capacitance, current, voltage = values\n        if component == 'R': # resistor\n            new_current = (voltage - voltage * math.exp(-resistance / inductance)) / resistance\n            result[component] = (new_current, new_current)\n        elif component == 'L': # inductor\n            new_voltage = voltage + current * inductance\n            result[component] = (current, new_voltage)\n        elif component == 'C': # capacitor\n            new_current = current - (voltage / capacitance)\n            result[component] = (new_current, new_voltage)\n    return result",
+    "tests": [
+        "assert simulate_circuit({'R': [1000, 1, 10, 5, 15], 'L': [0.01, 0.001, 0, 2, 0], 'C': [0.0001, 0, 1000, 0, 20]}) == {'R': (4.545454545454546, 4.545454545454546), 'L': (2, 14), 'C': (-0.02, 18)}",
+        "assert simulate_circuit({'R': [1000, 1, 10, 5, 15], 'L': [0.01, 0.001, 0, 0, 20], 'C': [0.0001, 0, 1000, 2, 18]}) == {'R': (4.545454545454546, 4.545454545454546), 'L': (2, 22), 'C': (-0.02, 20)}"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Number of Islands",
+    "description": "Write a function that counts the number of islands in an n x n grid of water and land. The function should take an n x n integer matrix as input, where each element represents the type of cell (0 for water, 1 for land). Return the number of islands as a single integer. Constraints: n is a positive integer, 1 <= n <= 50. Hints: Think about how you can use a queue to keep track of the islands. Consider using a modulo operator to keep track of the number of islands.",
+    "code": "from collections import deque\n\ndef count_islands(matrix):\n    q = deque()\n    for i in range(n**2):\n        curr_cell = matrix[i//n][i%n]\n        if curr_cell == 0:q.append((i, i)) elif curr_cell == 1:q.popleft()\n    return len(q)\n",
+    "tests": [
+        "assert count_islands([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]) == 4",
+        "assert count_islands([[1, 0, 0, 0, 0], [0, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 0], [0, 0, 0, 0, 1]]) == 3",
+        "assert count_islands([[0, 0, 0, 0, 0], [0, 0, 0, 0, 1], [0, 0, 0, 1, 0], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0]]) == 5"
+    ]
+}

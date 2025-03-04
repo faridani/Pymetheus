@@ -1,0 +1,14 @@
+{
+    "title": "Binary Palindrome Check",
+    "description": "Given an integer, write a function to determine if the binary representation of that number is a palindrome.\n\n#### Function Signature\n```python\ndef is_binary_palindrome(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns `True` if the binary representation of `n` is a palindrome, `False` otherwise.",
+    "code": "def is_binary_palindrome(n: int) -> bool:\n    # Convert the number to binary and remove the '0b' prefix\n    binary_str = bin(n)[2:] \n    # Check if the binary string reads the same forwards and backwards\n    return binary_str == binary_str[::-1]",
+    "tests": [
+        "assert is_binary_palindrome(9) == True",
+        "assert is_binary_palindrome(43690) == False",
+        "assert is_binary_palindrome(257) == True",
+        "assert is_binary_palindrome(8) == True"
+    ],
+    "difficulty": "super hard",
+    "model": "qwen2:7b",
+    "style": "ICPC"
+}

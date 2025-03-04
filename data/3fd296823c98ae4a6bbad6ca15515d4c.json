@@ -1,0 +1,14 @@
+{
+    "title": "Reverse Words in a String",
+    "description": "Write a function `reverse_words` that takes a string as input and returns the reverse of the words in the string. The string may contain letters, numbers, spaces, and punctuation. The function should return a new string with the reversed words separated by spaces. For example, if the input string is 'hello world', the output string should be 'world hello'. Use any data structure or technique you like to solve the problem.",
+    "code": "import string\n\ndef reverse_words(s: str) -> str:\n    # Split the input string into a list of words\n    words = s.split()\n    # Reverse the list of words and join them back together\n    return ' '.join(words[::-1])\n",
+    "tests": [
+        "assert reverse_words('hello world') == 'world hello'\n",
+        "assert reverse_words('A man, a plan, a canal, Panama') == 'Panama canal, a plan, a man'\n",
+        "assert reverse_words('level ground') == 'ground level'\n",
+        "assert reverse_words('caret') == 'tcarercelt'\n"
+    ],
+    "difficulty": "hard",
+    "model": "llama2:latest",
+    "style": "Google Code Jam"
+}

@@ -1,0 +1,15 @@
+{
+    "title": "Fibonacci Sequence Generator - Easy",
+    "description": "The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, starting from 0 and 1. Write a function `generate_fibonacci` that generates the first N Fibonacci numbers as a list.\n\n#### Function Signature\n```python\ndef generate_fibonacci(N: int) -> List[int]:\n```\n\n#### Input\n- `N` (int): The number of terms in the Fibonacci sequence to be generated. N >= 0.\n\n#### Output\n- Returns a list containing the first N numbers of the Fibonacci sequence.\n",
+    "code": "from typing import List\n\ndef generate_fibonacci(N: int) -> List[int]:\n    if N <= 0:\n        return []\n    elif N == 1:\n        return [0]\n    fibonacci_sequence = [0, 1]\n    for _ in range(2, N):\n        next_fib = fibonacci_sequence[-1] + fibonacci_sequence[-2]\n        fibonacci_sequence.append(next_fib)\n    return fibonastery_sequence\n",
+    "tests": [
+        "assert generate_fibonacci(0) == []",
+        "assert generate_fibonacci(1) == [0]",
+        "assert generate_fibonacci(2) == [0, 1]",
+        "assert generate_fibonacci(5) == [0, 1, 1, 2, 3]",
+        "assert generate_fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]"
+    ],
+    "difficulty": "easy",
+    "model": "phi3:14b",
+    "style": "Project Euler"
+}

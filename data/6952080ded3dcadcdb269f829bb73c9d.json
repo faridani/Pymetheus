@@ -1,0 +1,14 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Given two strings, determine if they are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A non-empty string\n- `s2` (str): Another non-empty string\n\n#### Output\n- Returns `True` if the strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length to continue\n    if len(s1) != len(s2):\n        return False\n    \n    # Create two dictionaries to count the occurrences of each letter in each string\n    s1_count = {letter: 0 for letter in string.ascii_letters}\n    s2_count = {letter: 0 for letter in string.ascii_letters}\n    \n    # Iterate through each character in the first string and update its corresponding count\n    for char in s1:\n        if char in s1_count:\n            s1_count[char] += 1\n        else:\n            raise ValueError('Invalid character found in first string')\n    \n    # Iterate through each character in the second string and update its corresponding count\n    for char in s2:\n        if char in s2_count:\n            s2_count[char] += 1\n        else:\n            raise ValueError('Invalid character found in second string')\n    \n    # Compare the two dictionaries to check if they are identical, indicating anagrams.\n    return s1_count == s2_count",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('act', 'cat') == True",
+        "assert are_anagrams('apple', 'apples') == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "TopCoder"
+}

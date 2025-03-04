@@ -99,6 +99,9 @@ def ask_codellama(model, content):
                              "Here is the medium Python coding question:",
                              "Sure! Here's a new Python coding question for you:",
                              "Here's a new Python coding question for you:",
+                             "Here is a new Python coding question for you:",
+                             "Here's your JSON string:",
+                             "Here's a JSON string that satisfies the requirements mentioned in the template:",
                              "```json"]
         for string in strings_to_remove:
             response_content_raw = response_content_raw.replace(string, "")
@@ -115,6 +118,7 @@ def ask_codellama(model, content):
         response_content = json.loads(response_content_raw)
 
         validate(instance=response_content, schema=schema)
+
         try:
             compile(response_content['code'], '<string>', 'exec')
             # Check if each test is valid Python code

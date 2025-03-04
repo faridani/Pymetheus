@@ -1,0 +1,14 @@
+{
+    "title": "Hard - Maximum Subarray with K Elements",
+    "description": "Given an array of integers `nums` and an integer `k`, your task is to find the maximum possible sum of any contiguous subarray that contains exactly `k` elements. The challenge is to solve this problem efficiently, considering both time and space complexity.\n\n#### Function Signature\n```python\ndef max_k_subarray_sum(nums: List[int], k: int) -> int:\n```\n\n#### Input\n- `nums` (List[int]): A list of integers where each element can be positive, negative, or zero.\n- `k` (int): The number of elements that the contiguous subarray should contain. It is guaranteed that 1 \u2264 k \u2264 len(nums).\n\n#### Output\n- Returns an integer representing the maximum possible sum of any contiguous subarray with exactly `k` elements.\n\n#### Constraints\n- The length of `nums` will be between 1 and 10^5.\n- Each element in `nums` will be between -10^4 and 10^4.\n\n#### Hints\n- Consider using a sliding window technique to keep track of the sum of elements within the current window of size `k`.\n- You may need to adjust the window by adding new elements from the right end and removing elements from the left end efficiently.",
+    "code": "from typing import List\n\ndef max_k_subarray_sum(nums: List[int], k: int) -> int:\n    # Initial sum of the first 'k' elements\n    current_sum = sum(nums[:k])\n    # Maximum sum found so far\n    max_sum = current_sum\n    \n    # Slide the window over the array from index 'k' to end\n    for i in range(k, len(nums)):\n        # Update the current sum by subtracting the element that is left behind and adding the new element\n        current_sum += nums[i] - nums[i - k]\n        # Update max_sum if we found a better solution\n        max_sum = max(max_sum, current_sum)\n    \n    return max_sum",
+    "tests": [
+        "assert max_k_subarray_sum([1, 2, 3, 4, 5], 3) == 12",
+        "assert max_k_subarray_sum([-1, -2, -3, -4, -5], 2) == -3",
+        "assert max_k_subarray_sum([10, -20, 30, -40, 50, -60, 70], 3) == 120",
+        "assert max_k_subarray_sum([-1, 2, 3, -4, 5, -6, 7], 4) == 10"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "phi4:latest",
+    "style": "Interview Query"
+}

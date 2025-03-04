@@ -1,0 +1,14 @@
+{
+    "title": "Graph Connectivity and Component Counting (Hard)",
+    "description": "You are given a list of edges representing an undirected graph. Your task is to determine the number of connected components in the graph. Each node in the graph can be represented by a unique integer from 0 to n-1, where n is the total number of nodes.\n\n#### Function Signature\n```python\ndef count_connected_components(n: int, edges: List[Tuple[int, int]]) -> int:\n```\n\n#### Input\n- `n` (int): The number of nodes in the graph. (1 \u2264 n \u2264 10^5)\n- `edges` (List[Tuple[int, int]]): A list of tuples where each tuple represents an edge between two nodes u and v (0 \u2264 u, v < n).\n\n#### Output\n- Returns an integer representing the number of connected components in the graph.\n\n#### Constraints\n- The graph is undirected.\n- There are no self-loops or multiple edges between the same pair of nodes.\n- The input graph may be disconnected.\n\n#### Hints\n- Use Depth First Search (DFS) or Breadth First Search (BFS) to explore the graph.\n- A connected component in a graph is a subgraph where there exists a path between any two nodes in the subgraph.",
+    "code": "from typing import List, Tuple\n\ndef count_connected_components(n: int, edges: List[Tuple[int, int]]) -> int:\n    from collections import defaultdict\n    \n    def dfs(node: int, visited: set):\n        stack = [node]\n        while stack:\n            current = stack.pop()\n            for neighbor in graph[current]:\n                if neighbor not in visited:\n                    visited.add(neighbor)\n                    stack.append(neighbor)\n    \n    # Build the adjacency list\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v)\n        graph[v].append(u)\n    \n    visited = set()\n    components_count = 0\n    \n    # Traverse each node and perform DFS if it hasn't been visited\n    for i in range(n):\n        if i not in visited:\n            visited.add(i)\n            dfs(i, visited)\n            components_count += 1\n    \n    return components_count",
+    "tests": [
+        "assert count_connected_components(5, [(0, 1), (1, 2)]) == 3",
+        "assert count_connected_components(4, [(0, 1), (1, 2), (2, 3)]) == 1",
+        "assert count_connected_components(6, [(0, 1), (2, 3), (4, 5)]) == 3",
+        "assert count_connected_components(7, [(0, 1), (1, 2), (3, 4), (5, 6), (2, 3)]) == 2"
+    ],
+    "difficulty": "super hard",
+    "model": "phi4:latest",
+    "style": "ICPC"
+}
