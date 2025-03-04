@@ -1,0 +1,9 @@
+{
+    "title": "Easy - Reverse Words",
+    "description": "Write a function that takes a string of words and returns the same words, but with each word reversed. You may assume that the input will consist of only letters and spaces. Examples: `reverse_words('hello world')` should return `'dlrow olleh'` and `reverse_words('the quick brown fox')` should return `'eht kciuq nworb xof'`.",
+    "code": "def reverse_words(input_string):\n    words = input_string.split()\n    reversed_words = []\n    for word in words:\n        reversed_word = word[::-1]\n        reversed_words.append(reversed_word)\n    return ' '.join(reversed_words)\n",
+    "tests": [
+        "assert reverse_words('hello world') == 'dlrow olleh'",
+        "assert reverse_words('the quick brown fox') == 'eht kciuq nworb xof'"
+    ]
+}

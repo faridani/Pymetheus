@@ -1,0 +1,11 @@
+{
+    "title": "Easy - Fizz Buzz",
+    "description": "Write a function `fizz_buzz` that takes an integer `n` and returns the string \"FizzBuzz\" if the number is divisible by 3 and 5, \"Fizz\" if it is only divisible by 3, \"Buzz\" if it is only divisible by 5, and the number itself if it is not divisible by either. \n\n#### Function Signature\n```python\ndef fizz_buzz(n: int) -> str:\n```\n\n#### Input\n- `n` (int): An integer greater than 0.\n\n#### Output\n- A string representing the result of the Fizz Buzz game.\n",
+    "code": "def fizz_buzz(n: int) -> str:\n    if n % 3 == 0 and n % 5 == 0:\n        return \"FizzBuzz\"\n    elif n % 3 == 0:\n        return \"Fizz\"\n    elif n % 5 == 0:\n        return \"Buzz\"\n    else:\n        return str(n)\n",
+    "tests": [
+        "assert fizz_buzz(1) == \"1\"",
+        "assert fizz_buzz(3) == \"Fizz\"",
+        "assert fizz_buzz(5) == \"Buzz\"",
+        "assert fizz_buzz(15) == \"FizzBuzz\""
+    ]
+}

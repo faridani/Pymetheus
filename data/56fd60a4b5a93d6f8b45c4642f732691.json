@@ -1,0 +1,11 @@
+{
+    "title": "Medium - Validate Anagram",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): The first string to be checked for anagram.\n- `s2` (str): The second string to be checked for anagram.\n\n#### Output\n- Returns `True` if the two strings are anagrams, `False` otherwise.\n",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    return sorted(s1.lower().replace(' ', '')) == sorted(s2.lower().replace(' ', ''))\n",
+    "tests": [
+        "assert is_anagram('Listen', 'Silent') == True",
+        "assert is_anagram('Dormitory', 'Dirty Room') == True",
+        "assert is_anagram('Conversation', 'Voices Rant On') == True",
+        "assert is_anagram('Hello', 'World') == False"
+    ]
+}

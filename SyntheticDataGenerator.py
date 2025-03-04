@@ -9,12 +9,12 @@ from ollama import ListResponse, list
 import random 
 
 
-def save_response_to_file(response_content):
+def save_response_to_file(response_content, directory):
     # Generate a hash of the title
-    title_hash = hashlib.md5(response_content['title'].encode()).hexdigest()
+    title_hash = hashlib.md5(str(response_content).encode()).hexdigest()
     
     # Define the directory and file path
-    directory = 'data'
+    directory = directory
     if not os.path.exists(directory):
         os.makedirs(directory)
     file_path = os.path.join(directory, f"{title_hash}.json")
@@ -41,7 +41,7 @@ useful_models = []
 
 for model in  response.models:
     size = model.size.real
-    if size < nvram_size:
+    if size < nvram_size*2: # this will call some swapping but it is fine
         print(model["model"] + "----" + str(f'{size/ (1024 ** 3):.2f} GB'))
         useful_models.append(model["model"])
 
@@ -49,7 +49,7 @@ difficulties = ["easy", "medium", "hard", "super hard", "insanely difficult"]
 
 
 template = {
-  "title": "Title for the problem (for example: Easy - Palindrome Checker)",
+  "title": "Title for the problem (for example: Palindrome Checker)",
   "description": "A description of the problem in string form, the description may contain function signature, input format, output format, constraints and hints. Example: A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization). Write a function `is_palindrome` that checks if a given string is a palindrome.\n\n#### Function Signature\n```python\ndef is_palindrome(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string is a palindrome, `False` otherwise.\n",
    "code": "import string\n\ndef is_palindrome(s: str) -> bool:\n    # Convert to lowercase\n    s = s.lower()\n    # Remove non-alphanumeric characters\n    s = ''.join(char for char in s if char in string.ascii_letters + string.digits)\n    # Check if the string reads the same forwards and backwards\n    return s == s[::-1]\n",
   "tests": [
@@ -97,14 +97,18 @@ def ask_codellama(model, content):
                     compile(test, '<string>', 'exec')
                 except SyntaxError as e:
                     print(f"Valid JSON response but invalid Python test code: {e}")
+                    save_response_to_file(response_content, directory="invalid_tests")
                     return None
             
             print("Valid JSON response with correct schema and valid Python code and tests.")
         except SyntaxError as e:
+            save_response_to_file(response_content, directory="invalid_python_code")
             print(f"Valid JSON response but invalid Python code: {e}")
             return None
         
     except (json.JSONDecodeError, ValidationError) as e:
+        save_response_to_file(response_content, directory="invalid_json")
+
         print(f"Invalid JSON or schema: {e}")
         return None
     
@@ -114,7 +118,10 @@ def ask_codellama(model, content):
 
 while True:
     model = random.choice(useful_models)
-    for i in range(20): # Generate 20 questions with each model (this saves on loading the models into the GPU NVRAM 
+    fail_counter = 0
+    for i in range(100): # Generate 20 questions with each model (this saves on loading the models into the GPU NVRAM 
+        if fail_counter > 5:
+            break
         content = """
         I want you to generate a **REPLACE WITH DIFFICULTY** python coding question for me and provide the answer, write the test questions and the function signature. 
         Use the following template as a guide and maintain the formatting strictly. 
@@ -137,10 +144,13 @@ while True:
             try:
                 if all(key in response for key in template.keys()):
                     print(f"Successfully generated {difficulty} question")
-                    save_response_to_file(response)
+                    response['difficulty'] = difficulty
+                    response['model'] = model
+                    save_response_to_file(response, directory="data")
                 else:
                     print(f"Response missing required keys for {difficulty} question")
             except Exception as e:
                 print(f"Error processing {difficulty} question: {e}")
         else:
             print(f"Failed to generate {difficulty} question")
+            fail_counter += 1
