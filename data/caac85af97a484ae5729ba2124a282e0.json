@@ -1,0 +1,13 @@
+{
+    "title": "Longest Common Subsequence",
+    "description": "Given two strings, find the length of their longest common subsequence. A subsequence is a sequence that appears in the same relative order, but not necessarily contiguous.\n\n#### Function Signature\n```python\ndef lcs(X: str, Y: str) -> int:\n```\n\n#### Input\n- `X` (str): The first string.\n- `Y` (str): The second string.\n\n#### Output\n- Returns the length of the longest common subsequence.\n\n#### Constraints\n- Both strings will have a length between 1 and 100.\n",
+    "code": "def lcs(X: str, Y: str) -> int:\n    m, n = len(X), len(Y)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            if X[i - 1] == Y[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1] + 1\n            else:\n                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])\n    return dp[m][n]\n",
+    "tests": [
+        "assert lcs('AGGTAB', 'GXTXAYB') == 4",
+        "assert lcs('ABCDGH', 'AEDFHR') == 2",
+        "assert lcs('ABC', '') == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral-nemo:latest",
+    "style": "SPOJ"
+}

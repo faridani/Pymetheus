@@ -1,0 +1,14 @@
+{
+    "title": "Number Reverser (Medium)",
+    "description": "Given a positive integer, write a function that reverses the digits of the number and returns the new number. For example, if the input is 1234, the output should be 4321.\n\n#### Function Signature\n```python\ndef reverse_number(num: int) -> int:\n```\n\n#### Input\n- `num` (int): A positive integer.\n\n#### Output\n- Returns an integer which is the reversed version of the input number.\n",
+    "code": "def reverse_number(num: int) -> int:\n    # Convert the integer to a string\n    num_str = str(num)\n    # Reverse the string\n    reversed_str = num_str[::-1]\n    # Convert the reversed string back to an integer\n    return int(reversed_str)\n",
+    "tests": [
+        "assert reverse_number(1234) == 4321",
+        "assert reverse_number(56789) == 98765",
+        "assert reverse_number(10000) == 1",
+        "assert reverse_number(120) == 21"
+    ],
+    "difficulty": "medium",
+    "model": "aya:35b",
+    "style": "Google Code Jam"
+}

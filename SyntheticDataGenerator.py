@@ -1,164 +1,83 @@
+import random
+from typing import List, Tuple
 import ollama
-import json
 from jsonschema import validate, ValidationError
-import pynvml
-import hashlib
-import os
+from helpers import save_response_to_file, get_proper_models, clear_terminal
+from constants import template, difficulties, styles
+from collections import Counter    
 import json
-from ollama import ListResponse, list
-import random 
-from collections import Counter
-import re
-import ast
-import json
+from cleanup import cleanup_response, correct_json_using_deepseek_r1, validate_response_content
 
-def save_response_to_file(response_content, directory):
-    # Generate a hash of the title
-    title_hash = hashlib.md5(str(response_content).encode()).hexdigest()
-    
-    # Define the directory and file path
-    directory = directory
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    file_path = os.path.join(directory, f"{title_hash}.json")
-    
-    # Save the response content to the file
-    with open(file_path, 'w') as file:
-        json.dump(response_content, file, indent=4)
-    
-    print(f"Response saved to {file_path}")
+clear_terminal()
 
-response: ListResponse = list()
-
-def get_nvram_size():
-    pynvml.nvmlInit()
-    handle = pynvml.nvmlDeviceGetHandleByIndex(0)
-    info = pynvml.nvmlDeviceGetMemoryInfo(handle)
-    nvram_size = info.total
-    pynvml.nvmlShutdown()
-    return nvram_size
-
-nvram_size = get_nvram_size()
-print(f"Total NVRAM size: {nvram_size / (1024 ** 3):.2f} GB")
-useful_models = []
-
-for model in  response.models:
-    size = model.size.real
-    if size < nvram_size:
-        print(model["model"] + "----" + str(f'{size/ (1024 ** 3):.2f} GB'))
-        useful_models.append(model["model"])
-
-difficulties = ["easy", "medium", "hard", "super hard", "insanely difficult"]
-
-
-template = {
-  "title": "Title for the problem (for example: Palindrome Checker)",
-  "description": "A description of the problem in string form, the description may contain function signature, input format, output format, constraints and hints. Example: A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization). Write a function `is_palindrome` that checks if a given string is a palindrome.\n\n#### Function Signature\n```python\ndef is_palindrome(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string is a palindrome, `False` otherwise.\n",
-   "code": "import string\n\ndef is_palindrome(s: str) -> bool:\n    # Convert to lowercase\n    s = s.lower()\n    # Remove non-alphanumeric characters\n    s = ''.join(char for char in s if char in string.ascii_letters + string.digits)\n    # Check if the string reads the same forwards and backwards\n    return s == s[::-1]\n",
+test_json = """
+{
+  "title": "Sudoku Validator",
+  "description": "create a valid JSON string from the given input.",
+  "code": "def validate_sudoku(board):\n    # Check rows\n    for row in board:\n        if not isValid(row):\n            return False\n    \n    # Check columns\n    for col in range(9):\n        column = [board[row][col] for row in range(9)]\n        if not isValid(column):\n            return False\n    \n    # Check subgrids\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            subgrid = [board[x][y] for x in range(i, i+3) for y in range(j, j+3)]\n            if not isValid(subgrid):\n                return False\n    \n    return True\n    \n    def isValid(arr):\n        arr = [x for x in arr if x != '.']\n        return len(set(arr)) == len(arr)",
   "tests": [
-    "assert is_palindrome(\"A man, a plan, a canal, Panama\") == True",
-    "assert is_palindrome(\"racecar\") == True",
-    "assert is_palindrome(\"hello\") == False",
-    "assert is_palindrome(\"No 'x' in Nixon\") == True"
+    "test case 1",
+    "test case 2",
+    "test case 3"
   ]
 }
+"""
+print(test_json)
+json.loads(test_json, strict=False)
 
+is_valid, directory = validate_response_content(test_json)
+print(is_valid, directory)
+#exit()
 
-
+useful_models = get_proper_models()
 print(10*'-')
+
 def ask_codellama(model, content):
     response = ollama.chat(model=model, messages=[{
         'role': 'user',
         'content': content 
     }])
 
-    schema = {
-        "type": "object",
-        "properties": {
-            "title": {"type": "string"},
-            "description": {"type": "string"},
-            "code": {"type": "string"},
-            "tests": {
-                "type": "array",
-                "items": {"type": "string"}
-            }
-        },
-        "required": ["title", "description", "code", "tests"]
-    }
+    print("here 1")
     print(response['message']['content'])
+    response_content_cleaned = cleanup_response(response['message']['content'])
+    print("here 2")
+    print(response_content_cleaned)
+    print("here 3")
+
     try:
-        
-        response_content_raw = response['message']['content']
-        # --- RULES ---
-        strings_to_remove = ["Here's your new Python coding question:",
-                             "Here is your new Python coding question:",
-                             "Here is your new Python coding question:",
-                             "Here's your Python coding question:",
-                             "Here is the Python coding question:",
-                             "Here's the JSON string for your requested Python coding question:",
-                             "Here is the medium Python coding question:",
-                             "Sure! Here's a new Python coding question for you:",
-                             "Here's a new Python coding question for you:",
-                             "Here is a new Python coding question for you:",
-                             "Here's your JSON string:",
-                             "Here's a JSON string that satisfies the requirements mentioned in the template:",
-                             "```json"]
-        for string in strings_to_remove:
-            response_content_raw = response_content_raw.replace(string, "")
-            
-        ## TODO -remove 
-        response_content_raw = response_content_raw.replace("Here's your new Python coding question:","")
-        response_content_raw = response_content_raw.replace("Here is your new Python coding question:", "")
-        response_content_raw = response_content_raw.replace("Here is your new Python coding question:", "")
-        response_content_raw = response_content_raw.replace("```json","")
-        response_content_raw = response_content_raw.strip()
-        response_content_raw = response_content_raw.rstrip("```")
-        # END OF RULES 
-        
-        response_content = json.loads(response_content_raw)
-
-        validate(instance=response_content, schema=schema)
-
-        try:
-            compile(response_content['code'], '<string>', 'exec')
-            # Check if each test is valid Python code
-            for test in response_content['tests']:
-                try:
-                    compile(test, '<string>', 'exec')
-                except SyntaxError as e:
-                    print(f"Valid JSON response but invalid Python test code: {e}")
-                    save_response_to_file(response_content, directory="invalid_tests")
+        is_valid, directory = validate_response_content(response_content_cleaned)
+        if is_valid:
+           print("here 4 - valid response that needs to be saved ")
+           return json.loads(response_content_cleaned, strict=False)
+        else:
+            print("here 5 - invalid response that needs to be corrected by deepseek_r1")
+            corrected_using_deepseek_r1 = correct_json_using_deepseek_r1(response_content_cleaned)
+            try:
+                is_valid, directory = validate_response_content(corrected_using_deepseek_r1)
+                if is_valid:
+                    return json.loads(corrected_using_deepseek_r1, strict=False)
+                else:
+                    # save_response_to_file(corrected_using_deepseek_r1, directory=directory)
                     return None
+            except (json.JSONDecodeError, ValidationError) as e:
+                print("\n\n\n")
+                print(">>>"*40)
+                print(corrected_using_deepseek_r1)
+                print("<<<"*40)
+                print("\n\n\n")
+                print(f"Invalid JSON or schema: {e}")
+                return None
             
-            print("Valid JSON response with correct schema and valid Python code and tests.")
-        except SyntaxError as e:
-            save_response_to_file(response_content, directory="invalid_python_code")
-            print(f"Valid JSON response but invalid Python code: {e}")
-            return None
-        
     except (json.JSONDecodeError, ValidationError) as e:
-        # save_response_to_file(response['message']['content'], directory="invalid_json")
         print("\n\n\n")
         print(">>>"*40)
-        print(response_content_raw)
+        print(response_content_cleaned)
         print("<<<"*40)
         print("\n\n\n")
         print(f"Invalid JSON or schema: {e}")
         return None
-    
-    except ValueError as e:
-        # save_response_to_file(response['message']['content'], directory="invalid_json")
-        print("\n\n\n")
-        print(">>>"*40)
-        print(response_content_raw)
-        print("<<<"*40)
-        print("\n\n\n")
-        print(f"Invalid JSON or schema: {e}")
-        return None
-    
 
-    
-    return response_content
 
 while True:
     model = random.choice(useful_models)
@@ -184,10 +103,7 @@ while True:
         This is the template: 
         """+str(template)
         difficulty = random.choice(difficulties)
-        styles = ["LeetCode", "CodeSignal", "HackerRank", "CodeWars", "Project Euler", "Daily Coding Problem", 
-                  "Interview Query", "Exercism", "Codecademy", "Codewars", "Internationals Olympiad", "Google Code Jam", 
-                  "Facebook Hacker Cup", "Codeforces", "AtCoder", "TopCoder", "Competitive Programming", "ICPC", 
-                  "ACM-ICPC", "CodeChef", "HackerEarth", "SPOJ"]
+
         style = random.choice(styles)
         content = content.replace("**IN THE STYLE OF**", style)
         print(f"Generating {difficulty} question from {model} in the style of {style}...")

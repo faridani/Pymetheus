@@ -1,0 +1,15 @@
+{
+    "title": "Binary String Rotation",
+    "description": "Given two binary strings, write a function that checks if one string can be rotated to form another string. The function should return `True` if the second string can be formed by rotating the first string, and `False` otherwise. \n\n#### Function Signature\n\n```python\ndef is_binary_rotate_possible(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- Two binary strings (`s1`, `s2`) consisting only of '0's and '1's.\n\n#### Output\n- Return `True` if the second string can be formed by rotating the first string. Otherwise, return `False`.\n\n#### Constraints\n- Both `s1` and `s2` have equal length.\n- The length of each string is between 1 and 100 characters (inclusive).\n",
+    "code": "def is_binary_rotate_possible(s1: str, s2: str) -> bool:\n    n = len(s1)\n    if n != len(s2):\n        return False\n    for i in range(n):\n        rotated_s1 = s1[i:] + s1[:i]\n        if rotated_s1 == s2:\n            return True\n    return False",
+    "tests": [
+        "assert is_binary_rotate_possible('0101', '1010') == True",
+        "assert is_binary_rotate_possible('1100', '0100') == False",
+        "assert is_binary_rotate_possible('1010', '1010') == True",
+        "assert is_binary_rotate_possible('1111', '1111') == True",
+        "assert is_binary_rotate_possible('10', '01') == False"
+    ],
+    "difficulty": "hard",
+    "model": "qwen2:7b",
+    "style": "Exercism"
+}

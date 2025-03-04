@@ -1,0 +1,14 @@
+{
+    "title": "Max Consecutive Ones III",
+    "description": "You are given a binary array `nums`. You can flip up to `k` values from 0 to 1. Write a function `max_consecutive_ones(nums: List[int], k: int) -> int` that returns the maximum number of consecutive ones you can achieve after flipping at most `k` zeros.",
+    "code": "from typing import List\n\ndef max_consecutive_ones(nums: List[int], k: int) -> int:\n    left = 0\n    max_length = 0\n    zero_count = 0\n    for right in range(len(nums)):\n        if nums[right] == 0:\n            zero_count += 1\n        while zero_count > k:\n            if nums[left] == 0:\n                zero_count -= 1\n            left += 1\n        max_length = max(max_length, right - left + 1)\n    return max_length",
+    "tests": [
+        "assert max_consecutive_ones([1,1,1,0,0,0], 0) == 3",
+        "assert max_consecutive_ones([0,0,1,1,0,1], 2) == 5",
+        "assert max_consecutive_ones([1,1,1,0,0,1], 1) == 4",
+        "assert max_consecutive_ones([0,1,1,1,0,0,1,1,0], 3) == 6"
+    ],
+    "difficulty": "hard",
+    "model": "qwen2:7b",
+    "style": "Internationals Olympiad"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Coin Change Problem",
+    "description": "You are given an integer array denominations, representing the denominations of coins available. You need to find out if it is possible to make change for a given total using these coin denominations.\n\n#### Function Signature\n```python\ndef can_make_change(denominations: list[int], total: int) -> bool:\n```\n\n#### Input\n- `denominations` (list[int]): A list of integers representing the denominations of coins available.\n- `total` (int): The target total value for which you need to make change.\n\n#### Output\n- Returns `True` if it is possible to make change for the given total using the coin denominations, `False` otherwise.\n",
+    "code": "from functools import lru_cache\ndef can_make_change(denominations: list[int], total: int) -> bool:\n    @lru_cache(None)\n    def dp(total: int) -> bool:\n        if total < 0:\n            return False\n        if total == 0:\n            return True\n        for denom in denominations:\n            if dp(total - denom):\n                return True\n        return False\n    return dp(total)\n",
+    "tests": [
+        "assert can_make_change([1, 5, 10], 15) == True",
+        "assert can_make_change([1, 2], 4) == True",
+        "assert can_make_change([3, 7], 12) == True",
+        "assert can_make_change([1, 5], 6) == False"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

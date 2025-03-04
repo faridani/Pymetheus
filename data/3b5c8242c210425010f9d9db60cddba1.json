@@ -1,0 +1,13 @@
+{
+    "title": "Economist's Task",
+    "description": "An economist needs to categorize a set of numbers into odd and even ones. Write a function that takes a list of integers as input and returns two lists: one containing all the odd numbers and another containing all the even numbers.\n\n#### Function Signature\n```python\ndef separate_odd_even(numbers: list[int]) -> tuple[list[int], list[int]]:\n```\n\n#### Input\n- `numbers` (list[int]): A list of integers that may contain both positive and negative numbers.\n\n#### Output\n- Returns a tuple containing two lists: the first list contains all the odd numbers, and the second list contains all the even numbers.",
+    "code": "def separate_odd_even(numbers: list[int]) -> tuple[list[int], list[int]]:\n    odd_numbers = [num for num in numbers if num % 2 != 0]\n    even_numbers = [num for num in numbers if num % 2 == 0]\n    return odd_numbers, even_numbers",
+    "tests": [
+        "assert separate_odd_even([1, 2, 3, 4, 5]) == ([1, 3, 5], [2, 4])",
+        "assert separate_odd_even([-1, -2, 3, 4, 5]) == ([-1, 3, 5], [-2, 4])",
+        "assert separate_odd_even([10, 20, 30]) == ([], [10, 20, 30])"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

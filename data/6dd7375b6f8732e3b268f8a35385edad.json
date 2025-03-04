@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Counting Islands",
+    "description": "A map is represented as a 2D array of integers, where 0 represents water and 1 represents land. An island is a group of adjacent lands (horizontally or vertically) that are not surrounded by water.\n\n#### Function Signature\n```python\ndef count_islands(map: list[list[int]]) -> int:\n```\n\n#### Input\n- `map` (list[list[int]]): A 2D array representing a map, where 0 represents water and 1 represents land.\n\n#### Output\n- Returns the number of islands in the given map.",
+    "code": "def count_islands(map: list[list[int]]) -> int:\n    if not map:\n        return 0\n    island_count = 0\n    for i in range(len(map)):\n        for j in range(len(map[0])):\n            if map[i][j] == 1 and dfs(map, i, j) == True:\n                island_count += 1\n    return island_count\n\ndef dfs(map: list[list[int]], i: int, j: int) -> bool:\n    if i < 0 or i >= len(map) or j < 0 or j >= len(map[0]) or map[i][j] == 0:\n        return False\n    map[i][j] = 0\n    dfs(map, i-1, j)\n    dfs(map, i+1, j)\n    dfs(map, i, j-1)\n    dfs(map, i, j+1)\n    return True",
+    "tests": [
+        "assert count_islands([[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0]]) == 1",
+        "assert count_islands([[1,1,0,0,0],[1,0,1,1,0],[0,0,0,1,1],[0,0,0,1,1]]) == 4",
+        "assert count_islands([]) == 0",
+        "assert count_islands([[]]) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}
