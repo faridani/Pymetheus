@@ -1,0 +1,13 @@
+{
+    "title": "Super Hard: Tower of Hanoi Solver",
+    "description": "The classic Tower of Hanoi problem consists of three rods and a set of disks of different sizes which can be moved onto any rod. The goal is to move the entire stack of disks from one rod to another, following these rules:\n\n- Only one disk can be moved at a time.\n- Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty rod.\n- No larger disk may be placed on top of a smaller disk.\n\nWrite a function `hanoi_solver` that takes the number of disks as input (`n`) and returns the sequence of moves required to solve the problem. The output should be a list of tuples, where each tuple contains two integers representing the rods involved in the move (e.g., `(1, 2)` means moving from rod 1 to rod 2).\n\n#### Function Signature\n```python\ndef hanoi_solver(n: int) -> List[Tuple[int, int]]:\n```",
+    "code": "from typing import List, Tuple\n\ndef hanoi_solver(n: int) -> List[Tuple[int, int]]: \n    def _hanoi_solver(n: int, source: int, target: int, auxiliary: int):\n        if n > 0:\n            _hanoi_solver(n - 1, source, auxiliary, target)\n            yield (source, target)\n            _hanoi_solver(n - 1, auxiliary, target, source)\n    return list(_hanoi_solver(n, 1, 3, 2))",
+    "tests": [
+        "assert hanoi_solver(1) == [(1, 2)]",
+        "assert hanoi_solver(2) == [(1, 2), (1, 3), (2, 3)]",
+        "assert len(hanoi_solver(4)) == 15"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral-nemo:latest",
+    "style": "HackerEarth"
+}

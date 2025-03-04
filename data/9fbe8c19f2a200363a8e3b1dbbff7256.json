@@ -1,0 +1,13 @@
+{
+    "title": "Largest Contiguous Region",
+    "description": "Write a function `largest_contiguous_region` that takes a 2D list of integers as input. The function should return the size of the largest contiguous region with all zeros in the grid.\n\n#### Function Signature\n```python\ndef largest_contiguous_region(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D list of integers where each inner list represents a row in the grid.\n\n#### Output\n- Returns the size of the largest contiguous region with all zeros in the grid.",
+    "code": "def largest_contiguous_region(grid: list[list[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n\n    rows, cols = len(grid), len(grid[0])\n    visited = [[False for _ in range(cols)] for _ in range(rows)]\n\n    max_region_size = 0\n\n    def dfs(r: int, c: int) -> int:\n        if r < 0 or c < 0 or r >= rows or c >= cols or visited[r][c] or grid[r][c] != 0:\n            return 0\n\n        visited[r][c] = True\n        region_size = 1\n\n        # Check adjacent cells\n        region_size += dfs(r - 1, c)\n        region_size += dfs(r + 1, c)\n        region_size += dfs(r, c - 1)\n        region_size += dfs(r, c + 1)\n\n        return region_size\n\n    for r in range(rows):\n        for c in range(cols):\n            if not visited[r][c] and grid[r][c] == 0:\n                max_region_size = max(max_region_size, dfs(r, c))\n\n    return max_region_size",
+    "tests": [
+        "assert largest_contiguous_region([[0,1,0],[1,1,1],[0,1,0]]) == 6",
+        "assert largest_contiguous_region([[1,1,1],[1,1,1],[1,1,1]]) == 9",
+        "assert largest_contiguous_region([[0,0,0],[0,0,0],[0,0,0]]) == 9",
+        "assert largest_contiguous_region([[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]) == 9"
+    ],
+    "difficulty": "easy",
+    "model": "llama3.1:8b"
+}

@@ -20,4 +20,4 @@ schema = {
         "required": ["title", "description", "code", "tests"]
     }
   
-validate(instance=jsonstring, schema=schema)
+validate(instance=jsonstring, schema=schema, )

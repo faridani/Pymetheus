@@ -1,0 +1,14 @@
+{
+    "title": "Easy Python Coding Question: Sum of Prime Numbers",
+    "description": "Given a list of integers, write a function that returns the sum of all prime numbers within the given list. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. The function should ignore non-prime numbers in the list.\n\n#### Function Signature\n```python\ndef sum_of_primes(numbers: List[int]) -> int:\n```\n\n#### Input\n- `numbers` (List[int]): A list of integers that may contain both positive and negative numbers, including 0.\n\n#### Output\n- Returns the sum of all prime numbers in the given list as an integer. If there are no primes in the input list, return 0.\n",
+    "code": "from typing import List\nimport math\n\ndef is_prime(num: int) -> bool:\n    if num <= 1:\n        return False\n    for i in range(2, int(math.sqrt(num)) + 1):\n        if num % i == 0:\n            return False\n    return True\n\ndef sum_of_primes(numbers: List[int]) -> int:\n    prime_sum = 0\n    for number in numbers:\n        if is_prime(number):\n            prime_sum += number\n    return prime_sum\n",
+    "tests": [
+        "\nassert sum_of_primes([1, 2, 3]) == 5",
+        "\nassert sum_of_primes([4, 6, -7, 0]) == 0",
+        "\nassert sum_of_primes([-9, -8, -7, -5]) == -12",
+        "\nassert sum_of_primes([2, 3, 5, 7, 11]) == 28"
+    ],
+    "difficulty": "medium",
+    "model": "phi3:14b",
+    "style": "CodeWars"
+}

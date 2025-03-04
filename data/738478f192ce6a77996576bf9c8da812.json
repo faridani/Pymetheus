@@ -1,0 +1,11 @@
+{
+    "title": "Sudoku Validator",
+    "description": "A Sudoku board is a 9x9 grid made up of nine rows and nine columns, divided into nine subgrids (3x3 boxes), filled with digits from 1 to 9. The goal is to fill the empty cells according to the following rules:\n\n- Each row must contain each digit exactly once.\n- Each column must contain each digit exactly once.\n- Each of the nine subgrids must contain each digit exactly once.\n\nWrite a function `validate_sudoku` that takes in a partially filled Sudoku board and returns True if it is valid according to the rules, or False otherwise.\n\n#### Function Signature\n```python\ndef validate_sudoku(board: List[List[int]]) -> bool:\n```\n\n#### Input\n- `board`: A 2D list representing the Sudoku board. Each element of this list can be an integer from 1 to 9 (inclusive) or 0 if it represents an empty cell.\n\n#### Output\n- Returns True if the input board is a valid Sudoku solution, False otherwise.",
+    "code": "from typing import List\n\ndef validate_sudoku(board: List[List[int]]) -> bool:\n    rows = [set() for _ in range(9)]\n    cols = [set() for _ in range(9)]\n    boxes = [[set() for _ in range(3)] for _ in range(3)]\n\n    for row in range(9):\n        for col in range(9):\n            if board[row][col] == 0:\n                continue\n\n            num = board[row][col]\n            if num in rows[row]:\n                return False\n            rows[row].add(num)\n\n            if num in cols[col]:\n                return False\n            cols[col].add(num)\n\n            box_row, box_col = row // 3, col // 3\n            box_num = boxes[box_row][box_col]\n            if num in box_num:\n                return False\n            box_num.add(num)\n\n    return True",
+    "tests": [
+        "assert validate_sudoku([[5,3,0,0,7,0,0,0,0], [6,0,0,1,9,5,0,0,0], [0,9,8,0,0,0,0,6,0], [8,0,0,0,6,0,0,0,3], [4,0,0,8,0,3,0,0,1], [7,0,0,0,2,0,0,0,6], [0,6,0,0,0,0,2,8,0], [0,0,0,4,1,9,0,0,5], [0,0,0,0,8,0,0,7,9]]) == True",
+        "assert validate_sudoku([[5,3,0,0,7,0,0,0,0], [6,0,0,1,9,5,0,0,0], [0,9,8,0,0,0,0,6,0], [8,0,0,0,6,0,0,0,3], [4,0,0,8,0,3,0,0,1], [7,0,0,0,2,0,0,0,6], [0,6,0,0,0,0,2,8,0], [0,0,0,4,1,9,0,0,5], [0,0,0,0,8,0,0,7,9]]) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "qwen2:7b"
+}

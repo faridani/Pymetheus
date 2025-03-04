@@ -1,0 +1,14 @@
+{
+    "title": "Reverse String",
+    "description": "Write a function that takes in a string and returns the reverse of that string.\n\n#### Function Signature:\n```python\ndef reverse_string(s: str) -> str:\n```\n\n#### Input:\n- `s` (str): A string to be reversed.\n\n#### Output:\n- The reverse of the input string.",
+    "code": "def reverse_string(s: str) -> str:\n    return s[::-1]",
+    "tests": [
+        "assert reverse_string('') == ''",
+        "assert reverse_string('hello') == 'olleh'",
+        "assert reverse_string('racecar') == 'racecar'",
+        "assert reverse_string('level') == 'level'"
+    ],
+    "difficulty": "easy",
+    "model": "codellama:34b",
+    "style": "LeetCode"
+}

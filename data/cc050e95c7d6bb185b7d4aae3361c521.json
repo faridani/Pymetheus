@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Sum of Digits",
+    "description": "Write a function `sum_of_digits` that takes an integer as input and returns the sum of its digits.\n\n#### Function Signature\n```python\ndef sum_of_digits(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns the sum of the digits of `n`.\n\n#### Constraints\n- The input will be a non-negative integer less than 10^6.",
+    "code": "def sum_of_digits(n: int) -> int:\n    return sum(int(digit) for digit in str(n))",
+    "tests": [
+        "assert sum_of_digits(12345) == 15",
+        "assert sum_of_digits(0) == 0",
+        "assert sum_of_digits(987654321) == 36"
+    ],
+    "difficulty": "easy",
+    "model": "mistral-nemo:latest",
+    "style": "Facebook Hacker Cup"
+}

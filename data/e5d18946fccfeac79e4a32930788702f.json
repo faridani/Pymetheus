@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Subarray Sum Equals K",
+    "description": "Given an array of integers `nums` and an integer `k`, find the total number of continuous subarrays whose sum equals to `k`. Write a function `subarray_sum` that takes in an array `nums` and an integer `k` as input and returns the total number of continuous subarrays whose sum equals to `k`. A subarray is defined as a contiguous portion of an array.\n\n#### Function Signature\n```python\ndef subarray_sum(nums: List[int], k: int) -> int:\n```\n\n#### Input\n- `nums` (List[int]): An array of integers.\n- `k` (int): A target sum.\n\n#### Output\n- Returns an integer that represents the total number of continuous subarrays whose sum equals to `k`.",
+    "code": "from typing import List\n\ndef subarray_sum(nums: List[int], k: int) -> int:\n    count, cur_sum = 0, 0\n    sum_map = {0: 1}\n    for num in nums:\n        cur_sum += num\n        if cur_sum - k in sum_map:\n            count += sum_map[cur_sum - k]\n        if cur_sum in sum_map:\n            sum_map[cur_sum] += 1\n        else:\n            sum_map[cur_sum] = 1\n    return count",
+    "tests": [
+        "assert subarray_sum([1, 2, 3], 3) == 2",
+        "assert subarray_sum([1, 1, 1], 2) == 2"
+    ],
+    "difficulty": "hard",
+    "model": "codestral:22b",
+    "style": "TopCoder"
+}

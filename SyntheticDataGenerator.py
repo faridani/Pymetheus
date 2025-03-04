@@ -93,8 +93,17 @@ def ask_codellama(model, content):
         strings_to_remove = ["Here's your new Python coding question:",
                              "Here is your new Python coding question:",
                              "Here is your new Python coding question:",
-                             "Here is the Python coding question:"
+                             "Here's your Python coding question:",
+                             "Here is the Python coding question:",
+                             "Here's the JSON string for your requested Python coding question:",
+                             "Here is the medium Python coding question:",
+                             "Sure! Here's a new Python coding question for you:",
+                             "Here's a new Python coding question for you:",
                              "```json"]
+        for string in strings_to_remove:
+            response_content_raw = response_content_raw.replace(string, "")
+            
+        ## TODO -remove 
         response_content_raw = response_content_raw.replace("Here's your new Python coding question:","")
         response_content_raw = response_content_raw.replace("Here is your new Python coding question:", "")
         response_content_raw = response_content_raw.replace("Here is your new Python coding question:", "")
@@ -154,7 +163,7 @@ while True:
         if fail_counter > 5:
             break
         content = """
-        I want you to generate a **REPLACE WITH DIFFICULTY** python coding question for me and provide the answer, write the test questions and the function signature. 
+        I want you to generate a **REPLACE WITH DIFFICULTY** python coding question for me in the style of **IN THE STYLE OF** and provide the answer, write the test questions and the function signature. 
         Use the following template as a guide and maintain the formatting strictly. 
         Your returned string should be in the form of json, and have title, description, code and tests keys. 
         The code should be a function that solves the problem. You are expected to put the full functioning code in the code section. 
@@ -171,7 +180,13 @@ while True:
         This is the template: 
         """+str(template)
         difficulty = random.choice(difficulties)
-        print(f"Generating {difficulty} question from {model}...")
+        styles = ["LeetCode", "CodeSignal", "HackerRank", "CodeWars", "Project Euler", "Daily Coding Problem", 
+                  "Interview Query", "Exercism", "Codecademy", "Codewars", "Internationals Olympiad", "Google Code Jam", 
+                  "Facebook Hacker Cup", "Codeforces", "AtCoder", "TopCoder", "Competitive Programming", "ICPC", 
+                  "ACM-ICPC", "CodeChef", "HackerEarth", "SPOJ"]
+        style = random.choice(styles)
+        content = content.replace("**IN THE STYLE OF**", style)
+        print(f"Generating {difficulty} question from {model} in the style of {style}...")
         content_with_difficulty = content.replace("**REPLACE WITH DIFFICULTY**", difficulty)
         response = ask_codellama(model, content_with_difficulty)
         
@@ -182,6 +197,7 @@ while True:
                     print(f"Successfully generated {difficulty} question")
                     response['difficulty'] = difficulty
                     response['model'] = model
+                    response['style'] = style
                     save_response_to_file(response, directory="data")
                     fail_counter -= 1
                     useful_models.append(model) #increase the probability of using this model again

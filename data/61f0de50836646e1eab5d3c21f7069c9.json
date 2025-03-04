@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Reverse String",
+    "description": "Create a function `reverse_string` that takes a string as input and returns the reversed version of it. \n\n#### Function Signature\n```python\ndef reverse_string(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string containing any kind of characters.\n\n#### Output\n- Returns a new string which is the reverse of the input string.",
+    "code": "def reverse_string(s: str) -> str:    return s[::-1]",
+    "tests": [
+        "assert reverse_string('hello') == 'olleh'",
+        "assert reverse_string('12345') == '54321'",
+        "assert reverse_string('Python') == 'nohtyP'"
+    ],
+    "difficulty": "easy",
+    "model": "qwen2:7b"
+}

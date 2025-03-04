@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Reverse Integer",
+    "description": "Write a function `reverse_integer` that takes an integer as input and returns its reverse.\n\n#### Function Signature\n```python\ndef reverse_integer(x: int) -> int:\n```\n\n#### Input\n- `x` (int): An integer to be reversed.\n\n#### Output\n- Returns the reversed integer. Note that the input integer may be negative, and the output should also handle negative numbers correctly.\n",
+    "code": "def reverse_integer(x: int) -> int:\n    # Convert integer to string for easier manipulation\n    str_x = str(abs(x))\n    # Reverse the string\n    reversed_str = str_x[::-1]\n    # Convert the reversed string back to an integer, handling negative numbers correctly\n    return int(-reversed_str if x < 0 else reversed_str)\n",
+    "tests": [
+        "assert reverse_integer(123) == 321",
+        "assert reverse_integer(-123) == -321",
+        "assert reverse_integer(120) == 21",
+        "assert reverse_integer(-999) == -999"
+    ],
+    "difficulty": "easy",
+    "model": "command-r7b:latest",
+    "style": "Codewars"
+}

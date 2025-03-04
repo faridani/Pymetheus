@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Word Subset",
+    "description": "Given two strings, determine if the first string is a subset of the second string. A subset is a sequence of characters that can be derived from another sequence by deleting some characters without changing the order of the remaining characters. \n\n#### Function Signature\n```python\ndef is_subset(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): The first string.\n- `s2` (str): The second string.\n\n#### Output\n- Returns `True` if `s1` is a subset of `s2`, `False` otherwise.\n",
+    "code": "def is_subset(s1: str, s2: str) -> bool:\n    count = 0\n    for char in s1:\n        if char in s2:\n            count += 1\n    return count == len(s1)\n",
+    "tests": [
+        "assert is_subset('abc', 'abcs') == True",
+        "assert is_subset('hello', 'world') == False",
+        "assert is_subset('apple', 'apples') == True"
+    ],
+    "difficulty": "medium",
+    "model": "codegemma:7b",
+    "style": "LeetCode"
+}

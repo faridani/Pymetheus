@@ -1,0 +1,14 @@
+{
+    "title": "Detecting Prime Numbers",
+    "description": "Write a function `is_prime` that takes an integer `n` as input and returns `True` if it is prime, `False` otherwise. You can use any algorithm or method to determine whether a number is prime.",
+    "code": "import math\n\ndef is_prime(n: int) -> bool:\n    # Use the Sieve of Eratosthenes to find all prime numbers less than n\n    sieve = [True] * (n ** 2) \n    for i in range(1, n ** 2):\n        if sieve[i]:\n            for j in range(i**2, n ** 2):\n                sieve[j] = False\n    # Return a list of prime numbers found\n    return [x for x in range(1, n) if sieve[x]]\n",
+    "tests": [
+        "assert is_prime(7) == True",
+        "assert is_prime(8) == True",
+        "assert is_prime(9) == False",
+        "assert is_prime(43) == True"
+    ],
+    "difficulty": "super hard",
+    "model": "llama2:latest",
+    "style": "Codewars"
+}

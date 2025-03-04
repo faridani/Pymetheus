@@ -1,0 +1,14 @@
+{
+    "title": "String Rotation Checker (Medium)",
+    "description": "Two strings are said to be rotation of each other if one can be obtained from the other by shifting characters cyclically. For example, \"waterbottle\" and \"oetrawtbold\" are rotations of each other.\n\n#### Function Signature\n```python\ndef is_rotation(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): First given string\n- `s2` (str): Second given string\n\n#### Output\n- Returns `True` if the two strings are rotations of each other, `False` otherwise.\n",
+    "code": "def is_rotation(s1: str, s2: str) -> bool:\n    # Ensure both strings have equal length\n    if len(s1) != len(s2):\n        return False\n    \n    # If one string is a substring of another, they are not rotations.\n    for substring in (s1 + s1):\n        if substring == s2:\n            return True\n    \n    # If neither string is a substring of the other, they are not rotations.\n    return False",
+    "tests": [
+        "assert is_rotation('waterbottle', 'oetrawtbold') == True",
+        "assert is_rotation('abcdef', 'bcdeaf') == True",
+        "assert is_rotation('abcdef', 'efabcd') == False",
+        "assert is_rotation('hello', 'world') == False"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Competitive Programming"
+}

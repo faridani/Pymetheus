@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Subarray Sum with Zero Removal",
+    "description": "Given a non-empty array of integers `nums`, find the maximum sum that can be obtained by choosing any subarray and removing at most one zero. Write a function `max_sum_with_zero_removal(nums: List[int]) -> int` to compute this value.\n\n#### Function Signature\n```python\ndef max_sum_with_zero_removal(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums`: A list of integers that can contain both positive and negative numbers including zeros. The length of the array is between 1 to 10^4.\n\n#### Output\n- Returns an integer, which represents the maximum sum that can be obtained by choosing any subarray and removing at most one zero from it.",
+    "code": "from typing import List\ndef max_sum_with_zero_removal(nums: List[int]) -> int:\n    # Keep track of current sum, global maximum sum without zero removal\n    curr_sum = 0\n    global_max_sum = float('-inf')\n    removed_zero = False\n    for num in nums:\n        if num == 0 and not removed_zero:\n            # First zero encountered\n            removed_zero = True\n        elif num != 0:\n            curr_sum += num\n            removed_zero = False\n        global_max_sum = max(global_max_sum, curr_sum)\n    # If there was a zero but no sum was added yet,\n    # then the maximum sum without removing zeros is still possible.\n    if not removed_zero and global_max_sum <= 0:\n        return 0\n    return global_max_sum",
+    "tests": [
+        "assert max_sum_with_zero_removal([1, -2, 0, 3]) == 4",
+        "assert max_sum_with_zero_removal([-2, -1, -3]) == -1",
+        "assert max_sum_with_zero_removal([6, -1, -7, 5, 3]) == 9",
+        "assert max_sum_with_zero_removal([0, 4, -2, 8, -4, -1]) == 8"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "qwen2:7b",
+    "style": "Codeforces"
+}

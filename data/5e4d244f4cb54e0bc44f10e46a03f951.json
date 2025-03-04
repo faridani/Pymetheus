@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Counting Words in a String",
+    "description": "Write a function `count_words` that takes a string as input and returns the number of words in the string. A word is defined as a sequence of alphanumeric characters separated by spaces or punctuation.\n\n#### Function Signature\n```python\ndef count_words(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the number of words in the input string.",
+    "code": "import string\n\ndef count_words(s: str) -> int:\n    # Remove non-alphanumeric characters\n    s = ''.join(char for char in s if char in string.ascii_letters + string.digits)\n    # Split the string into words\n    words = s.split()\n    # Return the number of words\n    return len(words)\n",
+    "tests": [
+        "assert count_words('Hello, World!') == 2",
+        "assert count_words('This is a test string.') == 5",
+        "assert count_words('abc def') == 2",
+        "assert count_words('123 456') == 2"
+    ],
+    "difficulty": "easy",
+    "model": "llama3.1:8b",
+    "style": "SPOJ"
+}

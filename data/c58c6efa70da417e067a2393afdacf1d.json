@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Reverse Words in a String",
+    "description": "Write a function `reverse_words` that takes a string as input and returns the string with the words reversed. For example, if the input string is \"Hello World\", the function should return \"World Hello\".\n\n#### Function Signature\n```python\ndef reverse_words(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string with one or more words.\n\n#### Output\n- The input string with the words reversed.\n",
+    "code": "# Write your code here. Do not use 'import' statements.",
+    "tests": [
+        "assert reverse_words('Hello World') == 'World Hello'",
+        "assert reverse_words('The quick brown fox jumps over the lazy dog') == 'dog lazy the over jumps fox brown quick The'",
+        "assert reverse_words('a b c d e f g h i j k l m n o p q r s t u v w x y z') == 'z y x w v u t s r q p o n m l k j i h g f e d c b a'"
+    ],
+    "difficulty": "hard",
+    "model": "codellama:34b"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Sudoku Solver (Hard)",
+    "description": "Sudoku is a 9x9 grid divided into nine 3x3 sub-grids. Some numbers are already filled, while others are blank. Write a function `sudoku_solver` that takes a partially filled Sudoku grid as input and returns whether it's possible to fill the entire grid with the numbers 1-9 without repeating any number in each row, column, or 3x3 sub-grid.\n\n#### Function Signature\n```python\ndef sudoku_solver(grid: list) -> bool:\n```\n\n#### Input\n- `grid` (list): A 2D list representing a partially filled Sudoku grid. Each element is either an integer from 1 to 9 or None, indicating an empty cell.\n\n#### Output\n- Returns `True` if it's possible to fill the entire grid with numbers 1-9 without repeating any number in each row, column, or 3x3 sub-grid, and `False` otherwise.\n",
+    "code": "import copy\n\ndef sudoku_solver(grid: list) -> bool:\n    def is_valid_move(move: tuple) -> bool:\n        row = move[0]\n        col = move[1]\n        num = move[2]\n        for i in range(9):\n            if grid[row][i] == num or grid[i][col] == num:\n                return False\n        sub_row = (row // 3) * 3\n        sub_col = (col // 3) * 3\n        for i in range(3):\n            if grid[sub_row + i][sub_col] == num or grid[sub_row][sub_col + i] == num:\n                return False\n        return True\n    def solve(grid: list) -> bool:\n        for row in range(9):\n            for col in range(9):\n                if grid[row][col] is None:\n                    for num in range(1, 10):\n                        move = (row, col, num)\n                        if is_valid_move(move):\n                            grid[row][col] = num\n                            if solve(grid):\n                                return True\n                            grid[row][col] = None\n                    return False\n        return True\n    return solve(copy.deepcopy(grid))\n",
+    "tests": [
+        "assert sudoku_solver([[None, 3, None], [1, None, None], [None, None, None]]) == True",
+        "assert sudoku_solver([[5, None, None], [2, None, None], [None, None, None]]) == False",
+        "assert sudoku_solver([[None, None, None], [4, 8, None], [None, None, None]]) == True"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest"
+}

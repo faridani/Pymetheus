@@ -1,0 +1,14 @@
+{
+    "title": "Fibonacci Checker - Hard",
+    "description": "A Fibonacci sequence starts with two initial numbers, followed by subsequent numbers that are the sum of the previous two. Given a number n, determine if it is part of the Fibonacci sequence.\n\n#### Function Signature\n```python\ndef is_fibonacci(n: int) -> bool:\n```\n\n#### Inputs\n- `n` (int): An integer to check whether it's a number in the Fibonacci sequence.\n\n#### Output\n- Returns `True` if the input number is part of the Fibonacci sequence, otherwise returns `False`.\n",
+    "code": "from math import sqrt\n\ndef is_perfect_square(x: int) -> bool:\n    s = sqrt(x)\n    return s - int(s) == 0\n\ndef is_fibonacci(n: int) -> bool:\n    # Check if one of (5*n^2 + 4) or (5*n^2 - 4) is a perfect square, as per the properties of Fibonacci numbers.\n    return is_perfect_square(5 * n**2 + 4) or is_perfect_square(5 * n**2 - 4)\n",
+    "tests": [
+        "assert is_fibonacci(13) == True",
+        "assert is_fibonacci(21) == True",
+        "assert is_fibonacci(90) == False",
+        "assert is_fibonacci(8) == True",
+        "assert is_fibonacci(7) == False"
+    ],
+    "difficulty": "hard",
+    "model": "phi3:14b"
+}

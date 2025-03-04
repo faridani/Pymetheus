@@ -1,0 +1,15 @@
+{
+    "title": "Subsequence Sum Checker (Hard)",
+    "description": "Given two arrays, `arr1` and `arr2`, and a target sum `target`, check if there is a subsequence in `arr1` that sums up to `target` and also exists in `arr2`.\n\n#### Function Signature\n```python\ndef check_subsequence_sum(arr1: list[int], arr2: list[int], target: int) -> bool:\n```\n\n#### Input\n- `arr1` (list): A list of integers.\n- `arr2` (list): Another list of integers of the same length as `arr1`.\n- `target` (int): The target sum for the subsequence.\n\n#### Output\n- Returns `True` if there is a subsequence in `arr1` that sums up to `target` and also exists in `arr2`, otherwise returns `False`.\n\n#### Constraints\n- `1 <= len(arr1) <= 10^5`\n- `1 <= len(arr2) <= 10^5`\n- `1 <= arr1[i], arr2[i] <= 10^5`\n- `-10^9 <= target <= 10^9`\n\n#### Hints\nYou can use a hashmap to store the sums of subarrays ending at a particular index in both arrays. Then, you can iterate through both arrays and check if the target sum is present in the other array's hashmap.\n",
+    "code": "def check_subsequence_sum(arr1: list[int], arr2: list[int], target: int) -> bool:\n    # Create hashmaps to store sums of subarrays ending at each index\n    sums_in_arr1 = {0: 0}  # Key is the sum, value is the index it ends at\n    sums_in_arr2 = {0: -1}  # Key is the sum, value is the index it ends at\n\n    # Initialize current sum and index\n    curr_sum = 0\n    curr_index = 0\n\n    # Iterate through both arrays\n    for i in range(len(arr1)):\n        curr_sum += arr1[i]\n        if curr_sum - target in sums_in_arr2:\n            return True\n        if curr_sum not in sums_in_arr1:\n            sums_in_arr1[curr_sum] = i\n        if curr_sum - target in sums_in_arr1:\n            return True\n\n        curr_index = i\n        for j in range(curr_index, len(arr2)):\n            curr_sum += arr2[j]\n            if curr_sum in sums_in_arr2 and sums_in_arr2[curr_sum] != -1:\n                return True\n            if curr_sum not in sums_in_arr2:\n                sums_in_arr2[curr_sum] = j\n            if curr_sum - target in sums_in_arr2 and sums_in_arr2[curr_sum - target] != -1:\n                return True\n\n        curr_sum -= arr2[curr_index]\n        if curr_sum in sums_in_arr2 and sums_in_arr2[curr_sum] != -1:\n            return True\n        sums_in_arr2.pop(curr_sum)\n\n    return False",
+    "tests": [
+        "assert check_subsequence_sum([1, 2, 3], [2, 3, 4], 5) == True",
+        "assert check_subsequence_sum([1, 2, 3], [2, 3, 4], 6) == False",
+        "assert check_subsequence_sum([1, 2, 3, 4], [2, 3, 5, 7], 7) == True",
+        "assert check_subsequence_sum([-1, -2, -3], [-2, -3, -4], -6) == True",
+        "assert check_subsequence_sum([1, 2, 3], [4, 5, 6], 7) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "aya:35b",
+    "style": "CodeChef"
+}

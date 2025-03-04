@@ -1,0 +1,18 @@
+{
+    "title": "Advanced Subsequence Matcher (Hard)",
+    "description": "Given two lists of integers, `source` and `pattern`, determine if it's possible to rearrange the elements in `source` such that you can find all numbers from `pattern` as a contiguous subsequence within `source`. The function should return a boolean value indicating whether this is possible.\n\n#### Function Signature\n```python\ndef advanced_subsequence_matcher(source: List[int], pattern: List[int]) -> bool:\n```\n\n#### Input\n- `source` (List[int]): A list of integers representing the source sequence.\n- `pattern` (List[int]): A list of integers representing the pattern to match as a subsequence in `source`.\n\n#### Output\n- Returns `True` if you can rearrange `source` such that `pattern` is a contiguous subsequence, otherwise returns `False`.\n\n#### Constraints\n- The length of `source` and `pattern` is at most 10^5.\n- All integers in `source` and `pattern` are between -10^9 and 10^9.\n\n#### Example\nFor `source = [1, 2, 3, 4, 5]` and `pattern = [3, 4]`, the function should return `True` because you can rearrange `source` to `[3, 4, 1, 2, 5]`, which contains `[3, 4]` as a contiguous subsequence.\n\nFor `source = [1, 2, 3]` and `pattern = [4, 5]`, the function should return `False` because it is impossible to form `[4, 5]` from `source`.\n",
+    "code": "from collections import Counter\n\ndef advanced_subsequence_matcher(source: List[int], pattern: List[int]) -> bool:\n    source_counter = Counter(source)\n    pattern_counter = Counter(pattern)\n    \n    for num, count in pattern_counter.items():\n        if source_counter[num] < count:\n            return False\n    \n    sorted_source = sorted(source, key=lambda x: (-pattern.count(x), x))\n    result_sequence = []\n    \n    index_in_pattern = 0\n    for num in sorted_source:\n        if index_in_pattern < len(pattern) and num == pattern[index_in_pattern]:\n            result_sequence.append(num)\n            index_in_pattern += 1\n        else:\n            result_sequence.insert(0, num)\n        \n    return result_sequence[:len(pattern)] == pattern\n",
+    "tests": [
+        "assert advanced_subsequence_matcher([1, 2, 3, 4, 5], [3, 4]) == True",
+        "assert advanced_subsequence_matcher([1, 2, 3], [4, 5]) == False",
+        "assert advanced_subsequence_matcher([7, 8, 9, 10, 11], [10, 11, 12]) == False",
+        "assert advanced_subsequence_matcher([5, 6, 7, 8, 9, 10], [9, 10, 11]) == False",
+        "assert advanced_subsequence_matcher([1, 2, 3, 4, 5, 3, 4], [3, 4]) == True",
+        "assert advanced_subsequence_matcher([], []) == True",
+        "assert advanced_subsequence_matcher([1], [1]) == True",
+        "assert advanced_subsequence_matcher([1, 2, 3], [3, 2, 1]) == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "phi4:latest",
+    "style": "Interview Query"
+}
