@@ -1,0 +1,14 @@
+{
+    "title": "'Palindromic Substrings Finder (Easy)',",
+    "description": "A palindromic substring is a segment of a string that reads the same forwards and backwards. Write a function `find_palindromes` to find all non-overlapping palindromic substrings in a given string.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> list[str]:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of palindromic substrings in the order they appear from left to right.",
+    "code": "def find_palindromes(s: str) -> list[str]:\n    # List of all possible palindromic substrings\n    result = []\n    for i in range(len(s)):\n        # Start and end indices of the current substring\n        start, end = i, i\n        # Extend the substring while it is a palindrome\n        while start >= 0 and end < len(s) and s[start] == s[end]:\n            start -= 1\n            end += 1\n        # Add the found palindromic substring to the result if it's not empty\n        if (end - start) > 0:\n            result.append(s[start:end])\n    return result",
+    "tests": [
+        "assert find_palindromes('racecar') == ['r', 'a', 'c', 'c', 'a', 'r', 'r', 'c', 'c', 'a']",
+        "assert find_palindromes('A man, a plan, a canal, Panama') == ['a', ',', 'a', 'm', 'a', 'n', ' ', 'p', 'l', 'a', 'n', ',', 'a', 'c', 'a', 'n', 'a', 'l', ',', 'P', 'a', 'n', 'a', 'm', 'a']",
+        "assert find_palindromes('No \\'x\\' in Nixon') == ['N', \"'\", \"'\", \"i\", \"'\", \"n\", \"'\", \"o\", \"'\", \"'\", \"x\", \"'\", \"x\", \"'\", \"i\", \"'\", \"n\", \"'\", \"o'\", \" ' \", \"'\"]",
+        "assert find_palindromes('') == []"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Facebook Hacker Cup"
+}

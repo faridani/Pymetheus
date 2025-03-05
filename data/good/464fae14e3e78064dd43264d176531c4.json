@@ -1,0 +1,15 @@
+{
+    "title": "Medium: Chef and the Grid",
+    "description": "Chef has a grid of size n x m. He wants to place his chef hats on this grid such that each hat covers exactly one cell. The grid is initially empty.\n\nHe can move his hats in any direction (up, down, left, right) from their current position to an adjacent cell. His goal is to place the maximum number of hats on the grid.\n\n#### Function Signature\n```python\ndef max_hats(n: int, m: int) -> int:\n```\n\n#### Input\n- `n` (int): The number of rows in the grid.\n- `m` (int): The number of columns in the grid.\n\n#### Output\n- Returns the maximum number of hats that Chef can place on the grid.",
+    "code": "",
+    "\ndef max_hats(n: int, m: int) -> int:\n    # Calculate the maximum number of hats that can be placed\n    return (n + 1) * (m + 1)": "",
+    "tests": [
+        "assert max_hats(3, 4) == 8",
+        "assert max_hats(2, 3) == 6",
+        "assert max_hats(0, 5) == 1",
+        "assert max_hats(1, 0) == 1"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

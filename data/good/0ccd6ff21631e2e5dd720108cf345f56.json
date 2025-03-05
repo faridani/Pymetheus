@@ -1,0 +1,14 @@
+{
+    "title": "String Rotation",
+    "description": "Write a function `is_rotation` that checks if one string is a rotation of another. Two strings are rotations of each other if the second string can be obtained by shifting the characters in the first string cyclically to the right or left.",
+    "code": "\ndef is_rotation(s1: str, s2: str) -> bool:\n    return len(s1) == len(s2) and (s1 + s1).find(s2) != -1",
+    "tests": [
+        "assert is_rotation(\"waterbottle\", \"erbottlewat\") == True",
+        "assert is_rotation(\"hello\", \"ohell\") == True",
+        "assert is_rotation(\"apple\", \"elppa\") == False",
+        "assert is_rotation(\"abc\", \"cba\") == True"
+    ],
+    "difficulty": "medium",
+    "model": "mistral-nemo:latest",
+    "style": "Google Code Jam"
+}

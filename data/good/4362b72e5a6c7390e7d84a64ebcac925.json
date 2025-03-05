@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Reverse Words in a String",
+    "description": "Given a string of words separated by spaces, write a function that reverses the order of the words while preserving the order of characters within each word.\n\n#### Function Signature\n\n ```python\n def reverse_words(s: str) -> str:\n ```\n\n\n#### Input\n\n- `s` (str): A string of space-separated words.\n\n\n#### Output\n\n- Returns a string with the words in reversed order.\n\n\n#### Example\n\n```python\n>>> s = \"This is a sentence\"\n>>> reverse_words(s)\n'sentence a is This'\n```",
+    "code": "def reverse_words(s: str) -> str:\n    words = s.split()\n    return \" \".join(reversed(words))",
+    "tests": [
+        "assert reverse_words('This is a sentence') == 'sentence a is This'",
+        "assert reverse_words('Hello world!') == 'world! Hello'",
+        "assert reverse_words('') == ''"
+    ],
+    "difficulty": "medium",
+    "model": "gemma2:27b",
+    "style": "Interview Query"
+}

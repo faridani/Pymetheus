@@ -1,0 +1,16 @@
+{
+    "title": "Subsequence Sum Checker (Hard)",
+    "description": "Given a sequence of numbers and a target sum, write a function `find_subsequence` that finds and returns all the unique subsets of the given sequence that sum up to the target value. Return an empty list if no such subset exists.\n\n#### Function Signature\n```python\ndef find_subsequence(seq: list[int], target: int) -> list[list[int]]:\n```\n\n#### Input\n- `seq` (list[int]): A list of integers.\n- `target` (int): The target sum for which we want to find subsets.\n\n#### Output\n- Returns (list[list[int]]): A list of unique lists, where each inner list is a subset of the input sequence that sums up to the target value. Return an empty list if no such subset exists.",
+    "code": "",
+    "python\ndef find_subsequence(seq: list[int], target: int) -> list[list[int]]:\n    def backtrack(index, current_sum, path):\n        if current_sum == target:\n            result.append(path[:])\n            return\n        for i in range(index, len(seq)):\n            new_sum = current_sum + seq[i]\n            if new_sum > target:\n                break\n            backtrack(i + 1, new_sum, path + [seq[i]])\n\n    result = []\n    backtrack(0, 0, [])\n    return result": "",
+    "tests": [
+        "assert find_subsequence([1, 2, 3], 4) == [[1, 3], [2, 2]]",
+        "assert find_subsequence([1, 2, 3], 5) == [[1, 2, 2]]",
+        "assert find_subsequence([1, 2, 3], 6) == [[1, 2, 3], [2, 2, 2]]",
+        "assert find_subsequence([1, 2, 3], 7) == []",
+        "assert find_subsequence([-1, 0, 1, 2, -1, -2], 0) == [[-1, -1, 1, 2]]"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "aya:35b",
+    "style": "Google Code Jam"
+}

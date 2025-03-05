@@ -1,0 +1,15 @@
+{
+    "title": "Medium: Counting Vowels",
+    "description": "Write a Python function `count_vowels` which takes a string as input and returns the count of vowels (a, e, i, o, u) in it. The function should be case-insensitive meaning 'A' and 'a' are both considered as valid vowels.",
+    "code": "",
+    "\nimport re\n\ndef count_vowels(s: str) -> int:\n    # Convert string to lower case for case insensitivity\n    s = s.lower()\n    # Define the pattern of vowels in a string\n    pattern = '[aeiou]'\n    # Find all occurrences of vowels in the string using regex\n    matches = re.findall(pattern, s)\n    # Count and return the number of vowels found\n    return len(matches)": "",
+    "tests": [
+        "assert count_vowels('Hello World!') == 3",
+        "assert count_vowels('AEIOU') == 5",
+        "assert count_vowels('Quick Brown Fox jumps over lazy dog') == 12",
+        "assert count_vowels('PYTHON is FUN') == 4"
+    ],
+    "difficulty": "medium",
+    "model": "qwen2:7b",
+    "style": "CodeWars"
+}
