@@ -1,0 +1,13 @@
+{
+    "title": "Find Common Elements in Two Lists (Easy)",
+    "description": "Write a function `find_common` that finds common elements between two lists.\n\n#### Function Signature\n```python\ndef find_common(list1: list, list2: list) -> list:\n```\n\n#### Input\n- `list1` (list): A list of integers.\n- `list2` (list): Another list of integers.\n\n#### Output\n- Returns a list containing the common elements between the two lists. If no common elements are found, returns an empty list.",
+    "code": "def find_common(list1: list, list2: list) -> list:\n    return [value for value in list1 if value in list2]",
+    "tests": [
+        "assert sorted(find_common([1, 2, 3, 4], [3, 4, 5, 6])) == [3, 4]",
+        "assert find_common(['a', 'b', 'c'], ['d', 'e', 'f']) == []",
+        "assert sorted(find_common([1, 2, 2, 3, 4], [2, 3, 5])) == [2, 3]"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "deepseek-coder:33b",
+    "style": "Internationals Olympiad"
+}

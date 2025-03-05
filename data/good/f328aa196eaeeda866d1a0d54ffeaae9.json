@@ -1,0 +1,13 @@
+{
+    "title": "Longest Common Prefix",
+    "description": "Write a function `longest_common_prefix` that takes two strings as input and returns the longest common prefix of these two strings.\n\n#### Function Signature\n```python\ndef longest_common_prefix(s1: str, s2: str) -> str:\n```\n\n#### Input\n- `s1` (str): The first string.\n- `s2` (str): The second string.\n\n#### Output\n- Returns the longest common prefix of `s1` and `s2`.",
+    "code": "def longest_common_prefix(s1: str, s2: str) -> str:\n    prefix = ''\n    for char1, char2 in zip(s1, s2):\n        if char1 == char2:\n            prefix += char1\n        else:\n            break\n    return prefix",
+    "tests": [
+        "assert longest_common_prefix(\"hello\", \"hallo\") == \"hel\"",
+        "assert longest_common_prefix(\"apple\", \"banana\") == \"\"",
+        "assert longest_common_prefix(\"python\", \"pythonic\") == \"pytho\""
+    ],
+    "difficulty": "hard",
+    "model": "llama3.1:8b",
+    "style": "Codewars"
+}

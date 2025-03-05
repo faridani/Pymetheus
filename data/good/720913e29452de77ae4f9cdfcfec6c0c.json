@@ -1,0 +1,17 @@
+{
+    "title": "'Anagram Detection (Hard)'",
+    "description": "'An anagram is a word or phrase that is formed by rearranging the letters of another word or phrase",
+    "are_anagrams(word1": "str",
+    "word2": "str) -> bool:\n```\n\n#### Input\n- `word1`",
+    "str)": "Two strings that may contain only letters from the English alphabet.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other",
+    "code": "def are_anagrams(word1: str, word2: str) -> bool:\n    # Convert both words to lowercase and remove any spaces\n    word1 = ''.join(sorted(word1.lower().replace(' ', '')))\n    word2 = ''.join(sorted(word2.lower().replace(' ', '')))\n    # Check if the sorted strings are equal\n    return word1 == word2",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"actors\", \"starco\") == True",
+        "assert are_anagrams(\"apple\", \"peelap\") == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "SPOJ"
+}

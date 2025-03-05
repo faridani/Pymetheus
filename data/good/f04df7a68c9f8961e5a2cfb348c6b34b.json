@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Maximum Sum Subarray of Unsorted Integers",
+    "description": "Write a function `max_sum_subarray` that takes a list of unsorted integers as input and returns the maximum sum of a subarray. A subarray is a contiguous part of the array.\n\n#### Function Signature\n```python\ndef max_sum_subarray(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums` (List[int]): A list of unsorted integers.\n\n#### Output\n- Returns the maximum sum of a subarray in the input list.",
+    "code": "def max_sum_subarray(nums):\n    if not nums:\n        return 0\n\n    max_sum = float('-inf')\n    current_sum = 0\n\n    for num in nums:\n        current_sum = max(num, current_sum + num)\n        max_sum = max(max_sum, current_sum)\n\n    return max_sum",
+    "tests": [
+        "assert max_sum_subarray([1, -3, 2, 3, -1]) == 4",
+        "assert max_sum_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6",
+        "assert max_sum_subarray([]) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

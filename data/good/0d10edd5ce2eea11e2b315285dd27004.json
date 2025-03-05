@@ -1,0 +1,13 @@
+{
+    "title": "Easy Problem: Reverse String",
+    "description": "Write a function `reverse_string` that reverses the input string.\n\n#### Function Signature:\n```python\ndef reverse_string(s: str) -> str:\n```\n\n#### Input:\n- `s` (str): A string to be reversed.\n\n#### Output:\n- Returns a new string which is the reverse of the input string.",
+    "code": "def reverse_string(s: str) -> str:\n    return s[::-1]",
+    "tests": [
+        "assert reverse_string('hello') == 'olleh'",
+        "assert reverse_string('Python') == 'nohtyP'",
+        "assert reverse_string('coding problem') == 'melborp gnidoc'"
+    ],
+    "difficulty": "easy",
+    "model": "deepseek-coder:33b",
+    "style": "Daily Coding Problem"
+}

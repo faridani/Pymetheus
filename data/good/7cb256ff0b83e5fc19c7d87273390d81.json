@@ -1,0 +1,11 @@
+{
+    "title": "Reverse Linked List",
+    "description": "Write a function that takes a linked list as input and returns the linked list reversed. The linked list should be represented as a sequence of nodes, where each node contains a value and a reference to the next node in the list. The function should return the reversed linked list as a new linked list.",
+    "code": "from typing import List\n\ndef reverse_linked_list(head: Node) -> Node:\n    if head is None: return None\n    curr = head.next\n    next_node = reverse_linked_list(curr.next)\n    head.next = next_node\n    return head",
+    "tests": [
+        "assert reverse_linked_list(Node(1, Node(2, Node(3)))) == Node(3, Node(2, Node(1)))"
+    ],
+    "difficulty": "medium",
+    "model": "llama2:latest",
+    "style": "Codeforces"
+}

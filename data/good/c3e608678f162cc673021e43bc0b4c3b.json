@@ -1,0 +1,12 @@
+{
+    "title": "Sorting a List of Dates",
+    "description": "Write a function that takes a list of dates as input and returns a sorted list of those dates. The input list may contain duplicates, and the output list should only contain unique dates. Use any data structure (e.g., list, tuple, set) to solve this problem.",
+    "code": "import datetime\n\ndef sort_dates(dates: list[datetime]) -> list[datetime]:\n    # Create a set of all the dates\n    dates_set = set(dates)\n    # Remove duplicates and return a sorted list of dates\n    return [date for date in dates_set if date not in dates_set[:]]",
+    "tests": [
+        "assert sort_dates([datetime(2023, 1, 1), datetime(2023, 6, 15), datetime(2023, 9, 1)]) == [datetime(2023, 1, 1), datetime(2023, 6, 15), datetime(2023, 9, 1)]",
+        "assert sort_dates([datetime(2023, 1, 1), datetime(2023, 6, 15), datetime(2023, 9, 1), datetime(2023, 10, 10)]) == [datetime(2023, 1, 1), datetime(2023, 6, 15), datetime(2023, 9, 1), datetime(2023, 10, 10)]"
+    ],
+    "difficulty": "easy",
+    "model": "llama2:latest",
+    "style": "Interview Query"
+}

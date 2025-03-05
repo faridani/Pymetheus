@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Reverse Word Order",
+    "description": "Write a function `reverse_word_order` that takes in a string of words separated by spaces and returns the words in reverse order. The last word should be first, followed by the second-to-last, etc.\n\n#### Function Signature\n```python\ndef reverse_word_order(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string of words separated by spaces. Words consist only of letters and numbers.\n\n#### Output\n- Returns a string with the words in reverse order, separated by spaces.",
+    "code": "def reverse_word_order(s: str) -> str:\n    return ' '.join(reversed(s.split()))",
+    "tests": [
+        "assert reverse_word_order(\"The quick brown fox\") == \"fox brown quick The\"",
+        "assert reverse_word_order(\"Hello world\") == \"world Hello\"",
+        "assert reverse_word_order(\"Python programming is fun\") == \"fun is programming Python\""
+    ],
+    "difficulty": "hard",
+    "model": "deepseek-coder:33b",
+    "style": "Google Code Jam"
+}

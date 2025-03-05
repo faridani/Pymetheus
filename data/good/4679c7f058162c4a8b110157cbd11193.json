@@ -1,0 +1,14 @@
+{
+    "title": "Title (Medium): Count Unique Elements",
+    "description": "Write a function `count_unique` that takes a list of strings as input and returns the number of unique items in the list, ignoring case and punctuation.\n\n#### Function Signature\n```python\ndef count_unique(input: List[str]) -> int:\n```\n\n#### Input\n- `input` (List[str]): A list of strings.\n\n#### Output\n- Returns the number of unique elements in the input after ignoring case and punctuation. Each string is considered as a single element.",
+    "code": "# Import required modules\nfrom typing import List\nimport re\n\n# Define function to count unique items\ndef count_unique(input: List[str]) -> int:\n    # Convert list to set to remove duplicates\n    input_set = set()\n    for item in input:\n        # Remove punctuation and convert to lower case\n        processed_item = re.sub('\\W+','', item ).lower()\n        if processed_item not in input_set:\n            input_set.add(processed_item)\n    return len(input_set)",
+    "tests": [
+        "assert count_unique(['Hello', 'world']) == 2",
+        "assert count_unique(['Hello', 'hello', 'World']) == 2",
+        "assert count_unique(['ICPC', 'is', 'a', 'cool', 'contest']) == 5",
+        "assert count_unique(['Python', 'is', 'great', '.Python.']) == 3"
+    ],
+    "difficulty": "easy",
+    "model": "deepseek-coder:33b",
+    "style": "ICPC"
+}

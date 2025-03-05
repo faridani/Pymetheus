@@ -1,0 +1,15 @@
+{
+    "title": "Anagram Checker (Medium)",
+    "description": "Given two strings, write a function `is_anagram` that checks if one string is an anagram of the other. An anagram is a word or phrase formed by rearranging the letters of another, such as 'cinema', formed from 'iceman'.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): The first string.\n- `s2` (str): The second string.\n\n#### Output\n- Returns `True` if the two strings are anagrams of each other, `False` otherwise. Strings will only contain lowercase letters and no spaces or punctuation.",
+    "code": "",
+    "def is_anagram(s1: str, s2: str) -> bool:\n    return sorted(s1) == sorted(s^2)": "",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"triangle\", \"integral\") == True",
+        "assert is_anagram(\"python\", \"typhon\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False"
+    ],
+    "difficulty": "super hard",
+    "model": "phi3:14b",
+    "style": "Exercism"
+}
