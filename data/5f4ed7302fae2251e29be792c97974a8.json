@@ -1,0 +1,17 @@
+{
+    "title": "Hard - Balanced Brackets",
+    "description": "A balanced bracket string is a string containing only the characters '(', ')', '[', ']', '{', and '}'. It is considered balanced if all opening brackets have corresponding closing brackets of the same type in the correct order. For example, the strings \"{}\", \"([])\", and \"([{}])\" are balanced, while the strings \"(\"\", \"[}]\", and \"({[]})\" are not. Write a function `is_balanced` that takes a string as input and returns `True` if the string contains balanced brackets and `False` otherwise.\n\n#### Function Signature\n```python\ndef is_balanced(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string containing only the characters '(', ')', '[', ']', '{', and '}'.\n\n#### Output\n- Returns `True` if the input string contains balanced brackets, `False` otherwise.",
+    "code": "def is_balanced(s: str) -> bool:\n    stack = []\n    bracket_pairs = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    for char in s:\n        if char in bracket_pairs.values():  # Opening bracket\n            stack.append(char)\n        elif char in bracket_pairs.keys():  # Closing bracket\n            if not stack or stack.pop() != bracket_pairs[char]:\n                return False\n    return len(stack) == 0",
+    "tests": [
+        "assert is_balanced('{}') == True",
+        "assert is_balanced('([])') == True",
+        "assert is_balanced('[{}]') == True",
+        "assert is_balanced('(') == False",
+        "assert is_balanced('[}]') == False",
+        "assert is_balanced('({[]})') == False",
+        "assert is_balanced('{{[[(())]]}}') == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "gemma2:27b",
+    "style": "AtCoder"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Count Vowels and Consonants",
+    "description": "Write a function that takes a string as input and returns the count of vowels and consonants in the string. The function should ignore spaces, punctuation, and capitalization.\n\n#### Function Signature\n```python\ndef count_vowels_and_consonants(s: str) -> tuple:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a tuple where the first element is the count of vowels and the second element is the count of consonants in the input string.",
+    "code": "import string\n\ndef count_vowels_and_consonants(s: str) -> tuple:\n    # Convert to lowercase\n    s = s.lower()\n    # Initialize vowel and consonant counts\n    vowels_count = 0\n    consonants_count = 0\n    # Iterate over each character in the string\n    for char in s:\n        # Check if the character is a letter and increment the count accordingly\n        if char in string.ascii_letters:\n            if char in 'aeiou':\n                vowels_count += 1\n            else:\n                consonants_count += 1\n    return (vowels_count, consonants_count)\n",
+    "tests": [
+        "assert count_vowels_and_consonants('Hello World!') == (3, 7)",
+        "assert count_vowels_and_consonants('Python is fun.') == (5, 8)",
+        "assert count_vowels_and_consonants('1234567890') == (0, 10)"
+    ],
+    "difficulty": "medium",
+    "model": "codegeex4:9b",
+    "style": "CodeChef"
+}

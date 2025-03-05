@@ -2,7 +2,7 @@ import json
 from jsonschema import validate, ValidationError
 import ollama
 from typing import Tuple
-
+from repair_json import repair_json_string
 def validate_response_content(s: str)-> Tuple[bool, str]:
                 # bool: whether the response is valid
                 # str: is the directory that the result should be storied in 
@@ -20,13 +20,12 @@ def validate_response_content(s: str)-> Tuple[bool, str]:
                     "required": ["title", "description", "code", "tests"]
                 }
                 try:
-                    print("here 5 - trying to load the json " + s)
-                    print("/n/n/n")
+                    print("trying to load the json ")
                     r = json.loads(s, strict=False)
-                    print("here 6 - loaded the json and it is fine, next trying the schema validation")
+                    print("loaded the json and it is fine, next trying the schema validation")
                     try:
                         validate(instance=r, schema=schema)
-                        print("here 7 - schema validation passed")
+                        print("schema validation passed")
                         try:
                             compile(r['code'], '<string>', 'exec')
                             for test in r['tests']:
@@ -40,7 +39,8 @@ def validate_response_content(s: str)-> Tuple[bool, str]:
                             print(f"Valid JSON response and but invalid python code: {e}")
                             return (False, "invalid_python_code")
                     except ValidationError as e:
-                        return (False, "invalid_json" + e.message)
+                        print(f"Valid JSON response but invalid schema: {e.message}")
+                        return (False, "invalid_json")
                 except json.JSONDecodeError as e:
                     return (False, "invalid_json")
                 
@@ -75,12 +75,15 @@ def cleanup_response(response_content_raw):
                 start = response_content_raw.find("<think>")
                 end = response_content_raw.find("</think>") + len("</think>")
                 response_content_raw = response_content_raw[:start] + response_content_raw[end:]
-            
+            try: 
+                response_content_raw = repair_json_string(response_content_raw)
+            except ValueError as e:
+                pass
             return response_content_raw
     
 
 def correct_json_using_deepseek_r1(s: str) -> str:
-    content = "create a valid json string out of this string: " + s
+    content = "create a valid json string out of this string. Try to maintain the title, description, code, test keys and make it imidiately json parsable   " + s
     response = ollama.chat(model="deepseek-r1:32b", messages=[{
         'role': 'user',
         'content': content 

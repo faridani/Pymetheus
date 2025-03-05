@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Number of Ways to Change a Dollar",
+    "description": "You are given a dollar bill and a stack of coins. You can use the coins to change the dollar bill into smaller denominations, but you can only use each coin once. Each time you use a coin, you cannot use it again. You want to find out how many unique ways there are to change the dollar bill using these coins.\n\nWrite a function `change_combinations(coins, value: int) -> int` that takes a list of coins and the value of the dollar bill as input and returns the number of unique ways you can change the dollar bill using those coins.\n\n#### Function Signature:\n```python\ndef change_combinations(coins: list[int], value: int) -> int:\n```\n\n#### Input:\n- `coins` (list[int]): A list of positive integer values representing the denominations of the coins.\n- `value` (int): The value of the dollar bill that needs to be changed.\n\n#### Output:\nReturns an integer representing the number of unique ways to change the dollar bill using the given coins.\n",
+    "code": "def change_combinations(coins: list[int], value: int) -> int:\n    \"\"\"\n    This function calculates the number of unique ways to change a dollar bill\n    using the given coins. It uses a recursive approach to explore all possible\n    combinations.\n    \"\"\"\n    if value == 0:\n        return 1\n    if value < 0:\n        return 0\n    if value > sum(coins):\n        return 0\n    ways = 0\n    for coin in coins:\n        if coin <= value:\n            ways += change_combinations(coins, value - coin)\n    return ways\n",
+    "tests": [
+        "assert change_combinations([1, 5, 10, 25], 6) == 3",
+        "assert change_combinations([1, 5, 10, 25], 7) == 4",
+        "assert change_combinations([1, 5, 10, 25], 3) == 1",
+        "assert change_combinations([1, 5, 10], 6) == 2"
+    ],
+    "difficulty": "easy",
+    "model": "aya:35b",
+    "style": "ICPC"
+}

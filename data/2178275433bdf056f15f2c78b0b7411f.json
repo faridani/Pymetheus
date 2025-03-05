@@ -1,0 +1,15 @@
+{
+    "title": "Factorial Calculator",
+    "description": "Write a function `calculate_factorial` that calculates the factorial of a given number.\n\n#### Function Signature\n```python\ndef calculate_factorial(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A non-negative integer, where 0 \u2264 n \u2264 20.\n\n#### Output\n- Returns the factorial of the input number as an integer.\n\n#### Constraints\n- The function should handle edge cases where `n` is 0 or negative.\n\n#### Hints\n- You can use a for loop to calculate the factorial iteratively.",
+    "code": "def calculate_factorial(n: int) -> int:\n    if n < 0:\n        raise ValueError('Input must be a non-negative integer')\n    elif n == 0 or n == 1:\n        return 1\n    else:\n        factorial = 1\n        for i in range(2, n + 1):\n            factorial *= i\n        return factorial",
+    "tests": [
+        "assert calculate_factorial(0) == 1",
+        "assert calculate_factorial(5) == 120",
+        "assert calculate_factorial(10) == 3628800",
+        "assert calculate_factorial(-1) == ValueError",
+        "assert calculate_factorial(21) == ValueError"
+    ],
+    "difficulty": "easy",
+    "model": "mistral-nemo:latest",
+    "style": "CodeWars"
+}

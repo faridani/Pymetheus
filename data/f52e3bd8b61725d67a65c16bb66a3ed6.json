@@ -1,0 +1,12 @@
+{
+    "title": "Unique Elements Counter",
+    "description": "Given a list of integers, write a function `count_unique` that counts the number of unique elements in the list. Consider all elements with different signs as distinct (e.g., -5 and 5 are considered unique).\n\n#### Function Signature\n```python\ndef count_unique(numbers: List[int]) -> int:\n```\n\n#### Input\n- `numbers` (List[int]): A list of integers that may contain positive, negative values or zeros.\n\n#### Output\n- Returns the number of unique elements in the given list.",
+    "code": "",
+    "from typing import List\nimport math\ndef count_unique(numbers: List[int]) -> int:\n    unique_elements = set()\n    for num in numbers:\n        if num not in unique_elements and -num not in unique_elements:\n            unique_elements.add(math.copysign(1, num))\n    return len(unique_elements)": "",
+    "tests": [
+        "assert count_uniqu"
+    ],
+    "difficulty": "hard",
+    "model": "phi3:14b",
+    "style": "Codeforces"
+}

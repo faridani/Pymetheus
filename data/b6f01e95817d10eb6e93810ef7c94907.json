@@ -1,0 +1,14 @@
+{
+    "title": "Binary Palindrome Verification",
+    "description": "A binary palindrome number reads the same forward and backward when its digits are represented in base 2. Write a function `is_binary_palindrome` that checks if a given integer is a binary palindrome.\n\n#### Function Signature\n```python\ndef is_binary_palindrome(number: int) -> bool:\n```\n\n#### Input\n- `number` (int): A positive integer.\n\n#### Output\n- Returns `True` if the input number is a binary palindrome, `False` otherwise.\n",
+    "code": "def is_binary_palindrome(number: int) -> bool:\n    binary_str = bin(number)[2:]  # Convert to binary and remove the '0b' prefix\n    return binary_str == binary_str[::-1]\n",
+    "tests": [
+        "assert is_binary_palindrome(5) == True",
+        "assert is_binary_palindrome(6) == False",
+        "assert is_binary_palindrome(8) == True",
+        "assert is_binary_palindrome(9) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "qwen2:7b",
+    "style": "Interview Query"
+}

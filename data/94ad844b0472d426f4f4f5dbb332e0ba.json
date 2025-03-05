@@ -1,0 +1,15 @@
+{
+    "title": "Easy: Coin Change",
+    "description": "You have n coins, and you want to make a change of m amount using these coins. Write a function `coin_change` that calculates the minimum number of coin changes required.\n\n#### Function Signature\n```python\ndef coin_change(n: int, m: int, denominations: list[int]) -> int:\n```\n\n#### Input\n- `n` (int): The total number of coins you have.\n- `m` (int): The amount you want to make a change of.\n- `denominations` (list[int]): A list of coin denominations, where each denomination is a positive integer.\n\n#### Output\n- Returns the minimum number of coin changes required to make the desired amount.",
+    "code": "",
+    "\nfrom collections import deque\n\ndef coin_change(n: int, m: int, denominations: list[int]) -> int:\n    dp = [float('inf')] * (m + 1)\n    dp[0] = 0\n    queue = deque([(0, 0)])\n    \n    while queue:\n        remaining_amount, num_coins = queue.popleft()\n        for denomination in denominations:\n            if remaining_amount + denomination <= m:\n                new_remaining_amount = remaining_amount + denomination\n                new_num_coins = num_coins + 1\n                if new_remaining_amount > 0 and dp[new_remaining_amount] > new_num_coins:\n                    dp[new_remaining_amount] = new_num_coins\n                    queue.append((new_remaining_amount, new_num_coins))\n    return dp[m] if dp[m] != float('inf') else -1": "",
+    "tests": [
+        "assert coin_change(10, 5, [2]) == 3",
+        "assert coin_change(100, 15, [10, 5, 1]) == 7",
+        "assert coin_change(20, 10, [5, 3, 1]) == 4",
+        "assert coin_change(50, 25, [25, 10, 5, 2]) == 2"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

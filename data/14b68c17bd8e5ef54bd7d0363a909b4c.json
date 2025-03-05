@@ -1,0 +1,14 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters and spaces only.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n\n#### Constraints\n- The length of both input strings is greater than or equal to 1.\n- Both input strings contain only letters and spaces (no numbers, punctuation or special characters).",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove spaces from strings\n    s1 = ''.join(filter(str.isalpha, s1)).lower()\n    s2 = ''.join(filter(str.isalpha, s2)).lower()\n    # Sort the characters in each string and compare them\n    return sorted(s1) == sorted(s2)",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('python', 'typhon') == False",
+        "assert is_anagram('Hello World', 'world Hello') == True",
+        "assert is_anagram('Alpha Beta Gamma', 'Gamma Alpha Beta') == True"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "AtCoder"
+}

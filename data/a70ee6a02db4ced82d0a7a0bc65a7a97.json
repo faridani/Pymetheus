@@ -1,0 +1,13 @@
+{
+    "title": "Sum of Odd Numbers",
+    "description": "Write a function `sum_odd_numbers` that takes an integer `n` as input and returns the sum of all odd numbers from 1 to `n`.",
+    "code": "def sum_odd_numbers(n: int) -> int:\n    return sum(x for x in range(1, n + 1) if x % 2 != 0)",
+    "tests": [
+        "assert sum_odd_numbers(5) == 9",
+        "assert sum_odd_numbers(10) == 25",
+        "assert sum_odd_numbers(20) == 75"
+    ],
+    "difficulty": "easy",
+    "model": "codegemma:7b",
+    "style": "Codeforces"
+}

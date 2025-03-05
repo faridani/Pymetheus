@@ -1,0 +1,14 @@
+{
+    "title": "Number Line Dancer",
+    "description": "Given an array of integers, return the index where the number line dance is most efficient. The number line dance is defined as follows: if two consecutive numbers have the same sign, they can be danced together; otherwise, the one with the smallest absolute value should be kept and the other removed.\n\n#### Function Signature\n```python\ndef most_efficient_dance(dancer: list[int]) -> int:\n```\n\n#### Input\n- `dancer` (list[int]): A list of integers representing the numbers in the dance.\n\n#### Output\n- Returns the index where the number line dance is most efficient.",
+    "code": "import math\ndef most_efficient_dance(dancer: list[int]) -> int:\n    if len(dancer) < 2:\n        return -1\n    max_length = 0\n    max_index = 0\n    current_length = 0\n    sign = None\n    for i, num in enumerate(dancer):\n        if num > 0 and sign is None or num > 0 and sign == 1:\n            if sign != -1 and abs(num) < current_length:\n                return i-1\n            if sign == -1 and num > 0:\n                current_length = num\n                sign = 1\n        elif num < 0 and sign is None or num < 0 and sign == -1:\n            if sign != 1 and abs(num) < current_length:\n                return i-1\n            if sign == 1 and num < 0:\n                current_length = num\n                sign = -1\n        else:\n            if num > 0 and sign == -1 or num < 0 and sign == 1:\n                if abs(num) < current_length:\n                    return i-1\n            elif sign is None:\n                current_length = num\n                sign = 1 if num > 0 else -1\n        max_index = i if i > max_index else max_index\n        max_length = max(max_length, current_length)\n    return max_index",
+    "tests": [
+        "assert most_efficient_dance([2,3,-5,6]) == 2",
+        "assert most_efficient_dance([-2,1,0,3,4,-5]) == 3",
+        "assert most_efficient_dance([10,9,8,7,6,5,4,3,2,1]) == -1",
+        "assert most_efficient_dance([1,-1,1,-1,1,-1]) == 4"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

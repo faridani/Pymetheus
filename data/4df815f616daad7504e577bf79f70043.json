@@ -1,0 +1,15 @@
+{
+    "title": "Fibonacci Word Generator (Hard)",
+    "description": "The Fibonacci sequence of words problem involves generating a series of strings where each string from the third onward is formed by concatenating its two predecessors. For example, starting with the initial two strings 'a' and 'b', the next few elements in the sequence are 'ab', 'baab', 'ab', etc. Implement a function `fibonacci_words(n: int) -> str` that generates and returns the nth Fibonacci word, considering 'a' as the first element (0 index), 'b' as the second element (1 index), and so on.\n\n#### Function Signature\n```python\ndef fibonacci_words(n: int) -> str:\n    pass\n```\n\n#### Input\n- `n` (int): The index of the Fibonacci word to generate, where n >= 0.\n\n#### Output\n- Returns the string that is the nth element in the Fiboncuan sequence of words.\n\nConstraints:\n- 0 <= n <= 1476 (to avoid integer overflow due to the length of strings).\n",
+    "code": "def fibonacci_words(n: int) -> str:\n    def generate_fibonacci():\n        a, b = 'a', 'b'\n        while True:\n            yield a\n            # Use zip to pair the last two generated strings and join them with themselves reversed as n >= 2\n            a, b = b, ''.join(x+y for x, y in zip([a]*len(b), [b]*len(a)))\n    \n    fibonacci_generator = generate_fibonacci()\n    return next(itertools.islice(fibonacci_generator, n+1))\n",
+    "tests": [
+        "assert fibonacci_words(0) == \"a\"",
+        "assert fibonacci_words(1) == \"b\"",
+        "assert fibonacci_words(2) == \"ab\"",
+        "assert fibonacci_words(3) == \"baab\"",
+        "assert len(fibonacci_words(5)) > 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "phi3:14b",
+    "style": "LeetCode"
+}

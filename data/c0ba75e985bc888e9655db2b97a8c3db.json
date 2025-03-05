@@ -1,0 +1,14 @@
+{
+    "title": "Perfect Square Number Generator",
+    "description": "Create a function `generate_perfect_squares` which finds all perfect square numbers between two given integers, inclusive. The function should return the count of perfect squares found within this range.\n\n#### Function Signature\n```python\ndef generate_perfect_squares(lower_bound: int, upper_bound: int) -> int:\n```\n\n#### Input\n- `lower_bound` (int): The lower bound of the range to search for perfect squares. It's guaranteed that `lower_bound < upper_bound`.\n- `upper_bound` (int): The upper bound of the range to search for perfect squares. It's guaranteed that `lower_bound <= upper_bound`.\n\n#### Output\n- Returns an integer which represents how many perfect square numbers exist between the two bounds, inclusive.",
+    "code": "import math\ndef generate_perfect_squares(lower_bound: int, upper_bound: int) -> int:\n    count = 0\n    for num in range(math.ceil(math.sqrt(lower_bound)), math.floor(math.sqrt(upper_bound)) + 1):\n        if num*num >= lower_bound and num*num <= upper_bound:\n            count += 1\n    return count",
+    "tests": [
+        "assert generate_perfect_squares(1, 16) == 4",
+        "assert generate_perfect_squares(25, 30) == 2",
+        "assert generate_perfect_squares(7, 14) == 1",
+        "assert generate_perfect_squares(-5, 5) == 1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "qwen2:7b",
+    "style": "Codewars"
+}

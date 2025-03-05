@@ -1,0 +1,13 @@
+{
+    "title": "[Easy] List Reverser",
+    "description": "Write a function `reverse_list` that takes a list as input and returns a new list with the elements in reverse order. Do not use any built-in functions or methods that reverse lists.\n\n#### Function Signature\n```python\ndef reverse_list(lst: List[T]) -> List[T]:\n```\n\n#### Input\n- `lst` (List): A list containing elements of any data type. The length of the list is between 0 and 100.\n\n#### Output\n- Returns a new list with the same elements as the input list, but in reverse order.",
+    "code": "\ntyping.List = list\nfrom typing import List, TypeVar\nT = TypeVar('T')\ndef reverse_list(lst: List[T]) -> List[T]:\n    reversed_list = [None] * len(lst)\n    for i in range(len(lst)): \n        reversed_list[i] = lst[len(lst) - 1 - i]\n    return reversed_list",
+    "tests": [
+        "assert reverse_list([1, 2, 3, 4]) == [4, 3, 2, 1]",
+        "assert reverse_list(['a', 'b', 'c']) == ['c', 'b', 'a']",
+        "assert reverse_list([]) == []"
+    ],
+    "difficulty": "easy",
+    "model": "codestral:latest",
+    "style": "Daily Coding Problem"
+}

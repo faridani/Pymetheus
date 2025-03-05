@@ -1,0 +1,14 @@
+{
+    "title": "Polindromic Number Identifier (Hard)",
+    "description": "A polindromic number is a number that remains the same when its digits are reversed. For example, 12321 and 585 are polindromic numbers. Write a function `is_polindrome` that checks if a given integer is a polindromic number.\n\n#### Function Signature\n```python\ndef is_polindrome(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A non-negative integer with up to 10 digits.\n\n#### Output\n- Returns `True` if the input number is a polindromic number, `False` otherwise.\n",
+    "code": "def is_polindrome(n: int) -> bool:\n    # Convert the input number to a string\n    n_str = str(n)\n    # Check if the length of the string and its reverse are equal\n    if len(n_str) != len(n_str[::-1]):\n        return False\n    # Loop through each digit in the number and check if it matches with the corresponding digit in the reversed number\n    for i in range(len(n_str)):\n        if n_str[i] != n_str[len(n_str) - 1 - i]:\n            return False\n    \n    # If no mismatches were found, the number is polindromic\n    return True",
+    "tests": [
+        "assert is_polindrome(2345234) == True",
+        "assert is_polindrome(123456789) == False",
+        "assert is_polindrome(121) == True",
+        "assert is_polindrome(2002) == True"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "CodeChef"
+}

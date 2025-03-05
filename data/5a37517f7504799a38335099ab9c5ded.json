@@ -1,0 +1,13 @@
+{
+    "title": "Merge Intervals (Hard)",
+    "description": "You are given a collection of intervals, and you want to merge any overlapping intervals. Write a function that takes a list of intervals as input and returns a new list with all merged intervals.\n\n#### Function Signature\ndef merge_intervals(intervals: List[List[int]]) -> List[List[int]]:\n\n#### Input\n- `intervals`: A 2D list where each sublist contains two integers, representing the start and end of an interval. Intervals can be of any length (e.g., [1, 3], [4, 6, 8]).\n\n#### Output\n- Returns a new list containing all merged intervals in sorted order by their start value.\n",
+    "code": "def merge_intervals(intervals: List[List[int]]) -> List[List[int]]:\n    # Sort the intervals based on the start value\n    intervals.sort(key=lambda x: x[0])\n    merged = []\n\n    for interval in intervals:\n        # If the list of merged intervals is empty or if the current interval doesn't overlap with the previous one, append it\n        if not merged or merged[-1][1] < interval[0]:\n            merged.append(interval)\n        else:\n            # Otherwise, there's overlap, so we merge the current and previous intervals\n            merged[-1][1] = max(merged[-1][1], interval[1])\n    return merged",
+    "tests": [
+        "assert merge_intervals([[1, 3], [2, 6], [8, 10], [15, 18]]) == [[1, 6], [8, 10], [15, 18]]",
+        "assert merge_intervals([[1, 4], [4, 5]]) == [[1, 5]]",
+        "assert merge_intervals([[1, 2], [3, 4], [5, 6], [7, 8]]) == [[1, 2], [3, 4], [5, 6], [7, 8]]"
+    ],
+    "difficulty": "super hard",
+    "model": "command-r7b:latest",
+    "style": "Competitive Programming"
+}

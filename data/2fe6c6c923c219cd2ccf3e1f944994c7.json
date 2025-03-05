@@ -1,0 +1,14 @@
+{
+    "title": "Palindrome Checker",
+    "description": "A description of the problem in string form, the description may contain function signature, input format, output format, constraints and hints. Example: A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization). Write a function `is_palindrome` that checks if a given string is a palindrome.",
+    "code": "import string\n\ndef is_palindrome(s: str) -> bool:\n    # Convert to lowercase\n    s = s.lower()\n    # Remove non-alphanumeric characters\n    s = ''.join(char for char in s if char in string.ascii_letters + string.digits)\n    # Check if the string reads the same forwards and backwards\n    return s == s[::-1]\n",
+    "tests": [
+        "assert is_palindrome(\"A man, a plan, a canal, Panama\") == True",
+        "assert is_palindrome(\"racecar\") == True",
+        "assert is_palindrome(\"hello\") == False",
+        "assert is_palindrome(\"No 'x' in Nixon\") == True"
+    ],
+    "difficulty": "super hard",
+    "model": "codellama:34b",
+    "style": "AtCoder"
+}

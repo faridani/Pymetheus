@@ -1,0 +1,13 @@
+{
+    "title": "'Palindromic Subarrays Counter' - Hard",
+    "description": "Given an array of integers, find the number of non-empty subarrays that form palindromes. A palindrome subarray is an array that reads the same forwards and backwards. If a subarray is a palindrome, it should include all adjacent elements from both sides until the first element not part of the palindrome.\n\n#### Function Signature\n```python\ndef count_palindromes(arr: List[int]) -> int:\n```\n\n#### Input\n- `arr` (List[int]): A sorted list of integers.\n\n#### Output\n- Returns the number of non-empty subarrays that form palindromes.\n",
+    "code": "def count_palindromes(arr: List[int]) -> int:\n    # Initialize variables to store counts and pointers\n    count, left, right = 0, 0, len(arr) - 1\n    # Loop through the array\n    while left <= right:\n        # If current subarray is a palindrome, increment the count and move both pointers inwards\n        if arr[left] == arr[right]:\n            count += 1\n            left += 1\n            right -= 1\n        else:\n            # Move the pointer that has moved less steps away from the middle of the current subarray\n            if left < right - (right - left) // 2:\n                left += 1\n            else:\n                right -= 1\n    return count",
+    "tests": [
+        "assert count_palindromes([1, 1, 0, 1, 1]) == 7",
+        "assert count_palindromes([0, 1, 0, 1]) == 2",
+        "assert count_palindromes([1, 1]) == 1"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:7b-instruct",
+    "style": "Codewars"
+}

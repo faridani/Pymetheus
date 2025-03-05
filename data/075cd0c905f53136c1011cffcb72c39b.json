@@ -1,0 +1,14 @@
+{
+    "title": "Subsequence Sum Checker (Hard)",
+    "description": "Given a list of integers `nums` and a threshold value `target`, find if there is a subsequence of `nums` that has a sum equal to `target`. You may assume that all the integers in `nums` are unique.\n\n#### Function Signature\n```python\ndef find_subsequence_sum(nums: List[int], target: int) -> bool:\n```\n\n#### Input\n- `nums` (List[int]): A list of unique integers.\n- `target` (int): The threshold value.\n\n#### Output\n- Returns `True` if there is a subsequence with a sum equal to `target`, otherwise returns `False`.\n\n#### Example\n```python\nnums = [1, 2, 3, 4, 5]\ntarget = 9\n# Output should be True\n```\n\n#### Hints\nYou may use a hash map to store the sum of elements ending at a particular index.\n",
+    "code": "def find_subsequence_sum(nums: List[int], target: int) -> bool:\n    n = len(nums)\n    sums = {0: -1}\n    for i in range(n):\n        current_sum = 0\n        for j in range(i, n):\n            current_sum += nums[j]\n            if current_sum in sums:\n                if target == current_sum:\n                    return True\n            else:\n                sums[current_sum] = i\n    return False\n",
+    "tests": [
+        "nums = [1, 2, 3]\ntarget = 5\nassert find_subsequence_sum(nums, target) == True",
+        "nums = [1, 2, 3]\ntarget = 6\nassert find_subsequence_sum(nums, target) == False",
+        "nums = [1, 5, 4, 3, 2]\ntarget = 7\nassert find_subsequence_sum(nums, target) == True",
+        "nums = [1, 2, 3, 4, 5]\ntarget = 9\nassert find_subsequence_sum(nums, target) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "aya:35b",
+    "style": "AtCoder"
+}

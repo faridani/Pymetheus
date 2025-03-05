@@ -1,0 +1,14 @@
+{
+    "title": "Matrix Rotation Checker (Hard)",
+    "description": "Given an `n x n` matrix where each cell contains a distinct integer value from 1 to `n*n`, write a function `is_rotated_sequence(matrix: List[List[int]]) -> bool` that checks if the matrix is a rotated version of the sequence [1, 2, ..., n^2]. The rotation can be in any direction (90, 180, or 270 degrees clockwise/counterclockwise).\n\n#### Function Signature\n```python\ndef is_rotated_sequence(matrix: List[List[int]]) -> bool:\n```\n\n#### Input\n- `matrix` (list of lists of ints): An n x n matrix where each cell contains a distinct integer from 1 to n*n.\n\n#### Output\n- Returns `True` if the input matrix is a rotated version of the sequence [1, 2, ..., n^2], `False` otherwise. \n\nConstraints:\nn >= 1 and n <= 5",
+    "code": "from typing import List\ndef rotate_matrix(matrix: List[List[int]]) -> List[List[int]]:\n    n = len(matrix)\n    return [[matrix[j][i] for j in range(n-1, -1, -1)] for i in range(n)]\n\ndef is_rotated_sequence(matrix: List[List[int]]) -> bool:\n    def flatten(lst):\n        return [item for sublist in lst for item in sublist]\n\n    n = len(matrix)\n    original_seq = list(range(1, n*n + 1))\n    flat_matrix = flatten(matrix)\n    \n    # Check if the matrix is a rotation of the sequence [1, ..., n^2]\n    for _ in range(4):\n        if original_seq == flat_matrix:\n            return True\n        rotate_matrix(matrix)  # Rotate to check next possibility\n        flat_matrix = flatten(matrix)\n        \n    return False\n",
+    "tests": [
+        "assert is_rotated_sequence([[7, 4, 1], [8, 5, 2], [9, 6, 3]]) == True",
+        "assert is_rotated_range(matrix=[[6, 9, 2], [7, 5, 1], [8, 3, 4]]) == True",
+        "assert is_rotated_sequence([[4, 3, 2], [1, 5, 6], [9, 8, 7]]) == False",
+        "assert is_rotated_range(matrix=[[10, 5, 1], [9, 2, 6], [11, 4, 3]], n=10) == True"
+    ],
+    "difficulty": "super hard",
+    "model": "phi3:14b",
+    "style": "LeetCode"
+}

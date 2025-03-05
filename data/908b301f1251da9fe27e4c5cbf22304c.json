@@ -1,0 +1,14 @@
+{
+    "title": "Palindrome Checker (Medium)",
+    "description": "A palindrome checker that can handle complex scenarios like sentences with punctuation, spaces and special characters.\n\n#### Function Signature\n```python\ndef is_palindrome(s: str) -> bool:\n    pass\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string is a palindrome, `False` otherwise.\n",
+    "code": "import re\n\ndef Is_palindrome(s: str) -> bool:\n    # Convert to lowercase and remove non-alphanumeric characters using regex\n    s = re.sub(r'[^a-z0-9]', '', s).lower()\n    # Check if the string reads the same forwards and backwards\n    return s == s[::-1]\n",
+    "tests": [
+        "assert Is_palindrome(\"A man, a plan, A canal, Panama!\") == True",
+        "assert Is_palindrome(\"No 'x' in Nixon.\") == True",
+        "assert Is_palindrome(\"Was it a car or a cat I saw?\") == True",
+        "assert Is_palindrome(\"Hello, World!\") == False"
+    ],
+    "difficulty": "easy",
+    "model": "codeqwen:7b",
+    "style": "LeetCode"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Reverse Linked List",
+    "description": "Write a function that takes a linked list as input and returns the linked list with all nodes' values reversed. For example, if the input linked list is `1 -> 2 -> 3`, the output should be `3 -> 2 -> 1`. Use recursion or any other approach you prefer.",
+    "code": "def reverse_linked_list(head: Node) -> Node: \n    if head == None: \n        return None \n    else: \n        next_node = head.next \n        head.next = None \n        return reverse_linked_list(next_node)",
+    "tests": [
+        "assert reverse_linked_list(Node(1)) == Node(1)",
+        "assert reverse_linked_list(Node(2, Node(3))) == Node(3, Node(2))",
+        "assert reverse_linked_list(Node(4, Node(5), Node(6))) == Node(6, Node(5), Node(4))",
+        "assert reverse_linked_list(Node()) == Node()"
+    ],
+    "difficulty": "super hard",
+    "model": "llama2:latest",
+    "style": "Competitive Programming"
+}

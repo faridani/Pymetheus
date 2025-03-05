@@ -1,0 +1,14 @@
+{
+    "title": "Longest Common Prefix",
+    "description": "Write a function `longest_common_prefix` that takes two strings as input and returns the longest common prefix between them. The prefix must be a valid suffix of each string.\n\n#### Function Signature\n```python\ndef longest_common_prefix(s1: str, s2: str) -> str:\n```\n\n#### Input\n- `s1` (str): A string that may contain letters, numbers, spaces, and punctuation.\n- `s2` (str): Another string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the longest common prefix between `s1` and `s2`, or an empty string if there is no common prefix.\n",
+    "code": "import os\n\ndef longest_common_prefix(s1: str, s2: str) -> str:\n    # Use the os.path.commonprefix function to find the longest common prefix\n    return os.path.commonprefix([s1, s2])\n",
+    "tests": [
+        "assert longest_common_prefix(\"Hello World\", \"Hello Python\") == \"Hello \"",
+        "assert longest_common_prefix(\"abc\", \"abcd\") == \"abc\"",
+        "assert longest_common_prefix(\"\", \"\") == \"\"",
+        "assert longest_common_prefix(\"a\", \"b\") == \"\""
+    ],
+    "difficulty": "medium",
+    "model": "llama3.1:8b",
+    "style": "Exercism"
+}

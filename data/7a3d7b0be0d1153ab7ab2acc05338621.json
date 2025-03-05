@@ -1,0 +1,14 @@
+{
+    "title": "Medium - Matrix Diagonal Sum",
+    "description": "Given a square matrix, calculate the sum of elements on its main diagonal. For example, given the matrix [[1, 2, 3], [4, 5, 6], [7, 8, 9]], the output should be 15.\n\n#### Function Signature\n```python\ndef diagonal_sum(matrix: List[List[int]]) -> int:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A square matrix of integers. Each sublist is a row in the matrix, and each integer within this sublist is an element.\n\n#### Output\n- Returns the sum of elements on the main diagonal of the input matrix.",
+    "code": "from typing import List\n\ndef diagonal_sum(matrix: List[List[int]]) -> int:\n    return sum(matrix[i][i] for i in range(len(matrix)))",
+    "tests": [
+        "assert diagonal_sum([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == 15",
+        "assert diagonal_sum([[5, 0], [0, 5]]) == 10",
+        "assert diagonal_sum([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]) == 34",
+        "assert diagonal_sum([[0, 1, 0], [1, 1, 1], [0, 1, 0]]) == 3"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "deepseek-coder:33b",
+    "style": "CodeWars"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Medium: The Ultimate Prime Number Challenge",
+    "description": "Write a function `is_prime` that checks if a given number is prime. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.\n\n#### Function Signature\n```python\ndef is_prime(n: int) -> bool:\n    # Implement the logic here\n```",
+    "code": "def is_prime(n: int) -> bool:\n    if n <= 1:  \n        return False\n    elif n <= 3: \n        return True\n    elif n % 2 == 0 or n % 3 == 0: \n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True",
+    "tests": [
+        "assert is_prime(2) == True",
+        "assert is_prime(4) == False",
+        "assert is_prime(97) == True",
+        "assert is_prime(101) == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "command-r7b:latest",
+    "style": "Project Euler"
+}

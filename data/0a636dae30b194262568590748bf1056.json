@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Sum of Array Elements",
+    "description": "Write a function `sum_array` that takes an array of integers as input and returns the sum of all its elements.\n\n#### Function Signature\n```python\ndef sum_array(arr: List[int]) -> int:\n```\n\n#### Input\n- `arr` (List[int]): An array of integers. The array may be empty.\n\n#### Output\n- Returns the sum of all elements in the input array as an integer. If the input array is empty, return 0.",
+    "code": "from typing import List\n\ndef sum_array(arr: List[int]) -> int:\n    # Initialize a variable to store the sum\n    total = 0\n    # Iterate through each element in the array\n    for num in arr:\n        # Add the current element to the sum\n        total += num\n    # Return the sum\n    return total",
+    "tests": [
+        "assert sum_array([1, 2, 3, 4, 5]) == 15",
+        "assert sum_array([]) == 0",
+        "assert sum_array([-1, -2, -3, -4, -5]) == -15"
+    ],
+    "difficulty": "easy",
+    "model": "codestral:latest",
+    "style": "HackerRank"
+}

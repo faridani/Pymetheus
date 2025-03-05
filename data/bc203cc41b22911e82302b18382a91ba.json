@@ -1,0 +1,14 @@
+{
+    "title": "Reverse List",
+    "description": "Write a function named `reverse_list` that takes in a list of items and returns a new list with the items in reversed order.\n\n#### Function Signature\n```python\ndef reverse_list(lst: List[Any]) -> List[Any]:\n```\n\n#### Input\n- `lst` (List[Any]): A list of items of any type.\n\n#### Output\n- Returns a new list with the items in reversed order.",
+    "code": "from typing import Any, List\n\ndef reverse_list(lst: List[Any]) -> List[Any]:\n    return lst[::-1]",
+    "tests": [
+        "assert reverse_list([1, 2, 3, 4, 5]) == [5, 4, 3, 2, 1]",
+        "assert reverse_list(['a', 'b', 'c']) == ['c', 'b', 'a']",
+        "assert reverse_list([[1, 2], [3, 4]]) == [[3, 4], [1, 2]]",
+        "assert reverse_list([]) == []"
+    ],
+    "difficulty": "super hard",
+    "model": "phind-codellama:34b",
+    "style": "CodeWars"
+}

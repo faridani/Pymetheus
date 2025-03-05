@@ -1,0 +1,13 @@
+{
+    "title": "Linked List Reverse",
+    "description": "Given the head of a singly linked list, reverse the list and return the new head.\n\n#### Function Signature\n```python\ndef reverse_list(head: Optional[ListNode]) -> Optional[ListNode]:\n```\n\n#### Input\n- `head` (Optional[ListNode]): The head of the singly linked list. The linked list can be empty or contain one or more nodes, and each node contains a value between 0 and 9 inclusive.\n\n#### Output\n- Returns the new head of the reversed list.\n",
+    "code": "from typing import Optional\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_list(head: Optional[ListNode]) -> Optional[ListNode]:\n    prev = None\n    curr = head\n    \n    while curr:\n        next_temp = curr.next\n        curr.next = prev\n        prev = curr\n        curr = next_temp\n    return prev\n",
+    "tests": [
+        "assert reverse_list(ListNode(1, ListNode(2, ListNode(3)))).val == 3\n",
+        "assert reverse_list(ListNode(1)).val == 1\n",
+        "assert reverse_list(None) is None\n"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral-nemo:latest",
+    "style": "LeetCode"
+}

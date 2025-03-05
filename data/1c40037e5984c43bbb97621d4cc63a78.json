@@ -1,0 +1,15 @@
+{
+    "title": "Medium Hard - Anagram Checker",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams of each other, ignoring case and spaces.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): The first string for anagram comparison.\n- `s2` (str): The second string for anagram comparison.\n\n#### Output\n- Returns `True` if the input strings are anagrams, `False` otherwise. \n\nConstraints:\n- Assume that both input strings contain only letters and spaces.\n- Case should be ignored during comparisons (e.g., 'Dormitory' is an anagram of 'dirty room').",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = s1.replace(' ', '').lower()\n    s2 = s2.replace(' ', '').lower()\n    # Sort characters of both strings and compare\n    return sorted(s1) == sorted(amu)\n",
+    "tests": [
+        "assert is_anagram(\"Dormitory\", \"dirty room\") == True",
+        "assert is_anagram(\"Listen\", \"Silent\") == True",
+        "assert is_anagram(\"Hello\", \"World\") == False",
+        "assert is_anagram(\"Astronomer\", \"Moon starer\") == True",
+        "assert is_anagram(\"School master\", \"The classroom\") == True"
+    ],
+    "difficulty": "super hard",
+    "model": "phi3:14b",
+    "style": "ICPC"
+}

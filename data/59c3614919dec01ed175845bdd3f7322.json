@@ -1,0 +1,15 @@
+{
+    "title": "Reverse a Linked List (Hard)",
+    "description": "You are given the head of a linked list. Reverse the linked list and return its head.\n\n#### Function Signature\n```python\ndef reverse_linked_list(head: ListNode) -> ListNode:\n```\n\n#### Input\n- `head` (ListNode): The head of the linked list.\n\n#### Output\n- Returns the head of the reversed linked list.\n\n### Hint\nYou may want to use a recursive function to solve this problem.",
+    "code": "",
+    "python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_linked_list(head: ListNode) -> ListNode:\n    # Base case: if the head is None, return None\n    if not head:\n        return None\n    \n    # Recursive case: reverse the rest of the list and add the current node to the beginning\n    new_head = reverse_linked_list(head.next)\n    new_node = ListNode(head.val)\n    new_node.next = new_head\n    \n    return new_node": "",
+    "tests": [
+        "assert reverse_linked_list(ListNode(1, ListNode(2, ListNode(3)))) == ListNode(3, ListNode(2, ListNode(1)))",
+        "assert reverse_linked_list(ListNode(1, ListNode(2))) == ListNode(2, ListNode(1))",
+        "assert reverse_linked_list(ListNode(1)) == ListNode(1)",
+        "assert reverse_linked_list(None) is None"
+    ],
+    "difficulty": "super hard",
+    "model": "aya:35b",
+    "style": "HackerEarth"
+}

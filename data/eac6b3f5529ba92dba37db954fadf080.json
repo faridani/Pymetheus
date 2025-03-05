@@ -1,0 +1,13 @@
+{
+    "title": "Medium Python Coding Question: Maximum Consecutive Cards",
+    "description": "You are given a deck of cards with the following features:\n- Each card has a rank (from Ace to King)\n- Each card also has a suit (Hearts, Diamonds, Clubs, Spades).\nWrite a function `maximum_consecutive_cards(deck: List[Card])` that returns the maximum number of consecutive cards of the same suit in the deck.\n\n#### Function Signature\n```python\ndef maximum_consecutive_cards(deck: List[Card]) -> int:\n```\n\n#### Input\n- `deck` (List[Card]): A list of Card objects, each containing a rank and a suit.\n\n#### Output\n- Returns the maximum number of consecutive cards of the same suit in the deck.\n",
+    "code": "from typing import List\n\ndef maximum_consecutive_cards(deck: List[Card]) -> int:\n    if not deck:\n        return 0\n    max_count = 1\n    current_count = 1\n    for i in range(1, len(deck)):\n        if deck[i].suit == deck[i-1].suit:\n            current_count += 1\n            max_count = max(max_count, current_count)\n        else:\n            current_count = 1\n    return max_count",
+    "tests": [
+        "assert maximum_consecutive_cards([Card('Ace', 'Hearts'), Card('2', 'Hearts'), Card('3', 'Hearts'), Card('4', 'Hearts'), Card('5', 'Diamonds')]) == 4",
+        "assert maximum_consecutive_cards([Card('Jack', 'Clubs'), Card('Queen', 'Clubs'), Card('King', 'Clubs'), Card('Ace', 'Spades')]) == 3",
+        "assert maximum_consecutive_cards([Card('2', 'Hearts'), Card('3', 'Hearts'), Card('4', 'Hearts'), Card('5', 'Diamonds'), Card('6', 'Hearts')]) == 4"
+    ],
+    "difficulty": "medium",
+    "model": "command-r7b:latest",
+    "style": "Interview Query"
+}

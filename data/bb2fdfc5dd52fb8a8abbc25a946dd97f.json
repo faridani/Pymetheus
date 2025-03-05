@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Substring Sum Equals K",
+    "description": "Given a string that represents an integer and a target integer k, write a function to determine if any substring of the given string has a sum equal to k. The function should return true if such a substring exists, and false otherwise.\n\n#### Function Signature\n```python\ndef substring_sum_equals_k(s: str, k: int) -> bool:\n```\n\n#### Input\n- `s` (str): A string that represents an integer. It may contain digits 0-9.\n- `k` (int): The target integer sum.\n\n#### Output\n- Returns `True` if there is a substring with a sum equal to `k`, `False` otherwise.\n\n#### Hints\nYou can use a sliding window approach to iterate through the string and maintain a running sum. Compare the running sum with `k` at each step.\n",
+    "code": "def substring_sum_equals_k(s: str, k: int) -> bool:\n    # Initialize a running sum and a flag to track if we've found a match\n    running_sum = 0\n    found_match = False\n\n    # Iterate through each character in the string\n    for c in s:\n        # Convert the character to its integer representation\n        digit = int(c)\n\n        # Update the running sum\n        running_sum += digit\n\n        # Check if the running sum is equal to k\n        if running_sum == k:\n            found_match = True\n            break\n\n    return found_match\n",
+    "tests": [
+        "assert substring_sum_equals_k(\"12345\", 7) == True",
+        "assert substring_sum_equals_k(\"123123\", 6) == True",
+        "assert substring_sum_equals_k(\"11111\", 4) == True",
+        "assert substring_sum_equals_k(\"0000\", 5) == False",
+        "assert substring_sum_equals_k(\"9876\", 13) == False"
+    ],
+    "difficulty": "super hard",
+    "model": "aya:35b",
+    "style": "Google Code Jam"
+}

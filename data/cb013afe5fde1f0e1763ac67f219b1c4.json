@@ -1,0 +1,15 @@
+{
+    "title": "Binary Tree Traversal Order",
+    "description": "Given a binary tree, you are required to return its traversal order which consists of three different types: inorder, preorder and postorder. The nodes should be returned as lists containing node values for each type.",
+    "function_signature": "\n```python\ndef tree_traversal_order(root: TreeNode) -> Tuple[List[int], List[int], List[int]]:\n    # Implement this function\n```\n",
+    "code": "from typing import List, Tuple\nimport collections\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\n\ndef tree_traversal_order(root: TreeNode) -> Tuple[List[int], List[int], List[int]]:\n    def inorder(node: TreeNode, result: List[int]) -> None:\n        if node is not None:\n            inorder(node.left, result)\n            result.append(node.val)\n            inorder(node.right, result)\n\n    def preorder(node: TreeNode, result: List[int]) -> None:\n        if node is not None:\n            result.append(node.val)\n            preorder(node.left, result)\n            preorder(node.right, result)\n\n    def postorder(node: TreeNode, result: List[int]) -> None:\n        if node is not None:\n            postorder(node.left, result)\n            postorder(node.right, result)\n            result.append(node.val)\n\n    inorder_order = collections.deque()\n    preorder_order = collections.deque()\n    postorder_order = collections.deque()\n\n    inorder(root, inorder_order)\n    preorder(root, preorder_order)\n    postorder(root, postorder_order)\n\n    return (list(inorder_order), list(preorder_order), list(postorder_order))\n",
+    "tests": [
+        "assert tree_traversal_order(TreeNode(1, TreeNode(2), TreeNode(3))) == ([2, 3], [1, 2, 3], [3, 2, 1])",
+        "assert tree_traversal_order(TreeNode(4, None, TreeNode(6, TreeNode(5)))).count([5, 6, 4]) == 1",
+        "assert len(tree_traversal_order(TreeNode())) == (0, 0, 0)",
+        "assert tree_traversal_order(TreeNode(-1, TreeNode(2), TreeNode(3))).count([2, -1, 3]) == 1"
+    ],
+    "difficulty": "hard",
+    "model": "qwen2:7b",
+    "style": "CodeSignal"
+}

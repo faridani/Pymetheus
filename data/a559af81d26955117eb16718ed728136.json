@@ -1,0 +1,14 @@
+{
+    "title": "Digits Sum Checker (Medium)",
+    "description": "A string number can be encoded by summing its digits. For example, the string '12345' can be encoded as 1+2+3+4+5 = 15. Write a function `encode_string` that takes in an input string of non-negative integers and returns its encoded value.\n\n#### Function Signature\n```python\ndef encode_string(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing only digits from 0 to 9. The length of the string is at least 1 and does not exceed 50.\n\n#### Output\n- Returns an integer representing the sum of all digits in the input string.\n",
+    "code": "def encode_prime(s: str) -> int:\n    # Calculate the sum of all characters as integers\n    return sum(int(char) for char in s)\n",
+    "tests": [
+        "assert encode_string(\"12345\") == 15",
+        "assert encode_prime(\"98765\") == 35",
+        "assert encode_prime(\"0\") == 0",
+        "assert encode_prime(\"1111\") == 4"
+    ],
+    "difficulty": "hard",
+    "model": "phi3:14b",
+    "style": "Google Code Jam"
+}

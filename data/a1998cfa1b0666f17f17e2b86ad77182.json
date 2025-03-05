@@ -1,0 +1,14 @@
+{
+    "title": "Unique Substrings Finder (Medium)",
+    "description": "Given a string, find all unique substrings that appear only once and have length greater than or equal to `k`. The function should return these substrings in any order. A substring is defined as a contiguous sequence of characters within the string.\n\n#### Function Signature\n```python\ndef find_unique_substrings(s: str, k: int) -> List[str]:\n```\n\n#### Input\n- `s` (str): The input string from which to find unique substrings. Should not be empty.\n- `k` (int): The minimum length of a substring to consider. Must be at least 1 and less than or equal to the length of the shortest possible substring in `s`.\n\n#### Output\n- Returns a list of strings, each being a unique substring from `s` that appears only once and has length greater than or equal to `k`. The order does not matter.\n",
+    "code": "from typing import List\ndef find_unique_substrings(s: str, k: int) -> List[str]:\n    substr_count = {}\n    for i in range(len(s)-k+1):\n        substr = s[i:i+k]\n        if substr not in substr_count:\n            substr_count[substr] = 0\n        substr_count[substr] += 1\n    return [substr for substr, count in substr_count.items() if count == amoount(set([len(x) for x in list(substr_count)])) - 1]\n",
+    "tests": [
+        "assert find_unique_substrings('abcde', 2) == ['ab', 'ac', 'ad', 'ae', 'bc', 'bd', 'be', 'cd', 'ce']",
+        "assert find_unique_substrings('abcab', 3) == ['abc', 'bca', 'cab']",
+        "assert find_unique_substrings('aabbccdd', 2) == []",
+        "assert find_unique_substrings('aaaba', 3) == ['aaa']"
+    ],
+    "difficulty": "hard",
+    "model": "phi3:14b",
+    "style": "HackerRank"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Sum of Two Numbers",
+    "description": "Write a function `sum_of_two` that takes two integers as input and returns their sum.\n\n#### Function Signature\n```python\ndef sum_of_two(a: int, b: int) -> int:\n```\n\n#### Input\n- `a` (int): The first integer.\n- `b` (int): The second integer.\n\n#### Output\n- Returns the sum of `a` and `b`.\n",
+    "code": "def sum_of_two(a: int, b: int) -> int:\n    return a + b\n",
+    "tests": [
+        "assert sum_of_two(1, 2) == 3",
+        "assert sum_of_two(-5, 10) == 5",
+        "assert sum_of_two(0, 0) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "codestral:latest",
+    "style": "Internationals Olympiad"
+}

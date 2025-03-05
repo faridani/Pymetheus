@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Reversible Primes",
+    "description": "A prime number is called a reversible prime if its decimal representation reads the same forwards and backwards. For example, 197 is a reversible prime because it looks the same forwards and backwards (197 and 791 are equal). Write a function `is_reversible_prime` that checks if a given integer is a reversible prime.\n\n#### Function Signature\n```python\ndef is_reversible_prime(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns `True` if the input number is a reversible prime, `False` otherwise.\n",
+    "code": "def is_reversible_prime(n: int) -> bool:\n    # Convert to string and check if it's the same forwards and backwards\n    str_n = str(n)\n    return str_n == str_n[::-1]\n",
+    "tests": [
+        "assert is_reversible_prime(197) == True",
+        "assert is_reversible_prime(233) == False",
+        "assert is_reversible_prime(999) == False"
+    ],
+    "difficulty": "hard",
+    "model": "codellama:34b",
+    "style": "Internationals Olympiad"
+}

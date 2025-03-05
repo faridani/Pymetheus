@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Fizz Buzz Generator",
+    "description": "Write a function that takes an integer `n` as input and returns a string that represents the Fizz Buzz sequence up to `n`. The Fizz Buzz sequence is a series of numbers where:\n\n* If the number is divisible by 3, replace it with 'Fizz'\n* If the number is divisible by 5, replace it with 'Buzz'\n* If the number is divisible by both 3 and 5, replace it with 'FizzBuzz'\n* Otherwise, use the original number\n\n#### Function Signature\n```python\ndef fizz_buzz(n: int) -> str:\n```\n\n#### Input\n- `n` (int): The upper limit of the Fizz Buzz sequence.\n\n#### Output\n- A string that represents the Fizz Buzz sequence up to `n`, with each number on a new line.\n",
+    "code": "def fizz_buzz(n: int) -> str:\n    result = ''\n    for i in range(1, n + 1):\n        if i % 3 == 0 and i % 5 == 0:\n            result += 'FizzBuzz\\n'\n        elif i % 3 == 0:\n            result += 'Fizz\\n'\n        elif i % 5 == 0:\n            result += 'Buzz\\n'\n        else:\n            result += str(i) + '\\n'\n    return result[:-1]",
+    "tests": [
+        "assert fizz_buzz(15) == '1\\n2\\n3\\nFizz\\n4\\nBuzz\\n5\\n6\\n7\\n8\\n9\\nFizz\\n10\\n11\\n12\\n13\\n14\\nFizzBuzz\\n'",
+        "assert fizz_buzz(20) == '1\\n2\\n3\\nFizz\\n4\\nBuzz\\n5\\n6\\n7\\n8\\n9\\nFizz\\n10\\n11\\n12\\n13\\n14\\nFizzBuzz\\n15\\n16\\n17\\n18\\n19\\nBuzz\\n20\\n'"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

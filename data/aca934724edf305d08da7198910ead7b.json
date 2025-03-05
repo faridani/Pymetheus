@@ -1,0 +1,13 @@
+{
+    "title": "Divisible Matrix",
+    "description": "Write a function `is_divisible` that takes a 2D list of integers as input and checks if the sum of each row is divisible by the sum of each column. If it is, return True; otherwise, return False.\n\n#### Function Signature\n```python\ndef is_divisible(matrix: list[list[int]]) -> bool:\n```\n\n#### Input\n- `matrix` (list[list[int]]): A 2D list of integers where the sum of each row and column should be divisible by each other.\n\n#### Output\n- Returns `True` if the input matrix is divisible, `False` otherwise.",
+    "code": "def is_divisible(matrix: list[list[int]]) -> bool:\n    row_sum = sum(sum(row) for row in matrix)\n    col_sum = sum(matrix[0])\n    \n    for row in matrix:\n        if sum(row) != row_sum:\n            return False\n    for i in range(len(matrix[0])):\n        col = [row[i] for row in matrix]\n        if sum(col) != col_sum:\n            return False\n    \n    return True",
+    "tests": [
+        "assert is_divisible([[1, 2], [3, 4]]) == True",
+        "assert is_divisible([[1, 2, 3], [4, 5, 6]]) == False",
+        "assert is_divisible([[10, 20], [30, 40], [50, 60]]) == True"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

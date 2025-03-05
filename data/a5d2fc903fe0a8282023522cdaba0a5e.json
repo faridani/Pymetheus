@@ -1,0 +1,14 @@
+{
+    "title": "Counting Duplicate Elements (Medium)",
+    "description": "Given a list of integers, write a function `count_duplicates` that returns the count of elements with more than one occurrence. Ignore all elements that only appear once.\n\n#### Function Signature\n```python\ndef count_duplicates(numbers: List[int]) -> int:\n```\n\n#### Input\n- `numbers`: A list of integers which may contain duplicates and non-repeated elements. The length of the input list will be between 1 to 10^5.\n\n#### Output\n- Returns an integer representing the count of numbers that appear more than once in the input list.\n",
+    "code": "from typing import List\nfrom collections import Counter\ndef count_duplicates(numbers: List[int]) -> int:\n    # Count occurrences of each number using Counter from collections\n    counts = Counter(numbers)\n    # Sum the counts for numbers that appear more than once\n    return sum(value > 1 for value in counts.values())\n",
+    "tests": [
+        "assert count_prime([1,2,3,4,5]) == 0",
+        "assert count_primes([1,2,2,3,3,3]) == 2",
+        "assert count_duplicates([7,8,9,7,8]) == 2",
+        "assert count_duplicates([42]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "phi3:14b",
+    "style": "Codewars"
+}

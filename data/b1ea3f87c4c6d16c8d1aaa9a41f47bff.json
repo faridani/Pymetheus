@@ -1,0 +1,12 @@
+{
+    "title": "Tower of Hanoi Solver (Hard)",
+    "description": "The Tower of Hanoi is a classic mathematical puzzle. The goal is to move a stack of disks from one peg to another, with the constraint that smaller disks must always be on top of larger ones. Write a function `move_towers` that takes three parameters: the number of disks, and the starting and target pegs. Your function should return a list of moves required to solve the puzzle.\n\n#### Function Signature\n```python\ndef move_towers(num_disks: int, source_peg: int, target_peg: int) -> List[str]:\n```\n\n#### Input\n- `num_disks` (int): The number of disks. (1 <= num_disks <= 20)\n- `source_peg` (int): The starting peg. (0 <= source_peg < 3)\n- `target_peg` (int): The target peg. (0 <= target_peg < 3, and different from `source_peg`)\n\n#### Output\n- Returns a list of moves in the format `'Move disk <disk_number> from peg <from_peg> to peg <to_peg>'`.",
+    "code": "from typing import List\n\ndef move_towers(num_disks: int, source_peg: int, target_peg: int) -> List[str]:\n    if num_disks == 0:\n        return []\n    aux_peg = [0, 1, 2]\n    aux_peg.remove(source_peg)\n    aux_peg.remove(target_peg)\n    aux_peg = aux_peg[0]\n    moves = move_towers(num_disks - 1, source_peg, aux_peg) + [f'Move disk {num_disks} from peg {source_peg} to peg {target_peg}']\n    moves += move_towers(num_disks - 1, aux_peg, target_peg)\n    return moves",
+    "tests": [
+        "assert move_towers(3, 0, 2) == ['Move disk 1 from peg 0 to peg 1', 'Move disk 2 from peg 0 to peg 2', 'Move disk 1 from peg 1 to peg 2', 'Move disk 3 from peg 0 to peg 2']",
+        "assert move_towers(5, 1, 0) == ['Move disk 1 from peg 1 to peg 2', 'Move disk 2 from peg 1 to peg 0', 'Move disk 1 from peg 2 to peg 0', 'Move disk 3 from peg 1 to peg 2', 'Move disk 1 from peg 0 to peg 1', 'Move disk 4 from peg 1 to peg 2', 'Move disk 1 from peg 1 to peg 0', 'Move disk 5 from peg 1 to peg 0']"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral-nemo:latest",
+    "style": "CodeWars"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Maximum Balanced Subarray Sum",
+    "description": "Given a list of integers `nums`, find the maximum sum of elements in a contiguous subarray where every number in the subarray follows an ascending order starting from the first element. Write a function `max_balanced_subarray_sum` that takes a list of integers as input and returns the largest balanced subarray sum.\n\n#### Function Signature\n```python\ndef max_balanced_subarray_sum(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums` (List[int]): A list of integers in any order. The length of the list is at least 1 and at most 10^5, and each integer value ranges from -10^4 to 10^4.\n\n#### Output\n- Returns an integer representing the maximum sum of elements that follows the ascending sequence starting from the first element in `nums`.",
+    "code": "\nfrom typing import List\n\ndef max_balanced_subarray_sum(nums: List[int]) -> int:\n    if not nums or len(nums) == 1:\n        return sum(nums)\n    n = len(nums)\n    max_current, max_global = nums[0], nums[0]\n    for i in range(1, n):\n        max_current += nums[i]\n        if nums[i] < nums[i-1]:\n            max_current = nums[i]\n        max_global = max(max_global, max_current)\n    return max_global\n",
+    "tests": [
+        "assert max_balanced_subarray_sum([2, 3, 6, -1]) == 7",
+        "assert max_balanced_subarray_sum([-1, 4, -2, 5, 0]) == 9",
+        "assert max_balanced_subarray_sum([2, 4, 8]) == 14",
+        "assert max_balanced_subarray_sum([3]) == 3"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "qwen2:7b",
+    "style": "LeetCode"
+}

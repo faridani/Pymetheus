@@ -1,0 +1,13 @@
+{
+    "title": "Closest Pair of Stars",
+    "description": "In this problem, you will write a function that finds the closest pair of stars given their positions. The input format is as follows: `stars` (list of tuples): Each tuple in the list represents the position of a star on a 2D plane. The first element of each tuple is the x-coordinate and the second element is the y-coordinate.\n\n#### Function Signature\n```python\ndef closest_pair(stars: list[tuple[int, int]]) -> tuple[int, int]:\n```\n\n#### Input\n- `stars` (list[tuple[int, int]]): A list of tuples representing the positions of stars on a 2D plane.\n\n#### Output\n- Returns a tuple containing the indices of two stars that are closest to each other. The first element of the tuple is the index of one star and the second element is the index of the other star.\n",
+    "code": "\nimport math\n\ndef distance(p1: tuple[int, int], p2: tuple[int, int]) -> float:\n    return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)\n\ndef closest_pair(stars: list[tuple[int, int]]) -> tuple[int, int]:\n    min_distance = float('inf')\n    closest_pair = (-1, -1)\n    for i in range(len(stars)):\n        for j in range(i + 1, len(stars)):\n            dist = distance(stars[i], stars[j])\n            if dist < min_distance:\n                min_distance = dist\n                closest_pair = (i, j)\n    return closest_pair\n\n",
+    "tests": [
+        "assert closest_pair([(0, 0), (3, 4), (-1, -1), (10, 20)]) == (0, 1)",
+        "assert closest_pair([(0, 0), (5, 6), (10, 11)]) == (0, 1)",
+        "assert closest_pair([(-2, -2), (-2, 3), (4, -2), (4, 3)]) == (0, 1)"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

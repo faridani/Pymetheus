@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Balanced Brackets",
+    "description": "Given a string containing only parentheses (\"(\") and brackets (\"[\")  write a function `is_balanced` that checks if the string has balanced brackets. A string is considered balanced if every opening bracket has a corresponding closing bracket in the correct order.\n\n#### Function Signature\n```python\ndef is_balanced(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string containing only parentheses \"(\" and brackets \"[\"\n\n#### Output\n- Returns `True` if the input string has balanced brackets, `False` otherwise.\n",
+    "code": "def is_balanced(s: str) -> bool:\n    stack = []\n    brackets = {'(': ')', '[': ']'}\n    for char in s:\n        if char in brackets.keys():\n            stack.append(char)\n        elif char in brackets.values():\n            if not stack or brackets[stack.pop()] != char:\n                return False\n    return len(stack) == 0\n",
+    "tests": [
+        "assert is_balanced('()[]') == True",
+        "assert is_balanced('([()])') == True",
+        "assert is_balanced('([]))') == False",
+        "assert is_balanced('([)]') == False",
+        "assert is_balanced('') == True"
+    ],
+    "difficulty": "super hard",
+    "model": "gemma2:27b",
+    "style": "Codecademy"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "N-Queens",
+    "description": "The N-queens problem is the problem of placing N queens on an NxN chessboard such that no two queens attack each other. A queen can attack another if they are in the same row, column or diagonal.\n\n#### Function Signature\n```python\ndef is_valid_board(n: int, board: list[list[int]]) -> bool:\n```\n\n#### Input\n- `n` (int): The size of the chessboard. Must be greater than 0.\n- `board` (list[list[int]]): A representation of a chessboard where each number in a cell represents which row the queen on that cell was placed from.\n\n#### Output\n- Returns `True` if no two queens attack each other, `False` otherwise.\n",
+    "code": "def is_valid_board(n: int, board: list[list[int]]) -> bool:\n    def is_safe(row: int, col: int) -> bool:\n        # Check this row on left or right side of given column and for upper diagonal\n        for i in range(col):\n            if board[row][i] == 1:\n                return False\n        # Check that position on left lower diagonal\n        for i in range(row, -1, -1):\n            if board[i][col] == 1:\n                return False\n        # Check this row on right side of given column and for upper diagonal\n        for i in range(col, n):\n            if board[row][i] == 1:\n                return False\n        # Check that position on right lower diagonal\n        for i in range(row, -1, -1):\n            if board[i][col] == 1:\n                return False\n        return True\n    # Check this row on left side of given column and for upper diagonal\n    for i in range(n):\n        if board[i][col] == 1:\n            return False\n    # Check that position on right side of given column and for upper diagonal\n    for i in range(col, n):\n        if board[row][i] == 1:\n            return False\n    # Check this row on left lower diagonal\n    for i in range(row, -1, -1):\n        if board[i][col] == 1:\n            return False\n    # Check that position on right lower diagonal\n    for i in range(row, -1, -1):\n        if board[i][col] == 1:\n            return False\n    return True\n",
+    "tests": [
+        "assert is_valid_board(4, [[0, 1, 0, 0], [0, 0, 0, 1], [0, 0, 0, 0], [0, 0, 1, 0]]) == False",
+        "assert is_valid_board(2, [[0, 0], [0, 0]]) == True"
+    ],
+    "difficulty": "medium",
+    "model": "llama3.1:8b",
+    "style": "Interview Query"
+}

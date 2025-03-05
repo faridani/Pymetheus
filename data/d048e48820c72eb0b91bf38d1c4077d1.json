@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Subarray Sum",
+    "description": "Given a list of integers, find the maximum subarray sum.\n\n#### Function Signature\n```python\ndef max_subarray_sum(arr: list[int]) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum subarray sum.\n",
+    "code": "def max_subarray_sum(arr: list[int]) -> int:\n    # Initialize the maximum current sum and the maximum global sum to the first element of the array\n    max_current = max_global = arr[0]\n    \n    # Iterate over the rest of the array\n    for num in arr[1:]:\n        # Update the maximum current sum to be the maximum of the current number and the sum of the current number and the previous maximum current sum\n        max_current = max(num, max_current + num)\n        \n        # Update the maximum global sum to be the maximum of the current maximum global sum and the maximum current sum\n        max_global = max(max_global, max_current)\n    \n    # Return the maximum global sum\n    return max_global\n",
+    "tests": [
+        "assert max_subarray_sum([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6",
+        "assert max_subarray_sum([1, 2, 3, 4, 5]) == 15",
+        "assert max_subarray_sum([-1, -2, -3, -4, -5]) == -1",
+        "assert max_subarray_sum([0, 0, 0, 0, 0]) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3.1:8b",
+    "style": "Internationals Olympiad"
+}

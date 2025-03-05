@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Trimming the Tree",
+    "description": "Christmas trees are a symbol of the holiday season. They are often decorated with lights, ornaments, and tinsel. Write a function that calculates the total cost of trimming a tree based on its height and whether it is trimmed by a professional or not.\n\n#### Function Signature\n```\ndef tree_trim_cost(height: int, pro: bool) -> float:\n```\n\n#### Input\n- `height` (int): The height of the Christmas tree in feet.\n- `pro`: A boolean indicating whether the tree is trimmed by a professional or not.\n\n#### Output\n- Returns the total cost of trimming the tree, including any applicable discounts.\n",
+    "code": "import math\n\ndef tree_trim_cost(height: int, pro: bool) -> float:\n    base_cost = 5.0 + (height * 0.2)\n    if not pro:\n        discount = height * 0.1\n        return base_cost - discount\n    else:\n        return base_cost\n",
+    "tests": [
+        "assert tree_trim_cost(10, False) == 15.0",
+        "assert tree_trim_cost(5, True) == 7.5",
+        "assert tree_trim_cost(20, True) == 22.0",
+        "assert tree_trim_cost(12, False) == 17.4"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

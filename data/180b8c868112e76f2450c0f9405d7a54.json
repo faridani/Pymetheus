@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `anagram_checker` that checks if two given strings are anagrams.\n\n#### Function Signature\n```python\ndef anagram_checker(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing only lowercase alphabets.\n- `s2` (str): Another string containing only lowercase alphabets.\n\n#### Output\n- Returns `True` if the two input strings are anagrams, `False` otherwise.\n",
+    "code": "def anagram_checker(s1: str, s2: str) -> bool:\n    # Sort the characters in both strings and compare them\n    return sorted(list(s1)) == sorted(list(s2))",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('python', 'typhon') == False",
+        "assert anagram_checker('act', 'cat') == True"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

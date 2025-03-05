@@ -1,0 +1,14 @@
+{
+    "title": "'Tic Tac Toe Solver: Easy Edition'",
+    "description": "Write a function `solve_tictactoe` that returns the winner of a 3x3 tic-tac-toe game given a board representation as a list of lists. The game is won by 'X' or 'O' if they have three of their own symbols in a row, column, or diagonal.\n\n#### Function Signature\n```python\ndef solve_tictactoe(board: List[List[str]]) -> str or None:\n```\n\n#### Input\n- `board` (List[List[str]]): A 3x3 list of lists, each containing either 'X', 'O', or empty (''). The game starts with an empty board.\n\n#### Output\n- Returns the winner (either 'X' or 'O') if there is one, returns `None` if the game is a draw.\n",
+    "code": "def solve_tictactoe(board: List[List[str]]) -> str or None:\n    # Check rows and columns for wins\n    for i in range(3):\n        if all([row[i] == board[i][j] for j in range(3)]):\n            return board[i][i]\n    \n    # Check diagonals for wins\n    if all([board[i][i] == board[1-i][i] for i in range(3)]):\n        return board[1][1]\n    \n    # If no wins, check for a draw\n    if not any([any([cell == '' for cell in row]) for row in board]):\n        return None",
+    "tests": [
+        "assert solve_tictactoe([['X', '', ''], ['', 'X', ''], ['', '', '']]) == 'X'",
+        "assert solve_tictactoe([['O', 'O', 'O'], ['', '', ''], ['', '', '']]) == 'O'",
+        "assert solve_tictactoe([['X', 'O', ''], ['O', 'X', ''], ['', '', '']]) == None",
+        "assert solve_tictactoe([['X', '', ''], ['O', '', ''], ['', '', '']]) == None"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "TopCoder"
+}

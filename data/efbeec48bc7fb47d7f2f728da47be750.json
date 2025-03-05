@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Reverse and Add",
+    "description": "This problem involves a simple mathematical operation on integers. Given an integer `n`, reverse its digits, add them to the original number, then repeat this process with the result until it becomes palindromic.\n\n#### Function Signature\n```python\ndef reverse_and_add(n: int) -> int:\n    ```\n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns an integer which is a palindromic number obtained by the reverse and add process.\n",
+    "code": "import math\n\ndef reverse_and_add(n: int) -> int:\n    def to_str(n):\n        return str(n)\n    def reverse(s):\n        return s[::-1]\n    while True:\n        original = n\n        reversed_n = int(reverse(to_str(n)))\n        sum_n = n + reversed_n\n        if str(sum_n) == str(sum_n)[::-1]:  # check for palindrome\n            return sum_n\n        n = sum_n",
+    "tests": [
+        "assert reverse_and_add(526) == 1073",
+        "assert reverse_and_add(834) == 13889",
+        "assert reverse_and_add(647) == 8413",
+        "assert reverse_and_add(125) == 1444"
+    ],
+    "difficulty": "easy",
+    "model": "qwen2:7b",
+    "style": "AtCoder"
+}

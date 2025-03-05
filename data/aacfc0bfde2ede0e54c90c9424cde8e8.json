@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Advanced Number Conversion",
+    "description": "A more complex version of converting numbers from one base to another. Given a number as input and the desired bases for conversion, your task is to convert the number between these two bases. The bases should be within the range of 2 to 36 (inclusive). Please note that the output should always include leading zeros in order to maintain precision. Example: Convert '101' from base-2 to base-8 yields '5'. Write a function `convert_base(number: str, from_base: int, to_base: int) -> str`.\n\n#### Function Signature\n```python\ndef convert_base(number: str, from_base: int, to_base: int) -> str:\n```\n\n#### Input\n- `number`: String representation of a number in the base `from_base`. Digits above 9 are denoted by 'A' through 'Z'.\n- `from_base`: Integer representing the base that `number` is currently written in. Must be between 2 and 36, inclusive.\n- `to_base`: An integer representing the desired output base. Must be between 2 and 36, inclusive.\n\n#### Output\n- Returns a string representation of `number` converted to the `to_base`. If `from_base` or `to_base` are out of range, return 'Invalid bases'.",
+    "code": "import string\n\ndef convert_base(number: str, from_base: int, to_base: int) -> str:\n    if not (2 <= from_base <= 36 and 2 <= to_base <= 36):\n        return 'Invalid bases'\n    # Convert number from base `from_base` to decimal\n    decimal = int(number.upper(), from_base)\n    # Convert decimal to the desired `to_base`\n    digits = string.digits + string.ascii_uppercase\n    result = ''\n    while decimal:\n        dec_value = decimal % to_base\n        result = digits[dec_value] + result\n        decimal //= to_base\n    return result or '0'",
+    "tests": [
+        "assert convert_base(\"101\", 2, 8) == \"5\"",
+        "assert convert_base(\"A1B\", 16, 36) == \"Z11\""
+    ],
+    "difficulty": "insanely difficult",
+    "model": "qwen2:7b",
+    "style": "Google Code Jam"
+}

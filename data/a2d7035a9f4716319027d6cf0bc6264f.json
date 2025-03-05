@@ -1,0 +1,13 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Given two strings `s` and `t`, find the minimum window of `s` that covers all characters of `t`.\n\nA substring is considered as a window of `s`. The minimum window of `s` to cover all characters of `t` must be equal to or longer than `t`.\n\nIf no such window exists, return an empty string.\n\nNote: The number of occurrences of each character in `t` may not exceed the number of occurrences of that character in `s`.\n\n#### Function Signature\n```python\ndef min_window(s: str, t: str) -> str:\n```\n\n#### Input\n- `s` (str): A string containing all characters of `t`.\n- `t` (str): A string to be searched for as a substring of `s`.\n\n#### Output\n- Returns the minimum window of `s` that covers all characters of `t`, or an empty string if no such window exists.",
+    "code": "from collections import Counter\n\ndef min_window(s: str, t: str) -> str:\n    # Count the frequency of each character in `t`\n    t_count = Counter(t)\n    \n    # Calculate the minimum number of characters required to cover all characters of `t`\n    min_required_chars = sum(count for count in t_count.values())\n    \n    # Initialize a sliding window with no characters\n    left = 0\n    \n    # Iterate over each character in `s` on the right side of the window\n    for right in range(len(s)):\n        # If the current character is in `t`, remove it from the right side of the window\n        if s[right] in t_count:\n            t_count[s[right]] -= 1\n            \n            # If all characters required to cover `t` are present in the window, slide the window to the left\n            while sum(count for count in t_count.values()) == 0:\n                # Update the minimum window size\n                if right - left + 1 < min_required_chars:\n                    return s[left:right+1]\n                \n                # Remove the character at the left side of the window from `t_count`\n                if s[left] in t_count:\n                    t_count[s[left]] += 1\n                \n                # Slide the window to the left\n                left += 1\n    \n    # If no window that covers all characters of `t` is found, return an empty string\n    return \"\"",
+    "tests": [
+        "assert min_window(\"bbaaabaa\", \"aba\") == 'aba'",
+        "assert min_window(\"ab\", \"ab\") == 'ab'",
+        "assert min_window(\"aa\", \"a\") == ''"
+    ],
+    "difficulty": "hard",
+    "model": "llama3.1:8b",
+    "style": "TopCoder"
+}
