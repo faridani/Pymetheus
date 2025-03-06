@@ -1,0 +1,14 @@
+{
+    "title": "'Check if a given string is anagram of another (Easy)'",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): The first string to compare as a potential anagram.\n- `s2` (str): The second string to compare as a potential anagram.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove non-alphabetic characters and sort the strings\n    sorted_s1 = sorted(list(filter(str.isalpha, s1)))\n    sorted_s2 = sorted(list(filter(str.isalpha, s2)))\n    # Compare the sorted lists for equality\n    return sorted_s1 == sorted_s2",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False",
+        "assert is_anagram(\"act\", \"cat\") == True",
+        "assert is_anagram(\"apple\", \"pleap\") == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "TopCoder"
+}

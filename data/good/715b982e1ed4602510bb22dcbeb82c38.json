@@ -1,0 +1,13 @@
+{
+    "title": "'Number Palindromes (Easy)'",
+    "description": "Given a positive integer `n`, write a function `is_number_palindrome` that checks if the number formed by concatenating the digits of `n` is equal to the reversed version of that number. \n\n#### Function Signature\n```python\ndef is_number_palindrome(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns `True` if the number formed by concatenating the digits of `n` is equal to the reversed version of that number, `False` otherwise.",
+    "code": "def is_number_palindrome(n: int) -> bool:\n    # Convert the integer to a string\n    n_str = str(n)\n    # If the original number and its reversed version are the same, return True\n    return n == int(\nn_str[::-1])",
+    "tests": [
+        "assert is_number_palindrome(34543) == True",
+        "assert is_number_palindrome(12321) == True",
+        "assert is_number_palindrome(123) == False"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Competitive Programming"
+}

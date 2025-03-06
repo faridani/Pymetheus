@@ -1,0 +1,14 @@
+{
+    "title": "'Recursive Fibonacci Number Checker (Medium)'",
+    "description": "Given a number `n`, write a function `is_fibonacci` that checks if the number is a Fibonacci number. Recall that the Fibonacci sequence starts with 0 and 1, and each subsequent number is the sum of the previous two.\n\n#### Function Signature\n```python\ndef is_fibonacci(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns `True` if the input number is a Fibonacci number, `False` otherwise.",
+    "code": "def is_fibonacci(n: int) -> bool:\n   # Base cases\n   if n == 0 or n == 1: return True\n   # Initialize the first two numbers of the Fibonacci sequence\n   a, b = 0, 1\n   # Check each number in the sequence until we find `n` or exceed it\n   while a + b <= n:\n       if a == n: return True\n       a, b = b, a + b\n   return False",
+    "tests": [
+        "assert is_fibonacci(0) == True",
+        "assert is_fibonacci(1) == True",
+        "assert is_fibonacci(8) == False",
+        "assert is_fibonacci(55) == True"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

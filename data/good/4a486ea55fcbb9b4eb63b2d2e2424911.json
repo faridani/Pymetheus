@@ -1,0 +1,12 @@
+{
+    "title": "'Find the Sum of Prime Numbers below a given limit (Easy)'",
+    "description": "Write a function `sum_of_primes` that takes an integer as input and returns the sum of all prime numbers below that input. A prime number is a number greater than 1 that has no positive divisors other than 1 and itself. For example, the first few prime numbers are: 2, 3, 5, 7.\n\n#### Function Signature\n```python\ndef sum_of_primes(limit: int) -> int:\n```\n\n#### Input\n- `limit` (int): A positive integer. The function will return the sum of all prime numbers below this limit.\n\n#### Output\n- Returns an integer, the sum of all prime numbers below the given limit.",
+    "code": "def is_prime(n: int) -> bool:\n    if n <= 1 or (2 <= n <= 3) : return False\n    for i in range(2, int(n**0.5)+1):\n        if n % i == 0 : return False\n    return True\n\ndef sum_of_primes(limit: int) -> int:\n    total = 0\n    for num in range(2, limit+1):\n        if is_prime(num) : total += num",
+    "tests": [
+        "assert sum_of_primes(10) == 2 + 2 + 3 + 5 + 7 == 18",
+        "assert sum_of_primes(20) == 2 + 3 + 5 + 7 + 11 + 13 == 38"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Project Euler"
+}

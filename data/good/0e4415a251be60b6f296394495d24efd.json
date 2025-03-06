@@ -1,0 +1,14 @@
+{
+    "title": "'Check If a String is a Rotation of Another (Easy)'",
+    "description": "A string rotation can be thought of as taking the last n characters as the prefix of the new string, and appending the remaining characters to form a cycle. For example, the string \"waterbottle\" is a rotation of \"erbottlewa\" and \"rotabottlew\". Write a function `is_rotation` that checks if two given strings are rotations of each other.\n\n#### Function Signature\n```python\ndef is_rotation(a: str, b: str) -> bool:\n```\n\n#### Input\n- `a` (str): A non-empty string.\n- `b` (str): A non-empty string.\n\n#### Output\n- Returns `True` if the two input strings are rotations of each other, `False` otherwise.",
+    "code": "def is_rotation(a: str, b: str) -> bool:\n    # Ensure both strings have the same length\n    if len(a) != len(b):\n        return False\n    \n    # Check if one string can be obtained from another by shifting characters\n    for i in range(len(a)):\n        shifted_a = a[i:] + a[:i]\n        if shifted_a == b:\n            return True\n    \n    # If no match was found, the strings are not rotations of each other\n    return False",
+    "tests": [
+        "assert is_rotation(\"waterbottle\", \"erbottlewa\") == True",
+        "assert is_rotation(\"erbottlewa\", \"waterbottle\") == True",
+        "assert is_rotation(\"rotabottlew\", \"waterbottle\") == True",
+        "assert is_rotation(\"apple\", \"appleman\") == False"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "SPOJ"
+}

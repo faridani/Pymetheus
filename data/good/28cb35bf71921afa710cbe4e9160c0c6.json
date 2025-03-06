@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Given two strings, write a function `find_anagram` that checks if they are anagrams of each other. Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters and spaces only.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "import collections\n\ndef find_anagram(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = ''.join(char for char in s1 if char.isalpha()).lower()\n    s2 = ''.join(char for char in s2 if char.isalpha()).lower()\n    \n    # Count the frequency of each letter in both strings\n    freq1 = collections.Counter(s1)\n    freq2 = collections.Counter(s2)\n    \n    # Check if the two frequency dictionaries are equal\n    return freq1 == freq2",
+    "tests": [
+        "assert find_anagram('listen', 'silent') == True",
+        "assert find_anagram('hello', 'world') == False",
+        "assert find_anagram('coding', 'godic') == True"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "Codeforces"
+}

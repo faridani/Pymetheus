@@ -1,0 +1,13 @@
+{
+    "title": "'Levenshtein Distance Calculator (Easy)'",
+    "description": "Given two strings, calculate the Levenshtein distance between them. The Levenshtein distance is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.\n\n#### Function Signature\n```python\ndef levenshtein_distance(s1: str, s2: str) -> int:\n```\n\n#### Input\n- `s1` (str): A non-empty string.\n- `s2` (str): A non-empty string.\n\n#### Output\n- Returns an integer representing the Levenshtein distance between the two strings.",
+    "code": "def levenshtein_distance(s1: str, s2: str) -> int:\n    # If one of the strings is empty, return the length of the other string\n    if len(s1) == 0 or len(s2) == 0:\n        return len(s1 + s2) - len(s1 if len(s1) > len(s2) else s2)\n    # Initialize matrix with size (len(s1)+1) x (len(s2)+1)\n    matrix = [[0 for _ in range(len(s2) + 1)] for _ in range(len(s1) + 1)]\n    \n    # Initialize first row and column with the indices of the strings\n    for i, char in enumerate(s1):\n        matrix[i][0] = i\n    for j, char in enumerate(s2):\n        matrix[0][j] = j\n    \n    # Calculate the distance using dynamic programming\n    for i in range(1, len(s1) + 1):\n        for j in range(1, len(s2) + 1):\n            # If the characters are the same, no edit is needed\n            if s1[i - 1] == s2[j - 1]:\n                matrix[i][j] = matrix[i - 1][j - 1]\n            # Else, find the minimum of inserting the current character in `s1` or `s2`, deleting a character from `s1` or `s2`, or substituting the characters\n            else:\n                matrix[i][j] = min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j - 1] + (s1[i - 1] != s2[j - 1]))\n    \n    # Return the last cell in the matrix, which represents the Levenshtein distance\n    return matrix[-1][-1]",
+    "tests": [
+        "assert levenshtein_distance('kitten', 'sitting') == 3",
+        "assert levenshtein_distance('hello', 'world') == 4",
+        "assert levenshtein_distance('python', 'pythone') == 1"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "ICPC"
+}

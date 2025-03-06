@@ -1,0 +1,15 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Write a function `find_anagrams` that finds all anagrams of a given word within a list of words.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str, words: List[str]) -> List[str]:\n```\n\n#### Input\n- `word` (str): The word to search for anagrams.\n- `words` (List[str]): A list of words to find the anagrams from.\n\n#### Output\n- Returns a list of strings containing all the anagrams of the input `word`. If there are no anagrams, it should return an empty list.",
+    "code": "import collections\n\ndef find_anagrams(word: str, words: List[str]) -> List[str]:\n    # Count the frequency of each character in the word\n    count = collections.Counter(word)\n    \n    # Find all words that have the same character counts as the input `word`\n    anagrams = [w for w in words if collections.Counter(w) == count]",
+    "tests": [
+        "assert find_anagrams('listen', ['enlistment', 'silent', 'inlets']) == ['silent']",
+        "assert find_anagrams('act', ['cat', 'dog', 'rat', 'act', 'action']) == ['cat', 'act', 'action']",
+        "assert find_anagrams('never', ['never', 'novel']) == ['novel']",
+        "assert find_anagrams('racecar', ['level', 'car', 'racecar']) == ['car', 'racecar']",
+        "assert find_anagrams('hello', ['world', 'helloworld']) == []"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "Facebook Hacker Cup"
+}

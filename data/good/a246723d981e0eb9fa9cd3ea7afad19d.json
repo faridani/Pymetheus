@@ -1,0 +1,13 @@
+{
+    "title": "'Palindromic Substrings Count (Easy)'",
+    "description": "Write a function `count_palindromes` that finds and counts the number of palindromic substrings within a given string.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the number of palindromic substrings within the input string.",
+    "code": "import re\ndef count_palindromes(s: str) -> int:\n    # Find all substrings that can be a palindrome (ignoring case and spaces)\n    substrings = [m[1] for m in re.findall(r'((?i)\\b([^\\s]+)\\b)', s)]\n    # Count palindromic substrings by checking if they read the same forwards and backwards\n    return len([substring for substring in substrings if substring == substring[::-1]])",
+    "tests": [
+        "assert count_palindromes(\"racecar\") == 3",
+        "assert count_palindromes(\"No 'x' in Nixon\") == 8",
+        "assert count_palindromes(\"a man, a plan, a canal: Panama\") == 10"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "AtCoder"
+}

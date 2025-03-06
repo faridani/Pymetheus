@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Finder (Medium)'",
+    "description": "Given two strings, write a function that checks if they are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain letters and spaces only.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def are_anagrams(str1: str, str2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    str1 = ''.join(sorted(str1.lower().replace(' ', '')))\n    str2 = ''.join(sorted(str2.lower().replace(' ', '')))\n    \n    # Check if both strings have the same length and are the same after sorting\n    return len(str1) == len(str2) and str1 == str2",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"madam\", \"mom\") == True"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Facebook Hacker Cup"
+}

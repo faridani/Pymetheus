@@ -10,7 +10,12 @@ from cleanup import cleanup_response, correct_json_using_deepseek_r1, validate_r
 
 clear_terminal()
 
-useful_models = get_proper_models()
+useful_models = ["llama3:latest", 
+                    "qwen2:7b",
+                    "gemma2:27b",
+                    "mistral-nemo:latest",
+                    "aya:35b",
+                    "phi3:14b",] # get_proper_models()
 print(10*'\n')
 
 def ask_codellama(model, content):
@@ -30,7 +35,11 @@ def ask_codellama(model, content):
             print("\n\n\n ------- DEBUG -------")
             print(response_content_cleaned)
             print("------- END OF DEBUG -------\n\n\n")
-            save_response_to_file(response_content_cleaned, directory="needs_postprocessing")
+            failed_json = {
+                "model": model,
+                "response": response_content_cleaned
+            }
+            save_response_to_file(str(failed_json), directory="needs_postprocessing")
            
     except (json.JSONDecodeError, ValidationError) as e:
         print("\n\n\n")

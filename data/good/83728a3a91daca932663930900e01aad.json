@@ -1,0 +1,15 @@
+{
+    "title": "'Roman Numerals Converter (Medium)'",
+    "description": "Given a Roman numeral, convert it to an integer.\n\n#### Function Signature\n```python\ndef roman_to_int(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that contains only the following valid Roman numerals (I, V, X, L, C, D, M), and is in uppercase.\n\n#### Output\n- Returns the integer equivalent of the given Roman numeral.",
+    "code": "def roman_to_int(s: str) -> int:\n    # Create a dictionary to map each Roman numeral to its value\n    roman = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    # Initialize an empty list to store the numerals\n    nums = []\n    \n    # Iterate through the string and populate the list with the numeral values based on their positions\n    for i in range(len(s)):\n        if i > 0 and roman[s[i]] > roman[s[i - 1]]:\n            nums.append(-roman[s[i - 1]])\n        nums.append(roman[s[i]])\n    \n    # Sum the numeral values from the list\n    return sum(nums)",
+    "tests": [
+        "assert roman_to_int(\"III\") == 3",
+        "assert roman_to_int(\"IV\") == 4",
+        "assert roman_to_int(\"IX\") == 9",
+        "assert roman_to_int(\"LVIII\") == 58",
+        "assert roman_to_int(\"MCMXCIV\") == 1994"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

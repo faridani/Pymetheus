@@ -1,0 +1,14 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters and spaces, but no punctuation or numbers.\n\n#### Output\n- Returns `True` if the input strings are anagrams, `False` otherwise.",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = ''.join(sorted(s1.lower().replace(' ', '')))\n    s2 = ''.join(sorted(s2.lower().replace(' ', '')))\n    \n    # Check if the sorted strings are equal\n    return len(s1) == len(s2) and s1 == s2",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"racecar\", \"carrace\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False",
+        "assert is_anagram(\"  a man a plan a canal Panama   \", \"Panama Canal Panama a man a plan a \") == True"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "TopCoder"
+}

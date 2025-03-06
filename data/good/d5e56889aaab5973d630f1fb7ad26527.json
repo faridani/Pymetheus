@@ -1,0 +1,14 @@
+{
+    "title": "'Prime Factorization of a Number (Easy)'",
+    "description": "Write a function `prime_factors` that returns the prime factors of a given positive integer. The function should return a list of prime numbers that multiply together to equal the input number.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A positive integer greater than 1.\n\n#### Output\n- Returns a list of prime numbers that are factors of the input number.",
+    "code": "def prime_factors(n: int) -> List[int]:\n    # Initially assume all numbers from 2 to the square root of n are possible factors\n    factors = [i for i in range(2, int(n**0.5)+1)]\n    result = []\n    \n    # Iterate through the list of potential factors\n    for factor in factors:\n        # If the number is divisible by a potential factor, mark it as not possible and find the next factor\n        if n % factor == 0:\n            n //= factor\n        else:\n            continue\n    \n    # Add the current factor to the result list and repeat the process for any remaining non-divisible factors\n    if n > 1:\n        result.append(n)\n    return result",
+    "tests": [
+        "assert prime_factors(17) == [17]",
+        "assert prime_factors(8) == [2, 2, 2]",
+        "assert prime_factors(96) == [2, 2, 2, 2, 2, 3, 7]",
+        "assert prime_factors(495) == [3, 5, 7, 13]"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Project Euler"
+}

@@ -1,0 +1,15 @@
+{
+    "title": "'T9 Text Decoder (Medium)'",
+    "description": "T9 text input is a predictive text input method for mobile phones based on the numerical keypad. In this system, words are spelled by pressing a sequence of three numbers above each letter on the phone keypad.\n\n#### Function Signature\n```python\ndef t9_decode(numbers: str) -> str:\n```\n\n#### Input\n- `numbers` (str): A string that consists only of digits 2-9 and the character '#' representing space.\n\n#### Output\n- Returns the word that corresponds to the given sequence of numbers according to T9 text input method. For example, \"2345\" corresponds to \"abcde\".",
+    "code": "def t9_decode(numbers: str) -> str:\n    # Create a dictionary mapping each T9 digit to its corresponding letters\n    t9 = {'2': ['a', 'b', 'c'], '3': ['d', 'e', 'f'], '4': ['g', 'h', 'i'], '5': ['j', 'k', 'l'], '6': ['m', 'n', 'o'], '7': ['p', 'q', 'r', 's'], '8': ['t', 'u', 'v'], '9': ['w', 'x', 'y', 'z'], '#': ' '}\n    # Initialize the word as an empty string\n    word = ''\n    # Iterate over each digit in the input numbers\n    for number in numbers:\n        # Get the corresponding letters and append them to the word\n        if number in t9:\n            word += ''.join(t9[number])\n    \n    # Return the decoded word after stripping any leading or trailing spaces\n    return word.strip()",
+    "tests": [
+        "assert t9_decode(\"2345\") == \"abcde\"",
+        "assert t9_decode(\"175\") == \"qwerty\"",
+        "assert t9_decode(\"82753\") == \"hello world\"",
+        "assert t9_decode(\"#1#2#\") == \"a #b\"",
+        "assert t9_decode(\"22622\") == \"aa\""
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Codeforces"
+}

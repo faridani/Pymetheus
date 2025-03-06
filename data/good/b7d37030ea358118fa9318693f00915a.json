@@ -1,0 +1,14 @@
+{
+    "title": "'Fibonacci Series Up To a Given Number (Easy)'",
+    "description": "Write a function `fibonacci` that returns the Fibonacci series up to the given number. The first two numbers of the series are 0 and 1.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> list:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns a list of integers representing the Fibonacci series up to the given number.",
+    "code": "def fibonacci(n: int) -> list:\n    # Initialize the first two numbers in the series\n    series = [0, 1]\n\n    # Loop while the last number in the series is less than the given number\n    while series[-1] < n:\n        # Add the next number in the series and append it to the list\n        series.append(series[-1] + series[-2])\n    \n    # Return the series up to the given number\n    return series[:series.index(n) + 1]",
+    "tests": [
+        "assert fibonacci(10) == [0, 1, 1, 2, 3, 5, 8]",
+        "assert fibonacci(20) == [0, 1, 1, 2, 3, 5, 8, 13, 21]",
+        "assert fibonacci(1) == [0]",
+        "assert fibonacci(2) == [0, 1]"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Interview Query"
+}

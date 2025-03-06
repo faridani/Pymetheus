@@ -1,0 +1,16 @@
+{
+    "title": "'Check if a String Contains Only Vowels or Consonants (Easy)'",
+    "description": "Write a function `is_vowel_or_consonant` that checks if a given string contains only vowels or only consonants. Note that the string may contain spaces, punctuation and special characters.\n\n#### Function Signature\n```python\ndef is_vowel_or_consonant(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, punctuation, and special characters.\n\n#### Output\n- Returns `True` if the input string contains only vowels or only consonants, `False` otherwise.",
+    "code": "import string\ndef is_vowel_or_consonant(s: str) -> bool:\n    # Remove non-alphabetic characters\n    s = ''.join(char for char in s if char in string.ascii_letters)\n    # Split the remaining characters into a list\n    chars = list(s)\n    # If the list has length 0 or 1, return False\n    if len(chars) <= 1:\n        return False\n    else:\n        # Check if all characters are vowels or all characters are consonants\n        first_char = chars[0]\n        is_vowel = first_char in 'aeiou'\n        for char in chars[1:]:\n            if (char not in 'aeiou' and not is_vowel) or (char in 'aeiou' and is_vowel):\n                return False\n        return True",
+    "tests": [
+        "assert is_vowel_or_consonant('aaaaa') == True",
+        "assert is_vowel_or_consonant('AAAAA') == True",
+        "assert is_vowel_or_consonant('bbbbb') == True",
+        "assert is_vowel_or_consonant('BBBBB') == True",
+        "assert is_vowel_or_consonant('oyoyo') == False",
+        "assert is_vowel_or_consonant('OyOyO') == False"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "CodeSignal"
+}

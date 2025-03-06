@@ -1,0 +1,14 @@
+{
+    "title": "'Project Euler - Medium: Summing Up Digits of an Angstrom'",
+    "description": "In atomic physics, an angstrom (\u00c5) is a unit of length equal to 1/109 of a meter. Given a positive integer, find and return the sum of all its digits in base-10.\n\n#### Function Signature\n```python\ndef sum_of_digits(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the sum of all digits of the input number.",
+    "code": "def sum_of_digits(n: int) -> int:\n    # Check if the number is 0, since it has no digits\n    if n == 0:\n        return 0\n    \n    # Iterate through each digit of the number and calculate their sum\n    total = 0\n    while n > 0:\n        total += n % 10\n        n //= 10\n    return total",
+    "tests": [
+        "assert sum_of_digits(12345) == 15",
+        "assert sum_of_digits(987654321) == 45",
+        "assert sum_of_digits(123000) == 6",
+        "assert sum_of_digits(1111111) == 6"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Project Euler"
+}

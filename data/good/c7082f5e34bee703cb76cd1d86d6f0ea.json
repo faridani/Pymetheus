@@ -1,0 +1,14 @@
+{
+    "title": "'Is it anagram solver (Easy)'",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string that may contain letters (case-insensitive).\n- `s2` (str): A second string that may contain letters (case-insensitive).\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "import collections\ndef is_anagram(s1: str, s2: str) -> bool:\n    # Convert to lowercase and remove spaces\n    s1 = ''.join(sorted(s1.lower().replace(' ', '')))\n    s2 = ''.join(sorted(s2.lower().replace(' ', '')))\n    return len(s1) == len(s2) and collections.Counter(s1) == collections.Counter(s2)",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False",
+        "assert is_anagram(\"act\", \"cat\") == True",
+        "assert is_anagram(\"Eleven plus two\", \"twelve plus one\") == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "'Anagram Checker (Hard)'",
+    "description": "Given two strings, write a function `anagram_checker` that checks if the two strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef anagram_checker(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, and punctuation.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.",
+    "code": "def anagram_checker(s1: str, s2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s1 = ''.join(sorted(filter(str.isalpha, s1.lower())))\n    s2 = ''.join(sorted(filter(str.isalpha, s2.lower())))\n    # Check if the sorted strings are equal\n    return s1 == s2",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('hello', 'olleh') == True",
+        "assert anagram_checker('world', 'dlrow') == True",
+        "assert anagram_checker('example', 'maxime') == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "Interview Query"
+}

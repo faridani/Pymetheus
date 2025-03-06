@@ -1,0 +1,13 @@
+{
+    "title": "'Radix Sort Optimized for Large Lists (Hard)'",
+    "description": "Radix sort is a powerful sorting algorithm that sorts elements based on the number of digits. In this problem, you will optimize a radix sort function to handle large lists efficiently.\n\n#### Function Signature\n```python\ndef radix_sort(arr: List[int]) -> List[int]:\n```\n\n#### Input\n- `arr` (List[int]): A list of integers in any order.\n\n#### Output\n- Returns a new sorted list containing the integers from the input list, in ascending order.\n\n#### Constraints and Hints\n- The input list may contain up to 10^6 integers. To handle such large lists efficiently, use carrier arrays similar to counting sort or bucket sort, but with a twist - instead of using separate arrays for each digit position, use a single array (or multiple arrays optimized for the size) to store the digits in each position.\n- The radix should be set as 10 because integers have up to 6 digits. You can find the number of digits by using the `math.log10(abs(num))` function.",
+    "code": "import math\ndef radix_sort(arr: List[int]) -> List[int]:\n    # Determine the maximum number of digits in the input list\n    max_digits = int(math.log10(max(abs(num) for num in arr)) + 1)\n    # Initialize carrier arrays to store digits for each position\n    digit_arrays = [[] for _ in range(10)]\n    \n    # Iterate through the input list, placing each integer in the correct digit array based on its position\n    for num in arr:\n        for i in range(max_digits - 1, -1, -1):\n            digit = (num // (10 ** i)) % 10\n            digit_arrays[digit].append(num)\n    \n    # Sort each digit array individually, then combine them to get the final sorted list\n    for i in range(len(digit_arrays)):\n        arr[i] = sorted(digit_arrays[i])[::-1]\n    return arr",
+    "tests": [
+        "assert radix_sort([23, 45, 789, 123, 67, 56]) == [123, 23, 56, 67, 789, 45]",
+        "assert radix_sort([1000000001, 1000000002, 1000000003]) == [1000000001, 1000000002, 1000000003]",
+        "assert radix_sort([-2, -45, -789, -123, -67, -56]) == [-123, -2, -56, -67, -789, -45]"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "Codewars"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "'Reverse Words and Check Palindrome (Easy)'",
+    "description": "Write a function `check_palindrome` that first reverses the words in a given string, then checks if the reversed string is a palindrome.\n\n#### Function Signature\n```python\ndef check_palindrome(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation. The string consists of one or more words separated by spaces.\n\n#### Output\n- Returns `True` if the reversed words in the input string form a palindrome, `False` otherwise.",
+    "code": "import re\ndef check_palindrome(s: str) -> bool:\n    # Remove non-alphanumeric characters\n    s = re.sub('[^a-zA-Z0-9]', '', s)\n    # Split into words\n    words = s.split()\n    # Reverse the words\n    reversed_words = words[::-1]\n    # Convert to lowercase and join the words back together\n    reversed_s = ' '.join(word.lower() for word in reversed_words)\n    # Check if the reversed string reads the same forwards and backwards\n    return reversed_s == reversed_s[::-1]",
+    "tests": [
+        "assert check_palindrome(\"A man, a plan, a canal, Panama\") == True",
+        "assert check_palindrome(\"racecar\") == True",
+        "assert check_palindrome(\"hello world\") == False",
+        "assert check_palindrome(\"No 'x' in Nixon\") == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "ACM-ICPC"
+}

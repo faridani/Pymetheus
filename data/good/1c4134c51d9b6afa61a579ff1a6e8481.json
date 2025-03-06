@@ -1,0 +1,14 @@
+{
+    "title": "'Polindromes with Repeated Letters Checker (Medium)'",
+    "description": "A polindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization). However, for this problem, we consider palindromes where letters can be repeated multiple times. Write a function `is_polindromic` that checks if a given string is a polindrome.\n\n#### Function Signature\n```python\ndef is_polindromic(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string is a polindrome, `False` otherwise.",
+    "code": "def is_polindromic(s: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s = ''.join(char for char in s if char.isalpha()).lower()\n    # Initialize a dictionary to count the frequency of each letter in the string\n    freq_dict = {} \n    for char in s:\n        if char not in freq_dict:\n            freq_dict[char] = 1\n        else:\n            freq_dict[char] += 1\n    # Check if the number of occurrences of each letter is even, since polindromes have symmetric frequency distribution\n    for count in freq_dict.values():\n        if count % 2 != 0:\n            return False\n    \n    # If no odd counts are found, then the string is a palindrome with repeated letters\n    return True",
+    "tests": [
+        "assert is_polindromic(\"A man, a plan, a canal, Panama\") == True",
+        "assert is_polindromic(\"racecar\") == True",
+        "assert is_polindromic(\"abba\") == True",
+        "assert is_polindromic(\"hello\") == False"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "HackerEarth"
+}

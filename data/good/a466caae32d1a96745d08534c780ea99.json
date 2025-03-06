@@ -1,0 +1,13 @@
+{
+    "title": "'Polynomial Root Finder (Easy)'",
+    "description": "Given a polynomial equation in the form ax^2 + bx + c = 0, find its roots. Write a function `find_roots` that takes coefficients a, b and c as arguments, and returns the roots of the polynomial as a list.\n\n#### Function Signature\n```python\ndef find_roots(a: float, b: float, c: float) -> List[float]:\n```\n\n#### Input\n- `a`, `b`, and `c` (float): Coefficients of the polynomial equation ax^2 + bx + c = 0 in that order.\n\n#### Output\n- Returns a list containing the roots of the polynomial in complex number format, if the polynomial has real roots then only real numbers will be returned.",
+    "code": "from math import sqrt, pow\ndef find_roots(a: float, b: float, c: float) -> List[float]:\n    # Calculate the discriminant\n    d = (b * b) - (4.0 * a * c)\n    \n    # If the discriminant is greater than 0, the polynomial has two real roots\n    if d > 0:\n        root1 = (-b + sqrt(d)) / (2 * a)\n        root2 = (-b - sqrt(d)) / (2 * a)\n        # Return both roots as a list\n        return [root1, root2]\n    \n    # If the discriminant is equal to 0, the polynomial has one real root\n    elif d == 0:\n        root = -b / (2 * a)\n        # Return the single root as a list\n        return [root]\n    \n    # If the discriminant is less than 0, the polynomial has no real roots\n    else:\n        root1 = (-b + sqrt(-d)) / (2 * a) * 1j\n        root2 = (-b - sqrt(-d)) / (2 * a) * 1j\n        # Return both complex roots as a list\n        return [root1, root2]",
+    "tests": [
+        "assert find_roots(1,0,-3) == [-3,-1]",
+        "assert find_roots(4,0,16) == [2,2]",
+        "assert find_roots(1, 5, -20) == [-5 + sqrt(89)/7j, -5 - sqrt(89)/7j]"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

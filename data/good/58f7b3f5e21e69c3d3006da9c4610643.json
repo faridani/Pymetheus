@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "An anagram is a word or phrase that can be formed by rearranging the letters of another word or phrase. For example, 'listen' and 'silent' are anagrams.\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> List[Tuple[str, str]]:\n```\n\n#### Input\n- `words` (List[str]): A list of strings containing words that may have anagrams.\n\n#### Output\n- Returns a list of tuples, where each tuple contains two strings that are anagrams of each other. If no pairs of anagrams can be found, return an empty list.",
+    "code": "import collections\n\ndef find_anagrams(words: List[str]) -> List[Tuple[str, str]]:\n    # Create a dictionary to store the frequency of each character in each word\n    word_freq = {word: collections.Counter(char for char in word) for word in words}\n    \n    # Iterate through all possible pairs of words\n    anagrams = []\n    for i, first_word in enumerate(words):\n        for second_word in words[i + 1:]:\n            # Check if the frequency dictionaries of the two words are equal (except for the order of keys)\n            if word_freq[first_word] == collections.Counter(word_freq[second_word].keys()) and sum(word_freq[first_word][key] == word_freq[second_word][key] for key in word_freq[first_word]) == len(word_freq[first_word]):\n                anagrams.append((first_word, second_word))\n    \n    return anagrams",
+    "tests": [
+        "assert find_anagrams([\"listen\", \"silent\", \"enlist\", \"martian\"]) == [(\"listen\", \"silent\"), (\"enlist\", \"listen\")]",
+        "assert find_anagrams([\"hello\", \"world\", \"shout\", \"hotel\"]) == []",
+        "assert find_anagrams([\"cats\", \"act\", \"tacos\"]) == [(\"cats\", \"acts\"), (\"cats\", \"tacos\")]"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "ACM-ICPC"
+}

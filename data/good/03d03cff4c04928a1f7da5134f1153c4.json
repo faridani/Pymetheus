@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagrams(wordlist: List[str], target: str) -> List[str]:\n```\n\n#### Input\n- `wordlist` (List[str]): A list of words or phrases in string form.\n- `target` (str): A word or phrase to find anagrams for.\n\n#### Output\n- Returns a list of all the words or phrases in `wordlist` that are anagrams of the `target` as strings.",
+    "code": "def find_anagrams(wordlist: List[str], target: str) -> List[str]:\n    # Convert both the target and each word in the list to sorted lists of characters, ignoring case\n    target_sorted = sorted(list(target.lower()))\n    anagrams = [word for word in wordlist if sorted(list(word.lower())) == target_sorted]\n    return anagrams",
+    "tests": [
+        "assert find_anagrams(['cat', 'act', 'tac', 'dog', 'god'], 'act') == ['cat', 'tac']",
+        "assert find_anagrams(['apple', 'app', 'ape', 'elephant'], 'app') == ['apple', 'ape']",
+        "assert find_anagrams(['antidisestablishmentarianism', 'disestablishmentarianist'], 'disestablishmentarianism') == ['antidisestablishmentarianist']"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

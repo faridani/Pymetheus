@@ -1,0 +1,14 @@
+{
+    "title": "'Anagram Checker (Hard)'",
+    "description": "Given two strings, determine if they are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef are_anagrams(string1: str, string2: str) -> bool:\n```\n\n#### Input\n- `string1`, `string2` (str): Two strings of alphanumeric characters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams, `False` otherwise.",
+    "code": "def are_anagrams(string1: str, string2: str) -> bool:\n    # Remove non-alphanumeric characters and sort each string\n    sorted_str1 = ''.join(sorted(string1.translate(str.maketrans('', '', string.punctuation)))).lower()\n    sorted_str2 = ''.join(sorted(string2.translate(str.maketrans('', '', string.punctuation))).lower())\n    # Compare the sorted strings for equality\n    return len(sorted_str1) == len(sorted_str2) and sorted_str1 == sorted_str2",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"actinium\", \"micauntia\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"Twoo taps\", \"SttpA ootT\") == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "CodeSignal"
+}

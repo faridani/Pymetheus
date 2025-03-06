@@ -1,0 +1,16 @@
+{
+    "title": "'Levenshtein Distance Calculator (Medium)'",
+    "description": "'The Levenshtein distance",
+    "levenshtein_distance(s1": "str",
+    "s2": "str) -> int:\n```\n\n#### Input\n- `s1` (str): A non-empty string.\n- `s2` (str): A non-empty string.\n\n#### Output\n- Returns the minimum number of single-character edits (insertions",
+    "code": "def levenshtein_distance(s1: str, s2: str) -> int:\n    # Initialize matrix\n    len_s1 = len(s1)\n    len_s2 = len(s2)\n    dp = [[0 for _ in range(len_s2 + 1)] for _ in range(len_s1 + 1)]\n\n    # Fill in the matrix using dynamic programming\n    for i in range(len_s1):\n        for j in range(len_s2):\n            if s1[i] == s2[j]:\n                dp[i+1][j+1] = dp[i][j] + 1\n            else:\n                dp[i+1][j+1] = min(dp[i+1][j], dp[i][j+1]) + 1\n    return dp[-1][-1]",
+    "tests": [
+        "assert levenshtein_distance('kitten', 'sitting') == 3",
+        "assert levenshtein_distance('python', 'python') == 0",
+        "assert levenshtein_distance('hello', 'world') == 4",
+        "assert levenshtein_distance('dad', 'bab') == 2"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "HackerEarth"
+}

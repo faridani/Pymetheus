@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `find_anagrams` that finds all possible anagrams for a given word in a provided list of words.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str, words: List[str]) -> List[str]:\n```\n\n#### Input\n- `word` (str): The word to find anagrams for.\n- `words` (List[str]): A list of words from which the anagrams will be found.\n\n#### Output\n- Returns a list of all possible anagrams in the provided list of words.",
+    "code": "def find_anagrams(word: str, words: List[str]) -> List[str]:\n    # Create a count dictionary for the input word\n    count_dict = {char: words.count(char) for char in word}\n    # Create an empty list to store potential anagrams\n    potential_anagrams = []\n    \n    # Iterate over all words in the provided list and check if they are anagrams of the input word\n    for word in words:\n        # If the count dictionary can be used to create the current word, add it to the potential anagrams list\n        if all(count_dict[char] >= words.count(char) for char in word):\n            potential_anagrams.append(word)\n    \n    # Return the list of potential anagrams\n    return potential_anagrams",
+    "tests": [
+        "assert find_anagrams('listen', ['enlist', 'silent', 'signal', 'spotlight']) == ['enlist', 'silent']",
+        "assert find_anagrams('actors', ['actors', 'artists', 'catastrophe', 'starcraft', 'crustacean']) == ['artists', 'starcraft']",
+        "assert find_anagrams('washington', ['antidisestablishmentarianism', 'alacrity', 'deathstaremoji', 'washington', 'bipartisan']) == ['alacrity', 'deathstaremoji']"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "Competitive Programming"
+}

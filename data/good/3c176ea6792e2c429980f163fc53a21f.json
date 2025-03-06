@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Finder (Easy)'",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once. Write a function `find_anagrams` that finds all anagrams for a given input string.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str) -> List[str]:\n```\n\n#### Input\n- `word` (str): A non-empty word or phrase consisting of lowercase English letters.\n\n#### Output\n- Returns a list of strings containing all the anagrams of the input string.",
+    "code": "def find_anagrams(word: str) -> List[str]:\n    # Create a dictionary to store character counts\n    counts = {} \n    for char in word:\n        if char not in counts:\n            counts[char] = 0\n        counts[char] += 1\n    \n    # Generate the possible anagrams based on character counts\n    anagrams = []\n    for i in range(len(word)+1, 0, -1):\n        for comb in itertools.combinations(string.ascii_lowercase, i):\n            # Check if the combination has the correct character count and is not a duplicate\n            if sum([counts[char] for char in comb]) == i and comb not in anagrams:\n                # Create the anagram string and add it to the list if it is valid\n                anagram = ''.join(comb)\n                if word.replace(word[::-1], '') == anagram.replace(anagram[::-1], ''):\n                    anagrams.append(anagram)\n    \n    # Remove any empty strings from the list of anagrams\n    return [anagram for anagram in anagrams if anagram]",
+    "tests": [
+        "assert find_anagrams(\"listen\") == [\"silent\", \"enlist\"]",
+        "assert find_anagrams(\"programming\") == [\"grammar\",\"ngram\",\"margarip\",\"naprom\"]",
+        "assert find_anagrams(\"python\") == []"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

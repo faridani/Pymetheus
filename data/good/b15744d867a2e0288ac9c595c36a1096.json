@@ -1,0 +1,11 @@
+{
+    "title": "'Sum of Fibonacci Numbers Under 4 Million (Easy)'",
+    "description": "Write a function `sum_fibonacci` that calculates the sum of all Fibonacci numbers smaller than or equal to 4 million.\n\n#### Function Signature\n```python\ndef sum_fibonacci() -> int:\n```\n\n#### Input\n- None\n\n#### Output\n- Returns an integer representing the sum of all Fibonacci numbers smaller than or equal to 4 million.",
+    "code": "def fibonacci(n: int) -> int:\n    if n <= 1:\n        return n\n    else:\n        return fibonacci(n - 1) + fibonacci(n - 2)\n\ndef sum_fibonacci() -> int:\n    fib_sequence = [0, 1]\n    total = 0\n    for num in range(2, 4000001):\n        next_num = fibonacci(num)\n        if next_num > 4000000:\n            break\n        total += next_num\n    return total",
+    "tests": [
+        "assert sum_fibonacci() == 4613732"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Project Euler"
+}

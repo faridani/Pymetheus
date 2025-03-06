@@ -1,0 +1,15 @@
+{
+    "title": "'Fibonacci Spiral Diagonal Sum (Hard)'",
+    "description": "Write a function `diagonal_sum` that calculates the sum of numbers on a given diagonal of the Fibonacci spiral starting from 1.\n\n#### Function Signature\n```python\ndef diagonal_sum(n: int) -> int:\n```\n\nThe Fibonacci spiral is a simple spiral where each number is the sum of the two preceding ones. Starting at 1, the sequence can be represented as follows:\n\n   1\n    1 2\n   1 2 3\n  1 2 3 5\n 1 2 3 5 8\n...\n\nThe first few diagonals are: 1, 1, 3, 8, 13.\n\nThe diagonal number `n` starts at the row of `n - 1` and in the column of `n - 2`. If there are no more numbers to sum (i.e., the position is out of bounds), return 0.",
+    "code": "def diagonal_sum(n: int) -> int:\n    # Initialize variables for the current row and column\n    row, col = n - 1, n - 2\n    total = 0\n    \n    # Loop until we reach the first row (where the spiral starts)\n    while row > 0:\n        # Move to the next diagonal if the position is out of bounds\n        if col < 0 or row >= len(fib_sequence):\n            row -= 1\n            continue\n        \n        # Add the current number to the total\n        total += fib_sequence[row][col]\n        \n        # Move to the next position in the diagonal\n        row -= 1\n        col += 2\n    \n    # If we reached the first row, add the current number to the total\n    if col >= 0 and row == 0:\n        total += fib_sequence[row][col]\n    \n    # Calculate Fibonacci sequence up to the current row\n    fib_sequence = [[0] * (len(fib_sequence) + 2) for _ in range(n + 1)]\n    fib_sequence[0], fib_sequence[1] = 0, 1\n    for i in range(2, n + 1):\n        fib_sequence[i] = fib_sequence[i - 1] + fib_sequence[i - 2]\n    \n    # Return the total sum\n    return total",
+    "tests": [
+        "assert diagonal_sum(1) == 1",
+        "assert diagonal_sum(2) == 1 + 1",
+        "assert diagonal_sum(3) == 1 + 1 + 2",
+        "assert diagonal_sum(4) == 1 + 1 + 2 + 3",
+        "assert diagonal_sum(5) == scipy.misc.comb(6, 2) * (3 ** 2)"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "Project Euler"
+}

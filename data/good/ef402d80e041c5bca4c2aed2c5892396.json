@@ -1,0 +1,14 @@
+{
+    "title": "'Check if a given string is anagram of another string (Medium)'",
+    "description": "\"An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string containing only lowercase letters.\n- `str2` (str): Another string containing only lowercase letters.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.",
+    "code": "def is_anagram(str1: str, str2: str) -> bool:\n    # Sort the characters in both strings\n    sorted_str1 = sort(list(str1))\n    sorted_str2 = sort(list(str2))\n    \n    # Check if the sorted strings are equal\n    return sorted_str1 == sorted_str2",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('act', 'cat') == True",
+        "assert is_anagram('python', 'phtoyrn') == True"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

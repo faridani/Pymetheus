@@ -1,0 +1,16 @@
+{
+    "title": "'Anagram Checker (Hard)'",
+    "description": "Given two strings, check if they are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain letters in any case (lowercase or uppercase). The maximum length of the strings is 100.\n\n#### Output\n- Returns `True` if the two strings are anagrams, `False` otherwise.\n\n**Note**: An anagram is a word or phrase formed by rearranging the letters of another word or phrase.",
+    "code": "import collections\n\ndef are_anagrams(str1: str, str2: str) -> bool:\n    # Normalize the strings to lowercase\n    str1 = ''.join(char.lower() for char in str1)\n    str2 = ''.join(char.lower() for char in str2)\n    # If the normalized strings have different lengths, they cannot be anagrams.\n    if len(str1) != len(str2):\n        return False\n    # Count the frequency of each character in both strings using a dictionary\n    freq_dict = collections.Counter(str1)\n    for char in str2:\n        if char not in freq_dict or freq_dict[char] < 1:\n            return False\n        # Decrement the frequency count of each character in the first string as we find a match in the second string\n        freq_dict[char] -= 1\n    # If we have checked all characters from the second string and the frequency counts for all characters in the first string are 0, they are anagrams.\n    return True",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello world\", \"world hello\") == True",
+        "assert are_anagrams(\"abcdef\", \"fcedab\") == True",
+        "assert are_anagrams(\"apple\", \"appelle\") == True",
+        "assert are_anagrams(\"racecar\", \"carrace\") == True",
+        "assert are_anagrams(\"a man, a plan, a canal: Panama\", \"amanaplanacanalpanama\",) == False"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "SPOJ"
+}

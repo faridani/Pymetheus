@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Write a function `find_anagrams` that takes a list of strings and returns the anagrams for each pair or triplet of strings.\n\n#### Function Signature\n```python\ndef find_anagrams(strings: List[str]) -> Dict[str, List[str]]:\n```\n\n#### Input\n- `strings` (List[str]): A list containing strings that can be of different lengths.\n\n#### Output\n- Returns a dictionary where the keys are the anagrams and the values are the lists of strings that form each anagram.",
+    "code": "from collections import Counter\n\ndef find_anagrams(strings: List[str]) -> Dict[str, List[str]]:\n    # Create a dictionary to store the anagrams\n    anagrams = {}\n    \n    # Iterate through each string in the list\n    for s in strings:\n        # Count the frequency of each character in the string\n        count = Counter(s)\n        \n        # Loop through all other strings and check if they form an anagram with the current string\n        for other_string in strings:\n            if other_string != s and count == Counter(other_string):\n                # If it is an anagram, add it to the dictionary or update its value\n                anagrams[frozenset(sorted(count.elements()))] = anagrams.get(frozenset(sorted(count.elements())), []) + [other_string]\n    \n    # Return the dictionary of anagrams\n    return anagrams",
+    "tests": [
+        "assert find_anagrams([\"listen\", \"silent\", \"enlist\"]) == {\"elisntednilsets\", [\"listen\", \"silent\"]}",
+        "assert find_anagrams([\"hello\", \"olleh\"]) == {\"ello\", [\"hello\", \"olleh\"]}",
+        "assert find_anagrams([\"python\", \"typhon\", \"hotyyp\"]) == {\"nophtpyyt\", [\"python\", \"typhon\"]}"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "CodeSignal"
+}

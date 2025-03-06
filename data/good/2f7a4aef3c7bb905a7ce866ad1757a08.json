@@ -1,0 +1,15 @@
+{
+    "title": "'Palindromic Anagrams Finder (Easy)'",
+    "description": "'A palindromic anagram is a word or phrase that reads the same forwards and backwards",
+    "find_palindromic_anagrams(s": "str) -> List[str]:\n```\n\n#### Input\n- `s` (str): A string that may contain letters",
+    "code": "import string\ndef find_palindromic_anagrams(s: str) -> List[str]:\n    # Convert to lowercase and remove non-alphanumeric characters\n    s = ''.join(sorted(char for char in s.lower() if char in string.ascii_letters + string.digits)).replace(' ', '')\n    anagrams = []\n    # Find all palindromes by comparing the original string with reversed versions of sorted substrings\n    for i in range(1, len(s) + 1):\n        for j in range(i, len(s)):\n            substring = s[i:j]\n            reversed_substring = substring[::-1]\n            if substring == reversed_substring and substring not in anagrams:\n                anagrams.append(substring)\n    # Return all palindromic anagrams, including the input string itself\n    anagrams.insert(0, s)\n    return anagrams",
+    "tests": [
+        "assert find_palindromic_anagrams(\"racecar\") == [\"racecar\", \"ccarec\"]",
+        "assert find_palindromic_anagrams(\"Madam\") == [\"Madam\", \"madam\"]",
+        "assert find_palindromic_anagrams(\"A man, a plan, a canal: Panama\") == [\"amanaplanacanalpanama\", \"man_plan_canal_Panama\", \"amanaplanacanalpanama\", \"amanaplanacanal\", \"alan\", \"lana\"]",
+        "assert find_palindromic_anagrams(\"No 'x' in Nixon\") == [\"xxin\", \"xin\", \"Nixon\"]"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Facebook Hacker Cup"
+}

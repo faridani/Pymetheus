@@ -1,0 +1,14 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "Given two strings, write a function `find_anagrams` that returns all the anagrams of the first string found within the second string. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagrams(s1: str, s2: str) -> List[str]:\n```\n\n#### Input\n- `s1` (str): The first string for which you want to find anagrams.\n- `s2` (str): The second string containing the potential anagrams of the first string.\n\n#### Output\n- A list of strings, each representing a found anagram of the first string within the second string.",
+    "code": "import collections\n\ndef find_anagrams(s1: str, s2: str) -> List[str]:\n    # Count the frequency of characters in s1\n    count_dict = collections.Counter(s1)\n    \n    # Initialize an empty list to store anagrams found\n    anagrams = []\n    \n    # Iterate through each substring within s2 that is the length of s1\n    for i in range(len(s2) - len(s1) + 1):\n        # Extract a potential anagram from s2 starting at the current index\n        potential_anagram = s2[i:i+len(s1)]\n        \n        # Check if the frequency of characters in the potential anagram matches that of s1\n        if collections.Counter(potential_anagram) == count_dict:\n            # Add the potential anagram to the list if it's a match\n            anagrams.append(potential_anagram)\n    \n    # Return the found anagrams\n    return anagrams",
+    "tests": [
+        "assert find_anagrams('listen', 'silent feature') == ['listen']",
+        "assert find_anagrams('actinium', 'magnesium actinide') == ['actinium']",
+        "assert find_anagrams('hello', 'olleh') == ['hello']",
+        "assert find_anagrams('world', 'dlrow') == ['world']"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

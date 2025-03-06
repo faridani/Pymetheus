@@ -1,0 +1,14 @@
+{
+    "title": "'Levenshtein Distance Calculator (Hard)'",
+    "description": "The Levenshtein distance (also known as the Hamming distance for strings of equal length) is a measure of the similarity between two strings, used to compare pairs of strings, generally for the purpose of string comparison and replacement.\n\n#### Function Signature\n```python\ndef levenshtein_distance(s: str, t: str) -> int:\n```\n\n#### Input\n- `s` (str): A source string\n- `t` (str): A target string\n\n#### Output\n- Returns the Levenshtein distance between the two strings.",
+    "code": "from typing import List\nimport collections\n\ndef levenshtein_distance(s: str, t: str) -> int:\n    matrix = [[0 for _ in range(len(t) + 1)] for _ in range(len(s) + 1)]\n\n    for i in range(len(s)):\n        for j in range(len(t)):\n            if s[i] == t[j]:\n                matrix[i + 1][j + 1] = matrix[i][j]\n            else:\n                matrix[i + 1][j + 1] = min(matrix[i][j + 1], matrix[i + 1][j], matrix[i + 1][j + 1]) + 1\n    return matrix[-1][-1]",
+    "tests": [
+        "assert levenshtein_distance(\"kitten\", \"sitting\") == 3",
+        "assert levenshtein_distance(\"Python\", \"python\") == 0",
+        "assert levenshtein_distance(\"word\", \"world\") == 1",
+        "assert levenshtein_distance(\"Hello, World!\", \"In the world, greetings!\") == 9"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "ICPC"
+}

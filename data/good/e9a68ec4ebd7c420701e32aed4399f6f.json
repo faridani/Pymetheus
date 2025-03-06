@@ -1,0 +1,14 @@
+{
+    "title": "'Sum of Multiples (Easy)'",
+    "description": "Write a function `sum_of_multiples` that returns the sum of all multiples of two numbers up to and including 1000.\n\n#### Function Signature\n```python\ndef sum_of_multiples(a: int, b: int) -> int:\n```\n\n#### Input\n- `a` (int): The first number.\n- `b` (int): The second number.\n\n#### Output\n- Returns the sum of all multiples of numbers a and b up to and including 1000.",
+    "code": "def sum_of_multiples(a: int, b: int) -> int:\n    # Ensure `a` is less than `b`\n    if a > b:\n        a, b = b, a\n    \n    # Initialize sum\n    total = 0\n    \n    # Iterate from 1 to 1000\n    for num in range(1, 1001):\n        # If the number is a multiple of either `a` or `b`, add it to the sum\n        if num % a == 0 or num % b == 0:\n            total += num\n    \n    return total",
+    "tests": [
+        "assert sum_of_multiples(3, 5) == 233168",
+        "assert sum_of_multiples(7, 2) == 3060",
+        "assert sum_of_multiples(11, 49) == 2074198",
+        "assert sum_of_multiples(35, 17) == 213143"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Project Euler"
+}

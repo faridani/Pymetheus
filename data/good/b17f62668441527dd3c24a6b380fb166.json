@@ -1,0 +1,14 @@
+{
+    "title": "\"Is it an Anagram Checker (Medium)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing lowercase letters only.\n- `s2` (str): Another string containing lowercase letters only.\n\n#### Output\n- Returns `True` if the two strings are anagrams of each other, `False` otherwise.",
+    "code": "import collections\ndef is_anagram(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length before comparing\n    if len(s1) != len(s2):\n        return False\n    \n    # Count each letter in the first string\n    counter = collections.Counter(s1)\n    \n    # Check if all letters in the second string are present and count matches\n    for char in s2:\n        if char not in counter or counter[char] == 0:\n            return False\n        counter[char] -= 1\n    \n    # All checks passed, strings are anagrams\n    return True",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('racecar', 'carcarer') == True",
+        "assert is_anagram('amanaplanacanalpanama', 'alanamaplanacanalpana') == True"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "LeetCode"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "'Palindromic Substrings Count (Hard)'",
+    "description": "Given a string, find and count the number of non-empty palindromic substrings within it. Palindromic substrings are sequences that read the same forwards and backwards, ignoring spaces and punctuation. For example, in the string \"A man, a plan, a canal: Panama\", the palindromic substrings are `man`, `lan`, `ana`, `amanaplanacanalpanama`.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the number of non-empty palindromic substrings within the given string.",
+    "code": "import collections\nfrom functools import reduce\n\ndef count_palindromes(s: str) -> int:\n    # Remove non-alphanumeric characters and convert to lowercase\n    s = ''.join(char for char in s if char in string.ascii_letters + string.digits).lower()\n    # Create an empty collection to store the palindromes of each length\n    palindrome_counts = collections.defaultdict(int)\n    # Iterate through all possible substrings of the input string\n    for i in range(len(s)):\n        for j in range(i+1, len(s)+1):\n            # Get the current substring\n            substring = s[i:j]\n            # Check if it is a palindrome\n            if substring == substring[::-1]:\n                # Increment the count for its length in the collection\n                palindrome_counts[len(substring)] += 1\n    # Return the sum of all counts\n    return sum(palindrome_counts.values())",
+    "tests": [
+        "assert count_palindromes('A man, a plan, a canal: Panama') == 7",
+        "assert count_palindromes('racecar') == 1",
+        "assert count_palindromes('hello') == 0",
+        "assert count_palindromes('No \\'x\\' in Nixon') == 2"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "Codeforces"
+}

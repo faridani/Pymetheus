@@ -1,0 +1,15 @@
+{
+    "title": "'Recursive Palindrome Slicer (Medium)'",
+    "description": "Given a string, determine if it is a palindrome by checking if it reads the same forward and backward. Unlike the previous problem, this time we will implement the solution recursively.\n\n#### Function Signature\n```python\ndef is_palindrome(s: str, start=0, end=None) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n- `start` (int, optional): The index of the starting character to be checked in the recursive process. Default is 0.\n- `end` (int, optional): The index of the ending character to be checked in the recursive process. If not provided, it will default to `len(s) - 1`.\n\n#### Output\n- Returns `True` if the input string is a palindrome from the given starting and ending indices, `False` otherwise.",
+    "code": "import string\ndef is_palindrome(s: str, start=0, end=None) -> bool:\n    # Base case: If there's only one character left to check, return True if it matches itself\n    if end is None: \n        if len(s) <= 1: \n            return True \n        else: \n            start += 1\n            end -= 1\n    # Recursive case: Check the characters at the starting and ending indices\n    if s[start] != s[end]:\n        return False\n    # Recurse for the rest of the string\n    return is_palindrome(s, start + 1, end - 1)",
+    "tests": [
+        "assert is_palindrome(\"A man, a plan, a canal, Panama\") == True",
+        "assert is_palindrome(\"racecar\") == True",
+        "assert is_palindrome(\"hello\") == False",
+        "assert is_palindrome(\"No 'x' in Nixon\") == True",
+        "assert not is_palindrome(\"abcdefg\") == True"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "'Reverse String KMP Algorithm (Medium)'",
+    "description": "Given a string `s`, implement the KMP algorithm to find the first occurrence of its reverse.\n\n#### Function Signature\n```python\ndef find_first_reverse(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing lowercase letters and numbers.\n\n#### Output\n- Returns the 0-based index where the first occurrence of the reverse of the input string is found, or -1 if not found.",
+    "code": "def find_first_reverse(s: str) -> int:\n    # Initialize prefix function array\n    prefix = [0]*len(s)\n    k = 0\n    for i in range(1, len(s)):\n        while k > 0 and s[i] != s[k]:\n            k = prefix[k-1]\n        if s[i] == s[k]:\n            k += 1\n        prefix[i] = k\n    # Initialize the pattern and its reverse\n    p = list(s) + list(reversed(s))\n    n = len(p)\n    # Find the first occurrence of the reverse\n    for i in range(len(s)):\n        j = n - i - 1\n        if p[i] == p[j]:\n            while j > 0 and p[i] == p[j-1]:\n                j -= 1\n                i += prefix[i]\n            if not p[i+1] or p[i+1] == p[j]:\n                return i\n    return -1",
+    "tests": [
+        "assert find_first_reverse(\"babad\") == 0",
+        "assert find_first_reverse(\"cbbd\") == -1",
+        "assert find_first_reverse(\"abcdabcd\") == 5"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "AtCoder"
+}

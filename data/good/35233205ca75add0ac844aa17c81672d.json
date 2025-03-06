@@ -1,0 +1,14 @@
+{
+    "title": "'Mad Libs Sentence Checker (Easy)'",
+    "description": "In a game of Mad Libs, players fill in blanks in a story with words from specific categories (nouns, verbs, adjectives, etc.). Your task is to write a function that checks if a given string can be used as a sentence in Mad Libs based on its structure.\n\n#### Function Signature\n```python\ndef is_madlib(sentence: str) -> bool:\n```\n\n#### Input\n- `sentence` (str): A string containing words, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string can be used as a sentence in Mad Libs, `False` otherwise.\n\nThe game of Mad Libs requires that the sentence has at least one noun, one verb, and one adjective. The words must be separated by spaces, and there should not be any consecutive punctuation marks.\n\n#### Constraints\n- The input sentence will only contain lowercase letters, spaces, apostrophes (for contractions), and punctuation marks.\n- The maximum length of the input string is 200 characters.",
+    "code": "def is_madlib(sentence: str) -> bool:\n    # Initialize counts for nouns, verbs, adjectives, and other words\n    noun_count = verb_count = adj_count = other_count = 0\n    # Iterate through each word in the sentence\n    for word in sentence.split():\n        # Check if the word is a noun, verb, or adjective\n        if word.endswith('s') and not word.endswith(\"'s\"):\n            if adj_count > 0:\n                return False\n            adj_count += 1\n        elif word.endswith('ed') or word.endswith('ing'):\n            if verb_count > 0:\n                return False\n            verb_count += 1\n        elif word in ['is', 'was', 'were', 'be', 'been', 'being']:\n            if verb_count > 0:\n                return False\n        else:\n            other_count += 1\n    \n    # Check if there are at least one noun, one verb, and one adjective, and if there is no consecutive punctuation marks\n    return noun_count + verb_count > 0 and adj_count > 0 and not any(punct in sentence[i:i+2] for i in range(len(sentence) - 1))",
+    "tests": [
+        "assert is_madlib('the big brown fox jumps over the lazy dog') == True",
+        "assert is_madlib('a quick brown fox jumps over a lazy dog.') == False",
+        "assert is_madlib('i can not swim, it is too cold') == True",
+        "assert is_madlib('the man, the myth, the legend') == False"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "CodeChef"
+}

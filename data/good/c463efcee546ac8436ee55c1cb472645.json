@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Detection",
+    "description": "Write a function `find_anagrams(words: List[str]) -> Set[str]` that returns a set of all unique anagram pairs within the given list of words. Anagrams are words formed by rearranging the letters of a different word, using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> Set[str]:\n```\n\n#### Input\n- `words` (List[str]): A list of strings containing lowercase alphabets.\n\n#### Output\n- Returns a set of unique anagram pairs in the format `(word1, word2)`. An empty set is returned if no anagrams are found.",
+    "code": "def find_anagrams(words: List[str]) -> Set[Tuple[str, str]]:\n    # Create a dictionary to store words as keys and their counts\n    word_count = {} \n    for word in words:\n        word_count[sorted(word)] = 1 + word_count.get(sorted(word), 0)\n    \n    anagrams = set()\n    # Iterate through the dictionary and check if a pair of words can be formed\n    for key in word_count:\n        if len(key) != len(words):\n            continue\n        count = word_count[key]\n        if count > 1:\n            anagrams.add((key, words[len(words) - count]))\n    return anagrams",
+    "tests": [
+        "assert find_anagrams(['listen', 'silent', 'enlist']) == {('listen', 'silent'), ('enlist', 'silent')}",
+        "assert find_anagrams(['welcome', 'melon', 'elbow', 'mow']) == {('welcome', 'elbow'), ('welcome', 'mow')}",
+        "assert find_anagrams(['apple', 'apples', 'app', 'applicable', 'approximately', 'approach']) == {('app', 'apple'), ('approximately', 'approach'), ('apples', 'apple')}"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "HackerRank"
+}

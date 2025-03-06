@@ -1,0 +1,15 @@
+{
+    "title": "'Radiant Number Checker (Easy)'",
+    "description": "'A radiant number is a number whose digits",
+    "is_radiant(n": "int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer with at least one digit.\n\n#### Output\n- Returns `True` if the input number is a radiant number",
+    "code": "def is_radiant(n: int) -> bool:\n   # Ensure the input is a positive integer\n   if n < 1: return False\n   # Convert to string\n   s = str(n)\n   # Check if the string read from left to right and then from right to left are the same\n   return s == s[::-1]",
+    "tests": [
+        "assert is_radiant(9) == True",
+        "assert is_radiant(121) == True",
+        "assert is_radiant(373) == True",
+        "assert is_radiant(435) == False"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "HackerEarth"
+}

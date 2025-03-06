@@ -1,0 +1,14 @@
+{
+    "title": "'Mad Libs Parser: Find the Adjective",
+    "description": "Given a sentence where certain words are missing (like adjectives, nouns, verbs), your task is to write a function that can find these missing words based on their positions in the sentence. The sentence will contain special placeholders for these missing words like \"A\", \"N\", and \"V\". These placeholders can appear only once in the sentence. Replace the placeholders with appropriate adjectives, nouns, and verbs to form a valid English sentence.\n\n#### Function Signature\n```python\ndef parse_mad_lib(sentence: str) -> str:\n```\n\n#### Input\n- `sentence` (str): A string containing placeholders for adjectives, nouns and verbs in the format \"A\", \"N\", and \"V\" respectively. The sentence may also contain additional words, punctuation and spaces.\n\n#### Output\n- Returns a valid English sentence where all the placeholders have been replaced with appropriate adjectives, nouns, and verbs.",
+    "code": "import random\nfrom string import ascii_lowercase\n\ndef parse_mad_lib(sentence: str) -> str:\n    # Define functions to select adjective, noun and verb from a list of predefined words\n    adj = lambda: random.choice(ascii_lowercase) + 'ly'\n    noun = lambda: random.choice(ascii_lowercase * 3)\n    verb = lambda: random.choice([word for word in ascii_lowercase if word != 'a' and word != 'e' and word != 'i' and word != 'o' and word != 'u']) + 's'\n\n    # Split the sentence into words\n    words = sentence.split()\n\n    # Find positions of placeholders in the sentence\n    positions = [pos for pos, char in enumerate(words) if char in {'A', 'N', 'V'}]\n\n    # Replace the placeholders with appropriate adjectives, nouns and verbs\n    for pos in positions:\n        word_type = words[pos]\n        if word_type == 'A':\n            words[pos] = adj()\n        elif word_type == 'N':\n            words[pos] = noun()\n        elif word_type == 'V':\n            words[pos] = verb()\n    \n    # Join the words back into a sentence and return\n    return ' '.join(words)",
+    "tests": [
+        "assert parse_mad_likes('The A runs fast. The N is red. He Vs slow.') == 'The adjectively runs fast. The noun is red. He verbs slow.'",
+        "assert parse_likes('A quick brown V in a lazy river') == 'a quick brown runs in a lazy river'",
+        "assert parse_likes('The N lives near the big B. It has many Cs. On Sundays, it Vs slowly.') == 'The noun lives near the big building. It has many cars. On Sundays, it moves slowly.'",
+        "assert parse_likes('A small house stands on a hill. The V is blue. A bird flies over the N.') == 'a small house stands on a hill. The verb is blue. A bird flies over the noun.'"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

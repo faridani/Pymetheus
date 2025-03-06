@@ -1,0 +1,13 @@
+{
+    "title": "'Palindrome Indices Finder (Medium)'",
+    "description": "Given a palindrome, write a function `find_indices` that finds the indices of the first and last character of the palindrome. The input string may contain letters, numbers, spaces, and punctuation.\n\n#### Function Signature\n```python\ndef find_indices(s: str) -> tuple[int, int]:\n```\n\n#### Input\n- `s` (str): A palindrome string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a tuple containing the indices of the first and last character of the input palindrome.",
+    "code": "import re\ndef find_indices(s: str) -> tuple[int, int]:\n    # Remove non-alphanumeric characters\n    s = re.sub('[^a-zA-Z0-9]', '', s)\n    # Find the indices of the first and last character of the palindrome\n    start = s.find(s[::-1])\n    end = s.rfind(s[::-1]) + len(s) - 1\n    return start, end",
+    "tests": [
+        "assert find_indices('A man, a plan, a canal, Panama') == (0, 51)",
+        "assert find_indices('racecar') == (0, 4)",
+        "assert find_indices('hello') == (-1, -1)"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "HackerEarth"
+}

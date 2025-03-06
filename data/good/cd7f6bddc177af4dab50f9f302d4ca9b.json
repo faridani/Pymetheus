@@ -1,0 +1,13 @@
+{
+    "title": "'Radix Sort Implementation (Hard)'",
+    "description": "\"Radix sort is a non-comparative integer sorting algorithm that works by sorting the data based on number of digits or radix. Write a function `radix_sort` that takes an array of integers as input and sorts it using the LSD (Least Significant Digit) method of Radix Sort.\n\n#### Function Signature\n```python\ndef radix_sort(arr: List[int]) -> None:\n    max_value = max(arr)\n    place_value = 1\n    while place_value <= max_value:\n        bucket_counts = [0] * 10\n        for num in arr:\n            remainder = (num % place_value) // (place_value // 10)\n            bucket_counts[remainder] += 1\n        for i in range(1, len(bucket_counts)):\n            bucket_counts[i] += bucket_counts[i - 1]\n        index = len(arr) - 1\n        for num, bucket in enumerate(reversed(bucket_counts)):\n            while bucket > 0:\n                arr[index - bucket] = arr.pop(num)\n                index -= 1\n                bucket -= 1\n        place_value *= 10",
+    "code": "def radix_sort(arr):\n    max_value = max(arr)\n    place_value = 1\n    while place_value <= max_value:\n        bucket_counts = [0] * 10\n        for num in arr:\n            remainder = (num % place_value) // (place_value // 10)\n            bucket_counts[remainder] += 1\n        for i in range(1, len(bucket_counts)):\n                    bucket_counts[i] += bucket_counts[i - 1]\n        index = len(arr) - 1\n        for num, bucket in enumerate(reversed(bucket_counts)):\n            while bucket > 0:\n                arr[index - bucket] = arr.pop(num)\n                index -= 1\n                bucket -= 1\n        place_value *= 10",
+    "tests": [
+        "assert radix_sort([3, 4, 3, 1, 2]) == [1, 2, 3, 3, 4]",
+        "assert radix_sort([170, 45, 75, 93, 87]) == [45, 75, 87, 93, 170]",
+        "assert radix_sort([645, 98, 2, 234, 99]) == [2, 98, 234, 456, 99]"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "Competitive Programming"
+}

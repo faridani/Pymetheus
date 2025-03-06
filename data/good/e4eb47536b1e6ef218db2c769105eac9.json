@@ -1,0 +1,16 @@
+{
+    "title": "'Prime Factorization Function (Hard)'",
+    "description": "Write a function `prime_factors` that takes an integer `n` as input and returns a list of the prime numbers that factorize `n`. For example, the prime factors of 30 are [2, 3, 5].\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A positive integer greater than 1.\n\n#### Output\n- Returns a list of the prime numbers that factorize the input integer, sorted in ascending order.",
+    "code": "def prime_factors(n: int) -> List[int]:\n    factors = []\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            factors.append(i)\n            n //= i\n        else:\n            i += 1\n    if n > 1:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factors(3) == [3]",
+        "assert prime_factors(5) == [5]",
+        "assert prime_factors(6) == [2, 3]",
+        "assert prime_factors(9) == [3, 3]",
+        "assert prime_factors(10) == [2, 5]",
+        "assert prime_factors(28) == [2, 2, 7]"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "Project Euler"
+}

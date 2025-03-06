@@ -1,0 +1,13 @@
+{
+    "title": "'Number Spiral Diagonals Sum Finder (Easy)'",
+    "description": "Write a function `find_diagonal_sum` that finds the sum of all numbers on a given diagonal in a spiral matrix, starting from 1.\n\n#### Function Signature\n```python\ndef find_diagonal_sum(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The size of the square spiral matrix in which to find the sum of numbers on a given diagonal.\n\n#### Output\n- Returns the sum of all numbers on the given diagonal.",
+    "code": "def find_diagonal_sum(n: int) -> int:\n    # Initialize variables for starting position and direction\n    x, y, d = 0, -1, 0\n\n    total = 0\n\n    while x < n or y >= 0:\n        # Increment the sum by the current value\n        total += x + 1\n\n        # Calculate the new position based on the direction\n        next_x, next_y = x + d, y + (d + 2) % 4\n\n        # Update the position and direction\n        if next_x < n:\n            x, y = next_x, next_y\n            d += 1\n    \n    return total",
+    "tests": [
+        "assert find_diagonal_sum(3) == 21",
+        "assert find_diagonal_sum(5) == 55",
+        "assert find_diagonal_sum(9) == 285"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

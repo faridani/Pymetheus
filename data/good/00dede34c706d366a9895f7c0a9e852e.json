@@ -1,0 +1,14 @@
+{
+    "title": "'Check if a given list is a palindrome (Medium)'",
+    "description": "A palindrome is a sequence that reads the same backward as forward. In this problem, we will focus on checking if a given list of integers is a palindrome.\n\n#### Function Signature\n```python\ndef is_palindrome(nums: List[int]) -> bool:\n```\n\n#### Input\n- `nums` (List[int]): A non-empty list of integers, possibly containing negative numbers and duplicates.\n\n#### Output\n- Returns `True` if the input list is a palindrome, `False` otherwise.",
+    "code": "def is_palindrome(nums: List[int]) -> bool:\n    # Reverse the given list and compare with the original\n    return nums == nums[::-1]",
+    "tests": [
+        "assert is_palindrome([1, 2, 3, 2, 1]) == True",
+        "assert is_palindrome([1, 1, 2, 3, 2, 1]) == True",
+        "assert is_palindrome([1, 2, 3, 4, 5]) == False",
+        "assert is_palindrome([-1, -2, -3, -2, -1]) == True"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "HackerEarth"
+}

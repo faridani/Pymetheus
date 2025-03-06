@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Detection (Easy)'",
+    "description": "Determine if two strings are anagrams of each other, which means they contain the same exact letters, but possibly in a different order. For this task, ignore case and consider only alphabetic characters.\n\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings that contain only alphabetic characters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def is_anagram(str1: str, str2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s1 = ''.join(char for char in str1.lower() if char in string.ascii_letters)\n    s2 = ''.join(char for char in str2.lower() if char in string.ascii_letters)\n    # Check if both strings have the same length\n    return len(s1) == len(s2) and sorted(s1) == sorted(s2)",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False",
+        "assert is_anagram(\"morse code\", \"done\") == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

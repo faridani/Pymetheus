@@ -1,0 +1,14 @@
+{
+    "title": "'Levenshtein Distance Calculator (Easy)'",
+    "description": "The Levenshtein distance is a measure of the similarity between two strings. It counts the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.\n\n#### Function Signature\n```python\ndef levenshtein_distance(s1: str, s2: str) -> int:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may have different lengths.\n\n#### Output\n- Returns the Levenshtein distance between the two input strings as an integer.",
+    "code": "def levenshtein_distance(s1: str, s2: str) -> int:\n    # Initialize matrix with size of max(len(s1), len(s2))+1\n    dp = [[0 for _ in range(len(s2)+1)] for _ in range(len(s1)+1)]\n\n    # Loop through the two strings and fill the matrix using dynamic programming approach.\n    for i, char1 in enumerate(s1):\n        for j, char2 in enumerate(s2):\n            if i == 0 or j == 0:\n                dp[i][j] = i+j\n            else:\n                if char1 == char2:\n                    dp[i][j] = dp[i-1][j-1]\n                else:\n                    dp[i][j] = min(dp[i][j-1], dp[i-1][j], dp[i-1][j-1]) + 1\n    \n    return dp[-1][-1]",
+    "tests": [
+        "assert levenshtein_distance('kitten', 'sitting') == 3",
+        "assert levenshtein_distance('hello', 'world') == 4",
+        "assert levenshtein_distance('a', 'cat') == 3",
+        "assert levenshtein_distance('mississippi', 'apple') == 7"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Interview Query"
+}

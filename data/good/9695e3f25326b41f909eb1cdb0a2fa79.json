@@ -1,0 +1,13 @@
+{
+    "title": "'Mirror Sequence Checker (Hard)'",
+    "description": "A sequence of numbers, letters or a combination of both can be considered as a mirror sequence if it reads the same forwards and backwards. For example '12321' is a mirror sequence.\n\n#### Function Signature\n```python\ndef is_mirror_sequence(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain numbers, letters or both.\n\n#### Output\n- Returns `True` if the input string is a mirror sequence, `False` otherwise.",
+    "code": "def is_mirror_sequence(s: str) -> bool:\n    # Remove non-numeric and non-alphabetic characters\n    s = ''.join(char for char in s if char.isdigit() or char.isalpha())\n    # Check if the length of the string is even\n    if len(s) % 2 != 0:\n        return False\n    # Reverse the string and compare it with the original\n    half = len(s) // 2\n    reversed_s = s[-half:] + s[:half][::-1]\n    return s == reversed_s",
+    "tests": [
+        "assert is_mirror_sequence('12321') == True",
+        "assert is_mirror_sequence('abcde') == False",
+        "assert is_mirror_sequence('ABC345SAMEASAME345cBA') == True"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

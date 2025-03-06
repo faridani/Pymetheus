@@ -1,0 +1,14 @@
+{
+    "title": "'Reverse a Given List Elements Pairwise (Hard)'",
+    "description": "Given a list, reverse the order of its elements pairwise. For example, if the input is [1, 2, 3, 4], the output should be [(1, 4), (2, 3)].\n\n#### Function Signature\n```python\ndef reverse_pairwise(lst: List[Any]) -> List[Tuple[Any, Any]]:\n```\n\n#### Input\n- `lst` (List[Any]): A non-empty list containing any elements.\n\n#### Output\n- Returns a new list where each pair of adjacent elements in the input list are reversed.",
+    "code": "def reverse_pairwise(lst: List[Any]) -> List[Tuple[Any, Any]]:\n    # Check if the list has an odd number of elements\n    if len(lst) % 2 != 0:\n        lst.append(None)\n    # Initialize an empty list to store the reversed pairs\n    result = []\n    \n    # Iterate over the list with a step of 2\n    for i in range(0, len(lst), 2):\n        # If there's no next element, just append the current one\n        if i + 1 >= len(lst) or lst[i + 1] is None:\n            result.append((lst[i],))\n        else:\n            # Append the reversed pair to the result list\n            result.append((lst[i + 1], lst[i]))\n    \n    return result",
+    "tests": [
+        "assert reverse_pairwise([1, 2, 3, 4]) == [(1, 4), (2, 3)]",
+        "assert reverse_pairwise([1, 2, 3]) == [(2, 1), (3, 2)]",
+        "assert reverse_pairwise([]) == []",
+        "assert reverse_pairwise([1, 2]) == [(2, 1)]"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "Codeforces"
+}

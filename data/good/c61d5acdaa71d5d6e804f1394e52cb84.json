@@ -1,0 +1,15 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> List[List[str]]:\n```\n\n#### Input\n- `words` (List[str]): A list of strings containing words, where each word may contain only lowercase letters.\n\n#### Output\n- Returns a list of lists, such that each inner list contains anagrams of at least one word from the input list. The inner lists are sorted in lexicographic order.\n\n#### Constraints and Hints\n- Words can contain repeated letters.\n- It is possible for there to be no anagrams in the input list.",
+    "code": "def find_anagrams(words: List[str]) -> List[List[str]]:\n    # Create a dictionary to store the number of occurrences of each letter in each word\n    word_freq = {word: {} for word in words}\n    for word in words:\n        for char in word:\n            if char not in word_freq[word]:\n                word_freq[word][char] = 0\n            word_freq[word][char] += 1\n    # Sort the dictionary by the total frequency of each word (sum of all frequencies)\n    sorted_word_freq = sorted(word_freq.items(), key=lambda item: sum(item[1].values()), reverse=True)\n    \n    # Initialize an empty list to store the results\n    results = []\n    # Iterate through the sorted dictionary and group anagrams together in a list\n    for total_freq, words_with_freq in sorted_word_freq:\n        # Initialize an empty inner list to hold the current group of anagrams\n        anagram_group = []\n        \n        # Iterate through all words and add them to the current group if they have the same frequency distribution\n        for word, freq in words_with_freq.items():\n            anagram_check = True\n            for other_word, other_freq in words_with_freq.items():\n                if word != other_word and sum(abs(freq - other_freq) for char in set(word)) > 0:\n                    anagram_check = False\n                if anagram_check:\n                    anagram_group.append(word)\n        \n        # If the group is non-empty, add it to the results list\n        if len(anagram_group) > 0:\n            results.append(sorted(anagram_group))",
+    "tests": [
+        "assert find_anagrams([\"cats\", \"act\", \"tac\"]) == [[\"act\", \"cats\", \"tac\"]]",
+        "assert find_anagrams([\"hello\", \"world\", \"olleh\", \"dlrow\"]) == [[\"dlrow\", \"world\"], [\"hello\", \"olleh\"]]",
+        "assert find_anagrams([\"apple\", \"apples\", \"banana\"]) == [[\"apple\", \"apples\"]]",
+        "assert find_anagrams([\"ant\", \"tan\", \"tin\"]) == [[\"ant\", \"tan\", \"tin\"]]",
+        "assert find_anagrams([]) == []"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "AtCoder"
+}

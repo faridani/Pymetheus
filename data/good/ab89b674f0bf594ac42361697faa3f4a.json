@@ -1,0 +1,14 @@
+{
+    "title": "Reverse Words Checker (Medium)",
+    "description": "Write a function `is_reverse_words` that checks if a given string consists of words that read the same forwards and backwards, ignoring case and punctuation. Words are defined as sequences of non-space characters.\n\n#### Function Signature\n```python\ndef is_reverse_words(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if all the words in the input string read the same forwards and backwards, `False` otherwise.",
+    "code": "import re\ndef is_reverse_words(s: str) -> bool:\n    # Remove non-alphanumeric characters and convert to lowercase\n    s = ''.join(re.findall('\\w+', s.lower())).replace(' ', '')\n    # Split the string into words\n    words = list(s)\n    # Check if the length of the word is even or odd\n    if len(words) % 2 == 1:\n        return False\n    # Reverse half of the words and check if they are equal to the original words in reverse order\n    for i in range(0, len(words), 2):\n        if words[i] != words[-i-1][::-1]:\n            return False\n    return True",
+    "tests": [
+        "assert is_reverse_words(\"A man, a plan, a canal, Panama\") == False",
+        "assert is_reverse_words(\"racecar\") == True",
+        "assert is_reverse_words(\"hello world\") == False",
+        "assert is_reverse_words(\"No 'x' in Nixon\") == True"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "HackerRank"
+}

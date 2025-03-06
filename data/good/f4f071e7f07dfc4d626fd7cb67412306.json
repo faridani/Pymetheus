@@ -1,0 +1,14 @@
+{
+    "title": "'Palindromic Fibonacci Sequence Checker (Easy)'",
+    "description": "A palindromic Fibonacci sequence is a sequence of numbers where each number when converted to a string and checked for palindrome, results in true. Write a function `is_palindromic_fibonacci` that checks if a given number n is part of a palindromic Fibonacci sequence.\n\n#### Function Signature\n```python\ndef is_palindromic_fibonacci(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer that represents the number to check if it is part of a palindromic Fibonacci sequence.\n\n#### Output\n- Returns `True` if the input number n is part of a palindromic Fibonacci sequence, `False` otherwise.",
+    "code": "def is_palindromic_fibonacci(n: int) -> bool:\n    # Define Fibonacci function\n    def fibonacci(n: int):\n        a, b = 0, 1\n        for _ in range(n):\n            a, b = b, a + b\n        return a\n    \n    # If n is not positive or not an integer, return False\n    if not isinstance(n, int) or n <= 0:\n        return False\n    \n    # Calculate Fibonacci sequence up to the square root of n\n    fib_sequence = [fibonacci(i) for i in range(int(n ** 0.5) + 1)]\n    \n    # Check if any number in the sequence is a palindrome\n    for num in fib_sequence:\n        if is_palindrome(str(num)):\n            return True\n    \n    # If no palindromic numbers were found, return False\n    return False",
+    "tests": [
+        "assert is_palindromic_fibonacci(7) == True",
+        "assert is_palindromic_fibonacci(8) == False",
+        "assert is_palindromic_fibonacci(13) == False",
+        "assert is_palindromic_fibonacci(585) == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Daily Coding Problem"
+}

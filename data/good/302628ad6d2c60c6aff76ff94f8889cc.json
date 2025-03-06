@@ -1,0 +1,15 @@
+{
+    "title": "'Prime Summation (Medium)'",
+    "description": "Given a positive integer `n`, find the number of ways to represent it as the sum of two primes. A prime number is any number greater than 1 that can only be divided by itself and 1.\n\n#### Function Signature\n```python\ndef count_prime_sums(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the number of ways to represent `n` as the sum of two primes.",
+    "code": "def count_prime_sums(n: int) -> int:\n    primes = [2] + list(filter(lambda x: all([x % y != 0 for y in primes[:x]]), range(3, n + 1)))\n    result = sum([count_pairs(prime, n - prime) for prime in primes if prime <= (n // 2)]) // 2\n    return result\ndef count_pairs(a: int, b: int) -> int:\n    # If a and b are the same, it's a repeated prime which doesn't count\n    if a == b: return 0\n    # Check for multiples of 4 or even perfect squares that don't satisfy the condition (e.g., 2 + 2 = 4)\n    if a % 2 == 0 or (a * a > 4 and b * b <= n): return 0\n    # If one number is even, the other must be odd\n    if a % 2 == 0: a, b = b, a\n    # Iterate through multiples of 2 up to half of the smaller prime\n    count = 0\n    for i in range(2, min(a, b) + 1, 2):\n        if a % i == 0 and b % i == 0:\n            count += 1\n    # Add back the factor of 2 if both numbers are even and 2 is counted separately\n    if a % 2 == 0 and b % 2 == 0: count += 1\n    return count",
+    "tests": [
+        "assert count_prime_sums(8) == 3",
+        "assert count_prime_sums(9) == 2",
+        "assert count_prime_sums(17) == 4",
+        "assert count_prime_sums(20) == 5",
+        "assert count_prime_sums(33) == 6"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Project Euler"
+}

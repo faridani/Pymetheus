@@ -1,0 +1,13 @@
+{
+    "title": "'Checker for Pangrams (easy)'",
+    "description": "'A pangram is a sentence that uses every letter of the alphabet at least once. Write a function `is_pangram` that checks if a given string is a pangram.\n\n#### Function Signature\n```python\ndef is_pangram(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A sentence or phrase containing at least one word.\n\n#### Output\n- Returns `True` if the input string is a pangram",
+    "code": "def is_pangram(s: str) -> bool:\n    # Create an alphabet and check each letter\n    alphabet = list(string.ascii_lowercase)\n    for char in alphabet:\n        if char not in s.lower():\n            return False\n    \n    # If no missing letters, the string is a pangram\n    return True",
+    "tests": [
+        "assert is_pangram(\"The quick brown fox jumps over the lazy dog.\") == True",
+        "assert is_pangram(\"I love you -- at your age you go everywhere.\") == True",
+        "assert is_pangram(\"Almost every word in this sentence is a pangram.\") == False"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Daily Coding Problem"
+}

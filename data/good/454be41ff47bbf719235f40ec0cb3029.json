@@ -1,0 +1,14 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Given two strings, determine if they are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Strings that may contain letters (uppercase or lowercase), numbers, and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n\nAnagrams are words or phrases formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\nHint: Use a dictionary to count the frequency of each character in both strings.",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = ''.join([char for char in s1.lower() if char.isalpha()])\n    s2 = ''.join([char for char in s2.lower() if char.isalpha()])\n    \n    # If the lengths are not equal, they cannot be anagrams\n    if len(s1) != len(s2):\n        return False\n    \n    # Count characters in each string and compare\n    count_dict = {char: s1.count(char) for char in sorted(set(s1))}\n    for char in sorted(set(s2)):\n        if count_dict[char] != s2.count(char):\n            return False\n    \n    # If no differences found, they are anagrams\n    return True",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"olleh\") == True",
+        "assert are_anagrams(\"example\", \"maximum\") == False",
+        "assert are_anagrams(\"A man, a plan, a canal: Panama\", \"Panama canal: a plan a mana\") == True"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "ACM-ICPC"
+}

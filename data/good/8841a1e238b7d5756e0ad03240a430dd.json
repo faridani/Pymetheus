@@ -1,0 +1,20 @@
+{
+    "title": "'Palindromic Anagram Checker (Medium)'",
+    "description": "'An anagram is a word or phrase that contains the same letters as another word or phrase",
+    "check_palindromic_anagram(str1": "str",
+    "str2": "str) -> str:\n```\n\n#### Input\n- `str1` (str): A string that may contain letters",
+    "str)": "Another string that may contain letters",
+    "palindrome": "if both strings are palindromes",
+    "anagram": "if the strings are anagrams of each other (ignoring case)",
+    "neither": "otherwise.\n'",
+    "code": "import collections\n\ndef check_palindromic_anagram(str1: str, str2: str) -> str:\n    # Remove non-alphanumeric characters and convert to lowercase\n    str1 = ''.join(char for char in str1.lower() if char in string.ascii_letters + string.digits)\n    str2 = ''.join(char for char in str2.lower() if char in string.ascii_letters + string.digits)\n\n    # Check if both strings are palindromes\n    if str1 == str1[::-1] and str2 == str2[::-1]:\n        return 'palindrome'\n    \n    # If the lengths of the strings are not equal, they cannot be anagrams\n    elif len(str1) != len(str2):\n        return 'neither'\n    \n    # Sort the characters in each string and compare\n    sorted_str1 = sorted(list(str1))\n    sorted_str2 = sorted(list(str2))\n    if sorted_str1 == sorted_str2:\n        return 'anagram'\n    else:\n        return 'neither'",
+    "tests": [
+        "assert check_palindromic_anagram(\"A man, a plan, a canal, Panama\", \"amanaplanacanalpanam\") == \"palindrome\"",
+        "assert check_palindromic_anagram(\"racecar\", \"carrerace\") == \"anagram\"",
+        "assert check_palindromic_anagram(\"hello\", \"olleh\") == \"neither\"",
+        "assert check_palindromic_anagram(\"No 'x' in Nixon\", \"xix eno x sihpX\") == \"anagram\""
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

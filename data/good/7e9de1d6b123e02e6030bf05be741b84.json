@@ -1,0 +1,13 @@
+{
+    "title": "'Sum of Fibonacci numbers below a given limit (Medium)'",
+    "description": "Write a function `sum_of_fibonacci` that calculates the sum of all Fibonacci numbers less than or equal to a given limit.\n\n#### Function Signature\n```python\ndef sum_of_fibonacci(limit: int) -> int:\n```\n\n#### Input\n- `limit` (int): The maximum Fibonacci number to consider in the sum.\n\n#### Output\n- Returns the sum of all Fibonacci numbers less than or equal to the given limit.",
+    "code": "def fib(n: int) -> int:\n    if n <= 1:\n        return n\n    else:\n        return fib(n - 2) + fib(n - 1)\ndef sum_of_fibonacci(limit: int) -> int:\n    numbers = set()\n    num1, num2 = 0, 1\n    while num1 <= limit:\n        numbers.add(num1)\n        num1, num2 = num2, num1 + num2\n    return sum(numbers)",
+    "tests": [
+        "assert sum_of_fibonacci(10) == 1",
+        "assert sum_of_fibonacci(100) == 55",
+        "assert sum_of_fibonacci(44) == 34"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Project Euler"
+}

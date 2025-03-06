@@ -1,0 +1,14 @@
+{
+    "title": "\"Anagram Checker (Hard)",
+    "description": "An anagram is a word or phrase that is formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain letters and possibly whitespace.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise. Ignore case sensitivity and whitespace.",
+    "code": "import collections\n\ndef is_anagram(str1: str, str2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    str1 = ''.join(str1.lower().split()).replace(' ', '')\n    str2 = ''.join(str2.lower().split()).replace(' ', '')\n    \n    # Count the frequency of each letter in both strings\n    counts1 = collections.Counter([char for char in str1])\n    counts2 = collections.Counter([char for char in str2])\n    \n    # Check if both counts are equal\n    return counts1 == counts2",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"anagram\", \"nag a ram\" ) == True",
+        "assert is_anagram(\"hello\", \"world\" ) == False",
+        "assert is_anagram(\"A man, a plan, a canal: Panama\", \"Panama canal: a plan, a man!\" ) == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "SPOJ"
+}

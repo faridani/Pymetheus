@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Finder (Medium)'",
+    "description": "Write a function `find_anagrams` that finds all anagrams of a given string within another large string.\n\n#### Function Signature\n```python\ndef find_anagrams(large_str: str, small_str: str) -> list[str]:\n```\n\n#### Input\n- `large_str` (str): A long string that may contain repeated words.\n- `small_str` (str): A smaller string that is an anagram of one or more words in `large_str`. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically by bearing a relation to it either in meaning or origin.\n\n#### Output\n- Returns a list of anagrams found within `large_str` that match `small_str`. If no anagram is found, returns an empty list.",
+    "code": "import collections\ndef find_anagrams(large_str: str, small_str: str) -> list[str]:\n    # Create a dictionary of character counts for small_str and large_str\n    small_count = collections.Counter(small_str)\n    large_count = collections.Counter(large_str)\n    \n    # Check if the character counts match\n    if all(small_count[char] == large_count[char] for char in small_str):\n        # If they do, add the substring to the result list and continue searching\n        result = []\n        start = 0\n        end = len(small_str)\n        while True:\n            potential_substring = large_str[start:end]\n            if potential_substring == small_str:\n                result.append(potential_substring)\n                # If the substring is at the beginning of the string, move to the next character\n                if start > 0:\n                    start += 1\n                # If the substring is at the end of the string or we've reached a non-matching character, break the loop\n                elif potential_substring != large_str[end] or end == len(large_str) - 1:\n                    break\n                # Move the end pointer to the right\n                else:\n                    end += 1\n            # If we've gone beyond the length of small_str, we're done searching for this anagram\n            elif len(potential_substring) > len(small_str):\n                break\n        return result\n    else:\n        return []",
+    "tests": [
+        "assert find_anagrams(\"listen, the wind is rises\", \"silent\") == [\"listening\", \"enlist\"]",
+        "assert find_anagrams(\"I love dogs\", \"vole\") == [\"love\"]",
+        "assert find_anagrams(\"The quick brown fox jumps over the lazy dog\", \"tjacbkwirufo xnworb dluop sgm eujp fsxv\") == []"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "TopCoder"
+}

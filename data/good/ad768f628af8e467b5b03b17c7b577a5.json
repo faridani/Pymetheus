@@ -1,0 +1,14 @@
+{
+    "title": "'Palindromic Subsequence Length Checker (Medium)'",
+    "description": "Given a string `s`, find and count the number of non-empty palindromic subsequences within it. A palindromic sequence is a sequence that reads the same forwards and backwards, ignoring case and spaces.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the number of non-empty palindromic subsequences in the given string.",
+    "code": "import re\ndef count_palindromes(s: str) -> int:\n    # Remove non-alphanumeric characters and make all letters lowercase\n    s = re.sub('[^a-zA-Z0-9]', '', s.lower())\n    \n    # Recursive helper function to count palindromic subsequences with a given start and end index in the string\n    def _count_palindromes(start, end):\n        if start > end:\n            return 0\n        # Check if the current substring is a palindrome\n        if s[start] != s[end]:\n            return 0\n        \n        # Count palindromic subsequences with the current substring removed and its mirrored half\n        return _count_palindromes(start + 1, end - 1) + 1 + _count_palindromes(start + 1, end)\n    \n    # Initialize count to zero and then recursively find the number of palindromic subsequences\n    return sum(_count_palindromes(i, i) for i in range(len(s)))",
+    "tests": [
+        "assert count_palindromes(\"A man, a plan, a canal, Panama\") == 10",
+        "assert count_palindromes(\"racecar\") == 4",
+        "assert count_palindromes(\"hello\") == 1",
+        "assert count_palindromes(\"No 'x' in Nixon\") == 2"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "CodeSignal"
+}

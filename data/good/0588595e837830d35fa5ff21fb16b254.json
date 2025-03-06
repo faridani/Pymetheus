@@ -1,0 +1,13 @@
+{
+    "title": "'Radix Sort Algorithm (Easy)'",
+    "description": "Given an unsorted array of integers, use the Radix Sort algorithm to sort it. The Radix Sort uses LSD (Least Significant Digit) as the unit and sorts the array from right to left passing through every digit from 0 to the number of digits in the largest number.\n\n#### Function Signature\n```python\ndef radix_sort(arr: List[int]) -> List[int]:\n```\n\n#### Input\n- `arr` (List[int]): A list of integers that may contain negative numbers and duplicates.\n\n#### Output\n- Returns a sorted list of the input integers in ascending order.",
+    "code": "def radix_sort(arr: List[int]):\n    max_digits = len(str(max(arr))) + 1\n    exponent = 0\n    bucket, output = [[] for _ in range(10)], []\n    while exponent < max_digits:\n        for num in arr:\n            index = (num // 10**exponent) % 10\n            bucket[index].append(num)\n        for i in range(1, 10):\n            if bucket[i]:\n                output.extend(sorted(bucket[i]))\n        arr = output\n        for i in range(10):\n            bucket[i] = []\n        exponent += 1\n    return arr",
+    "tests": [
+        "assert radix_sort([23, 45, 987, 12, 6]) == [12, 23, 6, 45, 987]",
+        "assert radix_sort([-12, -23, -345, -987, 0]) == [-12, -23, -345, -987, 0]",
+        "assert radix_sort([10, -20, 20, 30, 40]) == [-20, 10, 20, 30, 40]"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

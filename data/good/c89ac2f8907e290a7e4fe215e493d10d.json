@@ -1,0 +1,14 @@
+{
+    "title": "'Palindromic Sum Checker (Easy)'",
+    "description": "A palindromic sum is a combination of integers that form a palindrome when written in reverse order. Write a function `palindromic_sum` that checks if a given list of numbers forms a palindromic sum.\n\n#### Function Signature\n```python\ndef palindromic_sum(numbers: List[int]) -> bool:\n```\n\n#### Input\n- `numbers` (List[int]): A list of integers that may contain both positive and negative numbers.\n\n#### Output\n- Returns `True` if the sum of the input numbers forms a palindromic number, `False` otherwise.",
+    "code": "def palindromic_sum(numbers: List[int]) -> bool:\n    # Convert all numbers to positive and sort them\n    numbers = sorted([abs(num) for num in numbers])\n    # Check if the list reads the same forwards and backwards\n    return numbers == numbers[::-1]",
+    "tests": [
+        "assert palindromic_sum([1, 2, 3, 2, 1]) == True",
+        "assert palindromic_sum([1, 2, 3, 7, 2, 1]) == False",
+        "assert palindromic_sum([5, -5]) == True",
+        "assert palindromic_sum([9, 9]) == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

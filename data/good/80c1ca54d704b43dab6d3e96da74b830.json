@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Longest Common Subsequence",
+    "description": "Given two sequences, find the length of the longest subsequence present in both of them. A subsequence is a sequence that appears in the same order, but not necessarily contiguous. Write a function `longest_common_subsequence` that calculates this length.\n\n#### Function Signature\n```python\ndef longest_common_subsequence(X: str, Y: str) -> int:\n```\n\n#### Input\n- `X` (str): The first sequence of characters.\n- `Y` (str): The second sequence of characters.\n\n#### Output\n- Returns the length of the longest common subsequence in both sequences.",
+    "code": "",
+    "def longest_common_subsequence(X: str, Y: str) -> int:\n        m = len(X)\n        n = len(Y)\n        dp = [[0]*(n+1) for _ in range(m+1)]\n        for i in range(m-1, -1, -1):\n            for j in range(n-1, -1, -1):\n                if X[i] == Y[j]:\n                    dp[i][j] = 1 + dp[i+1][j+1]\n                else:\n                    dp[i][j] = max(dp[i+1][j], dp[i][j+1])\n        return dp[0][0]": "",
+    "tests": [
+        "assert longest_common_subsequence(\"AGGTAB\", \"GXTXAYB\") == 4",
+        "assert longest_common_subsequence(\"abcd\", \"efgh\") == 0",
+        "assert longest_common_subsequence(\"abcde\", \"ace\") == 3"
+    ],
+    "difficulty": "hard",
+    "model": "codestral:latest",
+    "style": "Internationals Olympiad"
+}

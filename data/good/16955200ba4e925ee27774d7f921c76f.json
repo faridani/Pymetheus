@@ -1,0 +1,13 @@
+{
+    "title": "'Stack Balancing (Medium)'",
+    "description": "Given an array of characters representing a sequence of operations to perform on a stack, determine if the final stack is empty. The possible operations are push (P), pop (P1) and check top (T).\n\n#### Function Signature\n```python\ndef balance_stack(operations: List[str]) -> bool:\n```\n\n#### Input\n- `operations` (List[str]): A list of strings representing the operations to be performed on a stack. Each operation is one of the following characters: \"P\", \"P1\" or \"T\".\n\n#### Output\n- Returns `True` if the final stack is empty, `False` otherwise.",
+    "code": "def balance_stack(operations):\n    # Initialize an empty stack\n    s = []\n    for operation in operations:\n        # If the operation is a push\n        if operation == 'P':\n            s.append('P')\n        # Else if the operation is a pop\n        elif operation == 'P1':\n            # If the stack is empty, return False as we can't pop from an empty stack\n            if not s:\n                return False\n            s.pop()\n        # If the operation is to check the top of the stack\n        elif operation == 'T':\n            # If the stack is empty, return False as there is nothing on top to check\n            if not s:\n                return False\n            # Print the top element and do not modify the stack\n            print(s[-1])\n    # If we have processed all operations and the stack is not empty, return False as the final stack is not empty.\n    return not s",
+    "tests": [
+        "assert balance_stack([\"P\", \"T\", \"P\", \"P1\", \"T\"]) == True",
+        "assert balance_stack([\"P\", \"T\", \"P\", \"P1\", \"T\", \"P1\"]) == False",
+        "assert balance_stack([\"P\", \"T\", \"P\", \"P1\", \"T\", \"P\", \"P1\"]) == False"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Competitive Programming"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "'Mirror Sequence Checker (Medium)'",
+    "description": "A mirror sequence is a sequence of integers that reads the same forwards and backwards. Write a function `is_mirror_sequence` that checks if a given list of integers is a mirror sequence.\n\n#### Function Signature\n```python\ndef is_mirror_sequence(nums: List[int]) -> bool:\n```\n\n#### Input\n- `nums` (List[int]): A list of integers that may contain positive, negative and zero numbers.\n\n#### Output\n- Returns `True` if the input list is a mirror sequence, `False` otherwise.",
+    "code": "def is_mirror_sequence(nums: List[int]) -> bool:\n    # Check if the length of the list is even\n    if len(nums) % 2 != 0:\n        return False\n    \n    # Zip the list with itself reversed and compare each pair\n    return all(pair == pair[::-1] for pair in zip(nums, reversed(nums)))",
+    "tests": [
+        "assert is_mirror_sequence([1, 2, 3, 2, 1]) == True",
+        "assert is_mirror_sequence([1, 2, 3, 4, 5, 4, 3, 2, 1]) == False",
+        "assert is_mirror_sequence([-1, -2, -3, -2, -1]) == True",
+        "assert is_mirror_sequence([0, 1, 0]) == True"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "HackerEarth"
+}

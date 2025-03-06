@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Rectangle Overlap",
+    "description": "Given two rectangles defined by their coordinates (x1, y1) and (x2, y2), write a function `do_rectangles_overlap` that checks if they overlap. A rectangle is defined by its top-left and bottom-right coordinates.\n\n#### Function Signature\n```python\ndef do_rectangles_overlap(r1: tuple, r2: tuple) -> bool:\n```\n\n#### Input\n- `r1` (tuple): The first rectangle's coordinates `(x1, y1)` and `(x2, y2)`.\n- `r2` (tuple): The second rectangle's coordinates `(x3, y3)` and `(x4, y4)`.\n\n#### Output\n- Returns `True` if the rectangles overlap, `False` otherwise.",
+    "code": "def do_rectangles_overlap(r1: tuple, r2: tuple) -> bool:\n    # Unpack coordinates\n    x1, y1, x2, y2 = r1\n    x3, y3, x4, y4 = r2\n    \n    # Check if rectangles overlap\n    return not (x2 < x3 or x1 > x4 or y2 < y3 or y1 > y4)",
+    "tests": [
+        "assert do_rectangles_overlap((0, 0, 5, 5), (1, 1, 6, 6)) == True",
+        "assert do_rectangles_overlap((0, 0, 5, 5), (-1, -1, 4, 4)) == True",
+        "assert do_rectangles_overlap((0, 0, 5, 5), (6, 6, 10, 10)) == False",
+        "assert do_rectangles_overlap((0, 0, 2, 2), (1, 1, 3, 3)) == True"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral-nemo:latest",
+    "style": "Daily Coding Problem"
+}

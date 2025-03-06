@@ -1,0 +1,15 @@
+{
+    "title": "'Check if a given list of integers contains any duplicate numbers (Medium)'",
+    "description": "Given an unsorted list of integers, write a function `has_duplicates` that returns `True` if the list contains any duplicate numbers. If no duplicates are found, it should return `False`. \n\n#### Function Signature\n```python\ndef has_duplicates(numbers: List[int]) -> bool:\n```\n\n#### Input\n- `numbers` (List[int]): An unsorted list of integers.\n\n#### Output\n- Returns `True` if any integer in the input list appears more than once, `False` otherwise.",
+    "code": "def has_duplicates(numbers: List[int]) -> bool:\n    # Create a set to store unique integers\n    seen = set() \n    # Iterate through the list of numbers\n    for number in numbers:\n        # If the current number is already in the set, return True as a duplicate was found\n        if number in seen:\n            return True\n        # Otherwise, add the current number to the set\n        else:\n            seen.add(number)\n    # If we have iterated through the entire list without finding any duplicates, return False\n    return False",
+    "tests": [
+        "assert has_duplicates([1, 2, 3, 4, 5]) == False",
+        "assert has_duplicates([1, 2, 2, 3, 4, 5]) == True",
+        "assert has_duplicates([1, 1, 2, 3, 4, 5]) == True",
+        "assert has_duplicates([]) == False",
+        "assert has_duplicates([10, 20, 30, 40, 40, 50]) == True"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "Interview Query"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "'Palindromic Substrings' (Medium)",
+    "description": "Given a string, find all the non-empty palindromic substrings within it. Palindromes can have any number of characters.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of all the non-empty palindromic substrings found within the input string.",
+    "code": "import re\n\ndef find_palindromes(s: str) -> List[str]:\n    # Find all possible substrings that may be palindromes\n    pattern = r'(.)\\1*\\b|\b(\\w+\\b)\\b'  # Pattern to match single characters and words as potential palindromes\n    matches = re.findall(pattern, s, re.IGNORECASE)\n    # Filter out non-palindromic substrings\n    return [match for match in matches if match[0] == match[::-1]]",
+    "tests": [
+        "assert find_palindromes(\"racecar\") == [\"racecar\", \"race\", \"carr\", \"car\", \"r\"]",
+        "assert find_palindromes(\"A man, a plan, a canal, Panama\") == [\"man\", \"a\", \"panama\", \"anama\"]",
+        "assert find_palindromes(\"No 'x' in Nixon\") == [\"Nixon\", \"'x'\", \"xx\"]"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Codeforces"
+}

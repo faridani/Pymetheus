@@ -1,0 +1,15 @@
+{
+    "title": "Reverse a Linked List (Medium)",
+    "description": "Given the head of a linked list, reverse the list and return its new head.\n\n#### Function Signature\n```python\ndef reverse_linked_list(head: ListNode) -> ListNode:\n```\n\n#### Input\n- `head` (ListNode): The head of the linked list.\n\n#### Output\n- Returns (ListNode): The new head of the reversed linked list.\n\n#### Hint\nYou may want to use a recursive function or a stack to solve this problem.",
+    "code": "",
+    "python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_linked_list(head: ListNode) -> ListNode:\n    # Check if the linked list is empty\n    if not head:\n        return None\n    prev = None\n    current = head\n    while current:\n        next_node = current.next\n        current.next = prev\n        prev = current\n        current = next_node\n    return prev": "",
+    "tests": [
+        "assert reverse_linked_list(ListNode([1, 2, 3])) == ListNode([3, 2, 1])",
+        "assert reverse_linked_list(ListNode([1, 2])) == ListNode([2, 1])",
+        "assert reverse_linked_list(ListNode([0, 1, 2, 3, 4])) == ListNode([4, 3, 2, 1, 0])",
+        "assert reverse_linked_list(ListNode([])) == ListNode()"
+    ],
+    "difficulty": "super hard",
+    "model": "aya:35b",
+    "style": "LeetCode"
+}

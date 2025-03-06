@@ -1,0 +1,14 @@
+{
+    "title": "'Spiral Matrix Traversal (Easy)'",
+    "description": "'Write a function `spiralOrder` that takes a 2D matrix as input and returns the elements of the matrix in spiral order.\n\n#### Function Signature\n```python\ndef spiralOrder(matrix: List[List[int]]) -> List[int]:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A 2D matrix where each inner list represents a row of the matrix.\n\n#### Output\n- Returns a list containing the elements of the matrix in spiral order.\n'",
+    "code": "def spiralOrder(matrix: List[List[int]]) -> List[int]:\n    m, n = len(matrix), len(matrix[0])\n    directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]\n    traversed = set() \n    result = []\n    x, y = 0, 0\n    while len(result) < m * n:\n        current_direction_index = (x + y) % 4\n        next_x, next_y = x + directions[current_direction_index][0], y + directions[current_direction_index][1]\n        if 0 <= next_x < m and 0 <= next_y < n and (next_x, next_y) not in traversed:\n            result.append(matrix[next_x][next_y])\n            traversed.add((next_x, next_y))\n            x, y = next_x, next_y\n        else:\n            direction_index = (current_direction_index + 1) % len(directions)\n            x, y = x + directions[direction_index][0], y + directions[direction_index][1]\n    return result",
+    "tests": [
+        "assert spiralOrder([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == [1, 2, 3, 6, 9, 8, 7, 4, 5]",
+        "assert spiralOrder([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]) == [1, 2, 3, 6, 9, 12, 11, 10, 7, 8, 4, 5]",
+        "assert spiralOrder([]) == []",
+        "assert spiralOrder([[1]]) == [1]"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "HackerEarth"
+}

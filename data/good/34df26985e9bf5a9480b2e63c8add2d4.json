@@ -1,0 +1,16 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "'An anagram is a word or phrase formed by rearranging the letters of another word or phrase",
+    "is_anagram(s1": "str",
+    "s2": "str) -> bool:\n```\n\n#### Input\n- `s1`",
+    "str)": "Two strings that contain only lowercase letters and have the same length.\n\n#### Output\n- Returns `True` if the given strings are anagrams",
+    "code": "import collections\n\ndef is_anagram(s1: str, s2: str) -> bool:\n    # Check if both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    # Count occurrences of each letter in both strings\n    counts = collections.Counter(s1)\n    for char in s2:\n        if char not in counts or counts[char] == 0:\n            return False\n        counts[char] -= 1\n    # If all characters have been accounted for, the strings are anagrams\n    return True",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False",
+        "assert is_anagram(\"acttcat\", \"cattact\") == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "ACM-ICPC"
+}

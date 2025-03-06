@@ -1,0 +1,14 @@
+{
+    "title": "'Number of Ways to Reach a Position (Medium)'",
+    "description": "\"Given an array of integers and a target position, find the number of ways to reach that position by either jumping 1 step or 2 steps from the current position.\n\n#### Function Signature\n```python\ndef count_ways(arr: List[int], target: int) -> int:\n```\n\n#### Input\n- `arr` (List[int]): A sorted and non-empty list of integers.\n- `target` (int): An integer that is greater than or equal to the smallest number in the array.\n\n#### Output\n- Returns an integer representing the number of ways to reach the target position using 1-step or 2-steps jumps.",
+    "code": "def count_ways(arr, target):\n    # Base case: if the current position is equal to the target, return 1\n    if arr[-1] == target:\n        return 1\n    # Initialize a dictionary to store the number of ways to reach each position\n    dp = {arr[0]: 1}\n    # Iterate through the array\n    for i in range(1, len(arr)):\n        # For each position, check if it can be reached by 1-step or 2-steps jumps from the previous positions\n        if arr[i] <= target - arr[i - 1] and target - arr[i] not in dp:\n            dp[arr[i]] = dp.get(arr[i - 1], 0) + dp.get(arr[i - 2], 0)\n        # If the current position can be reached by a 1-step jump, increment the count\n        if arr[i] == target - arr[i - 1] and target - arr[i] in dp:\n            dp[target] += dp[arr[i]]\n    return dp.get(target, 0)",
+    "tests": [
+        "assert count_ways([0, 1, 2, 3], 4) == 3",
+        "assert count_ways([0, 1, 4, 6, 9], 5) == 2",
+        "assert count_ways([0, 2, 7, 11, 12, 15], 12) == 2",
+        "assert count_ways([0, 3, 5, 8, 10], 9) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "'Recursive Palindromic Substrings Finder (Hard)'",
+    "description": "Write a recursive function `find_palindromes` that finds all palindromic substrings of a given string. A palindrome is a non-empty sequence of characters that reads the same forwards and backwards (ignoring spaces, punctuation, and capitalization).\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of all palindromic substrings found in the input string.\n\n**Hint:** You can use recursion to find substrings by taking a smaller slice of `s` at each level. For example, if you are currently checking the substring starting at index `i` and ending at index `j`, you could recursively check the substrings starting at indexes `i+1` and `j-1` (and any other valid indexes within those boundaries).",
+    "code": "import re\ndef find_palindromes(s: str) -> List[str]:\n    # Find all possible palindromic substrings by checking all starting and ending indices\n    results = []\n    for i in range(len(s)):\n        for j in range(i, len(s), 2):\n            # Ensure the substring is valid (within bounds of the string)\n            if j >= len(s): break\n            # Check if the substring is a palindrome\n            if s[i:j] == s[i:j][::-1]:\n                results.append(s[i:j])\n    # Remove any empty strings or single character palindromes (these are not interesting solutions)\n    return [result for result in results if len(result) > 1]",
+    "tests": [
+        "assert find_palindromes('racecar') == ['racecar', 'race', 'carc', 'ar', 'ra']",
+        "assert find_palindromes('A man, a plan, a canal, Panama') == ['amanaplanacanalpanamaplanacanala', 'man', 'a', ',', ':', '.', 'canal']"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

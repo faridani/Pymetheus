@@ -1,0 +1,14 @@
+{
+    "title": "'Palindromic Anagram Checker (Hard)'",
+    "description": "Given two strings, check if they are palindromic anagrams of each other.\n\n#### Function Signature\n```python\ndef is_palindromic_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the two input strings are palindromic anagrams of each other, `False` otherwise.\n\n#### Constraints\n- The length of the strings will not exceed 100 characters.\n- Both strings will only contain lowercase alphabets and numbers (0-9).\n- No spaces or punctuation are allowed.",
+    "code": "def is_palindromic_anagram(s1: str, s2: str) -> bool:\n    # Remove any non-alphanumeric characters from the strings\n    s1 = ''.join([char for char in s1 if char.isalnum()]).lower()\n    s2 = ''.join([char for char in s2 if char.isalnum()]).lower()\n    \n    # If either string is not the same length as the other, they cannot be palindromic anagrams\n    if len(s1) != len(s2):\n        return False\n    \n    # Sort the strings and compare them for equality\n    return sorted(s1) == sorted(s2)",
+    "tests": [
+        "assert is_palindromic_anagram('madam', 'dam') == True",
+        "assert is_palindromic_anagram('racecar', 'carrace') == True",
+        "assert is_palindromic_anagram('hello', 'olleh') == False",
+        "assert is_palindromic_anagram('1a2b3a1', '1ba23ab1') == True"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "Codeforces"
+}

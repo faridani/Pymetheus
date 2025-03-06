@@ -1,0 +1,14 @@
+{
+    "title": "'Palindromic Subsequence Count (Hard)'",
+    "description": "A subsequence of a string is obtained by deleting some characters without changing their order. A palindromic subsequence of a given string is any subsequence that reads the same forwards and backwards.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing only lowercase English letters.\n\n#### Output\n- Returns the number of palindromic subsequences in the given string.",
+    "code": "from itertools import chain, combinations\n\ndef count_palindromes(s: str) -> int:\n    # Iterate through all possible subsequence lengths from 1 to the length of the input string\n    for i in range(1, len(s) + 1):\n        # Generate all subsequences of length `i` using itertools.combinations\n        subs = [s[a:b] for a, b in combinations(range(len(s)), i)]\n        \n        # Filter out non-palindromic subsequences by comparing the subsequence with its reverse and checking if they are equal.\n        pali_subs = list(filter(lambda x: x == x[::-1], subs))\n\n        # Count the number of palindromic subsequences of length `i`\n        count += len(pali_subs)\n    \n    return count",
+    "tests": [
+        "assert count_palindromes(\"aabaaabaac\") == 16",
+        "assert count_palindromes(\"aba\") == 4",
+        "assert count_palindromes(\"a\") == 1",
+        "assert count_palindromes(\"abbcbabbbabccba\") == 20"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

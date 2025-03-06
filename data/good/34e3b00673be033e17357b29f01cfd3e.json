@@ -1,0 +1,13 @@
+{
+    "title": "'Radix Sort: A Simple",
+    "description": "\"Radix sort is a sorting algorithm that works well on lists of numbers represented in a fixed-width number system. It is not in-place and it does not require extra space proportional to the size of the list. The algorithm sorts by counting the occurrence of each digit and then constructs the final array from the counts.\n\n#### Function Signature\n```python\ndef radix_sort(numbers: List[int]) -> List[int]:\n```\n\n#### Input\n- `numbers` (List[int]): A list of non-negative integers that may contain leading zeros.\n\n#### Output\n- Returns a new sorted list containing the same numbers as input, but in ascending order.",
+    "code": "def radix_sort(numbers: List[int]) -> List[int]:\n    # Find the maximum number of digits in any given number\n    max_digits = len(str(max(numbers)))\n    # Perform sorting by each digit starting from least significant digit to most significant digit\n    for d in range(max_digits, 0, -1):\n        count_lists = [[] for _ in range(10)]\n        output = []\n        # Count the occurrence of each digit for this digit position\n        for num in numbers:\n            index = (num // 10**d) % 10\n            count_lists[index].append(num)\n        \n        # Merge sorted lists to get the final sorted list\n        while len(count_lists) > 1:\n            m = 0\n            for i in range(1, len(count_lists)):\n                if count_lists[i] == []:\n                    continue\n                while count_lists[m] and count_lists[i][0] < count_lists[m][0]:\n                    output.append(count_lists[m].pop(0))\n                    m += 1\n            for num in count_lists[i]:\n                output.append(num)\n        numbers = output\n    return numbers",
+    "tests": [
+        "assert radix_sort([23, 456, 789, 12]) == [12, 23, 456, 789]",
+        "assert radix_sort([0, 12, 345, 7890]) == [0, 12, 345, 7890]",
+        "assert radix_sort([10, 100, 1000, 10000]) == [10, 100, 1000, 10000]"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

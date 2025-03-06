@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Finder: Find all anagrams of a given string (Hard)'",
+    "description": "An anagram is a word or phrase that contains the same letters as another word or phrase, but arranged in a different order. Write a function `find_anagrams` that takes a string and returns a list of all its anagrams.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str) -> List[str]:\n```\n\n#### Input\n- `word` (str): A string that contains only lowercase letters.\n\n#### Output\n- Returns a list of strings, where each string is an anagram of the given word. If there are no anagrams for the given word, the function should return an empty list.",
+    "code": "def find_anagrams(word: str) -> List[str]:\n    # Create a dictionary to store letter counts\n    letter_count = {chr(i): 0 for i in range(ord('a'), ord('z') + 1)}\n    word_letter_count = {chr(i): word.count(chr(i)) for i in range(ord('a'), ord('z') + 1) if word.count(chr(i)) > 0}\n    anagrams = []\n    \n    # Function to find all permutations of a given string using recursion\n    def permute(remaining, remaining_counts):\n        if not remaining:\n            anagrams.append(''.join(sorted(chars))) \n            return\n        for i in range(min(remaining[0], remaining_counts[ord(remaining[0])]), 0, -1):\n            chars = list(remaining)\n            chars[0] = chars[0].replace(chr(i), '', 1)\n            permute(chars[1:], {k: v - i for k, v in remaining_counts.items()})\n    \n    # Find all permutations of the letters in the given word\n    permute(list(word), word_letter_count)\n    # Filter anagrams that match the original word (remove it from the list)\n    return [anagram for anagram in anagrams if anagram != word]",
+    "tests": [
+        "assert find_anagrams('listen') == ['silent', 'enlist']",
+        "assert find_anagrams('hello') == []",
+        "assert find_anagrams('programming') == ['gnipprom', 'grmmropn']"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "Codecademy"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "\"Levenshtein Distance Calculator (Medium)",
+    "description": "The Levenshtein distance is a measure of the similarity between two strings, which we will call 'word1' and 'word2'. The distance is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.\n\n#### Function Signature\n```python\ndef levenshtein_distance(word1: str, word2: str) -> int:\n```\n\n#### Input\n- `word1` (str): A string that will be compared with another string.\n- `word2` (str): Another string that will be compared with the first one.\n\n#### Output\n- Returns an integer representing the Levenshtein distance between the two input strings.",
+    "code": "def levenshtein_distance(word1: str, word2: str) -> int:\n    if not word1 or not word2: return len(word1) + len(word2)\n    dist_matrix = [[0] * (len(word2) + 1) for _ in range(len(word1) + 1)]\n    for i in range(len(word1) + 1): dist_matrix[i][0] = i\n    for j in range(len(word2) + 1): dist_matrix[0][j] = j\n    \n    for i, char1 in enumerate(word1):\n        for j, char2 in enumerate(word2):\n            if char1 == char2:\n                dist_matrix[i + 1][j + 1] = dist_matrix[i][j]\n            else:\n                dist_matrix[i + 1][j + 1] = min(dist_matrix[i][j + 1], dist_matrix[i + 1][j], dist_matrix[i][j]) + 1\n    return dist_matrix[-1][-1]",
+    "tests": [
+        "assert levenshtein_distance(\"kitten\", \"sitting\") == 3",
+        "assert levenshtein_distance(\"cat\", \"dog\") == 3",
+        "assert levenshtein_distance(\"hello\", \"world\") == 4"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "SPOJ"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "'Palindromic Substrings Finder' - Hard",
+    "description": "Given a string, find all non-overlapping substrings that are palindromes.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of all non-overlapping substrings of the input string that are palindromes. Each palindrome should be returned as a single string.",
+    "code": "import re\ndef find_palindromes(s: str) -> List[str]:\n    # Find all possible substrings that might be palindromes, ignoring spaces and punctuation\n    substrings = [match.group() for match in re.finditer('([a-zA-Z0-9]+)', s)]\n    # Convert each substring to lowercase\n    substrings = [substring.lower() for substring in substrings]\n    # Filter out non-palindromes\n    palindromes = filter(lambda x: x == x[::-1], substrings)\n    # Convert the generator back to a list and return it\n    return list(palindromes)",
+    "tests": [
+        "assert find_palindromes(\"A man, a plan, a canal, Panama\") == [\"man\", \"a\", \"anala\", \"ama\"]",
+        "assert find_palindromes(\"racecar\") == [\"racecar\"]",
+        "assert find_palindromes(\"hello\") == []",
+        "assert find_palindromes(\"No 'x' in Nixon\") == [\"in\", \"'x'\", \"xx\", \"Nixon\"]"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "CodeSignal"
+}

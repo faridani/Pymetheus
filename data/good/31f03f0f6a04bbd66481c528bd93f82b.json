@@ -1,0 +1,14 @@
+{
+    "title": "'Stack Balancing Game (Medium)'",
+    "description": "In this game, we have a stack and a sequence of operations. Each operation can be either a push or a pop. The goal is to check if the given sequence results in a valid stack state where all elements are in the correct order.\n\n#### Function Signature\n```python\ndef is_valid(operations: List[str]) -> bool:\n```\n\n#### Input\n- `operations` (List[str]): A list of strings representing either \"push\" or \"pop\" operations. Each string is case-insensitive.\n\n#### Output\n- Returns `True` if the stack state after executing all the given operations is valid, `False` otherwise.",
+    "code": "def is_valid(operations: List[str]):\n    # Initialize an empty stack\n    stack = []\n    \n    # Iterate through the operations\n    for operation in operations:\n        if operation.lower() == 'push':\n            # If the top of the stack is not None and the top and the new element are not in the correct order, return False\n            if stack and stack[-1] > int(operation.split(' ')[-1]):\n                return False\n            # Push the new element onto the stack\n            stack.append(int(operation.split(' ')[-1]))\n        elif operation.lower() == 'pop':\n            # If the top of the stack is None, return False\n            if not stack:\n                return False\n            # Pop the top element from the stack and check if the new top is in the correct position\n            top = stack.pop()\n            if stack and stack[-1] < top:\n                return False\n    \n    # If no errors were encountered, the stack state after all operations is valid\n    return not stack",
+    "tests": [
+        "assert is_valid([\"push 3\", \"push 2\", \"push 1\"]) == True",
+        "assert is_valid([\"pop\", \"pop\", \"push 1\"]) == False",
+        "assert is_valid([\"push 3\", \"push 2\", \"push 1\", \"pop\"]) == True",
+        "assert is_valid([\"push a\", \"push b\", \"push c\", \"pop\"]) == False"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "TopCoder"
+}

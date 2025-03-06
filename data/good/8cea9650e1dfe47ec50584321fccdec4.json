@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "'Anagram is a word or phrase formed by rearranging the letters of a different word or phrase",
+    "find_anagrams(word": "str) -> list[str]:\n```\n\n#### Input\n- `word` (str): A string that contains only alphabetic characters.\n\n#### Output\n- Returns a list of strings. For each string in the list",
+    "code": "import itertools\ndef find_anagrams(word: str) -> list[str]:\n    # Create a dictionary to store counts of characters in the word\n    count = {char: word.count(char) for char in set(word)}\n    \n    # Generate all permutations of the letters in the word\n    perms = itertools.permutations(set(word))\n    \n    # Create a list to store anagrams\n    anagrams = []\n    for perm in perms:\n        # Check if the counts match with the given word\n        if all(count[char] == count[char_perm] for char, char_perm in zip(word, ''.join(perm))):\n            # Remove duplicates and sort lexicographically\n            anagram = ''.join(sorted(list(perm)))\n            if anagram not in anagrams:\n                anagrams.append(anagram)\n    return anagrams",
+    "tests": [
+        "assert find_anagrams('listen') == ['enlists', 'silent']",
+        "assert find_anagrams('programming') == ['gnitrmomargorp', 'grammar king', 'margarapin']"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "ACM-ICPC"
+}

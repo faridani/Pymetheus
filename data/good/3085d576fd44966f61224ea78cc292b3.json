@@ -1,0 +1,15 @@
+{
+    "title": "'Recursive Fibonacci Series Checker (Medium)'",
+    "description": "The fibonacci sequence is a series of numbers in which each number is the sum of the two preceding ones, usually starting with 0 and 1. Write a recursive function `is_fibonacci` that checks if a given non-negative integer is part of the fibonacci sequence.\n\n#### Function Signature\n```python\ndef is_fibonacci(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A non-negative integer that may or may not be part of the fibonacci sequence.\n\n#### Output\n- Returns `True` if the input integer is in the fibonacci sequence, `False` otherwise.",
+    "code": "def is_fibonacci(n: int) -> bool:\n    # Base cases\n    if n == 0 or n == 1: return True\n    if n < 0: return False\n    # Recursive case\n    fibonacci = [0, 1]\n    for i in range(2, n+1):\n        fibonacci.append(fibonacci[i-1] + fibonacci[i-2])\n    return n in fibonacci",
+    "tests": [
+        "assert is_fibonacci(0) == True",
+        "assert is_fibonacci(1) == True",
+        "assert is_fibonacci(8) == True",
+        "assert is_fibonacci(13) == False",
+        "assert is_fibonacci(-1) == False"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Facebook Hacker Cup"
+}

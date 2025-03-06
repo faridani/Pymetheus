@@ -1,0 +1,14 @@
+{
+    "title": "'Is it anagram checker (Easy)'",
+    "description": "An anagram is a word or phrase that is formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing only lowercase alphabetical characters.\n- `s2` (str): Another string containing only lowercase alphabetical characters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Check if the lengths of the strings are equal\n    if len(s1) != len(s2):\n        return False\n    \n    # Create two dictionaries to store character counts for each string\n    char_counts1 = {} \n    char_counts2 = {}\n    \n    # Iterate through the characters in the first string and update their count in the dictionary\n    for char in s1:\n        if char not in char_counts1:\n            char_counts1[char] = 1\n        else:\n            char_counts1[char] += 1\n    \n    # Iterate through the characters in the second string and update their count in the dictionary\n    for char in s2:\n        if char not in char_counts2:\n            char_counts2[char] = 1\n        else:\n            char_counts2[char] += 1\n    \n    # Check if both dictionaries have the same count for each character\n    for char in char_counts1:\n        if char not in char_counts2 or char_counts1[char] != char_counts2[char]:\n            return False\n    \n    # If no mismatch found, the strings are anagrams of each other\n    return True",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"actually\", \"tactics\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False",
+        "assert is_anagram(\"apple\", \"mapple\") == False"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "TopCoder"
+}

@@ -1,0 +1,15 @@
+{
+    "title": "'Anagram Checker (Hard)'",
+    "description": "An anagram is a word or phrase that consists of the same letters as another, but arranged differently. Write a function `are_anagrams` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string that may contain letters (upper or lower case) and spaces.\n- `str2` (str): Another string that may contain letters (upper or lower case) and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise. Remember to handle edge cases such as empty strings, non-string inputs and single character strings correctly.",
+    "code": "def are_anagrams(str1: str, str2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    str1 = ''.join(sorted(str1.lower().replace(' ', '')))\n    str2 = ''.join(sorted(str2.lower().replace(' ', '')))\n    # Check if the sorted strings are equal\n    return len(str1) == len(str2) and str1 == str2",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"olleh\") == True",
+        "assert are_anagrams(\"world\", \"dlrow\") == True",
+        "assert are_anagrams(\"\", \"\") == True",
+        "assert are_anagrams(\"apple\", \"app\") == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "SPOJ"
+}

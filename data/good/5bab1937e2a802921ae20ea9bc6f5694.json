@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Given two strings, write a function `anagram_checker` that determines whether the two strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef anagram_checker(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain letters (case insensitive).\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def anagram_checker(str1: str, str2: str) -> bool:\n    # Remove punctuation and convert to lowercase\n    str1 = ''.join(char for char in str1 if char not in string.punctuation).lower()\n    str2 = ''.join(char for char in str2 if char not in string.punctuation).lower()\n    # Sort the characters in each string and compare them\n    return sorted(str1) == sorted(str2)",
+    "tests": [
+        "assert anagram_checker(\"Listen\", \"Silent\") == True",
+        "assert anagram_checker(\"Dormouse\", \"Eldemur\") == True",
+        "assert anagram_checker(\"Roses are red\", \"Red roses are dead\") == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

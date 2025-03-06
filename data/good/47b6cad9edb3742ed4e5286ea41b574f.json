@@ -1,0 +1,14 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "Given two strings, write a function `find_anagrams` that checks if the two input strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef find_anagrams(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string that may contain letters and spaces.\n- `str2` (str): Another string that may contain letters and spaces.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.",
+    "code": "def find_anagrams(str1: str, str2: str) -> bool:\n    # Remove any whitespace from both strings and convert to lowercase\n    str1 = ''.join(char for char in str1.lower() if char not in ' ')\n    str2 = ''.join(char for char in str2.lower() if char not in ' ')\n    # Sort the characters in each string and check if they are the same\n    return sorted(str1) == sorted(str2)",
+    "tests": [
+        "assert find_anagrams(\"listen\", \"silent\") == True",
+        "assert find_anagrams(\"python\", \"typhon\") == False",
+        "assert find_anagrams(\"madam\", \"mom\") == True",
+        "assert find_anagrams(\"hello\", \"olleh\") == True"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "CodeSignal"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "'Is it a Rotated String? (Medium)'",
+    "description": "A rotated string is a string that consists of the same characters, but in a different order. For example, the strings \"waterbottle\" and \"rotorwartel\" are rotations of each other.\n\n#### Function Signature\n```python\ndef is_rotation(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain the same characters in a different order.\n\n#### Output\n- Returns `True` if the two input strings are rotations of each other, `False` otherwise.",
+    "code": "def is_rotation(s1: str, s2: str) -> bool:\n    # Ensure the lengths of the strings are equal\n    if len(s1) != len(s2):\n        return False\n    # If one string is a substring of the other, they cannot be rotations\n    if s1 in s2 or s2 in s1:\n        return False\n    # Initialize a dictionary to store the character counts for each string\n    char_counts = {\n        's1': {},\n        's2': {}\n    }\n    # Count the characters in each string and add them to the dictionary\n    for char in s1:\n        char_counts['s1'][char] = char_counts.get('s1', {}).get(char, 0) + 1\n    for char in s2:\n        char_counts['s2'][char] = char_counts.get('s2', {}).get(char, 0) + 1\n    # If the character counts do not match, they cannot be rotations\n    if any(val != val2 for val, val2 in zip(char_counts['s1'].values(), char_counts['s2'].values())):\n        return False\n    # The strings may be rotations, so we'll test starting from the first character of `s1` and moving forward until we find a match or exhaust all possibilities\n    for i in range(len(s1)):\n        if s1[i:] + s1[:i] == s2:\n            return True\n    return False",
+    "tests": [
+        "assert is_rotation('waterbottle', 'rotorwartel') == True",
+        "assert is_rotation('hello', 'olleh') == True",
+        "assert is_rotation('world', 'dlrow') == True",
+        "assert is_rotation('hello', 'knight') == False"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "LeetCode"
+}

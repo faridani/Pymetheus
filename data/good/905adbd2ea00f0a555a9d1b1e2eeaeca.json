@@ -1,0 +1,13 @@
+{
+    "title": "'Check if a String Contains All Unique Characters (Easy)'",
+    "description": "Write a function `check_unique` that checks if a given string contains all unique characters. \n\n#### Function Signature\n```python\ndef check_unique(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A non-empty string.\n\n#### Output\n- Returns `True` if the input string contains all unique characters, `False` otherwise.",
+    "code": "def check_unique(s: str) -> bool:\n    # Convert to set to remove duplicates and only keep unique elements\n    s = set(s)\n    # Check if the length of the set is equal to the length of the original string\n    return len(s) == len(s.lower())",
+    "tests": [
+        "assert check_unique(\"abc\") == True",
+        "assert check_unique(\"abca\") == False",
+        "assert check_unique(\"abcd\") == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Interview Query"
+}

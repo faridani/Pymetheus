@@ -1,0 +1,13 @@
+{
+    "title": "'Textifinite Sequence Finder (Hard)'",
+    "description": "\"Find the Textifinite sequence within a given list of integers. A Textifinite sequence is a non-finite sequence that appears infinite but actually terminates.\n\n#### Function Signature\n```python\ndef find_textifinite(numbers: List[int]) -> List[int]:\n```\n\n#### Input\n- `numbers` (List[int]): A non-empty list of integers.\n\n#### Output\n- Returns a list containing the Textifinite sequence if it exists, otherwise returns an empty list.\n\n#### Hints\nA Textifinite sequence is a sequence that appears to be infinite but actually terminates. It can start with any number, and each following number is obtained by adding a constant to the previous number. The constant can be positive or negative, and may not always be the same.",
+    "code": "def find_textifinite(numbers: List[int]) -> List[int]:\n    # Sort the list\n    numbers = sorted(numbers)\n    # Initialize previous, current and constant variables\n    prev, current = numbers[0], numbers[1]\n    const = current - prev\n    sequence = []\n    # Iterate through the sorted list\n    for number in numbers:\n        # If the difference between the current number and the previous one does not equal the constant,\n        if number - prev != const:\n            # Reset the constant and start a new sequence\n            const = number - prev\n            sequence.clear()\n            prev, current = number, number + const\n            sequence.append(number)\n        # If the current number is equal to the previous one,\n        elif number == prev:\n            # Add the current number to the sequence and update the current number\n            sequence.append(number)\n            prev, current = current, number + const\n        # If we have reached the end of the list,\n        else:\n            # If the difference between the last two numbers is equal to the constant,\n            if (numbers[-1] - numbers[-2]) == const:\n                # Add the last two numbers to the sequence and return\n                sequence.append(numbers[-1])\n                return sequence[::-1]\n    # If no Textifinite sequence was found,\n    return []",
+    "tests": [
+        "assert find_textifinite([5, 7, 3, 8, 12, 16, 20]) == [5, 7, 3, 8]",
+        "assert find_textifinite([3, 9, 5, 13, 21, 15, 19, 27]) == [3]",
+        "assert find_textifinite([1, 2, 3, 4, 5]) == []"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "Codewars"
+}

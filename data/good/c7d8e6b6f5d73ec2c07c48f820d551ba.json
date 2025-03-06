@@ -1,0 +1,14 @@
+{
+    "title": "'Twin Primes Finder (Medium)'",
+    "description": "A function named `find_twin_primes` that takes an integer as input and returns a list of pairs of twin primes, where each pair consists of two prime numbers that are consecutively located.\n\n#### Function Signature\n```python\ndef find_twin_primes(limit: int) -> List[List[int]]:\n```\n\n#### Input\n- `limit` (int): An integer greater than or equal to 3, representing the upper limit for finding twin primes.\n\n#### Output\n- Returns a list of pairs of twin primes, where each pair consists of two prime numbers that are consecutively located. For example, if the function is called with `limit` as 100, it should return `[[3,5], [5,7]]`.",
+    "code": "def find_twin_primes(limit: int) -> List[List[int]]:\n    primes = []\n    sieve = [True] * limit\n    for num in range(2, int(limit**0.5) + 1):\n        if sieve[num]:\n            for multiple in range(num*num, limit, num):\n                sieve[multiple] = False\n    primes_list = []\n    for num in range(2, limit):\n        if sieve[num] and sieve[num+1]:\n            primes_list.append([num, num+1])\n    return primes_list",
+    "tests": [
+        "assert find_twin_primes(10) == [ [3, 5], [5, 7]]",
+        "assert find_twin_primes(20) == [ [3, 5], [5, 7], [11, 13] ]",
+        "assert find_twin_primes(100) == [ [3, 5], [5, 7], [11, 13], [29, 31], [41, 43], [59, 61], [71, 73] ]",
+        "assert find_twin_primes(1000) == [ [3, 5], [5, 7], [11, 13], [29, 31], [41, 43], [59, 61], [71, 73], [163, 165], [173, 175], [223, 225], [283, 285], [331, 333], [397, 399], [457, 459], [503, 505], [569, 571], [601, 603], [631, 633], [641, 643], [677, 679], [761, 763], [821, 823], [881, 883], [907, 909], [931, 933], [953, 955] ]"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "TopCoder"
+}

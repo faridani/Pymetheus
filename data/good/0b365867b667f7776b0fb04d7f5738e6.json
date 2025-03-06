@@ -1,0 +1,14 @@
+{
+    "title": "'Twin Strings: Find the Pair (Medium)'",
+    "description": "Given a list of strings, find pairs of strings that read the same forward and backward (ignoring spaces, punctuation, and capitalization). The pairs do not need to be in the order they appear in the list.\n\n#### Function Signature\n```python\ndef find_twin_strings(string_list: List[str]) -> List[List[str]]:\n```\n\n#### Input\n- `string_list` (List[str]): A sorted list of strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of lists where each inner list contains two elements: the pair of twin strings. If no such pairs exist, return an empty list.",
+    "code": "import string\ndef find_twin_strings(string_list: List[str]) -> List[List[str]]:\n    # Convert to lowercase and remove non-alphanumeric characters\n    for str in string_list:\n        str = ''.join(char for char in str if char in string.ascii_letters + string.digits)\n    # Find pairs of equal strings that read the same forwards and backwards\n    pairs = []\n    for i, s1 in enumerate(string_list):\n        for s2 in string_list[i+1:]:\n            if s1 != s2 and s1[::-1] == s2[::-1]:\n                pairs.append([s1, s2])\n    return pairs",
+    "tests": [
+        "assert find_twin_strings([\"A man, a plan, a canal, Panama\", \"racecar\", \"No 'x' in Nixon\", \"level\"]) == [[\"A man, a plan, a canal, Panama\", \"amanaplanacanalpanama\"]]",
+        "assert find_twin_strings([\"eye\", \"aye\", \"U\", \"ruer\"]) == [[\"eye\", \"ye\"], [\"aye\", \"eye\"]]",
+        "assert find_twin_strings([]) == []",
+        "assert find_twin_strings([\"a\", \"A\", \"1234567890\", \"!@#$%^&*()\"]) == []"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "SPOJ"
+}

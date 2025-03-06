@@ -1,0 +1,13 @@
+{
+    "title": "'Number Palindrome Finder (Medium)'",
+    "description": "Write a function `is_number_palindrome` that checks if a given number, when converted to a string and reversed, is equal to the original string.\n\n#### Function Signature\n```python\ndef is_number_palindrome(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A non-negative integer without leading zeros.\n\n#### Output\n- Returns `True` if the input number is a palindrome, `False` otherwise.",
+    "code": "def is_number_palindrome(n: int) -> bool:\n    # Convert the number to a string and reverse it\n    s = str(n)[::-1]\n    # Check if the reversed string is equal to the original string\n    return s == str(n)",
+    "tests": [
+        "assert is_number_palindrome(345) == False",
+        "assert is_number_palindrome(121) == True",
+        "assert is_number_palindrome(1234321) == True"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "HackerEarth"
+}

@@ -1,0 +1,15 @@
+{
+    "title": "'Palindromic Substrings Checker (Easy)'",
+    "description": "'A palindromic string is a sequence of characters that reads the same forwards and backwards. Write a function `count_palindromes` that finds and counts all the palindromic substrings within a given input string.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters",
+    "code": "import re\ndef count_palindromes(s: str) -> int:\n    # Find all possible palindromes of any length, then remove duplicates\n    palindromes = set()\n    for i in range(len(s)):\n        for j in range(i, len(s)):\n            if s[i:j] == s[::-1][i:j]:\n                palindromes.add(s[i:j])\n    # Return the count of unique palindromic substrings\n    return len(palindromes)",
+    "tests": [
+        "assert count_palindromes(\"a\") == 1",
+        "assert count_palindromes(\"aa\") == 1",
+        "assert count_palindromes(\"aba\") == 2",
+        "assert count_palindromes(\"abba\") == 3",
+        "assert count_palindromes(\"racecar\") == 4"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "HackerRank"
+}

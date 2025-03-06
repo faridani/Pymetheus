@@ -1,0 +1,13 @@
+{
+    "title": "'Even Number Checker (Easy Level)'",
+    "description": "Write a function `is_even` that checks if a given number is even.\n\n#### Function Signature\n```python\ndef is_even(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns `True` if the input number is even, `False` otherwise.",
+    "code": "def is_even(n: int) -> bool:\n    return n % 2 == 0",
+    "tests": [
+        "assert is_even(4) == True",
+        "assert is_even(3) == False",
+        "assert is_even(6) == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Interview Query"
+}

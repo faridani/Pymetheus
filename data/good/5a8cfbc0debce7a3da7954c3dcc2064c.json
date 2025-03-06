@@ -1,0 +1,13 @@
+{
+    "title": "'Remove Duplicates from List (Medium)'",
+    "description": "Write a function `remove_duplicates` that takes a list of items and returns the same list with all duplicated items removed. Duplicate items can be in any order, and may appear more than once.\n\n#### Function Signature\n```python\ndef remove_duplicates(lst: List[Any]) -> List[Any]:\n```\n\n#### Input\n- `lst` (List[Any]): A list containing any data type (numbers, strings, lists, dictionaries etc.).\n\n#### Output\n- Returns a new list with all duplicated items removed.",
+    "code": "def remove_duplicates(lst: List[Any]) -> List[Any]:\n  # Convert the input list to a set (sets do not allow duplicate items)\n  return list(set(lst))",
+    "tests": [
+        "assert remove_duplicates([1, 2, 3, 2, 5, 8, 3]) == [1, 2, 3, 5, 8]",
+        "assert remove_duplicates(\"apple banana grape apple\") == [\"apple\", \"banana\", \"grape\"]",
+        "assert remove_duplicates([[1, 2], [2, 3], [1, 2]]) == [[1, 2], [2, 3]]"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Codecademy"
+}

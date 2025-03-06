@@ -1,0 +1,14 @@
+{
+    "title": "'Anagram Detection (Medium)'",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagrams(wordlist: List[str], target: str) -> List[str]:\n```\n\n#### Input\n- `wordlist` (List[str]): A list of words to search for anagrams.\n- `target` (str): The word to find possible anagrams.\n\n#### Output\n- Returns a list of strings that are the anagrams of `target`. If no anagram is found, returns an empty list.\n\nHint: Use sets to store and compare characters.",
+    "code": "import collections\ndef find_anagrams(wordlist: List[str], target: str) -> List[str]:\n    # Count the occurrences of each character in the target word\n    target_count = collections.Counter(target)\n    \n    # Find words in wordlist that have the same distribution of characters as the target word\n    anagrams = [word for word in wordlist if collections.Counter(word) == target_count]\n    return anagrams",
+    "tests": [
+        "assert find_anagrams(['cat', 'act', 'tac', 'sat', 'rat'], 'act') == ['cat', 'tac']",
+        "assert find_anagrams(['listen', 'silent', 'enlist', 'educated', 'denounce'], 'enlist') == ['listen', 'educated']",
+        "assert find_anagrams(['apple', 'app', 'plea', 'appliance'], 'app') == ['apple', 'app']",
+        "assert find_anagrams(['antidisestablishmentarianism', 'discourse', 'racial', 'radicalism'], 'discourse') == []"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Facebook Hacker Cup"
+}

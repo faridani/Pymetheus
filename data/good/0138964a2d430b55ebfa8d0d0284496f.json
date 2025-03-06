@@ -1,0 +1,13 @@
+{
+    "title": "\"Anagram Detector (Hard)",
+    "description": "Write a function `find_anagrams(words: List[str]) -> Dict[str, List[str]]` that returns a dictionary where keys are words and values are lists of anagrams for each key. Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically having the same letters.\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n```\n\n#### Input\n- `words` (List[str]): A list of strings containing lowercase letters only.\n\n#### Output\n- Returns a dictionary where keys are words and values are lists of anagrams for each key. For example, if the input is ['listen', 'enlist', 'silent', 'martian'], the output will be {'listen': ['enlist', 'silent'], 'enlist': ['listen'], 'silent': ['listen'], 'martian': []}",
+    "code": "from collections import Counter, defaultdict\n\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n    # Create a dictionary to store anagram groups\n    anagram_groups = defaultdict(list)\n    \n    # Loop through all words\n    for word in words:\n        # Count the occurrences of each letter in the word\n        letter_counts = Counter(word)\n        \n        # For each group with matching letter counts,\n        # add this word to that group\n        for anagram, other_words in anagram_groups.items():\n            if all([letter_counts[letter] == count for letter, count in Counter(other_words).items()]):\n                anagram_groups[anagram].append(word)\n                break\n        \n        # If no group was found with matching letter counts,\n        # create a new group with this word\n        else:\n            anagram_groups[word] = []\n        \n    \n    # Return the resulting dictionary\n    return dict(anagram_groups)",
+    "tests": [
+        "assert find_anagrams([\"listen\", \"enlist\", \"silent\", \"martian\"]) == {\"listen\": [\"enlist\", \"silent\"], \"enlist\": [\"listen\"], \"silent\": [\"listen\"], \"martian\": []}",
+        "assert find_anagrams([\"cat\", \"dog\", \"act\", \"god\"]) == {\"cat\": [\"act\"], \"dog\": [], \"act\": [\"cat\"], \"god\": [\"dog\"]}",
+        "assert find_anagrams([\"nap\", \"pan\", \"tan\", \"tin\", \"top\"]) == {\"nap\": [\"tan\", \"tin\"], \"pan\": [\"tan\"], \"tan\": [\"nap\", \"pan\"], \"tin\": [\"nap\"], \"top\": []}"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

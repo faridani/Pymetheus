@@ -1,0 +1,13 @@
+{
+    "title": "'Check if a given list of numbers contains duplicates (Easy)'",
+    "description": "Write a function `has_duplicates` that checks if a given list of numbers contains any duplicate values.\n\n#### Function Signature\n```python\ndef has_duplicates(numbers: List[int]) -> bool:\n```\n\n#### Input\n- `numbers` (List[int]): A sorted list containing only integers.\n\n#### Output\n- Returns `True` if the input list contains any duplicate numbers, `False` otherwise.",
+    "code": "def has_duplicates(numbers: List[int]) -> bool:\n    return len(numbers) != len(set(numbers))",
+    "tests": [
+        "assert has_duplicates([1, 2, 3, 4, 5]) == False",
+        "assert has_duplicates([1, 1, 2, 3, 4, 5]) == True",
+        "assert has_duplicates([10, 20, 20, 30]) == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Interview Query"
+}

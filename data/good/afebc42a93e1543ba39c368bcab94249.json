@@ -1,0 +1,13 @@
+{
+    "title": "'Recurring Sequence Detector (Easy)'",
+    "description": "Given a sequence of numbers, determine if it is recurring or not.\n\n#### Function Signature\n```python\ndef is_recurring(sequence: list[int]) -> bool:\n```\n\n#### Input\n- `sequence` (list): A non-empty list of integers.\n\n#### Output\n- Returns `True` if the input sequence has a recurring number pattern, `False` otherwise.",
+    "code": "def is_recurring(sequence: list[int]) -> bool:\n    # Initialize empty dictionaries for counting and storing unique numbers\n    count = {} \n    seen = set()\n\n    # Iterate through the sequence\n    for num in sequence:\n        # If the number is not in the dictionary, add it and initialize its count to 1\n        if num not in count:\n            count[num] = 1\n            seen.add(num)\n        # Increment the count of the current number by 1\n        else:\n            count[num] += 1\n    \n    # If there is only one unique number, it's not a recurring sequence\n    if len(seen) == 1:\n        return False\n    \n    # Check if any numbers have a count greater than 1 and less than the length of the sequence\n    for num, c in count.items():\n        if c > 1 and c < len(sequence):\n            return True",
+    "tests": [
+        "assert is_recurring([1,2,3,2,5,6,7,2]) == True",
+        "assert is_recurring([4,8,15,16,23,42]) == False",
+        "assert is_recurring([10, 20, 30, 10, 40]) == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

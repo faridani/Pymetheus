@@ -1,0 +1,13 @@
+{
+    "title": "'Euler - Prime Summation Under n (Easy)'",
+    "description": "The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17. Find the sum of all the primes below two million.\n\n#### Function Signature\n```python\ndef prime_summation(limit: int) -> int:\n```\n\n#### Input\n- `limit` (int): A positive integer less than 2,000,000.\n\n#### Output\n- Returns the sum of all primes below the given limit.",
+    "code": "def prime_summation(limit: int) -> int:\n    # List to store primes\n    primes = [2]\n    # Iterate up to the square root of the limit\n    for num in range(3, int(limit**0.5)+1):\n        # If num is not yet a prime\n        if all(num % i != 0 for i in primes):\n            # Add num to the list of primes\n            primes.append(num)\n    # Initialize sum\n    sum = 0\n    # Iterate over the primes up to the limit\n    for prime in primes:\n        # If the prime is less than or equal to the limit\n        if prime <= limit:\n            # Add the prime to the sum\n            sum += prime\n    # Return the sum of all primes below the given limit\n    return sum",
+    "tests": [
+        "assert prime_summation(10) == 17",
+        "assert prime_summation(50) == 68",
+        "assert prime_summation(2000000) == 1429180535"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Project Euler"
+}

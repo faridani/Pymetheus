@@ -1,0 +1,14 @@
+{
+    "title": "'Levenshtein Distance Calculator - Medium'",
+    "description": "Given two strings, calculate the Levenshtein distance between them. The Levenshtein distance is a measure of the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.\n\n#### Function Signature\n```python\ndef levenshtein_distance(s1: str, s2: str) -> int:\n```\n\n#### Input\n- `s1` (str): A non-empty string.\n- `s2` (str): A non-empty string.\n\n#### Output\n- Returns the Levenshtein distance between `s1` and `s2` as an integer.",
+    "code": "def levenshtein_distance(s1: str, s2: str) -> int:\n    if not s1 or not s2:\n        return len(s1) + len(s2)\n    matrix = [[0] * (len(s2) + 1) for _ in range(len(s1) + 1)]\n    # Initialize the first row and column of the matrix\n    for i in range(len(s1)):\n        matrix[i][0] = i + 1\n    for j in range(len(s2)):\n        matrix[0][j] = j + 1\n    \n    # Fill in the rest of the matrix\n    for i in range(1, len(s1) + 1):\n        for j in range(1, len(s2) + 1):\n            if s1[i - 1] == s2[j - 1]:\n                cost = 0\n            else:\n                cost = 1\n            matrix[i][j] = min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j - 1] + cost)\n    return matrix[-1][-1]",
+    "tests": [
+        "assert levenshtein_distance(\"kitten\", \"sitting\") == 3",
+        "assert levenshtein_distance(\"lemon\", \"melon\") == 1",
+        "assert levenshtein_distance(\"hello\", \"world\") == 4",
+        "assert levenshtein_distance(\"python\", \"pythons\") == 1"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

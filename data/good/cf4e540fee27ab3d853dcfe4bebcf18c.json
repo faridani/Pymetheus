@@ -1,0 +1,14 @@
+{
+    "title": "\"Anagram Finder (Hard)",
+    "description": "Given two strings, determine if they are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing only lowercase letters.\n- `s2` (str): Another string containing only lowercase letters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n\n#### Hint\nBefore checking the characters in both strings, sort them first.",
+    "code": "from collections import Counter\ndef find_anagram(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length before comparison\n    if len(s1) != len(s2):\n        return False\n    \n    # Sort and count characters in each string\n    c1 = Counter(s1)\n    c2 = Counter(s2)\n\n    # Compare the counts for each character\n    for char, count in c1.items():\n        if char not in c2 or c2[char] < count:\n            return False\n    \n    # If we've checked all characters and found no mismatches, the strings are anagrams\n    return True",
+    "tests": [
+        "assert find_anagram('listen', 'silent') == True",
+        "assert find_anagram('hello', 'world') == False",
+        "assert find_anagram('act', 'cat') == True",
+        "assert find_anagram('kites', 'tikes') == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

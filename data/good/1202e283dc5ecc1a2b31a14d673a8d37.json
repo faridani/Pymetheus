@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "An anagram is a word or phrase that consists of the same letters as another, but arranged differently. For example, 'listen' and 'silent' are anagrams.\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n```\n\n#### Input\n- `words` (List[str]): A list of strings representing words to check for anagrams.\n\n#### Output\n- Returns a dictionary where the keys are unique words and the values are lists of their corresponding anagrams. For example, if the input was `['listen', 'silent', 'enlist', 'education']`, the output would be: {\"listen\": ['silent', 'enlist'], \"education\": [], \"silent\": ['listen', 'enlist\"]} with no particular order.",
+    "code": "from collections import defaultdict, Counter\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n    # Create a counter for each word to count the frequency of characters\n    counters = [Counter(word) for word in words]\n    # Create an empty dictionary to store the results\n    result = defaultdict(list)\n    \n    # Iterate through all the words and their counts\n    for counter, word in zip(counters, words):\n        # Get the sorted list of characters and their frequencies\n        sorted_characters = sorted(counter.elements(), key=lambda x: -counter[x])\n        anagram = ''.join([str(x[0]) * x[1] for x in sorted_characters])\n        # Add the word to the corresponding list of anagrams\n        result[anagram].append(word)\n    \n    # Convert the dictionary to a list of tuples for easier testing\n    return dict(result.items())",
+    "tests": [
+        "assert find_anagrams(['listen', 'silent', 'enlist', 'education']) == {'listen': ['silent', 'enlist'], 'education': [], 'silent': ['listen', 'enlist'], 'enlist': ['listen', 'silent']}",
+        "assert find_anagrams(['cat', 'act', 'tac', 'atc']) == {'cat': ['atc', 'tac'], 'act': ['cat'], 'tac': ['cat', 'atc'], 'atc': ['cat', 'tac']}",
+        "assert find_anagrams(['dog', 'god', 'dod']) == {'god': ['dog', 'dod'], 'dog': ['god', 'dod'], 'dod': ['god', 'dog']}"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "Facebook Hacker Cup"
+}

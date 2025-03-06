@@ -1,0 +1,14 @@
+{
+    "title": "'Palindromic Substrings Finder (Medium)'",
+    "description": "Given a string, find all non-overlapping palindromic substrings. A palindromic substring is a string that reads the same forwards and backwards.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of all non-overlapping palindromic substrings in the input string.",
+    "code": "import re\ndef find_palindromes(s: str) -> List[str]:\n    # Find all possible palindromic substrings using regular expressions\n    palindromes = re.findall('((.[^.]*?).{1,})', s)[::-1]\n    # Remove empty strings and non-palindromic substrings (those that are not the same forwards and backwards)\n    return [substring for substring in palindromes if len(substring) > 1 and substring[0] == substring[-1]]",
+    "tests": [
+        "assert find_palindromes(\"A man, a plan, a canal, Panama\") == [\"man\", \"plan\", \"canal\", \"Panama\"]",
+        "assert find_palindromes(\"racecar\") == [\"racecar\", \"r\", \"c\", \"a\", \"e\", \"c\", \"r\", \"r\"]",
+        "assert find_palindromes(\"hello\") == []",
+        "assert find_palindromes(\"No 'x' in Nixon\") == [\"Ni\", \"'x'\", \"P\", \"n\", \"o\", \"I\", \"x\", \"i\", \"N\"]"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Internationals Olympiad"
+}

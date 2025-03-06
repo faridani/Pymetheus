@@ -1,0 +1,13 @@
+{
+    "title": "'Palindromic Substrings in a String (Hard)'",
+    "description": "Given a string `s`, find all the palindromic substrings of that string.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> list[str]:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of palindromic substrings found in the input string.",
+    "code": "def find_palindromes(s: str) -> list[str]:\n    # Initialize an empty list to store the palindromes\n    palindromes = []\n    \n    # Iterate over all possible substrings of length 2 or more in the string\n    for i in range(len(s)):\n        # Start from current position and iterate backwards\n        for j in range(i+1, len(s)):\n            # Check if the current substring is a palindrome by comparing it with its reverse\n            if s[i:j] == s[i:j][::-1]:\n                # If yes, add it to the list of palindromes\n                palindromes.append(s[i:j])\n    \n    # Return the list of found palindromes\n    return palindromes",
+    "tests": [
+        "assert find_palindromes(\"A man, a plan, a canal, Panama\") == [\"man\", \"a\", \"plan\", \"canal\", \"Panama\", \"amanaplanacanalpanama\"]",
+        "assert find_palindromes(\"racecar\") == [\"racecar\", \"race\", \"carc\"]",
+        "assert find_palindromes(\"hello\") == []"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "Daily Coding Problem"
+}

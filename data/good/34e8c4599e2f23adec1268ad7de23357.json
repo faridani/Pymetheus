@@ -1,0 +1,14 @@
+{
+    "title": "'Levenshtein Distance Calculator (Easy)'",
+    "description": "\"The Levenshtein distance between two words is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.\n\n#### Function Signature\n```python\ndef levenshtein_distance(str1: str, str2: str) -> int:\n```\n\n#### Input\n- `str1` (str): A string of characters.\n- `str2` (str): Another string of characters.\n\n#### Output\n- Returns the Levenshtein distance between the two input strings as an integer.",
+    "code": "def levenshtein_distance(str1: str, str2: str) -> int:\n    if not str1 or not str2: # Base case for empty strings\n        return len(str1) + len(str2)\n    elif str1[0] == str2[0]: # Matching characters don't require an edit\n        return levenshtein_distance(str1[1:], str2[1:])\n    else:\n        # Find the minimum of insertion, deletion and substitution costs\n        min_cost = min(levenshtein_distance(str1, str2[1:]) + 1,\n                      levenshtein_distance(str1[1:], str2) + 1,\n                      levenshtein_distance(str1[1:], str2[1:]) + 1)\n        # Substitute the characters if that's less costly than any other option\n        if min_cost > levenshtein_distance(str1[1:], str2) + 1:\n            min_cost = levenshtein_distance(str1, str2[1:]) + 1\n        return min_cost",
+    "tests": [
+        "assert levenshtein_distance(\"kitten\", \"sitting\") == 3",
+        "assert levenshtein_distance(\"hello\", \"world\") == 4",
+        "assert levenshtein_distance(\"intention\", \"execution\") == 1",
+        "assert levenshtein_distance(\"cat\", \"\") == 3"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "HackerEarth"
+}

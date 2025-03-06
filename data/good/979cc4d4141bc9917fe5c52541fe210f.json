@@ -1,0 +1,14 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `anagram_checker` that checks if two given strings are anagrams.\n\n#### Function Signature\n```python\ndef anagram_checker(string1: str, string2: str) -> bool:\n```\n\n#### Input\n- `string1`, `string2` (str): Strings that may contain letters, numbers, and spaces.\n\n#### Output\n- Returns `True` if the input strings are anagrams, `False` otherwise.",
+    "code": "def anagram_checker(string1: str, string2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    cleaned_string1 = ''.join(char for char in string1 if char.isalpha()).lower()\n    cleaned_string2 = ''.join(char for char in string2 if char.isalpha()).lower()\n    # If the cleaned strings have different lengths, they cannot be anagrams\n    if len(cleaned_string1) != len(cleaned_string2):\n        return False\n    # Sort the characters and compare\n    return sorted(cleaned_string1) == sorted(cleaned_string2)",
+    "tests": [
+        "assert anagram_checker(\"listen\", \"silent\") == True",
+        "assert anagram_checker(\"eleven plus two\", \"twelve plus one\") == True",
+        "assert anagram_checker(\"hello world\", \"world hello\") == True",
+        "assert anagram_checker(\"abcdefg\", \"bcdfgea\") == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

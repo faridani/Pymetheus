@@ -1,0 +1,16 @@
+{
+    "title": "URL Validation (Hard)",
+    "description": "Write a Python function named `validate_url` that checks if the given string is a valid URL.\n\n#### Function Signature\n```python\ndef validate_url(url: str) -> bool:\n```\n\n#### Input\n- `url` (str): A string that represents a potential URL.\n\n#### Output\n- Returns `True` if the input string is a valid URL, `False` otherwise.\n\n#### Constraints and Hints\nThe URL should follow the RFC 3986 standard for uniform resource identifiers.\n\n#### Examples\n- `validate_url(",
+    "https": "",
+    "code": "import re\ndef validate_url(url: str) -> bool:\n    # Regular expression for URL validation according to RFC 3986\n    pattern = r'^(http|https|ftp)://[a-zA-Z0-9]+([.-][a-zA-Z0-9]+)*(?:\\.[a-zA-Z]{2,})+(:\\d{1,5})?(/[a-zA-Z0-9]+\\.)*(/)?$'\n    return re.match(pattern, url) is not None",
+    "tests": [
+        "assert validate_url('https://www.example.com') == True",
+        "assert validate_url('http://example.org') == True",
+        "assert validate_url('ftp://example.net') == True",
+        "assert validate_url('mailto:user@example.edu') == True",
+        "assert validate_url('invalid_url') == False"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "SPOJ"
+}

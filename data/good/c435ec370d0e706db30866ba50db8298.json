@@ -1,0 +1,14 @@
+{
+    "title": "'Palindromic Anagram Checker (Easy)'",
+    "description": "'Write a function `is_anagram_and_palindrome` that checks if a given string is both an anagram and a palindrome.\n\n#### Function Signature\n```python\ndef is_anagram_and_palindrome(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A non-empty string that may contain letters",
+    "code": "import collections\ndef is_anagram_and_palindrome(s: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s = ''.join(char for char in s if char.isalpha()).lower()\n    # Check if the sorted string is equal to its reverse (indicating palindrome)\n    is_palindrome = s == s[::-1]\n    # If the string is not a palindrome, return False\n    if not is_palindrome: return False\n    # Count the frequency of each letter in the sorted string\n    letter_counts = collections.Counter(s)\n    # Check if all counts are equal to 1 (indicating anagram)\n    for count in letter_counts.values():\n        if count > 1: return False\n    return True",
+    "tests": [
+        "assert is_anagram_and_palindrome('A man, a plan, a canal, Panama') == True",
+        "assert is_anagram_and_palindrome('racecar') == True",
+        "assert is_anagram_and_palindrome('hello') == False",
+        "assert is_anagram_and_palindrome('No \\'x\\' in Nixon') == False"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Facebook Hacker Cup"
+}

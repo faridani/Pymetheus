@@ -1,0 +1,13 @@
+{
+    "title": "'Alphabet Soup Sorting (Medium)'",
+    "description": "Write a function `alphabet_sort` that sorts an input string by its characters in alphabetical order, ignoring spaces and case. The characters are considered as individual elements for sorting.\n\n#### Function Signature\n```python\ndef alphabet_sort(s: str) -> list:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, spaces, and punctuation. The string length will not exceed 100 characters.\n\n#### Output\n- Returns a list of unique characters in the input string, sorted in alphabetical order.",
+    "code": "def alphabet_sort(s: str) -> list:\n    # Remove non-alphabetic characters and convert to lowercase\n    s = ''.join(char for char in s if char.isalpha()).lower()\n    # Sort the remaining characters\n    return sorted(list(set(s)))",
+    "tests": [
+        "assert alphabet_sort('AbCdEfGhIjKlMnOp') == ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p']",
+        "assert alphabet_sort('!@#$%&*()_1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') == ['!', '@', '#', '$', '%', '&', '*', '(', ')', '_', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']",
+        "assert alphabet_sort('Hello World!') == ['h', 'e', 'l', 'o']"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Exercism"
+}

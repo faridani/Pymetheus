@@ -1,0 +1,14 @@
+{
+    "title": "'Checker: Given a List of Integers",
+    "description": "Write a function `find_middle_or_average` that takes a list of integers as input and returns the middle element if the list length is even, otherwise it should return the average of all elements in the list.\n\n#### Function Signature\n```python\ndef find_middle_or_average(numbers: List[int]) -> Union[float, int]:\n```\n\n#### Input\n- `numbers` (List[int]): A non-empty list of integers.\n\n#### Output\n- Returns the middle element of the input list if its length is even; returns the average of all elements in the list if its length is odd.",
+    "code": "def find_middle_or_average(numbers: List[int]) -> Union[float, int]:\n    # Get the middle index if the list has an even length\n    middle_index = len(numbers) // 2\n    # Check if the list has an odd number of elements\n    is_odd = len(numbers) % 2 != 0\n    # If the list has an odd number of elements, calculate and return the average\n    if is_odd:\n        total = sum(numbers)\n        return total / len(numbers)\n    else:\n        # Return the middle element\n        return numbers[middle_index]",
+    "tests": [
+        "assert find_middle_or_average([1, 2, 3, 4]) == 2.75",
+        "assert find_middle_or_average([1, 2, 3, 4, 5]) == 3",
+        "assert find_middle_or_average([1, 2, 3, 4, 5, 6]) == 3",
+        "assert find_middle_or_average([1, 2, 3]) == 2.0"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Competitive Programming"
+}

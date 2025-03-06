@@ -1,0 +1,14 @@
+{
+    "title": "'Check if a given list is a rotated array (Easy)'",
+    "description": "A rotated array is an array that is obtained by shifting one or more elements at the beginning or end of the original array to another position. Write a function `is_rotated_array` that checks if a given list is a rotated array.\n\n#### Function Signature\n```python\ndef is_rotated_array(arr: List[int]) -> bool:\n```\n\n#### Input\n- `arr` (List[int]): A sorted list that may have one or more elements shifted to another position.\n\n#### Output\n- Returns `True` if the input list is a rotated array, `False` otherwise.",
+    "code": "def is_rotated_array(arr: List[int]) -> bool:\n    # Check if the list has more than one element\n    if len(arr) <= 1:\n        return False\n    \n    # Find the pivot point where the sorted sequence ends and the rotated sequence begins\n    n = len(arr)\n    i = 0\n    while arr[i] == arr[i+1]:\n        i += 1\n    pivot = i\n    \n    # Check if the rest of the array is a sorted sequence and its first element equals the last element\n    return len(arr) > pivot + 1 and sorted(arr[:pivot]) == arr[pivot:] and arr[0] == arr[-1]",
+    "tests": [
+        "assert is_rotated_array([3, 4, 5, 6, 7]) == True",
+        "assert is_rotated_array([2, 3, 4, 5]) == False",
+        "assert is_rotated_array([1, 2, 3, 5, 4]) == True",
+        "assert is_rotated_array([6, 7, 1, 2, 3]) == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Interview Query"
+}

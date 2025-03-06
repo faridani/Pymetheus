@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Write a function `are_anagrams` that determines if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings that contain only lowercase alphabetic characters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n\n**Hint**: An anagram is a word or phrase formed by rearranging the letters of another.",
+    "code": "def sort_char_count(char_dict):\n    sorted_char_list = sorted(char_dict.items(), key=lambda item: item[1], reverse=True)\n    return [k for k, v in sorted_char_list] + [None]\n\ndef are_anagrams(str1: str, str2: str) -> bool:\n    # Ensure strings have the same length\n    if len(str1) != len(str2):\n        return False\n    # Count characters in each string and sort the counts\n    char_count1 = {}  # create an empty dictionary\n    for char in str1:\n        char_count1[char] = char_count1.get(char, 0) + 1\n    char_count2 = {}  # create another empty dictionary\n    for char in str2:\n        char_count2[char] = char_count2.get(char, 0) + 1\n    sorted_chars1 = sort_char_count(char_count1)\n    sorted_chars2 = sort_char_count(char_count2)\n    # Compare the sorted character counts\n    return sorted_chars1 == sorted_chars2",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('acting', 'taciton') == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "TopCoder"
+}

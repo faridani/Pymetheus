@@ -10,7 +10,8 @@ def save_response_to_file(response_content, directory):
     title_hash = hashlib.md5(str(response_content).encode()).hexdigest()
     
     # Define the directory and file path
-    directory = directory
+    directory = os.path.join(os.path.dirname(directory), os.path.basename(directory))
+    
     if not os.path.exists(directory):
         os.makedirs(directory)
     file_path = os.path.join(directory, f"{title_hash}.json")

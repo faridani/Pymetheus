@@ -1,0 +1,13 @@
+{
+    "title": "'Levenshtein Distance Calculator (Hard)'",
+    "description": "The Levenshtein distance between two strings is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.\n\n#### Function Signature\n```python\ndef levenshtein_distance(s1: str, s2: str) -> int:\n```\n\n#### Input\n- `s1` (str): A non-empty string.\n- `s2` (str): Another non-empty string.\n\n#### Output\n- Returns an integer representing the Levenshtein distance between the two input strings.",
+    "code": "def levenshtein_distance(s1: str, s2: str) -> int:\n    # Create a matrix to store intermediate results\n    matrix = [[0 for _ in range(len(s2) + 1)] for __ in range(len(s1) + 1)]\n\n    # Initialize the first row and column\n    for i in range(len(s1) + 1):\n        matrix[i][0] = i\n    for j in range(len(s2) + 1):\n        matrix[0][j] = j\n\n    # Fill the rest of the matrix\n    for i, char1 in enumerate(s1):\n        for j, char2 in enumerate(s2):\n            if char1 == char2:\n                cost = 0\n            else:\n                cost = 1\n\n            # Calculate the minimum cost to reach this cell from the previous row and column, or the diagonal (if the characters match)\n            matrix[i + 1][j + 1] = min(matrix[i][j + 1] + 1,\n                                matrix[i + 1][j] + 1,\n                                matrix[i][j] + cost)\n\n    # The bottom-right cell contains the Levenshtein distance\n    return matrix[-1][-1]",
+    "tests": [
+        "assert levenshtein_distance(\"kitten\", \"sitting\") == 3",
+        "assert levenshtein_distance(\"python\", \"python\") == 0",
+        "assert levenshtein_distance(\"hello\", \"world\") == 4"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "SPOJ"
+}

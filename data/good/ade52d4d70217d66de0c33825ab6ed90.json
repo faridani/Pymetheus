@@ -1,0 +1,13 @@
+{
+    "title": "'Prime Numbers Below a Given Number (Hard)'",
+    "description": "Given a positive integer n, write a function `prime_numbers` that returns an array of all prime numbers below or equal to n.\n\n#### Function Signature\n```python\ndef prime_numbers(n: int) -> list[int]:\n```\n\n#### Input\n- `n` (int): A positive integer greater than 1.\n\n#### Output\n- Returns a list of all prime numbers below or equal to n, in ascending order.",
+    "code": "def prime_numbers(n: int) -> list[int]:\n    # Initialize list of primes and a variable for the smallest factor (starting from 2)\n    primes = [2]\n    factor = 2\n    \n    # Loop through all numbers up to n\n    while factor * factor <= n:\n        if n % factor == 0:\n            n /= factor\n        else:\n            for potential_factor in range(factor + 1, int(n**0.5) + 1, 2):\n                if n % potential_factor == 0:\n                    break\n            \n            # If no divisor was found, the number is prime and we can append it to the list of primes\n            if factor * factor == n:\n                primes.append(n)\n            \n        # Increment the factor by 2 (since all primes are odd or multiples of 2)\n        factor += 2\n    \n    # If there is a remainder after dividing n by any prime, it is not a perfect square and we should append it to the list of primes if it is prime\n    for num in range(factor, n + 1):\n        if all(num % prime != 0 for prime in primes):\n            primes.append(num)\n    \n    return primes",
+    "tests": [
+        "assert prime_numbers(17) == [2, 3, 5, 7, 11, 13]",
+        "assert prime_numbers(97) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 41, 43, 47, 59, 61, 67, 71, 73, 79, 83, 89]",
+        "assert prime_numbers(257) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]"
+    ],
+    "difficulty": "hard",
+    "model": "mistral:latest",
+    "style": "Project Euler"
+}

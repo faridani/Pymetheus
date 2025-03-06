@@ -1,0 +1,14 @@
+{
+    "title": "'Reverse Words Checker (Easy)'",
+    "description": "Given a string, write a function `reverse_words` that checks if the words of a given sentence are the same when read backwards. For this problem, consider a word as any sequence of alphabetic characters separated by spaces, commas or periods.\n\n#### Function Signature\n```python\ndef reverse_words(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A sentence that may contain words separated by spaces, commas or periods.\n\n#### Output\n- Returns `True` if the words in the input sentence are the same when read backwards, `False` otherwise.",
+    "code": "def reverse_words(s: str) -> bool:\n    # Remove non-alphabetic characters and split into a list of words\n    words = [word.lower() for word in s.split() if word.isalpha()]\n    # Reverse the order of the list\n    reversed_words = words[-1::-1]\n    # Check if the list reads the same forwards and backwards\n    return words == reversed_words",
+    "tests": [
+        "assert reverse_words(\"A man, a plan, a canal, Panama\") == True",
+        "assert reverse_words(\"racecar\") == True",
+        "assert reverse_words(\"hello world\") == False",
+        "assert reverse_words(\"No 'x' in Nixon\") == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

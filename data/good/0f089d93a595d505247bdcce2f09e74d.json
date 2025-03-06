@@ -1,0 +1,14 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "An anagram is a word or phrase that consists of the same letters as another, but arranged differently. Write a function `anagram_check` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef anagram_check(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters (case insensitive). The lengths of the strings may be different.\n\n#### Output\n- Returns `True` if the two input strings are anagrams, `False` otherwise.",
+    "code": "def anagram_check(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = ''.join(sorted(s1.strip().lower())).replace(' ', '')\n    s2 = ''.join(sorted(s2.strip().lower())).replace(' ', '')\n    \n    # If the sorted and cleaned strings are equal, they are anagrams\n    return len(s1) == len(s2) and s1 == s2",
+    "tests": [
+        "assert anagram_check('Listen', 'Silent') == True",
+        "assert anagram_check('Deck chairs', 'Chairs deck') == True",
+        "assert anagram_check('Apple', 'Pepper') == False",
+        "assert anagram_check('A man, a plan, a canal, Panama', 'Panama canal, a plan, a mana, a pap') == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

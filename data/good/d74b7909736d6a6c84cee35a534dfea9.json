@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Given two strings, write a function `anagram_checker` that determines if the two strings are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef anagram_checker(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string containing only lowercase English letters\n- `str2` (str): A string containing only lowercase English letters\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def anagram_checker(str1: str, str2: str) -> bool:\n    # Sort both strings and convert them to sets\n    sorted_str1 = sorted(list(str1))\n    sorted_str2 = sorted(list(str2))\n    set1 = set(sorted_str1)\n    set2 = set(sorted_str2)\n    \n    # Check if the two sets have the same elements and length\n    return len(set1) == len(set2) and set1 == set2",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('hello', 'world') == False",
+        "assert anagram_checker('act', 'cat') == True"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "CodeWars"
+}

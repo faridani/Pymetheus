@@ -1,0 +1,14 @@
+{
+    "title": "'Alphabet Soup: Check for Anagrams'",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `are_anagrams` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(string1: str, string2: str) -> bool:\n```\n\n#### Input\n- `string1` (str): A string that may contain letters, numbers, spaces, and punctuation.\n- `string2` (str): Another string of the same format as `string1`. \n\n#### Output\n- Returns `True` if both input strings are anagrams of each other, `False` otherwise.",
+    "code": "import collections\ndef are_anagrams(string1: str, string2: str) -> bool:\n    # Convert the two strings to lowercase and remove non-alphanumeric characters\n    s1 = ''.join(char for char in string1 if char.isalnum()).lower()\n    s2 = ''.join(char for char in string2 if char.isalnum()).lower()\n    # Check if the frequencies of letters in both strings are the same\n    return collections.Counter(s1) == collections.Counter(s2)",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"madam\", \"Madam\") == True",
+        "assert are_anagrams(\"w0rld\", \"dlrow\") == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "ICPC"
+}

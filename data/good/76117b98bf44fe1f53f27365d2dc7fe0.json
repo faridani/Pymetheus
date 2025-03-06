@@ -1,0 +1,14 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Write a function `anagram_checker` that determines if two given strings are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef anagram_checker(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string containing only lowercase alphabets.\n- `str2` (str): Another string containing only lowercase alphabets.\n\n#### Output\n- Returns `True` if both strings are anagrams of each other, `False` otherwise.",
+    "code": "import collections\ndef anagram_checker(str1: str, str2: str) -> bool:\n    # Ensure that the lengths of both strings match\n    if len(str1) != len(str2):\n        return False\n    \n    # Count the occurrences of each character in both strings\n    char_counts = collections.Counter(str1) & collections.Counter(str2)\n    \n    # If any characters don't have the same count, return False\n    for char, count in char_counts.items():\n        if count > 1:\n            return False\n    \n    # If all characters have the same count, the strings are anagrams of each other\n    return True",
+    "tests": [
+        "assert anagram_checker(\"listen\", \"silent\") == True",
+        "assert anagram_checker(\"hello\", \"world\") == False",
+        "assert anagram_checker(\"acttcat\", \"cttacca\") == True",
+        "assert anagram_checker(\"angryman\", \"manyragan\") == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "'String Cycle Detector (Hard)'",
+    "description": "Determine if a given string forms a cycle when each character of the string is shifted one position to the right and then wrapped around to the beginning of the string. If the resulting sequence repeats, it is considered a cycle.\n\n#### Function Signature\n```python\ndef has_cycle(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string of length greater than or equal to 2 containing only lowercase letters.\n\n#### Output\n- Returns `True` if the input string forms a cycle, `False` otherwise.",
+    "code": "def has_cycle(s: str) -> bool:\n    # Hashmap to store characters and their indices\n    seen = {char: i for i, char in enumerate(s)}\n    # Hashmap to store the last occurrence of each character\n    last = [None] * len(s)\n    \n    # Initialize pointers at beginning of string\n    ptr1 = 0\n    ptr2 = 1\n    \n    # Loop until both pointers meet or one pointer reaches the end\n    while ptr1 != ptr2:\n        last[s[ptr2]] = ptr2\n        ptr2 += 1\n\n        next_ptr = (seen[s[ptr2 - 1]] + ptr2) % len(s)\n        \n        # If the next pointer has already been visited and its previous position is not equal to the current position, we have a cycle\n        if last[next_ptr] and last[next_ptr] != ptr1:\n            return True\n        \n        # Move both pointers one step further\n        ptr1 += 1\n    \n    # If neither pointer has moved off the end of the string, we have no cycle\n    return False",
+    "tests": [
+        "assert has_cycle(\"abcdabc\") == True",
+        "assert has_cycle(\"abcdefghijklmnopqrstuvwxyz\") == False",
+        "assert has_cycle(\"abcabcaba\") == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "Codewars"
+}

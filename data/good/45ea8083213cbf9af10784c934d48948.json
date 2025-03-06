@@ -1,0 +1,13 @@
+{
+    "title": "'Check if a given string is anagram or not (Easy)'",
+    "description": "An anagram is a word or phrase that is formed by rearranging the letters of another word or phrase, using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams.\n\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string containing only lowercase alphabets.\n- `str2` (str): A string containing only lowercase alphabets.\n\n#### Output\n- Returns `True` if the input strings are anagrams, `False` otherwise.",
+    "code": "def is_anagram(str1: str, str2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(str1) != len(str2):\n        return False\n    \n    # Count the frequency of each character in both strings\n    char_count = {char: 0 for char in string.ascii_lowercase}\n    for char in str1:\n        char_count[char] += 1\n    for char in str2:\n        char_count[char] -= 1\n    \n    # Check if all counts are zero\n    return all(val == 0 for val in char_count.values())",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False",
+        "assert is_anagram(\"acttact\", \"tcata\") == True"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "Codeforces"
+}

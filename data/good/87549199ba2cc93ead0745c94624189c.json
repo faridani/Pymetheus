@@ -1,0 +1,14 @@
+{
+    "title": "'Anagram Solver (Hard)'",
+    "description": "Given two strings, write a function `anagram(s1: str, s2: str) -> bool` that checks if they are anagrams of each other.\n\n#### Function Signature\n```python\ndef anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.\n\n**Note:** Anagrams are words or phrases formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.",
+    "code": "def anagram(s1: str, s2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s1 = ''.join([char for char in s1 if char.isalpha()])\n    s2 = ''.join([char for char in s2 if char.isalpha()])\n\n    # If either string is empty, they cannot be anagrams\n    if len(s1) != len(s2):\n        return False\n    else:\n        # Sort the characters and compare\n        return sorted(s1) == sorted(s2)",
+    "tests": [
+        "assert anagram('Listen', 'Silent') == True",
+        "assert anagram('Hello', 'world') == False",
+        "assert anagram('Welcome', 'Immaclew') == True",
+        "assert anagram('Python', 'Thonyp') == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "TopCoder"
+}

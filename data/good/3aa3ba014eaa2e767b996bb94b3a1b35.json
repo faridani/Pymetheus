@@ -1,0 +1,14 @@
+{
+    "title": "\"Anagram Detector (Hard)",
+    "description": "Given two strings, write a function `anagram_checker` that checks if the strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef anagram_checker(str1: str, str2: str) -> bool:\n```\n\nAnagrams are words or phrases that contain the same letters, but in a different order. For example, \"listen\" and \"silent\" are anagrams of each other.\n\n#### Input\n- `str1` (str): A string containing only lowercase English alphabets.\n- `str2` (str): Another string containing only lowercase English alphabets.\n\n#### Output\n- Returns `True` if the strings are anagrams, `False` otherwise.",
+    "code": "def anagram_checker(str1: str, str2: str) -> bool:\n    # Remove spaces and sort the characters in both strings\n    sorted_str1 = sorted(str1.replace(' ', ''))\n    sorted_str2 = sorted(str2.replace(' ', ''))\n    # Check if the sorted strings are equal\n    return sorted_str1 == sorted_str2",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('racecar', 'carrace') == True",
+        "assert anagram_checker('hello', 'world') == False",
+        "assert anagram_checker('cats and dogs', 'dogs and cats') == True"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "Google Code Jam"
+}

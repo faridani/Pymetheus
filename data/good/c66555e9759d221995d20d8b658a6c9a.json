@@ -1,0 +1,14 @@
+{
+    "title": "'Anagram Detection (Hard)'",
+    "description": "Given two strings, write a function `are_anagrams` that checks if the given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string containing only alphabetic characters.\n- `str2` (str): A string containing only alphabetic characters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def are_anagrams(str1: str, str2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(str1) != len(str2):\n        return False\n    \n    # Create two dictionaries to store character counts for each string\n    char_counts1 = {char: 0 for char in string.ascii_lowercase}\n    char_counts2 = {char: 0 for char in string.ascii_lowercase}\n    \n    # Increment the count of each character in str1 and decrease the count of each character in str2\n    for char in str1:\n        char_counts1[char] += 1\n        if char in str2:\n            char_counts2[char] -= 1\n    \n    # Check if all counts are equal to zero\n    return all([count == 0 for count in char_counts2.values()])",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('act', 'cat') == False",
+        "assert are_anagrams('movie', 'emotion picture') == True",
+        "assert are_anagrams('hello', 'olleh') == True"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "ICPC"
+}

@@ -1,0 +1,16 @@
+{
+    "title": "'Reversed Words Checker (Medium)'",
+    "description": "'Given a string",
+    "reversed_words(s": "str) -> bool:\n```\n\n#### Input\n- `s` (str): A string containing one or more words",
+    "code": "import re\ndef reversed_words(s: str) -> bool:\n    # Split the string into words\n    words = re.findall('\\b\\w+\\b', s)\n    for word in words:\n        # Remove non-alphanumeric characters and reverse the word\n        rword = word.translate(str.maketrans('','', string.punctuation)).lower()[::-1]\n        if word != rword:\n            return False\n    return True",
+    "tests": [
+        "assert reversed_words(\"palindrome\") == True",
+        "assert reversed_words(\"racecar\") == True",
+        "assert reversed_words(\"hello world\") == False",
+        "assert reversed_words(\"A man, a plan, a canal, Panama\") == True",
+        "assert reversed_words(\"No 'x' in Nixon\") == True"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "TopCoder"
+}

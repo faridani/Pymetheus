@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Given two strings, write a function `anagram_checker` that checks if the letters in both strings appear in the same frequency, ignoring case.\n\n#### Function Signature\n```python\ndef anagram_checker(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters and spaces.\n\n#### Output\n- Returns `True` if the letters in both input strings appear in the same frequency, ignoring case, `False` otherwise.",
+    "code": "from collections import Counter\n\ndef anagram_checker(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = ''.join([char.lower() for char in s1 if char.isalpha()])\n    s2 = ''.join([char.lower() for char in s2 if char.isalpha()])\n    \n    # Count the occurrence of each letter in both strings\n    counter_s1 = Counter(s1)\n    counter_s2 = Counter(s2)\n\n    # Check if both counters have the same number of items and if each item has the same value\n    return len(counter_s1) == len(counter_s2) and all([counter_s1[key] == counter_s2[key] for key in counter_s1.keys()])",
+    "tests": [
+        "assert anagram_checker(\"Listen\", \"Silent\") == True",
+        "assert anagram_checker(\"Dormitory\", \"Dirty Room\") == True",
+        "assert anagram_checker(\"Python\", \"javaSript\") == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "CodeWars"
+}

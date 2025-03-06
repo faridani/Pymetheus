@@ -1,0 +1,14 @@
+{
+    "title": "'KMP Algorithm for Substring Search (Medium)'",
+    "description": "The KMP algorithm is a linear time and space pattern searching algorithm used to search for a specific pattern within a larger text. Write a function `kmp_search` that finds the starting indices of all occurrences of a given pattern in a given text using the KMP algorithm.\n\n#### Function Signature\n```python\ndef kmp_search(pattern: str, text: str) -> List[int]:\n```\n\n#### Input\n- `pattern` (str): The pattern to search for within the text.\n- `text` (str): The larger string containing one or more occurrences of the given pattern.\n\n#### Output\n- Returns a list of starting indices of all occurrences of the given pattern in the provided text. If the pattern does not exist in the text, return an empty list.",
+    "code": "def kmp_search(pattern: str, text: str) -> List[int]:\n    # Initialize prefix function\n    prefix = compute_prefix(pattern)\n    result = []\n    i = 0\n    j = 0\n    # Loop through the text\n    while i < len(text):\n        # While the current characters match, increment both pointers\n        if text[i] == pattern[j]:\n            i += 1\n            j += 1\n        elif j > 0:\n            j = prefix[j - 1]\n        else:\n            i += 1\n    \n    # If we have reached the end of the text with `j` still greater than zero,\n    # the pattern has been found and is followed by characters from the text that do not match.\n    if j > 0:\n        result.append(i - j)\n    return result\n\ndef compute_prefix(pattern: str) -> List[int]:\n    prefix = [0] * len(pattern)\n    j = 1\n    i = 0\n    while j < len(pattern):\n        if pattern[i] == pattern[j]:\n            prefix[j] = j + 1\n            i += 1\n            j += 1\n        elif i > 0:\n            i = prefix[i - 1]\n        else:\n            prefix[j] = 0\n            j += 1\n    return prefix",
+    "tests": [
+        "assert kmp_search(\"abcd\", \"abcdaabcda\") == [0, 5]",
+        "assert kmp_search(\"ab\", \"aababa\") == [0, 4]",
+        "assert kmp_search(\"aaaa\", \"aaaaaaaa\") == [0, 1, 4, 7]",
+        "assert kmp_search(\" \", \"\") == []"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "ICPC"
+}

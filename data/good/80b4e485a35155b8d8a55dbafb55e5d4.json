@@ -1,0 +1,20 @@
+{
+    "title": "Fibonacci Series Generator - Medium",
+    "description": "Write a function `fibonacci` that generates the Fibonacci series up to the nth term. The Fibonacci series is a sequence of numbers in which each number is the sum of the two preceding ones, usually starting with 0 and 1.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): An integer greater than or equal to 0.\n\n#### Output\n- Returns a list of integers representing the Fibonacci series up to the nth term.",
+    "code": "def fibonacci(n: int) -> List[int]:\n    # Initialize first two terms of the series\n    fib_series = [0, 1]\n    \n    # Loop until we have n terms in the series\n    while len(fib_series) < n:\n        # Add the next term to the series (sum of last two terms)\n        fib_series.append(fib_series[-1] + fib_series[-2])\n    \n    return fib_series[:n]",
+    "tests": [
+        "assert fibonacci(5) == [0, 1, 1, 2, 3, 5]",
+        "assert fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]",
+        "assert fibonacci(20) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765]",
+        "assert fibonacci(35) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229]",
+        "assert fibonacci(100) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088179, 63245986, 102334155, 165580141, 267914296, 433494437, 701408733, 1134903170]",
+        "assert fibonacci(500) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088179, 63245986, 102334155, 165580141, 267914296, 433494437, 701408733, 1134903170, 1836311903, 2971213606, 4807526976, 7778742049, 12586269025, 20365011074, 32951280099, 53316291173, 86267578125, 139526624901, 225857142993, 365626074661, 591286729879, 956722026041, 1548323212961, 2504755799613, 4035360788657, 6506306302833, 10610209857723, 17392772001525, 28006414634641, 45077716902229, 71961454935417, 115760762038833, 184467440737095]"
+    ],
+    "it": "python\ndef fib(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n\n# Testing the function\nfor i in range(5, 60, 10):\n    print(f",
+    "i}": {
+        "fib(i)}": "In this solution, we initialize two variables `a` and `b`, representing the current and previous Fibonacci numbers respectively. Then, inside a for loop, we swap the values of `a` and `b` on each iteration to represent the next two Fibonacci numbers. The loop runs for `n` times, where `n` is the position of the number you want in the sequence.\n\nThis approach uses constant space (O(1)) and linear time (O(n)). Using recursion, on the other hand, has a time complexity of O(2^n) due to the repeated subproblems it solves. Therefore, this loop-based method is more memory-efficient and performs better for large input values."
+    },
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "HackerRank"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "An anagram is a word or phrase that consists of the same letters as another word or phrase, but arranged differently. Write a function `find_anagrams` that finds all the anagrams of a given string in a list of strings.\n\n#### Function Signature\n```python\ndef find_anagrams(s: str, words: List[str]) -> List[str]:\n```\n\n#### Input\n- `s` (str): A string that is to be found as an anagram in the list of strings.\n- `words` (List[str]): A list of strings, where all strings may contain letters and spaces.\n\n#### Output\n- Returns a list of strings that are anagrams of the input string `s`. If there are no anagrams, returns an empty list.",
+    "code": "def find_anagrams(s: str, words: List[str]) -> List[str]:\n    # Create a dictionary to count each letter in the input string\n    count = {char: s.count(char) for char in set(s)}\n    \n    # Find anagrams by iterating through all strings and checking if they have the same count of each letter as the input string\n    return [word for word in words if all([count[char] == word.count(char) for char in set(word)])]",
+    "tests": [
+        "assert find_anagrams('listen', ['enlists', 'silent', 'text', 'enlist']) == ['enlist', 'silent']",
+        "assert find_anagrams('antidisestablishmentarianism', words) == []"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "mistral:latest",
+    "style": "TopCoder"
+}

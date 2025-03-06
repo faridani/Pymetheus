@@ -1,0 +1,13 @@
+{
+    "title": "'Palindromic Substrings in a String (Easy)'",
+    "description": "A palindromic substring is a contiguous sequence of characters that reads the same forward and backward. For example, in the string 'abaabcaa', the substrings 'aba', 'b', 'aa' are palindromes.\n\nWrite a function `find_palindromes` that finds all the palindromic substrings in a given string.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> list[str]:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of all palindromic substrings in the input string.",
+    "code": "def find_palindromes(s: str) -> list[str]:\n    # Find palindromes of length 1\n    short_palindromes = [char for char in s if s.count(char) > 1]\n    \n    # Find palindromes of odd length by expanding from the middle and checking if it is a palindrome\n    odd_length_palindromes = [s[i:j] for i, j in zip(range(len(s), -1, -2), range(1, len(s) + 1)) if s[i-1] == s[j]]\n    \n    # Find palindromes of even length by iterating over all possible substrings and checking if it is a palindrome\n    for i in range(len(s)):\n        for j in range(i + 1, len(s) + 1):\n            substring = s[i:j]\n            # If the length of the substring is odd, check if it can be made into a palindrome by adding another character at the beginning and end that match the middle character.\n            if len(substring) % 2 != 0 and (substring[len(substring) // 2] in s[i-1:i+1]):\n                expanded_palindrome = substring + s[i - 1] + substring[::-1]\n                if expanded_palindrome == expanded_palindrome[::-1]:\n                    odd_length_palindromes.append(substring)\n            # If the length of the substring is even, check if it is a palindrome directly.\n            elif len(substring) % 2 == 0 and substring == substring[::-1]:\n                odd_length_palindromes.append(substring)\n    \n    # Remove duplicates and return the result\n    return list(set(odd_length_palindromes))",
+    "tests": [
+        "assert find_palindromes(\"abaabcaa\") == [\"aba\", \"b\", \"aa\"]",
+        "assert find_palindromes(\"madam\") == [\"madam\"]",
+        "assert find_palindromes(\"racecar\") == [\"racecar\", \"race\", \"carc\", \"ecce\"]"
+    ],
+    "difficulty": "easy",
+    "model": "mistral:latest",
+    "style": "ACM-ICPC"
+}

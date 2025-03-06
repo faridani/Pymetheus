@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Detection (Hard)'",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `find_anagrams` that finds all anagrams of a given string.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str) -> List[str]:\n```\n\n#### Input\n- `word` (str): A string containing only alphabetic characters.\n\n#### Output\n- Returns a list of strings, where each string is an anagram of the input word.",
+    "code": "import itertools\ndef find_anagrams(word: str) -> List[str]:\n    # Generate all permutations of the characters in the input word\n    perms = [''.join(perm) for perm in itertools.permutations(sorted(list(word)))]\n    # Filter out anagrams that are the same as the input word\n    anagrams = [perm for perm in perms if len(perm) == len(word) and perm != word]\n    return anagrams",
+    "tests": [
+        "assert find_anagrams('listen') == ['silent', 'enlist']",
+        "assert find_anagrams('programming') == ['grommep', 'grammar', 'maproom']",
+        "assert find_anagrams('hello') == []"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral:latest",
+    "style": "ACM-ICPC"
+}

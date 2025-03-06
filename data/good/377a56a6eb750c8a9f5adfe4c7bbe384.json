@@ -1,0 +1,14 @@
+{
+    "title": "'Twin Words: Check if a given word can be divided into two halves that are anagrams of each other (Medium)'",
+    "description": "Given a string `word`, write a function `is_twinwords` that checks if it can be divided into two halves such that each half is an anagram of the other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef is_twinwords(word: str) -> bool:\n```\n\n#### Input\n- `word` (str): A string that contains only lowercase alphabets and may have any length greater than 0.\n\n#### Output\n- Returns `True` if the input word can be divided into two halves such that each half is an anagram of the other, `False` otherwise.",
+    "code": "def is_twinwords(word: str) -> bool:\n    # Sort the letters of the given word\n    sorted_word = sorted(list(word))\n\n    # Check if there is an odd number of letters in the word\n    if len(sorted_word) % 2 != 0:\n        return False\n\n    # Divide the sorted word into two halves and check if they are anagrams of each other\n    n = len(sorted_word) // 2\n    return sorted_word[:n] == sorted_word[n:][::-1]",
+    "tests": [
+        "assert is_twinwords('abba') == True",
+        "assert is_twinwords('racecar') == False",
+        "assert is_twinwords('manhattannahatmam') == True",
+        "assert is_twinwords('hello') == False"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "ICPC"
+}

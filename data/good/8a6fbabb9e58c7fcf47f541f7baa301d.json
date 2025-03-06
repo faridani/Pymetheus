@@ -1,0 +1,13 @@
+{
+    "title": "'Radix Sort Algorithm (Medium)'",
+    "description": "Radix sort is a sorting algorithm that sorts data using the number system properties. It is particularly well suited to sorting large amounts of data with many keys that are distributed over a wide range of values. Write a function `radix_sort` that sorts an array of integers using the radix sort algorithm.\n\n#### Function Signature\n```python\ndef radix_sort(arr: List[int]) -> List[int]:\n```\n\n#### Input\n- `arr` (List[int]): A list of integers that are non-negative and less than 10^9.\n\n#### Output\n- Returns a sorted list of integers using radix sort algorithm.",
+    "code": "def radix_sort(arr: List[int]):\n    # Determine maximum number of digits in the input numbers\n    max_digits = len(str(max(arr))) + 1\n    \n    # Create an empty array for each digit position\n    buckets = [[[] for _ in range(10)] for _ in range(max_digits)]\n    \n    # Sort the numbers by each digit position\n    for k in range(max_digits):\n        # Place each number in the correct bucket based on its current digit at position `k`\n        for num in arr:\n            place = (num // 10**k) % 10\n            buckets[k][place].append(num)\n        \n        # Reconstruct the sorted array by combining all the buckets back together\n        arr[:] = [val for sublist in buckets[k] for val in sublist]\n    \n    return arr",
+    "tests": [
+        "assert radix_sort([23, 45, 78, 19, 56]) == [19, 23, 56, 45, 78]",
+        "assert radix_sort([100, 99, 98, 1, 2, 3]) == [1, 2, 3, 98, 99, 100]",
+        "assert radix_sort([123456789, 987654321]) == [123456789, 987654321]"
+    ],
+    "difficulty": "medium",
+    "model": "mistral:latest",
+    "style": "Codecademy"
+}
