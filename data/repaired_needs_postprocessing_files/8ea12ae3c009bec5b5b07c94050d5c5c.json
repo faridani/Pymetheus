@@ -1,0 +1,12 @@
+{
+    "title": "Fibonacci Sequence Sum Finder (Medium)",
+    "description": "The task is to write a function `fibonacci_sum_finder` that takes an integer `n` as input, and returns the sum of the first `n` numbers in the Fibonacci sequence. The Fibonacci sequence starts with 0 and 1, and each subsequent number is the sum of the previous two.\n#### Function Signature\n```python\ndef fibonacci_sum_finder(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): An integer representing the index of the last Fibonacci number to sum.\n#### Output\n- Returns the sum of the first `n` numbers in the Fibonacci sequence.\n",
+    "code": "def fibonacci_sum_finder(n: int) -> int:\n    if n <= 0: return 0\n    prev, current = 0, 1\n    total_sum = 0\n    for _ in range(n):\n        next = prev + current\n        total_sum += next\n        prev, current = current, next\n    return total_sum",
+    "tests": [
+        "assert fibonacci_sum_finder(4) == 5",
+        "assert fibonacci_sum_finder(10) == 55",
+        "assert fibonacci_sum_finder(28) == 3649",
+        "assert fibonacci_sum_finder(37) == 92738"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

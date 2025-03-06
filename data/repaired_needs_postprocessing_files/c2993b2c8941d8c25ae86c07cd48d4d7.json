@@ -1,0 +1,11 @@
+{
+    "title": "'Levenshtein Distance Calculator (Easy)'",
+    "description": "The Levenshtein distance between two words is the minimum number of single-character edits (insertion, deletion or substitution) required to change one word into the other.\n\n#### Function Signature\n```python\ndef levenshtein_distance(word1: str, word2: str) -> int:\n```\n\n#### Input\n- `word1`, `word2` (str): Two strings containing only lowercase letters.\n\n#### Output\n- Returns the Levenshtein distance between `word1` and `word2` as an integer.",
+    "code": "def levenshtein_distance(word1: str, word2: str) -> int:\n    # If one of the strings is empty, its length is the Levenshtein distance\n    if len(word1) == 0 and len(word2) == 0:\n        return 0\n    elif len(word1) == 0:\n        return len(word2)\n    elif len(word2) == 0:\n        return len(word1)\n    else:\n        # Initialize the matrix\n        matrix = [[0 for _ in range(len(word2)+1)] for _ in range(len(word1)+1)]\n\n        # Fill the matrix row by row and column by column\n        for i, char1 in enumerate(word1):\n            for j, char2 in enumerate(word2):\n                if char1 == char2:\n                    matrix[i+1][j+1] = matrix[i][j] + 1\n                else:\n                    matrix[i+1][j+1] = min(matrix[i][j+1]+1, matrix[i+1][j]+1, matrix[i][j]) + 1\n        return matrix[-1][-1]\n",
+    "tests": [
+        "assert levenshtein_distance('kitten', 'sitting') == 3",
+        "assert levenshtein_distance('python', 'python') == 0",
+        "assert levenshtein_distance('hello', 'world') == 4"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

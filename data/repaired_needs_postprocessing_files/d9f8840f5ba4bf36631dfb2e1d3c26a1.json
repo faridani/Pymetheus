@@ -1,0 +1,11 @@
+{
+    "title": "'Polynomial Equation Solver (Medium)'",
+    "description": "Given a polynomial equation of the form f(x) = ax^2 + bx + c, find its roots. The roots may be real or complex numbers.\n\n#### Function Signature\n```python\ndef solve_poly(a: float, b: float, c: float) -> List[complex]:\n```\n\n#### Input\n- `a` (float): The coefficient of x^2 in the polynomial equation.\n- `b` (float): The coefficient of x in the polynomial equation.\n- `c` (float): The constant term in the polynomial equation.\n\n#### Output\n- Returns a list containing the roots of the polynomial equation, if they exist. If the discriminant is less than zero, return an empty list.\n",
+    "code": "import math\ndef solve_poly(a: float, b: float, c: float) -> List[complex]:\n    # Calculate the discriminant\n    d = b**2 - 4*a*c\n    if d < 0:\n        return []\n    else:\n        sqrt_d = math.sqrt(abs(d))\n        t1 = (-b + sqrt_d) / (2 * a)\n        t2 = (-b - sqrt_d) / (2 * a)\n        roots = [t1, t2]\n        if not all([math.isreal(root) for root in roots]):\n            # Handle complex roots\n            roots = sorted(roots, key=lambda x: x.imag)\n            roots[0] = roots[0].real\n            roots[1] = conjugate(roots[1]).real\n        return roots",
+    "tests": [
+        "assert solve_poly(1, 0, -3) == [complex(-3.0)]",
+        "assert solve_poly(1, 4, 15) == [complex(-2.0 + 3j), complex(-2.0 - 3j)]",
+        "assert solve_poly(1, 0, 0) == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

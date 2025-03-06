@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Circular Prime Sum",
+    "description": "A circular prime number is a prime number that remains prime when its digits are rotated. For example, 197 is a circular prime because 197, 971, and 719 are all prime numbers. Write a function `circular_prime_sum` that takes an integer `n` as input and returns the sum of all circular primes less than or equal to `n`. A prime number is a natural number greater than 1 that has no divisors other than 1 and itself. The function should be efficient, and this can be achieved by generating only the necessary circular primes.\n#### Function Signature\n```python\ndef circular_prime_sum(n: int) -> int:\n``` \n#### Input\n- `n` (int): An integer representing the upper limit for finding circular primes.\n#### Output\n- Returns the sum of all circular primes less than or equal to `n`. ",
+    "code": "def is_prime(num):\n    if num <= 1:\n        return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\ndef circular_prime_sum(n: int) -> int:\n    total_sum = 0\n    for num in range(2, n + 1):\n        if is_prime(num):\n            str_num = str(num)\n            is_circular_prime = True\n            for i in range(len(str_num)):\n                rotated_num = int(str_num[i:] + str_num[:i])\n                if not is_prime(rotated_num):\n                    is_circular_prime = False\n                    break\n            if is_circular_prime:\n                total_sum += num\n    return total_sum\n",
+    "tests": [
+        "assert circular_prime_sum(100) == 123 ",
+        "assert circular_prime_sum(1000) == 1485 ",
+        "assert circular_prime_sum(10) == 17"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

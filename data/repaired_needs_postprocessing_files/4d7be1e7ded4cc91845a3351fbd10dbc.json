@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection",
+    "description": "Write a function `anagram_checker` that checks if two given strings are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef anagram_checker(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain letters (no numbers or special characters). The lengths of the two strings should be equal.\n\n#### Output\n- Returns `True` if the two input strings are anagrams, `False` otherwise.",
+    "code": "def anagram_checker(str1: str, str2: str) -> bool:\n    # Ensure the strings have the same length and contain only letters\n    assert len(str1) == len(str2), 'Strings must be of equal length'\n    assert str1.isalpha() and str2.isalpha(), 'Strings must only contain letters'\n    # Create sorted lists of each string's characters\n    sorted_chars1 = sorted(list(str1))\n    sorted_chars2 = sorted(list(str2))\n    # Compare the sorted character lists for equality\n    return sorted_chars1 == sorted_chars2",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('cats', 'act') == True",
+        "assert anagram_checker('hello', 'world') == False",
+        "assert anagram_checker('python', 'typhon') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

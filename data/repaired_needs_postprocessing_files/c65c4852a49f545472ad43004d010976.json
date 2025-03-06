@@ -1,0 +1,11 @@
+{
+    "title": "Prime Summation (Hard)",
+    "description": "Write a function `prime_summation(n: int) -> int` that finds the sum of all the prime numbers less than or equal to n. \n\n#### Function Signature\n```python\ndef prime_summation(n: int) -> int:\n```\n\n#### Input\n- `n` (int): An integer representing an upper limit, where the function should find the sum of all the prime numbers less than or equal to n.\n\n#### Output\n- Returns the sum of all the prime numbers less than or equal to n as an integer.",
+    "code": "def is_prime(num: int) -> bool:\n    if num < 2: return False\n    for i in range(2, int(num**0.5)+1):\n        if num % i == 0:\n            return False\n    return True\n\ndef prime_summation(n: int) -> int:\n    total = 0\n    for num in range(2, n+1):\n        if is_prime(num):\n            total += num\n    return total",
+    "tests": [
+        "assert prime_summation(10) == 2 + 2 + 3 + 5 + 7 == 28",
+        "assert prime_summation(100) == 2 + 3 + 5 + 7 + 11 + 13 + 17 + 19 + 23 + 29 + 31 + 37 + 41 + 43 + 47 + 53 + 59 + 61 + 67 + 71 + 73 + 79 + 83 + 89 + 97 == 1625",
+        "assert prime_summation(1000) == 2 + 3 + 5 + 7 + 11 + 13 + 17 + 19 + 23 + 29 + 31 + 37 + 41 + 43 + 47 + 53 + 59 + 61 + 67 + 71 + 73 + 79 + 83 + 89 + 97 + 101 + 103 + 107 + 109 + 113 + 127 + 131 + 137 + 139 + 149 + 151 + 157 + 163 + 167 + 169 + 173 + 179 + 181 + 191 + 193 + 197 + 199 == 14291"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

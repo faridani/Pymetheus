@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Words Checker (Medium)",
+    "description": "Write a function `is_reverse_words` that checks if a given string has its words arranged in reverse order.\n\n#### Function Signature\n```python\ndef is_reverse_words(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string containing words separated by spaces, commas, periods, or other common delimiters.\n\n#### Output\n- Returns `True` if the input string has its words arranged in reverse order, `False` otherwise.",
+    "code": "def is_reverse_words(s: str) -> bool:\n    # Split the string into a list of words\n    words = s.split()\n    # Reverse the order of the list of words\n    reversed_words = words[::-1]\n    # Check if the original and reversed list of words are equal, ignoring case sensitivity\n    return sorted(words, key=str.casefold) == sorted(reversed_words, key=str.casefold)\n",
+    "tests": [
+        "assert is_reverse_words('words without spaces') == True",
+        "assert is_reverse_words('This is a palindrome checker') == False",
+        "assert is_reverse_words('I am a programmer, programmer I am') == True",
+        "assert is_reverse_words('apple, banana, cherry') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

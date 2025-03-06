@@ -1,0 +1,12 @@
+{
+    "title": "Elevator Counting",
+    "description": "In a building, there are several elevators that move between the ground floor and the topmost floor. Each elevator has its own unique ID and moves at different speeds. Write a function to count how many elevators are currently moving up or down in any given time step.\n\n#### Function Signature\n```python\ndef count_elevators(elevator_states: list[tuple[int, int]]) -> int:\n```\n\n#### Input\n- `elevator_states` (list[tuple[int, int]]): A list of tuples, where each tuple contains the elevator ID and its current state (1 for moving up, -1 for moving down).\n\n#### Output\n- Returns the number of elevators that are currently moving.\n",
+    "code": "def count_elevators(elevator_states: list[tuple[int, int]]) -> int:\n    return sum(1 for _, state in elevator_states if state != 0)\n",
+    "tests": [
+        "assert count_elevators([(-1, 2), (1, 3)]) == 2",
+        "assert count_elevators([(1, -1), (-1, 1)]) == 1",
+        "assert count_elevators([]) == 0",
+        "assert count_elevators([(1, 1), (-1, -1)]) == 2"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

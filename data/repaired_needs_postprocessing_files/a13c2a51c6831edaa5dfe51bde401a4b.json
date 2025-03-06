@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Word Ladder",
+    "description": "A word ladder is a sequence of words where each word differs from the previous one by only one letter. Given two strings `beginWord` and `endWord`, and a list of valid words `wordList`, find the shortest word ladder that transforms `beginWord` into `endWord`.#### Function Signature``pythonndef word_ladder(beginWord: str, endWord: str, wordList: list[str]) -> int:```#### Input- `beginWord` (str): The starting word.- `endWord` (str): The target word.- `wordList` (list[str]): A list of valid words that can be used in the ladder.#### Output- Returns the length of the shortest word ladder, or 0 if no such ladder exists.",
+    "code": "from collections import deque\ndef word_ladder(beginWord: str, endWord: str, wordList: list[str]) -> int:\n    if endWord not in wordList:\n        return 0\n    wordList = set(wordList)\n    queue = deque([(beginWord, 1)])\n    visited = {beginWord}\n    while queue:\n        word, length = queue.popleft()\n        if word == endWord:\n            return length\n        for i in range(len(word)):\n            for ch in 'abcdefghijklmnopqrstuvwxyz':\n                new_word = word[:i] + ch + word[i+1:]\n                if new_word in wordList and new_word not in visited:\n                    queue.append((new_word, length + 1))\n                    visited.add(new_word)\n    return 0",
+    "tests": [
+        "assert word_ladder('hit', 'cog', ['hot', 'dot', 'dog', 'lot', 'log', 'cog']) == 5",
+        "assert word_ladder('hit', 'cog', ['hot', 'dot', 'dog', 'lot']) == 0",
+        "assert word_ladder('cat', 'dog', ['cat','cot','cog','dog']) == 3"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

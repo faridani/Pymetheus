@@ -1,0 +1,10 @@
+{
+    "title": "Hardest Mode: Longest Increasing Subsequence",
+    "description": "A longest increasing subsequence (LIS) of a given sequence is the longest possible subsequences where all elements are in order. For example, if we have the list [2, 1, 5, 3, 4], then one of the LIS could be [1, 4] as it is the longest increasing subsequence.\n#### Function Signature\n```python\ndef find_lis(lst: list[int]) -> int:\n```\n#### Input\n- `lst` (list[int]): A list of integers that you need to find the length of the LIS.\n#### Output\n- Returns the length of the longest increasing subsequence in the input list.",
+    "code": "def find_lis(lst: list[int]) -> int:\n    if not lst:\n        return 0\n    dp = [1] * len(lst)\n    for i in range(1, len(lst)):\n        for j in range(i):\n            if lst[i] > lst[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    return max(dp)",
+    "tests": [
+        "assert find_lis([2, 1, 5, 3, 4]) == 3",
+        "assert find_lis([10, 22, 9, 33, 21, 50, 41, 60]) == 6"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

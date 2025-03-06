@@ -1,0 +1,11 @@
+{
+    "title": "Medium - Flatten a Nested List",
+    "description": "Given a list that may contain nested lists, write a function `flatten` to flatten the list into a single list containing all the elements. This function should handle both integer and string values.\\n#### Function Signature\\n```python\\ndef flatten(nested_list: list) -> list:\\``\\n#### Input\\n- `nested_list` (list): A list that may contain integers, strings, and other lists.\\n#### Output\\n- Returns a flattened list containing all the elements from the input list.",
+    "code": "def flatten(nested_list: list) -> list:\n    flattened_list = []\n    for item in nested_list:\n        if isinstance(item, list):\n            flattened_list.extend(flatten(item))\n        else:\n            flattened_list.append(item)\n    return flattened_list",
+    "tests": [
+        "assert flatten([1, 2, [3, 4], [5, [6, 7]]]) == [1, 2, 3, 4, 5, 6, 7]",
+        "assert flatten(['a', 'b', ['c', 'd']]) == ['a', 'b', 'c', 'd']",
+        "assert flatten([[1], 2, [3, [4]]]) == [1, 2, 3, 4]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

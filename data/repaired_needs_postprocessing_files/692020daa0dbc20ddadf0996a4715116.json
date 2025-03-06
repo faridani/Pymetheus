@@ -1,0 +1,11 @@
+{
+    "title": "Count the Occurrences of a Character in a String (Medium Level)",
+    "description": "Given a string, write a function that returns a dictionary where the keys are characters and the values are their respective counts.\n\n#### Function Signature\n```python\ndef count_chars(s: str) -> dict:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a dictionary where the keys are characters (in any case, e.g., uppercase or lowercase) and values are their respective counts.",
+    "code": "def count_chars(s: str) -> dict:\n    # Initialize an empty dictionary to store character counts\n    char_count = {}\n\n    # Iterate through the string\n    for char in s:\n        # If the character is already a key, increment its value; otherwise, set it to 1\n        if char in char_count:\n            char_count[char] += 1\n        else:\n            char_count[char] = 1 \n    \n    # Return the dictionary of character counts\n    return char_count",
+    "tests": [
+        "assert count_chars('hello world') == {'h': 1, 'e': 1, 'l': 4, 'o': 2, ' ': 1, 'w': 1, 'r': 1, 'd': 1}",
+        "assert count_chars('aaabbcccdd') == {'a': 2, 'b': 1, 'c': 3, 'd': 1}",
+        "assert count_chars('!A B C#') == {'!': 1, ' ': 1, 'A': 1, 'B': 1, 'C': 1, '#': 1}"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

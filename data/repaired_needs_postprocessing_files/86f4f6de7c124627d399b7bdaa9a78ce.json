@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Balanced Brackets",
+    "description": "Given a string containing only parentheses (round, curly, and square), determine if the brackets are balanced. A string of brackets is considered balanced if:\n1.  Every opening bracket has a corresponding closing bracket of the same type.\n2.  Brackets are closed in the correct order.\n#### Function Signature\n```python\ndef is_balanced(brackets: str) -> bool:\n```\n#### Input\n- `brackets` (str): A string containing only parentheses characters '(', ')', '{', '}', '[', and ']'.\n#### Output\n- Returns `True` if the input string of brackets is balanced, `False` otherwise.",
+    "code": "def is_balanced(brackets: str) -> bool:\n    stack = []\n    bracket_pairs = {')': '(', '}': '{', ']': '['}\n\n    for bracket in brackets:\n        if bracket in bracket_pairs.values():  # Opening bracket\n            stack.append(bracket)\n        elif bracket in bracket_pairs.keys():  # Closing bracket\n            if not stack or stack.pop() != bracket_pairs[bracket]:\n                return False\n    return len(stack) == 0",
+    "tests": [
+        "assert is_balanced('{}[]()') == True",
+        "assert is_balanced('([{}])') == True",
+        "assert is_balanced('({[})') == False",
+        "assert is_balanced('((()))') == True",
+        "assert is_balanced('{[(])}') == False"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

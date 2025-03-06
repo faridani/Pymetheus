@@ -1,0 +1,13 @@
+{
+    "title": "Hard - Alien Message Decoder",
+    "description": "You are tasked with deciphering a message received from an alien civilization. The aliens communicate using a unique language where words are formed by combining prime numbers.\n\n#### Function Signature\n```python\ndef decode_message(message: str) -> str:\n```n\n#### Input\n- `message` (str): A string representing the encoded alien message, consisting of space-separated integers.\n#### Output\n- Returns a decoded string containing the original alien message. If the input contains non-prime numbers or invalid formatting, return \"Invalid Message\".\n#### Constraints\n- The message will contain only positive integers.\n- Prime numbers are defined as natural numbers greater than 1 that are not products of two smaller natural numbers.\n#### Hints\n- You'll need to determine which numbers in the input string are prime numbers.\n- Consider using a dictionary or mapping to associate prime numbers with letters.",
+    "code": "def decode_message(message: str) -> str:\n    primes = {2: 'a', 3: 'b', 5: 'c', 7: 'd', 11: 'e', 13: 'f', 17: 'g', 19: 'h', 23: 'i', 29: 'j', 31: 'k',\n             37: 'l', 41: 'm', 43: 'n', 47: 'o', 53: 'p', 59: 'q', 61: 'r', 67: 's', 71: 't', 73: 'u',\n             79: 'v', 83: 'w', 89: 'x', 97: 'y', 101: 'z'}\n    decoded_message = ''\n    numbers = message.split()\n    for number in numbers:\n        if not number.isdigit():\n            return \"Invalid Message\"\n        num = int(number)\n        if num in primes:\n            decoded_message += primes[num]\n        else:\n            return \"Invalid Message\"\n    return decoded_message",
+    "tests": [
+        "assert decode_message(\"2 3 5 7\") == \"abcd\"",
+        "assert decode_message(\"11 13 17\") == \"efg\"",
+        "assert decode_message(\"2 4 6 8\") == \"Invalid Message\"",
+        "assert decode_message(\"2 3 59 73\") == \"abkq\"",
+        "assert decode_message(\"101 3 2\") == \"zayb\""
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

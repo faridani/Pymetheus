@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Words Checker (Hard)",
+    "description": "Write a function `is_reverse_words` that checks if a given string consists of words arranged in reverse order. For the purpose of this problem, we define a word as any sequence of non-whitespace characters.\n\n#### Function Signature\n```python\ndef is_reverse_words(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that may contain spaces, words, and punctuation.\n\n#### Output\n- Returns `True` if the input string consists of words arranged in reverse order, `False` otherwise.",
+    "code": "def is_reverse_words(s: str) -> bool:\n    # Split the string into a list of words by spaces and punctuation\n    words = s.split()\n    # Check if the list of words is reversed or not\n    return words == words[::-1]",
+    "tests": [
+        "assert is_reverse_words('hello world') == False",
+        "assert is_reverse_words('world hello') == True",
+        "assert is_reverse_words('apple banana') == False",
+        "assert is_reverse_words('banana apple') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

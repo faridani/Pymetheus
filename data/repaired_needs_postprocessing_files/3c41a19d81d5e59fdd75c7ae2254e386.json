@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Tree Diameter",
+    "description": "You are given a tree represented as an adjacency list. The diameter of a tree is the length of the longest path between any two nodes in the tree. Write a function `tree_diameter(adj_list)` that returns the diameter of the tree.\n\n#### Function Signature\n```python\ndef tree_diameter(adj_list: list[list[int]]) -> int:\n```\n\n#### Input\n- `adj_list` (list[list[int]]): An adjacency list representing the tree. Each index in the list represents a node, and the value at that index is a list of its adjacent nodes.\n\n#### Output\n- Returns an integer representing the diameter of the tree.",
+    "code": "def tree_diameter(adj_list: list[list[int]]) -> int:\n    n = len(adj_list)\n    farthest_node = 0\n    max_distance = 0\n\n    def dfs(node, parent, distance):\n        nonlocal farthest_node, max_distance\n        if distance > max_distance:\n            max_distance = distance\n            farthest_node = node\n        for neighbor in adj_list[node]:\n            if neighbor != parent:\n                dfs(neighbor, node, distance + 1)\n    \n    dfs(0, -1, 0) # First DFS to find a farthest node from an arbitrary starting node (e.g., node 0)\n    dfs(farthest_node, -1, 0) # Second DFS from the farthest node to find the diameter\n    return max_distance",
+    "tests": [
+        "adj_list = [[1, 2], [0, 3], [0], [1]]\nassert tree_diameter(adj_list) == 3",
+        "adj_list = [[1], [0, 2], [1]]\nassert tree_diameter(adj_list) == 2",
+        "adj_list = [[1, 2, 3], [0, 4], [0], [0], [1]]\nassert tree_diameter(adj_list) == 4"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

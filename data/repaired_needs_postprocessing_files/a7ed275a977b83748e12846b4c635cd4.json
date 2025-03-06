@@ -1,0 +1,12 @@
+{
+    "title": "Kaprekar Number Verification",
+    "description": "A Kaprekar number is a non-negative integer of n digits, such that when squared, the result can be split into two parts: one containing all but the last digit of (n^2), and another with exactly n digits being equal to n or less. If the sum of these two numbers equals the original number, then it is a Kaprekar number.\n#### Function Signature\n```python\ndef kaprekar_number_validator(number: int) -> bool:\n``` \n\n#### Input\n- `number` (int): A non-negative integer to be checked for the Kaprekar property.\n\n#### Output\n- Returns `True` if the input number is a Kaprekar number, `False` otherwise.",
+    "code": "def kaprekar_number_validator(number: int) -> bool:\n    squared = str(number ** 2)\n    num_digits = len(squared)\n    for split_point in range(1, num_digits):\n        left_part, right_part = int(squared[:-split_point]), int(squared[-split_point:])\n        if left_part + right_part == number:\n            return True\n    return False",
+    "tests": [
+        "assert kaprekar_number_validator(529) == True",
+        "assert kaprekar_number_validator(45) == False",
+        "assert kaprekar_number_validator(613) == False",
+        "assert kaprekar_number_validator(2970) == True"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

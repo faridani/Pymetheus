@@ -1,0 +1,11 @@
+{
+    "title": "Polynomial Evaluation (Hard)",
+    "description": "Write a function `evaluate_poly` that takes a polynomial represented as a list of coefficients and an evaluation point, and returns the result of evaluating the polynomial at the given point.\n\n#### Function Signature\n```python\ndef evaluate_poly(coefficients: List[int], x: float) -> float:\n```\n\n#### Input\n- `coefficients` (List[int]): A list of coefficients in the form [a_0, a_1, ..., a_n], where the polynomial is defined as a_n*x^n + a_(n-1)*x^(n-1) + ... + a_1*x + a_0.\n- `x` (float): The evaluation point for the polynomial.\n\n#### Output\n- Returns the result of evaluating the given polynomial at the provided evaluation point.\n\n",
+    "code": "def evaluate_poly(coefficients: List[int], x: float) -> float:\n    result = 0.0\n    for i, coeff in enumerate(reversed(coefficients)):\n        result += coeff * (x ** i)\n    return result",
+    "tests": [
+        "assert evaluate_poly([1, 2, -3], 2.0) == 15.0",
+        "assert evaluate_poly([0, 2, -1, 4], 3.0) == 29.0",
+        "assert evaluate_poly([-1, 2, -3, 4], -2.0) == 37.0"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Most Frequent Number in Line of People",
+    "description": "A line of people is arranged as a sequence of numbers on a number line. Your task is to find the most frequent number in this line.\n\n#### Function Signature\n```python\ndef most_frequent_number(line: list) -> int:\n```\n\n#### Input\n- `line` (list): A list of integers representing the line of people, where each integer is a person's position on the number line. The numbers in the list are guaranteed to be unique and ordered.\n\n#### Output\n- Returns the most frequent number in the line. If there are multiple most frequent numbers, return any one of them.",
+    "code": "def most_frequent_number(line: list) -> int:\n    freq_dict = {num: 1 + (freq_dict.get(num, 0)) for num in set(line)}\n    max_freq = max(freq_dict.values())\n    most_frequent_numbers = [num for num, freq in freq_dict.items() if freq == max_freq]\n    return min(most_frequent_numbers)\n",
+    "tests": [
+        "assert most_frequent_number([1, 2, 3, 4, 5]) == 1",
+        "assert most_frequent_number([1, 1, 2, 2, 3]) == 1",
+        "assert most_frequent_number([1, 2, 2, 3, 3, 3]) == 3"
+    ],
+    "model": "llama3.1:8b-repaired by Llama 3"
+}

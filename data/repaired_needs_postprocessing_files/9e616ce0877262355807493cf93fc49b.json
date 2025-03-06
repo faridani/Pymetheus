@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Reverse Words",
+    "description": "Write a function `reverse_words` that takes a string as input and returns a new string with the words in reverse order.\n#### Function Signature\n```python\ndef reverse_words(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string containing one or more words separated by spaces.\n\n#### Output\n- Returns a new string with the words from the input string in reverse order.",
+    "code": "def reverse_words(s: str) -> str:\n  return ' '.join(reversed(s.split()))",
+    "tests": [
+        "assert reverse_words(\"hello world\") == \"world hello\"",
+        "assert reverse_words(\"python is fun\") == \"fun is python\"",
+        "assert reverse_words(\"\") == \"\"",
+        "assert reverse_words(\"one\") == \"one\""
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

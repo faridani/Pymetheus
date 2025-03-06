@@ -1,0 +1,12 @@
+{
+    "title": "'Is it an Anagram?' (Easy)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n#### Input\n- `s1` (str): The first string to compare for anagramness.\n- `s2` (str): The second string to compare with the first.\n#### Output\n- Returns `True` if both strings are anagrams of each other, `False` otherwise.",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Ensure the strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Count the frequency of each character in both strings\n    counts1 = {}\n    counts2 = {}\n    for char in s1:\n        if char not in counts1:\n            counts1[char] = 1\n        else:\n            counts1[char] += 1 \n    for char in s2:\n        if char not in counts2:\n            counts2[char] = 1\n        else:\n            counts2[char] += 1 \n    \n    # Compare the counts of both strings\n    return all(counts1[key] == counts2[key] for key in counts1.keys())",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('act', 'cat') == True",
+        "assert is_anagram('Anagram', 'nag a man') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

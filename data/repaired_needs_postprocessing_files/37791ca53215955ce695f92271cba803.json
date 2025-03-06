@@ -1,0 +1,11 @@
+{
+    "title": "Reversed Words Checker (Hard)",
+    "description": "Write a function `is_reversed_words` that checks if a given string has each word reversed when read from right to left.\n\n#### Function Signature\n```python\ndef is_reversed_words(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string containing one or more words, separated by spaces.\n\n#### Output\n- Returns `True` if each word in the input string reads the same forwards and backwards when read from right to left, `False` otherwise.",
+    "code": "def is_reversed_words(s: str) -> bool:\n    words = s.split()\n    for word in words:\n        if word != word[::-1]:\n            return False\n    return True",
+    "tests": [
+        "assert is_reversed_words('radar') == True",
+        "assert is_reversed_words('hello world') == False",
+        "assert is_reversed_words('popTop') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

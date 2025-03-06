@@ -1,0 +1,10 @@
+{
+    "title": "Medium - Find Missing Number",
+    "description": "You are given an array of integers `nums` representing a permutation of numbers from 1 to `n` (inclusive) where `n` is the length of the array. One number is missing from this permutation. Write a function `find_missing_number` that takes in the array `nums` and returns the missing number.\n#### Function Signature\n```python\ndef find_missing_number(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A permutation of integers from 1 to `n` with one number missing.\n\n#### Output\n- Returns the missing number in the permutation.",
+    "code": "def find_missing_number(nums: list[int]) -> int:\n    n = len(nums) + 1\n    expected_sum = n * (n + 1) // 2\n    actual_sum = sum(nums)\n    return expected_sum - actual_sum",
+    "tests": [
+        "assert find_missing_number([3,0,1]) == 2",
+        "assert find_missing_number([9,6,4,2,3,5,7,0,1]) == 8"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

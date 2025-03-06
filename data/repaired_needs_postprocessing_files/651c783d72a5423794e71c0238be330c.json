@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Sentence Checker (Hard)",
+    "description": "Write a function `is_reverse_sentence` that checks if a given string is the reverse of its original sentence, while preserving the order of words. The sentence may contain letters, spaces, punctuation, and numbers.\n\n#### Function Signature\n```python\ndef is_reverse_sentence(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string is a reverse of its original sentence, `False` otherwise.",
+    "code": "import re\ndef is_reverse_sentence(s: str) -> bool:\n    # Remove non-alphanumeric characters and split by spaces\n    s = re.sub('[^A-Za-z0-9]', '', s).split()\n    # Reverse the list of words\n    s = s[::-1]\n    # Join the words back into a string and compare with the original\n    return ' '.join(s) == s.replace(' ', '') + ' ' == s",
+    "tests": [
+        "assert is_reverse_sentence(\"A man, a plan, a canal, Panama\") == True",
+        "assert is_reverse_sentence(\"racecar\") == False",
+        "assert is_reverse_sentence(\"hello world\") == False",
+        "assert is_reverse_sentence(\"No 'x' in Nixon\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

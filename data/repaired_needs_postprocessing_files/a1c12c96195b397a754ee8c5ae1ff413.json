@@ -1,0 +1,12 @@
+{
+    "title": "'Check if a given string is a valid IPv4 address (Part 1)'",
+    "description": "Write a function `valid_ipv4` that checks if a given string is a valid IPv4 address. For the first part, only check for a correct number of segments and each segment's range.\n\n#### Function Signature\n```python\ndef valid_ipv4(ip: str) -> bool:\n```\n\n#### Input\n- `ip` (str): A string representing an IPv4 address, which consists of four segments separated by dots.\n\n#### Output\n- Returns `True` if the input string is a valid IPv4 address (for this part, only check that it has 4 segments and each segment's range is from 0 to 255),\n        `False` otherwise.",
+    "code": "def valid_ipv4(ip: str) -> bool:\n    # Split the input string by dots\n    segments = ip.split('.')\n    # Check if there are exactly 4 segments\n    if len(segments) != 4:\n        return False\n    # Check each segment's range\n    for seg in segments:\n        try:\n            num = int(seg)\n            if num < 0 or num > 255:\n                return False\n        except ValueError:\n            return False\n    return True",
+    "tests": [
+        "assert valid_ipv4('192.168.1.1') == True",
+        "assert valid_ipv4('256.0.0.1') == False",
+        "assert valid_ipv4('0.0.0.0') == True",
+        "assert valid_ipv4('.1') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

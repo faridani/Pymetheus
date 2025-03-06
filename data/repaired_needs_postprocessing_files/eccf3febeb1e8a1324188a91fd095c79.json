@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Balanced Parentheses",
+    "description": "Given a string containing only parentheses characters '(' and ')', determine if the input string is balanced. A string is considered balanced if every opening parenthesis has a corresponding closing parenthesis, and the parentheses are properly nested.\n#### Function Signature\n```python\ndef is_balanced(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string containing only '(' and ')' characters.\n#### Output\n- Returns `True` if the input string is balanced, `False` otherwise.",
+    "code": "def is_balanced(s: str) -> bool:\n    stack = []\n    for char in s:\n        if char == '(': \n            stack.append(char)\n        elif char == ')':\n            if not stack or stack.pop() != '(': \n                return False\n    return len(stack) == 0",
+    "tests": [
+        "assert is_balanced('(())') == True",
+        "assert is_balanced('()()') == True",
+        "assert is_balanced('(())') == True",
+        "assert is_balanced(')(') == False",
+        "assert is_balanced('((())') == False"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

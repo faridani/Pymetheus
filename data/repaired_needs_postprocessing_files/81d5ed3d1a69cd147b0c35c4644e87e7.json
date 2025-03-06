@@ -1,0 +1,11 @@
+{
+    "title": "EASY: Counting Triangles",
+    "description": "Given a list of integers, write a function that counts the number of valid triangles that can be formed with three elements from the list. A triangle is valid if its perimeter does not exceed 10.\n\n#### Function Signature\n```python\ndef count_triangles(numbers: list[int]) -> int:\n``` \n\n#### Input\n- `numbers` (list[int]): A list of integers that represents the sides of triangles.\n\n#### Output\n- Returns the number of valid triangles that can be formed with three elements from the input list.",
+    "code": "import itertools\ndef count_triangles(numbers: list[int]) -> int:\n    def is_valid_triangle(a, b, c):\n        return a + b > c and a + c > b and b + c > a and a + b + c <= 10\n    valid_count = 0\n    for triangle in itertools.permutations(numbers, 3):\n        if is_valid_triangle(*triangle):\n            valid_count += 1\n    return valid_count",
+    "tests": [
+        "assert count_triangles([1, 2, 3]) == 2",
+        "assert count_triangles([5, 6, 7, 8]) == 4",
+        "assert count_triangles([10, 11, 12, 13, 14]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

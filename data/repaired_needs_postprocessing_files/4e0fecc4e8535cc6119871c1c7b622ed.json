@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Substring Frequency Calculation",
+    "description": "Given a string `s` and an array of substrings `substrings`, write a function `calculate_substring_frequency` that calculates the frequency of each substring in `s`. \n\n#### Function Signature\n```python\ndef calculate_substring_frequency(s: str, substrings: list[str]) -> dict[str, int]:\n```\n\n#### Input\n- `s` (str): The input string.\n- `substrings` (list[str]): A list of substrings to search for in `s`.\n\n#### Output\n- Returns a dictionary where keys are the substrings and values are their frequencies in `s`.\n\n#### Constraints\n- The length of `s` is between 1 and 10^5.\n- The length of `substrings` is between 1 and 100.\n- Each substring in `substrings` has a length between 1 and 10.\n",
+    "code": "def calculate_substring_frequency(s: str, substrings: list[str]) -> dict[str, int]:\n    frequencies = {}\n    for substring in substrings:\n        frequencies[substring] = s.count(substring)\n    return frequencies",
+    "tests": [
+        "assert calculate_substring_frequency('abracadabra', ['ab', 'ra', 'cad']) == {'ab': 2, 'ra': 2, 'cad': 1}",
+        "assert calculate_substring_frequency('banana', ['an', 'na', 'ban']) == {'an': 2, 'na': 2, 'ban': 1}",
+        "assert calculate_substring_frequency('programming', ['gram', 'pro', 'ing']) == {'gram': 1, 'pro': 1, 'ing': 1}"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

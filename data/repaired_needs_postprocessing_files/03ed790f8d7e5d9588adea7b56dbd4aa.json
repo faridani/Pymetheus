@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Sum of Non-Adjacent Elements in a List",
+    "description": "Given a list of integers, write a function that returns the maximum sum of non-adjacent elements in the list. For example, if the input list is [2, 7, 9, 3, 1], the output should be 12, because the maximum sum of non-adjacent elements is 2 + 9 + 1 = 12. If two or more elements are equal, they can't be considered as adjacent. The function should take an iterable of integers as input and return an integer representing the maximum sum.\n\n#### Function Signature\n```\ndef max_sum_non_adjacent(nums: list[int]) -> int:\n``` \n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns an integer representing the maximum sum of non-adjacent elements in the input list.",
+    "code": "def max_sum_non_adjacent(nums: list[int]) -> int:\n    if len(nums) <= 2:\n        return max(0, max(nums))\n    incl = nums[0]\n    excl = 0\n    for i in range(1, len(nums)):\n        new_excl = max(incl, excl)\n        incl = nums[i] + excl\n        excl = new_excl\n    return max(incl, excl)",
+    "tests": [
+        "assert max_sum_non_adjacent([2, 7, 9, 3, 1]) == 12",
+        "assert max_sum_non_adjacent([-5, -3, 4, 3, 2, 6]) == 8",
+        "assert max_sum_non_adjacent([1, 2, 3, 4, 5, 6]) == 10"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

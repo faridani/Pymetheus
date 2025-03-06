@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Anagram Groups",
+    "description": "Given a list of words, group them into anagrams. Anagrams are words or phrases formed by rearranging the letters of another word or phrase, using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef group_anagrams(words: list[str]) -> list[list[str]]:\n``` \n\n#### Input\n- `words` (list[str]): A list of words.\n\n#### Output\n- Returns a list of lists, where each inner list contains anagrams.",
+    "code": "def group_anagrams(words: list[str]) -> list[list[str]]:\n    anagram_groups = {}\n    for word in words:\n        sorted_word = ''.join(sorted(word))\n        if sorted_word in anagram_groups:\n            anagram_groups[sorted_word].append(word)\n        else:\n            anagram_groups[sorted_word] = [word]\n    return list(anagram_groups.values())",
+    "tests": [
+        "assert group_anagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']) == [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]",
+        "assert group_anagrams(['listen', 'silent', 'enlist']) == [['listen', 'silent', 'enlist']]",
+        "assert group_anagrams(['rail safety', 'fairy tales', 'ail story']) == [['rail safety', 'fairy tales'], ['ail story']]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Length of Two Integers",
+    "description": "Two integers are given in the form of strings, and it is guaranteed that they have the same number of digits. Determine whether the sum of two integers exceeds the maximum limit for a 32-bit signed integer.\n\n#### Function Signature\n```python\ndef check_sum_int(a: str, b: str) -> bool:\n```\n\n#### Input\n- `a` (str): A string representing an integer that may contain leading zeros.\n- `b` (str): Another string representing an integer that may also have leading zeros.\n\n#### Output\n- Returns `True` if the sum of `a` and `b` exceeds the maximum limit for a 32-bit signed integer, `False` otherwise.",
+    "code": "def check_sum_int(a: str, b: str) -> bool:\n    # Convert strings to integers\n    num_a = int(a)\n    num_b = int(b)\n    # Calculate the sum of the two integers\n    total_sum = num_a + num_b\n    # Check if the sum exceeds the maximum limit for a 32-bit signed integer\n    return total_sum > 2**31 - 1\n",
+    "tests": [
+        "assert check_sum_int(\"12345678901234567890\", \"98765432109876543210\") == True",
+        "assert check_sum_int(\"-2147483648\", \"-2147483649\") == False",
+        "assert check_sum_int(\"1000000000\", \"999999999\") == False"
+    ],
+    "model": "llama3.1:8b-repaired by Llama 3"
+}

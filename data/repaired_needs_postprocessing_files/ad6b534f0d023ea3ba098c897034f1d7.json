@@ -1,0 +1,11 @@
+{
+    "title": "'Levenshtein Distance Calculator (Easy)'",
+    "description": "The Levenshtein distance between two words is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.\n\n#### Function Signature\n```python\ndef levenshtein_distance(s: str, t: str) -> int:\n```\n\n#### Input\n- `s`, `t` (str): Two strings that may contain letters and spaces.\n\n#### Output\n- Returns an integer representing the Levenshtein distance between the two input strings.",
+    "code": "def levenshtein_distance(s: str, t: str) -> int:\n    # Initialize matrix for memoization\n    n = len(s) + 1\n    m = len(t) + 1\n    dp = [[0] * m for _ in range(n)]\n\n    # Fill the matrix using dynamic programming\n    for i in range(1, n):\n        for j in range(1, m):\n            if s[i - 1] == t[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1]\n            else:\n                dp[i][j] = min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1\n    # The final distance is in the bottom-right cell of the matrix\n    return dp[-1][-1]",
+    "tests": [
+        "assert levenshtein_distance(\"kitten\", \"sitting\") == 3",
+        "assert levenshtein_distance(\"python\", \"pythone\") == 1",
+        "assert levenshtein_distance(\"hello\", \"world\") == 4"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

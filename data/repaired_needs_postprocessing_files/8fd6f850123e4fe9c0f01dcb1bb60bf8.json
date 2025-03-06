@@ -1,0 +1,11 @@
+{
+    "title": "Counting Triangles",
+    "description": "A triangle is a 2D shape with three sides. A triangle is considered equilateral if all its sides have the same length, and isosceles if at least two of its sides have the same length. Write a function `count_triangles` that takes a list of integers as input, where each integer represents the length of one side of a triangle.\n\n#### Function Signature\n```python\ndef count_triangles(sides: List[int]) -> int:\n``` \n\n#### Input\n- `sides` (List[int]): A list of three integers representing the lengths of the sides of a triangle.\n\n#### Output\n- Returns the number of triangles that can be formed with the given side lengths, considering only equilateral and isosceles triangles.",
+    "code": "from typing import List\ndef count_triangles(sides: List[int]) -> int:\n    # Sort the sides in ascending order\n    sides.sort()\n    # Initialize a counter for the number of triangles\n    triangle_count = 0\n    # Check if the sides can form an equilateral triangle\n    if sides[0] == sides[1] == sides[2]:\n        triangle_count += 1\n    # Check if the sides can form an isosceles triangle\n    elif sides[0] == sides[1] or sides[1] == sides[2] or sides[0] == sides[2]:\n        triangle_count += 1\n    return triangle_count",
+    "tests": [
+        "assert count_triangles([3, 3, 3]) == 1",
+        "assert count_triangles([4, 5, 6]) == 1",
+        "assert count_triangles([10, 20, 30]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Easy: String Contains All Unique Characters",
+    "description": "Write a function `contains_unique_chars` that checks if a given string contains all unique characters.\n\n#### Function Signature\n```python\ndef contains_unique_chars(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters and numbers.\n\n#### Output\n- Returns `True` if the input string contains all unique characters, `False` otherwise.\n",
+    "code": "def contains_unique_chars(s: str) -> bool:\n    # Convert to set to remove duplicates and compare length\n    return len(set(s)) == len(s)",
+    "tests": [
+        "assert contains_unique_chars(\"abcde\") == True",
+        "assert contains_unique_chars(\"aabbcc\") == False",
+        "assert contains_unique_chars(\"12345\") == True"
+    ],
+    "model": "codegeex4:9b-repaired by Llama 3"
+}

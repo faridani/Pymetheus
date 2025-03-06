@@ -1,0 +1,11 @@
+{
+    "title": "Number Reverser (Medium)",
+    "description": "Given a positive integer, write a function `reverse_number` that returns the reversed version of the number. The input will always be a positive integer.\n#### Function Signature\n```python\ndef reverse_number(n: int) -> int:\n```\n#### Input\n- `n` (int): A positive integer.\n#### Output\n- Returns an integer, the reversed version of the input number.\n#### Example\nInput: 12345\nOutput: 54321\n#### Hint\nYou can use the `str` function to convert the integer to a string, and then use slicing or looping to reverse the string and convert it back to an integer.\n",
+    "code": "def reverse_number(n):\n    return int(reversed(str(n)))\n",
+    "tests": [
+        "assert reverse_number(123) == 321",
+        "assert reverse_number(1000) == 1",
+        "assert reverse_number(124567) == 765421"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

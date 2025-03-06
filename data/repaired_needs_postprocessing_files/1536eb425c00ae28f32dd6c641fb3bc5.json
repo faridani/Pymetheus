@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "An anagram is a word or phrase that consists of the same letters as another word or phrase, but in a different order. Write a function `are_anagrams` that checks if two given strings are anagrams.  #### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n```  #### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, and spaces.\n  #### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.    def are_anagrams(s1: str, s2: str) -> bool:\n    # Remove non-alphanumeric characters and convert to lowercase\n    s1 = ''.join([char for char in s1 if char.isalpha()]).lower()\n    s2 = ''.join([char for char in s2 if char.isalpha()]).lower()\n    # If the two strings have different lengths, they cannot be anagrams\n    if len(s1) != len(s2):\n        return False\n    # Count the frequency of each letter in both strings\n    count_dict = {}\n    for char in s1:\n        if char not in count_dict:\n            count_dict[char] = 0\n        count_dict[char] += 1\n    for char in s2:\n        if char not in count_dict or count_dict[char] == 0:\n            return False\n        count_dict[char] -= 1\n    # If all characters have been accounted for and the frequencies match, the strings are anagrams\n    return True",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Remove non-alphanumeric characters and convert to lowercase\n    s1 = ''.join([char for char in s1 if char.isalpha()]).lower()\n    s2 = ''.join([char for char in s2 if char.isalpha()]).lower()\n    # If the two strings have different lengths, they cannot be anagrams\n    if len(s1) != len(s2):\n        return False\n    # Count the frequency of each letter in both strings\n    count_dict = {}\n    for char in s1:\n        if char not in count_dict:\n            count_dict[char] = 0\n        count_dict[char] += 1\n    for char in s2:\n        if char not in count_dict or count_dict[char] == 0:\n            return False\n        count_dict[char] -= 1\n    # If all characters have been accounted for and the frequencies match, the strings are anagrams\n    return True",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"cat\", \"act\") == True",
+        "assert are_anagrams(\"welcome\", \"elmore\") == True",
+        "assert are_anagrams(\"javascript\", \"typescript\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

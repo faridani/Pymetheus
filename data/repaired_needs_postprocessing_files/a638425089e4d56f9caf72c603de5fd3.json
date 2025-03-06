@@ -1,0 +1,12 @@
+{
+    "title": "Even Fibonacci Numbers",
+    "description": "Write a function `even_fibonacci` that finds all the even Fibonacci numbers less than or equal to n.\n\n#### Function Signature\n```python\ndef even_fibonacci(n: int) -> list:\n``` \n\n#### Input\n- `n` (int): An integer greater than or equal to 0.\n\n#### Output\n- Returns a list of all the even Fibonacci numbers less than or equal to n, in non-decreasing order.",
+    "code": "def even_fibonacci(n: int) -> list:\n    sequence = [0, 1]\n    result = []\n    for i in range(2, n + 1):\n        next_number = sum(sequence)\n        if next_number > n:\n            break\n        if next_number % 2 == 0:\n            result.append(next_number)\n        sequence.append(next_number)\n    return result",
+    "tests": [
+        "assert even_fibonacci(4) == [0, 2, 6]",
+        "assert even_fibonacci(10) == [0, 2, 6, 8, 18]",
+        "assert even_fibonacci(20) == [0, 2, 6, 8, 18, 34, 50]",
+        "assert even_fibonacci(100) == [0, 2, 6, 8, 18, 34, 50, 62, 86, 98, 122, 146, 168, 190, 210, 232, 258, 286, 314, 346, 378, 402, 430, 458, 486, 514, 542, 570, 606, 638, 668, 700, 732, 766, 800]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

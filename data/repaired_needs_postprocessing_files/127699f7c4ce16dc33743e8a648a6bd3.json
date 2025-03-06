@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Matrix Rotation",
+    "description": "You are given a 2D matrix of size N x M. The task is to rotate the matrix 90 degrees clockwise.\n\n#### Function Signature\n```python\ndef rotate_matrix(matrix: List[List[int]]) -> List[List[int]]:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A 2D matrix of size N x M.\n\n#### Output\n- Returns the rotated 2D matrix.",
+    "code": "from typing import List\ndef rotate_matrix(matrix: List[List[int]]) -> List[List[int]]:\n    return [list(reversed(i)) for i in zip(*matrix)]",
+    "tests": [
+        "assert rotate_matrix([[1, 2], [3, 4]]) == [[3, 1], [4, 2]]",
+        "assert rotate_matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == [[7, 4, 1], [8, 5, 2], [9, 6, 3]]"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

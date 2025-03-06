@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Counting Squares",
+    "description": "A square is a shape that has four sides of equal length. Write a function `count_squares` that counts the number of squares in a given grid. The grid is represented as a 2D list where each element is either 0 (representing an empty space) or 1 (representing a filled space). A square is considered to be any sequence of four or more adjacent elements with the same value.\n#### Function Signature\n```python\ndef count_squares(grid: list[list[int]]) -> int:\n```",
+    "code": "def count_squares(grid: list[list[int]]) -> int:\n    def dfs(i, j):\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == 0:\n            return\n        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n        for direction in directions:\n            new_i, new_j = i + direction[0], j + direction[1]\n            if grid[new_i][new_j] == grid[i][j]:\n                dfs(new_i, new_j)\n        count = 0\n        for i in range(len(grid)):\n            for j in range(len(grid[0])):\n                if grid[i][j] != 0:\n                    dfs(i, j)\n                    count += 1\n        return count",
+    "tests": [
+        "assert count_squares([[1, 1, 1], [1, 0, 1], [1, 1, 1]]) == 4",
+        "assert count_squares([[1, 0, 0], [0, 0, 0], [0, 0, 1]]) == 2",
+        "assert count_squares([[0, 0, 0], [0, 0, 0], [0, 0, 0]]) == 0",
+        "assert count_squares([[1, 1, 1, 1, 1], [1, 0, 0, 0, 1], [1, 1, 1, 1, 1]]) == 5"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

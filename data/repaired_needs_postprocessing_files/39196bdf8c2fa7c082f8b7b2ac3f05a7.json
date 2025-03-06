@@ -1,0 +1,15 @@
+{
+    "title": "Euler's Totient Function",
+    "description": "#### Problem Description\nThe Euler's totient function \u03c6(n) is defined as the number of positive integers k \u2264 n that are relatively prime to n. For example, \u03c6(5) = 2, since the numbers 1 and 4 are the only ones less than or equal to 5 that are relatively prime to 5.\n#### Function Signature\n```python\ndef totient(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n#### Output\n- Returns the value of Euler's totient function \u03c6(n).\n",
+    "code": "def totient(n: int) -> int:\n    result = 0\n    for i in range(1, n+1):\n        is_rel_prime = True\n        for j in range(2, int(i**0.5) + 1):\n            if i % j == 0:\n                is_rel_prime = False\n                break\n        if is_rel_prime:\n            result += 1\n    return result",
+    "tests": [
+        "assert totient(1) == 1",
+        "assert totient(2) == 1",
+        "assert totient(3) == 2",
+        "assert totient(4) == 2",
+        "assert totient(5) == 2",
+        "assert totient(6) == 2",
+        "assert totient(7) == 6"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

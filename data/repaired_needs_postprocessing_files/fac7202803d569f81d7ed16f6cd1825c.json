@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "Given two strings, determine if they are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` and `str2` (str): Two strings that may contain letters and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def are_anagrams(str1: str, str2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    str1 = ''.join(sorted(str1.lower().replace(' ', '')))\n    str2 = ''.join(sorted(str2.lower().replace(' ', '')))\n    \n    # If the sorted strings are equal, they are anagrams of each other\n    return str1 == str2",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello world\", \"world hello\") == True",
+        "assert are_anagrams(\"A man, a plan, a canal: Panama\", \"Panama canal: a plan a mana a panama\") == True",
+        "assert are_anagrams(\"apple\", \"apples\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Find the Missing Number",
+    "description": "You are given a list of n-1 integers representing numbers from 1 to n with one number missing. Write a function `find_missing_number` that takes this list as input and returns the missing number.\n\n#### Function Signature\n```python\ndef find_missing_number(nums: list[int]) -> int:\n``` \n\n#### Input\n- `nums` (list[int]): A list of integers from 1 to n with one number missing.\n\n#### Output\n- Returns the missing number.",
+    "code": "def find_missing_number(nums: list[int]) -> int:\n    n = len(nums) + 1\n    expected_sum = n * (n + 1) // 2\n    actual_sum = sum(nums)\n    return expected_sum - actual_sum",
+    "tests": [
+        "assert find_missing_number([1, 2, 4, 5]) == 3",
+        "assert find_missing_number([6, 1, 2, 3, 5]) == 4",
+        "assert find_missing_number([7, 8, 9, 10, 11, 13]) == 12"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

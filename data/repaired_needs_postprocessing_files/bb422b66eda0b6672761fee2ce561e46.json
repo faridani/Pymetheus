@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Count Vowels",
+    "description": "Write a function `count_vowels` that takes a string as input and returns the number of vowels (a, e, i, o, u) present in the given string. Write a function `count_vowels` that takes a string as input and returns the number of vowels (a, e, i, o, u) present in the given string.\n\n#### Function Signature\n```python\ndef count_vowels(s: str) -> int:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters and punctuation. The function should consider only English alphabet letters for counting vowels.\n\n#### Output\n- An integer representing the number of vowels in the input string.",
+    "code": "def count_vowels(s: str) -> int:\n    vowel_set = set(['a', 'e', 'i', 'o', 'u'])\n    count = 0\n    for char in s.lower():\n        if char in vowel_set:\n            count += 1\n    return count",
+    "tests": [
+        "assert count_vowels(\"Hello World!\") == 3",
+        "assert count_vowels(\"Python Programming\") == 4",
+        "assert count_vowels(\"\") == 0",
+        "assert count_vowels(\"Quick Brown Fox\") == 3"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

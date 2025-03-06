@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "An anagram is a word or phrase that consists of the same letters as another, but arranged differently. Write a function `are_anagrams` that checks if two given strings are anagrams of each other. This can be done by removing duplicates and sorting both strings. The function then compares the sorted lists to check if they are equal in length and elements. If they are, the function returns `True`, indicating that the input strings are anagrams of each other.",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Remove duplicates and sort both strings\n    sorted_s1 = sorted(list(set(s1.lower())))\n    sorted_s2 = sorted(list(set(s2.lower())))\n    # Check if the sorted lists are equal in length and elements\n    return len(sorted_s1) == len(sorted_s2) and sorted_s1 == sorted_s2",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('actors', 'rotors') == True",
+        "assert are_anagrams('antidisestablishmentarianism', 'radishes') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

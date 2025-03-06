@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Sum of Divisors",
+    "description": "Given a positive integer `n`, find the sum of all its proper divisors. A proper divisor of a number is one that divides the number exactly, excluding the number itself.\r\n\r\n#### Function Signature\r\n```python\rndef sum_of_divisors(n: int) -> int:\r```\r\r\n#### Input\r\n- `n` (int): A positive integer\r\r\n#### Output\r\n- Returns the sum of all proper divisors of the input integer\r\r\nNote that 1 is considered a proper divisor for any number.\r\r\nExample:\r\r\n* For `n = 12`, the function should return `1 + 2 + 3 + 4 + 6 = 16`\r* For `n = 24`, the function should return `1 + 2 + 3 + 4 + 6 + 8 + 12 = 36`\r\r\nCan you write a Python function to solve this problem?",
+    "code": "def sum_of_divisors(n: int) -> int:\r    def divisors(num: int) -> set[int]:\r        result = {1}\r        for i in range(2, num):\r            if num % i == 0:\r                result.add(i)\r                if i * i <= num:\r                    result.add(num // i)\r        return result\r    return sum(divisors(n))\r",
+    "tests": [
+        "assert sum_of_divisors(12) == 16",
+        "assert sum_of_divisors(24) == 36",
+        "assert sum_of_divisors(1) == 1",
+        "assert sum_of_divisors(2) == 1",
+        "assert sum_of_divisors(3) == 4",
+        "assert sum_of_divisors(5) == 6"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Coins",
+    "description": "Given an integer amount and a list of coin denominations, write a function `min_coins` that returns the minimum number of coins required to make up the given amount using the available coin denominations.\n\n#### Function Signature\n```python\ndef min_coins(amount: int, denominations: list) -> int:\n``` \n\n#### Input\n- `amount` (int): The target amount to be made up using the available coin denominations.\n- `denominations` (list): A list of integer values representing the available coin denominations.\n\n#### Output\n- Returns the minimum number of coins required to make up the given amount using the available coin denominations. If it is not possible to make up the amount with the given denominations, return -1.\n",
+    "code": "from functools import lru_cache\ndef min_coins(amount: int, denominations: list) -> int:\n    @lru_cache(maxsize=None)\n    def dp(n: int) -> int:\n        if n < 0:\n            return float('inf')\n        elif n == 0:\n            return 0\n        res = float('inf')\n        for coin in denominations:\n            res = min(res, 1 + dp(n - coin))\n        return res\n    return int(dp(amount)) if amount > 0 else -1",
+    "tests": [
+        "assert min_coins(10, [1,2,5]) == 3",
+        "assert min_coins(12, [4,7,11]) == -1",
+        "assert min_coins(15, [1,3,4]) == 4",
+        "assert min_coins(-1, [1,2,5]) == -1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

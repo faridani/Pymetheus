@@ -1,0 +1,10 @@
+{
+    "title": "'Knapsack Problem - 0/1 KnapSack with Unlimited Capacity (Hard)'",
+    "description": "The 0/1 Knapsack problem is a classic optimization problem in computer science. In this problem, you are given a set of items with weights and values, and your goal is to select the items that provide the maximum total value without exceeding a specified capacity (in this case, we will remove the capacity constraint).\n\n#### Function Signature\n```python\ndef knapSack01(values: list[int], weights: list[int]) -> int:\n```\n\n#### Input\n- `values` (list[int]): A list of integers representing the values of each item.\n- `weights` (list[int]): A list of integers representing the weights of each item.\n\n#### Output\n- Returns the maximum total value that can be obtained without considering the weight constraint.",
+    "code": "def knapSack01(values: list[int], weights: list[int]) -> int:\n    n = len(values)\n    if n == 0: return 0\n    # Create a table to store the maximum value that can be obtained by considering or ignoring the i-th item.\n    dp = [[0] * (len(weights) + 1) for _ in range(n)]\n    \n    # Fill the first row and column with zeros.\n    for i in range(n): dp[i][0] = 0\n    for j in range(len(weights)): dp[0][j] = 0\n\n    # Iterate through the table.\n    for i in range(1, n + 1):\n        for w in range(1, len(weights) + 1):\n            if weights[i - 1] <= w:\n                dp[i][w] = max(values[i - 1] + dp[i - 1][w - weights[i - 1]], dp[i - 1][w])\n            else:\n                dp[i][w] = dp[i - 1][w]\n\n    # The maximum value obtained is stored in the last cell of the table.\n    return dp[-1][-1]",
+    "tests": [
+        "assert knapSack01([60, 100, 120], [10, 20, 30]) == 220",
+        "assert knapSack01([50, 50, 40, 80], [3, 4, 2, 7]) == 163"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

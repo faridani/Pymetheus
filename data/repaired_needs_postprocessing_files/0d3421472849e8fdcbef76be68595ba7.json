@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Maximum Profit from Selling Coins",
+    "description": "You are given a list of coins with their values. You want to make maximum profit by selling the coins. You can only sell the coins at most twice, and you must sell them in a way that each coin is sold once before it is bought back again.\n\n#### Function Signature\n```python\ndef max_profit(coins: List[int], buy_back: int) -> int:\n```\n\n#### Input\n- `coins` (List[int]): A list of integers representing the values of the coins.\n- `buy_back` (int): The value at which a coin can be bought back.\n\n#### Output\n- Returns the maximum possible profit that can be made by selling the coins at most twice, considering the buy-back condition.\n",
+    "code": "from typing import List\ndef max_profit(coins: List[int], buy_back: int) -> int:\n    # Sort the coins in descending order of their values\n    coins.sort(reverse=True)\n    # Initialize variables to store the maximum profit and the number of coins sold\n    max_profit = 0\n    num_sold = 0\n    # Iterate over the coins to find the maximum possible profit\n    for i in range(len(coins)):\n        if num_sold < 2:\n            if coins[i] > buy_back:\n                # Sell the coin at its value and update the maximum profit and the number of coins sold\n                max_profit += coins[i] - buy_back\n                num_sold += 1\n            else:\n                # Buy back the coin at its value and update the maximum profit and the number of coins sold\n                max_profit -= buy_back - coins[i]\n                num_sold += 1\n    return max_profit",
+    "tests": [
+        "assert max_profit([10, 5, 3, 4], 2) == 7",
+        "assert max_profit([10, 8, 6, 4, 2, 1], 3) == 14",
+        "assert max_profit([100, 50, 30, 20], 10) == 60"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

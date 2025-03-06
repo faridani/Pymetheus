@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Word Ladder",
+    "description": "You are given two words, a starting word and an ending word. You need to find the shortest sequence of words that transforms the starting word into the ending word, changing only one letter at a time. Each intermediate word must be a valid English word.\n\n#### Function Signature\n```python\ndef word_ladder(begin_word: str, end_word: str) -> int:\n```\n\n#### Input\n- `begin_word` (str): The starting word.\n- `end_word` (str): The ending word.\n\n#### Output\n- Returns the length of the shortest word ladder. If no such ladder exists, return 0.",
+    "code": "from collections import deque\ndef word_ladder(begin_word: str, end_word: str) -> int:\n    if begin_word == end_word:\n        return 1\n    words = {'hot', 'dot', 'dog', 'lot', 'log', 'cog'}\n    queue = deque([(begin_word, 1)])\n    visited = {begin_word}\n\n    while queue:\n        current_word, level = queue.popleft()\n        for i in range(len(current_word)):\n            for ch in 'abcdefghijklmnopqrstuvwxyz':\n                new_word = current_word[:i] + ch + current_word[i+1:]\n                if new_word == end_word:\n                    return level + 1\n                if new_word in words and new_word not in visited:\n                    queue.append((new_word, level + 1))\n                    visited.add(new_word)\n    return 0",
+    "tests": [
+        "assert word_ladder(\"hit\", \"cog\") == 5",
+        "assert word_ladder(\"hot\", \"dog\") == 3",
+        "assert word_ladder(\"cat\", \"car\") == 2"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

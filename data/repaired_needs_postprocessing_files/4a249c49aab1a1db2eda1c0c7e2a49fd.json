@@ -1,0 +1,13 @@
+{
+    "title": "Palindromic Subsequence Count (hard)",
+    "description": "Given a string, find the number of unique palindromic subsequences it contains.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the number of unique palindromic subsequences in the input string.",
+    "code": "def count_palindromes(s: str) -> int:\n    n = 2 ** len(s)\n    dp_odd = [[0] * n for _ in range(len(s))]\n    dp_even = [[0] * n for _ in range(len(s))]\n\n    def process_subsequence(start, current):\n        for i in range(start, len(s)):\n            if (i - start + 1) % 2 == 1:\n                dp_odd[i][current] += 1\n            elif (i - start + 1) % 2 == 0 and s[start] == s[i]:\n                dp_even[i][current] += dp_odd[i-1][current // 2]\n            else:\n                dp_odd[i][current] += dp_even[i - 1][current // 2] + dp_odd[i - 1][current]\n\n    for i in range(len(s)):\n        process_subsequence(i, 1)\n\n    return sum(dp_odd[-1]) + sum(dp_even[-1])\n",
+    "tests": [
+        "assert count_palindromes('') == 1",
+        "assert count_palindromes('a') == 2",
+        "assert count_palindromes('aa') == 4",
+        "assert count_palindromes('ababa') == 18",
+        "assert count_palindromes('abccba') == 30"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

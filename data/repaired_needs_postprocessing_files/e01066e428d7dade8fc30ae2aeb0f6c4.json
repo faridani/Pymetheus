@@ -1,0 +1,10 @@
+{
+    "title": "Hard - Matrix Path Sum",
+    "description": "You are given a 2D integer matrix `matrix` of size `m x n`. You start at the top-left cell (0, 0) and want to reach the bottom-right cell (m-1, n-1). You can only move either down or right at any step. The path sum is calculated by adding up all the values along your chosen path.\n\n#### Function Signature\n```python\ndef min_path_sum(matrix: list[list[int]]) -> int:\n```\n\n#### Input\n- `matrix` (list[list[int]]): A 2D integer matrix representing the grid.\n\n#### Output\n - Returns the minimum path sum possible to reach the bottom-right cell from the top-left cell.",
+    "code": "def min_path_sum(matrix: list[list[int]]) -> int:\n    m, n = len(matrix), len(matrix[0])\n    dp = [[float('inf')] * (n + 1) for _ in range(m + 1)]\n    dp[0][1] = dp[1][0] = 0\n\n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + matrix[i - 1][j - 1]\n    return dp[m][n]\n",
+    "tests": [
+        "assert min_path_sum([[1,3,1],[1,5,1],[4,2,1]]) == 7",
+        "assert min_path_sum([[1,2,3],[4,5,6]]) == 12"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

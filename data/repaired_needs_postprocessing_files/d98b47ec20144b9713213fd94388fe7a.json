@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Write a function `min_window_substring` that takes two strings, `s` and `t`, as input. The function should return the minimum window substring of `s` that contains all characters in `t`. If no such window exists, return an empty string.\n\n#### Function Signature\n```python\ndef min_window_substring(s: str, t: str) -> str:\n``` \n\n#### Input\n- `s` (str): A string containing the characters to search for.\n- `t` (str): A string containing the characters to find in `s`\n\n#### Output\n- Returns the minimum window substring of `s` that contains all characters in `t`, or an empty string if no such window exists.",
+    "code": "from collections import Counter\ndef min_window_substring(s: str, t: str) -> str:\n    if not t:\n        return \n    required_chars = len(t_count := Counter(t))\n\n    left = 0\n    for right in range(len(s)):\n        if s[right] in t_count:\n            t_count[s[right]] -= 1\n            if t_count[s[right]] == 0:\n                required_chars -= 1\n\n        while required_chars == 0:\n            if right - left + 1 > len(t):\n                return s[left:right + 1]\n\n            if right - left + 1 < len(t):\n                break\n\n            t_count[s[left]] += 1\n            if t_count[s[left]] > 0:\n                required_chars += 1\n            left += 1\n\n    return",
+    "tests": [
+        "assert min_window_substring(\"aefcbdfdceeadfcdbdfecbacefbdfdcba\", \"abc\") == 'abc'",
+        "assert min_window_substring(',', ',', ',') == ''",
+        "assert min_window_substring(\"hello world\", \"wo\") == 'world'",
+        "assert min_window_substring(\"1234567890\", \"123\") == '123'"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

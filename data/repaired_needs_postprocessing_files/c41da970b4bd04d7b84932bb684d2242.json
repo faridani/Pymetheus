@@ -1,0 +1,12 @@
+{
+    "title": "'Leap Year Detector' - Hard",
+    "description": "Write a function `is_leap_year` that checks if a given year is a leap year. A leap year is a year with 366 days instead of the usual 365, and it occurs on every year that can be evenly divided by four, except for years that can also be evenly divided by 100 but can still be evenly divided by 400.\n\n#### Function Signature\n```python\ndef is_leap_year(year: int) -> bool:\n``` \n\n#### Input\n- `year` (int): A positive integer representing a year.\n\n#### Output\n- Returns `True` if the input year is a leap year, `False` otherwise.\n",
+    "code": "def is_leap_year(year: int) -> bool:\n    # Ensure the year is a positive integer\n    if not isinstance(year, int) or year <= 0: return False\n    # Check for leap year conditions\n    if year % 4 != 0: return False\n    if year % 100 == 0 and year % 400 != 0: return False\n    return True",
+    "tests": [
+        "assert is_leap_year(2000) == True",
+        "assert is_leap_year(1900) == False",
+        "assert is_leap_year(2023) == False",
+        "assert is_leap_year(1752) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

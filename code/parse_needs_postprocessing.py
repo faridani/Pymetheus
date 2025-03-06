@@ -63,6 +63,7 @@ def fix_json(malformed_str: str) -> str:
 directory = '../data/needs_postprocessing'
 success, fail = 0,0 
 files = list(os.listdir(directory))
+random.shuffle(files)
 
 for filename in files:
     
@@ -84,7 +85,7 @@ for filename in files:
                 fail = fail + 1
                 print(f"Success: {success}, Fail: {fail}")      
                 continue  
-            response = json.loads(repaired_content)    
+            response = json.loads(repaired_content, strict=False)   
             is_valid, _ = validate_response_content(json.dumps(response["response"]))
             print("----"*40)
             if is_valid:

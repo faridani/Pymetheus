@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "Given two strings `s1` and `s2`, write a function `find_anagram` that determines if the two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef find_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing only lowercase alphabets.\n- `s2` (str): A string containing only lowercase alphabets.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\nAnagrams are words or phrases that have the same letters but may be in a different order.\n**Hint:** You can use a dictionary to count the frequency of characters in a string and compare the dictionaries of the two strings to check if they are anagrams.",
+    "code": "def find_anagram(s1: str, s2: str) -> bool:\n    # Create a dictionary to count the frequency of each character\n    dict1 = {}\n    for char in s1:\n        if char in dict1:\n            dict1[char] += 1\n        else:\n            dict1[char] = 1\n    # Create a dictionary to count the frequency of each character in the second string\n    dict2 = {}\n    for char in s2:\n        if char in dict2:\n            dict2[char] += 1\n        else:\n            dict2[char] = 1\n    # Check if both dictionaries have the same number of keys and the values of each key are equal\n    return len(dict1) == len(dict2) and all([dict1[key] == dict2[key] for key in set(dict1.keys()) & set(dict2.keys())])",
+    "tests": [
+        "assert find_anagram(\"listen\", \"silent\") == True",
+        "assert find_anagram(\"hello\", \"world\") == False",
+        "assert find_anagram(\"actoremocat\", \"cometactor\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

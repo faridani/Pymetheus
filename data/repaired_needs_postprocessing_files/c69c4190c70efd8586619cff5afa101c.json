@@ -1,0 +1,12 @@
+{
+    "title": "'Prime Digit Count' (Medium)",
+    "description": "Write a function `prime_digit_count` that takes an integer `n` as input and returns the count of prime digits present in `n`. Note that a digit is considered to be prime only if it is less than 10. For example, the digit '2' is not prime while '3', '5', '7' are.\r\n\r\n#### Function Signature\r\n```python\r\ndef prime_digit_count(n: int) -> int:\r``` \r\n\r\n#### Input\r\n- `n` (int): A non-negative integer.\r\r\n#### Output\r\n- Returns the count of prime digits present in the input integer.\r\r\n#### Hints\r\n1. Use a helper function to check if a number is prime. You can find the implementation for this helper function easily online or in our previous problems on Project Euler.\r",
+    "code": "def is_prime(num):\r    if num < 2:\r        return False\r    for i in range(2, int(num**0.5)+1):\r        if num % i == 0:\r            return False\r    return True\r\n\ndef prime_digit_count(n: int) -> int:\r    str_n = str(n)\r    count = 0\r    for digit in str_n:\r        if is_prime(int(digit)):\r            count += 1\r    return count",
+    "tests": [
+        "assert prime_digit_count(371) == 3",
+        "assert prime_digit_count(3) == 1",
+        "assert prime_digit_count(9683) == 2",
+        "assert prime_digit_count(494) == 0"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Sum of Multiples",
+    "description": "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.\nWrite a function `sum_multiples(n)` that finds the sum of all the multiples of 3 or 5 below `n`. \n#### Function Signature\n```python\ndef sum_multiples(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): An integer greater than 0.\n\n#### Output\n- Returns the sum of all multiples of 3 or 5 below `n.`",
+    "code": "def sum_multiples(n: int) -> int:\n    total = 0\n    for i in range(1, n):\n        if i % 3 == 0 or i % 5 == 0:\n            total += i\n    return total",
+    "tests": [
+        "assert sum_multiples(10) == 23",
+        "assert sum_multiples(20) == 78",
+        "assert sum_multiples(100) == 2318"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

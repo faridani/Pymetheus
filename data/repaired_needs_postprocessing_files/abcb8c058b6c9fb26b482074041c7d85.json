@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Longest Palindromic Subsequence",
+    "description": "Given a string `s`, find the length of its longest palindromic subsequence. A palindrome is a sequence that reads the same forwards and backwards.\n\n#### Function Signature\n```python\ndef longest_palindrome(s: str) -> int:\n``` \n\n#### Input\n- `s` (str): A string consisting of lowercase English letters.\n\n#### Output\n- Returns an integer representing the length of the longest palindromic subsequence within the input string.",
+    "code": "def longest_palindrome(s: str) -> int:\n    n = len(s)\n    dp = [[0 for _ in range(n)] for _ in range(n)]\n\n    for i in range(n):\n        dp[i][i] = 1\n\n    for i in range(n - 2, -1, -1):\n        for j in range(i + 1, n):\n            if s[i] == s[j]:\n                dp[i][j] = dp[i + 1][j - 1] + 2\n            else:\n                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])\n\n    return dp[0][n - 1]",
+    "tests": [
+        "assert longest_palindrome('bbbab') == 4",
+        "assert longest_palindrome('cbbd') == 2",
+        "assert longest_palindrome('a') == 1",
+        "assert longest_palindrome('abaxyzzyxf') == 9"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

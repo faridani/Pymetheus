@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Given two strings, write a function `are_anagrams` that checks if they are anagrams of each other. Given two input strings may contain duplicate characters. The output is `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def char_count(s: str) -> dict:\n    count = {}\n    for char in s:\n        if char not in count:\n            count[char] = 1\n        else:\n            count[char] += 1\n    return count\ndef are_anagrams(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Count the characters in each string\n    count_s1 = char_count(s1)\n    count_s2 = char_count(s2)\n    \n    # Check if the character counts are the same for both strings\n    for key, value in count_s1.items():\n        if key not in count_s2 or count_s2[key] != value:\n            return False\n    \n    # If we've made it this far, the strings are anagrams of each other\n    return True\n",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('A man, a plan, a canal: Panama', 'amanaplanacanalpanama') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

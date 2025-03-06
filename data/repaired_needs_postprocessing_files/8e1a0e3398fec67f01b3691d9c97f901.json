@@ -1,0 +1,13 @@
+{
+    "title": "URL Validator (Hard)",
+    "description": "Write a function `is_valid_url` that validates if the given string is a valid URL.\n\n#### Function Signature\n```python\ndef is_valid_url(url: str) -> bool:\n``` \n\n#### Input\n- `url` (str): A string representing a URL.\n\n#### Output\n- Returns `True` if the input string is a valid URL, `False` otherwise.",
+    "code": "import re, urllib.parse\ndef is_valid_url(url: str) -> bool:\n    url = urllib.parse.urlparse(url).scheme + \"://\" + url\n    regex = r'^(http[s]?|ftp)://(\\w+:{[\\w\\d]*})?(@\\w+(:\\w+)*)?(\\./([\\w#!:.?+=&%@!-\\/]))*(/?)$'\n    return bool(re.match(regex, url))",
+    "tests": [
+        "assert is_valid_url('http://example.com') == True",
+        "assert is_valid_url('https://www.google.com') == True",
+        "assert is_valid_url('ftp://username:password@myserver.com/path/file.txt') == True",
+        "assert is_valid_url('http://userinfo@example.com') == False",
+        "assert is_valid_url('example.com') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

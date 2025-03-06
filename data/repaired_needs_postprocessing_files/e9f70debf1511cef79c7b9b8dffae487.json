@@ -1,0 +1,12 @@
+{
+    "title": "List Reversal Checker (Easy)",
+    "description": "Write a function `check_list_reversed` that checks if a given list is reversed or not.\n\n#### Function Signature\n```python\ndef check_list_reversed(lst: list) -> bool:\n``` \n\n#### Input\n- `lst` (list): A list of any elements.\n\n#### Output\n- Returns `True` if the input list is in reverse order, `False` otherwise.",
+    "code": "def check_list_reversed(lst: list) -> bool:\n    # Compare the list and its reversed version using == operator\n    return lst == lst[::-1]",
+    "tests": [
+        "assert check_list_reversed([1, 2, 3]) == False",
+        "assert check_list_reversed([3, 2, 1]) == True",
+        "assert check_list_reversed(['apple', 'banana']) == False",
+        "assert check_list_reversed(['banana', 'apple']) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

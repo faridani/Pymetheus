@@ -1,0 +1,13 @@
+{
+    "title": "Hard - Alien Message Decoder",
+    "description": "You have intercepted a message from an alien civilization. It appears to be encoded using a pattern of prime numbers. Your task is to decode the message.\n\n#### Function Signature\n```python\ndef decode_alien_message(encoded_message: str) -> str:\n``` \n\n#### Input\n- `encoded_message` (str): A string containing a sequence of prime numbers separated by spaces.\n\n#### Output\n- Returns the decoded message as a string.\n\n#### Constraints\n- The encoded message will only contain prime numbers between 2 and 100.\n- Each prime number represents a letter of the alphabet, with 2 representing 'A', 3 representing 'B', and so on.\n- Spaces in the encoded message correspond to spaces in the decoded message.",
+    "code": "def decode_alien_message(encoded_message: str) -> str:\n    prime_to_letter = {2: 'A', 3: 'B', 5: 'C', 7: 'D', 11: 'E', 13: 'F', 17: 'G', 19: 'H', 23: 'I', 29: 'J', 31: 'K', 37: 'L', 41: 'M', 43: 'N', 47: 'O', 53: 'P', 59: 'Q', 61: 'R', 67: 'S', 71: 'T', 73: 'U', 79: 'V', 83: 'W', 89: 'X', 97: 'Y', 101: 'Z'}\n    decoded_message = ''\n    for num in encoded_message.split():\n        if num == '':\n            decoded_message += ' '\n        else:\n            decoded_message += prime_to_letter[int(num)]\n    return decoded_message",
+    "tests": [
+        "assert decode_alien_message('2 3 5 7 11') == 'ABCDE'",
+        "assert decode_alien_message('29 47 11 53 13') == 'JOKEF'",
+        "assert decode_alien_message('29 47 11 53 13 ') == 'JOKEF '",
+        "assert decode_alien_message('2 3 5  11 7') == 'ABC EGD'",
+        "assert decode_alien_message('') == ''"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

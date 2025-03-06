@@ -1,0 +1,10 @@
+{
+    "title": "Hard - Prime Spiral",
+    "description": "You are given an odd integer *n*.  Imagine a spiral pattern of numbers starting from 1 at the center, extending outwards.\r\n\r\nFor example, if *n* = 5, the spiral would look like:\r\n\r\n```17 16 15 14 13\r\n18  5  4  3 12\r\n19  6  1  2 11\r\n20  7  8  9 10\r\n21 22 23 24 25\r\n```",
+    "code": "def is_prime(num):\r\n    if num <= 1:\r\n        return False\r\n    for i in range(2, int(num**0.5) + 1):\r\n        if num % i == 0:\r\n            return False\r\n    return True\r\n\r\ndef prime_spiral(n: int) -> int:\r\n    spiral = [[0 for _ in range(n)] for _ in range(n)]\r\n    row, col = n // 2, n // 2\r\n    direction = 0  # 0: right, 1: down, 2: left, 3: up\r\n    steps = 1\r\n    count = 1\r\n    prime_count = 0\r\n    \r\n    while count <= n * n:\r\n        spiral[row][col] = count\r\n        if is_prime(spiral[row][col]):\r\n            prime_count += 1\r\n        \r\n        # Change direction after each set of steps\r\n        if direction == 0 and col == n - 1 or direction == 2 and col == 0:\r\n            direction = (direction + 1) % 4\r\n            steps += 1\r\n        elif direction == 1 and row == n - 1 or direction == 3 and row == 0:\r\n            direction = (direction + 1) % 4\r\n            steps += 1\r\n\r\n        # Move according to the current direction\r\n        if direction == 0:\r\n            col += 1\r\n        elif direction == 1:\r\n            row += 1\r\n        elif direction == 2:\r\n            col -= 1\r\n        elif direction == 3:\r\n            row -= 1\r\n\r\n        count += 1\r\n    return prime_count",
+    "tests": [
+        "assert prime_spiral(5) == 3",
+        "assert prime_spiral(7) == 6"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

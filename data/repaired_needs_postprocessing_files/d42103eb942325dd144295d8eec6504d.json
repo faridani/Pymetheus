@@ -1,0 +1,11 @@
+{
+    "title": "'Mirror Sequence Checker' (easy)",
+    "description": "Given a list of integers, return `True` if the sequence has a mirrored half and `False` otherwise.\n#### Function Signature\n```python\ndef is_mirror(lst: list[int]) -> bool:\n``` \n\n#### Input\n- `lst` (list[int]): A non-empty list of integers.\n\n#### Output\n- Returns `True` if the input list has a mirrored half, `False` otherwise.\n",
+    "code": "def is_mirror(lst: list[int]) -> bool:\n    n = len(lst)\n    if n % 2 == 1:\n        mid = n // 2\n        return all([lst[i] == lst[-i-1] for i in range(mid)])\n    else:\n        mid = n // 2 - 1\n        return all([lst[i] == lst[-i-1] for i in range(mid)])",
+    "tests": [
+        "assert is_mirror([1, 2, 3, 2, 1]) == True",
+        "assert is_mirror([1, 2, 3, 4, 5]) == False",
+        "assert is_mirror([-10, -8, -6, 6, 8, 10]) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

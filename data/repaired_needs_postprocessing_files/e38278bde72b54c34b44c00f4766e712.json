@@ -1,0 +1,13 @@
+{
+    "title": "Rotated Array Checker (Hard)",
+    "description": "Given an array of integers, determine if it was rotated at least once. Assume that the array may contain duplicates and negative numbers.\n\n#### Function Signature\n```python\ndef is_rotated(nums: List[int]) -> bool:\n```\n\n#### Input\n- `nums` (List[int]): A sorted array that may have been rotated at least once. The input array may contain duplicate numbers and negative numbers.\n\n#### Output\n- Returns `True` if the input array was rotated at least once, `False` otherwise.",
+    "code": "def is_rotated(nums: List[int]) -> bool:\n    # If the first element is greater than the last element, the array is not sorted\n    if nums[0] > nums[-1]:\n        return False\n    # Find the minimum and maximum elements in the rotated section\n    min_num, max_num = float('inf'), float('-inf')\n    for num in nums:\n        if num < min_num:\n            min_num = num\n        if num > max_num:\n            max_num = num\n    # If the gap between the minimum and maximum is greater than 1, the array is not sorted\n    return max_num - min_num > 1",
+    "tests": [
+        "assert is_rotated([3, 4, 5, 6, 7]) == True",
+        "assert is_rotated([0, 1, 2, 3, 4]) == False",
+        "assert is_rotated([4, 5, 6, 7, 0]) == True",
+        "assert is_rotated([6, 7, 8, 9, 10]) == False",
+        "assert is_rotated([2, 3, 4, 0, 1]) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

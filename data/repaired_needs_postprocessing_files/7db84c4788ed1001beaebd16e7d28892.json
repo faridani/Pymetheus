@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Valid Sudoku",
+    "description": "Write a function `is_valid_sudoku` that checks if a given 9x9 grid represents a valid Sudoku. The function should take as input a list of lists representing the grid, where each sublist has nine characters and each character is either a digit from 1 to 9 or a dot (.). A valid Sudoku is one where each row, column, and 3x3 sub-grid contains each digit exactly once.\r\n\r\n#### Function Signature\r\n```python\ndef is_valid_sudoku(grid: list[list[str]]) -> bool:\r```\r\n\r\n#### Input\r\n- `grid` (list[list[str]]): A 9x9 grid where each cell may contain a digit from 1 to 9 or a dot (.).\r\n\r\n#### Output\r\n- Returns `True` if the input grid represents a valid Sudoku, `False` otherwise.",
+    "code": "import copy\ndef is_valid_sudoku(grid: list[list[str]]) -> bool:\r    # Convert the grid into a dictionary for easier access and modification\r    sudoku_dict = {}\r    for i in range(9):\r        for j in range(9):\r            if grid[i][j] != '.':\r                value = int(grid[i][j])\r                row_key = f'row_{i}'\r                col_key = f'col_{j}'\r                box_key = f'box_{i//3}_{j//3}'\r                if (value in sudoku_dict.get(row_key, []) or\r                    value in sudoku_dict.get(col_key, []) or\r                    value in sudoku_dict.get(box_key, [])):\r                    return False\r            else:\r                row_key = f'row_{i}'\r                col_key = f'col_{j}'\r                box_key = f'box_{i//3}_{j//3}'\r                sudoku_dict[row_key] = sudoku_dict.get(row_key, []) + [value]\r                sudoku_dict[col_key] = sudoku_dict.get(col_key, []) + [value]\r                sudoku_dict[box_key] = sudoku_dict.get(box_key, []) + [value]\r    return True",
+    "tests": [
+        "assert is_valid_sudoku([['5.', '.', '.', '.'], ['6', '2', '.', '.'], ['3', '.', '.', '.', '.']]) == True",
+        "assert is_valid_sudoku([['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]) == False",
+        "assert is_valid_sudoku([['.', '.', '.'], ['.', '.', '.'], ['.', '.', '.']]) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Capitalize First Letter of Each Word (Camel Case to Sentence Case)",
+    "description": "Write a function `to_sentence_case` that takes a string as input and returns the same string but with the first letter of each word capitalized.\n\n#### Function Signature\n```python\ndef to_sentence_case(s: str) -> str:\n```  \n\n#### Input\n- `s` (str): A string containing words separated by spaces, underscores or camelCase.\n\n#### Output\n- Returns the input string with each word's first letter capitalized.",
+    "code": "def to_sentence_case(s: str) -> str:\n    # Split the string into words\n    words = s.split()\n    # Capitalize the first letter of each word and join them back together\n    return ' '.join(word.capitalize() for word in words)",
+    "tests": [
+        "assert to_sentence_case('camelCase') == 'Camel Case'",
+        "assert to_sentence_case('HelloWorld') == 'Hello World'",
+        "assert to_sentence_case('UNDERSCORE') == 'UnderScore'",
+        "assert to_sentence_case('some_words_with_spaces') == 'Some Words With Spaces'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

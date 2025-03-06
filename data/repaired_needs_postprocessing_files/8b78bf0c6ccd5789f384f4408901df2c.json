@@ -1,0 +1,12 @@
+{
+    "title": "Palindromic Number Detector (Hard)",
+    "description": "A number is considered palindromic if its reversed version is the same as the original. Write a function `is_palindromic` that checks if a given integer is palindromic.\n\n#### Function Signature\n```python\ndef is_palindromic(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): A positive integer without leading zeros.\n\n#### Output\n- Returns `True` if the input integer is palindromic, `False` otherwise.",
+    "code": "def is_palindromic(n: int) -> bool:\n    # Convert the number to a string and reverse it\n    n_str = str(n)[::-1]\n    # Check if the original and reversed numbers are equal\n    return n == int(n_str)",
+    "tests": [
+        "assert is_palindromic(121) == True",
+        "assert is_palindromic(34543) == False",
+        "assert is_palindromic(789087) == True",
+        "assert is_palindromic(11213) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Sum of Digits",
+    "description": "Given a positive integer `n`, write a function `sum_of_digits` that calculates the sum of its digits until the sum becomes a single digit. If the number is already a single digit, return the number itself.\n\n#### Function Signature\n```python\ndef sum_of_digits(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): A positive integer between 1 and 10^6.\n\n#### Output\n- Returns an integer which is the final single digit sum of the input number's digits.\n\n#### Constraints\n- 1 \u2264 n \u2264 10^6\n\n#### Hints\n- You can use a while loop to keep adding up the digits until you get a single digit.",
+    "code": "def sum_of_digits(n: int) -> int:\n    while n >= 10:\n        n = sum(int(digit) for digit in str(n))\n    return n",
+    "tests": [
+        "assert sum_of_digits(16) == 7",
+        "assert sum_of_digits(987654321) == 27",
+        "assert sum_of_digits(0) == 0"
+    ],
+    "model": "mistral-nemo:latest-repaired by Llama 3"
+}

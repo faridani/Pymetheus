@@ -1,0 +1,12 @@
+{
+    "title": "Counting Ways to Reach Target",
+    "description": "Given a list of integers and an integer target, write a function `count_ways` that returns the number of ways you can sum elements from the list to reach the target. You are allowed to use each element as many times as you want.\n\n#### Function Signature\n```python\ndef count_ways(nums: list[int], target: int) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n- `target` (int): The target sum.\n\n#### Output\n- Returns the number of ways you can sum elements from the list to reach the target.",
+    "code": "def count_ways(nums: list[int], target: int) -> int:\n    memo = {}\n    def dp(i, t):\n        if (i, t) in memo:\n            return memo[(i, t)]\n        if t < 0:\n            return 0\n        if i >= len(nums) or t == 0:\n            return 1 if t == 0 else 0\n        result = dp(i + 1, t)\n        if t - nums[i] >= 0:\n            result += dp(i + 1, t - nums[i])\n        memo[(i, t)] = result\n        return result\n    return dp(0, target)",
+    "tests": [
+        "assert count_ways([2,3,5], 8) == 6",
+        "assert count_ways([1,2,4,5], 10) == 14",
+        "assert count_ways([-2,-3,4,5], -1) == 1",
+        "assert count_ways([0,0,0], 0) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

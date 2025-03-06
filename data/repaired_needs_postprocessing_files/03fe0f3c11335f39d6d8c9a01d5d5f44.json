@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Binary Tree Vertical Order Traversal",
+    "description": "Given the root of a binary tree, return the vertical order traversal of its nodes. The vertical order of a node is defined as follows:\n* If a node's horizontal distance from the root is *k*, it belongs to the vertical level *k*. \n* Nodes in the same vertical level are sorted by their depth (ascending). \n* If two nodes have the same depth and vertical level, they should be listed from left to right.\n\n#### Function Signature\n```python\ndef vertical_traversal(root: Optional[TreeNode]) -> List[List[int]]:\n```\n\n#### Input\n- `root`: The root node of a binary tree.\n\n#### Output\n- A list of lists, where each inner list represents a vertical level and contains the nodes in that level sorted by depth.",
+    "code": "from collections import defaultdict, deque\ndef vertical_traversal(root: Optional[TreeNode]) -> List[List[int]]:\n    if not root:\n        return []\n    result = defaultdict(list)\n    queue = deque([(root, 0, 0)])  # (node, horizontal distance, depth)\n\n    while queue:\n        node, hd, depth = queue.popleft()\n        result[hd].append((depth, node.val))\n\n        if node.left:\n            queue.append((node.left, hd - 1, depth + 1))\n        if node.right:\n            queue.append((node.right, hd + 1, depth + 1))\n\n    return [[val for _, val in sorted(nodes)] for hd, nodes in sorted(result.items())]",
+    "tests": [
+        "root = TreeNode(3); root.left = TreeNode(9); root.right = TreeNode(20); root.right.left = TreeNode(15); root.right.right = TreeNode(7);assert vertical_traversal(root) == [[9], [3, 15], [20], [7]]",
+        "root = TreeNode(1);assert vertical_traversal(root) == [[1]]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

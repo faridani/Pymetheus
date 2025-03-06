@@ -1,0 +1,12 @@
+{
+    "title": "Fibonacci Series Sum (Easy)",
+    "description": "Write a function `fibonacci_sum` that calculates and returns the sum of all Fibonacci series numbers up to and including the nth number, where n is a positive integer.\n\n#### Function Signature\n```python\ndef fibonacci_sum(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer representing the nth Fibonacci series number to include in the sum.\n\n#### Output\n- Returns the sum of all Fibonacci series numbers up to and including the nth number as an integer.",
+    "code": "def fibonacci_sum(n: int) -> int:\n    # Initialize first two terms\n    a, b = 0, 1\n    sum = 0\n\n    # Loop through the Fibonacci series and calculate sum\n    for _ in range(n + 1):\n        sum += a\n        a, b = b, a + b\n    return sum",
+    "tests": [
+        "assert fibonacci_sum(5) == 8",
+        "assert fibonacci_sum(10) == 34",
+        "assert fibonacci_sum(20) == 177",
+        "assert fibonacci_sum(30) == 685"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

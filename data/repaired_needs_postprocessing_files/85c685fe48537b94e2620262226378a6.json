@@ -1,0 +1,12 @@
+{
+    "title": "[Hard] Prime Factors Calculator",
+    "description": "Write a function `prime_factors` that calculates and returns the prime factors of a given number.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> List[int]:\n``` \n\n#### Input\n- `n` (int): A positive integer greater than 1.\n\n#### Output\n- Returns a list of integers representing the prime factors of `n`, in ascending order. Each factor should appear as many times as it occurs in `n`. If `n` is not a valid input, return an empty list.\n",
+    "code": "from typing import List\ndef prime_factors(n: int) -> List[int]:\n    factors = []\n    # Divide by 2 until n becomes odd\n    while n % 2 == 0:\n        factors.append(2)\n        n //= 2\n    # n must be odd at this point, so start checking from 3\n    i = 3\n    while i * i <= n:\n        # While i divides n, append i and divide n\n        while n % i == 0:\n            factors.append(i)\n            n //= i\n        i += 2\n    # This condition is to handle the case when n is a prime number greater than 2\n    if n > 2:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factors(315) == [3, 3, 5, 7]",
+        "assert prime_factors(8) == [2, 2, 2]",
+        "assert prime_factors(1) == []",
+        "assert prime_factors(-10) == []"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

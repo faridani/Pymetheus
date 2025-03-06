@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of another word or phrase, using all the original letters exactly once.\n#### Function Signature\n```python\ndef are_anagrams(word1: str, word2: str) -> bool:\n```\n\n#### Input\n- `word1`, `word2` (str): Two strings that may contain letters, numbers and spaces.\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n#### Example\nare_anagrams(\"listen\", \"silent\") should return True.",
+    "code": "def are_anagrams(word1: str, word2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    word1 = ''.join(char for char in word1 if char.isalpha()).lower()\n    word2 = ''.join(char for char in word2 if char.isalpha()).lower()\n    \n    # If the strings have different lengths, they are not anagrams.\n    if len(word1) != len(word2):\n        return False\n    \n    # Sort the characters of both strings and compare them.\n    return sorted(word1) == sorted(word2)",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"racecar\", \"carcarer\") == True",
+        "assert are_anagrams(\"hello\", \"olleh\") == True",
+        "assert are_anagrams(\"world\", \"dlrow\") == True",
+        "assert are_anagrams(\"apple\", \"applpee\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

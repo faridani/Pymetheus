@@ -1,0 +1,11 @@
+{
+    "title": "Reverse Words (Hard)",
+    "description": "Given a string, your task is to reverse the order of each word while preserving spaces and punctuation. For example, 'Hello World' should become 'World Hello'. \n#### Function Signature\n```python\ndef reverse_words(s: str) -> str:\n``\n#### Input\n- `s` (str): A string containing letters, spaces, punctuation, and words.\n#### Output\n- Returns a new string where the order of the words is reversed but spaces, punctuation, and capitalization are preserved.\n",
+    "code": "def reverse_words(s: str) -> str:\n    # Remove non-alphanumeric characters from the input string and split it into words\n    words = [word.strip() for word in s.split() if word.strip()]\n    # Reverse the order of the list of words\n    reversed_words = words[::-1]\n    # Join the words back together with spaces between them and return the result\n    return ' '.join(reversed_words)",
+    "tests": [
+        "assert reverse_words('Hello World') == 'World Hello'",
+        "assert reverse_words('I am a good programmer') == 'programmer good a I am'",
+        "assert reverse_words('!hello, world.') == '.world hello!'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Subarray Sums to Target",
+    "description": "Given an array of integers and a target sum, find the total number of subarrays that add up to the target sum. A subarray is a contiguous sequence of elements within an array.\n\n#### Function Signature\n```python\ndef count_subarrays(nums: List[int], target: int) -> int:\n``` \n\n#### Input\n- `nums` (List[int]): A list of integers.\n- `target` (int): The target sum.\n\n#### Output\n- Returns the total number of subarrays that add up to the target sum.\n",
+    "code": "from typing import List\ndef count_subarrays(nums: List[int], target: int) -> int:\n    count = 0\n    prefix_sums = {0: 1}\n    curr_sum = 0\n    for num in nums:\n        curr_sum += num\n        if (curr_sum - target) in prefix_sums:\n            count += prefix_sums[curr_sum - target]\n        prefix_sums[curr_sum] = prefix_sums.get(curr_sum, 0) + 1\n    return count",
+    "tests": [
+        "assert count_subarrays([1, 2, 3], 3) == 2",
+        "assert count_subarrays([1, 2, 3, -3, 1, 1, 1, 4, 2, -3], 3) == 7",
+        "assert count_subarrays([-1, -1, 1], 0) == 3"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

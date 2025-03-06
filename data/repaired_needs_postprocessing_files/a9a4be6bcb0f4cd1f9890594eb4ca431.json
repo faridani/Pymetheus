@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Number of Islands",
+    "description": "Given a 2D array `grid` representing an island, where 1s represent land and 0s represent water. Write a function `num_islands` that returns the number of islands in the grid.\n\n#### Function Signature\n```python\ndef num_islands(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D array representing an island, where 1s represent land and 0s represent water.\n\n#### Output\n- Returns the number of islands in the grid.",
+    "code": "def num_islands(grid: list[list[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[i])):\n            if grid[i][j] == 1:\n                self._dfs(grid, i, j)\n                count += 1\n    return count\n\n    def _dfs(self, grid: list[list[int]], i: int, j: int):\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[i]):\n            return\n        if grid[i][j] == 0:\n            return\n        grid[i][j] = 0\n        self._dfs(grid, i-1, j)\n        self._dfs(grid, i+1, j)\n        self._dfs(grid, i, j-1)\n        self._dfs(grid, i, j+1)",
+    "tests": [
+        "assert num_islands([[0,0,1,0,0],[0,0,1,0,0],[0,0,1,1,0]]) == 1",
+        "assert num_islands([[0,0,1,0,0],[0,0,1,0,0],[0,0,1,1,0],[0,0,1,1,0]]) == 2",
+        "assert num_islands([]) == 0",
+        "assert num_islands([[]]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Frequency Checker (Easy)'",
+    "description": "Given a string, write a function `frequency_palindrome` that checks if the frequency of every character (including spaces and punctuation) is even. A palindrome is a sequence of characters that reads the same forward and backward, but for this problem, we are only concerned with the number of occurrences of each character in the input string.\n\n#### Function Signature\n```python\ndef frequency_palindrome(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if every character has an even frequency of occurrence in the input string, `False` otherwise.",
+    "code": "import collections\ndef frequency_palindrome(s: str) -> bool:\n    # Count each character's frequency\n    freq = collections.Counter(s)\n    # Check if every count is even\n    for key, value in freq.items():\n        if value % 2 != 0:\n            return False\n    \n    return True",
+    "tests": [
+        "assert frequency_palindrome(\"A man, a plan, a canal, Panama\") == True",
+        "assert frequency_palindrome(\"racecar\") == True",
+        "assert frequency_palindrome(\"hello\") == False",
+        "assert frequency_palindrome(\"No 'x' in Nixon\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

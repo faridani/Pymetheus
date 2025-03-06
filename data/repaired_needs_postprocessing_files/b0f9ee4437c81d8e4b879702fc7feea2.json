@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Longest Increasing Subsequence",
+    "description": "The longest increasing subsequence problem is a classic computer science problem that finds the length of the longest subsequence of a given sequence such that all elements of the subsequence are sorted in increasing order. Write a function `longest_increasing_subsequence` that takes in a list of integers and returns the length of the longest increasing subsequence.\n\n#### Function Signature\n```python\ndef longest_increasing_subsequence(nums: List[int]) -> int:\n``` \n\n#### Input\n- `nums` (List[int]): A list of integers that may contain duplicates.\n\n#### Output\n- Returns an integer representing the length of the longest increasing subsequence in the input list.",
+    "code": "from typing import List\ndef longest_increasing_subsequence(nums: List[int]) -> int:\n    if not nums:\n        return 0\n    dp = [1] * len(nums)\n    for i in range(len(nums)):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    return max(dp)",
+    "tests": [
+        "assert longest_increasing_subsequence([10,9,2,5,3,7,101,18]) == 4",
+        "assert longest_increasing_subsequence([0,1,0,3,2,3]) == 4",
+        "assert longest_increasing_subsequence([7,7,7,7,7,7,7]) == 1",
+        "assert longest_increasing_subsequence([]) == 0"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

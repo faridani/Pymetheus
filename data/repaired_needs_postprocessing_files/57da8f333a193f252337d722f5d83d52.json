@@ -1,0 +1,10 @@
+{
+    "title": "Medium - Word Chain",
+    "description": "A word chain is a sequence of words where the last letter of each word is the same as the first letter of the next word. For example, \"cat\",\"tiger\",\"rose\" forms a valid word chain. Given a list of words, write a function `longest_word_chain` that returns the length of the longest possible word chain that can be formed from the given words.\n\n#### Function Signature\n```python\ndef longest_word_chain(words: list[str]) -> int:\n```\n\n#### Input\n- `words` (list[str]): A list of strings representing the words.\n\n#### Output\n- Returns an integer, the length of the longest possible word chain.",
+    "code": "def longest_word_chain(words: list[str]) -> int:\n    word_dict = {}\n    for word in words:\n        word_dict[word[0]] = word_dict.get(word[0], []) + [word]\n\n    max_length = 0\n    for first_letter in word_dict:\n        current_chain = [word for word in word_dict.get(first_letter, [])\n                         if word[-1] == first_letter]\n        while current_chain:\n            next_letter = current_chain[-1][-1]\n            next_words = word_dict.get(next_letter, [])\n            extended_chain = [word for word in next_words if word[0] == next_letter and word not in current_chain]\n            if extended_chain:\n                current_chain.extend(extended_chain)\n            else:\n                max_length = max(max_length, len(current_chain))\n                break\n    return max_length",
+    "tests": [
+        "assert longest_word_chain(['cat','tiger','rose']) == 3",
+        "assert longest_word_chain(['apple', 'orange', 'grapefruit', 'tiger']) == 1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

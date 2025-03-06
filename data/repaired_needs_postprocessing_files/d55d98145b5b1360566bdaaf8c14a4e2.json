@@ -1,0 +1,12 @@
+{
+    "title": "Number Swapping Game",
+    "description": "You are playing a game with your friend where you take turns swapping the positions of two numbers on a number line. The goal is to reach a specific target number, and the person who reaches the target first wins. You can only move to an adjacent number (one step) or jump to any number by paying a cost of 1 unit. Given the current number, your friend's number, and the target number, write a function `can_win` that determines if you can reach the target before your friend.\n    # Check if the current number is greater than the friend's number\n    if current > friend:\n        # If the target is greater, you can win by moving to the target in one step\n        return target >= current\n    else:\n        # Otherwise, you need to move closer to the target while ensuring your friend doesn't reach it first\n        return can_win_helper(current + 1, friend, target) or can_win_helper(current, friend + 1, target)\n\ndef can_win_helper(current: int, friend: int, target: int) -> bool:\n    # Base case: if the current number is equal to the target, you win\n    if current == target:\n        return True\n    # Recursively check for winning conditions\n    return can_win(current + 1, friend, target) or can_win(current, friend + 1, target)",
+    "code": "def can_win(current: int, friend: int, target: int) -> bool:\n    if current > friend:\n        return target >= current\n    else:\n        return can_win_helper(current + 1, friend, target) or can_win_helper(current, friend + 1, target)\n\ndef can_win_helper(current: int, friend: int, target: int) -> bool:\n    if current == target:\n        return True\n    return can_win(current + 1, friend, target) or can_win(current, friend + 1, target)",
+    "tests": [
+        "assert can_win(1, 2, 3) == True",
+        "assert can_win(2, 1, 3) == False",
+        "assert can_win(3, 2, 5) == True",
+        "assert can_win(2, 3, 1) == False"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

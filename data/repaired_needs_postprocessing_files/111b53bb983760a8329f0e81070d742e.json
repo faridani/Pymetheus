@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Sum of Digits",
+    "description": "Given an integer `n`, write a function `sum_of_digits` that calculates the sum of its digits.\r\n\r\n#### Function Signature\r\n```python\r\ndef sum_of_digits(n: int) -> int:\r```\r\r\n#### Input\r\n- `n` (int): A non-negative integer. If `n` is negative, raise a `ValueError`.\r\r\n#### Output\r\n- Returns the sum of digits in `n`.\r\r\n#### Constraints\r\n- 0 \u2264 n < 10^6.\r\r\n#### Hints\r\n- Use modulo and floor division operators (`%` and `//`) to extract digits.",
+    "code": "def sum_of_digits(n: int) -> int:\r    if n < 0:\r        raise ValueError(\"Input must be a non-negative integer\")\r    return sum(int(digit) for digit in str(n))",
+    "tests": [
+        "assert sum_of_digits(12345) == 15",
+        "assert sum_of_digits(99999) == 45",
+        "assert sum_of_digits(0) == 0",
+        "assert sum_of_digits(101010) == 6"
+    ],
+    "model": "mistral-nemo:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Counting Islands",
+    "description": "A landmass or island is an area of continental or insular land that is surrounded by water on all sides. Write a function `count_islands` that counts the number of islands in a given map, where each island is represented as a rectangle with its top-left corner at (x1, y1) and bottom-right corner at (x2, y2). The input map is a list of lists of characters, where '#' represents land and ' ' represents water.\n\n#### Function Signature\n```python\ndef count_islands(map: list[list[str]]) -> int:\n``` \n\n#### Input\n- `map` (list[list[str]]): A 2D grid representing the map, where each cell is either a land ('#') or water (' '). The top-left corner of the first island is at (0, 0).\n\n#### Output\n- Returns the number of islands in the input map.",
+    "code": "def count_islands(map: list[list[str]]) -> int:\n    def dfs(i: int, j: int) -> None:\n        if i < 0 or i >= len(map) or j < 0 or j >= len(map[0]) or map[i][j] == ' ': \n            return\n        map[i][j] = ' '\n        dfs(i - 1, j)\n        dfs(i + 1, j)\n        dfs(i, j - 1)\n        dfs(i, j + 1)\n    count = 0\n    for i in range(len(map)):\n        for j in range(len(map[0])):\n            if map[i][j] == '#': \n                dfs(i, j)\n                count += 1\n    return count",
+    "tests": [
+        "assert count_islands([['#', '#'], [' ', ' ']]) == 1",
+        "assert count_islands([['#', '#', '#'], ['#', ' ', '#'], ['#', '#', '#']]) == 3",
+        "assert count_islands([['#', '#', '#', '#'], ['#', ' ', ' ', '#'], ['#', '#', ' ', '#'], ['#', '#', '#', '#']]) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

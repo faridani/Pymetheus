@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "Given two strings, determine if the characters from one string can be rearranged to form the other string. This function should ignore case and consider only alphabetic characters.\n\n#### Function Signature\n```\ndef are_anagrams(str1: str, str2: str) -> bool:\n``` \n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain letters and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "import string\ndef are_anagrams(str1: str, str2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    str1 = ''.join([char for char in str1.lower() if char in string.ascii_letters]).replace(' ', '')\n    str2 = ''.join([char for char in str2.lower() if char in string.ascii_letters]).replace(' ', '')\n    # Sort and compare\n    return sorted(str1) == sorted(str2)",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"Python\", \"Noptyh\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Reverse Word Checker (Medium)",
+    "description": "Write a function `is_reverse_word` that checks if a given string is the reverse of another word. For this problem, we will consider words as strings containing only lowercase letters and spaces.\n\n#### Function Signature\n```python\ndef is_reverse_word(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string that may contain lowercase letters and spaces.\n- `s2` (str): Another string that may contain lowercase letters and spaces.\n\n#### Output\n- Returns `True` if the first string is the reverse of the second string, `False` otherwise. Note that the strings can have different numbers of spaces but must contain the same number of words.\n\n",
+    "code": "def is_reverse_word(s1: str, s2: str) -> bool:\n    # Remove spaces from both strings\n    s1 = s1.replace(' ', '').lower()\n    s2 = s2.replace(' ', '').lower()\n    # Check if the lengths of the words are equal\n    if len(s1) != len(s2):\n        return False\n    # Split both strings into lists of characters and compare them, ignoring order\n    s1_list = list(reversed(sorted(list(s1))))\n    s2_list = sorted(list(s2))\n    return s1_list == s2_list",
+    "tests": [
+        "assert is_reverse_word('hello', 'olleh') == True",
+        "assert is_reverse_word('racecar', 'racercar') == False",
+        "assert is_reverse_word('A man, a plan, a canal, Panama', 'amanaplanacanalpanama, nanamaplanneraman') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

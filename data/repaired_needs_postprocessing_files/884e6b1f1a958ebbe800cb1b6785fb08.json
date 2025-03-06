@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Alien Message Decoder",
+    "description": "You've intercepted a strange message from an alien civilization. It appears to be a series of prime numbers, but the meaning eludes you.\nThe aliens have provided a key: each prime number represents a letter in the alphabet, with 2 corresponding to 'A', 3 to 'B', 5 to 'C' and so on.  Non-prime numbers are ignored.\nWrite a function `decode_alien_message` that takes a list of integers as input and returns the decoded message as a string.\n#### Function Signature\n```\npython\ndef decode_alien_message(message: list[int]) -> str:\n``` \nOutput\n- Returns the decoded message as a string.\n\n- `message` (list[int]): A list of integers representing the alien message.\n",
+    "code": "def decode_alien_message(message: list[int]) -> str:\n    decoded_message = ''\n    for num in message:\n        if is_prime(num):\n            decoded_message += chr(ord('A') + num - 2)\n    return decoded_message\n\ndef is_prime(n: int) -> bool:\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True",
+    "tests": [
+        "assert decode_alien_message([2, 3, 5, 7, 11, 13]) == 'ABCDEF'",
+        "assert decode_alien_message([2, 4, 6, 7, 11, 13, 17]) == 'ABCFQ'",
+        "assert decode_alien_message([10, 15, 2, 3, 5]) == 'ABC'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Anagram Checker (Hard)'",
+    "description": "Given two strings, check if they are anagrams of each other and also palindromes. Write a function `anagram_and_palindrome` that checks this condition.\n\n#### Function Signature\n```python\ndef anagram_and_palindrome(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if both strings are anagrams of each other and also palindromes, `False` otherwise.",
+    "code": "import collections\nfrom functools import reduce\ndef is_palindrome(s: str) -> bool:\n    # Convert to lowercase\n    s = s.lower()\n    # Remove non-alphanumeric characters\n    s = ''.join(char for char in s if char in string.ascii_letters + string.digits)\n    # Check if the string reads the same forwards and backwards\n    return s == s[::-1]\ndef anagram_and_palindrome(s1: str, s2: str) -> bool:\n    # Check if the strings are anagrams of each other\n    if len(s1) != len(s2):\n        return False\n    char_counts = collections.Counter(s1)\n    for char in char_counts:\n        if char_counts[char] != char_counts[char] ^ collections.Counter(s2)[char]:\n            return False\n    # If the strings are anagrams, check if they are also palindromes\n    if not (is_palindrome(s1) and is_palindrome(s2)):\n        return False\n    return True",
+    "tests": [
+        "assert anagram_and_palindrome(\"A man, a plan, a canal, Panama\", \"amanaplanacanalpanamayo\") == True",
+        "assert anagram_and_palindrome(\"racecar\", \"racercar\") == True",
+        "assert anagram_and_palindrome(\"hello\", \"olleh\") == False",
+        "assert anagram_and_palindrome(\"No 'x' in Nixon\", \"xinx-siN\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

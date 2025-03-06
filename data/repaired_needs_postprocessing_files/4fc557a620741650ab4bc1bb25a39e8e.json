@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Sum of Words in a Sentence",
+    "description": "Write a function `max_sum_of_words` that takes as input a string `s` representing a sentence and returns the maximum sum of words in the sentence. For simplicity, assume each word is separated by a single space.\n\n#### Function Signature\n```python\ndef max_sum_of_words(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string representing a sentence with words separated by spaces.\n\n#### Output\n- Returns the maximum sum of words in the sentence, where each word is considered to have a value equal to its length.",
+    "code": "def max_sum_of_words(s: str) -> int:\n    # Split the sentence into words\n    words = s.split()\n    # Initialize the maximum sum and the current sum\n    max_sum = 0\n    current_sum = 0\n    # Iterate over each word in the sentence\n    for word in words:\n        # Add the length of the current word to the current sum\n        current_sum += len(word)\n        # If the current sum is greater than the maximum sum, update the maximum sum\n        if current_sum > max_sum:\n            max_sum = current_sum\n        # Reset the current sum for the next word\n        current_sum = 0\n    # Return the maximum sum of words\n    return max_sum",
+    "tests": [
+        "assert max_sum_of_words('Hello world') == 7",
+        "assert max_sum_of_words('Python is fun') == 11",
+        "assert max_sum_of_words('A B C D E F G H I J') == 10"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

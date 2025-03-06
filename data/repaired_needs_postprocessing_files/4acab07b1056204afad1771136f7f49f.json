@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Word Ladder",
+    "description": "Given two words `beginWord` and `endWord`, and a dictionary `wordList`, return the length of the shortest transformation sequence from `beginWord` to `endWord`, such that:\n- Only one letter can be changed at a time.\n- Each transformed word must exist in the word list.\n\n#### Function Signature\n```python\ndef ladderLength(beginWord: str, endWord: str, wordList: list[str]) -> int:\n``` \n\n#### Input\n- `beginWord` (str): The starting word.\n- `endWord` (str): The target word.\n- `wordList` (list[str]): A list of valid words for the transformation.\n\n#### Output\n- Returns the length of the shortest transformation sequence, or 0 if no such sequence exists.",
+    "code": "from collections import deque\ndef ladderLength(beginWord: str, endWord: str, wordList: list[str]) -> int:\n    if endWord not in wordList:\n        return 0\n    neighbors = {}\n    for word in wordList:\n        for i in range(len(word)):\n            pattern = word[:i] + '*' + word[i+1:] \n            if pattern not in neighbors:\n                neighbors[pattern] = []\n            neighbors[pattern].append(word)\n\n    queue = deque([(beginWord, 1)])\n    visited = {beginWord}\n    while queue:\n        current_word, level = queue.popleft()\n        for i in range(len(current_word)):\n            pattern = current_word[:i] + '*' + current_word[i+1:] \n            for neighbor in neighbors.get(pattern, []):\n                if neighbor == endWord:\n                    return level + 1\n                if neighbor not in visited:\n                    visited.add(neighbor)\n                    queue.append((neighbor, level + 1))\n    return 0",
+    "tests": [
+        "'assert ladderLength(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]) == 5'",
+        "'assert ladderLength(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]) == 0'",
+        "'assert ladderLength(\"a\", \"c\", [\"a\",\"b\",\"c\"]) == 2'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

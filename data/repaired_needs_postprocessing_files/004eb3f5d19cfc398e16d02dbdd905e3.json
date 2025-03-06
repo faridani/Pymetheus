@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Counting Coin Flips",
+    "description": "A greedy individual has a pocket full of coins and starts flipping them. After each flip, they count how many heads (H) and tails (T) they have seen so far. Write a function `count_flips` that takes the sequence of Hs and Ts as input and returns a dictionary where the keys are the possible counts of heads and the values are the number of times those counts occur in the sequence.\n#### Function Signature\n```python\ndef count_flips(flips: str) -> dict:\n``` \n#### Input\n- `flips` (str): A string that consists only of Hs and Ts, representing the sequence of coin flips. \n#### Output\n- Returns a dictionary where the keys are the possible counts of heads and the values are the number of times those counts occur in the sequence. ",
+    "code": "def count_flips(flips: str) -> dict:\n    head_counts = {}\n    current_heads = 0\n    for flip in flips:\n        if flip == 'H':\n            current_heads += 1\n        else:\n            if current_heads in head_counts:\n                head_counts[current_heads] += 1\n            else:\n                head_counts[current_heads] = 1\n            current_heads = 0\n    if current_heads in head_counts:\n        head_counts[current_heads] += 1\n    else:\n        head_counts[current_heads] = 1\n    return head_counts\n",
+    "tests": [
+        "assert count_flips('HTHT') == {'0': 1, '1': 2, '2': 1}",
+        "assert count_flips('HHTT') == {'0': 1, '1': 1, '2': 1}",
+        "assert count_flips('HHHH') == {'0': 0, '4': 1}",
+        "assert count_flips('TTTT') == {'0': 0, '4': 1}"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

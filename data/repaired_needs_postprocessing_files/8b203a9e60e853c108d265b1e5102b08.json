@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Words Checker (Hard)",
+    "description": "Write a function `is_reverse_words` that checks if a given string has the same words when reversed as the original, ignoring case and punctuation.\n\n#### Function Signature\n```python\ndef is_reverse_words(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, punctuations, and multiple words.\n\n#### Output\n- Returns `True` if the order of words is the same in the reversed string as in the original string, `False` otherwise.",
+    "code": "import re\ndef is_reverse_words(s: str) -> bool:\n    # Remove non-alphanumeric characters and split into words by space or punctuation\n    s = re.sub('[^a-zA-Z0-9]+', ' ', s).strip().split()\n    # Reverse the list of words\n    reversed_words = s[::-1]\n    # Check if the original and reversed lists are equal\n    return sorted(s) == sorted(reversed_words)",
+    "tests": [
+        "assert is_reverse_words(\"To be or not to be: that is the question\") == True",
+        "assert is_reverse_words(\"Hello, World!\") == False",
+        "assert is_reverse_words(\"A man, a plan, a canal, Panama\") == True",
+        "assert is_reverse_words(\"racecar\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "An anagram is a word or phrase that consists of the same letters as another word or phrase, but arranged differently. Write a function `are_anagrams` that checks if two given strings are anagrams. This function signature defines the expected input and output parameters.\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n``` \n\n#### Input\n- `str1` (str): A string that may contain letters in lowercase and uppercase.\n- `str2` (str): Another string that may contain letters in lowercase and uppercase.\n\n#### Output\n- Returns `True` if the two input strings are anagrams, `False` otherwise.\n",
+    "code": "from collections import Counter\ndef are_anagrams(str1: str, str2: str) -> bool:\n    # Count the occurrences of each character in the strings\n    counts1 = Counter(str1)\n    counts2 = Counter(str2)\n    \n    # If the two dictionaries are equal, the strings are anagrams.\n    return counts1 == counts2",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"A man, a plan, a canal: Panama\", \"Amana planets canals panama\") == True",
+        "assert are_anagrams(\"This is an example of a test case\", \"case of test example an this is\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Divisible Numbers",
+    "description": "A divisible number is a positive integer that can be divided by at least one other number besides itself. For example, 12 is divisible because it can be divided by 1, 2, 3, 4, and 6. Write a function `divisible_numbers` that takes an integer `n` as input and returns a list of all the positive integers less than or equal to `n` that are divisible numbers.\r\n#### Function Signature\r\n``python\ndef divisible_numbers(n: int) -> list[int]:\r\n``` \r\n\r\n#### Input\r\n- `n` (int): A positive integer.\r\n\r\n#### Output\r\n- Returns a list of positive integers less than or equal to `n` that are divisible numbers.",
+    "code": "def divisible_numbers(n: int) -> list[int]:\r\n    result = []\r\n    for i in range(1, n + 1):\r\n        is_divisible = False\r\n        for j in range(2, int(i ** 0.5) + 1):\r\n            if i % j == 0:\r\n                is_divisible = True\r\n                break\r\n        if not is_divisible and i > 1:\r\n            result.append(i)\r\n    return result\r\n",
+    "tests": [
+        "assert divisible_numbers(12) == [2, 3, 4, 6, 8, 9, 10, 12]",
+        "assert divisible_numbers(15) == [2, 3, 4, 5, 6, 8, 9, 10, 12, 14, 15]",
+        "assert divisible_numbers(20) == [2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

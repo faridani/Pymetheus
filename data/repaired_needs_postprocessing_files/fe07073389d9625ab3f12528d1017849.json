@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Maximal Rectangle",
+    "description": "Given a 2D binary matrix `matrix` where each element is either 0 (representing an empty cell) or 1 (representing a filled cell), find the area of the largest rectangle that can be formed using the filled cells. You may assume that all rows and columns are non-empty.\n\n#### Function Signature\n```python\ndef maximal_rectangle(matrix: List[List[int]]) -> int:\n``` \n\n#### Input\n- `matrix` (List[List[int]]): A 2D binary matrix where each element is either 0 or 1.\n\n#### Output\n- Returns the area of the largest rectangle that can be formed using the filled cells.\n",
+    "code": "import heapq\ndef maximal_rectangle(matrix):\n    if not matrix:\n        return 0\n    m, n = len(matrix), len(matrix[0])\n    height = [[0] * (n + 1) for _ in range(m + 1)]\n    max_area = 0\n\n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            if matrix[i - 1][j - 1]:\n                height[i][j] = height[i - 1][j] + (1 if matrix[i - 1][j - 1] else 0)\n            else:\n                height[i][j] = 0\n\n    for i in range(1, m + 1):\n        for j in range(n, 0, -1):\n            max_height = height[i][j]\n            max_width = j\n            while height[i][max_width - 1] >= max_height:\n                max_width -= 1\n            max_area = max(max_area, max_height * (max_width - max_width + 1))\n\n    return max_area",
+    "tests": [
+        "assert maximal_rectangle([[0,0,0],[1,1,0],[0,1,1]]) == 4",
+        "assert maximal_rectangle([[1,1,1],[1,1,1],[1,1,1]]) == 9",
+        "assert maximal_rectangle([[0,0,0,0],[0,0,0,0],[0,0,0,0]]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

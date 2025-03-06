@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Sum of Digits",
+    "description": "Write a function that calculates the sum of digits of an integer.\r\n\r\n#### Function Signature\r\n```python\rndef sum_of_digits(n: int) -> int:\r```\r\r\n#### Input\r\n- `n` (int): A non-negative integer.\r\r\n#### Output\r\n- Returns the sum of the digits of the input integer.\r\n",
+    "code": "def sum_of_digits(n: int) -> int:\r    return sum(int(digit) for digit in str(n))\r",
+    "tests": [
+        "assert sum_of_digits(123) == 6",
+        "assert sum_of_digits(999) == 27",
+        "assert sum_of_digits(0) == 0",
+        "assert sum_of_digits(-10) == 'Invalid input. Please enter a non-negative integer.'"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

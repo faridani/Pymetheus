@@ -1,0 +1,11 @@
+{
+    "title": "Medium - Word Frequency Counter",
+    "description": "Write a function `word_frequency` that takes a string of text as input and returns a dictionary where the keys are the unique words in the text and the values are the number of times each word appears.\n\n#### Function Signature\n```python\ndef word_frequency(text: str) -> dict:\n```\n\n#### Input\n- `text` (str): A string of text containing words separated by spaces.\n\n#### Output\n- Returns a dictionary where keys are unique words in the input text and values are their corresponding frequencies.",
+    "code": "def word_frequency(text: str) -> dict:\n    words = text.lower().split()\n    frequency = {}\n    for word in words:\n        if word in frequency:\n            frequency[word] += 1\n        else:\n            frequency[word] = 1\n    return frequency",
+    "tests": [
+        "assert word_frequency('This is a test. This is only a test.') == {'this': 2, 'is': 2, 'a': 2, 'test.': 1, 'only': 1}",
+        "assert word_frequency('hello world hello') == {'hello': 2, 'world': 1}",
+        "assert word_frequency('') == {}"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

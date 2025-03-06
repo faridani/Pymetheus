@@ -1,0 +1,11 @@
+{
+    "title": "Stack of Plates Problem (Medium)",
+    "description": "Given a stack of plates, where each plate can hold a certain number of dishes and each dish requires one plate to be placed on it, find the minimum number of stacks needed to store all the dishes. The dishes are given in an array with their respective capacity (the number of dishes that can be placed on the plate).\n\n#### Function Signature\n```python\ndef min_stacks(dishes: List[int]) -> int:\n``` \n\n#### Input\n- `dishes` (List[int]): A list containing integers, where each integer represents the capacity of a plate.\n\n#### Output\n- Returns the minimum number of stacks needed to store all the dishes in the input list.",
+    "code": "def min_stacks(dishes: List[int]) -> int:\n    # Create an empty stack and a list to store the count of each plate size\n    stack = []\n    counts = [0] * max(dishes)\n\n    for dish in dishes:\n        # If the top of the stack is empty or the top dish can hold the current dish, add the dish to the top of the stack\n        if not stack or stack[-1] >= dish:\n            stack.append(dish)\n        # Otherwise, decrease the count of the current plate by 1 and pop it from the stack\n        else:\n            counts[stack.pop()] -= 1\n    \n    # The number of stacks needed is the sum of the counts (excluding the count of the empty stack)\n    return sum(counts) + len([x for x in counts if x])",
+    "tests": [
+        "assert min_stacks([3, 2, 1, 4]) == 2",
+        "assert min_stacks([3, 1]) == 1",
+        "assert min_stacks([20, 10, 10, 10, 5]) == 2"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

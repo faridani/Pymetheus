@@ -1,0 +1,12 @@
+{
+    "title": "Kaprekar's Star Number - Medium",
+    "description": "Write a function `is_kaprekar_star` that checks if a given positive integer is Kaprekar's star number.\n\n#### Function Signature\n```python\ndef is_kaprekar_star(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns `True` if the input number is a Kaprekar's star number, `False` otherwise.\nKaprekar's star numbers are numbers that can be formed by repeatedly squaring one five-digit number and then adding half of the number of digits to the right of the leftmost digit (ignoring leading zeros), and taking the square root of the resulting number, until the number has exactly five distinct digits.\n\nFor example:\n- 6174 is a Kaprekar's star number because it can be obtained from 3072 (the square of 55) by adding half of its rightmost three digits (16), resulting in 3088. Then, taking the square root gives 56, which also has exactly five distinct digits.\n- 9586 is not a Kaprekar's star number because it cannot be obtained from any square number by the described process.",
+    "code": "def is_kaprekar_star(n: int) -> bool:\n    # Check if n is less than 10^5\n    if n < 10000 or n >= 100000:\n        return False\n    # Initialize a set to store distinct digits of the number\n    num_digits = len(str(n))\n    digit_set = set()\n    # Loop until we have five distinct digits\n    while len(digit_set) < 5:\n        # Get the rightmost digits\n        rightmost = n % (10 ** num_digits)\n        # Update the digit set and the number\n        digit_set.update([rightmost // (10 ** i) for i in range(num_digits)])\n        num_digits -= 1\n        n = int(rightmost / 10)\n    else:\n        # Check if all digits are distinct and the number is a perfect square\n        if len(digit_set) != 5 or n ** (num_digits * 2) != (rightmost + (len(str(n)) - num_digits) * (10 ** (num_digits - 1)))**2:\n            return False\n    return True",
+    "tests": [
+        "assert is_kaprekar_star(6174) == True",
+        "assert is_kaprekar_star(9586) == False",
+        "assert is_kaprekar_star(337761) == True",
+        "assert is_kaprekar_star(240365) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

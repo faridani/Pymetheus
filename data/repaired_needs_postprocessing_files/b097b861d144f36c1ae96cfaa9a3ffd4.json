@@ -1,0 +1,12 @@
+{
+    "title": "Prime Sums",
+    "description": "Write a function `is_prime_sum` that takes two positive integers as input and returns `True` if they can be expressed as the sum of two prime numbers, and `False` otherwise. Note that one of the numbers can be equal to zero.\n\n#### Function Signature\n```python\ndef is_prime_sum(a: int, b: int) -> bool:\n``` \n\n#### Input\n- `a` (int): A positive integer or zero.\n- `b` (int): A positive integer or zero.\n\n#### Output\n- Returns `True` if the sum of `a` and `b` can be expressed as the sum of two prime numbers, `False` otherwise.\n",
+    "code": "def is_prime(n: int) -> bool:\n    # Check if n is a prime number\n    if n <= 1: return False\n    for i in range(2, int(n**0.5)+1):\n        if n % i == 0: return False\n    return True\n\ndef is_prime_sum(a: int, b: int) -> bool:\n    # Check if the sum of a and b can be expressed as the sum of two prime numbers\n    for p in range(2, min(a, b)+1):\n        if is_prime(p) and is_prime(a+b-p): return True\n    return False",
+    "tests": [
+        "assert is_prime_sum(3, 5) == True",
+        "assert is_prime_sum(7, 8) == False",
+        "assert is_prime_sum(2, 4) == True",
+        "assert is_prime_sum(0, 17) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

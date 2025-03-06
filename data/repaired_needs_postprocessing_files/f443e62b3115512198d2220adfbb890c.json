@@ -1,0 +1,13 @@
+{
+    "title": "Polindromic Number Checker (Hard)",
+    "description": "A polindromic number is a number that reads the same forwards and backwards. Write a function `is_polindromic` that checks if a given positive integer is polindromic.\n#### Function Signature\n```python\ndef is_polindromic(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns `True` if the input number is polindromic, `False` otherwise.",
+    "code": "def is_polindromic(n: int) -> bool:\n    # Check if the number is not a perfect square to avoid unnecessary checks\n    if n ** 0.5 != n ** 0.5:\n        return False\n    # Convert the number to a string and reverse it\n    s = str(n)[::-1]\n    # Check if the reversed string is equal to the original string\n    return n == int(s)",
+    "tests": [
+        "assert is_polindromic(371) == True",
+        "assert is_polindromic(18801) == True",
+        "assert is_polindromic(546885465) == True",
+        "assert is_polindromic(234) == False",
+        "assert is_polindromic(12345) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

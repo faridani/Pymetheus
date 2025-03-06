@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Reverse Integer",
+    "description": "Write a function `reverse_integer` that takes an integer as input and returns the reversed integer. For example, given 12345, the function should return 54321. You may assume that the input integer is within the range of a 32-bit integer.",
+    "code": "def reverse_integer(x: int) -> int:\n    reversed_num = 0\n    while x > 0:\n        reversed_num = reversed_num * 10 + x % 10\n        x //= 10\n    return reversed_num if reversed_num <= 2**31 - 1 else 0",
+    "tests": [
+        "assert reverse_integer(12345) == 54321",
+        "assert reverse_integer(-12345) == -54321",
+        "assert reverse_integer(0) == 0",
+        "assert reverse_integer(120) == 21",
+        "assert reverse_integer(1534236469) == 0"
+    ],
+    "model": "codegemma:7b-repaired by Llama 3"
+}

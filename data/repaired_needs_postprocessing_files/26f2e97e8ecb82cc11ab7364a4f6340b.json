@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Unique String",
+    "description": "A unique string is a string that contains no repeated characters. Given a string, write a function `is_unique` to determine if the input string is unique.\n\n#### Function Signature\n```python\ndef is_unique(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string consisting of lowercase and uppercase letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string has all unique characters, `False` otherwise.",
+    "code": "def is_unique(s: str) -> bool:\n    # Convert to lowercase\n    s = s.lower()\n    # Create a set of characters from the string\n    chars_set = set(s)\n    # Return True if length of set equals length of string, else False\n    return len(chars_set) == len(s)",
+    "tests": [
+        "assert is_unique(\"abcdef\") == True",
+        "assert is_unique(\"AaBbCc123!\") == True",
+        "assert is_unique(\"Mississippi\") == False",
+        "assert is_unique(\"The quick brown fox jumps over the lazy dog.\") == False"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

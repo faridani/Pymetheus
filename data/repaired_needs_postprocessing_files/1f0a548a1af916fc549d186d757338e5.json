@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Prime Factorization Sum",
+    "description": "Write a function `prime_factorization_sum` that takes an integer `n` and returns the sum of all the prime factors of `n`. For example, the prime factorization of 12 is 2 x 2 x 3. The sum of these prime factors is 2 + 2 + 3 = 7.\r\n\r\n#### Function Signature\r\n```python\r\ndef prime_factorization_sum(n: int) -> int:\r```\r\r\r#### Input\r\n- `n` (int): A positive integer.\r\r\r#### Output\r\n- Returns the sum of all the prime factors of `n`. For example, the prime factorization of 12 is 2 x 2 x 3. The sum of these prime factors is 2 + 2 + 3 = 7.\r",
+    "code": "def prime_factorization_sum(n: int) -> int:\r    prime_sum = 0\r    i = 2\r    while i * i <= n:\r        if n % i == 0:\r            prime_sum += i\r            n //= i\r        else:\r            i += 1\r    if n > 1:\r        prime_sum += n\r    return prime_sum",
+    "tests": [
+        "assert prime_factorization_sum(12) == 7",
+        "assert prime_factorization_sum(30) == 13",
+        "assert prime_factorization_sum(1) == 0"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

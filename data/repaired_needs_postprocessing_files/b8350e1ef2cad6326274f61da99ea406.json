@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Finding the Shortest Common Supersequence",
+    "description": "Given two strings `str1` and `str2`, find their shortest common supersequence (SCS). The SCS is a string that contains all characters from both `str1` and `str2` in the same order as they appear in the original strings. Note that you can use characters multiple times, but the total length of the SCS should be minimized.\n#### Function Signature\n```python\ndef shortest_common_supersequence(str1: str, str2: str) -> str:\n```\n#### Input\n- `str1` (str): The first string.\n- `str2` (str): The second string.\n#### Output\n- Returns the shortest common supersequence of the two input strings.",
+    "code": "def shortest_common_supersequence(str1: str, str2: str) -> str:\n    m = len(str1)\n    n = len(str2)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n    h = [[0] * (n + 1) for _ in range(m + 1)]\n\n    for i in range(m + 1):\n        for j in range(n + 1):\n            if i == 0:\n                h[i][j] = j\n            elif j == 0:\n                h[i][j] = i\n            elif str1[i - 1] == str2[j - 1]:\n                h[i][j] = 1 + h[i - 1][j - 1]\n            else:\n                h[i][j] = 1 + min(h[i - 1][j], h[i][j - 1])\n\n    i, j = m, n\n    res = ''\n    while i > 0 and j > 0:\n        if str1[i - 1] == str2[j - 1]:\n            res += str1[i - 1]\n            i -= 1\n            j -= 1\n        elif h[i - 1][j] < h[i][j - 1]:\n            res += str1[i - 1]\n            i -= 1\n        else:\n            res += str2[j - 1]\n            j -= 1\n    while i > 0:\n        res += str1[i - 1]\n        i -= 1\n    while j > 0:\n        res += str2[j - 1]\n        j -= 1\n    return res[::-1]",
+    "tests": [
+        "assert shortest_common_supersequence('abc', 'def') == 'adbecf'",
+        "assert shortest_common_supersequence('ABCGH', 'ACDFE') == 'AABBCDEGH'",
+        "assert shortest_common_supersequence('hello', 'world') == 'helloword'"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

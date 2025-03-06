@@ -1,0 +1,12 @@
+{
+    "title": "Is it anagram or not? (Easy)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain the same set of letters.\n\n#### Output\n- Returns `True` if both strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = ''.join(char for char in s1.lower() if char in string.ascii_letters + string.digits)\n    s2 = ''.join(char for char in s2.lower() if char in string.ascii_letters + string.digits)\n    # Check if both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    # Create two dictionaries to count frequencies of characters in each string\n    counts = {char: s1.count(char) for char in string.ascii_letters + string.digits}\n    counts2 = {char: s2.count(char) for char in string.ascii_letters + string.digits}\n    # Compare the dictionaries\n    return counts == counts2",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"hello\", \"olleh\") == True",
+        "assert is_anagram(\"racecar\", \"carcerace\") == True",
+        "assert is_anagram(\"apple\", \"appel\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

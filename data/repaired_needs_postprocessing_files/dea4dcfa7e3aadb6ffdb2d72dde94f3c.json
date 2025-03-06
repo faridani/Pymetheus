@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Substring Count with Anagrams",
+    "description": "Given two strings, `s` and `t`, find the number of times `t` appears as a substring of `s` where anagrams are considered equivalent.\n\n#### Function Signature\n```python\ndef count_anagram_substrings(s: str, t: str) -> int:\n```\n\n#### Input\n- `s` (str): The main string to search within.\n- `t` (str): The substring pattern to search for (including its anagrams).\n\n#### Output\n- Returns the number of occurrences of `t` (and its anagrams) within `s`.\n\n#### Constraints\n1 <= len(s), len(t) <= 10^5\nBoth `s` and `t` consist only of lowercase English letters.\n\n\n",
+    "code": "from collections import Counter\ndef count_anagram_substrings(s: str, t: str) -> int:\n    if len(t) > len(s):\n        return 0\n    t_count = Counter(t)\n    window_count = Counter()\n    count = 0\n\n    for i in range(len(s)):\n        window_count[s[i]] += 1\n        if i >= len(t):\n            window_count[s[i - len(t)]] -= 1\n            if window_count[s[i - len(t)]] == 0:\n                del window_count[s[i - len(t)]]\n\n        if window_count == t_count:\n            count += 1\n\n    return count",
+    "tests": [
+        "assert count_anagram_substrings('cbaebabacd', 'abc') == 3",
+        "assert count_anagram_substrings('abab', 'ab') == 4"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Divisible Rectangle",
+    "description": "A rectangle can be divided into rectangles of the same size if and only if its dimensions are divisible by a number. Write a function `divisible_rectangle` that takes the width and height of a rectangle as input and returns `True` if the rectangle can be divided into smaller rectangles, `False` otherwise.\n#### Function Signature\n```python\ndef divisible_rectangle(width: int, height: int) -> bool:\n```\n#### Input\n- `width` (int): The width of the rectangle.\n- `height` (int): The height of the rectangle.\n#### Output\n- Returns `True` if the rectangle can be divided into smaller rectangles, `False` otherwise.",
+    "code": "def divisible_rectangle(width: int, height: int) -> bool:\n    for i in range(2, min(width, height) + 1):\n        if width % i == 0 and height % i == 0:\n            return True\n    return False\n",
+    "tests": [
+        "assert divisible_rectangle(4, 6) == True",
+        "assert divisible_rectangle(3, 5) == False",
+        "assert divisible_rectangle(8, 16) == True",
+        "assert divisible_rectangle(1, 2) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

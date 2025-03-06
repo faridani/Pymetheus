@@ -1,0 +1,11 @@
+{
+    "title": "Reverse String Function (Medium)",
+    "description": "Write a function `reverse_string` that reverses the order of characters in a given string. Write a function `reverse_string` that reverses the order of characters in a given string. #### Function Signature\n```python\ndef reverse_string(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string containing any combination of letters, numbers and spaces.\n\n#### Output\n- Returns the given string with its characters in reverse order.",
+    "code": "def reverse_string(s: str) -> str:\n    return s[::-1]",
+    "tests": [
+        "assert reverse_string('hello') == 'olleh'",
+        "assert reverse_string('Python') == 'tnopyh'",
+        "assert reverse_string('World Spaceship Earth') == 'ehCraesepS laW dlroW'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

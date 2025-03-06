@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Number Sequence Summation",
+    "description": "Write a function `summation` that calculates the sum of all numbers within a given range, but only for those numbers that are part of a specific sequence. The sequence is defined by a list of integers where each number represents the difference between consecutive terms in the sequence.\n\n#### Function Signature\n```python\ndef summation(start: int, end: int, differences: list[int]) -> int:\n``` \n\n#### Input\n- `start` (int): The starting point of the range (inclusive).\n- `end` (int): The ending point of the range (inclusive).\n- `differences` (list[int]): A list of integers representing the differences between consecutive terms in the sequence.\n\n#### Output\n- Returns the sum of all numbers within the given range that are part of the specified sequence.",
+    "code": "from typing import List\n\ndef summation(start: int, end: int, differences: List[int]) -> int:\n    if len(differences) == 0:\n        return start + end\n    current = start\n    total_sum = 0\n    for difference in differences:\n        while True:\n            next_term = current + difference\n            if start <= next_term <= end:\n                total_sum += next_term\n                break\n            elif next_term > end:\n                break\n            current = next_term\n    return total_sum",
+    "tests": [
+        "assert summation(1, 5, []) == 15",
+        "assert summation(1, 10, [3]) == 28",
+        "assert summation(-2, -1, [-2, 2]) == -4",
+        "assert summation(0, 5, [2]) == 12"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

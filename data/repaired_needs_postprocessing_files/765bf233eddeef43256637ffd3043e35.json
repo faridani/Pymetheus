@@ -1,0 +1,12 @@
+{
+    "title": "Longest Subarray with Unique Characters (Hard)",
+    "description": "Given a string containing only lowercase English letters, find the longest subarray that contains no repeating characters. The goal is to determine the length of the longest such subarray.\n\n#### Function Signature\n```python\ndef longest_unique_subarray(s: str) -> int:\n``` \n\n#### Input\n- `s` (str): A string consisting of lowercase English letters.\n\n#### Output\n- Returns the length of the longest subarray with no repeating characters.",
+    "code": "from collections import defaultdict\ndef longest_unique_subarray(s: str) -> int:\n    # Initialize a dictionary to store character indices\n    char_index = defaultdict(int)\n    max_length = 0\n    start = 0\n    \n    for end, char in enumerate(s):\n        # If the character is already in the window, move the start pointer\n        if char in char_index and char_index[char] >= start:\n            start = char_index[char] + 1\n        # Update the maximum length and store the current end index\n        max_length = max(max_length, end - start + 1)\n        # Store the current position of the character\n        char_index[char] = end\n    return max_length",
+    "tests": [
+        "assert longest_unique_subarray('abcde') == 5",
+        "assert longest_unique_subarray('abbcde') == 4",
+        "assert longest_unique_subarray('abcdefghij') == 10",
+        "assert longest_unique_subarray('abcdeabcde') == 7"
+    ],
+    "model": "command-r7b:latest-repaired by Llama 3"
+}

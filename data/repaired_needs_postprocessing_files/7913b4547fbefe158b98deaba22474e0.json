@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Minimum Deletions for Sorted Subsequence",
+    "description": "Given a sequence of integers, find the minimum number of deletions required to obtain a sorted subsequence. A subsequence is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.\n#### Function Signature\n```python\ndef min_deletions(nums: list[int]) -> int:\n``` \n#### Input\n- `nums` (list[int]): A list of integers.\n#### Output\n- Returns the minimum number of deletions required to obtain a sorted subsequence.",
+    "code": "def min_deletions(nums: list[int]) -> int:\n    n = len(nums)  # Initialize dp array with 1s, as each element is a subsequence of length 1\n    dp = [1] * n  # Initialize dp array with 1s, as each element is a subsequence of length 1\n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] >= nums[j] and dp[i] < dp[j] + 1:\n                dp[i] = dp[j] + 1\n    return n - max(dp)\n",
+    "tests": [
+        "assert min_deletions([1, 2, 3, 4]) == 0",
+        "assert min_deletions([4, 2, 3, 6, 10, 1, 12]) == 2",
+        "assert min_deletions([10, 9, 8, 7, 6, 5]) == 5",
+        "assert min_deletions([1, 5, 2, 4, 3]) == 1"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

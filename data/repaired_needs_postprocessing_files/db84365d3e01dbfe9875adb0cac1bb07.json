@@ -1,0 +1,12 @@
+{
+    "title": "'Is it a Circular Array?' (hard)",
+    "description": "A circular array means that the rotation of the array does not change its order. For example, if we have an array [1, 2, 3, 4] and rotate it by one position to get [2, 3, 4, 1], this is considered a circular rotation of the original array.\nWrite a function `is_circular_array(arr: List[int]) -> bool` that checks if the given list of integers forms a circular array.\n\n#### Function Signature```python\ndef is_circular_array(arr: List[int]) -> bool:\n```\n\n#### Input\n- `arr` (List[int]): A sorted list of integers. The length of the list may be greater than 1.\n\n#### Output\n- Returns `True` if the input list forms a circular array, `False` otherwise.",
+    "code": "def is_circular_array(arr: List[int]) -> bool:\n    # Check if the first and last elements are equal (base case for arrays with only one element)\n    if len(arr) <= 1: return arr[0] == arr[-1]\n\n    # Sort the array and compare the sorted array with its rotated versions to find a duplicate at the beginning and end\n    arr.sort()\n    for i in range(len(arr)):\n        if arr == arr[i:] + arr[:i]:\n            return True\n    return False",
+    "tests": [
+        "assert is_circular_array([1, 2, 3, 4, 5]) == False",
+        "assert is_circular_array([1, 2, 3, 4, 1]) == True",
+        "assert is_circular_array([1, 2, 1]) == True",
+        "assert is_circular_array([1, 1, 1]) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

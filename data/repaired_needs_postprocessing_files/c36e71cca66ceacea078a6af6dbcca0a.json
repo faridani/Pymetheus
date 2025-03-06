@@ -1,0 +1,12 @@
+{
+    "title": "Medium - Fibonacci Sequence Generator",
+    "description": "The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, usually starting with 0 and 1. For example: 0, 1, 1, 2, 3, 5, 8, 13, ... Write a function `fibonacci_sequence` that takes an integer `n` as input and returns a list containing the first `n` Fibonacci numbers.\r\nWrite a function `fibonacci_sequence` that takes an integer `n` as input and returns a list containing the first `n` Fibonacci numbers. If n <= 0, return an empty list. If n == 1, return [0]. Otherwise, initialize list_fib = [0, 1] and then in a loop until len(list_fib) < n, calculate the next Fibonacci number as list_fib[-1] + list_fib[-2], append it to list_fib, and finally return list_fib.",
+    "code": "def fibonacci_sequence(n: int) -> list:\r\n    if n <= 0:\r\n        return []\r\n    elif n == 1:\r\n        return [0]\r\n    else:\r\n        list_fib = [0, 1]\r\n        while len(list_fib) < n:\r\n            next_fib = list_fib[-1] + list_fib[-2]\r\n            list_fib.append(next_fib)\r\n        return list_fib",
+    "tests": [
+        "assert fibonacci_sequence(0) == []",
+        "assert fibonacci_sequence(1) == [0]",
+        "assert fibonacci_sequence(5) == [0, 1, 1, 2, 3]",
+        "assert fibonacci_sequence(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

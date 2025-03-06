@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Maximum Product of a Triangle",
+    "description": "Given a list of three integers representing the lengths of the sides of a triangle, write a function `max_product` that returns the maximum possible product that can be obtained by multiplying any two sides and then adding the third side. If the input values do not form a valid triangle (i.e., the sum of the lengths of any two sides is less than the length of the third side), return -1.\n\n#### Function Signature\n```python\ndef max_product(a: int, b: int, c: int) -> int:\n``` \n\n#### Input\n- `a`, `b`, `c` (int): The lengths of the sides of a triangle.\n\n#### Output\n- Returns the maximum possible product that can be obtained by multiplying any two sides and then adding the third side. If the input values do not form a valid triangle, return -1.",
+    "code": "def max_product(a: int, b: int, c: int) -> int:\n    if (a + b <= c) or (a + c <= b) or (b + c <= a):\n        return -1\n    return max((a * b) + c, (b * c) + a, (a * c) + b)\n",
+    "tests": [
+        "assert max_product(2, 3, 4) == 8",
+        "assert max_product(1, 2, 3) == -1",
+        "assert max_product(5, 6, 7) == 42",
+        "assert max_product(-1, -2, 3) == 6"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

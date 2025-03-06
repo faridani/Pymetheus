@@ -1,0 +1,11 @@
+{
+    "title": "Medium:  Reverse Words in a String",
+    "description": "Write a function `reverse_words` that takes a sentence as input and returns the sentence with the words reversed. For example, if the input is 'This is a sentence', the output should be 'sentence a is This'.\n\n#### Function Signature\n```python\ndef reverse_words(sentence: str) -> str:\n``` \n\n#### Input\n- `sentence` (str): A string containing one or more words separated by spaces.\n\n#### Output\n- Returns the sentence with the words reversed, maintaining the original spacing between words.",
+    "code": "def reverse_words(sentence: str) -> str:\n  words = sentence.split()\n  return ' '.join(words[::-1])\n",
+    "tests": [
+        "assert reverse_words('This is a sentence') == 'sentence a is This'",
+        "assert reverse_words('Hello world') == 'world Hello'",
+        "assert reverse_words('Python is fun') == 'fun is Python'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

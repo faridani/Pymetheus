@@ -1,0 +1,12 @@
+{
+    "title": "'Is it a Repunit Number?' (Medium)",
+    "description": "A repunit number is a number that consists of only the digit 1 repeated a certain number of times, such as 1, 11, 111, and so on. Write a function `is_repunit` that checks if a given number is a repunit.\n#### Function Signature\n```python\ndef is_repunit(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns `True` if the input number is a repunit, `False` otherwise.\n",
+    "code": "def is_repunit(n: int) -> bool:\n    # Check if the number of digits is equal to the value of the number itself\n    return len(str(n)) == n",
+    "tests": [
+        "assert is_repunit(1) == True",
+        "assert is_repunit(11) == True",
+        "assert is_repunit(999) == False",
+        "assert is_repunit(1000) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

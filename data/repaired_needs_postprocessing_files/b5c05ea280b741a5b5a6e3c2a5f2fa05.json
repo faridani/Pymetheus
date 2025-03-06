@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Divisible by 3",
+    "description": "A number is divisible by 3 if the sum of its digits is also divisible by 3. Write a function that checks if a given integer is divisible by 3.\n\n#### Function Signature\n```python\ndef is_divisible_by_three(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): An integer to check for divisibility.\n\n#### Output\n- Returns `True` if the input integer is divisible by 3, `False` otherwise.\n",
+    "code": "def is_divisible_by_three(n: int) -> bool:\n    # Calculate the sum of the digits in the number\n    digit_sum = sum(int(digit) for digit in str(n))\n    \n    # Check if the sum is divisible by 3\n    return digit_sum % 3 == 0",
+    "tests": [
+        "assert is_divisible_by_three(123) == True",
+        "assert is_divisible_by_three(456) == False",
+        "assert is_divisible_by_three(999) == True",
+        "assert is_divisible_by_three(1002) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

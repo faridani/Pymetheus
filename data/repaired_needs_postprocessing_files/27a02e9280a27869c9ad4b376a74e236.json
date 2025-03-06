@@ -1,0 +1,12 @@
+{
+    "title": "Reversed Words Checker (Medium)",
+    "description": "Write a function `are_words_reversed` that checks if each word in a given string is read the same forward and backward. Words are separated by single spaces, but may contain letters, numbers, and punctuation.\n\n#### Function Signature\n```python\ndef are_words_reversed(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that contains words separated by single spaces.\n\n#### Output\n- Returns `True` if each word in the input string is a palindrome, `False` otherwise.",
+    "code": "def are_words_reversed(s: str) -> bool:\n    words = s.split()\n    for word in words:\n        # Remove non-alphanumeric characters and convert to lowercase\n        word = ''.join([char for char in word if char in string.ascii_letters + string.digits]).lower()\n        # Check if the word reads the same forwards and backwards\n        if word != word[::-1]:\n            return False\n    return True",
+    "tests": [
+        "assert are_words_reversed('madam') == True",
+        "assert are_words_reversed('letters') == False",
+        "assert are_words_reversed('A man, a plan, a canal, Panama') == True",
+        "assert are_words_reversed('racecar and racecar') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

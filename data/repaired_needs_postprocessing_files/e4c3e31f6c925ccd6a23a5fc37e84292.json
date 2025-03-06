@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Flatten a Nested List",
+    "description": "Given a nested list of integers, write a function to flatten it into a single list. \n\n#### Function Signature\n```python\ndef flatten_list(nested_list: list) -> list:\n```\n\n#### Input\n- `nested_list` (list): A list which may contain other lists of integers.\n\n#### Output\n- Returns a flattened list containing all the integers from the nested input list.",
+    "code": "def flatten_list(nested_list: list) -> list:\n    flattened = []\n    for element in nested_list:\n        if isinstance(element, list):\n            flattened.extend(flatten_list(element))\n        else:\n            flattened.append(element)\n    return flattened\n",
+    "tests": [
+        "assert flatten_list([1, 2, [3, 4], [5, [6]]]) == [1, 2, 3, 4, 5, 6]",
+        "assert flatten_list([1]) == [1]",
+        "assert flatten_list([[1, 2], [3]]) == [1, 2, 3]",
+        "assert flatten_list([]) == []"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

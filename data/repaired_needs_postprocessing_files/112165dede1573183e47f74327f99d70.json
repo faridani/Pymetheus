@@ -1,0 +1,13 @@
+{
+    "title": "Prime Factorization and Sum Challenge",
+    "description": "Given an integer `n`, find the sum of its prime factors (counted with multiplicity). If the input number itself is a prime, return `n` as it is its only prime factor. For example: n\n#### Function Signature\ndef prime_factors_sum(n: int) -> int:\n\n#### Input\n- `n` (int): A positive integer greater than 1.\n#### Output\n- The sum of all the prime factors of `n`, including multiplicities.",
+    "code": "import math\ndef is_prime(num):\n    if num < 2:\n        return False\n    for i in range(2, int(math.sqrt(num)) + 1):\n        if num % i == 0:\n            return False\n    return True\ndef prime_factors_sum(n: int) -> int:\n    sum_of_primes = 0\n    factor = 2\n    while n >= 2:\n        while n % factor == 0:\n            sum_of_primes += factor\n            n //= factor\n        factor += 1\n        if factor > math.sqrt(n):\n            factor = n\n    return sum_of_primes",
+    "tests": [
+        "assert prime_factors_sum(8) == 3",
+        "assert prime_factors_sum(29) == 29",
+        "assert prime_factors_sum(60) == 10",
+        "assert prime_factors_sum(76) == 14",
+        "assert prime_factors_sum(11) == 11"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

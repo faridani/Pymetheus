@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Fibonacci Sequence - Sum of Squares",
+    "description": "Write a function `sum_of_squares` that takes an integer `n` as input and returns the sum of the squares of the first `n` numbers in the Fibonacci sequence.\n\n#### Function Signature\n```python\ndef sum_of_squares(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): A positive integer representing the number of terms in the Fibonacci sequence to consider.\n\n#### Output\n- Returns an integer representing the sum of the squares of the first `n` numbers in the Fibonacci sequence.",
+    "code": "def sum_of_squares(n: int) -> int:\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        fib_seq = [0, 1]\n        for _ in range(2, n):\n            fib_seq.append(fib_seq[-1] + fib_seq[-2])\n        return sum([i**2 for i in fib_seq])\n",
+    "tests": [
+        "assert sum_of_squares(5) == 34",
+        "assert sum_of_squares(7) == 98",
+        "assert sum_of_squares(0) == 0",
+        "assert sum_of_squares(1) == 1"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

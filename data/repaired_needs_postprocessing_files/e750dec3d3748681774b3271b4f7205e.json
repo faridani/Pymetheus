@@ -1,0 +1,11 @@
+{
+    "title": "Hardest Path Finder",
+    "description": "Imagine you are standing at the top of a staircase with N stairs, and each stair has K possible paths to go down. You can only take one step at a time, and you cannot go up the stairs (only down). Write a function `hardest_path` that finds the hardest path from the top to the bottom of the stairs.\n\n#### Function Signature\n```python\ndef hardest_path(N: int, K: int) -> str:\n```\n\n#### Input\n- `N` (int): The number of stairs in the staircase.\n- `K` (int): The number of possible paths to go down each stair.\n\n#### Output\n- Returns a string representing the hardest path from the top to the bottom of the stairs. Each character in the string represents one step down, with 'L' meaning left and 'R' meaning right.\n",
+    "code": "import random\ndef hardest_path(N: int, K: int) -> str:\n    # Initialize the path as a list of N 'R's (start at the right)\n    path = ['R'] * N\n    for i in range(N-1):  # iterate over each stair except the last one\n        next_step = random.choice(['L', 'R'])\n        if sum(1 for step in path[i+1:] if step == 'L') <= K // 2:  # if more left steps are possible, choose left\n            path[i+1] = 'L'\n        else:\n            path[i+1] = next_step\n    return ''.join(path)",
+    "tests": [
+        "assert hardest_path(3, 2) == 'RRR'",
+        "assert hardest_path(4, 3) == 'RLRR'",
+        "assert hardest_path(5, 4) == 'LLRRR'"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

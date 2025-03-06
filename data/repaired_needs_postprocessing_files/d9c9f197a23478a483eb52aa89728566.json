@@ -1,0 +1,11 @@
+{
+    "title": "'Palindromic Substrings' - Medium",
+    "description": "Write a function `find_palindromes` that finds all the non-overlapping palindromic substrings in a given string. \n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of strings containing all the non-overlapping palindromic substrings in the input string.",
+    "code": "import re\ndef find_palindromes(s: str) -> List[str]:\n    # Find all possible palindromic substrings using regular expressions\n    regex = r'((..|.[^.]*?[.].)|.(?=[^.]*$))+' # Matches pairs or single characters that might be part of a palindrome\n    matches = re.findall(regex, s, re.DOTALL)\n    # Remove non-palindromic substrings and return the result\n    return [match[::-1] == match for match in matches if len(match) > 1 and match[0] == match[-1]]",
+    "tests": [
+        "assert find_palindromes(\"racecar\") == ['racecar', 'aceca']",
+        "assert find_palindromes(\"A man, a plan, a canal: Panama\") == ['man', 'a', ':', 'panama']",
+        "assert find_palindromes(\"hello world\") == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

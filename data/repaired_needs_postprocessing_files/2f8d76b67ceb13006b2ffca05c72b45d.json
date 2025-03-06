@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Sum of Digits",
+    "description": "Write a function `sum_of_digits` that calculates the sum of all digits of a given non-negative integer.\n\n#### Function Signature\n```python\ndef sum_of_digits(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns the sum of all digits in the input integer.\n\nFor example: \nsum_of_digits(12345) == 15\n",
+    "code": "def sum_of_digits(n: int) -> int:\n    total = 0\n    while n > 0:\n        digit = n % 10\n        total += digit\n        n //= 10\n    return total\n",
+    "tests": [
+        "assert sum_of_digits(12345) == 15",
+        "assert sum_of_digits(9876) == 30",
+        "assert sum_of_digits(0) == 0",
+        "assert sum_of_digits(1001) == 2"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

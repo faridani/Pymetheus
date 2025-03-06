@@ -1,0 +1,10 @@
+{
+    "title": "Medium: Find the Kth Largest Element",
+    "description": "Given an array `nums` and an integer `k`, find the kth largest element in the array. Note that it is the kth largest element in the sorted order, not the kth distinct element.\n\n#### Function Signature\n```python\ndef findKthLargest(nums: List[int], k: int) -> int:\n``` \n\n#### Input\n- `nums` (List[int]): A list of integers. The length of the list will be at least k.\n- `k` (int): An integer greater than 0 and smaller or equal to the length of the input list.\n\n#### Output\n- Returns the kth largest element in the array.",
+    "code": "def findKthLargest(nums: List[int], k: int) -> int:\n    nums.sort()\n    return nums[-k]",
+    "tests": [
+        "assert findKthLargest([3,2,1,5,6,4], 2) == 5",
+        "assert findKthLargest([3,2,3,1,2,4,5,5,6], 4) == 4"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

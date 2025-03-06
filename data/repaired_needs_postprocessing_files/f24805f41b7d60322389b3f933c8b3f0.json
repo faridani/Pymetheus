@@ -1,0 +1,10 @@
+{
+    "title": "Easy: FizzBuzz Counter",
+    "description": "Write a function that takes an integer `n` as input and returns the number of times Fizz, Buzz or both appear in the range from 1 to `n`. A Fizz appears every third number, a Buzz appears every fifth number. Both can appear at the same time.\n\n#### Function Signature\n```python\ndef count_fizz_buzz(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The upper limit of the range from 1 to `n`. inclusive.\n\n#### Output\n- Returns the number of times Fizz, Buzz or both appear in the range from 1 to `n`. ",
+    "code": "def count_fizz_buzz(n: int) -> int:\n    fizz_count = 0\n    buzz_count = 0\n    for i in range(1, n+1):\n        if i % 3 == 0 and i % 5 != 0:\n            fizz_count += 1\n        elif i % 5 == 0:\n            buzz_count += 1\n        elif i % 3 == 0 and i % 5 == 0:\n            fizz_count += 1\n            buzz_count += 1\n    return fizz_count + buzz_count",
+    "tests": [
+        "assert count_fizz_buzz(15) == 7",
+        "assert count_fizz_buzz(20) == 9"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

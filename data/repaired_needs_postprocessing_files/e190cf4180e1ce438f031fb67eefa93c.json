@@ -1,0 +1,10 @@
+{
+    "title": "Eulerian Path in a Graph",
+    "description": "An Eulerian path in an undirected graph is a path that visits every edge exactly once. Write a function `eulerian_path` that takes as input a dictionary representing the adjacency list of an undirected graph and returns whether there exists an Eulerian path in the graph.\n#### Function Signature\n```python\ndef eulerian_path(graph: dict) -> bool:\n```\n#### Input\n- `graph` (dict): A dictionary where each key is a node, and its corresponding value is a set or list of neighboring nodes.\n#### Output\n- Returns `True` if there exists an Eulerian path in the graph, `False` otherwise.\n",
+    "code": "import collections\ndef eulerian_path(graph: dict) -> bool:\n    edges = []\n    for node in graph:\n        for neighbor in graph[node]:\n            edges.append((node, neighbor))\n\n    # Find nodes with odd degree\n    odd_degree_nodes = [node for node in graph if len(graph[node]) % 2 != 0]\n\n    # Check if there exists an Eulerian path\n    return len(odd_degree_nodes) <= 1",
+    "tests": [
+        "assert eulerian_path({'A': {'B', 'C'}, 'B': {'A', 'D'}, 'C': {'A', 'F'}, 'D': {'B'}, 'E': {'F'}, 'F': {'C', 'E'}}) == True",
+        "assert eulerian_path({'A': {'B', 'C'}, 'B': {'A'}, 'C': {'A'}}) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

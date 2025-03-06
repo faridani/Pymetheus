@@ -1,0 +1,12 @@
+{
+    "title": "Euler's Totient Function",
+    "description": "The totient function \u03c6(n) is an arithmetic function that counts the positive integers up to n that are relatively prime to n. In other words, it counts the number of integers k such that 1 \u2264 k \u2264 n and gcd(k,n) = 1.\n\n#### Problem Statement\nWrite a function `totient` that calculates Euler's totient function \u03c6(n) for a given positive integer n.\n\n#### Function Signature\n```python\ndef totient(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the value of Euler's totient function \u03c6(n).\n",
+    "code": "def totient(n: int) -> int:\n    if n == 1:\n        return 1\n    total = 0\n    for i in range(1, n+1):\n        is_prime = True\n        for j in range(2, int(i**0.5) + 1):\n            if i % j == 0:\n                is_prime = False\n                break\n        if is_prime:\n            total += 1\n    return total",
+    "tests": [
+        "assert totient(20) == 8",
+        "assert totient(10) == 4",
+        "assert totient(12) == 4",
+        "assert totient(1000) == 436"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

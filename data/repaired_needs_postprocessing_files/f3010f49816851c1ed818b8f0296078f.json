@@ -1,0 +1,12 @@
+{
+    "title": "'Polindromos de Fibonacci' - Easy",
+    "description": "Determine if a given number is a polindromo de fibonacci.\n\n#### Function Signature\n```python\ndef is_fibonacci_palindrome(num: int) -> bool:\n```\n\n#### Input\n- `num` (int): A positive integer that represents a number greater than or equal to 0.\n\n#### Output\n- Returns `True` if the input number is a polindromo de fibonacci, `False` otherwise.",
+    "code": "def is_fibonacci_palindrome(num: int) -> bool:\n    # Fibonacci function for checking palindrome status\n    def fibonacci(n):\n        if n <= 1: return n\n        a, b = 0, 1\n        for _ in range(2, n+1):\n            a, b = b, a + b\n        return a\n    # Reverse the number and check it against the original number\n    num_str = str(num)\n    reversed_num_str = num_str[::-1]\n    if int(reversed_num_str) > 0:\n        return fibonacci(int(reversed_num_str)) == num\n    else:\n        return False",
+    "tests": [
+        "assert is_fibonacci_palindrome(1) == True",
+        "assert is_fibonacci_palindrome(32) == False",
+        "assert is_fibonacci_palindrome(1321) == True",
+        "assert is_fibonacci_palindrome(8108) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

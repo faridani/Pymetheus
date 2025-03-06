@@ -1,0 +1,10 @@
+{
+    "title": "Palindromic Substrings (Hard)",
+    "description": "Given a string `s`, find all the non-empty substrings of `s` that are palindromes. A palindrome is a sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization).\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> list[str]:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of all the palindromic substrings found in the input string. The order of substrings does not matter.",
+    "code": "import re\ndef find_palindromes(s: str) -> list[str]:\n    # Find all possible palindromic substrings with even length\n    palindromes = [m[1:-1] for m in re.finditer('((..))', s)]\n    # Find all possible palindromic substrings with odd length, and add them to the found list if they are a part of an even-length palindrome\n    for i in range(len(s)):\n        for j in range(i+2, len(s)+1, 2):\n            if s[i] != s[j-1]: continue\n            palindromes.append(s[i:j])\n    return sorted(list(set(palindromes)))",
+    "tests": [
+        "assert find_palindromes('racecar') == ['racecar', 'race', 'carr', 'cc']",
+        "assert find_palindromes('A man, a plan, a canal: Panama') == ['amanaplanacanalpanama', 'man', 'a', 'panama']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

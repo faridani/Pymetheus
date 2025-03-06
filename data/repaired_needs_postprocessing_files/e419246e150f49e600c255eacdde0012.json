@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Anagram Checker",
+    "description": "Given two strings `s1` and `s2`, write a function `is_anagram` that determines if `s2` is an anagram of `s1`.An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.#### Function Signature```pythonndef is_anagram(s1: str, s2: str) -> bool:```\n- `s1` (str): A string containing only lowercase English letters.- `s2` (str): Another string containing only lowercase English letters.\n- Returns `True` if `s2` is an anagram of `s1`, and `False` otherwise.``",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    return sorted(s1) == sorted(s2)",
+    "tests": [
+        "assert is_anagram(\"anagram\", \"nagaram\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False",
+        "assert is_anagram(\"debitcard\", \"badcredit\") == True",
+        "assert is_anagram(\"listen\", \"silent\") == True"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

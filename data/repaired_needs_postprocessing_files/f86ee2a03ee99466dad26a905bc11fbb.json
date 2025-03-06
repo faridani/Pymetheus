@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "In computer science, an anagram is a word or phrase that is formed by rearranging the letters of another word or phrase. Write a function `is_anagram` that checks if two given strings are anagrams. This function should take two string parameters and return a boolean indicating whether the input strings are anagrams.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n``` \n\n#### Input\n- `s1` (str): A string containing only lowercase alphabets.\n- `s2` (str): Another string containing only lowercase alphabets.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "from collections import Counter\ndef is_anagram(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Count the frequency of each character in both strings using Counter\n    c1 = Counter(s1)\n    c2 = Counter(s2)\n\n    # Check if the counts are equal for all characters\n    return c1 == c2",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"apple\", \"appel\") == False",
+        "assert is_anagram(\"anagram\", \"nagaram\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

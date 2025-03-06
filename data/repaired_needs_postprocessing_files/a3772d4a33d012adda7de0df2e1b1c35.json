@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Text Analyzer",
+    "description": "Write a function `analyze_text` that takes a string of text as input and returns a dictionary containing the following information:\n- **word_count**: The total number of words in the text.\n- **unique_words**: The number of unique words in the text.\n- **average_word_length**: The average length of all words in the text (rounded to two decimal places).\n- **most_frequent_word**: The word that appears most frequently in the text (if there are ties, return any one of the most frequent words).\n\n#### Function Signature\n```python\ndef analyze_text(text: str) -> dict:\n```\n\n#### Input\n- `text` (str): A string containing the text to be analyzed.\n\n#### Output\n- Returns a dictionary with the keys 'word_count', 'unique_words', 'average_word_length', and 'most_frequent_word'.\n",
+    "code": "def analyze_text(text: str) -> dict:\n    words = text.lower().split()\n    word_count = len(words)\n    unique_words = len(set(words))\n    total_length = sum(len(word) for word in words)\n    average_word_length = round(total_length / word_count, 2)\n\n    word_counts = {}\n    for word in words:\n        if word in word_counts:\n            word_counts[word] += 1\n        else:\n            word_counts[word] = 1\n    most_frequent_word = max(word_counts, key=word_counts.get)\n\n    return {\n        \"word_count\": word_count,\n        \"unique_words\": unique_words,\n        \"average_word_length\": average_word_length,\n        \"most_frequent_word\": most_frequent_word\n    }",
+    "tests": [
+        "assert analyze_text(\"This is a test sentence.\") == {'word_count': 5, 'unique_words': 4, 'average_word_length': 3.20, 'most_frequent_word': 'this'}\n",
+        "assert analyze_text(\"The quick brown fox jumps over the lazy dog.\") == {'word_count': 9, 'unique_words': 9, 'average_word_length': 4.11, 'most_frequent_word': 'the'}\n"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Hard - Recursive Binary Tree Path Sum",
+    "description": "Given a binary tree and a target sum, determine if there exists a path from the root node to any leaf node that sums up to the target. You must use recursion to solve this problem.\n\n#### Function Signature\n```python\ndef has_path_sum(root: TreeNode, target_sum: int) -> bool:\n```\n\n#### Input\n- `root` (TreeNode): The root node of the binary tree.\n- `target_sum` (int): The target sum to find.\n\n#### Output\n- Returns `True` if a path exists with the target sum, `False` otherwise.\n\nYou may define a TreeNode class as follows:\n```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n```",
+    "code": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef has_path_sum(root: TreeNode, target_sum: int) -> bool:\n    if not root:\n        return False\n    target_sum -= root.val\n    if not root.left and not root.right:\n        return target_sum == 0\n    return has_path_sum(root.left, target_sum) or has_path_sum(root.right, target_sum)\n",
+    "tests": [
+        "# Example usage:\ntree = TreeNode(5, TreeNode(4, TreeNode(11, TreeNode(7), TreeNode(2))), TreeNode(8, TreeNode(13), TreeNode(4, TreeNode(1))))\nassert has_path_sum(tree, 22) == True\n",
+        "# assert has_path_sum(tree, 15) == False"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

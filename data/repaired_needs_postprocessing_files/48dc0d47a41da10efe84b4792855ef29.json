@@ -1,0 +1,12 @@
+{
+    "title": "The Mysterious Forest",
+    "description": "In the mysterious forest, there are three kinds of trees: Apple, Banana and Cherry. The forest has N nodes, numbered from 0 to N-1. Each node i has two children: left child L(i) and right child R(i). The children can be either null or they can point to another node in the forest.\nA path in the forest is a sequence of nodes such that each node in the sequence is the parent of the next one, except for the last node. A fruit tree is a node with exactly one non-null child (i.e., it's an Apple or Banana tree).\nYour task is to write a function `fruit_tree_count` that takes the root of the forest and returns the total count of Apple and Banana trees.\n\n#### Function Signature\n```python\ndef fruit_tree_count(root: int) -> int:\n```\n\n#### Input\n- `root` (int): The root node of the forest.\n\n#### Output\n- Returns an integer representing the total count of Apple and Banana trees in the forest.",
+    "code": "import collections\ndef fruit_tree_count(root: int) -> int:\n    tree_counts = [0, 0]\n    def dfs(node):\n        if not node:\n            return\n        if node == 1:\n            tree_counts[0] += 1\n        elif node == 2:\n            tree_counts[1] += 1\n        else:\n            dfs(node - 3)\n            dfs(node // 2)\n    dfs(root)\n    return sum(tree_counts)",
+    "tests": [
+        "assert fruit_tree_count(1) == 1",
+        "assert fruit_tree_count(2) == 1",
+        "assert fruit_tree_count(4) == 0",
+        "assert fruit_tree_count(5) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

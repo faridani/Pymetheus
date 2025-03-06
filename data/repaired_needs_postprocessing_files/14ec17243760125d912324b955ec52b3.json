@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Words Checker (Hard)",
+    "description": "Write a function `are_words_the_same` that checks if two strings, where each word is separated by a single space, are reversed versions of each other.\n\n#### Function Signature\n```python\ndef are_words_the_same(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that contain words separated by a single space.\n\n#### Output\n- Returns `True` if the two input strings are reversed versions of each other, meaning the order of the words in the second string is the reverse of the first string's order, `False` otherwise.\n",
+    "code": "def are_words_the_same(s1: str, s2: str) -> bool:\n    # Split strings into lists of words\n    words1 = s1.split()\n    words2 = s2.split()\n    # If the lengths are not equal, they cannot be reverses of each other\n    if len(words1) != len(words2):\n        return False\n    # Iterate through the lists and compare pairs of words\n    for i in range(len(words1)):\n        # If any pair is not the same, they are not reversed versions of each other\n        if words1[i] != words2[-i - 1]:\n            return False\n    \n    # If we made it here, the strings are reverses of each other\n    return True",
+    "tests": [
+        "assert are_words_the_same(\"Alice does not exist\", \"exist does not Alice\") == True",
+        "assert are_words_the_same(\"Hello world\", \"world Hello\") == True",
+        "assert are_words_the_same(\"apple banana\", \"banana apple\") == False",
+        "assert are_words_the_same(\"The quick brown fox jumps over the lazy dog\", \"dog lazy the over jumps fox brown quick The\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

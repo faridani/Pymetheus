@@ -1,0 +1,11 @@
+{
+    "title": "Even Fibonacci Sum",
+    "description": "Write a function `even_fibonacci_sum` that calculates the sum of all even numbers in the Fibonacci sequence up to and including n (where n is an integer). The sequence starts with 0 and 1. Note that both 0 and 1 are considered to be in the Fibonacci sequence.\n\n#### Function Signature\n```python\ndef even_fibonacci_sum(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the sum of all even numbers in the Fibonacci sequence up to and including n.",
+    "code": "def even_fibonacci_sum(n: int) -> int:\n    sequence = [0, 1]\n    sum = 0\n    while len(sequence) <= n:\n        next = sequence[-1] + sequence[-2]\n        if next % 2 == 0:\n            sum += next\n        sequence.append(next)\n    return sum",
+    "tests": [
+        "assert even_fibonacci_sum(7) == 8",
+        "assert even_fibonacci_sum(10) == 34",
+        "assert even_fibonacci_sum(20) == 150"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

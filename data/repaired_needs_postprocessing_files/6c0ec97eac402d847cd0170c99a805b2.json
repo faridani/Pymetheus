@@ -1,0 +1,11 @@
+{
+    "title": "Find the Missing Numbers",
+    "description": "Write a function `find_missing_numbers` that takes two lists of numbers as input and returns a list of missing numbers. The first list contains all numbers from 1 to N, and the second list contains numbers that are actually present in the sequence. For example, if the input is `[1, 2, 4, 5]` and `[3, 6, 7, 8]`, the function should return `[3, 6]`. The function should work for any pair of lists, not just this specific example.\n#### Function Signature\n```python\ndef find_missing_numbers(list1: list[int], list2: list[int]) -> list[int]:\n``` \n#### Input\n- `list1` (list[int]): A list of numbers from 1 to N.\n- `list2` (list[int]): A list of numbers that are actually present in the sequence.\n#### Output\n- Returns a list of missing numbers.",
+    "code": "def find_missing_numbers(list1: list[int], list2: list[int]) -> list[int]:\n    set1 = set(list1)\n    set2 = set(list2)\n    return sorted([num for num in range(1, max(list1)) if num not in set2] + [num for num in set1 if num not in set2])",
+    "tests": [
+        "assert find_missing_numbers([1, 2, 4, 5], [3, 6, 7, 8]) == [3, 6]",
+        "assert find_missing_numbers([1, 2, 3, 4, 5, 6], [1, 2, 4, 5]) == [3, 6]",
+        "assert find_missing_numbers([1, 2, 3, 4, 5], []) == [1, 2, 3, 4, 5]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

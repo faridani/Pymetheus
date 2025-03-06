@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Number of Islands with Minimum Sum",
+    "description": "You are given a 2D array `islands` where each row represents an island. Each element in the array is either 0 or 1, where 0 means the cell is not part of the island and 1 means it is. You need to write a function that finds the maximum number of islands you can have with the minimum sum of their sizes. An island's size is the number of cells it occupies.\n\n#### Function Signature\n```python\ndef max_islands_with_min_sum(islands: list) -> int:\n```\n\n#### Input\n- `islands` (list): A 2D array where each row represents an island, and each element in the array is either 0 or 1.\n\n#### Output\n- Returns the maximum number of islands you can have with the minimum sum of their sizes.",
+    "code": "def max_islands_with_min_sum(islands: list) -> int:\n    def dfs(i, j):\n        if i < 0 or j < 0 or i >= len(islands) or j >= len(islands[0]) or islands[i][j] == 0:\n            return\n        islands[i][j] = 0\n        for x, y in [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]:\n            dfs(x, y)\n    \n    max_sum = float('inf')\n    max_islands = 0\n    \n    for i in range(len(islands)):\n        for j in range(len(islands[0])):\n            if islands[i][j] == 1:\n                size = 1\n                dfs(i, j)\n                sum_size = sum(1 for row in islands for cell in row if cell == 1)\n                if sum_size < max_sum:\n                    max_sum = sum_size\n                    max_islands = 1\n                elif sum_size == max_sum:\n                    max_islands += 1\n    \n    return max_islands",
+    "tests": [
+        "assert max_islands_with_min_sum([[0, 0, 0], [0, 1, 1], [0, 1, 0]]) == 2",
+        "assert max_islands_with_min_sum([[1, 0, 1], [0, 1, 0], [1, 0, 1]]) == 3",
+        "assert max_islands_with_min_sum([[0, 0, 0], [0, 1, 1], [0, 0, 0]]) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

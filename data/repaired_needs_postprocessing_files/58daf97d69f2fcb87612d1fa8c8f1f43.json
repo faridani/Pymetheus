@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "Given two strings, write a function to check if they are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n``` \n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s1 = ''.join([letter for letter in s1.lower() if letter in string.ascii_letters])\n    s2 = ''.join([letter for letter in s2.lower() if letter in string.ascii_letters])\n    # Check if both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    # Create frequency dictionary for each string and compare\n    freq_dict = {}\n    for char in s1:\n        if char in freq_dict:\n            freq_dict[char] += 1\n        else:\n            freq_dict[char] = 1\n    for char in s2:\n        if char in freq_dict:\n            freq_dict[char] -= 1\n        else:\n            return False\n    # If all characters are accounted for and counts match, the strings are anagrams\n    return len(freq_dict) == 0",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"Maria\", \"aram\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

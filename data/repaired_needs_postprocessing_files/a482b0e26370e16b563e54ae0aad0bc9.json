@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Array Pair Sum Equals Target",
+    "description": "Given an array of integers and a target sum, find the number of pairs that add up to the target.\n\n#### Function Signature\n```python\ndef pair_sum(nums: List[int], target: int) -> int:\n```\n\n#### Input\n- `nums` (List[int]): An array of integers.\n- `target` (int): The target sum for each pair.\n\n#### Output\n- Returns the count of pairs that add up to the target.\n\n#### Constraints\n- 1 <= nums.length <= 1000\n- -10^9 <= nums[i] <= 10^9\n- -10^9 <= target <= 10^9\n",
+    "code": "from typing import List\ndef pair_sum(nums: List[int], target: int) -> int:\n    # Create a dictionary to store the count of each number\n    num_count = {}\n    for num in nums:\n        if num not in num_count:\n            num_count[num] = 0\n        num_count[num] += 1\n    \n    # Initialize pair count\n    pair_count = 0\n    \n    # Iterate through the numbers and check for pairs\n    for num in nums:\n        complement = target - num\n        if complement in num_count:\n            if complement == num:\n                # If the number is the same as its complement, use combination formula to count the pairs\n                pair_count += num_count[num] * (num_count[num] - 1) // 2\n            else:\n                # Otherwise, check for complementary numbers in the dictionary\n                if complement in num_count:\n                    pair_count += num_count[num] * num_count[complement]\n        \n        # Decrement the count of the current number to avoid double counting\n        num_count[num] -= 1\n    \n    return pair_count",
+    "tests": [
+        "assert pair_sum([1, 2, 3, 4, 5], 5) == 2",
+        "assert pair_sum([1, 2, 3, 4, 5], 7) == 5",
+        "assert pair_sum([], 0) == 0"
+    ],
+    "model": "codegeex4:9b-repaired by Llama 3"
+}

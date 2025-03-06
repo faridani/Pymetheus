@@ -1,0 +1,18 @@
+{
+    "title": "Hard: String Compression",
+    "description": "Given a string, compress it using the following rules:\n- If a character repeats consecutively, replace it with the character and the number of times it repeats.\n- If a character does not repeat consecutively, include it in the compressed string.\n\nFor example, the string \"aaabbccdee\" would be compressed as \"a3b2c2de2\".\n\n```python\ndef compress_string(s: str) -> str:\n    compressed_string = []\n    count = 1\n    for i in range(1, len(s)):\n        if s[i] == s[i - 1]:\n            count += 1\n        else:\n            compressed_string.append(s[i - 1] + str(count))\n            count = 1\n    compressed_string.append(s[-1] + str(count))\n    return ''.join(compressed_string)",
+    "code": "def compress_string(s: str) -> str:\n    compressed_string = []\n    count = 1\n    for i in range(1, len(s)):\n        if s[i] == s[i - 1]:\n            count += 1\n        else:\n            compressed_string.append(s[i - 1] + str(count))\n            count = 1\n    compressed_string.append(s[-1] + str(count))\n    return ''.join(compressed_string)",
+    "tests": [
+        "assert compress_string(\"aaabbccdee\") == \"a3b2c2de2\"",
+        "assert compress_string(\"hello world\") == \"h1e1l2l1o1 w1o1r1l1d\"",
+        "assert compress_string(\"aaa\") == \"a3\"",
+        "assert compress_string(\"aaabbb\") == \"a3b3\"",
+        "assert compress_string(\"aaaaabbbbbb\") == \"a5b6\"",
+        "assert compress_string(\"a\") == \"a1\"",
+        "assert compress_string(\"aa\") == \"a2\"",
+        "assert compress_string(\"ab\") == \"ab1\"",
+        "assert compress_string(\"abb\") == \"ab2\"",
+        "assert compress_string(\"abcd\") == \"abcd1\""
+    ],
+    "model": "codegemma:7b-repaired by Llama 3"
+}

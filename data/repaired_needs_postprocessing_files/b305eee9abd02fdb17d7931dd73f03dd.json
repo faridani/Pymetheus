@@ -1,0 +1,11 @@
+{
+    "title": "Prime Factors Determiner (Hard)",
+    "description": "Given a positive integer `n`, write a function `find_prime_factors` that determines all the prime numbers that multiply to give the input number.\r\n\r\n#### Function Signature\r\n```python\r\ndef find_prime_factors(n: int) -> list[int]:\r``` \r\n\r\n#### Input\r\n- `n` (int): A positive integer greater than 1.\r\n\r\n#### Output\r\n- Returns a sorted list of prime numbers that multiply to give the input number.",
+    "code": "def find_prime_factors(n: int) -> list[int]:\r    # Edge case, if n is 1 then it's not divisible by any primes\r    if n == 1:\r        return []\r    # Initialize a set of primes up to the square root of n\r    primes = set(range(2, int(n**0.5) + 1))\r    # Create a list to store prime factors\r    factors = []\r    \r    # Loop through each prime number in our set\r    for p in primes:\r        # If n is divisible by the current prime, then add it to our list of factors and divide n by that prime\r        while n % p == 0:\r            factors.append(p)\r            n //= p\r    \r    # If there are remaining factors (i.e., n is not 1), they must be primes greater than the square root of n\r    # Loop through the remaining numbers up to n and check if they are prime, adding them to our list of factors if so\r    for i in range(int(n**0.5) + 1, n + 1):\r        if n % i == 0 and i in primes:\r            factors.append(i)\r    \r    # Return the sorted prime factors list\r    return sorted(factors)",
+    "tests": [
+        "assert find_prime_factors(15) == [3, 5]",
+        "assert find_prime_factors(60) == [2, 2, 3, 5]",
+        "assert find_prime_factors(441) == [7, 33]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

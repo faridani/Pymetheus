@@ -1,0 +1,10 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "Write a function `find_anagrams` that finds all anagrams of a given string within a list of strings.\n#### Function Signature\n```python\ndef find_anagrams(target: str, words: List[str]) -> List[str]:```\n\n#### Input\n- `target` (str): The target word for which to find anagrams.\n- `words` (List[str]): A list of words that may contain letters, spaces and punctuation.\n\n#### Output\n- Returns a list of all the words in the given list that are anagrams of the target word.\n\nNote: An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Constraints\n- The maximum length of the words in the `words` list is 20.\n",
+    "code": "def find_anagrams(target: str, words: List[str]) -> List[str]:\n    # Create a dictionary to store character counts for each letter in the alphabet\n    counts = {letter: 0 for letter in string.ascii_lowercase}\n    # Update the counts for the target word\n    for char in target:\n        counts[char] += 1\n    \n    # Create an empty list to store the anagrams\n    anagrams = []\n    \n    # Iterate through each word in the words list\n    for word in words:\n        # Update the counts for the current word\n        count_word = {letter: 0 for letter in string.ascii_lowercase}\n        for char in word:\n            count_word[char] += 1\n        \n        # Check if the character counts of the current word are equal to those of the target\n        # (note that we don't care about spaces or punctuation, so we ignore them)\n        if count_word == counts and ' ' not in word:\n            anagrams.append(word)\n    \n    return anagrams",
+    "tests": [
+        "assert find_anagrams(\"listen\", [\"enlists\", \"silent\", \"service\", \"deist\", \"ensign\"]) == [\"enlist\", \"silent\"]",
+        "assert find_anagrams(\"cars\", [\"racecar\", \"act\", \"bark\", \"maracas\"]) == [\"racecar\", \"act\"]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

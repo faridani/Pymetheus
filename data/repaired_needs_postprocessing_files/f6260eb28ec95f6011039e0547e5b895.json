@@ -1,0 +1,12 @@
+{
+    "title": "Hard - String Transformation",
+    "description": "You are given a string s consisting of lowercase letters. Your task is to transform this string into another string by applying the following operation any number of times (possibly zero):\n* Choose two adjacent characters in the string and swap them.\nThe goal is to determine if it's possible to transform the given string s into a lexicographically sorted string. If it is possible, return the minimum number of swaps required; otherwise, return -1.\n\n#### Function Signature\n```python\ndef min_swaps(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string consisting of lowercase letters.\n\n#### Output\n- Returns the minimum number of swaps required to transform the string into a lexicographically sorted string. If it's not possible, return -1.",
+    "code": "def min_swaps(s: str) -> int:\n    n = len(s)\n    sorted_s = sorted(s)\n    if s == ''.join(sorted_s):\n        return 0\n    adj_list = [[] for _ in range(26)]\n    for i, char in enumerate(s):\n        adj_list[ord(char) - ord('a')].append(i)\n\n    swaps = 0\n    visited = [False] * n\n    for i in range(n):\n        if visited[i]:\n            continue\n        curr_char = s[i]\n        target_index = sorted_s.index(curr_char)\n        path = dfs(adj_list, i, target_index, visited)\n        swaps += len(path) - 1\n    if ''.join([s[i] for i in sorted(range(n), key=lambda k: s[k])]) == ''.join(sorted_s):\n        return swaps\n    else:\n        return -1\n\ndef dfs(adj_list, start, target, visited):\n    visited[start] = True\n    for neighbor in adj_list[ord(s[start])- ord('a')]:\n        if neighbor == target:\n            return [start, neighbor]\n        if not visited[neighbor]:\n            path = dfs(adj_list, neighbor, target, visited)\n            if path:\n                return [start] + path\n    return []",
+    "tests": [
+        "assert min_swaps('cab') == 2",
+        "assert min_swaps('cba') == 1",
+        "assert min_swaps('abc') == 0",
+        "assert min_swaps('leetcode') == -1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

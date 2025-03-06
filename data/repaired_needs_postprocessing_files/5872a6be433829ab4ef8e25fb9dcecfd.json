@@ -1,0 +1,14 @@
+{
+    "title": "'Is it a Prime Number?' (Easy)",
+    "description": "Write a function `is_prime` that checks if a given non-negative integer is a prime number.\n\n#### Function Signature\n```python\ndef is_prime(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A non-negative integer to be checked.\n\n#### Output\n- Returns `True` if the input integer is a prime number, `False` otherwise.",
+    "code": "def is_prime(n: int) -> bool:\n    # Check for edge cases (1 and 0 are not prime numbers)\n    if n <= 1: return False\n    # Iterate through potential factors from 2 to the square root of n\n    for i in range(2, int(n**0.5) + 1):\n        # If the number is divisible by any factor less than its square root, it's not prime\n        if n % i == 0: return False\n    # If we've checked all potential factors and none were divisors, the number is prime\n    return True",
+    "tests": [
+        "assert is_prime(2) == True",
+        "assert is_prime(3) == True",
+        "assert is_prime(4) == False",
+        "assert is_prime(5) == True",
+        "assert is_prime(17) == True",
+        "assert is_prime(647) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Even Fibonacci Sequence Summation (Hard)",
+    "description": "Write a function `even_fibonacci_sum` that calculates the sum of all even Fibonacci numbers up to a given limit.\n#### Function Signature\n```python\ndef even_fibonacci_sum(limit: int) -> int:\n```\n\n#### Input\n- `limit` (int): The maximum number for the Fibonacci sequence. Numbers in the sequence will be less than or equal to this value.\n#### Output\n- Returns the sum of all even Fibonacci numbers up to and including the given limit.",
+    "code": "def even_fibonacci_sum(limit: int) -> int:\n    a, b = 0, 1\n    sum = 0\n    \n    while a <= limit:\n        if a % 2 == 0:\n            sum += a\n            a, b = b, a + b\n    \n    return sum",
+    "tests": [
+        "assert even_fibonacci_sum(10) == 0",
+        "assert even_fibonacci_sum(100) == 44",
+        "assert even_fibonacci_sum(1000) == 3542298"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

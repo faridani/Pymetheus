@@ -1,0 +1,11 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "Write a function `find_anagrams` that takes a list of strings and finds all pairs of strings in the list that are anagrams of each other.\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> List[List[str]]:\n``` \n\n#### Input\n- `words` (List[str]): A list of strings containing only lowercase letters.\n\n#### Output\n- Returns a list of lists where each inner list contains pairs of strings that are anagrams of each other. If there are no pairs, the function should return an empty list.\n\n#### Constraints and Hints\n- Use `collections.Counter` to count the frequency of each letter in a given string.\n- Two words are considered anagrams if they have the same number of letters and the frequency of each letter in one word is equal to the frequency of that same letter in the other word.",
+    "code": "import collections\ndef find_anagrams(words: List[str]) -> List[List[str]]:\n    # Create a dictionary to store the frequency of letters in each word\n    word_freq = {word: collections.Counter(word) for word in words}\n    # Find pairs of words with the same number of letters and equal frequency of letters\n    return [pairs for word1, word2 in zip(*sorted(word_freq.items(), key=lambda x: x[1]['total'])) if word1 != word2 and word1['total'] == word2['total'] and all(word1[letter] == word2[letter] for letter in word1)]",
+    "tests": [
+        "assert find_anagrams(['listen', 'silent', 'enlist']) == [['listen', 'enlist'], ['silent']]",
+        "assert find_anagrams(['crypt', 'act', 'tarp', 'crept']) == [['act', 'crept'], ['crypt', 'tarp']]",
+        "assert find_anagrams(['dog', 'god']) == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

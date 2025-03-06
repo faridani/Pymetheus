@@ -1,0 +1,11 @@
+{
+    "title": "'Palindromic Substrings' - Medium",
+    "description": "Given a string `s`, find all non-empty substrings of `s` that are palindromes (read the same forwards and backwards).\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of non-empty palindromic substrings found in the input string. The order of the substrings does not matter.\n",
+    "code": "def find_palindromes(s: str) -> List[str]:\n    result = []\n    for i in range(len(s)):\n        for j in range(i+1, len(s)+1):\n            sub = s[i:j]\n            if sub == sub[::-1]:\n                result.append(sub)\n    return result",
+    "tests": [
+        "assert find_palindromes(\"abcdcba\") == ['dcba', 'cba', 'b', 'a']",
+        "assert find_palindromes(\"racecar\") == ['racecar', 'cc']",
+        "assert find_palindromes(\"hello world hello\") == ['ll']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

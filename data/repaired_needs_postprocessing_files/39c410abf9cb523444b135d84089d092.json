@@ -1,0 +1,12 @@
+{
+    "title": "Euler's Totient Function",
+    "description": "The Euler's totient function \u03c6(n) gives the number of positive integers less than or equal to n that are relatively prime to n. Given a list of numbers, write a function `euler_totient` that calculates the Euler's totient function for each number in the list.\n\n#### Function Signature\n```python\ndef euler_totient(numbers: list[int]) -> list[int]:\n``` \n\n#### Input\n- `numbers` (list[int]): A list of integers for which to calculate the Euler's totient function.\n\n#### Output\n- Returns a list of integers where each integer is the Euler's totient function for the corresponding number in the input list.\n",
+    "code": "import math\ndef euler_totient(numbers: list[int]) -> list[int]:\n    def phi(n: int) -> int:\n        result = n\n        p = 2\n        while p * p <= n:\n            if n % p == 0:\n                while n % p == 0:\n                    n //= p\n                result -= result // p\n            else:\n                q = n\n                while q % p == 0:\n                    q //= p\n                result -= 1\n            p += 1\n        if n > 1:\n            result -= 1\n        return result\n    return [phi(num) for num in numbers]",
+    "tests": [
+        "assert euler_totient([1, 2, 3, 4]) == [1, 1, 2, 2]",
+        "assert euler_totient([5, 6, 7, 8]) == [4, 4, 4, 4]",
+        "assert euler_totient([10, 11, 12]) == [4, 10, 4]",
+        "assert euler_totient([15, 16, 17]) == [8, 0, 16]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

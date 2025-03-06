@@ -1,0 +1,12 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "Given two strings, write a function `find_anagrams` that finds whether the given strings are anagrams of each other. \n\n#### Function Signature\n```python\ndef find_anagrams(str1: str, str2: str) -> bool:\n``` \n\n#### Input\n- `str1` (str): A non-empty string containing only lowercase alphabets.\n- `str2` (str): Another non-empty string containing only lowercase alphabets.\n\n#### Output\n- Returns `True` if the given strings are anagrams of each other, `False` otherwise.\n\n#### Constraints\n- Both strings can contain duplicate characters.\n- Empty strings are not considered valid inputs.\n\n#### Hint\n- An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.",
+    "code": "def find_anagrams(str1: str, str2: str) -> bool:\n    # Remove spaces from strings\n    str1 = str1.replace(' ', '')[0]\n    str2 = str2.replace(' ', '')[0]\n    # Ensure both strings have the same length to avoid unnecessary comparisons\n    if len(str1) != len(str2):\n        return False\n    else:\n        # Count the frequency of each character in both strings\n        char_count1 = {char: str1.count(char) for char in set(str1)}\n        char_count2 = {char: str2.count(char) for char in set(str2)}\n        \n        # Check if the counts match\n        return all([char_count1[char] == char_count2[char] for char in set(str1)])\n",
+    "tests": [
+        "assert find_anagrams('listen', 'silent') == True",
+        "assert find_anagrams('deed', 'daddy') == False",
+        "assert find_anagrams('acttor', 'actor') == True",
+        "assert find_anagrams('python', 'typhon') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

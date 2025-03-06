@@ -1,0 +1,11 @@
+{
+    "title": "Reverse Words in a Sentence",
+    "description": "Write a function `reverse_words` that takes a sentence as input and returns the same sentence with its words reversed. Note that the order of the characters within each word should remain the same.\n\n#### Function Signature\n```python\ndef reverse_words(sentence: str) -> str:\n```\n\n#### Input\n- `sentence` (str): A string containing one or more words separated by spaces.\n\n#### Output\n- Returns the input sentence with its words reversed in order.",
+    "code": "def reverse_words(sentence: str) -> str:\n    # Split the sentence into a list of words\n    words = sentence.split()\n    # Reverse the order of the list of words\n    reversed_words = words[::-1]\n    # Join the words back into a single string with spaces in between\n    return ' '.join(reversed_words)",
+    "tests": [
+        "assert reverse_words('Hello, World!') == 'World! Hello'",
+        "assert reverse_words('I am learning Python') == 'Python learning am I'",
+        "assert reverse_words('The quick brown fox jumps over the lazy dog') == 'dog lazy over the the jumps fox quick brown The'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

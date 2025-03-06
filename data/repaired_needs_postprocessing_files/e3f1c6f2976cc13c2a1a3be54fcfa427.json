@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Maximum Sum of Unique Subarrays",
+    "description": "Given an array `arr` of integers, find the maximum sum of unique subarrays. A subarray is considered unique if all its elements are distinct.\n\n#### Function Signature\n```python\ndef max_unique_sum(arr: list[int)) -> int:\n```\n\n#### Input\n- `arr` (list[int]): An array of integers.\n\n#### Output\n- Returns the maximum sum of unique subarrays in the input array.",
+    "code": "from typing import List\n\ndef max_unique_sum(arr: List[int]) -> int:\n    n = len(arr)\n    arr.sort()\n    max_sum = 0\n    curr_sum = 0\n    seen = set()\n\n    for num in arr:\n        if num not in seen:\n            curr_sum += num\n            seen.add(num)\n        else:\n            max_sum = max(max_sum, curr_sum)\n            curr_sum = 0\n            seen.clear()\n        if curr_sum > max_sum:\n            max_sum = curr_sum\n\n    return max(max_sum, curr_sum) + sum(arr[:len(arr)-1])",
+    "tests": [
+        "assert max_unique_sum([1, 2, 3, 4, 5]) == 15",
+        "assert max_unique_sum([-1, -2, -3, -4, -5]) == -9",
+        "assert max_unique_sum([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 21"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

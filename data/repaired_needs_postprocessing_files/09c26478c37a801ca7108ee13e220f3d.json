@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Prime Number Checker",
+    "description": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. Write a function `is_prime` that takes an integer `n` as input and returns `True` if `n` is a prime number, `False` otherwise.\r\n\r\n#### Function Signature\r\n```python\r\ndef is_prime(n: int) -> bool:\r\r```\r\r\r\n#### Input\r\n- `n` (int): A positive integer.\r\r\r\n#### Output\r\n- Returns `True` if the input integer is a prime number, `False` otherwise.\r\r",
+    "code": "import math\r\ndef is_prime(n: int) -> bool:\r    if n <= 1:\r        return False\r    for i in range(2, math.isqrt(n) + 1):\r        if n % i == 0:\r            return False\r    return True\r",
+    "tests": [
+        "assert is_prime(2) == True",
+        "assert is_prime(3) == True",
+        "assert is_prime(4) == False",
+        "assert is_prime(5) == True",
+        "assert is_prime(6) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

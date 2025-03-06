@@ -1,0 +1,17 @@
+{
+    "title": "Recursive Fibonacci Sequence Generator (Hard)",
+    "description": "Write a recursive function `recursive_fibonacci(n: int) -> int` that generates the nth number in the Fibonacci sequence. The Fibonacci sequence is a series of numbers in which each number after the first two is the sum of the previous two.\n\n#### Function Signature\n```python\ndef recursive_fibonacci(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The position in the Fibonacci sequence to return the nth number from.\n\n#### Output\n- Returns the nth number in the Fibonacci sequence as an integer.\n",
+    "code": "def recursive_fibonacci(n: int) -> int:\n    # Base case, Fibonacci sequence starts at 0 and 1\n    if n <= 1: return n\n    else: return recursive_fibonacci(n - 1) + recursive_fibonacci(n - 2)\n",
+    "tests": [
+        "assert recursive_fibonacci(0) == 0",
+        "assert recursive_fibonacci(1) == 1",
+        "assert recursive_fibonacci(2) == 1",
+        "assert recursive_fibonacci(3) == 2",
+        "assert recursive_fibonacci(4) == 3",
+        "assert recursive_fibonacci(5) == 5",
+        "assert recursive_fibonacci(6) == 8",
+        "assert recursive_fibonacci(10) == 55",
+        "assert recursive_fibonacci(20) == 6765"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

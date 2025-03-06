@@ -1,0 +1,10 @@
+{
+    "title": "Medium: Word Ladder",
+    "description": "Given two words, write a function that generates all possible sequences of words between the given words in a word ladder. A word ladder is a sequence of words where each subsequent word differs from the previous one by exactly one character.\n\n#### Function Signature\n```python\ndef word_ladder(start: str, end: str) -> list:\n```\n\n#### Input\n- `start` (str): The starting word.\n- `end` (str): The ending word.\n\n#### Output\n- A list of strings representing the possible sequences of words in a word ladder from the start to the end word.",
+    "code": "import itertools\ncollections = deque\nfrom collections import deque\ndef word_ladder(start: str, end: str) -> list:\n    if len(start) != len(end):  # If the words are not the same length, it's impossible to form a ladder\n        return []\n    queue = deque([(start, [start])])\n    seen = set([start])\n    ladders = []\n    while queue:\n        word, path = queue.popleft()\n        if word == end:  # If we've reached the end word\n            ladders.append(path)\n            continue\n        for i in range(len(word)):\n            for c in 'abcdefghijklmnopqrstuvwxyz':  # Try changing each character to every possible letter\n                new_word = word[:i] + c + word[i+1:]  # Create a new word by replacing the ith character with the current letter\n                if new_word not in seen:  # If we haven't seen this word before\n                    queue.append((new_word, path + [new_word]))\n                    seen.add(new_word)\n    return ladders",
+    "tests": [
+        "assert len(word_ladder('hit', 'cog')) == 5 and all(len(l) > 1 for l in word_ladder('hit', 'cog'))",
+        "assert not any(len(l) > 2 for l in word_ladder('abc', 'xyz'))"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

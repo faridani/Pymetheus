@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Fibonacci Summation",
+    "description": "The Fibonacci sequence is defined as follows: the first two numbers are 0 and 1, and each subsequent number is the sum of the previous two. For example, the first few terms are 0, 1, 1, 2, 3, 5, 8.\nWrite a function `fibonacci_sum` that takes an integer `n` as input and returns the sum of all Fibonacci numbers less than or equal to `n`. \n\n#### Function Signature\n```python\ndef fibonacci_sum(n: int) -> int:\n```\n\n#### Input\n- `n` (int): An integer representing the upper limit for the Fibonacci summation.\n\n#### Output\n- Returns an integer representing the sum of all Fibonacci numbers less than or equal to `n`.",
+    "code": "def fibonacci_sum(n: int) -> int:\n    a, b = 0, 1\n    total = 0\n    while a <= n:\n        total += a\n        a, b = b, a + b\n    return total",
+    "tests": [
+        "assert fibonacci_sum(10) == 34",
+        "assert fibonacci_sum(5) == 7",
+        "assert fibonacci_sum(20) == 98"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

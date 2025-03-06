@@ -1,0 +1,13 @@
+{
+    "title": "Vowel Count Validator",
+    "description": "This problem requires you to write a Python function that validates if the input string contains exactly n vowels (a, e, i, o, u) and none of them are repeated. A vowel is considered repeated if it appears more than once in consecutive positions.\n\n#### Function Signature\n\ndef validate_vowel_count(s: str, n: int) -> bool:\n",
+    "code": "def validate_vowel_count(s: str, n: int) -> bool:\n    vowels = {'a', 'e', 'i', 'o', 'u'}\n    vowel_set = set()\n    unique_vowels = 0\n    for char in s.lower():\n        if char in vowels and char not in vowel_set:\n            unique_vowels += 1\n            vowel_set.add(char)\n        elif char in vowels:\n            return False\n    return unique_vowels == n",
+    "tests": [
+        "assert validate_vowel_count('hello', 2) == True",
+        "assert validate_vowel_count('Hello', 3) == True",
+        "assert validate_vowel_count('world', 1) == True",
+        "assert validate_vowel_count('apple', 3) == False",
+        "assert validate_vowel_count('aEi', 3) == False"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

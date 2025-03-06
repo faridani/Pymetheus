@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Find the Smallest Subarray",
+    "description": "Given an array of integers `nums` and an integer `k`, find the length of the smallest subarray that contains at least `k` unique elements. If no such subarray exists, return 0.\n\n#### Function Signature\n```python\ndef smallest_subarray(nums: List[int], k: int) -> int:\n```\n\n#### Input\n- `nums`: A list of integers with a length greater than `k`\n- `k`: An integer representing the minimum number of unique elements required in the subarray.\n\n#### Output\n- Returns the length of the smallest subarray that contains at least `k` unique elements, or 0 if no such subarray exists. ",
+    "code": "from collections import defaultdict\nimport heapq\ndef smallest_subarray(nums: List[int], k: int) -> int:\n    n = len(nums)\n    min_length = float('inf')\n    left = 0\n    unique_elements = defaultdict(int)\n\n    for right in range(n):\n        # Add the current element to the set of unique elements\n        unique_elements[nums[right]] += 1\n        \n        while len(unique_elements) >= k:\n            min_length = min(min_length, right - left + 1)\n            # Remove the leftmost element from the set of unique elements\n            unique_elements[nums[left]] -= 1\n            if unique_elements[nums[left]] == 0:\n                del unique_elements[nums[left]]\n            left += 1\n    \n    return min_length if min_length != float('inf') else 0",
+    "tests": [
+        "assert smallest_subarray([1, 2, 3, 4, 5], 3) == 2",
+        "assert smallest_subarray([1, 2, 3, 4, 5, 6, 7, 8, 9], 4) == 4",
+        "assert smallest_subarray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3) == 0",
+        "assert smallest_subarray([1, 2, 3, 4, 5, 6, 7, 8, 9], 5) == 5"
+    ],
+    "model": "command-r7b:latest-repaired by Llama 3"
+}

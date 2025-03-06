@@ -1,0 +1,13 @@
+{
+    "title": "'Stack Balancer' - Easy\n#### Function Signature\n```python\ndef is_balanced(parentheses: str) -> bool:\n```\n\n#### Input\n- `parentheses` (str): A string containing only '(' and ')' characters, with no other characters.\n\n#### Output\n- Returns `True` if the parentheses are balanced, `False` otherwise.",
+    "description": "Given a string containing only parentheses, determine whether the parentheses are balanced.\n\n#### Function Signature\n```python\ndef is_balanced(parentheses: str) -> bool:\n```\n\n#### Input\n- `parentheses` (str): A string containing only '(' and ')' characters, with no other characters.\n\n#### Output\n- Returns `True` if the parentheses are balanced, `False` otherwise.",
+    "code": "def is_balanced(parentheses: str) -> bool:\n    stack = []\n    for par in parentheses:\n        if par == '(': \n            stack.append(par)\n        elif par == ')': \n            if not stack or stack.pop() != '(':\n                return False\n    return not stack",
+    "tests": [
+        "assert is_balanced('((()))') == True",
+        "assert is_balanced('(()())') == True",
+        "assert is_balanced('(()))') == False",
+        "assert is_balanced('(((()))') == True",
+        "assert is_balanced('()') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

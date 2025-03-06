@@ -1,0 +1,11 @@
+{
+    "title": "'Twin Primes Finder' (Easy)",
+    "description": "Write a function `find_twin_primes` that finds and returns a list of twin primes within the given range.\n\n#### Function Signature\n```python\ndef find_twin_primes(start: int, end: int) -> List[int]:\n``` \n\n#### Input\n- `start` (int): The starting number of the range to search for twin primes.\n- `end` (int): The ending number of the range to search for twin primes.\n\n#### Output\n- Returns a list of tuples, where each tuple contains two integers that are twin primes within the given range.\n\n**Note**: Twin primes are a pair of prime numbers that differ by 2. For example, 3 and 5 are twin primes because they are both prime and 5 - 3 = 2.",
+    "code": "def find_twin_primes(start: int, end: int) -> List[int]:\n    twin_primes = []\n    for num in range(start, end + 1):\n        if is_prime(num):\n            next_num = num + 2\n            if is_prime(next_num):\n                twin_primes.append((num, next_num))\n    return twin_primes",
+    "tests": [
+        "assert find_twin_primes(3, 15) == [(3, 5)]",
+        "assert find_twin_primes(19, 31) == [(19, 23), (29, 31)]",
+        "assert find_twin_primes(61, 71) == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

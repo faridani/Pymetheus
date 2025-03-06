@@ -1,0 +1,14 @@
+{
+    "title": "'Is it a Whole Number Square Root?' - Medium",
+    "description": "Write a function `is_square_number` that checks if a given number is the square of an integer. The input can be both positive and negative numbers, and decimal points are allowed.\n\n#### Function Signature\n```python\ndef is_square_number(n: float) -> bool:\n``` \n\n#### Input\n- `n` (float): A real number that may contain a decimal point.\n\n#### Output\n- Returns `True` if the input number is the square of an integer, `False` otherwise.\n\n**Hint:** You can use the square root function to help you with this problem.\n",
+    "code": "import math\ndef is_square_number(n: float) -> bool:\n    if n < 0: n = -n\n    return math.isqrt(n)**2 == n",
+    "tests": [
+        "assert is_square_number(4) == True",
+        "assert is_square_number(16) == True",
+        "assert is_square_number(9) == False",
+        "assert is_square_number(3.0) == False",
+        "assert is_square_number(25.0) == True",
+        "assert is_square_number(-4) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

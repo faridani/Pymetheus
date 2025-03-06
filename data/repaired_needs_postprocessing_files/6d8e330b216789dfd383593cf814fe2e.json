@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Word Break",
+    "description": "Given a string s representing an English word and an integer n, find out if we can break the string into n non-empty substrings where each substring is a valid word in the English language. Return true if we can, otherwise return false.\n\n#### Function Signature\n```python\ndef word_break(s: str, n: int) -> bool:\n```\n\n#### Input\n- `s` (str): A string representing an English word.\n- `n` (int): An integer indicating the number of substrings.\n\n#### Output\n- Returns `True` if we can break the string into `n` non-empty substrings, each being a valid English word. Otherwise, returns `False`.\n\n#### Example\n```python\nword_break(\"catsanddog\", 3) == True\nword_break(\"catandog\", 3) == False\n```",
+    "code": "def word_break(s: str, n: int) -> bool:\n    # Create a set of valid English words\n    valid_words = set([\n        \"a\",\n        \"an\",\n        \"the\",\n        \"and\",\n        \"in\",\n        \"cat\",\n        \"sand\",\n        \"dog\",\"is\"]\n    )\n    # Check if we can break the string into n substrings\n    for i in range(1, n + 1):\n        if not s[i - 1:i] in valid_words:\n            return False\n    return True",
+    "tests": [
+        "assert word_break(\"catsanddog\", 3) == True",
+        "assert word_break(\"catandog\", 3) == False",
+        "assert word_break(\"apple\", 2) == True",
+        "assert word_break(\"penapple\", 2) == False",
+        "assert word_break(\"helloacntable\", 4) == True"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

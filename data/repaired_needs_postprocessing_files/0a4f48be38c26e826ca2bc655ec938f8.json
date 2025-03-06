@@ -1,0 +1,12 @@
+{
+    "title": "Medium Difficulty: Prime Palindromic Number Checker",
+    "description": "A prime palindromic number is a number that is both prime and a palindrome. Write a function `is_prime_palindrome` that checks if a given positive integer is a prime palindromic number.\r\n\r\n#### Function Signature\r\n```python\r\ndef is_prime_palindrome(num: int) -> bool:\r```\r\r\n#### Inputs\r\n- `num` (int): A positive integer to check for being both a prime and a palindrome.\r\r\n#### Output\r\n- Returns `True` if the number is a prime palindromic number, `False` otherwise.\r",
+    "code": "def is_prime(n: int) -> bool:\r    if n <= 1:\r        return False\r    for i in range(2, int(n**0.5) + 1):\r        if n % i == 0:\r            return False\r    return True\r\n\ndef is_palindrome(s: str) -> bool:\r    return s == s[::-1]\r\n\ndef is_prime_palindrome(num: int) -> bool:\r    # Convert the number to a string and check if it's a palindrome\r    num_str = str(num)\r    if not is_palindrome(num_str):\r        return False\r    \r    # Check if the number is prime\r    return is_prime(num)\r",
+    "tests": [
+        "assert is_prime_palindrome(131) == True",
+        "assert is_prime_palindrome(287) == False",
+        "assert is_prime_palindrome(19011) == False",
+        "assert is_prime_palindrome(151) == True"
+    ],
+    "model": "phi3:14b-repaired by Llama 3"
+}

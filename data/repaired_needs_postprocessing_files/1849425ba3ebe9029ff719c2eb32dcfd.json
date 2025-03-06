@@ -1,0 +1,12 @@
+{
+    "title": "Factorial Finder - A Medium Python Coding Question",
+    "description": "Write a function `factorial` that calculates the factorial of a given non-negative integer. If the input is negative, return None.\n\n#### Function Signature\n```python\ndef factorial(n: int) -> Union[int, None]:\n``` \n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns the factorial of the input number if it is a non-negative integer. If the input is negative, returns None.\n\n#### Hints:\n- The factorial of 0 is defined as 1.",
+    "code": "def factorial(n: int) -> Union[int, None]:\n    if n < 0:\n        return None\n    elif n == 0:\n        return 1\n    else:\n        result = 1\n        for i in range(1, n + 1):\n            result *= i\n        return result",
+    "tests": [
+        "assert factorial(5) == 120",
+        "assert factorial(7) == 5040",
+        "assert factorial(-3) is None",
+        "assert factorial(0) == 1"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

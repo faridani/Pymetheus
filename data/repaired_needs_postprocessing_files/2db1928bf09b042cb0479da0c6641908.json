@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Minimum Rotations for Sorted Subarray",
+    "description": "You are given a sorted array that has been rotated an unknown number of times. Write a function `min_rotations` that finds the minimum number of rotations required to bring the array back to its original sorted order.\n\n#### Function Signature\n```\ndef min_rotations(nums: list[int]) -> int:\n``` \n\n#### Input\n- `nums` (list[int]): A sorted array that has been rotated an unknown number of times.\n\n#### Output\n- Returns the minimum number of rotations required to sort the array. ",
+    "code": "def min_rotations(nums: list[int]) -> int:\n    n = len(nums)\n    l, r = 0, n - 1\n    while l < r:\n        mid = (l + r) // 2\n        if nums[mid] > nums[r]:\n            l = mid + 1\n        else:\n            r = mid\n    return l",
+    "tests": [
+        "assert min_rotations([4,5,6,7,0,1,2]) == 4",
+        "assert min_rotations([3,4,5,1,2]) == 3",
+        "assert min_rotations([1,2,3,4,5]) == 0"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

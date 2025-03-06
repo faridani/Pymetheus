@@ -1,0 +1,12 @@
+{
+    "title": "List Reversal Function",
+    "description": "Write a function `reverse_list` that takes a list as input and returns the same list reversed. The input list can contain any type of elements (integers, strings, lists, tuples, etc.).\n\n#### Function Signature\n```python\ndef reverse_list(lst: List[Any]) -> List[Any]:\n```\n\n#### Input\n- `lst` (List[Any]): A list containing any type of elements.\n\n#### Output\n- Returns a new list with the same elements as `lst`, but in reversed order.\n",
+    "code": "def reverse_list(lst: List[Any]) -> List[Any]:\n    # If the input is an empty list, return an empty list\n    if not lst: return []\n    # Recursively reverse the first and remaining elements of the list\n    return [lst[-1]] + reverse_list(lst[:-1])\n",
+    "tests": [
+        "assert reverse_list([1, 2, 3, 4]) == [4, 3, 2, 1]",
+        "assert reverse_list(['a', 'b', 'c']) == ['c', 'b', 'a']",
+        "assert reverse_list([[1, 2], [3, 4]]) == [[4, 3], [2, 1]]",
+        "assert reverse_list([]) == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}
