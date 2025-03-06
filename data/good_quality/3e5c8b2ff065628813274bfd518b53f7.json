@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Find the First Duplicate",
+    "description": "Write a function `find_first_duplicate` that takes a list of integers as input and returns the first duplicate found in the list. If no duplicates are found, return `-1`. The function should have a time complexity of O(n) or less.\n\n#### Function Signature\n```\ndef find_first_duplicate(lst: list[int]) -> int:\n```\n\n#### Input\n- `lst` (list[int]): A list of integers.\n\n#### Output\n- Returns the first duplicate found in the list, or `-1` if no duplicates are found.",
+    "code": "def find_first_duplicate(lst: list[int]) -> int:\n    seen = set()\n    for num in lst:\n        if num in seen:\n            return num\n        seen.add(num)\n    return -1",
+    "tests": [
+        "assert find_first_duplicate([2, 7, 11, 8, 12, 3]) == 11",
+        "assert find_first_duplicate([1, 2, 3, 4, 5]) == -1",
+        "assert find_first_duplicate([-1, 0, 10, 20, 10, 30, 40, 50, 50]) == 10"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

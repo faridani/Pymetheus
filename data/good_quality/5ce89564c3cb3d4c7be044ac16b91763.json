@@ -1,0 +1,12 @@
+{
+    "title": "Medium: String Compression",
+    "description": "Write a function that compresses a given string by replacing consecutive occurrences of characters with the character followed by its count.\n\n#### Function Signature\n```python\ndef compress_string(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string that may contain any printable ASCII characters.\n\n#### Output\n- Returns a compressed version of the input string.\n\n#### Constraints\n- Assume all characters in the input string are printable ASCII characters. The output should also only consist of such characters.\n\n#### Example\n```python\nassert compress_string('aabcccccaaa') == 'a2b1c5a3'\n```",
+    "code": "def compress_string(s: str) -> str:\n    result = ''\n    count = 1\n    for i in range(len(s) - 1):\n        if s[i] == s[i + 1]:\n            count += 1\n        else:\n            result += f'{s[i]}{count}'\n            count = 1\n    return result + f'{s[-1]}{count}'",
+    "tests": [
+        "assert compress_string('aabcccccaaa') == 'a2b1c5a3'",
+        "assert compress_string('abc') == 'a1b1c1'"
+    ],
+    "difficulty": "medium",
+    "model": "phind-codellama:34b",
+    "style": "Interview Query"
+}

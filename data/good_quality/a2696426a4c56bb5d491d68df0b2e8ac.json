@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Time to Finish a Job",
+    "description": "The boss of a construction company wants to know the minimum time required for a team to finish a job. This depends on the number of workers, their skill levels and whether they are working together or separately.\n\n#### Function Signature\n```python\ndef min_time_to_finish(job: dict) -> int:\n```\n\n#### Input\n- `job` (dict): A dictionary containing information about the job.\nThe job dictionary should contain the following keys:\n    - `workers`: The number of workers available.\n    - `skill_levels`: A list of integers representing the skill levels of each worker, where 1 is low and 5 is high.\n    - `working_together`: A boolean indicating whether all workers are working together or not.\n\n#### Output\n- Returns the minimum time required to finish the job in days.",
+    "code": "\nimport math\n\ndef min_time_to_finish(job: dict) -> int:\n    if 'workers' not in job or 'skill_levels' not in job or 'working_together' not in job:\n        return -1  # Return an error value\n    workers = job['workers']\n    skill_levels = job['skill_levels']\n    working_together = job['working_together']\n\n    if not working_together:\n        # Calculate the time required for each worker to finish the job alone\n        times = [math.ceil(100 / level) for level in skill_levels]\n        return max(times)\n    else:\n        # Calculate the time required for all workers to work together\n        total_skill_level = sum(skill_levels)\n        return math.ceil(100 / (total_skill_level / workers))",
+    "tests": [
+        "assert min_time_to_finish({'workers': 2, 'skill_levels': [3, 4], 'working_together': True}) == 25",
+        "assert min_time_to_finish({'workers': 1, 'skill_levels': [5], 'working_together': False}) == 20",
+        "assert min_time_to_finish({'workers': 3, 'skill_levels': [2, 3, 4], 'working_together': True}) == 33",
+        "assert min_time_to_finish({'workers': 1, 'skill_levels': [], 'working_together': False}) == -1"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

@@ -1,0 +1,16 @@
+{
+    "title": "Knapsack with Limited Items",
+    "description": "Given a set of items, each item has its own weight and value. Determine the maximum total value that can be obtained by selecting some number of these items under the constraint that the total weight does not exceed a given limit. This problem is known as the fractional knapsack problem where we can take fractions of an item.",
+    "function_signature": "def fractional_knapsack(max_weight: int, weights: list, values: list) -> float",
+    "code": "",
+    "\nimport math\n\ndef fractional_knapsack(max_weight: int, weights: list, values: list) -> float:\n    # Calculate the value to weight ratio for each item\n    ratios = [(values[i] / weights[i], weights[i]) for i in range(len(weights))]\n    \n    # Sort the items based on their ratios in descending order\n    ratios.sort(reverse=True)\n    \n    total_value = 0.0\n    for _, weight in ratios:\n        if max_weight >= weight:\n            total_value += values[ratios.index((value_to_weight_ratio, weight))]\n            max_weight -= weight\n        else:\n            fraction_of_item = max_weight / weights[ratios.index((value_to_weight_ratio, weight))]\n            total_value += fraction_of_item * (values[ratios.index((value_to_weight_ratio, weight))])\n            break\n    \n    return total_value\n\n# Test cases\nassert fractional_knapsack(50, [10, 20, 30], [60, 100, 120]) == approx(142.857)\nassert fractional_knapsack(10, [5, 10, 20], [15, 20, 30]) == approx(25.0)\nassert fractional_knapsack(5, [1, 1], [1, 1]) == approx(1.667)\nassert fractional_knapsack(20, [1, 2, 4, 8, 16], [1, 3, 7, 15, 31]) == approx(29.0)\n\nreturn total_value": "",
+    "tests": [
+        "assert fractional_knapsack(50, [10, 20, 30], [60, 100, 120]) == approx(142.857)",
+        "assert fractional_knapsack(10, [5, 10, 20], [15, 20, 30]) == approx(25.0)",
+        "assert fractional_knapsack(5, [1, 1], [1, 1]) == approx(1.667)",
+        "assert fractional_knapsack(20, [1, 2, 4, 8, 16], [1, 3, 7, 15, 31]) == approx(29.0)"
+    ],
+    "difficulty": "super hard",
+    "model": "qwen2:7b",
+    "style": "HackerEarth"
+}

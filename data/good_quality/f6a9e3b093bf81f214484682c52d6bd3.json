@@ -1,0 +1,13 @@
+{
+    "title": "Finding the Shortest Path in a Maze",
+    "description": "Imagine you are standing at the entrance of a maze. The maze consists of cells that can be either walls or paths. Your goal is to find the shortest path from the starting point to the end point.\n\nThe input will contain the dimensions of the maze and the positions of the start and the end points, as well as the presence or absence of walls in each cell.\n\n#### Function Signature\n```python\ndef shortest_path(maze: list[list[str]], start_x: int, start_y: int, end_x: int, end_y: int) -> list[tuple[int, int]]:\n```\n\n#### Input\n- `maze` (list[list[str]]): A 2D list representing the maze. Each cell can be either 'W' for a wall or 'P' for a path.\n- `start_x` (int), `start_y` (int): The coordinates of the starting point in the maze.\n- `end_x` (int), `end_y` (int): The coordinates of the ending point in the maze.\n\n#### Output\n- Returns the shortest path from the start to the end as a list of cell coordinates.",
+    "code": "from collections import deque\n\ndef shortest_path(maze: list[list[str]], start_x: int, start_y: int, end_x: int, end_y: int) -> list[tuple[int, int]]:\n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n    queue = deque([(start_x, start_y)])\n    visited = {(start_x, start_y)}\n    path = []\n\n    while queue:\n        x, y = queue.popleft()\n        if x == end_x and y == end_y:\n            break\n\n        for dx, dy in directions:\n            nx, ny = x + dx, y + dy\n            if (0 <= nx < len(maze) and 0 <= ny < len(maze[0])\n                    and maze[nx][ny] == 'P' and (nx, ny) not in visited):\n                queue.append((nx, ny))\n                visited.add((nx, ny))\n        if path:\n            break\n    return list(path)",
+    "tests": [
+        "assert shortest_path([['W', 'P'], ['P', 'W']], 0, 0, 1, 1) == [(0, 0), (0, 1), (1, 1)]",
+        "assert shortest_path([['P' for _ in range(5)] for _ in range(5)], 0, 0, 4, 4) == [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 4), (2, 4), (3, 4), (4, 4)]",
+        "assert shortest_path([['W' for _ in range(5)] for _ in range(5)], 0, 0, 0, 0) == []"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

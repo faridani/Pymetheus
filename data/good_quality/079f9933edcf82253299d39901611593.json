@@ -1,0 +1,13 @@
+{
+    "title": "Longest Palindromic Subsequence",
+    "description": "The longest palindromic subsequence (LPS) problem is to find the length of the longest subsequence of a given sequence that is also a palindrome. A subsequence is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.\n\n### Function Signature\n```python\ndef longest_palindromic_subsequence(s: str) -> int:\n```\n\n### Input\n- `s` (str): A string containing lowercase English letters and digits.\n\n### Output\n- Returns an integer representing the length of the longest palindromic subsequence in the input string.\n\n### Constraints\n- 1 \u2264 |s| \u2264 500\n\n### Example Test Cases\n```python\nassert longest_palindromic_subsequence(\"abdbca\") == 3 # Possible LPS: \"aba\"\nassert longest_palindromic_subsequence(\"cddpd\") == 3 # Possible LPS: \"dcd\" or \"dpd\"\nassert longest_palindromic_subsequence(\"pqr\") == 1\n```\n\n### Note\nThe function should consider both uppercase and lowercase letters as the same, and digits are also part of palindromes.",
+    "code": "def longest_palindromic_subsequence(s: str) -> int:\n    n = len(s)\n    if not s or n == 1:\n        return n\n\n    dp = [[0] * n for _ in range(n)]\n    for i in range(n - 1, -1, -1):\n        for j in range(i + 1, n):\n            if s[i] == s[j]:\n                if j - i == 1:\n                    dp[i][j] = 2\n                else:\n                    dp[i][j] = dp[i + 1][j - 1] + 2\n            else:\n                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])\n    return dp[0][n - 1]",
+    "tests": [
+        "assert longest_palindromic_subsequence(\"abdbca\") == 3",
+        "assert longest_palindromic_subsequence(\"cddpd\") == 3",
+        "assert longest_palindromic_subsequence(\"pqr\") == 1"
+    ],
+    "difficulty": "hard",
+    "model": "qwen2:7b",
+    "style": "ACM-ICPC"
+}

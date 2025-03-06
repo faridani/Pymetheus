@@ -1,0 +1,18 @@
+{
+    "title": "Hard: Minimal String Reversal for Palindrome",
+    "description": "Given a string, determine the minimum number of character reversals required to make it a palindrome. A reversal means changing the order of characters within a substring by reversing them.",
+    "function_signature": "def min_reversals_to_palindrome(s: str) -> int:",
+    "code": "",
+    "\nimport math\n\ndef min_reversals_to_palindrome(s: str) -> int:\n    def is_palindrome(s):\n        return s == s[::-1]\n\n    if is_palindrome(s):\n        return 0\n\n    min_revs = float('inf')\n\n    for i in range(len(s)):\n        # Exclude one character at each position and check if the remaining string forms a palindrome\n        str_part1, str_part2 = s[:i], s[i+1:]\n        reversed_s = s[::-1]\n\n        if len(str_part1) != len(str_part2):\n            min_revs = min(min_revs, 1 + min(len([char for char in str_part1 if char != reversed_s[len(str_part2)-j-1]]) + len([char for char in str_part2 if char != reversed_s[j]]))\n                           for j in range(len(str_part2)))\n\n        else:\n            min_revs = min(min_revs, len([char for char in s if char != reversed_s[i+math.ceil(len(s)/2)-len(str_part1)]])\n\n    return math.floor((min_revs - 1) / 2)\n\n# Test cases\nassert min_reversals_to_palindrome(": "bc",
+    "min_reversals_to_palindrome(": "a",
+    "tests": [
+        "assert min_reversals_to_palindrome(\"abc\") == 1",
+        "assert min_reversals_to_palindrome(\"abccba\") == 0",
+        "assert min_reversals_to_palindrome(\"abcdcba\") == 1",
+        "assert min_reversals_to_palindrome(\"abcdefg\") == 2",
+        "assert min_reversals_to_palindrome(\"aa\") == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "qwen2:7b",
+    "style": "Facebook Hacker Cup"
+}

@@ -44,7 +44,7 @@ def validate_response_content(s: str)-> Tuple[bool, str]:
                 except json.JSONDecodeError as e:
                     return (False, "invalid_json")
                 
-                return (True, "data")
+                return (True, "good_quality")
      
 def cleanup_response(response_content_raw):
             

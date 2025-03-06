@@ -1,0 +1,14 @@
+{
+    "title": "Hard: String Transformation",
+    "description": "Given two strings `str1` and `str2`, determine if it's possible to convert `str1` into `str2` by performing a series of swaps between characters at equal positions in both strings. A swap operation is defined as exchanging the character at index `i` from string `str1` with the character at index `i` from string `str2`. The function should return `True` if such operations can convert `str1` to `str2`, otherwise return `False`.\n\n#### Function Signature\n```python\ndef can_transform(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A non-empty string.\n- `str2` (str): A non-empty string of the same length as `str1`.\nBoth strings contain only lowercase English letters.\n\n#### Output\nReturns a boolean indicating whether it's possible to transform `str1` into `str2` by swapping characters at equal indices between both strings.\n\n#### Constraints\n- Length of both strings is <= 10^4\n\n#### Example\n- `can_transform(\"abc\", \"bca\")` returns `True`\n- `can_transform(\"abcd\", \"dabc\")` returns `False`\n\n#### Hints:\n- The order of characters matters.\n- Each character must be transformed exactly once.",
+    "code": "from collections import Counter\n\ndef can_transform(str1: str, str2: str) -> bool:\n    # If both strings are the same, they're already in correct transformation\n    if str1 == str2:\n        return True\n    # Initialize counters for character frequencies in both strings\n    c1, c2 = Counter(str1), Counter(str2)\n    # Loop through each index and check if characters match or swap possibility exists\n    for i in range(len(str1)):\n        char1, char2 = str1[i], str2[i]\n        # If both strings don't contain the same character at that position\n        if char1 != char2 and (char1 not in c2 or char2 not in c1):\n            return False\n        # Update counters for swaps\n        c1[char2] -= 1\n        c2[char1] -= 1\n        # If any character count goes negative, transformation is impossible\n        if min(c1.values()) < 0 or min(c2.values()) < 0:\n            return False\n    return True",
+    "tests": [
+        "assert can_transform(\"abc\", \"bca\") == True",
+        "assert can_transform(\"abcd\", \"dabc\") == False",
+        "assert can_transform(\"aabbccdd\", \"bbbaaccd\") == True",
+        "assert can_transform(\"zazab\", \"zbaza\") == True"
+    ],
+    "difficulty": "hard",
+    "model": "qwen2:7b",
+    "style": "CodeChef"
+}

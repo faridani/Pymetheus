@@ -1,6 +1,95 @@
 # Pymetheus
 Synthetic Dataset of Python Code for Reinforcement Learning
 
+This repository has more than 3.8K coding examples. All of these are stored in four subfolders in the `data` folder. 
+* `good_quality` has good quality data, the python code and unit tests all compile and the json file adheres to the `schema` highlighed below. 
+* `invalid_python_code` contains jsons that are well formatted but their python code has errors 
+* `invalid_tests` contains jsons whose python code compile but their tests don't 
+* `needs_postprocessing` these contain outputs of LLMs that don't conform strictly to the `schema` but they are still useful 
+
+## Data Card 
+
+Focusing on the `good_quality` folder, below is the number of data points per model 
+
+```
+mistral:latest: 355
+llama3:latest: 41
+qwen2:7b: 34
+gemma2:27b: 28
+aya:35b: 24
+phi3:14b: 21
+mistral-nemo:latest: 18
+codestral:latest: 12
+phi4:latest: 10
+llama3.1:8b: 10
+command-r7b:latest: 8
+gemma2:27b-instruct-q5_K_S: 8
+deepseek-coder:33b: 7
+codebooga:latest: 6
+codeqwen:7b: 6
+mistral:7b-instruct: 5
+codellama:34b: 5
+codestral:22b: 5
+llama2:latest: 5
+codegemma:7b: 4
+codegeex4:9b: 3
+phind-codellama:34b: 2
+deepseek-coder-v2:16b: 1
+deepseek-r1:32b: 1
+codeup:latest: 1
+```
+
+Please note that there are duplicates in this folder particularly it seems that `mistral` really likes to generate `Anagram` questions. These are the duplicate questions that have the same `titles` but might have different implementations or `unit tests` 
+
+```
+'Anagram Detector (Hard)': 49
+Anagram Detector (Hard): 12
+'Anagram Checker (Hard)': 9
+Anagram Detection (Hard): 9
+'Anagram Finder (Hard)': 8
+'Anagram Detection (Hard)': 6
+Anagram Checker (Hard): 6
+Easy: Sum of Digits: 6
+'Levenshtein Distance Calculator (Easy)': 4
+Prime Factorization (Hard): 4
+Fibonacci Sequence Generator (Hard): 4
+'Levenshtein Distance Calculator (Hard)': 3
+Subsequence Sum Checker (Hard): 3
+'Palindrome with Special Characters Checker (Medium)': 3
+'Palindrome with Special Characters Checker (Easy)': 3
+Hard: Longest Common Subsequence: 3
+Anagram Checker (Medium): 3
+'Palindromic Substrings Count Finder (Hard)': 3
+'Anagram Finder (Medium)': 3
+Capitalize First Letter of Each Word: 3
+Palindrome Checker (Hard): 3
+Prime Factorization: 3
+Longest Common Subsequence: 3
+"Anagram Detector (Hard): 2
+'Check if a given string contains all unique characters (Easy)': 2
+Medium: Reverse Words in a String: 2
+Hard: Longest Increasing Subsequence: 2
+Euler's Totient Function: 2
+Easy: Counting Vowels: 2
+Palindrome Checker: 2
+Fibonacci Sequence Generator (Medium): 2
+'Palindromic Substrings Finder (Medium)': 2
+"Anagram Finder (Hard): 2
+'Palindromic Substrings in a String (Hard)': 2
+'Palindromic Substrings Count (Hard)': 2
+Easy: Reverse String: 2
+Easy: Reverse Integer: 2
+Sudoku Validator: 2
+Maximum Sum of Subarray: 2
+'Palindrome with Spaces and Punctuation Checker (Easy)': 2
+Easy: Counting Islands: 2
+Anagram Finder (Hard): 2
+Reverse Linked List: 2
+Maximum Subarray Sum: 2
+'Is it anagram checker (Easy)': 2
+Longest Common Prefix: 2
+Even Fibonacci Numbers: 2
+```
 ## Introduction
 The good examples of synthetic python codes exist in the `data` folder
 

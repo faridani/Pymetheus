@@ -10,12 +10,15 @@ from cleanup import cleanup_response, correct_json_using_deepseek_r1, validate_r
 
 clear_terminal()
 
-useful_models = ["llama3:latest", 
-                    "qwen2:7b",
-                    "gemma2:27b",
-                    "mistral-nemo:latest",
-                    "aya:35b",
-                    "phi3:14b",] # get_proper_models()
+useful_models = get_proper_models() # or use the following line to use the most successful models
+
+# useful_models = ["llama3:latest", 
+#                     "qwen2:7b",
+#                     "gemma2:27b",
+#                     "mistral-nemo:latest",
+#                     "aya:35b",
+#                     "phi3:14b",]
+
 print(10*'\n')
 
 def ask_codellama(model, content):
@@ -27,28 +30,20 @@ def ask_codellama(model, content):
     
     response_content_cleaned = cleanup_response(response['message']['content'])
     
-    try:
-        is_valid, directory = validate_response_content(response_content_cleaned)
-        if is_valid:
-           return json.loads(response_content_cleaned, strict=False)
-        else:
-            print("\n\n\n ------- DEBUG -------")
-            print(response_content_cleaned)
-            print("------- END OF DEBUG -------\n\n\n")
-            failed_json = {
-                "model": model,
-                "response": response_content_cleaned
-            }
-            save_response_to_file(str(failed_json), directory="needs_postprocessing")
-           
-    except (json.JSONDecodeError, ValidationError) as e:
-        print("\n\n\n")
-        print(">>>"*40)
+    
+    is_valid, directory = validate_response_content(response_content_cleaned)
+    if is_valid:
+        return json.loads(response_content_cleaned, strict=False)
+    else:
+        print("\n\n\n ------- DEBUG -------")
         print(response_content_cleaned)
-        print("<<<"*40)
-        print("\n\n\n")
-        print(f"Invalid JSON or schema: {e}")
-        return None
+        print("------- END OF DEBUG -------\n\n\n")
+        failed_json = {
+            "model": model,
+            "response": response_content_cleaned
+        }
+        save_response_to_file(str(failed_json), directory="needs_postprocessing")
+           
 
 
 while True:
@@ -90,7 +85,7 @@ while True:
                     response['difficulty'] = difficulty
                     response['model'] = model
                     response['style'] = style
-                    save_response_to_file(response, directory="data")
+                    save_response_to_file(response, directory="good_quality")
                     fail_counter -= 1
                     useful_models.append(model) #increase the probability of using this model again
                 else:

@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of an Increasing Subsequence",
+    "description": "Given a list of integers `nums`, find the maximum sum of an increasing subsequence.\n\n#### Function Signature\n```python\ndef maxIncreasingSum(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums` (List[int]): A list of integers that may contain duplicates and be in any order.\n\n#### Output\n- Returns the maximum sum of an increasing subsequence in the input list. An increasing subsequence is a sequence of numbers where each number is greater than or equal to the previous one.\n\nFor example, given `nums = [1, 2, 3, 4, 5]`, your function should return `15` because `[1, 3, 5]` is an increasing subsequence with sum `9`. But we can do better by adding `2` and `4` to the subsequence to get a total sum of `15`.\n\n#### Constraints\n- The length of `nums` will be between 1 and 100.\n- All elements in `nums` will be integers.",
+    "code": "\ndef maxIncreasingSum(nums: List[int]) -> int:\n    if not nums:\n        return 0\n    \n    dp = [num for num in nums]\n    max_sum = dp[0]\n    \n    for i in range(1, len(nums)):\n        current_max = dp[i]\n        for j in range(i):\n            if nums[j] < nums[i]:\n                current_max = max(current_max, dp[j] + nums[i])\n        dp[i] = current_max\n        max_sum = max(max_sum, current_max)\n    \n    return max_sum",
+    "tests": [
+        "assert maxIncreasingSum([1, 2, 3, 4, 5]) == 15",
+        "assert maxIncreasingSum([-1, -2, 0, 10, 20]) == 20",
+        "assert maxIncreasingSum([]) == 0",
+        "assert maxIncreasingSum([5]) == 5"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Non-adjacent Elements",
+    "description": "Given a list of integers, write a function `max_sum_non_adjacent` that returns the maximum sum of non-adjacent elements. For example, given the list `[2, 7, 9, 3, 1]`, the function should return `12` because the maximum sum of non-adjacent elements is `2 + 9 + 1 = 12`. The input list can contain any positive or negative integers.\n\n#### Function Signature\n```python\ndef max_sum_non_adjacent(nums: list) -> int:\n```\n\n#### Input\n- `nums` (list): A list of integers.\n\n#### Output\n- Returns the maximum sum of non-adjacent elements in the input list.",
+    "code": "",
+    "\ndef max_sum_non_adjacent(nums: list) -> int:\n    if not nums:\n        return 0\n    n = len(nums)\n    dp = [0] * (n + 1)\n    dp[0] = 0\n    for i in range(1, n):\n        dp[i] = max(dp[i - 1], dp[i - 2] + nums[i] if i >= 2 else nums[i])\n    return dp[n - 1]": "",
+    "tests": [
+        "assert max_sum_non_adjacent([2, 7, 9, 3, 1]) == 12",
+        "assert max_sum_non_adjacent([-5, 1, 4, 0, 2, 1]) == 6",
+        "assert max_sum_non_adjacent([1, 2, 3, 4, 5]) == 9"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

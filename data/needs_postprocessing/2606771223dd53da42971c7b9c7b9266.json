@@ -1,0 +1,1 @@
+"{'model': 'codeup:latest', 'response': '[\"assert find_middle_node(Node(1)) == Node(1)\", \"assert find_middle_node(Node(2, Node(3))) == Node(3)\", \"assert find_middle_node(Node(1, Node(2), Node(3))) == Node(2)\", \"assert find_middle_node(None) == None\"]'}"

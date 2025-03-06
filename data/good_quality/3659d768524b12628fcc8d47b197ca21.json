@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Counting Islands",
+    "description": "An island is a group of connected land that is surrounded by water on all sides. Write a function `count_islands` that takes a 2D array representing a map, and returns the number of islands in the map.\n\n#### Function Signature\n```python\ndef count_islands(grid: list) -> int:\n```\n\n#### Input\n- `grid` (list): A 2D array of size m x n where `m` and `n` are integers. Each cell in the grid is either `0` or `1`, representing land (`1`) and water (`0`) respectively.\n\n#### Output\n- Returns the number of islands in the map.",
+    "code": "from collections import deque\n\ndef count_islands(grid: list) -> int:\n    if not grid:\n        return 0\n    m, n = len(grid), len(grid[0])\n    visited = [[False] * n for _ in range(m)]\n    islands = 0\n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n    for i in range(m):\n        for j in range(n):\n            if grid[i][j] == 1 and not visited[i][j]:\n                islands += 1\n                queue = deque([(i, j)])\n                while queue:\n                    x, y = queue.popleft()\n                    visited[x][y] = True\n                    for dx, dy in directions:\n                        nx, ny = x + dx, y + dy\n                        if (0 <= nx < m) and (0 <= ny < n) and grid[nx][ny] == 1 and not visited[nx][ny]:\n                            queue.append((nx, ny))\n    return islands",
+    "tests": [
+        "assert count_islands([[0, 0, 1], [1, 1, 0], [0, 0, 0]]) == 1",
+        "assert count_islands([[1, 1, 0], [0, 1, 0], [0, 0, 1]]) == 3",
+        "assert count_islands([]) == 0",
+        "assert count_islands([[]]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}
