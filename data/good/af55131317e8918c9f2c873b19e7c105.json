@@ -1,0 +1,15 @@
+{
+    "title": "Interleaving Strings",
+    "description": "Given two strings s1 and s2, write a function `are_interleaved` that checks if s1 can be interleaved with s2. That is, if there exists a valid ordering of the characters in s1 and s2 such that they appear consecutively in the same order as they appear in the original strings.\n\n#### Function Signature:\n```python\ndef are_interleaved(s1: str, s2: str) -> bool:\n```\n\n#### Input:\n- `s1` (str): A string containing characters that can be interleaved with s2.\n- `s2` (str): Another string containing characters that may be interleaved with s1.\n\n#### Output:\n- Returns `True` if the two strings can be interleaved, `False` otherwise.\n\n#### Hint:\nYou may want to consider dynamic programming or recursion for this problem.",
+    "code": "def are_interleaved(s1: str, s2: str) -> bool:\n    # Check if one string is a subsequence of the other\n    def is_subsequence(s, t):\n        i, j = 0, 0\n        while i < len(s) and j < len(t):\n            if s[i] == t[j]:\n                i += 1\n            j += 1\n        return i == len(s)\n\n    # Check if s1 can be interleaved before or at the same position as s2\n    for i in range(len(s2) + 1):\n        if is_subsequence(s1, s2[i:]):\n            return True\n    return False",
+    "tests": [
+        "assert are_interleaved(\"abc\", \"ab\") == True",
+        "assert are_interleaved(\"abc\", \"ac\") == True",
+        "assert are_interleaved(\"abc\", \"cba\") == True",
+        "assert are_interleaved(\"abc\", \"cb\") == False",
+        "assert are_interleaved(\"abcde\", \"ab\") == False"
+    ],
+    "difficulty": "super hard",
+    "model": "aya:35b",
+    "style": "Internationals Olympiad"
+}

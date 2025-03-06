@@ -1,0 +1,13 @@
+{
+    "title": "Hard - Knight's Tour Problem",
+    "description": "The knight's tour problem is a classic computational problem where you need to find a path for a knight on an NxN chessboard such that it visits every square only once.\n\n#### Function Signature\n```python\ndef knight_tour(n: int, start: tuple[int, int]) -> list[tuple[int, int]]:\n```\n\n#### Input\n- `n` (int): The size of the chessboard (NxN).\n- `start` (tuple[int, int]): The starting position of the knight (row, col).\n\n#### Output\n- Returns a list of tuples representing the path of the knight's tour. If no solution exists, return an empty list.\n\n#### Constraints\n- 1 \u2264 n \u2264 8\n- 0 \u2264 start[0] < n\n- 0 \u2264 start[1] < n",
+    "code": "def knight_tour(n: int, start: tuple[int, int]) -> list[tuple[int, int]]:\n    directions = [(2, 1), (2, -1), (-2, 1), (-2, -1), (1, 2), (1, -2), (-1, 2), (-1, -2)]\n    board = [[0] * n for _ in range(n)]\n    path = [start]\n    def dfs(x, y, count):\n        if count == n ** 2:\n            return True\n        for dx, dy in directions:\n            nx, ny = x + dx, y + dy\n            if 0 <= nx < n and 0 <= ny < n and board[nx][ny] == 0:\n                board[nx][ny] = count\n                path.append((nx, ny))\n                if dfs(nx, ny, count + 1):\n                    return True\n                board[nx][ny] = 0\n                path.pop()\n        return False\n    dfs(start[0], start[1], 1)\n    return path if len(path) == n ** 2 else []",
+    "tests": [
+        "assert knight_tour(3, (0, 0)) == [(0, 0), (1, 1), (2, 1), (1, 2), (0, 2), (2, 0)]",
+        "assert knight_tour(4, (1, 0)) == [(1, 0), (2, 1), (3, 2), (2, 3), (0, 3), (1, 2), (0, 1), (0, 0), (1, 1)]",
+        "assert knight_tour(5, (2, 4)) == []"
+    ],
+    "difficulty": "super hard",
+    "model": "mistral-nemo:latest",
+    "style": "CodeChef"
+}
