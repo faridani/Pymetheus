@@ -1,0 +1,4 @@
+{
+    "model": "wizardcoder:latest",
+    "response": "[[\"int\"], [\"int\"], [0], [1, \"if num > max_num:\\r\\n            max_num = num\\r\\n    return max_num\"]]"
+}

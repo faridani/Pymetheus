@@ -19,20 +19,28 @@ useful_models = get_proper_models() # or use the following line to use the most 
 #                     "aya:35b",
 #                     "phi3:14b",]
 
-print(10*'\n')
+print(10*'---')
 
 def ask_codellama(model, content):
-    response = ollama.chat(model=model, messages=[{
+    response_from_ollama = ollama.chat(model=model, messages=[{
         'role': 'user',
         'content': content 
     }])
-
-    
-    response_content_cleaned = cleanup_response(response['message']['content'])
-    
-    
+    response_content_cleaned = cleanup_response(response_from_ollama['message']['content'])
     is_valid, directory = validate_response_content(response_content_cleaned)
     if is_valid:
+        try:
+                response = json.loads(response_content_cleaned, strict=False)
+                if all(key in response for key in template.keys()):
+                    print(f"Successfully generated {difficulty} question")
+                    response['difficulty'] = difficulty
+                    response['model'] = model
+                    response['style'] = style
+                    save_response_to_file(response, directory=directory)
+                else:
+                    print(f"Response missing required keys for {difficulty} question")
+        except Exception as e:
+                print(f"Error processing {difficulty} question: {e}")
         return json.loads(response_content_cleaned, strict=False)
     else:
         print("\n\n\n ------- DEBUG -------")
@@ -42,10 +50,9 @@ def ask_codellama(model, content):
             "model": model,
             "response": response_content_cleaned
         }
-        save_response_to_file(str(failed_json), directory="needs_postprocessing")
+        save_response_to_file(failed_json, directory="needs_postprocessing")
+        return None
            
-
-
 while True:
     model = random.choice(useful_models)
     fail_counter = 0
@@ -73,32 +80,22 @@ while True:
 
         style = random.choice(styles)
         content = content.replace("**IN THE STYLE OF**", style)
+        print(20*"\n")
         print(f"Generating {difficulty} question from {model} in the style of {style}...")
         content_with_difficulty = content.replace("**REPLACE WITH DIFFICULTY**", difficulty)
         response = ask_codellama(model, content_with_difficulty)
         
 
         if response:
-            try:
-                if all(key in response for key in template.keys()):
-                    print(f"Successfully generated {difficulty} question")
-                    response['difficulty'] = difficulty
-                    response['model'] = model
-                    response['style'] = style
-                    save_response_to_file(response, directory="good_quality")
-                    fail_counter -= 1
-                    useful_models.append(model) #increase the probability of using this model again
-                else:
-                    print(f"Response missing required keys for {difficulty} question")
-            except Exception as e:
-                print(f"Error processing {difficulty} question: {e}")
+            fail_counter -= 1 
+            useful_models.append(model) #increase the probability of using this model again
         else:
             print(f"Failed to generate {difficulty} question")
             fail_counter += 1
             
         model_counts = Counter(useful_models)
         sorted_model_counts = sorted(model_counts.items(), key=lambda x: x[1], reverse=True)
-        print("\n\nModel usage counts in descending order:")
-        for model, count in sorted_model_counts:
-            print(f"{model}: {count}", end=", ")
-        print("\n\n\n\n\n\n\n\n\n")
+        # print("\n\nModel usage counts in descending order:")
+        # for model, count in sorted_model_counts:
+        #     print(f"{model}: {count}", end=", ")
+        # print("\n\n\n\n\n\n\n\n\n")

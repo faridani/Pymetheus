@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Matrix Chain Multiplication",
+    "description": "Given a sequence of matrices, find the most efficient way to multiply these matrices together. The problem is not actually to perform the multiplications, but merely to decide in which order to perform the multiplications.\n\n#### Function Signature\n```python\ndef matrix_chain_order(p: list) -> int:\n```\n\n#### Input\n- `p` (list): A list of dimensions for matrices where `p[i]` and `p[i+1]` are the dimensions of the i'th matrix. The length of p is at least 2.\n\n#### Output\n- Returns the minimum number of multiplications needed to multiply the chain of matrices.",
+    "code": "",
+    "def matrix_chain_order(p: list) -> int:\n        n = len(p) - 1\n        m = [[0 for i in range(n)] for j in range(n)]\n        for L in range(2, n + 1):\n            for i in range(1, n - L + 2):\n                j = i + L - 1\n                m[i-1][j-1] = float('inf')\n                for k in range(i, j):\n                    cost = m[i-1][k-1] + m[k][j-1] + p[i-1]*p[k]*p[j]\n                    if cost < m[i-1][j-1]:\n                        m[i-1][j-1] = cost\n        return m[0][n-1]": "",
+    "tests": [
+        "assert matrix_chain_order([40, 20, 30, 10, 30]) == 26000",
+        "assert matrix_chain_order([10, 20, 30, 40, 50]) == 30000",
+        "assert matrix_chain_order([10, 20, 30]) == 6000",
+        "assert matrix_chain_order([2, 3, 6, 4, 2]) == 38"
+    ],
+    "difficulty": "hard",
+    "model": "codestral:22b",
+    "style": "Internationals Olympiad"
+}

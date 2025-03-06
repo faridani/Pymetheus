@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Finding the Maximum Score",
+    "description": "Given a list of points and their corresponding scores, write a function that finds the maximum score achievable by selecting at most two points. The score is calculated as the sum of the scores of the selected points.\n\n#### Function Signature\n```\ndef max_score(points_scores: List[Tuple[int, int]]) -> int:\n```\n\n#### Input\n- `points_scores` (List[Tuple[int, int]]): A list of tuples where each tuple contains a point and its score. The point is an integer representing the x-coordinate on a number line, and the score is an integer.\n\n#### Output\n- Returns the maximum achievable score by selecting at most two points.",
+    "code": "\nfrom typing import List, Tuple\n\ndef max_score(points_scores: List[Tuple[int, int]]) -> int:\n    # Sort the points by their scores in descending order\n    points_scores.sort(key=lambda x: x[1], reverse=True)\n\n    # Initialize the maximum score to 0\n    max_achievable = 0\n\n    # Try selecting one point and then another point\n    for i in range(len(points_scores)):\n        for j in range(i+1, len(points_scores)):\n            # Calculate the total score of the selected points\n            total_score = points_scores[i][1] + points_scores[j][1]\n            max_achievable = max(max_achievable, total_score)\n\n    return max_achievable",
+    "tests": [
+        "assert max_score([(1, 3), (2, 4), (3, 5)]) == 7",
+        "assert max_score([(1, 2), (2, 3), (3, 4)]) == 6",
+        "assert max_score([(1, 1), (2, 2), (3, 3)]) == 3"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "[Hard] Word Ladder Length",
+    "description": "Given two words (beginWord and endWord), and a dictionary's word list, find the length of shortest transformation sequence from beginWord to endWord, such that:\n\n- Only one letter can be changed at a time.\n- Each transformed word must exist in the word list. Note that beginWord is not a transformed word.\n\nWrite a function `word_ladder` which takes three arguments: `beginWord`, `endWord`, and `wordList`. The function should return the length of the shortest transformation sequence from `beginWord` to `endWord`, or 0 if no such sequence exists.\n\n#### Function Signature\n```python\ndef word_ladder(beginWord: str, endWord: str, wordList: List[str]) -> int:\n```",
+    "code": "",
+    "from collections import deque\n\ndef word_ladder(beginWord: str, endWord: str, wordList: List[str]) -> int:\n    wordSet = set(wordList)\n    if endWord not in wordSet:\n        return 0\n\n    queue = deque([(beginWord, 1)])\n    alphabet = 'abcdefghijklmnopqrstuvwxyz'\n\n    while queue:\n        word, length = queue.popleft()\n        if word == endWord:\n            return length\n\n        for i in range(len(word)):\n            for char in alphabet:\n                next_word = word[:i] + char + word[i+1:]\n                if next_word in wordSet:\n                    queue.append((next_word, length + 1))\n                    wordSet.remove(next_word)\n\n    return 0": "",
+    "tests": [
+        "assert word_ladder(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]) == 5",
+        "assert word_ladder(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "codestral:22b",
+    "style": "CodeChef"
+}

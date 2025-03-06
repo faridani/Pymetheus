@@ -1,7 +1,7 @@
 # Pymetheus
 Synthetic Dataset of Python Code for Reinforcement Learning
 
-This repository has more than 3.8K coding examples. All of these are stored in four subfolders in the `data` folder. 
+This repository has more than 4K coding examples. All of these are stored in four subfolders in the `data` folder. 
 * `good_quality` has good quality data, the python code and unit tests all compile and the json file adheres to the `schema` highlighed below. 
 * `invalid_python_code` contains jsons that are well formatted but their python code has errors 
 * `invalid_tests` contains jsons whose python code compile but their tests don't 

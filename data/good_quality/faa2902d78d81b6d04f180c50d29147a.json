@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Maximal Area of Island",
+    "description": "Given a binary grid `grid` where 0 represents water and 1 represents land, find the maximum area of an island (i.e., a maximal connected component) in the grid.\n\n#### Function Signature\n```\ndef max_area_of_island(grid: list[list[int]]) -> int:\n```",
+    "code": "",
+    "\nfrom typing import List\n\ndef max_area_of_island(grid: List[List[int]]) -> int:\n    if not grid:\n        return 0\n    \n    rows, cols = len(grid), len(grid[0])\n    max_area = 0\n    \n    def dfs(r: int, c: int) -> int:\n        if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == 0:\n            return 0\n        \n        grid[r][c] = 0\n        area = 1\n        for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            nr, nc = r + dr, c + dc\n            area += dfs(nr, nc)\n        \n        return area\n    \n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 1:\n                max_area = max(max_area, dfs(r, c))\n    \n    return max_area": "",
+    "tests": [
+        "assert max_area_of_island([[0,0,1,0,0],[1,0,1,1,0],[1,1,1,1,0]]) == 4",
+        "assert max_area_of_island([]) == 0",
+        "assert max_area_of_island([[0,0,0,0]]) == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

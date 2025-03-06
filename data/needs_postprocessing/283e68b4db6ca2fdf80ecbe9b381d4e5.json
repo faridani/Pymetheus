@@ -1,0 +1,4 @@
+{
+    "model": "wizardcoder:latest",
+    "response": "\"{ \\\"title\\\": \\\"Reverse a string without using built-in functions\\\", \\\"description\\\": \\\"Given a string s, write a function `reverse(s: str) -> str` that reverses the order of its characters. Do not use any built-in functions for this task.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef reverse(s: str) -> str:\\\\n```\\\\n\\\\n#### Input\\\\n- `s` (str): A string of length at least 1\\\\n\\\\n#### Output\\\\n- Returns the reversed string\\\\n\\\", \\\"code\\\": \\\"def reverse(s: str) -> str:\\\\n    s = list(s)\\\\n    for i in range(len(s) // 2):\\\\n        s[i], s[-1 - i] = s[-1 - i], s[i]\\\\n    return ''.join(s)\\\\n\\\", \\\"tests\\\": [\\\"assert reverse('hello') == 'olleh', \\\\nassert reverse('racecar') == 'racecar'\\\"] }\""
+}

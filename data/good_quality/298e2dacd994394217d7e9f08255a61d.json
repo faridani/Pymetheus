@@ -1,0 +1,16 @@
+{
+    "title": "Cyclic Number Determiner",
+    "description": "A cyclic number of length n with respect to a base b (like base 10 for decimal numbers) is an integer that, when multiplied by any positive integer from 1 to n, its product consists solely of the original number\u2019s digits but in a different order. For example, 2347189650 is cyclic because it meets this criteria in base 10 with respect to multiplying by integers from 1 to 10.",
+    "function_signature": "def is_cyclic_number(number: int, base: int) -> bool:",
+    "code": "",
+    "\nimport math\n\ndef is_cyclic_number(number: int, base: int) -> bool:\n    # Convert number into string for easy manipulation\n    num_str = str(number)\n    length_of_number = len(num_str)\n\n    if length_of_number <= 1 or (number % (base - 1)) != 0:\n        return False\n\n    multiplier = range(2, min(length_of_number + 1, base))\n\n    # Multiply the number by each of the multipliers and convert results to string\n    for i in multiplier:\n        product_str = str(number * i)\n        if len(product_str) > length_of_number:\n            return False\n\n        if not all(digit in num_str for digit in set(product_str)):\n            return False\n\n    # Check if every multiplication result is a permutation of the original number\n    for i in range(len(num_str)):\n        if product_str[i:i + length_of_number] != num_str and \\\n           product_str[i:] + product_str[:i] != num_str:\n            return False\n\n    return True": "",
+    "tests": [
+        "assert is_cyclic_number(2347189650, 10) == True",
+        "assert is_cyclic_number(2134756890, 10) == True",
+        "assert is_cyclic_number(12345, 10) == False",
+        "assert is_cyclic_number(1111111, 10) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "qwen2:7b",
+    "style": "Facebook Hacker Cup"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Sudoku Validator (Hard)",
+    "description": "A Sudoku puzzle is a 9x9 grid, divided into nine 3x3 sub-grids or \"regions.\" Some numbers are already filled in, while others are blank. A valid Sudoku puzzle must have the following properties:\n\n- Each row, column, and region contains each number from 1 to 9 exactly once.\n\nWrite a function `is_valid_sudoku` that takes a 2D list of integers as input, representing a Sudoku puzzle, and returns `True` if the puzzle is valid, and `False` otherwise.\n\n#### Function Signature\n```\ndef is_valid_sudoku(board: list[list[int]]) -> bool:\n```\n\n#### Input\n- `board` (list[list[int]]): A 2D list of integers representing a Sudoku puzzle. The board is divided into nine regions, each represented by a 3x3 sub-grid.\n\n#### Output\n- Returns `True` if the input Sudoku puzzle is valid, and `False` otherwise.",
+    "code": "\nfrom typing import List\n\ndef is_valid_sudoku(board: List[List[int]]) -> bool:\n    def is_valid_row(row: List[int]) -> bool:\n        return len(set(row)) == 9 and all(1 <= num <= 9 for num in row)\n\n    def is_valid_col(col: List[int]) -> bool:\n        return len(set(col)) == 9 and all(1 <= num <= 9 for num in col)\n\n    def is_valid_region(region: List[List[int]]) -> bool:\n        flat_region = [num for row in region for num in row]\n        return len(set(flat_region)) == 9 and all(1 <= num <= 9 for num in flat_region)\n\n    for i in range(3):\n        if not is_valid_row(board[i]):\n            return False\n        if not is_valid_col([row[i] for row in board]):\n            return False\n        if not is_valid_region([board[i * 3][j * 3:i * 3 + 3][j] for j in range(3)]):\n            return False\n\n    return True",
+    "tests": [
+        "assert is_valid_sudoku([[5,3,4,6,7,8,9,1,2], [6,7,8,9,1,2,3,4,5], [1,9,8,3,4,2,5,6,7], [8,5,9,7,6,3,4,2,1], [4,2,6,8,5,7,9,3,1], [7,1,3,9,2,4,8,5,6], [9,6,1,5,3,7,2,8,4], [2,8,4,1,6,3,9,7,5], [3,5,7,4,8,9,1,2,6]]) == True",
+        "assert is_valid_sudoku([[1,2,3],[4,5,6],[7,8,9]]) == False",
+        "assert is_valid_sudoku([[5,3,4,6,7,8,9,1,2], [5,3,4,6,7,8,9,1,2], [1,9,8,3,4,2,5,6,7], [8,5,9,7,6,3,4,2,1], [4,2,6,8,5,7,9,3,1], [7,1,3,9,2,4,8,5,6], [9,6,1,5,3,7,2,8,4], [2,8,4,1,6,3,9,7,5], [3,5,7,4,8,9,1,2,6]]) == False",
+        "assert is_valid_sudoku([[1, 2, 3], [4, 5, 6], [7, 0, 9]]) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

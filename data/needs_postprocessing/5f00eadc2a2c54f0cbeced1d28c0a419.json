@@ -1,0 +1,4 @@
+{
+    "model": "command-r7b:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy Python Coding Question: Even Number Checker\\\", \\\"description\\\": \\\"Write a function `is_even` that checks if a given number is even.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef is_even(num: int) -> bool:\\\\n```\\\\n\\\\n#### Input\\\\n- `num` (int): An integer to be checked.\\\\n\\\\n#### Output\\\\n- Returns `True` if the input number is even, `False` otherwise.\\\\n\\\", \\\"code\\\": \\\"def is_even(num: int) -> bool:\\\\n    return num % 2 == 0\\\", \\\"tests\\\": [\\\"assert is_even(4) == True\\\", \\\"assert is_even(7) == False\\\", \\\"assert is_even(-5) == False\\\", \\\"assert is_even(0) == True\\\"] }\""
+}
