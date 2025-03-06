@@ -1,0 +1,10 @@
+{
+    "title": "Counting Islands",
+    "description": "An island is a contiguous group of one or more cells that is entirely surrounded by water. Write a function `count_islands` that takes a 2D list of integers representing the grid, where 0 represents water and 1 represents land. The function should return the total number of islands.\n\n#### Function Signature\n```python\ndef count_islands(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D list of integers representing the grid, where 0 represents water and 1 represents land.\n\n#### Output\n- Returns the total number of islands.\n",
+    "code": "def count_islands(grid: list[list[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[i])):\n            if grid[i][j] == 1:\n                dfs(grid, i, j)\n                count += 1\n    return count\n\ndef dfs(grid: list[list[int]], i: int, j: int) -> None:\n    if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[i]) or grid[i][j] != 1:\n        return\n    grid[i][j] = -1\n\n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n    for direction in directions:\n        ni, nj = i + direction[0], j + direction[1]\n        if ni >= 0 and ni < len(grid) and nj >= 0 and nj < len(grid[i]) and grid[ni][nj] == 1:\n            dfs(grid, ni, nj)\n",
+    "tests": [
+        "assert count_islands([[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0],[0,0,0,1,0]]) == 1",
+        "assert count_islands([[1,1,0,0,0],[1,1,0,0,0],[0,0,1,0,0],[0,0,0,1,0]]) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

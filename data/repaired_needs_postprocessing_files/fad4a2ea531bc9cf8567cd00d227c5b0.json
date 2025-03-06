@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "Determine if two given strings are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once.\n#### Function Signature\n```\ndef are_anagrams(str1: str, str2: str) -> bool:\n``` \n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain only lowercase letters and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def are_anagrams(str1: str, str2: str) -> bool:\n    # Remove spaces from both strings\n    str1 = str1.replace(' ', '').lower()\n    str2 = str2.replace(' ', '').lower()\n    # If the lengths are not equal, they cannot be anagrams\n    if len(str1) != len(str2):\n        return False\n    # Create frequency counts for each letter in both strings and compare\n    freq = {}\n    for char in str1:\n        if char in freq:\n            freq[char] += 1\n        else:\n            freq[char] = 1\n    for char in str2:\n        if char in freq:\n            freq[char] -= 1\n        else:\n            return False\n    # If all frequencies are zero, they are anagrams\n    return all(freq.values()) == 0",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('Congratulations!', 'snacgolotorcS!') == True",
+        "assert are_anagrams('a man a plan a canal Panama', 'amanaplanacanalpanamapanama') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Maximum Sum of Non-Adjacent Elements\", \"description\": \"Given a non-empty array of integers, find the maximum sum that can be achieved by selecting some elements from the array such that no two adjacent elements are selected.\\n\\n#### Function Signature\\n```python\\ndef max_sum(arr: list[int)) -> int:\\n```\\n\\n#### Input\\n- `arr` (list[int]): A non-empty list of integers.\\n\\n#### Output\\n- Returns the maximum sum that can be achieved by selecting some elements from the array such that no two adjacent elements are selected.\", \"code\": \"def max_sum(arr: list[int)) -> int:\\n    if len(arr) <= 2:\\n        return max(0, max(arr))\\n    incl = arr[0] + (0 if len(arr) == 2 else max_sum(arr[2:]))\\n    excl = max_sum(arr[1:])\\n    return max(incl, excl)\", \"tests\": [\"assert max_sum([2,7,9,3,5]) == 18\", \"assert max_sum([2,1,4,3]) == 6\", \"assert max_sum([1,2,4,5]) == 8\"]}"
+}

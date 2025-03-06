@@ -1,0 +1,13 @@
+{
+    "title": "Closest Pair in a Circle",
+    "description": "Given a list of points in a 2D plane, write a function that finds the pair of points with the smallest Euclidean distance between them. If there are multiple pairs with the same minimum distance, return any one of them.\n\n#### Function Signature\n```python\ndef closest_pair(points: list[tuple[float, float]]) -> tuple[tuple[float, float], tuple[float, float]]:\n```\n\n#### Input\n- `points` (list[tuple[float, float]]): A list of points in a 2D plane, where each point is represented as a tuple of two floats.\n\n#### Output\n- Returns the pair of points with the smallest Euclidean distance between them. The output will be a tuple of two points, each represented as a tuple of two floats.",
+    "code": "import math\n\ndef closest_pair(points: list[tuple[float, float]]) -> tuple[tuple[float, float], tuple[float, float]]:\n    min_distance = float('inf')\n    closest_points = None\n    for i in range(len(points)):\n        for j in range(i + 1, len(points)):\n            distance = math.sqrt((points[i][0] - points[j][0]) ** 2 + (points[i][1] - points[j][1]) ** 2)\n            if distance < min_distance:\n                min_distance = distance\n                closest_points = (points[i], points[j])\n    return closest_points",
+    "tests": [
+        "assert math.isclose(closest_pair([(0, 0), (3, 4), (-1, -1), (2, 3)]), ((-1, -1), (2, 3))) == True",
+        "assert closest_pair([(1, 1), (1.5, 1.5), (0.5, 0.5)]) == ((0.5, 0.5), (1, 1))",
+        "assert math.isclose(closest_pair([(-2, -3), (-4, -5), (-6, -7)]), ((-4, -5), (-2, -3))) == True"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

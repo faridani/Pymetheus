@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Substrings Count' (Easy)",
+    "description": "Write a function `count_palindromes` that takes a string as input and returns the number of non-empty palindromic substrings in it. A palindrome is a word, phrase, or sequence of characters that reads the same forwards and backwards. Note that single characters are also considered palindromes.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing any combination of letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns an integer representing the number of palindromic substrings in the input string.\n",
+    "code": "def count_palindromes(s: str) -> int:\n    # Count palindromic substrings recursively by extending all possible centers in the given string\n    def count(start, end):\n        if start >= len(s) or end >= len(s) or start > end:\n            return 0\n        if s[start] != s[end]:\n            return 0\n        # Check if the substring between 'start' and 'end' is a palindrome\n        center = (start + end) // 2\n        return count(start + 1, end - 1) + 1 + count(center, center + 1)\n    \n    # Iterate through all possible starting positions of the substrings to count the palindromic ones\n    total = 0\n    for i in range(len(s)):\n        total += count(i, i) + count(i, i + 1)\n    \n    # Return the final result\n    return total",
+    "tests": [
+        "assert count_palindromes('abcd') == 0",
+        "assert count_palindromes('madam') == 2",
+        "assert count_palindromes('racecar') == 3",
+        "assert count_palindromes('hello') == 1"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

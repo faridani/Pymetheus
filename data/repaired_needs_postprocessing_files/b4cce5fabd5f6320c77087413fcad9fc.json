@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Maximum Subarray Sum with Rotations",
+    "description": "You are given an array of integers. You can rotate the array any number of times. Find the maximum sum of a contiguous subarray after any number of rotations.\n\n#### Function Signature\n```python\ndef max_subarray_sum_with_rotations(arr: list[int]) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum of a contiguous subarray after any number of rotations.",
+    "code": "def max_subarray_sum_with_rotations(arr: list[int]) -> int:\n    n = len(arr)\n    max_sum = float('-inf')\n    for i in range(n):\n        # Rotate the array\n        rotated_arr = arr[i:] + arr[:i]\n        # Find the maximum subarray sum using Kadane's Algorithm\n        current_max = 0\n        total_max = float('-inf')\n        for num in rotated_arr:\n            current_max = max(num, current_max + num)\n            total_max = max(total_max, current_max)\n        max_sum = max(max_sum, total_max)\n    return max_sum",
+    "tests": [
+        "'assert max_subarray_sum_with_rotations([1, 2, -3, 4, 5]) == 11'",
+        "'assert max_subarray_sum_with_rotations([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6'",
+        "'assert max_subarray_sum_with_rotations([1, -1, 1, -1, 1]) == 2'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

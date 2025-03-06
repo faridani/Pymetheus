@@ -1,0 +1,12 @@
+{
+    "title": "Number Sequence Validator (Hard)",
+    "description": "Given a sequence of integers, validate if the numbers follow a specific pattern: each number should be double its predecessor, starting from an initial value. If the initial value is not zero or positive, return False.\n\n#### Function Signature\n```python\ndef valid_sequence(seq: List[int], init: int) -> bool:\n```\n\n#### Inputs\n- `seq` (List[int]): A list of integers representing the sequence to be checked.\n- `init` (int): The initial value from which the pattern starts. Should be a non-negative integer.\n\n#### Output\n- Returns `True` if all numbers in the sequence follow the specified doubling pattern, starting with the given initial value; otherwise returns `False`.",
+    "code": "from typing import List\ndef valid_sequence(seq: List[int], init: int) -> bool:\n    # Check for non-negative initial value\n    if init < 0:\n        return False\n    \n    # Iterate through the sequence and validate the pattern\n    previous = init\n    for number in seq:\n        if number != previous * 2 or (previous == 0 and number != 0):\n            return False\n        previous = number\n    return True",
+    "tests": [
+        "'assert valid_sequence([1, 2, 4, 8], init=1) == True'",
+        "'assert valid_sequence([3, 6, 12, 24], init=3) == True'",
+        "'assert valid_sequence([0, 0, 0], init=0) == False'",
+        "'assert valid_sequence([5, 10, 20, 40], init=5) == True'"
+    ],
+    "model": "phi3:14b-repaired by Llama 3"
+}

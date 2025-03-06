@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Synchronized Clocks",
+    "description": "A set of n clocks are synchronized to show the same time. However, each clock has a different initial offset from standard time. Write a function `sync_clocks` that takes in a list of clock times (in 24-hour format) and returns the minimum number of minutes required to synchronize all clocks.\nA set of n clocks are synchronized to show the same time. However, each clock has a different initial offset from standard time. Write a function `sync_clocks` that takes in a list of clock times (in 24-hour format) and returns the minimum number of minutes required to synchronize all clocks.",
+    "code": "from typing import List\n\ndef sync_clocks(times: List[int]) -> int:\n    avg_time = sum(times) // len(times)\n    total_diff = 0\n    min_minutes = 0\n    for t in times:\n        diff = abs(t - avg_time)\n        total_diff += diff\n        if t < avg_time:\n            min_minutes += 24 - t + avg_time\n    return min_minutes",
+    "tests": [
+        "assert sync_clocks([12, 15, 20]) == 4",
+        "assert sync_clocks([0, 3, 6, 9, 12, 15, 18, 21]) == 0",
+        "assert sync_clocks([23, 22, 21, 20, 19, 18, 17, 16]) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

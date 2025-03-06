@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Minimizing the Maximum",
+    "description": "You are given a list of integers and an integer `k`. Your goal is to find the maximum value that can be obtained by adding `k` times exactly one element from each subset of the list, where each subset contains exactly one element. For example, if the input list is `[1, 2, 3]` and `k` is `2`, the function should return `4` because you can obtain this value by adding the maximum values from the subsets `{1}` and `{3}`, then add `2` once more. If it's not possible to find such a value, the function should return `-1`.#### Function Signature```def minimize_max(lst: list[int], k: int) -> int:````#### Input- `lst` (list[int]): A list of integers.- `k` (int): An integer.````#### Output- Returns the maximum value that can be obtained by adding `k` times exactly one element from each subset of the input list, where each subset contains exactly one element. If it's not possible to find such a value, returns `-1`.```",
+    "code": "def minimize_max(lst: list[int], k: int) -> int:\n    n = len(lst)\n    if n < k:\n        return -1\n    max_val = [0] * (k + 1)\n    for i in range(n):\n        for j in range(k, 0, -1):\n            max_val[j] = max(max_val[j], max_val[j-1] + lst[i])\n    if max_val[k] <= 0:\n        return -1\n    return max_val[k]",
+    "tests": [
+        "assert minimize_max([1, 2, 3], 2) == 4",
+        "assert minimize_max([-10, -5, 0, 5, 10], 3) == 15",
+        "assert minimize_max([-1, 0, 1], 1) == 1",
+        "assert minimize_max([], 1) == -1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

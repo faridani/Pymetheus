@@ -1,0 +1,11 @@
+{
+    "title": "Repeated Substring Checker (Hard)",
+    "description": "Write a function `repeated_substring` that checks if a given string contains any substring that can be repeated such that the concatenation of the repetitions is equal to the entire string.\n\n#### Function Signature\n```python\ndef repeated_substring(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A non-empty string.\n\n#### Output\n- Returns `True` if the input string contains any substring that can be repeated such that the concatenation of the repetitions is equal to the entire string, `False` otherwise.",
+    "code": "def repeated_substring(s: str) -> bool:\n    # If the length of the string is 1, it automatically passes as a substring can be repeated once\n    if len(s) == 1: return True\n    n = len(s)\n    # Iterate through all possible substrings\n    for i in range(1, n):\n        # Calculate the length of the potential repetition\n        repetition_length = s[0] * (i + 1)\n        if len(repetition_length) != n:\n            continue\n        # Check if the substring can be repeated to form the entire string\n        for j in range(n - i):\n            if s[j:j+i] != repetition_length[j % i]:\n                break\n        else:\n            return True\n    return False",
+    "tests": [
+        "assert repeated_substring('ababa') == True",
+        "assert repeated_substring('abcdefghijklmnopqrstuvwxyz') == False",
+        "assert repeated_substring('aabbccdddceee') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

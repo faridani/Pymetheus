@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Binary Tree to Linked List Conversion",
+    "description": "Given a binary tree, convert it into a linked list. Note that the binary tree can be empty (i.e., None). Write a function `binary_tree_to_linked_list` that takes the root of the binary tree as an argument and returns the head of the linked list.\n\n#### Function Signature\n```python\ndef binary_tree_to_linked_list(root: Optional[TreeNode]) -> Optional[ListNode]:\n```\n\n#### Input\n- `root` (Optional[TreeNode]): The root of a possibly empty binary tree, where each node has a value and two children.\n\n#### Output\n- Returns the head of the linked list, or None if the input tree is empty.",
+    "code": "from typing import Optional\n\nclass TreeNode:\n    def __init__(self, x: int):\n        self.val = x\n        self.left = None\n        self.right = None\n\nclass ListNode:\n    def __init__(self, x: int):\n        self.val = x\n        self.next = None\n\ndef binary_tree_to_linked_list(root: Optional[TreeNode]) -> Optional[ListNode]:\n    if root is None:\n        return None\n\n    head = ListNode(root.val)\n    current = head\n    stack = [root]\n\n    while stack:\n        node = stack.pop()\n        if node.right:\n            stack.append(node.right)\n        if node.left:\n            stack.append(node.left)\n\n        new_node = ListNode(node.val)\n        new_node.next = current.next\n        current.next = new_node\n        current = new_node\n\n    return head",
+    "tests": [
+        "assert binary_tree_to_linked_list(None) is None",
+        "assert binary_tree_to_linked_list(TreeNode(1)).val == 1 and binary_tree_to_linked_list(TreeNode(1)).next is None",
+        "assert binary_tree_to_linked_list(TreeNode(1, TreeNode(2), None)).val == 1 and binary_tree_to_linked_list(TreeNode(1, TreeNode(2), None)).next.val == 2 and binary_tree_to_linked_list(TreeNode(1, TreeNode(2), None)).next.next is None",
+        "assert binary_tree_to_linked_list(TreeNode(1, TreeNode(2), TreeNode(3))).val == 1 and binary_tree_to_linked_list(TreeNode(1, TreeNode(2), TreeNode(3))).next.val == 2 and binary_tree_to_linked_list(TreeNode(1, TreeNode(2), TreeNode(3))).next.next.val == 3"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

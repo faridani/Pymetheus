@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Coin Change Problem",
+    "description": "You are given an array of coins and their values, as well as a total amount of money. Your task is to find the number of ways you can make up this amount using these coins.\n\n#### Function Signature\n```python\ndef coin_change_ways(coins: list[int], total_amount: int) -> int:\n```\n\n#### Input\n- `coins` (list[int]): A list of integers representing the values of the coins.\n- `total_amount` (int): The amount of money you want to make up.\n\n#### Output\n- Returns the number of ways you can make up the total amount using these coins.",
+    "code": "from math import inf\ndef coin_change_ways(coins: list[int], total_amount: int) -> int:\n    # Initialize the dp array with infinity values\n    dp = [inf] * (total_amount + 1)\n    dp[0] = 1\n    for coin in coins:\n        for i in range(coin, total_amount + 1):\n            dp[i] = min(dp[i], dp[i - coin] + 1)\n    return dp[total_amount] if dp[total_amount] != inf else 0\n",
+    "tests": [
+        "assert coin_change_ways([1, 2, 5], 11) == 3",
+        "assert coin_change_ways([2], 4) == 2",
+        "assert coin_change_ways([1, 3, 4], 10) == 4",
+        "assert coin_change_ways([1, 2], 0) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

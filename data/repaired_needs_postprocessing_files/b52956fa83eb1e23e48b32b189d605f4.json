@@ -1,0 +1,18 @@
+{
+    "title": "Roman Numeral Conversion (Medium)",
+    "description": "Write a function `convert_to_roman` that converts an Arabic numeral to a string of Roman numerals.\n\n#### Function Signature\n```python\ndef convert_to_roman(arabic: int) -> str:\n```\n\n#### Input\n- `arabic` (int): A non-negative integer from 1 to 3999.\n\n#### Output\n- Returns a string of Roman numerals representing the input integer.\n",
+    "code": "def convert_to_roman(arabic: int) -> str:\n    roman = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    result, previous_value = '', 0\n    for i in range(len(str(arabic)) - 1, -1, -1):\n        current_value = arabic % 10 * roman[str(arabic)[i]]\n        if current_value > previous_value:\n            result += ('IV' if current_value == 4 else 'IX')\n        elif current_value < previous_value:\n            result += ('XL' if current_value == 9 else 'CD')\n        elif current_value == previous_value:\n            result += str(arabic // roman[str(arabic)[i]])\n        previous_value = current_value\n    return result",
+    "tests": [
+        "assert convert_to_roman(1) == 'I'",
+        "assert convert_to_roman(3) == 'III'",
+        "assert convert_to_roman(4) == 'IV'",
+        "assert convert_to_roman(5) == 'V'",
+        "assert convert_to_roman(9) == 'IX'",
+        "assert convert_to_roman(12) == 'XII'",
+        "assert convert_to_roman(16) == 'XVI'",
+        "assert convert_to_roman(24) == 'XXIV'",
+        "assert convert_to_roman(257) == 'CCCLVII'",
+        "assert convert_to_roman(3999) == 'MMMCMXCIX'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

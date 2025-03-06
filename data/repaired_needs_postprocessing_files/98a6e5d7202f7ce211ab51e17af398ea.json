@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "Write a function `are_anagrams` that checks if two given strings are anagrams of each other. Anagram is a word or phrase formed by rearranging the letters of another, typically using all the original letters exactly once.\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n``` \n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters in any case and without spaces or punctuation.\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "from collections import Counter\ndef are_anagrams(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Count the frequency of each character in each string\n    count_s1 = Counter(s1)\n    count_s2 = Counter(s2)\n\n    # Check if both counts are equal (ignoring order)\n    return count_s1 == count_s2",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"love\", \"evil\") == False",
+        "assert are_anagrams(\"Cuoi\", \"Oic\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

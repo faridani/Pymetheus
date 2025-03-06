@@ -1,0 +1,10 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "An anagram is a word or phrase that consists of the same letters as another word or phrase, but arranged differently. Write a function `find_anagrams` which takes in a list of words and returns all anagram pairs within the list.\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> List[List[str]]:\n```\n\n#### Input\n- `words` (List[str]): A list of words, where each word may contain only lowercase letters.\n\n#### Output\n- Returns a list of lists. Each sublist contains two words that are anagrams of each other.",
+    "code": "def find_anagrams(words: List[str]) -> List[List[str]]:\n    # Sort the words alphabetically and create a dictionary to store sorted words as keys and original words as values\n    sorted_dict = {}\n    for word in words:\n        sorted_word = ''.join(sorted(word))\n        if sorted_word not in sorted_dict.keys():\n            sorted_dict[sorted_word] = [word]\n        else:\n            sorted_dict[sorted_word].append(word)\n    \n    # Find anagram pairs and return the result\n    anagrams = []\n    for key, value in sorted_dict.items():\n        if len(value) > 1:\n            for pair in itertools.combinations(value, 2):\n                anagrams.append(pair)\n    return anagrams",
+    "tests": [
+        "assert find_anagrams(['listen', 'silent', 'enlist']) == [['listen', 'silent'], ['enlist']]",
+        "assert find_anagrams(['warsaw', 'wasraws']) == [['warsaw', 'wasraws']]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

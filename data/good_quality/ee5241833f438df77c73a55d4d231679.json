@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Array Pairs",
+    "description": "Given a sorted array of integers, write a function `count_pairs` that returns the number of pairs of elements in the array where each pair is an ordered pair (i.e., the smaller element comes before the larger one). The function should take as input a list of integers and return the count.\n\n#### Function Signature\n```python\ndef count_pairs(arr: list) -> int:\n```\n\n#### Input\n- `arr` (list): A sorted array of integers.\n\n#### Output\n- Returns the number of pairs of elements in the array where each pair is an ordered pair.",
+    "code": "def count_pairs(arr: list) -> int:\n    count = 0\n    for i in range(len(arr) - 1):\n        if arr[i] < arr[i + 1]:\n            count += 1\n    return count",
+    "tests": [
+        "assert count_pairs([1, 2, 3]) == 2",
+        "assert count_pairs([1, 3, 5]) == 1",
+        "assert count_pairs([1, 2]) == 0",
+        "assert count_pairs([]) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

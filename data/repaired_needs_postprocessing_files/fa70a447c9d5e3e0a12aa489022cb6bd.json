@@ -1,0 +1,11 @@
+{
+    "title": "Factorial Sum (Medium)",
+    "description": "Write a function `fact_sum` that takes an integer `n` as input and returns the sum of all factorials from 1 to `n`. The factorial of a number is calculated by multiplying all positive integers less than or equal to that number.\r\n\r\n#### Function Signature\r\n```python\ndef fact_sum(n: int) -> int:\r``` \r\n\r\n#### Input\r\n- `n` (int): An integer greater than 0.\r\n\r\n#### Output\r\n- Returns the sum of all factorials from 1 to `n`.",
+    "code": "def fact_sum(n: int) -> int:\r    total = 0\r    for i in range(1, n + 1):\r        total += math.factorial(i)\r    return total",
+    "tests": [
+        "assert fact_sum(3) == 9",
+        "assert fact_sum(5) == 87",
+        "assert fact_sum(10) == 16796"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "Given two strings, determine if they are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(string1: str, string2: str) -> bool:\n```\n\n#### Input\n- `string1` (str): A non-empty string that may contain letters and spaces.\n- `string2` (str): A non-empty string that may contain letters and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, otherwise it returns `False`. Anagrams are words or phrases that contain the same letters in the same frequency, regardless of their arrangement.\n\n#### Constraints\n- The function should be case insensitive.\n- It's acceptable to assume that both input strings have the same length.\n",
+    "code": "def are_anagrams(string1: str, string2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    string1 = ''.join([char for char in string1.lower() if char not in ' ']).replace(' ', '')\n    string2 = ''.join([char for char in string2.lower() if char not in ' ']).replace(' ', '')\n    # If the strings have different lengths, they are not anagrams.\n    if len(string1) != len(string2):\n        return False\n    # Create dictionaries to store the frequency of each letter in both strings\n    freq1 = {}\n    for char in string1:\n        if char not in freq1:\n            freq1[char] = 1\n        else:\n            freq1[char] += 1\n    for char in string2:\n        if char not in freq2:\n            freq2[char] = 1\n        else:\n            freq2[char] += 1\n    # If the dictionaries are equal, the strings are anagrams.\n    return freq1 == freq2",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'olleh') == True",
+        "assert are_anagrams('cat', 'act') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

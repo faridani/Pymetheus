@@ -1,0 +1,14 @@
+{
+    "title": "Goldbach's Conjecture Solver (Hard)",
+    "description": "Goldbach's Conjecture states that every even integer greater than 2 can be expressed as the sum of two primes. Write a function `goldbach_conjecture` that checks if an input number is a valid result according to this conjecture.\n\n#### Function Signature\n```python\ndef goldbach_conjecture(n: int) -> list[int]:\n```\n\n#### Input\n- `n` (int): An even integer greater than 2.\n\n#### Output\n- Returns a list of two prime numbers that sum to the input number if it follows the Goldbach's Conjecture, or an empty list otherwise.",
+    "code": "def goldbach_conjecture(n: int) -> list[int]:\n    # Ensure n is even and greater than 2\n    if n < 4: return []\n    primes = [2] + [i for i in range(3, int(n**0.5)+1, 2)]\n    # Iterate through primes to find two that sum up to n\n    for p in primes:\n        if n - p in primes: return [p, n - p]\n    # If no such pair is found, return an empty list\n    return []",
+    "tests": [
+        "assert goldbach_conjecture(4) == [2, 2]",
+        "assert goldbach_conjecture(6) == [3, 3]",
+        "assert goldbach_conjecture(8) == [3, 5]",
+        "assert goldbach_conjecture(10) == [2, 4, 2, 4] or goldbach_conjecture(10) == [2, 7]",
+        "assert goldbach_conjecture(9) == []",
+        "assert goldbach_conjecture(30) == [5, 23] or goldbach_conjecture(30) == [3, 27]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

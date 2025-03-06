@@ -1,0 +1,7 @@
+{
+    "title": "Cinema Seat Layout",
+    "description": "You are at a cinema and want to reserve some seats for you and your friends. The cinema has a seating arrangement where there are 10 rows of seats.\n\n#### Input\n\n- `num_people` (int): The number of people who will be seated.\n\n#### Output\n\n- Returns the total cost of reserving the required number of seats.",
+    "code": "",
+    "tests": [],
+    "model": "llama3:latest-repaired by Llama 3"
+}

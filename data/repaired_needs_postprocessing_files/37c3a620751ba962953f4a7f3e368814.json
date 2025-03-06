@@ -1,0 +1,10 @@
+{
+    "title": "Palindromic Substrings (Hard)",
+    "description": "Given a string, find all the non-overlapping palindromic substrings within it.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of all non-overlapping palindromic substrings found in the input string. The returned list should be sorted in ascending order.\n",
+    "code": "import re\ndef find_palindromes(s: str) -> List[str]:\n    # Find all possible substrings of length 1 to half the length of the input string\n    subs = [s[i:i+k] for i in range(len(s)) for k in range(1, len(s) // 2 + 1)]\n    # Remove non-alphanumeric characters and reverse the substrings\n    subs = [''.join(char for char in reversed(sub) if char in string.ascii_letters + string.digits) for sub in subs]\n    # Keep only the palindromic substrings, and sort them in ascending order\n    return sorted([sub for sub in subs if sub == sub[::-1]])",
+    "tests": [
+        "assert find_palindromes('racecar') == ['r', 'e', 'c', 'a', 'c', 'r', 'cc']",
+        "assert find_palindromes('A man, a plan, a canal: Panama') == ['man', 'a', 'panama', 'anala', 'anal', 'am']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

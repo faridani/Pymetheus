@@ -1,0 +1,12 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "Write a function `find_anagrams(words: List[str]) -> Dict[str, List[str]]` that finds all the anagrams for a given list of words. An anagram is a word or phrase formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n```\n\n#### Input\n- `words` (List[str]): A list of strings containing words that may contain only lowercase letters.\n\n#### Output\n- Returns a dictionary where each key is an anagram and the values are lists of all words that share the same anagram.",
+    "code": "from collections import Counter, defaultdict\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n    # Count occurrences of each letter in every word\n    word_counts = [Counter(word) for word in words]\n    # Create a dictionary to store the results\n    anagrams = defaultdict(list)\n    \n    # Iterate through all possible combinations of counts\n    for count1 in word_counts:\n        for count2 in word_counts:\n            if count1 != count2 and count1.items() == sorted(count2.items(), reverse=True):\n                # If the counts are different but have the same letters in the same order, they form anagrams\n                anagrams[tuple(sorted(count1.elements()))].append(words[word_counts.index(count1)])\n                anagrams[tuple(sorted(count2.elements()))].append(words[word_counts.index(count2)])\n    \n    # Return the results as a dictionary\n    return dict(anagrams)",
+    "tests": [
+        "assert find_anagrams(['cat', 'act', 'tac', 'dog', 'god']) == {'aatcc': ['cat', 'act'], 'ddogg': ['dog', 'god']}",
+        "assert find_anagrams(['listen', 'silent', 'enlist']) == {'eensilt': ['listen', 'silent'], 'nistiell': ['enlist']}",
+        "assert find_anagrams(['cars', 'racecar', 'actors', 'mom', 'madam']) == {'ccarra': ['racecar', 'cars'], 'aatcom': ['mom', 'madam'], 'ooctsa': ['actors']}",
+        "assert find_anagrams([]) == {}"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

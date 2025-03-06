@@ -1,0 +1,11 @@
+{
+    "title": "Easy Python Coding Question: Fibonacci Sequence Generator",
+    "description": "The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, starting from 0 and 1. Write a function `fibonacci_sequence` that generates the first n numbers in the Fibonacci sequence.\n#### Function Signature\n```python\ndef fibonacci_sequence(n: int) -> list:\n```\n#### Input\n- `n` (int): The number of elements to generate in the Fibonacci sequence. Must be greater than or equal to 1.\n#### Output\n- Returns a list containing the first n numbers of the Fibonacci sequence.\n",
+    "code": "def fibonacci_sequence(n: int) -> list:\n    # Initialize the starting values and result list\n    a, b = 0, 1\n    sequence = []\n    \n    for _ in range(n):\n        sequence.append(a)\n        a, b = b, a + b\n    return sequence",
+    "tests": [
+        "assert fibonacci_sequence(1) == [0]",
+        "assert fibonacci_sequence(5) == [0, 1, 1, 2, 3]",
+        "assert fibonacci_sequence(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]"
+    ],
+    "model": "phi3:14b-repaired by Llama 3"
+}

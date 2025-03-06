@@ -1,0 +1,12 @@
+{
+    "title": "Bitwise Inversion Counter",
+    "description": "Given an integer, write a function `count_inversions` that calculates the number of inversions within its binary representation. An inversion occurs when two bits are swapped relative to their original positions from least significant bit (LSB) to most significant bit (MSB). The function should return the total count of inversions as an integer.\n\n#### Function Signature\n```python\ndef count_inversions(number: int) -> int:\n``` \n\n#### Input\n- `number` (int): A non-negative integer,  (1  \u2264 number  \u2264 2^{31} - 1), with which to calculate inversions.\n\n#### Output\n- Returns the total count of inversions as an integer.",
+    "code": "def reverse_bits(x: int) -> int:\n    return x & (x << 1)\ndef count_inversions(number: int) -> int:\n    count = 0\n    while number > 0:\n        inverted_bit = reverse_bits(number & -number)\n        number -= inverted_bit\n        count += 1\n    return count",
+    "tests": [
+        "assert count_inversions(3) == 2",
+        "assert count_inversions(4) == 1",
+        "assert count_inversions(7) == 6",
+        "assert count_inversions(8) == 0"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

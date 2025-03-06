@@ -1,0 +1,13 @@
+{
+    "title": "Minimum Time to Visit All Nodes",
+    "description": "Given a directed graph represented as an adjacency list, find the minimum time it takes for a traveler to visit all nodes. Each edge has a weight representing the time it takes to travel between two nodes.\n\n#### Function Signature\n```python\ndef min_time_to_visit_all_nodes(graph: dict) -> int:\n```\n\n#### Input\n- `graph` (dict): A dictionary where each key is a node and its corresponding value is a list of tuples, where each tuple contains the neighboring node and the time it takes to travel between them.\nFor example, if `graph = {'A': [('B', 3), ('C', 2)], 'B': [('D', 1)], 'C': [('D', 4)]}`, then there is an edge from node `A` to node `B` with weight 3, an edge from node `A` to node `C` with weight 2, an edge from node `B` to node `D` with weight 1, and an edge from node `C` to node `D` with weight 4.\n\n#### Output\n- Returns the minimum time it takes for a traveler to visit all nodes in the graph.",
+    "code": "import heapq\n\ndef min_time_to_visit_all_nodes(graph: dict) -> int:\n    if not graph:\n        return 0\n    visited = set()\n    heap = [(0, 'A')]  # Initialize the priority queue with node A and time 0\n    total_time = 0\n    while heap:\n        time, node = heapq.heappop(heap)\n        if node not in visited:\n            visited.add(node)\n            total_time += time\n            for neighbor, edge_weight in graph.get(node, []):\n                if neighbor not in visited:\n                    heapq.heappush(heap, (time + edge_weight, neighbor))\n    return total_time",
+    "tests": [
+        "assert min_time_to_visit_all_nodes({'A': [('B', 3), ('C', 2)], 'B': [('D', 1)], 'C': [('D', 4)]}) == 9",
+        "assert min_time_to_visit_all_nodes({'A': [('B', 5)], 'B': [('C', 2), ('D', 3)], 'C': [('E', 4)], 'D': [('F', 2)], 'E': [('F', 1)]}) == 14",
+        "assert min_time_to_visit_all_nodes({}) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

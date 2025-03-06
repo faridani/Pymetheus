@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Words Checker (Hard)",
+    "description": "Given a string, write a function `is_reverse_words` that checks if the words in the given string are read in reverse order. Spaces and punctuation should be ignored.\n\n#### Function Signature\n```python\ndef is_reverse_words(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, punctuation and words in any order.\n\n#### Output\n- Returns `True` if the words in the input string are read in reverse order, `False` otherwise.",
+    "code": "def is_reverse_words(s: str) -> bool:\n    # Split the string into words by spaces and punctuation\n    words = s.split()\n    # Reverse the list of words\n    reversed_words = words[::-1]\n    # Check if the original and reversed lists are equal ignoring case\n    return sorted(map(lambda x: x.lower(), words)) == sorted(map(lambda x: x.lower(), reversed_words))",
+    "tests": [
+        "assert is_reverse_words('Hello, World!') == False",
+        "assert is_reverse_words('Words, space and comma') == True",
+        "assert is_reverse_words('Madam') == True",
+        "assert is_reverse_words('racecar') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

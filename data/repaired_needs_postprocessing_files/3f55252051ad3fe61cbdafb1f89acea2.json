@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Maximum Subarray",
+    "description": "A maximum subarray problem. Given a sorted array of integers, find the maximum sum of a contiguous subarray within it. For example, given the input `[1, 2, -3, 4, 5, -6]`, the function should return `7` because the maximum subarray is `[4, 5]`. Note that if the array has only one element, its sum is considered as the maximum sum.\n\n#### Function Signature\n```python\ndef max_subarray(arr: list) -> int:\n```\n\n#### Input\n- `arr` (list): A sorted list of integers.\n\n#### Output\n- Returns an integer representing the maximum sum of a contiguous subarray within the input array.",
+    "code": "import itertools\n\ndef max_subarray(arr: list) -> int:\n    if len(arr) == 0:\n        return 0\n    for window_size in range(1, len(arr)+1):\n        for start_index in range(len(arr)-window_size+1):\n            subarray = arr[start_index:start_index + window_size]\n            if sum(subarray) > sum(arr[0:1]):\n                return sum(subarray)\n    return sum(arr)\n",
+    "tests": [
+        "assert max_subarray([1, 2, -3, 4, 5, -6]) == 7",
+        "assert max_subarray([-2, 1, -3, 4, -1, 2, 1, 6]) == 8"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

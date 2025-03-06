@@ -1,0 +1,11 @@
+{
+    "title": "'Levenshtein Distance Calculator (Medium)'",
+    "description": "The Levenshtein distance between two strings is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one string into the other.\n\n#### Function Signature\n```python\ndef levenshtein_distance(s1: str, s2: str) -> int:\n```\n\n#### Input\n- `s1` (str): A string of any length.\n- `s2` (str): A string of any length.\n\n#### Output\n- Returns the Levenshtein distance between the two input strings as an integer.",
+    "code": "def levenshtein_distance(s1: str, s2: str) -> int:\n    # Initialize matrices\n    len_s1 = len(s1) + 1\n    len_s2 = len(s2) + 1\n    matrix = [[0 for _ in range(len_s2)] for __ in range(len_s1)]\n\n    # Fill the matrix using dynamic programming approach\n    for i in range(1, len_s1):\n        for j in range(1, len_s2):\n            if s1[i - 1] == s2[j - 1]:\n                matrix[i][j] = matrix[i - 1][j - 1]\n            else:\n                matrix[i][j] = min(matrix[i - 1][j], matrix[i][j - 1], matrix[i - 1][j - 1]) + 1\n    \n    # The Levenshtein distance is stored at the bottom-right corner of the matrix\n    return matrix[len_s1 - 1][len_s2 - 1]\n",
+    "tests": [
+        "assert levenshtein_distance('kitten', 'sitting') == 3",
+        "assert levenshtein_distance('cat', 'bat') == 1",
+        "assert levenshtein_distance('dog', 'log') == 2"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

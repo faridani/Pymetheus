@@ -1,0 +1,12 @@
+{
+    "title": "'Is it a Beautiful String?' (Medium)",
+    "description": "Write a function `beautiful_string` that checks if a given string can form a beautiful string. \n\n#### Function Signature\n```python\ndef beautiful_string(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string of lowercase letters containing at least two different characters.\n\n#### Output\n- Returns `True` if the input string can form a beautiful string, `False` otherwise. \nA beautiful string is defined as a string where each letter appears an even number of times. For example, 'aa' and 'abbab' are beautiful strings, but 'abc' is not.",
+    "code": "import collections\n\ndef beautiful_string(s: str) -> bool:\n    # Ensure the input has at least two different characters\n    if len(s) <= 1: return False\n    # Count the frequency of each character in the string\n    freq = collections.Counter(s)\n    # Check that all frequencies are even\n    for count in freq.values():\n        if count % 2 != 0:\n            return False\n    \n    # If no uneven counts were found, the string is beautiful\n    return True",
+    "tests": [
+        "assert beautiful_string('aa') == True",
+        "assert beautiful_string('abbab') == True",
+        "assert beautiful_string('abc') == False",
+        "assert beautiful_string('aabbbccdee') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

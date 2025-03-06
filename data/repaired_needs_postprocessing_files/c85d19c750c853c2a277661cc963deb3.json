@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Prime Factorization Challenge",
+    "description": "Given an integer (n), write a function `prime_factors(n)` that returns a list of its prime factors, sorted and without duplicates. The function should take into account the fundamental theorem of arithmetic, which states that every integer greater than 1 can be uniquely represented as a product of prime numbers.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A positive integer ( n > 1 ).\n\n#### Output\n- Returns a list of integers representing the sorted unique prime factors of ( n ), without duplicates.\n\n**Constraints:**\n1. You may assume that the input number ( n ) is always greater than 1.\n2. The output should only contain distinct prime numbers, regardless of their multiplicity in the factorization.\n\n**Example:**\n```markdown\nInput:\nn = 60\n\nOutput:\n[2, 3, 5]\n```\nThis result represents that ( 60 ) can be factored into ( 2^2 ) \u00d7 3 \u00d7 5 , and its prime factors are [2, 3, 5]. \n\n**Hint:**\nIt might help to iterate through potential divisors starting from the smallest prime number ( 2 ) and continue with odd numbers up to the square root of `n`. Factorize until you have completely broken down `n` into its prime components.\n",
+    "code": "from typing import List\n\ndef is_prime(num: int) -> bool:\n    if num < 2:\n        return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\ndef prime_factors(n: int) -> List[int]:\n    factors = []\n    # Divide n by 2 to get rid of all even factors\n    while n % 2 == 0:\n        factors.append(2)\n        n //= 2\n    # Now n must be odd, so we can skip one element (Note i = i +2)\n    for i in range(3, int(n**0.5) + 1, 2):\n        while n % i == 0:\n            factors.append(i)\n            n //= i\n    # This condition is to handle the case when n is a prime number greater than 2\n    if n > 2:\n        factors.append(n)\n    return sorted(set(factors))\n",
+    "tests": [
+        "assert prime_factors(315) == [3, 3, 5, 7]",
+        "assert prime_factors(100) == [2, 5, 5]",
+        "assert prime_factors(89) == [89]"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Coin Change",
+    "description": "You have a set of coins with denominations 1, 5 and 10. You are given a total amount, write a function to find the number of ways you can make up this amount using these coins.\n\n#### Function Signature\n```python\ndef count_ways(amount: int) -> int:\n```\n\n#### Input\n- `amount` (int): The total amount to be made up using the coins.\n\n#### Output\n- Returns the number of ways you can make up the given amount using the available coins.",
+    "code": "import math\ndef count_ways(amount: int) -> int:\n    ways = [0] * (amount + 1)\n    ways[0] = 1\n    for coin in [1, 5, 10]:\n        for i in range(coin, amount + 1):\n            ways[i] += ways[i - coin]\n    return ways[amount]\n",
+    "tests": [
+        "assert count_ways(15) == 4",
+        "assert count_ways(20) == 9",
+        "assert count_ways(5) == 2",
+        "assert count_ways(3) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Check if a list contains all unique elements",
+    "description": "Write a function that checks if all elements in a given list are unique. If any element appears more than once, return `False`. Otherwise, return `True`.#### Function Signature\n```python\ndef has_unique_elements(lst: list) -> bool:\n```#### Input\n- `lst` (list): A list of integers.#### Output\n- Returns `True` if all elements in the input list are unique, `False` otherwise.",
+    "code": "import collections\ndef has_unique_elements(lst: list) -> bool:\n    return len(lst) == len(collections.Counter(lst))",
+    "tests": [
+        "assert has_unique_elements([1, 2, 3]) == True",
+        "assert has_unique_elements([1, 1, 2]) == False",
+        "assert has_unique_elements([]) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

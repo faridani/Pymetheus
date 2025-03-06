@@ -1,0 +1,12 @@
+{
+    "title": "[Medium] Anagram Checker",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams. This function should ignore case sensitivity and spaces.#### Function Signature```pythondef is_anagram(s1: str, s2: str) -> bool:    # Remove spaces and convert to lowercase    s1 = s1.replace(' ', '').lower()    s2 = s2.replace(' ', '').lower()    # Check if the sorted strings are equal    return sorted(s1) == sorted(s2)```#### Input- `s1`, `s2` (str): Two strings that may contain letters and spaces.#### Output- Returns `True` if the input strings are anagrams of each other, `False` otherwise. Ignore case sensitivity and spaces.",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = s1.replace(' ', '').lower()\n    s2 = s2.replace(' ', '').lower()\n    # Check if the sorted strings are equal\n    return sorted(s1) == sorted(s2)",
+    "tests": [
+        "assert is_anagram(\"Anagram\", \"Nag a ram\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False",
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"Astronomer\", \"Moon starer\") == True"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

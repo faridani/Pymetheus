@@ -1,0 +1,12 @@
+{
+    "title": "Unique Characters in String",
+    "description": "Given a string `s`, write a function that returns the number of unique characters within it. The input string may contain any ASCII characters and can be quite large (up to 10^4 in length). Note: Do not use built-in functions for sorting or counting occurrences, such as collections.Counter().\n\n#### Function Signature\n```python\ndef count_unique_chars(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing any ASCII characters.\n\n#### Output\n- Returns the number of unique characters in `s`.",
+    "code": "def count_unique_chars(s: str) -> int:\n    # Initialize a set to store unique characters\n    unique_chars = set()\n    for char in s:\n        unique_chars.add(char)\n    return len(unique_chars)",
+    "tests": [
+        "assert count_unique_chars(\"hello\") == 4",
+        "assert count_unique_chars(\"unique\") == 6",
+        "assert count_unique_chars(\"aaaabbbbcccc\") == 1",
+        "assert count_unique_chars(\"!!!@#$%^&*()_+|[]{}\\\\\\\\\\\\\\\\\\\"<>?/;:'\") == 33"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

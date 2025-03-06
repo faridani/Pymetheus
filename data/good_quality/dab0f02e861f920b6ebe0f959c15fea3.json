@@ -1,0 +1,13 @@
+{
+    "title": "Sorting Hexadecimal Colors",
+    "description": "In a hexadecimal color code, the first two characters represent red, the next two characters represent green, and the last two characters represent blue. Write a function that takes a list of colors as input and returns them in sorted order based on their RGB values.\n\n#### Function Signature\n```python\ndef sort_colors(colors: list[str]) -> list[str]:\n```\n\n#### Input\n- `colors` (list[str]): A list of hexadecimal color codes, each represented by a string like '#FF0000' or '#8B4513'.\n\n#### Output\n- Returns the input colors in sorted order based on their RGB values.",
+    "code": "",
+    "\nimport re\n\ndef sort_colors(colors: list[str]) -> list[str]:\n    # Use regular expression to extract red, green and blue values from each color\n    rgb_values = [tuple(map(int, re.findall(r'\b\\d{2}\b', color)[1:]))) for color in colors]\n    \n    # Sort the colors based on their RGB values\n    sorted_colors = [color for _, color in sorted(zip(rgb_values, colors))]\n    \n    return sorted_colors": "",
+    "tests": [
+        "assert sort_colors(['#FF0000', '#8B4513', '#00FFFF']) == ['#00FFFF', '#8B4513', '#FF0000']",
+        "assert sort_colors(['#FFA500', '#C9E4CA', '#33CC33']) == ['#33CC33', '#C9E4CA', '#FFA500']"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Harmonious Notes",
+    "description": "The musical notes A, B, C, D, E, F and G are arranged harmoniously when played in a specific sequence. Write a function `harmony_check` that checks if a given sequence of notes is harmonious.\n#### Function Signature\n```python\ndef harmony_check(notes: list) -> bool:\n``` \n\n#### Input\n- `notes` (list): A list of strings representing the musical notes, where each string is either 'A', 'B', 'C', 'D', 'E', 'F' or 'G'. The order of the notes matters.\n\n#### Output\n- Returns `True` if the input sequence of notes is harmonious, `False` otherwise.\n",
+    "code": "import math\ndef harmony_check(notes: list) -> bool:\n    # Initialize the harmony score to 0\n    harmony_score = 0\n    \n    # Iterate over each note in the sequence\n    for i in range(len(notes)):\n        # Calculate the distance between the current note and the next note (wrap around if necessary)\n        distance = abs(ord(notes[i][0]) - ord(notes[(i + 1) % len(notes)][0]))\n        \n        # If the distance is greater than 3, it's not harmonious\n        if distance > 3:\n            return False\n        \n        # Add the distance to the harmony score\n        harmony_score += distance\n    \n    # Check if the total harmony score is a perfect square\n    root = math.sqrt(harmony_score)\n    if int(root + 0.5) ** 2 != harmony_score:\n        return False\n    \n    # If we've reached this point, the sequence is harmonious\n    return True\n",
+    "tests": [
+        "assert harmony_check(['A', 'B', 'C']) == True",
+        "assert harmony_check(['G', 'F', 'E']) == False",
+        "assert harmony_check(['D', 'C', 'B', 'A']) == True",
+        "assert harmony_check(['E', 'D', 'C']) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

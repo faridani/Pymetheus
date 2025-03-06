@@ -1,0 +1,12 @@
+{
+    "title": "Check for Pangrams",
+    "description": "A pangram is a sentence that contains every letter of the alphabet at least once. Write a function `is_pangram` that checks if a given string is a pangram.\n#### Function Signature\n```python\ndef is_pangram(s: str) -> bool:\n```\n#### Input\n- `s` (str): A sentence or phrase that may contain spaces, punctuation, and uppercase and lowercase letters.\n#### Output\n- Returns `True` if the input string is a pangram, `False` otherwise.",
+    "code": "import string\ndef is_pangram(s: str) -> bool:\n    # Convert to lowercase and remove non-alphabetic characters\n    s = ''.join(char for char in s.lower() if char in string.ascii_letters)\n    # Create a set of the unique letters in the input string\n    unique_letters = set(s)\n    # Check if the number of unique letters is equal to 26\n    return len(unique_letters) == 26",
+    "tests": [
+        "assert is_pangram('The quick brown fox jumps over the lazy dog') == True",
+        "assert is_pangram('A man, a plan, a canal: Panama') == False",
+        "assert is_pangram('To be or not to be: that is the question') == True",
+        "assert is_pangram('Try hardest animals, pick out best, ace task.') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

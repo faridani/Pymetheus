@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Counting Duplicates",
+    "description": "Write a function `count_duplicates` that takes a list of integers as input and returns the count of duplicate elements. For example, if the input is `[1, 2, 3, 4, 2, 5]`, the output should be `1`, because there is one pair of duplicates (`[2, 2]`).",
+    "code": "def count_duplicates(lst: list) -> int:\n    # Create a dictionary to store the frequency of each element\n    freq_dict = {}\n    for num in lst:\n        if num not in freq_dict:\n            freq_dict[num] = 1\n        else:\n            freq_dict[num] += 1\n    # Count the number of elements that have a frequency greater than 1\n    duplicate_count = sum(1 for count in freq_dict.values() if count > 1)\n    return duplicate_count",
+    "tests": [
+        "assert count_duplicates([1, 2, 3, 4, 2, 5]) == 1",
+        "assert count_duplicates([1, 2, 3, 4]) == 0",
+        "assert count_duplicates([1, 1, 1, 2, 3]) == 2"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

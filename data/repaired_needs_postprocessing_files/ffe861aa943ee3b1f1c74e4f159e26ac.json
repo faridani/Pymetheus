@@ -1,0 +1,11 @@
+{
+    "title": "Reverse a String (Medium)",
+    "description": "Write a function `reverse_string` that takes a string as input and returns the reversed string.\n#### Function Signature\n```python\ndef reverse_string(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string to be reversed.\n\n#### Output\n- Returns a new string with the characters of the input string in reverse order.\n",
+    "code": "def reverse_string(s: str) -> str:\n    \"\"\"Reverse the input string s.\n    :param s: The input string to be reversed.\n    :return: The reversed string.\n    \"\"\"\n    # Create an empty list to store the characters of the input string\n    reversed_s = []\n    # Iterate through each character in the input string\n    for char in s:\n        # Append the character to the end of the list\n        reversed_s.append(char)\n    # Reverse the order of the characters in the list\n    reversed_s.reverse()\n    # Join the characters back into a string and return it\n    return ''.join(reversed_s)",
+    "tests": [
+        "assert reverse_string('Hello') == 'olleH'",
+        "assert reverse_string('World') == 'dlroW'",
+        "assert reverse_string('Python') == 'nohtyP'"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

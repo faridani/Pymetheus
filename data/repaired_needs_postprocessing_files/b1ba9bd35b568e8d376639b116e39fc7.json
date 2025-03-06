@@ -1,0 +1,12 @@
+{
+    "title": "Permutation Palindrome",
+    "description": "A permutation palindrome is a string that either contains an even number of unique characters or no characters at all when arranged as a palindrome. Write a function `is_permutation_palindrome` that checks if a given string is a permutation palindrome.\n#### Function Signature\n```python\ndef is_permutation_palindrome(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string is a permutation palindrome, `False` otherwise.",
+    "code": "import collections\ndef is_permutation_palindrome(s: str) -> bool:\n    # Remove non-alphanumeric characters and convert to lowercase\n    s = ''.join(char for char in s if char.isalnum()).lower()\n    # Count the frequency of each character\n    count = collections.Counter(s)\n    # Check if the number of odd characters is at most 1 or if all characters have an even count\n    return sum(count[char] % 2 for char in count) <= 1",
+    "tests": [
+        "assert is_permutation_palindrome('tact') == True",
+        "assert is_permutation_palindrome('abba') == True",
+        "assert is_permutation_palindrome('hello') == False",
+        "assert is_permutation_palindrome('racecar') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

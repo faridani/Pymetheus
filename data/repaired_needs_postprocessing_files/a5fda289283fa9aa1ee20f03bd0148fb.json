@@ -1,0 +1,11 @@
+{
+    "title": "Tree Traversals",
+    "description": "Given a binary tree with integer values, write a function `tree_traversal` that takes the root of the tree and returns its pre-order traversal.\n\n#### Function Signature\n```python\ndef tree_traversal(root: Node) -> List[int]:\n``` \n\n#### Input\n- `root` (Node): The root node of the binary tree, where each node has an integer value.\n\n#### Output\n- Returns a list of integers representing the pre-order traversal of the binary tree.",
+    "code": "class Node:\n    def __init__(self, val: int):\n        self.val = val\n        self.left = None\n        self.right = None\n\ndef tree_traversal(root: Node) -> List[int]:\n    if root is None:\n        return []\n    result = [root.val]\n    result += tree_traversal(root.left)\n    result += tree_traversal(root.right)\n    return result",
+    "tests": [
+        "assert tree_traversal(Node(1, Node(2), Node(3))) == [1, 2, 3]",
+        "assert tree_traversal(Node(1, None, Node(4))) == [1, 4]",
+        "assert tree_traversal(None) == []"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

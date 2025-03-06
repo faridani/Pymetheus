@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Prime Numbers Count",
+    "description": "A prime number is a natural number greater than 1 that has no divisors other than 1 and itself. Write a function `prime_count` that calculates the count of prime numbers up to a given integer `n`. \n\n#### Function Signature\n```python\ndef prime_count(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the count of prime numbers up to `n`.",
+    "code": "",
+    "\nimport math\n\ndef prime_count(n: int) -> int:\n    def is_prime(num: int) -> bool:\n        if num < 2:\n            return False\n        for i in range(2, int(math.sqrt(num)) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    count = 0\n    for i in range(2, n + 1):\n        if is_prime(i):\n            count += 1\n    return count": "",
+    "tests": [
+        "assert prime_count(10) == 4",
+        "assert prime_count(25) == 9",
+        "assert prime_count(50) == 15",
+        "assert prime_count(1000) == 168"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Sequence Pair Checker (Medium)",
+    "description": "Given two sequences of integers, determine if one sequence is the reverse pair of the other.\n\n#### Function Signature\n```python\ndef are_reverse_pairs(a: list[int], b: list[int]) -> bool:\n``` \n\n#### Input\n- `a`, `b` (list[int]): Two sequences of integers that may contain duplicates.\n\n#### Output\n- Returns `True` if one sequence is the reverse pair of the other, `False` otherwise.",
+    "code": "def are_reverse_pairs(a: list[int], b: list[int]) -> bool:\n    # Check lengths to ensure sequences have equal number of elements\n    if len(a) != len(b):\n        return False\n    # Sort both lists and compare in reverse order\n    a.sort()\n    b.sort(reverse=True)\n    for i in range(len(a)):\n        if a[i] != b[i]:\n            return False\n    return True",
+    "tests": [
+        "assert are_reverse_pairs([1, 2, 3], [3, 2, 1]) == True",
+        "assert are_reverse_pairs([1, 2, 3, 2, 1], [1, 2, 3, 2, 1]) == True",
+        "assert are_reverse_pairs([1, 2, 3], [1, 9, 8, 7, 6, 5, 4, 2]) == False",
+        "assert are_reverse_pairs([1, 2, 3, 2, 1], [4, 5, 6, 7, 9, 2, 3, 1]) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Counting Islands",
+    "description": "Given a 2D grid of size m x n containing only values 0 and 1, where each value represents whether its cell is filled (1) or not (0), return the number of islands in the grid. An island is defined as any subset of connected cells with at least one cell equal to 1.\n\n#### Function Signature\n```\ndef count_islands(grid: list[list[int]]) -> int:\n``` \n\n#### Input\n- `grid` (list[list[int]]): A 2D grid of size m x n containing only values 0 and 1, where each value represents whether its cell is filled (1) or not (0).\n\n#### Output\n- Returns the number of islands in the grid.\n",
+    "code": "def count_islands(grid: list[list[int]]) -> int:\n    if not grid:\n        return 0\n    m, n = len(grid), len(grid[0])\n    count = 0\n    def dfs(i: int, j: int) -> None:\n        if i < 0 or i >= m or j < 0 or j >= n or grid[i][j] == 0:\n            return\n        grid[i][j] = 0\n        dfs(i - 1, j)\n        dfs(i + 1, j)\n        dfs(i, j - 1)\n        dfs(i, j + 1)\n    for i in range(m):\n        for j in range(n):\n            if grid[i][j] == 1:\n                count += 1\n                dfs(i, j)\n    return count",
+    "tests": [
+        "assert count_islands([[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0],[0,0,0,1,0]]) == 1",
+        "assert count_islands([[1,1,0,0,0],[1,1,0,0,0],[0,0,1,0,0],[0,0,0,1,1]]) == 3",
+        "assert count_islands([]) == 0",
+        "assert count_islands([[]]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

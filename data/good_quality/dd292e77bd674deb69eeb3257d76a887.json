@@ -1,0 +1,14 @@
+{
+    "title": "Fair Division",
+    "description": "Two friends, Alice and Bob, have decided to split a pile of money between themselves. They want to divide it fairly, but they can't agree on how much each should get. Your task is to write a function that finds the fairest division possible.\n\n#### Problem Statement\nAlice has $A amount and Bob has $B amount. The total amount of money is $T. Alice thinks that if she gets x% of the money, Bob will be happy only if he gets y% of the money, where x + y = 100. Write a function that finds the pair (x, y) such that the absolute difference between x and y is minimized.\n\n#### Function Signature\n```python\ndef find_fair_division(A: int, B: int, T: int) -> tuple:\n```\n\n#### Input\n- `A` (int): The amount of money Alice has.\n- `B` (int): The amount of money Bob has.\n- `T` (int): The total amount of money.\n\n#### Output\n- Returns a tuple `(x, y)` where x is the percentage of money Alice gets and y is the percentage of money Bob gets, such that the absolute difference between x and y is minimized.",
+    "code": "import math\n\ndef find_fair_division(A: int, B: int, T: int) -> tuple:\n    total = A + B\n    if total != T:\n        return ()  # or raise an error, your choice\n    half = total // 2\n    if A > half:\n        return (100 - (A - half), A - half)\n    if B > half:\n        return (B - half, 100 - (B - half))\n    return ((T - A) * 2 // T, (T - B) * 2 // T)",
+    "tests": [
+        "assert find_fair_division(10, 15, 25) == (20, 5)",
+        "assert find_fair_division(30, 20, 50) == (20, 30)",
+        "assert find_fair_division(40, 10, 50) == (20, 30)",
+        "assert find_fair_division(10, 10, 20) == (10, 10)"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Reverse String Comparison (Hard)",
+    "description": "Write a function `compare_strings` that compares two given strings by comparing their reversed versions. The comparison is case-insensitive and ignores non-alphabetic characters.\n\n#### Function Signature\n```python\ndef compare_strings(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, spaces and punctuation.\n\n#### Output\n- Returns `True` if the reversed version of both strings are equal after ignoring case and non-alphabetic characters, `False` otherwise.",
+    "code": "import string\ndef compare_strings(s1: str, s2: str) -> bool:\n    # Convert both strings to lowercase and remove non-alphabetic characters\n    s1 = ''.join([char.lower() for char in s1 if char.isalpha()])\n    s2 = ''.join([char.lower() for char in s2 if char.isalpha()])\n    # Compare the reversed strings\n    return s1[::-1] == s2[::-1]",
+    "tests": [
+        "assert compare_strings(\"A man, a plan, a canal, Panama\", \"amanaplanacanalpanamaplana\") == True",
+        "assert compare_strings(\"racecar\", \"racecar\") == True",
+        "assert compare_strings(\"hello\", \"olleh\") == False",
+        "assert compare_strings(\"No 'x' in Nixon\", \"sihtX sihton gnitirX si htno\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

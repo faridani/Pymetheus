@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Divisor Sum",
+    "description": "The sum of the proper divisors of a number is the sum of all its divisors excluding the number itself. Write a function `divisor_sum` that calculates the sum of the proper divisors for a given integer.\n\n#### Function Signature\n```python\ndef divisor_sum(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- The sum of the proper divisors of `n`.",
+    "code": "",
+    "\nimport math\n\ndef divisor_sum(n: int) -> int:\n    # Initialize the sum\n    total = 0\n    \n    # Iterate from 1 to n-1\n    for i in range(1, n):\n        if n % i == 0:\n            total += i\n            \n    return total": "",
+    "tests": [
+        "assert divisor_sum(28) == 28",
+        "assert divisor_sum(12) == 16",
+        "assert divisor_sum(220) == 284"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

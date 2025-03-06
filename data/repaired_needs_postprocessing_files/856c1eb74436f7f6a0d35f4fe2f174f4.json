@@ -1,0 +1,11 @@
+{
+    "title": "Euler's Totient Function",
+    "description": "The Euler totient function, denoted by \u03c6(n), counts the positive integers up to n that are relatively prime to n. It is used in number theory to count the numbers less than or equal to n that are relatively prime to n. Write a function `eulers_totient` that calculates the Euler's totient function for a given integer n.\r\n\r\n#### Function Signature\r\n```python\rndef eulers_totient(n: int) -> int:\r``` \r\n\r\n#### Input\r\n- `n` (int): A positive integer.\r\r\n#### Output\r\n- Returns the Euler's totient value for the input integer.\r\r\n",
+    "code": "def eulers_totient(n: int) -> int:\r    def gcd(a, b):\r        while b:\r            a, b = b, a % b\r        return a\r    res = n\r    p = 2\r    while p * p <= n:\r        if n % p == 0:\r            while n % p == 0:\r                n //= p\r            res -= res // p\r        p += 1\r    if n > 1:\r        res -= res // n\r    return res",
+    "tests": [
+        "assert eulers_totient(20) == 8",
+        "assert eulers_totient(12) == 4",
+        "assert eulers_totient(30) == 8"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

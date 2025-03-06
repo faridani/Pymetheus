@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Write a function `min_window_substring` that takes two strings, `s1` and `s2`, as input. The function should find the minimum window substring in `s1` that contains all characters of `s2`. If no such substring exists, return an empty string.\n\n#### Function Signature\n```python\ndef min_window_substring(s1: str, s2: str) -> str:\n``` \n\n#### Input\n- `s1` (str): The main string to search for the minimum window substring.\n- `s2` (str): The target string that must be contained in the minimum window substring.\n\n#### Output\n- Returns the minimum window substring in `s1` that contains all characters of `s2`, or an empty string if no such substring exists.",
+    "code": "from collections import Counter\ndef min_window_substring(s1: str, s2: str) -> str:\n    # Count the frequency of each character in s2\n    target_count = Counter(s2)\n    required_chars = len(target_count)\n    formed_chars = 0\n    window_counts = {}\n    left, right = 0, 0\n    min_len = float('inf')\n    min_window = \"\"\n    while right < len(s1):\n        # Try to add characters from the right until we have all required characters\n        while right - left + 1 > min_len and formed_chars == required_chars:\n            window_counts[s1[left]] -= 1\n            if window_counts[s1[left]] == 0:\n                formed_chars -= 1\n            left += 1\n        # Try to add characters from the right until we have all required characters\n        while right < len(s1) and formed_chars < required_chars:\n            right_char = s1[right]\n            window_counts[right_char] = window_counts.get(right_char, 0) + 1\n            if window_counts[right_char] == target_count[right_char]:\n                formed_chars += 1\n            right += 1\n        # Update the minimum window if we have found a smaller one\n        if formed_chars == required_chars and right - left < min_len:\n            min_len = right - left\n            min_window = s1[left:right]\n    return min_window",
+    "tests": [
+        "assert min_window_substring('ADOBECODEBANC', 'ABC') == 'BANC'",
+        "assert min_window_substring('', 'abc') == ''",
+        "assert min_window_substring('abcdefg', 'cd') == 'cdf'",
+        "assert min_window_substring('abcdefg', 'abcd') == 'abcd'"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

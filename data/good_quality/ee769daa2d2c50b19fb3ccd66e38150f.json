@@ -1,0 +1,14 @@
+{
+    "title": "Easy Coin Change",
+    "description": "Given a list of coin denominations and an amount, write a function to find the minimum number of coins required to make up that amount. The function should return -1 if it is not possible to make up the amount with the given coins.\n\n#### Function Signature\n```\ndef min_coins(coins: List[int], amount: int) -> int:\n```\n\n#### Input\n- `coins` (List[int]): A list of coin denominations.\n- `amount` (int): The target amount to make up.\n\n#### Output\n- Returns the minimum number of coins required to make up the given amount, or -1 if it is not possible.",
+    "code": "from typing import List\n\ndef min_coins(coins: List[int], amount: int) -> int:\n    dp = [float('inf')] * (amount + 1)\n    dp[0] = 0\n    for coin in coins:\n        for i in range(coin, amount + 1):\n            dp[i] = min(dp[i], dp[i - coin] + 1)\n    return dp[amount] if dp[amount] != float('inf') else -1",
+    "tests": [
+        "assert min_coins([1, 2, 5], 11) == 3",
+        "assert min_coins([2], 3) == -1",
+        "assert min_coins([1, 4, 5], 6) == 2",
+        "assert min_coins([1], 0) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

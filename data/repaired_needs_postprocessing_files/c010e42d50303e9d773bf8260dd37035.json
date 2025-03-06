@@ -1,0 +1,12 @@
+{
+    "title": "Tree Summation",
+    "description": "Given a tree where each node has a value and an integer representing its depth, write a function `tree_sum` that calculates the sum of all values at each depth. The output should be a dictionary where keys are the depths and values are the sums.\n\n#### Function Signature\n```python\ndef tree_sum(root: dict) -> dict:\n```\n\n#### Input\n- `root` (dict): A dictionary representing the tree, where each key is a node's value and its corresponding value is another dictionary containing the children and depth.\n\n#### Output\n- Returns a dictionary where keys are the depths and values are the sums of all values at that depth.",
+    "code": "import collections\ndef tree_sum(root: dict) -> dict:\n    if not root:\n        return {}\n    node_values = {}\n    queue = collections.deque([(root['value'], 0)])\n    while queue:\n        node_value, depth = queue.popleft()\n        if depth not in node_values:\n            node_values[depth] = 0\n        node_values[depth] += node_value\n        for child in root.get('children', []):\n            queue.append((child['value'], depth + 1))\n    return {k: v for k, v in sorted(node_values.items())}\n",
+    "tests": [
+        "assert tree_sum({'value': 1, 'children': [{'value': 2}, {'value': 3}]}) == {0: 1}",
+        "assert tree_sum({'value': 1, 'depth': 0, 'children': [{'value': 2, 'depth': 1, 'children': []}, {'value': 3, 'depth': 1, 'children': []}]}) == {0: 1, 1: 6}",
+        "assert tree_sum({'value': 1}) == {0: 1}",
+        "assert tree_sum({'value': 2, 'depth': 0, 'children': [{'value': 4, 'depth': 1, 'children': []}, {'value': 8, 'depth': 1, 'children': []}]}) == {0: 2, 1: 12}"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

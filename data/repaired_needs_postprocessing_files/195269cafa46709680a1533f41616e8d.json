@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Matrix Spiral Traversal",
+    "description": "Given a 2D matrix of integers, write a function `spiral_traversal` that returns the elements of the matrix in spiral order. The function should return a list of integers.\n\n#### Function Signature\n```python\ndef spiral_traversal(matrix: list[list[int]]) -> list[int]:\n```\n\n#### Input\nA 2D matrix of integers (represented as a list of lists).\n\n#### Output\nA list of integers containing the elements of the matrix in spiral order.\n\n#### Constraints\n- The input matrix will be square (same number of rows and columns).",
+    "code": "def spiral_traversal(matrix: list[list[int]]) -> list[int]:\n    m = len(matrix)\n    result = []\n    top, bottom = 0, m - 1\n    left, right = 0, m - 1\n    while top <= bottom and left <= right:\n        # Traverse right along the top row\n        for i in range(left, right + 1):\n            result.append(matrix[top][i])\n        top += 1\n\n        # Traverse down along the rightmost column\n        for i in range(top, bottom + 1):\n            result.append(matrix[i][right])\n        right -= 1\n\n        if top <= bottom and left <= right:\n            # Traverse left along the bottom row\n            for i in range(right, left - 1, -1):\n                result.append(matrix[bottom][i])\n            bottom -= 1\n\n            # Traverse up along the leftmost column\n            for i in range(bottom, top - 1, -1):\n                result.append(matrix[i][left])\n            left += 1\n\n    return result",
+    "tests": [
+        "assert spiral_traversal([[1,2,3],[4,5,6],[7,8,9]]) == [1,2,3,6,9,8,7,4,5]",
+        "assert spiral_traversal([[1, 2], [3, 4]]) == [1, 2, 4, 3]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

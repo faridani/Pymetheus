@@ -1,0 +1,11 @@
+{
+    "title": "Palindromic Substrings Count (Hard)",
+    "description": "Given a non-empty string s, find the number of palindromic substrings in it. A palindromic string is one that reads the same forwards and backwards.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A non-empty string consisting of lowercase English letters only.\n\n#### Output\n- Returns the number of palindromic substrings in the given string.",
+    "code": "def count_palindromes(s: str) -> int:\n    n = len(s)\n    dp = [[0] * (n // 2 + 1) for _ in range(n)]\n\n    for i in range(1, n):\n        for j in range(min(i + (i - 1) // 2, n)):\n            if s[j] != s[i-1]:\n                break\n            dp[i][i//2] += dp[j][(j+1)//2]\n\n    return ((sum([dp[i][i//2] for i in range(1, n) if i%2==1]))*2) + sum([dp[i][j] for i in range(0, n) for j in range(i+1, n) if s[i:j] == s[::-1][i:j]])",
+    "tests": [
+        "assert count_palindromes(\"abcbcba\") == 7",
+        "assert count_palindromes(\"a\") == 1",
+        "assert count_palindromes(\"forgeeksskeegfor\") == 5"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

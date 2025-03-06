@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "Write a function `anagram_checker` that checks if two strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef anagram_checker(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\nA word or phrase is considered an anagram of another if it uses the same exact letters (ignoring case) and in the same frequency. For example, 'listen' and 'silent' are anagrams because they both use the same letters 'l', 'i', 's', 'e', 'n' and each letter appears the same number of times.\nHint: You may find it helpful to sort the characters in each string before comparing them.\n",
+    "code": "import sortedcontainers\n\ndef anagram_checker(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = ''.join([char for char in s1.lower() if char not in ' '])\n    s2 = ''.join([char for char in s2.lower() if char not in ' '])\n    \n    # Sort and compare the sorted characters of each string\n    return sortedcontainers.SortedList(s1) == sortedcontainers.SortedList(s2)",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('hello', 'olleh') == True",
+        "assert anagram_checker('world', 'droldwor') == True",
+        "assert anagram_checker('hello world', 'world hello') == True",
+        "assert anagram_checker('hello world', 'drowol foehl') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

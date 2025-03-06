@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Maximum Contiguous Sum",
+    "description": "#### Problem Statement\n\nGiven an array of integers, find the maximum sum of a contiguous subarray within the array.\n\n#### Function Signature\n```python\ndef max_contiguous_sum(arr: list[int]) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers that may contain both positive and negative values.\n\n#### Output\n- Returns the maximum sum of a contiguous subarray within the input array.",
+    "code": "\nimport itertools\n\ndef max_contiguous_sum(arr: list[int]) -> int:\n    # Initialize the maximum sum\n    max_sum = float('-inf')\n\n    # Iterate over all possible subsequences\n    for r in range(1, len(arr) + 1):\n        for subsequence in itertools.combinations(arr, r):\n            # Calculate the sum of the current subsequence\n            subsequence_sum = sum(subsequence)\n\n            # Update the maximum sum if necessary\n            max_sum = max(max_sum, subsequence_sum)\n\n    return max_sum",
+    "tests": [
+        "assert max_contiguous_sum([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6",
+        "assert max_contiguous_sum([1, 2, -1, 3, 4, -1]) == 9",
+        "assert max_contiguous_sum([-1, 1, -1, 1, -1, 1]) == 1",
+        "assert max_contiguous_sum([0, 0, 0]) == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

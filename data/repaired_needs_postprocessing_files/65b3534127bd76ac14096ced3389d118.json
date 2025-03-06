@@ -1,0 +1,11 @@
+{
+    "title": "Python List Compression",
+    "description": "Write a function `compress_list` that takes a list and a condition as input, and returns a new list with only the elements from the original list that satisfy the given condition.\n\n#### Function Signature\n```python\ndef compress_list(lst: List[Any], cond: Callable[[Any], bool]) -> List[Any]:\n``` \n\n#### Input\n- `lst` (List[Any]): A list of any data type.\n- `cond` (Callable[[Any], bool]): A callable that takes an element from the input list and returns a boolean indicating whether the element satisfies the condition or not.\n\n#### Output\n- Returns a new list containing only the elements from the input list that satisfy the given condition.",
+    "code": "def compress_list(lst: List[Any], cond: Callable[[Any], bool]):\n    return [x for x in lst if cond(x)]",
+    "tests": [
+        "assert compress_list([1, 2, 3, 4], lambda x: x > 2) == [3, 4]",
+        "assert compress_list(['apple', 'banana', 'cherry'], lambda x: len(x) == 5) == []",
+        "assert compress_list([True, False, True], lambda x: not x) == [False]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Island Size",
+    "description": "Given a 2D array of integers where each cell represents whether it's a land or water, write a function to find the maximum size of an island that can be formed by connecting adjacent lands.\n\n#### Function Signature\n```python\ndef max_island_size(grid: list[list[int]]) -> int:\n``` \n\n#### Input\n- `grid` (list[list[int]]): A 2D array where each cell is either 0 (water) or 1 (land).\n\n#### Output\n- Returns the maximum size of an island that can be formed by connecting adjacent lands.",
+    "code": "import copy\ndef max_island_size(grid: list[list[int]]) -> int:\n    def dfs(row, col):\n        if row < 0 or row >= len(grid) or col < 0 or col >= len(grid[0]) or grid[row][col] == 0:\n            return 0\n        grid[row][col] = 0\n        return 1 + dfs(row-1, col) + dfs(row+1, col) + dfs(row, col-1) + dfs(row, col+1)\n    max_size = 0\n    for row in range(len(grid)):\n        for col in range(len(grid[0])):\n            if grid[row][col] == 1:\n                size = dfs(row, col)\n                max_size = max(max_size, size)\n    return max_size",
+    "tests": [
+        "assert max_island_size([[0,0,1,0,0],[0,0,1,0,0],[0,0,1,1,1]]) == 4",
+        "assert max_island_size([[1,1,0,0,0],[1,1,0,0,0],[0,0,0,1,1]]) == 9",
+        "assert max_island_size([[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]]) == 25"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

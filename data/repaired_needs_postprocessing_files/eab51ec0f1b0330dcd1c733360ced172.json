@@ -1,0 +1,11 @@
+{
+    "title": "Egg Delivery",
+    "description": "A farmer has n eggs to deliver to m customers. Each egg can be delivered in one of two ways: directly or through an intermediate customer (which takes twice the time). The farmer wants to find the minimum time required to deliver all eggs. Write a function `egg_delivery_time` that calculates this minimum time.",
+    "code": "import math\n\ndef egg_delivery_time(n: int, m: int) -> int:\n    # The minimum time is achieved when there are exactly two deliveries for each customer (one direct and one indirect)\n    return 2 * m + n - 1",
+    "tests": [
+        "assert egg_delivery_time(5, 3) == 11",
+        "assert egg_delivery_time(10, 4) == 23",
+        "assert egg_delivery_time(15, 5) == 31"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

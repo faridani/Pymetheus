@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Consecutive Sum",
+    "description": "Given an integer array `nums`, find the number of subarrays whose elements sum to a consecutive sequence of integers starting from 1.\n#### Function Signature\n```pythonndef count_consecutive_subarrays(nums: list[int]) -> int:\n```\n#### Input\n-  `nums`: A list of integers.\n#### Output\n- Returns the number of subarrays whose elements sum to a consecutive sequence starting from 1.",
+    "code": "def count_consecutive_subarrays(nums: list[int]) -> int:\n    count = 0\n    for i in range(len(nums)):\n        current_sum = 0\n        j = i\n        while j < len(nums) and current_sum <= nums[-1]: \n            current_sum += nums[j]\n            if current_sum == (j - i + 1) * (j - i + 2) // 2: # Check for consecutive sum \n                count += 1\n            j += 1\n    return count",
+    "tests": [
+        "assert count_consecutive_subarrays([1, 2, 3]) == 1",
+        "assert count_consecutive_subarrays([1, 2, 3, 4]) == 3",
+        "assert count_consecutive_subarrays([1, 5, 2, 3, 4]) == 1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

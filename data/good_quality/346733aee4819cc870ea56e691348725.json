@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Number of Islands",
+    "description": "Given a 2D binary grid, count the number of islands.\n\n#### Function Signature\n```python\ndef count_islands(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D grid where each cell is either 0 or 1. 0 represents water, and 1 represents land.\n\n#### Output\n- Returns the number of islands in the given grid.",
+    "code": "def count_islands(grid: list[list[int]]) -> int:\n    def dfs(row: int, col: int) -> None:\n        if row < 0 or row >= len(grid) or col < 0 or col >= len(grid[0]) or grid[row][col] == 0:\n            return\n        grid[row][col] = 0\n        dfs(row - 1, col)\n        dfs(row + 1, col)\n        dfs(row, col - 1)\n        dfs(row, col + 1)\n    count = 0\n    for row in range(len(grid)):\n        for col in range(len(grid[0])):\n            if grid[row][col] == 1:\n                dfs(row, col)\n                count += 1\n    return count",
+    "tests": [
+        "assert count_islands([[0,0,0],[0,1,0],[0,0,0]]) == 1",
+        "assert count_islands([[0,0,0],[0,1,1],[0,0,0]]) == 1",
+        "assert count_islands([[0,0,0],[0,0,0],[0,0,0]]) == 0",
+        "assert count_islands([[1,1,1],[1,1,1],[1,1,1]]) == 1"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Frequency Analyzer' - Medium",
+    "description": "Given a string, find the frequency of each palindrome within the string and return it as a dictionary where the keys are the palindromes and the values are their frequencies.\n\n#### Function Signature\n```python\ndef palindrome_frequency(s: str) -> dict:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a dictionary with the keys as the palindromes and their frequencies in the input string as values.",
+    "code": "import collections\ndef palindrome_frequency(s: str) -> dict:\n    # Remove non-alphanumeric characters\n    s = ''.join(char for char in s if char in string.ascii_letters + string.digits)\n    # Find all palindromes and their frequencies\n    palindromes = [pal for i, j, pal in zip(range(len(s)), range(len(s), -1, -1), s[::-1]) if pal == pal[i:j] and len(pal) > 1]\n    freqs = collections.Counter(palindromes)\n    return dict(freqs)",
+    "tests": [
+        "assert palindrome_frequency('madam') == {'madam': 1}",
+        "assert palindrome_frequency('eye') == {'eye': 2}",
+        "assert palindrome_frequency('racecar') == {'racecar': 1, 'car': 2, 'e': 4}",
+        "assert palindrome_frequency('A man, a plan, a canal: Panama') == {'amanaplanacanalpanama': 1, 'man': 2, 'canal': 1}"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

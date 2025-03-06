@@ -1,0 +1,14 @@
+{
+    "title": "Counting Pairs of Numbers",
+    "description": "Consider a list of unique integers. A pair of numbers is considered as two distinct elements that have the same remainder when divided by 3. Write a function `count_pairs` that takes a list of unique integers and returns the number of such pairs.\n\n#### Function Signature\n```python\ndef count_pairs(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of unique integers.\n\n#### Output\n- Returns the number of pairs of numbers that have the same remainder when divided by 3.",
+    "code": "def count_pairs(nums: list[int]) -> int:\n    # Initialize a dictionary to store the count of each remainder modulo 3\n    remainder_count = {i % 3: 0 for i in range(3)}\n    # Count the number of occurrences of each remainder\n    for num in nums:\n        remainder_count[num % 3] += 1\n    # Calculate the number of pairs that can be formed using numbers with the same remainder modulo 3\n    pairs = 0\n    for count in remainder_count.values():\n        if count > 1:\n            pairs += (count * (count - 1)) // 2\n    return pairs",
+    "tests": [
+        "assert count_pairs([1, 2, 4, 5]) == 3",
+        "assert count_pairs([0, 1, 2, 3, 4, 6]) == 4",
+        "assert count_pairs([2, 2, 2]) == 3",
+        "assert count_pairs([]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

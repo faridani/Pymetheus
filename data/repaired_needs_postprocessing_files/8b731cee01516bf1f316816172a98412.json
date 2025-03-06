@@ -1,0 +1,12 @@
+{
+    "title": "Knight's Journey (Medium)",
+    "description": "A knight moves a chessboard to find the shortest path from one corner to another. Write a function that takes the coordinates of two corners and returns whether there is a possible path between them.\n\n#### Function Signature\n```python\ndef has_path(x1: int, y1: int, x2: int, y2: int) -> bool:\n```\n\n#### Input\n- `x1`, `y1` (int): The coordinates of the starting corner (0 <= x1, y1 <= 8).\n- `x2`, `y2` (int): The coordinates of the destination corner (0 <= x2, y2 <= 8).\n\n#### Output\n- Returns `True` if there is a possible path from the start to the end, `False` otherwise.\n",
+    "code": "import math\ndef has_path(x1: int, y1: int, x2: int, y2: int) -> bool:\n    # Define the knight's moves\n    moves = [(2, 1), (2, -1), (-2, 1), (-2, -1), (1, 2), (1, -2), (-1, 2), (-1, -2)]\n    # Create a visited set for efficient lookups\n    visited = set()\n    # Define the BFS queue and its starting point\n    queue = [(x1, y1)]\n    visited.add((x1, y1))\n    while queue:\n        current_x, current_y = queue.pop(0)\n        if (current_x, current_y) == (x2, y2):\n            return True\n        for dx, dy in moves:\n            next_x, next_y = current_x + dx, current_y + dy\n            # Check if the next position is within bounds and not visited\n            if 0 <= next_x <= 8 and 0 <= next_y <= 8 and (next_x, next_y) not in visited:\n                queue.append((next_x, next_y))\n                visited.add((next_x, next_y))\n    return False\n",
+    "tests": [
+        "assert has_path(0, 0, 7, 7) == True",
+        "assert has_path(0, 8, 7, 0) == True",
+        "assert has_path(1, 1, 2, 2) == True",
+        "assert has_path(3, 3, 4, 6) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

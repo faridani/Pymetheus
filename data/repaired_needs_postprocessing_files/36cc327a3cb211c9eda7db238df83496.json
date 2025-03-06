@@ -1,0 +1,12 @@
+{
+    "title": "Economist's Enigma",
+    "description": "A renowned economist has a peculiar habit of encrypting his notes using a simple substitution cipher. The cipher replaces each vowel (both lowercase and uppercase) with the corresponding letter from the alphabet, three positions ahead in the order of letters. For example, 'a' becomes 'd', 'e' becomes 'h', 'i' becomes 'l', etc.\nWrite a function `decode_cipher` that takes a string encoded using this cipher as input and returns the decoded message.\n#### Function Signature\n```python\ndef decode_cipher(s: str) -> str:\n``` \n\n#### Input\n- `s` (str): A string encoded using the given cipher.\n\n#### Output\n- Returns the decoded message.\n",
+    "code": "import string\nfrom collections import OrderedDict\n\ndef decode_cipher(s: str) -> str:\n    vowels = 'aeiouAEIOU'\n    mapping = str.maketrans('aeiouAEIOU', 'dhlmnopqrsxyz' + 'AEIOU'[3:])\n    result = s.translate(mapping)\n    return result\n",
+    "tests": [
+        "assert decode_cipher('d hr ls srt') == 'the best'",
+        "assert decode_cipher('h ll m r') == 'hello mr'",
+        "assert decode_cipher('d t s s') == 'it is'",
+        "assert decode_cipher('l t m s sr') == 'we are'"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

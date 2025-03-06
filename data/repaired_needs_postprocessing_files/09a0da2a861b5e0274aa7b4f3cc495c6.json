@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Divisible Fractions",
+    "description": "A fraction is divisible if its numerator and denominator can be both divided by a common number. Write a function `is_divisible` that takes a fraction as input (as a string in the format 'numerator/denominator') and returns `True` if it's divisible, `False` otherwise.\n\n#### Function Signature\n```python\ndef is_divisible(fraction: str) -> bool:\n``` \n\n#### Input\n- `fraction` (str): A fraction as a string in the format 'numerator/denominator'.\n\n#### Output\n- Returns `True` if the input fraction is divisible, `False` otherwise.\n",
+    "code": "import math\ndef is_divisible(fraction: str) -> bool:\n    numerator, denominator = map(int, fraction.split('/'))\n    def gcd(a: int, b: int) -> int:\n        while b:\n            a, b = b, a % b\n        return a\n    common_divisor = gcd(numerator, denominator)\n    return numerator // common_divisor == denominator // common_divisor,",
+    "tests": [
+        "assert is_divisible('4/8') == True",
+        "assert is_divisible('1/2') == True",
+        "assert is_divisible('2/3') == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

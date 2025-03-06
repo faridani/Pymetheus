@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Rectangular Enclosing Boxes",
+    "description": "Write a function `min_enclosing_boxes` that takes as input a list of 2D points, where each point is represented by two integers (x, y), and returns the minimum rectangular enclosing box around all the points. The box should be represented as a dictionary with keys 'top', 'bottom', 'left', 'right' containing the coordinates of the corresponding sides.\n\n#### Function Signature\n```python\ndef min_enclosing_boxes(points: list[tuple[int, int]]) -> dict:\n```\n\n#### Input\n- `points` (list[tuple[int, int]]): A list of 2D points, where each point is represented by two integers (x, y).\n\n#### Output\n- Returns a dictionary representing the minimum rectangular enclosing box around all the points.",
+    "code": "\nimport math\n\ndef min_enclosing_boxes(points: list[tuple[int, int]]) -> dict:\n    if not points:\n        return {'top': 0, 'bottom': 0, 'left': 0, 'right': 0}\n\n    top = max(y for x, y in points)\n    bottom = min(y for x, y in points)\n    left = min(x for x, y in points)\n    right = max(x for x, y in points)\n\n    return {'top': top, 'bottom': bottom, 'left': left, 'right': right}",
+    "tests": [
+        "assert min_enclosing_boxes([(0, 0), (1, 2), (-1, -2)]) == {'top': 2, 'bottom': -2, 'left': -1, 'right': 1}",
+        "assert min_enclosing_boxes([(0, 0), (1, 1), (1, 0), (0, 1)]) == {'top': 1, 'bottom': 0, 'left': 0, 'right': 1}",
+        "assert min_enclosing_boxes([]) == {'top': 0, 'bottom': 0, 'left': 0, 'right': 0}",
+        "assert min_enclosing_boxes([(10, 20), (30, 40)]) == {'top': 40, 'bottom': 20, 'left': 10, 'right': 30}"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

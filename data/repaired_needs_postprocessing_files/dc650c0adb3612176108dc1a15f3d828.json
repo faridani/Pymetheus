@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Alien Number System",
+    "description": "The Galactic Federation has contacted Earth, and they use a number system with a base of 27. They communicate using a series of glyphs, each representing a unique value from 0 to 26. Your task is to write a function `convert_alien` that converts an alien number represented as a string of glyphs into its decimal (base-10) equivalent.\n#### Function Signature\n```python\ndef convert_alien(alien_number: str) -> int:\n```\n\n#### Input\n- `alien_number` (str): A string representing an alien number, where each character corresponds to a glyph value from 0 to 26.\n\n#### Output\n- Returns the decimal equivalent of the alien number as an integer.\n\n#### Constraints\n- The input string will contain only valid glyph characters (representing values 0 to 26).\n- You can assume the alien number is positive.",
+    "code": "def convert_alien(alien_number: str) -> int:\n    decimal = 0\n    power = len(alien_number) - 1\n    for glyph in alien_number:\n        decimal += (ord(glyph) - ord('a')) * (27 ** power)\n        power -= 1\n    return decimal",
+    "tests": [
+        "'assert convert_alien(\"abc\") == 730'",
+        "'assert convert_alian(\"z\") == 26'",
+        "'assert convert_alian(\"aaa\") == 0'",
+        "'assert convert_alian(\"zyxwvut\") == 26**6+26**5*25+26**4*24+26**3*23+26**2*22+26*21'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

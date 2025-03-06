@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Validating Sudoku Boards",
+    "description": "A Sudoku board is valid if each row, column, and sub-grid (3x3) contains the digits 1-9 with no repetition. Write a function `is_valid_sudoku` that takes a list of lists representing a Sudoku board and returns whether it's valid.\n#### Function Signature\n```python\ndef is_valid_sudoku(board: List[List[int]]) -> bool:\n``` \n#### Input\n- `board` (List[List[int]]): A 9x9 grid where each cell contains an integer from 1 to 9 or a 0 representing an empty cell.\n#### Output\n- Returns `True` if the input Sudoku board is valid, `False` otherwise.",
+    "code": "from typing import List\ndef is_valid_sudoku(board: List[List[int]]) -> bool:\n    def check_row(row: List[int]) -> bool:\n        return len(set(row)) == 9 and all(1 <= cell <= 9 for cell in row)\n    def check_col(col: List[int]) -> bool:\n        return len(set(col)) == 9 and all(1 <= cell <= 9 for cell in col)\n    def check_subgrid(subgrid: List[List[int]]) -> bool:\n        flat = [cell for row in subgrid for cell in row]\n        return len(set(flat)) == 9 and all(1 <= cell <= 9 for cell in flat)\n    for i in range(9):\n        if not check_row(board[i]):\n            return False\n        if not check_col([board[j][i] for j in range(9)]):\n            return False\n        if not check_subgrid([board[i*3 + k//3][:3] for k in range(9)]):\n            return False\n    return True",
+    "tests": [
+        "assert is_valid_sudoku([[5, 3], [4, 6], [7, 8], [1, 9], [2, 1], [6, 5], [8, 4], [9, 7], [3, 3]]) == True",
+        "assert is_valid_sudoku([[5, 3], [4, 6], [7, 8], [1, 0], [2, 1], [6, 5], [8, 4], [9, 7], [3, 3]]) == False",
+        "assert is_valid_sudoku([[1, 2], [3, 4], [5, 6], [7, 8], [9, 0], [11, 12], [13, 14], [15, 16], [17, 18]]) == True",
+        "assert is_valid_sudoku([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [11, 12], [13, 14], [15, 16], [17, 19]]) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

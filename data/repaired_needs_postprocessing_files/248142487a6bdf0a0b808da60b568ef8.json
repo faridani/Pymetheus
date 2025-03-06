@@ -1,0 +1,11 @@
+{
+    "title": "Minimum Time to Make All Flowers Blooming",
+    "description": "A garden has n flowers, and each flower blooms at a different time. The time it takes for the i-th flower to bloom is given as an integer array `blooms`. We want to make all flowers blooming by watering them in the order of their blooming times. Write a function `min_time` that calculates the minimum time required to make all flowers blooming.\n\n#### Function Signature\n```python\ndef min_time(blooms: list[int]) -> int:\n``` \n\n#### Input\n- `blooms` (list[int]): A list of integers representing the times it takes for each flower to bloom.\n\n#### Output\n- Returns the minimum time required to make all flowers blooming.",
+    "code": "def min_time(blooms: list[int]) -> int:\n    return max(blooms)",
+    "tests": [
+        "assert min_time([1, 4, 3]) == 4",
+        "assert min_time([10, 2, 5, 7, 8]) == 10",
+        "assert min_time([]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Robot Delivery System",
+    "description": "You are tasked with programming a robot delivery system. The robot must traverse a grid of nodes, picking up and delivering packages based on given instructions. Each node can be either empty or occupied by a package, represented by 0s and 1s respectively in the grid. The robot starts at the top-left corner of the grid and can move right or down. If the robot encounters an occupied node (1), it picks up the package and stores it until it reaches its destination. The function should return the total number of packages delivered to their respective destinations.\r\nThe function should return the total number of packages delivered to their respective destinations.",
+    "code": "def deliver_packages(grid: List[List[int]], instructions: str) -> int:\r\n    m, n = len(grid), len(grid[0])\r\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\r\n\r\n    for i in range(1, m + 1):\r\n        for j in range(1, n + 1):\r\n            if grid[i - 1][j - 1] == 1:\r\n                dp[i][j] = dp[i - 1][j] + dp[i][j - 1] + 1\r\n            else:\r\n                dp[i][j] = dp[i - 1][j] + dp[i][j - 1]\r\n    return dp[m][n]\r\n",
+    "tests": [
+        "assert deliver_packages([[0, 1, 0], [0, 0, 1], [1, 0, 0]], \"RDRD\") == 2",
+        "assert deliver_packages([[0, 0, 1], [1, 0, 0], [0, 1, 0]], \"LURD\") == 3",
+        "assert deliver_packages([[0, 0, 0], [0, 0, 0], [0, 0, 0]], \"RDRD\") == 0"
+    ],
+    "model": "codegeex4:9b-repaired by Llama 3"
+}

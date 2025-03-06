@@ -1,0 +1,11 @@
+{
+    "title": "'Project Euler - Prime Summing Pairs Under 100' (Medium)",
+    "description": "Write a function `sum_prime_pairs` that finds the sum of all pairs of prime numbers below 100.\n\n#### Function Signature\n```python\ndef sum_prime_pairs() -> int:\n```\n\n#### Input\n- None (No input is required as this function generates its own data).\n\n#### Output\n- Returns the sum of all pairs of prime numbers below 100.\n",
+    "code": "def is_prime(n: int) -> bool:\n    if n <= 1: return False\n    for i in range(2, int(n**0.5)+1):\n        if n % i == 0: return False\n    return True\n\ndef sum_prime_pairs() -> int:\n    primes = []\n    for num in range(2, 100+1):\n        if is_prime(num): primes.append(num)\n    pairs = [[a, b] for a in primes for b in primes if (a < b and a + b < 100)]\n    return sum([pair[0]*pair[1] for pair in pairs])",
+    "tests": [
+        "assert sum_prime_pairs() == 4729",
+        "assert is_prime(5) == True",
+        "assert is_prime(6) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Hard - Circular Prime Checker",
+    "description": "A circular prime is a prime number that remains prime when rotated. For example, 197 is a circular prime because 197, 971, and 719 are all prime numbers.\r\n\r\nWrite a function `is_circular_prime` that takes an integer `n` as input and returns `True` if `n` is a circular prime, `False` otherwise.\r\n\r\n#### Function Signature\r\n``python\ndef is_circular_prime(n: int) -> bool:\r``\r\n\r\n#### Input\r\n- `n` (int): A positive integer.\r\n\r\n#### Output\r\n- Returns `True` if the input integer is a circular prime, `False` otherwise.\r\n",
+    "code": "def is_prime(num: int) -> bool:\r    if num <= 1:\r        return False\r    for i in range(2, int(num**0.5) + 1):\r        if num % i == 0:\r            return False\r    return True\r\n\ndef is_circular_prime(n: int) -> bool:\r    if not is_prime(n):\r        return False\r    n_str = str(n)\r    for i in range(len(n_str)):\r        rotated_num = int(n_str[i:] + n_str[:i])\r        if not is_prime(rotated_num):\r            return False \r\n    return True",
+    "tests": [
+        "assert is_circular_prime(197) == True",
+        "assert is_circular_prime(357686219) == True",
+        "assert is_circular_prime(123) == False",
+        "assert is_circular_prime(2) == True"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

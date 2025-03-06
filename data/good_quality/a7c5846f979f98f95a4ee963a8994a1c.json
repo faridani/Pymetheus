@@ -1,0 +1,12 @@
+{
+    "title": "Fibonacci Primes Generator",
+    "description": "A Fibonacci prime is a positive integer that is part of the Fibonacci sequence and also a prime number. Write a function `fib_primes` that generates all Fibonacci primes up to a given limit.\n\n#### Function Signature\n```python\ndef fib_primes(limit: int) -> list[int]:\n```\n\n#### Input\n- `limit` (int): The upper bound for the Fibonacci sequence and prime number generation.\n\n#### Output\n- Returns a list of Fibonacci primes up to the given limit.",
+    "code": "\nimport math\n\ndef fib_primes(limit: int) -> list[int]:\n    # Initialize variables\n    a, b = 0, 1\n    primes = []\n    fib_nums = []\n\n    while True:\n        if a > limit:\n            break\n        fib_nums.append(a)\n        a, b = b, a + b\n\n    for num in fib_nums:\n        is_prime = True\n        for i in range(2, int(math.sqrt(num)) + 1):\n            if num % i == 0:\n                is_prime = False\n                break\n        if is_prime:\n            primes.append(num)\n\n    return primes",
+    "tests": [
+        "assert len(fib_primes(10000)) > 20",
+        "assert all(prime in fib_primes(100000) for prime in [2, 3, 5, 13])"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

@@ -1,0 +1,19 @@
+{
+    "title": "Recursive Fibonacci Sequence Generator (Hard)",
+    "description": "Write a recursive function called `fib` that generates the nth number of the Fibonacci sequence.\n\n#### Function Signature\n```python\ndef fib(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): The position of the Fibonacci number to generate, starting from 0.\n\n#### Output\n- Returns the nth Fibonacci number as an integer.",
+    "code": "def fib(n: int) -> int:\n    if n <= 1:\n        return n\n    else:\n        return fib(n - 1) + fib(n - 2)",
+    "tests": [
+        "assert fib(0) == 0",
+        "assert fib(1) == 1",
+        "assert fib(2) == 1",
+        "assert fib(3) == 2",
+        "assert fib(4) == 3",
+        "assert fib(5) == 5",
+        "assert fib(6) == 8",
+        "assert fib(7) == 13",
+        "assert fib(8) == 21",
+        "assert fib(9) == 34",
+        "assert fib(10) == 55"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

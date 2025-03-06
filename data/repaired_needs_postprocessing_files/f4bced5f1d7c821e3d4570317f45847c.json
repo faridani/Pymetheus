@@ -1,0 +1,11 @@
+{
+    "title": "Sorting by Prime and Composite",
+    "description": "A set of integers can be divided into two groups: prime numbers and composite numbers. Write a function that takes a list of integers as input and returns the same list, but sorted so that all prime numbers come first, followed by all composite numbers.\n\n#### Function Signature\n```python\ndef sort_by_prime_and_composite(nums: list[int]) -> list[int]:\n``` \n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns the same list, but sorted so that all prime numbers come first, followed by all composite numbers.",
+    "code": "def sort_by_prime_and_composite(nums: list[int]) -> list[int]:\n    def is_prime(n: int) -> bool:\n        if n <= 1:\n            return False\n        for i in range(2, int(n**0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    prime_nums = [num for num in nums if is_prime(num)]\n    composite_nums = [num for num in nums if not is_prime(num)]\n\n    return prime_nums + composite_nums",
+    "tests": [
+        "assert sort_by_prime_and_composite([2, 3, 4, 5]) == [2, 3, 5, 4]",
+        "assert sort_by_prime_and_composite([-1, 0, 1, 2, 3, 4, 5]) == [-1, 0, 2, 3, 4, 5, 1]",
+        "assert sort_by_prime_and_composite([6, 7, 8, 9, 10]) == [7, 6, 2, 4, 8, 9, 10]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

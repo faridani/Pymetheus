@@ -1,0 +1,12 @@
+{
+    "title": "Counting Islands",
+    "description": "An island is a contiguous group of cells that is entirely surrounded by water. You are given an `m x n` binary matrix, where `0`s represent water and `1`s represent land. Write a function that counts the number of islands in the given grid.\n\n#### Function Signature\n```python\ndef count_islands(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D binary matrix, where `0`s represent water and `1`s represent land.\n\n#### Output\n- Returns the number of islands in the given grid.\n",
+    "code": "from typing import List\n\ndef count_islands(grid: List[List[int]]) -> int:\n    if not grid:\n        return 0\n    \n    def dfs(i, j):\n        if i < 0 or j < 0 or i >= len(grid) or j >= len(grid[0]) or grid[i][j] == 0:\n            return\n        grid[i][j] = 0\n        \n        dfs(i - 1, j)\n        dfs(i + 1, j)\n        dfs(i, j - 1)\n        dfs(i, j + 1)\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == 1:\n                dfs(i, j)\n                count += 1\n    \n    return count",
+    "tests": [
+        "assert count_islands([[]]) == 0",
+        "assert count_islands([[0, 0], [1, 0]]) == 1",
+        "assert count_islands([[0, 0, 0], [0, 1, 0], [0, 0, 0]]) == 1",
+        "assert count_islands([[0, 0, 0], [0, 1, 0], [0, 0, 0], [0, 0, 1]]) == 2"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

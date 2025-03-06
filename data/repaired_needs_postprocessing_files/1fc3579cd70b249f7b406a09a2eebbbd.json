@@ -1,0 +1,11 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "Given two strings, write a function `find_anagram` that determines if they are anagrams of each other. Anagram is a word or phrase formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string that may contain letters, numbers, spaces and punctuation.\n- `str2` (str): Another string that may contain letters, numbers, spaces and punctuation.\n\n#### Output\n- Returns `True` if both strings are anagrams of each other, `False` otherwise.\n",
+    "code": "import collections\ndef find_anagram(str1: str, str2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s1 = ''.join(c.lower() for c in str1 if c.isalpha())\n    s2 = ''.join(c.lower() for c in str2 if c.isalpha())\n    # Count the frequency of each character in each string\n    char_freq1 = collections.Counter(s1)\n    char_freq2 = collections.Counter(s2)\n    \n    # Check if both strings have the same number of characters and all characters occur with the same frequency in both strings\n    return len(s1) == len(s2) and char_freq1 == char_freq2",
+    "tests": [
+        "assert find_anagram('listen', 'silent') == True",
+        "assert find_anagram('hello', 'world') == False",
+        "assert find_anagram('A man, a plan, a canal: Panama', 'Panama canal: a plan a man a') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

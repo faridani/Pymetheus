@@ -1,0 +1,12 @@
+{
+    "title": "'Radix Sort (Medium)'",
+    "description": "Radix sort is a sorting algorithm that sorts data based on the number of digits (or length) of its representation in base-radix. Write a function `sort_array` that performs radix sort on an integer array.\n\n#### Function Signature\n```python\ndef sort_array(arr: List[int]) -> None:\n```\n\n#### Input\n- `arr` (List[int]): A list of non-negative integers.\n\n#### Output\n- Modifies the input list `arr` in place, sorting it using radix sort.\n",
+    "code": "def sort_array(arr: List[int]) -> None:\n    # Determine the maximum number of digits in the array\n    max_digits = len(str(max(arr))) + 1\n    # Create an empty list to hold count for each digit position\n    counts = [0] * 10\n    # Initialize output list with the same length as the input list\n    output = [0] * len(arr)\n    # For each digit position from right to left (least significant digit to most significant digit)\n    for i in range(max_digits):\n        # Reset all counters\n        counts[:] = [0] * 10\n        # Count the number of occurrences of each digit at the current position\n        for j in arr:\n            counts[j // (10 ** i) % 10] += 1\n        # Update all indices in output list with the sorted order of digits at the current position\n        k = 0\n        for j in range(1, 10):\n            counts[j] += counts[j - 1]\n        # Place each element of the input array into its correct position in the output list based on its digit value and the current position\n        for j in arr:\n            k = (j // (10 ** i)) % 10\n            output[counts[k] - 1] = j\n            counts[k] -= 1",
+    "tests": [
+        "assert sort_array([23, 45, 78, 91, 62, 46, 37, 54]) == [45, 37, 23, 62, 91, 54, 46, 78]",
+        "assert sort_array([10, 20, 30, 40]) == [10, 20, 30, 40]",
+        "assert sort_array([]) == []",
+        "assert sort_array([123, 999, 15, 768, 456]) == [15, 456, 123, 768, 999]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Words Checker - Medium",
+    "description": "Given a string, write a function `is_reverse_words` that checks if the words in the given string are reversed. The string may contain spaces, letters, digits, and punctuation.\n\n#### Function Signature\n```python\ndef is_reverse_words(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that contains one or more words, separated by spaces, and may contain additional characters such as punctuation.\n\n#### Output\n- Returns `True` if the words in the input string are reversed (read from right to left), `False` otherwise.",
+    "code": "import re\ndef is_reverse_words(s: str) -> bool:\n    # Remove non-word characters and split into words\n    s = re.sub('[^\\w]', ' ', s).strip()\n    words = s.split()\n    \n    # Check if the list of words is reversed\n    return words == words[::-1]",
+    "tests": [
+        "assert is_reverse_words(\"hello world\") == False",
+        "assert is_reverse_words(\"world hello\") == True",
+        "assert is_reverse_words(\"!a b c d, 123456789.\") == False",
+        "assert is_reverse_words(\".987654321 b a c !,\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

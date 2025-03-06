@@ -1,0 +1,14 @@
+{
+    "title": "Roman Numeral Conversion (Hard)",
+    "description": "Write a function `convert_to_roman` that converts an Arabic numeral to its equivalent Roman numeral representation.\n\n#### Function Signature\n```python\ndef convert_to_roman(arabic: int) -> str:\n```\n\n#### Input\n- `arabic` (int): An integer within the range 1 to 3999.\n\n#### Output\n- Returns a string representing the equivalent Roman numeral of the given Arabic number.\n",
+    "code": "def convert_to_roman(arabic: int) -> str:\n    roman_numerals = {'M': 1000, 'CM': 900, 'D': 500, 'CD': 400, 'C': 100, 'XC': 90, 'L': 50, 'XL': 40, 'X': 10, 'IX': 9, 'V': 5, 'IV': 4, 'I': 1}\n    roman_str = ''\n    for number, symbol in roman_numerals.items():\n        while arabic >= number:\n            roman_str += symbol\n            arabic -= number\n    return roman_str",
+    "tests": [
+        "assert convert_to_roman(1) == 'I'",
+        "assert convert_to_roman(3) == 'III'",
+        "assert convert_to_roman(4) == 'IV'",
+        "assert convert_to_roman(9) == 'IX'",
+        "assert convert_to_roman(58) == 'LVIII'",
+        "assert convert_to_roman(1994) == 'MCMXCIV'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

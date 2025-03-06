@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Island Hopper",
+    "description": "An island hopper is a sequence of islands that can be reached by traveling from one island to another, where each move consists of moving to an adjacent (horizontally or vertically) island. Given a 2D grid representing the islands and waters, write a function `island_hopper` that returns the maximum number of islands that can be visited in a single hop.\n\n#### Function Signature\n```python\ndef island_hopper(islands: list[list[str]]) -> int:\n``` \n\n#### Input\n- `islands` (list[list[str]]): A 2D grid where each cell is either 'water' or 'land'.\n\n#### Output\n- Returns the maximum number of islands that can be visited in a single hop.\n",
+    "code": "import heapq\ndef island_hopper(islands: list[list[str]]) -> int:\n    rows, cols = len(islands), len(islands[0])\n    queue = [(0, 0)]  # Start at the top-left corner (0, 0)\n    visited = {(0, 0)}\n    max_islands = 0\n    while queue:\n        x, y = heapq.heappop(queue)\n        if x > 0 and (x - 1, y) not in visited and islands[x-1][y] == 'land':\n            max_islands += 1\n            visited.add((x - 1, y))\n            heapq.heappush(queue, (x - 1, y))\n        if x < rows - 1 and (x + 1, y) not in visited and islands[x+1][y] == 'land':\n            max_islands += 1\n            visited.add((x + 1, y))\n            heapq.heappush(queue, (x + 1, y))\n        if y > 0 and (x, y - 1) not in visited and islands[x][y-1] == 'land':\n            max_islands += 1\n            visited.add((x, y - 1))\n            heapq.heappush(queue, (x, y - 1))\n        if y < cols - 1 and (x, y + 1) not in visited and islands[x][y+1] == 'land':\n            max_islands += 1\n            visited.add((x, y + 1))\n            heapq.heappush(queue, (x, y + 1))\n    return max_islands",
+    "tests": [
+        "assert island_hopper([['water', 'water', 'land'], ['water', 'land', 'water'], ['water', 'water', 'water']]) == 3",
+        "assert island_hopper([['water', 'land', 'water'], ['water', 'water', 'water'], ['water', 'water', 'water']]) == 2",
+        "assert island_hopper([['water' for _ in range(10)] for _ in range(10)]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

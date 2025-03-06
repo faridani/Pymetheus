@@ -1,0 +1,14 @@
+{
+    "title": "String Permutations",
+    "description": "Write a function `generate_permutations` that takes a string and returns all possible permutations of the characters in the string. For example, if the input is `\"abc\"`, the output should be `[(\"a\", \"b\", \"c\"), (\"a\", \"c\", \"b\"), (\"b\", \"a\", \"c\"), (\"b\", \"c\", \"a\"), (\"c\", \"a\", \"b\"), (\"c\", \"b\", \"a\")]`. Note that you don't need to worry about duplicates or order of permutations.\n\n#### Function Signature\n```\ndef generate_permutations(s: str) -> list:\n```\n\n#### Input\n- `s` (str): A string containing characters that may be repeated.\n\n#### Output\n- Returns a list of tuples, where each tuple contains all possible permutations of the input string's characters.",
+    "code": "import itertools\n\ndef generate_permutations(s: str) -> list:\n    return list(itertools.permutations(s))",
+    "tests": [
+        "assert generate_permutations('abc') == [('a', 'b', 'c'), ('a', 'c', 'b'), ('b', 'a', 'c'), ('b', 'c', 'a'), ('c', 'a', 'b'), ('c', 'b', 'a')]",
+        "assert generate_permutations('ab') == [('a', 'b'), ('a', 'b'), ('b', 'a')]",
+        "assert generate_permutations('a') == [('a',)]",
+        "assert generate_permutations('') == [()]"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

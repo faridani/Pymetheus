@@ -1,0 +1,12 @@
+{
+    "title": "Squares of Fibonacci Numbers Sequence Summation (Medium)",
+    "description": "Write a function `fibonacci_sum` that takes an integer `n` as input and returns the sum of squares of the first `n` Fibonacci numbers.\r\n\r\n#### Function Signature\r\n```\ndef fibonacci_sum(n: int) -> int:\r\n```  \r\n\r\n#### Input\r\n- `n` (int): An integer representing the number of terms to be included in the summation from the Fibonacci sequence.\r\n\r\n#### Output\r\n- Returns an integer, the sum of squares of the first `n` Fibonacci numbers.",
+    "code": "def fibonacci_sum(n: int) -> int:\r\n    # Initialize the first two terms of the Fibonacci sequence\r\n    a, b = 0, 1\r\n    sum_of_squares = 0\r\n\r\n    # Iterate n times to get the first n terms in the Fibonacci sequence and calculate their squares' sum\r\n    for _ in range(n):\r\n        c = a + b\r\n        sum_of_squares += (a**2 + b**2)\r\n        a, b = b, c\r\n    return sum_of_squares",
+    "tests": [
+        "assert fibonacci_sum(1) == 0",
+        "assert fibonacci_sum(2) == 1",
+        "assert fibonacci_sum(5) == 56",
+        "assert fibonacci_sum(10) == 3845"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

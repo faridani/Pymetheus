@@ -1,0 +1,13 @@
+{
+    "title": "Highway Construction",
+    "description": "A highway construction company has a list of tasks to complete. Each task requires a certain number of workers and hours. Write a function that determines the minimum number of days required to complete all tasks, given the total number of workers and hours available.\n\n#### Function Signature\n```python\ndef min_days(tasks: list[tuple[int, int]], total_workers: int, total_hours: int) -> int:\n```\n\n#### Input\n- `tasks` (list[tuple[int, int]]): A list of tasks where each task is a tuple containing the number of workers and hours required.\n- `total_workers` (int): The total number of workers available.\n- `total_hours` (int): The total number of hours available.\n\n#### Output\n- Returns the minimum number of days required to complete all tasks.",
+    "code": "import heapq\n\ndef min_days(tasks: list[tuple[int, int]], total_workers: int, total_hours: int) -> int:\n    # Create a priority queue for tasks that require more workers and hours\n    pq = [(workers + hours, (workers, hours)) for workers, hours in tasks]\n    heapq.heapify(pq)\n    days = 0\n    while pq:\n        time_left, task = pq[0]\n        if time_left > total_hours:\n            return -1\n        workers, hours = task\n        # Add the number of workers and hours used for this task to the priority queue\n        heapq.heappush(pq, (workers + hours, task))\n        days += 1\n    return days",
+    "tests": [
+        "assert min_days([(3, 8), (2, 4)], 5, 12) == 2",
+        "assert min_days([(2, 6), (4, 10), (3, 7)], 7, 20) == 3",
+        "assert min_days([(1, 1)], 1, 2) == 1"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

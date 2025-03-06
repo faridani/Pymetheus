@@ -1,0 +1,12 @@
+{
+    "title": "Maximum Island Area (Hard)",
+    "description": "You are given a grid of size n x m, where each cell contains either 0 or 1. A cell with value 1 represents a landmass, while a cell with value 0 represents water. Write a function `max_island_area` that returns the maximum area of an island in the grid. An island is defined as a connected group of cells (horizontally and vertically adjacent) where each cell contains a landmass.\n\n#### Function Signature\n```python\ndef max_island_area(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D grid of size n x m, where each cell contains either 0 or 1.\n\n#### Output\n- Returns the maximum area of an island in the grid.",
+    "code": "import copy\ndef max_island_area(grid: list[list[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n    n, m = len(grid), len(grid[0])\n    visited = [[False for _ in range(m)] for _ in range(n)]\n    \n    def dfs(i: int, j: int) -> int:\n        if i < 0 or i >= n or j < 0 or j >= m or grid[i][j] == 0 or visited[i][j]:\n            return 0\n        visited[i][j] = True\n        area = 1\n        \n        for x, y in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            ni, nj = i + x, j + y\n            if 0 <= ni < n and 0 <= nj < m and grid[ni][nj] == 1:\n                area += dfs(ni, nj)\n        \n        return area\n    \n    max_area = 0\n    for i in range(n):\n        for j in range(m):\n            if grid[i][j] == 1 and not visited[i][j]:\n                max_area = max(max_area, dfs(i, j))\n    \n    return max_area",
+    "tests": [
+        "assert max_island_area([[0, 0], [1, 0]]) == 1",
+        "assert max_island_area([[0, 0], [0, 1]]) == 1",
+        "assert max_island_area([[0, 0], [1, 1]]) == 2",
+        "assert max_island_area([[1, 1], [1, 1]]) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

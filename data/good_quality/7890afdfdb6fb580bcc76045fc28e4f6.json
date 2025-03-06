@@ -1,0 +1,20 @@
+{
+    "title": "Euler's Totient Function (Hard)",
+    "description": "The Euler's totient function counts the positive integers not greater than n that are relatively prime to n. It is denoted by \u03c6(n) or `totient(n)`. For example, \u03c6(9) = 6 because the numbers 1, 2, 4, 5, 7, and 8 are relatively prime to 9.\n\n#### Function Signature\n```python\ndef totient(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer for which we want to compute the Euler's totient function.\n\n#### Output\n- Returns the value of Euler's totient function \u03c6(n).",
+    "code": "",
+    "\ndef totient(n: int) -> int:\n    result = n\n    p = 2\n    while p * p <= n:\n        if n % p == 0:\n            while n % (p * p) == 0:\n                n //= p * p\n            while n % p == 0:\n                n //= p\n            result -= result // p\n        p += 1\n    if n > 1:\n        result -= result // n\n    return result": "",
+    "tests": [
+        "assert totient(2) == 1",
+        "assert totient(3) == 2",
+        "assert totient(4) == 2",
+        "assert totient(5) == 4",
+        "assert totient(6) == 2",
+        "assert totient(7) == 6",
+        "assert totient(8) == 4",
+        "assert totient(9) == 6",
+        "assert totient(10) == 4"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "'Is it a Leap Year?' (Easy)",
+    "description": "Write a function `is_leap_year` that checks if a given year is a leap year or not. \n\n#### Function Signature\n```python\ndef is_leap_year(y: int) -> bool:\n``` \n\n#### Input\n- `y` (int): A positive integer representing a year.\n\n#### Output\n- Returns `True` if the given year is a leap year, `False` otherwise.",
+    "code": "def is_leap_year(y: int) -> bool:\n    # Check if the year is divisible by 4\n    if y % 4 != 0:\n        return False\n    # If the year is divisible by 100, check if it is also divisible by 400\n    if (y % 100 == 0) and (y % 400 == 0):\n        return True\n    else:\n        return True",
+    "tests": [
+        "assert is_leap_year(1900) == False",
+        "assert is_leap_year(2000) == True",
+        "assert is_leap_year(2016) == True",
+        "assert is_leap_year(1984) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

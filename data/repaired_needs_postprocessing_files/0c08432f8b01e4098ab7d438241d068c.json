@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Given two strings, write a function `are_anagrams` that determines whether the letters in one string can be rearranged to form the other string. Ignore case and spaces.\n\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n``` \n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the two input strings can be rearranged to form each other, `False` otherwise.",
+    "code": "import collections\ndef are_anagrams(s1: str, s2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s1 = ''.join(char for char in s1 if char.isalpha()).lower()\n    s2 = ''.join(char for char in s2 if char.isalpha()).lower()\n    \n    # Count the frequency of each letter in both strings\n    freq1 = collections.Counter(s1)\n    freq2 = collections.Counter(s2)\n    \n    # Compare the frequencies\n    return freq1 == freq2",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('Two tigers', 'Registette') == True",
+        "assert are_anagrams('A man, a plan, a canal, Panama', 'Amana panama! nanap a mana plap a dan a tanoc a lamab') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

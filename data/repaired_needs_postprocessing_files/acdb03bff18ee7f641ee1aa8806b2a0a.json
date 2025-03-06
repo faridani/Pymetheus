@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection",
+    "description": "Given two strings, write a function `anagram_checker` that checks if the strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef anagram_checker(str1: str, str2: str) -> bool:\n``` \n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain letters (uppercase or lowercase), numbers, and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n\n**Hint**: Remember to remove spaces and convert both strings to the same case before comparing them.\n",
+    "code": "def anagram_checker(str1: str, str2: str) -> bool:\n    # Remove spaces and convert both strings to lowercase\n    str1 = ''.join([char for char in str1.lower() if char.isalnum()]).replace(' ', '')\n    str2 = ''.join([char for char in str2.lower() if char.isalnum()]).replace(' ', '')\n    # If the two strings have different lengths, they cannot be anagrams\n    if len(str1) != len(str2):\n        return False\n    # Sort and compare both strings\n    return sorted(str1) == sorted(str2)",
+    "tests": [
+        "assert anagram_checker('Listen', 'Silent') == True",
+        "assert anagram_checker('Love', 'Heart') == True",
+        "assert anagram_checker('Hello', 'world') == False",
+        "assert anagram_checker('Python', 'thopy') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

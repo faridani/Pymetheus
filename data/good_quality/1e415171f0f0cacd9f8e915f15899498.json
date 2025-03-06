@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Tree Traversal",
+    "description": "A tree is a data structure where each node has at most two children (i.e., left child and right child). In this problem, we are given a tree with n nodes, labeled from 1 to n. The root of the tree is node 1. Each node i in the tree has an integer value vi. We want to find the maximum sum of values that can be obtained by traversing the tree once, starting at any node.\n\n#### Function Signature\n```\ndef max_sum_tree_traversal(root: int) -> int:\n```\n\n#### Input\n- `root` (int): The root node of the tree.\n\n#### Output\n- Returns the maximum sum of values that can be obtained by traversing the tree once, starting at the given root node.",
+    "code": "\ndef max_sum_tree_traversal(root: int) -> int:\n    # Define a helper function to calculate the value of each node\n    def calc_value(node: int) -> int:\n        if node == 0:\n            return 0\n        left = 1 if node % 2 == 0 else -1\n        right = 1 if (node + 1) % 2 == 0 else -1\n        return left * min(1, calc_value(node // 2)) + right * min(1, calc_value((node + 1) // 2))\n    \n    # Calculate the value of each node in the tree\n    values = [calc_value(i) for i in range(root, root + (2 ** (root.bit_length() - 1)))]\n    \n    # Return the maximum sum of values that can be obtained by traversing the tree once, starting at the given root node.\n    return max(values)",
+    "tests": [
+        "assert max_sum_tree_traversal(3) == 4",
+        "assert max_sum_tree_traversal(5) == 7"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

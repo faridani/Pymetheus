@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Digit Sum and Product",
+    "description": "A simple programming problem. Given a string of digits, find the sum and product of all the digits present.\n\n#### Function Signature\n```python\ndef digit_sum_product(s: str) -> dict:\n``` \n\n#### Input\n- `s` (str): A string consisting of only numeric characters.\n\n#### Output\n- Returns a dictionary with two keys, 'sum' and 'product', representing the sum and product of all digits in the input string respectively.",
+    "code": "def digit_sum_product(s: str) -> dict:\n    total_sum = 0\n    total_product = 1\n    for char in s:\n        num = int(char)\n        total_sum += num\n        total_product *= num\n    return {'sum': total_sum, 'product': total_product}",
+    "tests": [
+        "assert digit_sum_product(\"345\") == {\"sum\": 12, \"product\": 60}",
+        "assert digit_sum_product(\"987\") == {\"sum\": 24, \"product\": 504}",
+        "assert digit_sum_product(\"1111\") == {\"sum\": 4, \"product\": 1}",
+        "assert digit_sum_product(\"12345\") == {\"sum\": 15, \"product\": 120}"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "'Reverse Words Checker (Easy)'",
+    "description": "Given a string, write a function `is_reverse_words` that checks if the given string reads the same forwards and backwards by comparing each word individually. However, unlike a palindrome, the spaces and punctuation around the words may be different.\n\n#### Function Signature\n```python\ndef is_reverse_words(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that contains words separated by spaces, commas, periods, and other common punctuation.\n\n#### Output\n- Returns `True` if the input string reads the same forwards and backwards when each word is considered individually, ignoring spaces and punctuation around them. For example, 'Hello, World!' and 'World!, Hello' should be considered as the same.",
+    "code": "def is_reverse_words(s: str) -> bool:\n    # Remove non-alphanumeric characters and split into words\n    words = [word.translate({ord(c): None for c in string.punctuation}).strip() for word in s.split()]\n    # Reverse the order of words\n    reversed_words = words[::-1]\n    # Check if the list of words is the same as the reversed list of words\n    return words == reversed_words",
+    "tests": [
+        "assert is_reverse_words('Hello, World!') == True",
+        "assert is_reverse_words('World!, Hello') == True",
+        "assert is_reverse_words('hello, world') == False",
+        "assert is_reverse_words('A man, a plan, a canal, Panama') != True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

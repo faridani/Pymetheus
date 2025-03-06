@@ -1,0 +1,12 @@
+{
+    "title": "Fibonacci Tree Pruning",
+    "description": "A Fibonacci tree is a binary tree where each node has two children and their values are consecutive numbers in the Fibonacci sequence (1, 2, 3, 5, 8, ...). Write a function `prune_tree` that takes the root of a Fibonacci tree as input and returns the pruned tree. The pruned tree should only contain nodes with values greater than or equal to the given threshold `k`. The function should return the pruned tree's root.\n\n#### Function Signature\n```python\ndef prune_tree(root: int, k: int) -> int:\n```",
+    "code": "def prune_tree(root: int, k: int) -> int:\n    if root is None:\n        return None\n    if root < k:\n        return None  # Prune the left subtree\n    else:\n        root.left = prune_tree(root.left, k)\n        root.right = prune_tree(root.right, k)\n\n    if root == 0 or (root < k and root.left is None):\n        return None  # No nodes with value greater than or equal to `k` in the right subtree\n\n    return root",
+    "tests": [
+        "assert prune_tree(13, 3) == 8",
+        "assert prune_tree(21, 5) == 13",
+        "assert prune_tree(0, 1) is None",
+        "assert prune_tree(-2, -1) is None"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

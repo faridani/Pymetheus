@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Word Ladder",
+    "description": "Given two words, beginWord and endWord, and a wordList containing a set of valid words, determine if it's possible to transform beginWord into endWord by changing only one letter at a time. Each intermediate word formed must be present in the wordList. Return the shortest transformation sequence as a list of words.\n\n#### Function Signature\n```python\ndef find_shortest_path(beginWord: str, endWord: str, wordList: list[str]) -> list[str]:```\n\n#### Input\n- `beginWord` (str): The starting word.\n- `endWord` (str): The target word.\n- `wordList` (list[str]): A list of valid words.\n\n#### Output\n- Returns a list of strings representing the shortest transformation sequence, including beginWord and endWord. If no such path exists, returns an empty list.",
+    "code": "from collections import deque\ndef find_shortest_path(beginWord: str, endWord: str, wordList: list[str]) -> list[str]:\n    if endWord not in wordList:\n        return []\n    wordList = set(wordList)\n    queue = deque([(beginWord, [beginWord])])\n    while queue:\n        current_word, path = queue.popleft()\n        if current_word == endWord:\n            return path\n        for i in range(len(current_word)):\n            for char in 'abcdefghijklmnopqrstuvwxyz':\n                next_word = current_word[:i] + char + current_word[i+1:]\n                if next_word in wordList and next_word not in path:\n                    queue.append((next_word, path + [next_word]))\n    return []",
+    "tests": [
+        "assert find_shortest_path(\"hit\", \"cog\", ['hot', 'dot', 'dog', 'lot', 'log', 'cog']) == ['hit', 'hot', 'dot', 'dog', 'cog']",
+        "assert find_shortest_path(\"hit\", \"cog\", ['hot', 'dot', 'dog', 'lot', 'log']) == []"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

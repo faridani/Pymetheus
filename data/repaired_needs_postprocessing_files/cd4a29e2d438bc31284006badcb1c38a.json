@@ -1,0 +1,12 @@
+{
+    "title": "'Reverse a Linked List' - Medium",
+    "description": "A linked list can be reversed by rearranging its nodes so that the first node becomes the last, and the last node becomes the first. Write a function `reverse_linked_list` that takes the head of a linked list and returns a new linked list with the nodes arranged in reverse order.\n\n#### Function Signature\n```python\ndef reverse_linked_list(head: ListNode) -> ListNode:\n```\n\n#### Input\n- `head` (ListNode): A reference to the first node of a linked list.\n\n#### Output\n- Returns a new linked list with its nodes arranged in reverse order, or `None` if the input is an empty list.\n",
+    "code": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_linked_list(head: ListNode) -> ListNode:\n    # Edge case: if the list is empty\n    if not head or not head.next:\n        return None\n    \n    # Reverse the rest of the linked list recursively\n    tail = reverse_linked_list(head.next)\n    \n    # Connect the current node to the tail, and move the tail to the next step\n    head.next.next = head\n    head.next = None\n    return tail",
+    "tests": [
+        "assert reverse_linked_list(ListNode(1, ListNode(2, ListNode(3)))) == ListNode(3, ListNode(2, ListNode(1)))",
+        "assert reverse_linked_list(None) is None",
+        "assert reverse_linked_list(ListNode(1)) == ListNode(1)",
+        "assert reverse_linked_list(ListNode(1, ListNode(2))) == ListNode(2, ListNode(1))"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

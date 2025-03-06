@@ -1,0 +1,12 @@
+{
+    "title": "Maximum Sum of Non-Adjacent Elements",
+    "description": "You are given an array of positive integers, where each integer represents a unit cost. You want to pick some elements such that the total sum of picked elements is maximized. However, there's a constraint: for any two adjacent elements you can only pick one of them. Write a function `max_sum` that returns the maximum sum of non-adjacent elements.\n\n#### Function Signature\n```python\ndef max_sum(costs: list[int]) -> int:\n```\n\n#### Input\n- `costs` (list[int]): A list of positive integers representing unit costs.\n\n#### Output\n- Returns the maximum sum of non-adjacent elements.",
+    "code": "def max_sum(costs: list[int]) -> int:\n    if not costs:\n        return 0\n    n = len(costs)\n    dp = [0] * (n + 1)\n\n    for i in range(n):\n        dp[i + 1] = max(dp[i], dp[i - 1] + costs[i])\n\n    return dp[-1]",
+    "tests": [
+        "assert max_sum([2, 9, 6]) == 12",
+        "assert max_sum([0, 0, 5, 3, 4, 10]) == 13",
+        "assert max_sum([]) == 0",
+        "assert max_sum([1, 2]) == 2"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

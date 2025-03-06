@@ -1,10 +1,10 @@
 from repair_json import repair_json_string
 import os
 import json
-from cleanup import validate_response_content, correct_json_using_deepseek_r1
+from cleanup import validate_response_content, correct_json_using_LLM
 import random
 import os 
-from helpers import clear_terminal
+from helpers import clear_terminal, save_response_to_file
 clear_terminal()
 
 import demjson3
@@ -60,11 +60,10 @@ def fix_json(malformed_str: str) -> str:
             # Return None if repair fails
             return None
 
-directory = 'needs_postprocessing'
+directory = '../data/needs_postprocessing'
 success, fail = 0,0 
 files = list(os.listdir(directory))
 
-random.shuffle(files)
 for filename in files:
     
     if filename.endswith('.json'):
@@ -73,29 +72,27 @@ for filename in files:
             file_content = file.read()
             # file_content = fix_json(file_content)
             repaired_content = repair_json_string(str(json.loads(file_content)))
-            repaired_content = correct_json_using_deepseek_r1(repaired_content)
-            
-            # Logic 
-            start_index = repaired_content.find('{')
-            end_index = repaired_content.rfind('}')
-            if start_index != -1 and end_index != -1:
-                repaired_content = repaired_content[start_index:end_index + 1]
-            # End 
+            repaired_content = correct_json_using_LLM(repaired_content)
+            repaired_content += "}"
+           
             print("----"*40)
             print(repaired_content)
             print("----"*40)
             try:
-                print(json.loads(repaired_content, strict=False))
-            except Exception as e:
+                response = json.loads(repaired_content, strict=False)
+            except json.decoder.JSONDecodeError as e:
                 fail = fail + 1
-                print(f"Invalid JSON: {e}")
-                continue
-            
-            
-            is_valid, _ = validate_response_content(repaired_content)
+                print(f"Success: {success}, Fail: {fail}")      
+                continue  
+            response = json.loads(repaired_content)    
+            is_valid, _ = validate_response_content(json.dumps(response["response"]))
             print("----"*40)
             if is_valid:
                 success = success + 1
+                outputjson = response["response"]
+                outputjson['model'] = response["model"]+"-repaired by Llama 3"
+                
+                save_response_to_file(outputjson, directory="repaired_needs_postprocessing_files")
             else:
                 fail = fail + 1
                 print("\n\n\n\n\n-----------DEBUGGING FILE----------------")
@@ -103,4 +100,6 @@ for filename in files:
                 print("-----------END OF DEBUGGING FILE----------------\n\n\n\n")
                 
                 fail = fail + 1
+            print(f"Success: {success}, Fail: {fail}")
+
 print(f"Success: {success}, Fail: {fail}")

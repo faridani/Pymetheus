@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Balanced Parentheses",
+    "description": "Given a string containing only parentheses characters '(' and ')', write a function `is_balanced` that checks if the parentheses are balanced. A string with balanced parentheses has the following properties:\n*  Every opening parenthesis '(' has a corresponding closing parenthesis ')'.\n* The closing parenthesis ')' occurs after its corresponding opening parenthesis '('.\n\n#### Function Signature\n```python\ndef is_balanced(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string containing only parentheses characters '(' and ')'.\n\n#### Output\n- Returns `True` if the parentheses in the input string are balanced, `False` otherwise.\n",
+    "code": "def is_balanced(s: str) -> bool:\n    stack = []\n    for char in s:\n        if char == '(': \n            stack.append(char)\n        elif char == ')':\n            if not stack or stack.pop() != '(': \n                return False\n    return len(stack) == 0\n",
+    "tests": [
+        "assert is_balanced('(())') == True",
+        "assert is_balanced('(()())') == True",
+        "assert is_balanced(')()(') == False",
+        "assert is_balanced('((()))') == True",
+        "assert is_balanced('(()') == False"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

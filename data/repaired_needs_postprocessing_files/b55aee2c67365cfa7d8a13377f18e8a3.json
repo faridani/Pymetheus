@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Maximum Product Subarray",
+    "description": "You are given an array of integers `nums`. Write a function `max_product_subarray` that returns the maximum product of any subarray within this array.\n\n#### Function Signature\n```python\ndef max_product_subarray(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums`: A list of integers where each integer is a number in the range `[1, 10^5]`.\n\n#### Output\n- The maximum product of any subarray within the given array.\n",
+    "code": "from typing import List\n\ndef max_product_subarray(nums: List[int]) -> int:\n    if not nums:\n        return 0\n    # Initialize variables to track the maximum and minimum product ending at the current position\n    max_ending_here = min_ending_here = result = nums[0]\n    for i in range(1, len(nums)):\n        if nums[i] < 0:\n            # Swap max_ending_here and min_ending_here when a negative number is encountered\n            max_ending_here, min_ending_here = min_ending_here, max_ending_here\n        \n        # Update the maximum or minimum product ending at the current position\n        max_ending_here = max(nums[i], max_ending_here * nums[i])\n        min_ending_here = min(nums[i], min_ending_here * nums[i])\n        \n        # Update the overall result\n        result = max(result, max_ending_here)\n    return result",
+    "tests": [
+        "assert max_product_subarray([2, 3, -2, 4]) == 6",
+        "assert max_product_subarray([-1, 0, 1, 2, -3, 4]) == 24",
+        "assert max_product_subarray([1, 2, 3]) == 6",
+        "assert max_product_subarray([-1, -2, -3, -4]) == -24"
+    ],
+    "model": "command-r7b:latest-repaired by Llama 3"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Given two strings `s1` and `s2`, return the minimum window substring of `s1` that contains all characters from `s2`. If no such window exists, return an empty string.\n\n#### Function Signature\n```python\ndef min_window_substring(s1: str, s2: str) -> str:\n```\n\n#### Input\n- `s1` (str): The main string.\n- `s2` (str): The target string that contains characters to be found in `s1`.\n\n#### Output\n- Returns the minimum window substring of `s1` that contains all characters from `s2`. If no such window exists, return an empty string.",
+    "code": "\nimport collections\n\ndef min_window_substring(s1: str, s2: str) -> str:\n    if not s2 or len(s2) > len(s1):\n        return ''\n\n    s2_count = collections.Counter(s2)\n    left, right = 0, 0\n    formed = 0\n    window_counts = {}\n\n    while right < len(s1):\n        character = s1[right]\n        window_counts[character] = window_counts.get(character, 0) + 1\n\n        while left <= right and all(window_counts[character] >= s2_count[character] for character in s2_count):\n            character = s1[left]\n            if formed == len(s2_count):\n                return s1[left:right+1]\n\n            window_counts[character] -= 1\n            if window_counts[character] == 0:\n                del window_counts[character]\n            left += 1\n\n        right += 1\n\n    return ''",
+    "tests": [
+        "assert min_window_substring(\"ADOBECODEBANC\", \"ABC\") == 'BANC'",
+        "assert min_window_substring('ABC', 'AB') == 'AB'",
+        "assert min_window_substring('', 'ABC') == ''"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

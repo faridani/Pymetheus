@@ -1,0 +1,12 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Given two strings, write a function `are_anagrams` that checks if they are anagrams of each other. Anagrams are words or phrases that contain the same letters in the same frequency.\n\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing lowercase English alphabets only.\n- `s2` (str): Another string containing lowercase English alphabets only.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def count_chars(s: str) -> dict:\n    char_count = {char: 0 for char in string.ascii_lowercase}\n    for char in s:\n        if char in char_count:\n            char_count[char] += 1\n    return char_count\ndef are_anagrams(s1: str, s2: str) -> bool:\n    if len(s1) != len(s2):\n        return False\n    char_count1 = count_chars(s1)\n    char_count2 = count_chars(s2)\n    for key in char_count1.keys():\n        if char_count1[key] != char_count2[key]:\n            return False\n    return True",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('abcd', 'dcba') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('A man, a plan, a canal, Panama', 'Palindrome checker') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

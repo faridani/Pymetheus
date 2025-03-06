@@ -1,0 +1,15 @@
+{
+    "title": "Sudoku Solver (Medium)",
+    "description": "A Sudoku puzzle consists of a 9x9 grid, divided into nine 3x3 sub-grids. Some numbers are filled in, while others are blank. The goal is to fill in all the blank cells with the numbers from 1 to 9 such that each row, column, and sub-grid contains each number exactly once. Write a function `sudoku_solver` that takes a Sudoku puzzle as input and returns whether it can be solved or not.\n\n#### Function Signature\n```python\ndef sudoku_solver(grid: list[list[int]]) -> bool:\n```\n\n#### Input\n- `grid` (list of lists of int): A 9x9 grid, where each cell contains either a number from 1 to 9 or the value 0 representing an empty cell.\n\n#### Output\n- Returns `True` if the input Sudoku puzzle can be solved, and `False` otherwise.",
+    "code": "",
+    "\nimport copy\n\ndef sudoku_solver(grid: list[list[int]]) -> bool:\n    for i in range(9):\n        for j in range(9):\n            if grid[i][j] == 0:\n                for num in range(1, 10):\n                    if is_valid(grid, i, j, num):\n                        grid[i][j] = num\n                        if sudoku_solver_helper(grid):\n                            return True\n                        grid[i][j] = 0\n                return False\n\n    return True\n\n\ndef is_valid(grid: list[list[int]], row: int, col: int, num: int) -> bool:\n    # Check the row\n    for i in range(9):\n        if grid[row][i] == num:\n            return False\n\n    # Check the column\n    for i in range(9):\n        if grid[i][col] == num:\n            return False\n\n    # Check the sub-grid\n    start_row = row // 3 * 3\n    start_col = col // 3 * 3\n    for i in range(3):\n        for j in range(3):\n            if grid[start_row + i][start_col + j] == num:\n                return False\n\n    return True\n\n\ndef sudoku_solver_helper(grid: list[list[int]]) -> bool:\n    for i in range(9):\n        for j in range(9):\n            if grid[i][j] == 0:\n                for num in range(1, 10):\n                    if is_valid(grid, i, j, num):\n                        grid[i][j] = num\n                        if sudoku_solver_helper(grid):\n                            return True\n                        grid[i][j] = 0\n                return False\n\n    return True": "",
+    "tests": [
+        "assert sudoku_solver([[5,3,4,6,7,8,9,1,2], [6,7,8,9,1,2,3,4,5], [1,9,8,3,4,2,5,6,7], [8,5,9,7,6,3,4,2,1], [4,2,6,8,5,7,9,3,1], [7,1,3,9,2,4,8,5,6], [9,6,1,5,3,7,2,8,4], [2,8,4,1,9,5,6,3,7], [3,4,7,2,1,6,5,9,8]]) == True",
+        "assert sudoku_solver([[0,0,0],[0,0,0],[0,0,0]]) == False",
+        "assert sudoku_solver([[0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,8,0,0,0,0,0,0,6], [0,0,0,0,0,3,0,9,5], [0,0,0,0,7,0,0,2,0], [0,0,0,0,5,8,0,0,4], [0,0,0,0,0,9,1,0,0], [0,0,3,0,6,0,8,0,0], [0,0,0,2,0,0,0,7,5]]) == True",
+        "assert sudoku_solver([[0,0,0],[0,0,0],[0,0,1]]) == False"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

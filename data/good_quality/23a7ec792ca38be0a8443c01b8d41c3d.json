@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Minimal Spanning Tree",
+    "description": "Given a weighted undirected graph represented as an adjacency list, find the minimal spanning tree using Kruskal's algorithm.\n\n#### Function Signature\n```python\ndef mst(graph: dict) -> tuple:\n```\n\n#### Input\n- `graph` (dict): A dictionary representing the adjacency list of the graph. Each key is a node and its corresponding value is another dictionary where keys are neighboring nodes and values are edge weights.\n\nExample: For a graph with nodes 'A', 'B', 'C' and edges ('A', 'B'): 2, ('A', 'C'): 3, ('B', 'C'): 1), the input would be `{{'B': 2, 'C': 3}, {'A': 2}, {'A': 3, 'B': 1}}.\n\n#### Output\n- Returns a tuple where the first element is the total weight of the minimal spanning tree and the second element is a list of edges in the minimal spanning tree. Each edge is represented as a tuple containing the nodes it connects.",
+    "code": "\nimport heapq\nfrom collections import defaultdict\n\ndef mst(graph: dict) -> tuple:\n    # Initialize the result variables\n    total_weight = 0\n    edges_in_mst = []\n\n    # Create a set to keep track of visited nodes\n    visited = set()\n\n    # Create a priority queue to store edges\n    pq = []\n    for node in graph:\n        for neighbor, weight in graph[node].items():\n            heapq.heappush(pq, (weight, node, neighbor))\n\n    # While there are still edges in the priority queue\n    while pq:\n        # Get the edge with the smallest weight\n        weight, node1, node2 = heapq.heappop(pq)\n\n        # If both nodes have not been visited before\n        if node1 not in visited or node2 not in visited:\n            # Add the edge to the minimal spanning tree\n            edges_in_mst.append((node1, node2))\n            total_weight += weight\n\n            # Mark both nodes as visited\n            visited.add(node1)\n            visited.add(node2)\n\n    return total_weight, tuple(edges_in_mst)",
+    "tests": [
+        "assert mst({{'A': {('B', 2), ('C', 3)}, 'B': {('A', 2), ('C', 1)} , 'C': {('A', 3), ('B', 1)}}}) == (4, (('A', 'B'), ('A', 'C')))",
+        "assert mst({{'A': {('B', 5), ('C', 7)}, 'B': {('A', 5), ('D', 2)}, 'C': {('A', 7), ('D', 3)}, 'D': {('B', 2), ('C', 3)}}}) == (10, (('A', 'B'), ('A', 'C'), ('B', 'D')))"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

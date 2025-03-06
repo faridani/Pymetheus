@@ -1,0 +1,11 @@
+{
+    "title": "Fibonacci Sequence Generator (Easy)",
+    "description": "Write a function `fibonacci` that generates the Fibonacci sequence up to a given number. The Fibonacci sequence is a series of numbers where a number is the addition of the last two numbers, starting with 0 and 1.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> list:\n```\n\n#### Input\n- `n` (int): The maximum number in the Fibonacci sequence to generate.\n\n#### Output\n- Returns a list of integers representing the generated Fibonacci sequence up to and including `n`.",
+    "code": "def fibonacci(n: int) -> list:\n    fib_sequence = [0, 1]\n    while len(fib_sequence) < n:\n        next_number = fib_sequence[-1] + fib_sequence[-2]\n        fib_sequence.append(next_number)\n    return fib_sequence",
+    "tests": [
+        "assert fibonacci(5) == [0, 1, 1, 2, 3, 5]",
+        "assert fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]",
+        "assert fibonacci(20) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

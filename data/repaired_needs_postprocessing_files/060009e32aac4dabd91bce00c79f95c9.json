@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Given two strings `s1` and `s2`, write a function `min_window_substring` that finds the minimum window substring of `s1` that contains all characters of `s2`. The characters in `s2` must appear in the same order as they do in `s2`. Note: You can assume that both strings are not null and have length at least 1.\\",
+    "code": "from collections import defaultdict\n\ndef min_window_substring(s1: str, s2: str) -> str:\n    if len(s2) > len(s1):\n        return \"\"\n    freq = defaultdict(int)\n    for char in s2:\n        freq[char] += 1\n    min_window = \"\"\n    min_len = float('inf')\n    left = 0\n    formed_chars = 0\n    for right in range(len(s1)):\n        if s1[right] in freq:\n            freq[s1[right]] += 1\n            if freq[s1[right]] <= freq[char]:\n                formed_chars += 1\n        while left <= right and formed_chars == len(s2):\n            if right - left + 1 < min_len:\n                min_window = s1[left:right+1]\n                min_len = right - left + 1\n            if s1[left] in freq:\n                freq[s1[left]] -= 1\n                if freq[s1[left]] < freq[char]:\n                    formed_chars -= 1\n            left += 1\n    return min_window",
+    "tests": [
+        "assert min_window_substring(\"abcabdcadbcdeefcccbcad\", \"abc\") == \"abc\"",
+        "assert min_window_substring(\"abcdedcda\", \"dc\") == \"dc\"",
+        "assert min_window_substring(\"aabbcdcd\", \"bb\") == \"bb\"",
+        "assert min_window_substring(\"abcd\", \"def\") == \"\""
+    ],
+    "model": "llama3.1:8b-repaired by Llama 3"
+}

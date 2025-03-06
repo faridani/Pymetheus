@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Elegant Even Fibonacci Numbers\", \"description\": \"Write a function that takes an integer n and returns the nth even Fibonacci number.\\n\\n#### Function Signature\\n```python\\ndef even_fibonacci(n: int) -> int:\\n```\\n\\n#### Input\\n- `n` (int): A positive integer indicating which even Fibonacci number to return.\\n\\n#### Output\\n- Returns the nth even Fibonacci number.\", \"code\": \"\", \"\\nimport math\\n\\ndef even_fibonacci(n: int) -> int:\\n    if n <= 0:\\n        raise ValueError(\": \"must be a positive integer\", \"n)\": \"last_two = fib_sequence[i-1:i+1]\\n        fib_sequence.append(sum(last_two))\\n        \\n    return [num for num in fib_sequence if num % 2 == 0][n-1]\", \", \": \"ests\", \"assert even_fibonacci(3) == 2\": \"assert even_fibonacci(5) == 8\", \"assert even_fibonacci(7) == 16\": \"assert even_fibonacci(-1) == AssertionError\"}"
+}

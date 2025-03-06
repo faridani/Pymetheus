@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Sum of Positive Numbers",
+    "description": "You are given a list/array of integers. Write a function that calculates and returns the sum of all positive numbers in the input list.\n\n#### Function Signature\n```python\ndef positive_sum(arr):\n```\n\n#### Input\n- `arr` (list): A list of integers.\n\n#### Output\n- Returns an integer representing the sum of all positive numbers in the input list. If the list is empty or contains only negative numbers, return 0.",
+    "code": "def positive_sum(arr):\n    return sum(x for x in arr if x > 0)",
+    "tests": [
+        "assert positive_sum([1,2,3,4,5]) == 15",
+        "assert positive_sum([1,-2,3,4,5]) == 13",
+        "assert positive_sum([]) == 0",
+        "assert positive_sum([-1,-2,-3,-4,-5]) == 0"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

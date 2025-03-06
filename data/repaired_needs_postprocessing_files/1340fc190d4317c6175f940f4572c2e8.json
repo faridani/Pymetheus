@@ -1,0 +1,11 @@
+{
+    "title": "Prime Factorization of Large Numbers",
+    "description": "Given a large number, write a function to find its prime factorization. The input will be an integer between 10^9 and 10^18.\n\n#### Function Signature\n```python\ndef prime_factorization(n: int) -> list[int]:\n```\n\n#### Input\n- `n` (int): An integer between 10^9 and 10^18.\n\n#### Output\n- Returns a list of integers, representing the prime factors of the input number in ascending order.",
+    "code": "def prime_factorization(n: int) -> list[int]:\n    i = 2\n    factors = []\n    while i * i <= n:\n        if n % i:\n            i += 1\n        else:\n            n //= i\n            factors.append(i)\n    if n > 1:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factorization(36) == [2, 2, 3, 3]",
+        "assert prime_factorization(784598307) == [13, 7773, 3807]",
+        "assert prime_factorization(1000000000000000000) == [2, 2, 3, 3, 459679593]"
+    ],
+    "model": "mistral-nemo:latest-repaired by Llama 3"
+}

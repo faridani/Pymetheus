@@ -1,0 +1,12 @@
+{
+    "title": "Most Frequent Substring Finder (Hard)",
+    "description": "Given a string `s`, find the most frequent non-empty substring and its frequency. If multiple substrings have the same highest frequency, return any one of them.\n\n#### Function Signature\n```pythonndef most_frequent_substring(s: str) -> (str, int):\n```\n\n#### Input\n- `s` (str): A string containing only lowercase letters. The length of the string is at least 1 and at most 200 characters.\n\n#### Output\n- Returns a tuple `(substring, frequency)` where:\n  - `substring`: a non-empty substring that occurs most frequently in the input string,\nor any one if there are multiple. The returned substring should be as short as possible among those with the highest frequency.\n  - `frequency`: an integer representing how many times the `substring` occurs in the input string.\n\n#### Examples\n- For `s = 'ababc'`, the function should return `('a', 2)` because 'a' appears twice and is the most frequent substring of length greater than 1. If we consider substrings of length less than or equal to 1, then all single characters would be considered.\n- For `s = 'aaabb'`, the function should return `('a', 3)`.\\",
+    "code": "from collections import Counter\ndef most_frequent_substring(s: str) -> (str, int):\n    n = len(s)\n    substr_freq = Counter()\n    for length in range(1, n + 1):\n        for start in range(n - length + 1):\n            substr = s[start:start+length]\n            if all(char == 'a' for char in substr):\n                continue\n            substr_freq[substr] += 1\n    most_common, freq = substr_freq.most_common(1)[0]\n    return (most_common, freq)\n",
+    "tests": [
+        "assert most_frequent_substring('ababc') == ('a', 3)",
+        "assert most_frequent_substring('aaabb') == ('aaa', 1)",
+        "assert most_frequent_substring('hello world') == ('l', 3)",
+        "assert most_frequent_substring('mississippi') == ('ssi', 2)"
+    ],
+    "model": "phi3:14b-repaired by Llama 3"
+}

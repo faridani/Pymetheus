@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Array Rotation",
+    "description": "Given an array of integers and an integer k, write a function that rotates the array to the right by k steps.```python\ndef rotate_array(arr: list[int], k: int) -> list[int]:    if not arr:        return []    k %= len(arr)    return arr[-k:] + arr[:-k]``` - An array of integers. - The number of steps to rotate the array to the right. - Returns the rotated array.",
+    "code": "def rotate_array(arr: list[int], k: int) -> list[int]:\n    if not arr:\n        return []\n    k %= len(arr)\n    return arr[-k:] + arr[:-k]\n",
+    "tests": [
+        "assert rotate_array([1, 2, 3, 4, 5], 2) == [4, 5, 1, 2, 3]",
+        "assert rotate_array([-1, -2, -3, -4, -5], 1) == [-4, -5, -1, -2, -3]",
+        "assert rotate_array([], 0) == []",
+        "assert rotate_array([1, 2, 3], 5) == [3, 1, 2]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

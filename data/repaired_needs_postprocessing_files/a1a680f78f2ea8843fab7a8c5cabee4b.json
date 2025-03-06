@@ -1,0 +1,12 @@
+{
+    "title": "'String Rotation Checker (Hard)'",
+    "description": "A string rotation is a concatenation of two or more words (or characters) such that the resulting sequence reads the same as any shift to the right of one position (ie, a single character was rotated). Write a function `check_rotation` that checks if two strings are rotations of each other.\r\n\r\n#### Function Signature\r\n```\ndef check_rotation(s1: str, s2: str) -> bool:\r\n``` \r\n\r\n#### Input\r\n- `s1`, `s2` (str): Two strings that may contain letters and spaces only.\r\n\r\n#### Output\r\n- Returns `True` if the two input strings are rotations of each other, `False` otherwise.",
+    "code": "def check_rotation(s1: str, s2: str) -> bool:\r\n    # Ensure both strings have the same length\r\n    if len(s1) != len(s2):\r\n        return False\r\n    # Concatenate the two strings and compare with each possible rotation of the second string\r\n    for i in range(len(s2)):\r\n        rotated_s2 = s2[i:] + s2[:i]\r\n        if rotated_s2 == s1:\r\n            return True\r\n    return False",
+    "tests": [
+        "assert check_rotation(\"waterbottle\", \"erbottlewa\") == True",
+        "assert check_rotation(\"timeflieslikeanarrow\", \"arrowfliessliketime\") == True",
+        "assert check_rotation(\"hello world\", \"worldhello\") == False",
+        "assert check_rotation(\"test\", \"tester\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

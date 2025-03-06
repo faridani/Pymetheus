@@ -1,0 +1,11 @@
+{
+    "title": "Hard: String Transformation",
+    "description": "You are given a string `s` consisting of lowercase English letters. You can perform the following operation on the string any number of times:- Choose an index `i` (0 <= `i` < len(s) - 1) and swap the characters at indices `i` and `i + 1`. Your task is to determine the minimum number of operations required to transform the string `s` into a lexicographically sorted string. A string is lexicographically sorted if its characters are in alphabetical order.#### Function Signature```pythonndef min_operations(s: str) -> int:````#### Input- `s` (str): A string consisting of lowercase English letters.#### Output- Returns the minimum number of operations required to transform the string into a lexicographically sorted string.",
+    "code": "def min_operations(s: str) -> int:\n    n = len(s)\n    operations = 0\n    for i in range(n - 1):\n        if s[i] > s[i + 1]:\n            operations += 1\n            s = s[:i] + s[i+1:i:-1] + s[i+2:] # Swap adjacent characters\n    return operations",
+    "tests": [
+        "assert min_operations('cba') == 2",
+        "assert min_operations('abcde') == 0",
+        "assert min_operations('zyxwvutsrqponmlkjihgfedcba') == 25"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

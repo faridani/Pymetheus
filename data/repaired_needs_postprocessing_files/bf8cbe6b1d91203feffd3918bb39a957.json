@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Prime Factorization",
+    "description": "Prime factorization of a number is the decomposition of that number into prime numbers, where each number is repeated as many times as it appears in the factorization. For example, 12 = 2^2 * 3, so its prime factorization is [2, 2, 3]. Write a function `prime_factorize` that takes an integer `n` and returns its prime factorization.\r\n\r\n#### Function Signature\r\n```python\ndef prime_factorize(n: int) -> list:\r```\r\r\n#### Input\r\n- `n` (int): A positive integer.\r\r\n#### Output\r\n- Returns the prime factorization of the input number as a list of integers.\r",
+    "code": "import math\ndef prime_factorize(n: int) -> list:\r    def is_prime(p: int) -> bool:\r        if p <= 1:\r            return False\r        for i in range(2, int(math.sqrt(p)) + 1):\r            if p % i == 0:\r                return False\r        return True\r    factorization = []\r    for p in range(2, n + 1):\r        if is_prime(p) and n % p == 0:\r            while n % p == 0:\r                n //= p\r            factorization.append(p)\r    return factorization",
+    "tests": [
+        "assert prime_factorize(12) == [2, 2, 3]",
+        "assert prime_factorize(20) == [2, 2, 5]",
+        "assert prime_factorize(15) == [3, 5]",
+        "assert prime_factorize(25) == [5, 5]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

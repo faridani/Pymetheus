@@ -1,0 +1,12 @@
+{
+    "title": "Elegant Tree",
+    "description": "Write a function `check_tree` that takes as input the height of a tree and returns 1 if it's an elegant tree, 0 otherwise. An elegant tree is defined to be one where its height is not divisible by any integer other than 1 or itself.\n\n#### Function Signature\n```python\ndef check_tree(height: int) -> int:\n``` \n\n#### Input\n- `height` (int): The height of the tree.\n\n#### Output\n- Returns 1 if the tree is elegant, 0 otherwise.\n",
+    "code": "import math\ndef check_tree(height: int) -> int:\n    for i in range(2, height):\n        if height % i == 0 and i != height and i != 1:\n            return 0\n    return 1\n",
+    "tests": [
+        "assert check_tree(5) == 1",
+        "assert check_tree(6) == 0",
+        "assert check_tree(7) == 1",
+        "assert check_tree(8) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

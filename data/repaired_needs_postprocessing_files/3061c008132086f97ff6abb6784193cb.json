@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Matrix Rotation",
+    "description": "You are given a 2D square matrix of size N x N. Write a function `rotate_matrix` that rotates the matrix by 90 degrees clockwise.\n\n#### Function Signature\n```python\ndef rotate_matrix(matrix: list[list[int]]) -> None:\n```\n\n#### Input\n- `matrix`: A list of lists representing the N x N square matrix.\n\n#### Output\n- Modifies the input matrix in-place, rotating it by 90 degrees clockwise. ",
+    "code": "def rotate_matrix(matrix: list[list[int]]) -> None:\n    N = len(matrix)\n    for i in range(N // 2):\n        for j in range(i, N - i - 1):\n            temp = matrix[i][j]\n            matrix[i][j] = matrix[N - 1 - j][i]\n            matrix[N - 1 - j][i] = matrix[N - 1 - i][N - 1 - j]\n            matrix[N - 1 - i][N - 1 - j] = matrix[j][N - 1 - i]\n            matrix[j][N - 1 - i] = temp\n",
+    "tests": [
+        "mat = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]; rotate_matrix(mat); assert mat == [[7, 4, 1], [8, 5, 2], [9, 6, 3]]",
+        "mat = [[1, 2], [3, 4]]; rotate_matrix(mat); assert mat == [[3, 1], [4, 2]]"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

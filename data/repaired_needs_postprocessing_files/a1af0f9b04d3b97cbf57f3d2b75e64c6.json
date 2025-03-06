@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Maximum Subarray Sum After Removing One Element",
+    "description": "Given a list of integers, find the maximum sum that can be obtained by removing exactly one element from the list and then calculating the sum of the remaining elements. The goal is to maximize this sum after removal.\n\n#### Function Signature\n```python\ndef max_subarray_sum_after_removal(nums: List[int]) -> int:\n``` \n\n#### Input\n- `nums` (List[int]): A list of integers.\n\n#### Output\n- An integer representing the maximum sum that can be obtained by removing exactly one element and calculating the sum of the remaining elements.",
+    "code": "from typing import List\ndef max_subarray_sum_after_removal(nums: List[int]) -> int:\n    if not nums:\n        return 0\n    total_sum = sum(nums)\n    max_without_first = max(subsum for num in nums[:-1] for subsum in [total_sum - num, total_sum]\n                             if num != min(nums))\n    max_with_last = max(subsum for num in nums[1:] for subsum in [total_sum - num, total_sum]\n                        if num != min(nums))\n    return max(max_without_first, max_with_last)",
+    "tests": [
+        "assert max_subarray_sum_after_removal([3, 6, 2, 5]) == 13",
+        "assert max_subarray_sum_after_removal([-8, -9, -10]) == 0",
+        "assert max_subarray_sum_after_removal([4, -1, 7, -2, -3, 5]) == 16",
+        "assert max_subarray_sum_after_removal([1, 2, 3, 4, 5]) == 12"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

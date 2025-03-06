@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Sum of Squares",
+    "description": "Given an integer n, return the sum of squares from 1 to n.\n\n#### Function Signature\n```python\ndef sum_of_squares(n: int) -> int:\n```\n\n#### Input\n- `n` (int): An integer for which you need to calculate the sum of squares.\n\n#### Output\n- Returns an integer representing the sum of squares from 1 to n.",
+    "code": "def sum_of_squares(n: int) -> int:\n    total = 0\n    for i in range(1, n+1):\n        total += i ** 2\n    return total",
+    "tests": [
+        "assert sum_of_squares(3) == 14",
+        "assert sum_of_squares(5) == 55",
+        "assert sum_of_squares(10) == 385"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

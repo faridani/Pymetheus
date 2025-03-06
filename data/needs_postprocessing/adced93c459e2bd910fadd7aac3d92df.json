@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Hard: Prime Factorization\", \"code\": \"\", \"def prime_factors(n):\\n    i = 2\\n    factors = []\\n    while i * i <= n:\\n        if n % i:\\n            i += 1\\n        else:\\n            n //= i\\n            factors.append(i)\\n    if n > 1:\\n        factors.append(n)\\n    return set(factors)\\n\\ndef is_prime_factorization_valid(n, expected_factors):\\n    return set(expected_factors) == prime_factors(n)\\n\\nprint(is_prime_factorization_valid(600851475143, [29, 211, 37]))\": \"\", \"tests\": [\"assert is_prime_factorization_valid(13195, [5, 7, 13195]) == True\", \"assert is_prime_factorization_valid(2, []) == False\", \"assert is_prime_factorization_valid(10, [2, 5]) == True\"]}"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Prime Factorization",
+    "description": "Given an integer, write a function to return its prime factorization. For example, given the number 100, the output should be [2, 2, 5, 5]. The input will be between 1 and 10^12.",
+    "code": "def prime_factors(n: int) -> List[int]:\n    i = 2\n    factors = []\n    while i * i <= n:\n        if n % i:\n            i += 1\n        else:\n            n //= i\n            factors.append(i)\n    if n > 1:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factors(100) == [2, 2, 5, 5]",
+        "assert prime_factors(17) == [17]",
+        "assert prime_factors(1) == []",
+        "assert prime_factors(10**12 - 1) == [10**6 - 1]"
+    ],
+    "model": "codegeex4:9b-repaired by Llama 3"
+}

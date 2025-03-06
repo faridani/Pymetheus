@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Finding the Maximum Element",
+    "description": "Write a function `find_maximum` that takes a list of integers as input and returns the maximum element in the list. You can assume the list will always contain at least one element.\n\n#### Function Signature\n```python\ndef find_maximum(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum integer in the input list.",
+    "code": "def find_maximum(nums: list[int]) -> int:\n    max_num = nums[0]\n    for num in nums:\n        if num > max_num:\n            max_num = num\n    return max_num",
+    "tests": [
+        "assert find_maximum([1, 5, 2, 8, 3]) == 8",
+        "assert find_maximum([-5, -2, -8, -1]) == -1",
+        "assert find_maximum([10]) == 10"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

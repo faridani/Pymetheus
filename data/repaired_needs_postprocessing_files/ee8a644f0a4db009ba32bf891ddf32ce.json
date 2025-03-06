@@ -1,0 +1,10 @@
+{
+    "title": "Kmp Algorithm for Pattern Searching (Medium)",
+    "description": "Write a function `kmp` that implements the KMP algorithm to search for a pattern within a larger text. The KMP algorithm allows us to avoid comparing the entire pattern with the text, making it more efficient for long patterns.\n\n#### Function Signature\n```python\ndef kmp(text: str, pattern: str) -> list[int]:\n```\n\n#### Input\n- `text` (str): The larger text that we are searching within.\n- `pattern` (str): The specific pattern to search for within the text.\n\n#### Output\n- A list of integers representing the starting indices in the text where the pattern is found. If the pattern is not found, return an empty list.\n",
+    "code": "def kmp(text: str, pattern: str) -> list[int]:\n    # Precompute the prefix function\n    prefix = [0] * len(pattern)\n    for i in range(1, len(pattern)):\n        j = prefix[i - 1]\n        while j > 0 and pattern[j] != pattern[i]:\n            j = prefix[j - 1]\n        if pattern[j] == pattern[i]:\n            prefix[i] = j + 1\n    # Initialize result and position variables\n    result, i, j = [], 0, 0\n    # Search for the pattern within the text\n    while i < len(text):\n        if text[i] == pattern[j]:\n            i, j = i + 1, j + 1\n        elif j > 0:\n            j = prefix[j - 1]\n        elif j == 0:\n            i += 1\n    # Return the indices where the pattern was found\n    return result + [i - len(pattern)]",
+    "tests": [
+        "assert kmp('BABAABAA', 'ABA') == [0, 3, 6]",
+        "assert kmp('ACCCGGTACC', 'CGT') == [1, 5]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

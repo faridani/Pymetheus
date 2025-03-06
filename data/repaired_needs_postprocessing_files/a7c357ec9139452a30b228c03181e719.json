@@ -1,0 +1,10 @@
+{
+    "title": "Harmonious Melodies",
+    "description": "Write a function that generates all harmonious melodies for a given set of notes. A harmonious melody is defined as a sequence of notes where each note is either the same, one semitone up, or one semitone down from the previous note.\n\n#### Function Signature\n```python\ndef harmonious_melodies(notes: list[str]) -> list[list[str]]:\n```\n\n#### Input\n- `notes` (list[str]): A list of notes where each note is represented as a string ('A', 'B', 'C', 'D', 'E', 'F', 'G') and sharp (#) or flat (b).\n\n#### Output\n- Returns a list of harmonious melodies, where each melody is a list of notes.\n",
+    "code": "import re\nfrom typing import List\ndef harmonious_melodies(notes: List[str]) -> List[List[str]]:\n    # Define the note names and their intervals from A to G sharp and flat\n    note_names = ['A', 'A#', 'Bb', 'B', 'C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#', 'Ab']\n    intervals = {note: i for i, note in enumerate(note_names)}\n\n    # Initialize the result list and the current melody\n    melodies = [[notes[0]]]\n    current_melody = [notes[0]]\n    current_note = notes[0]\n\n    # Iterate over the rest of the notes\n    for note in notes[1:]:\n        # Check if the current note is harmonious with the previous one\n        if (re.match(r'^' + current_note + r'[#b]$', note) and\n                intervals[note] - intervals[current_note] in (-1, 0, 1)):\n            current_melody.append(note)\n        else:\n            # Start a new melody if the current note is not harmonious with the previous one\n            melodies.append([note])\n            current_melody = [note]\n        current_note = note\n\n    # Add the last melody to the result list\n    melodies.append(current_melody)\n\n    return melodies",
+    "tests": [
+        "assert harmonious_melodies(['A', 'A#', 'Bb', 'C', 'D', 'E']) == [['A', 'A#', 'Bb'], ['C', 'D', 'E']]",
+        "assert harmonious_melodies(['G', 'Ab', 'B', 'C', 'Db', 'D']) == [['G', 'Ab', 'B'], ['C', 'Db', 'D']]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

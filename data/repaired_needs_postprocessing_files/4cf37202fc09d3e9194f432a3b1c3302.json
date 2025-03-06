@@ -1,0 +1,12 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "Given two strings, write a function `find_anagrams` that checks if the given strings are anagrams of each other. Anagram is a word or phrase formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings containing only lowercase English alphabets.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.",
+    "code": "def find_anagrams(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Create a dictionary to count characters in s1 and initialize an empty dictionary for s2\n    char_count = {ch: 0 for ch in string.ascii_lowercase}\n    for char in s1:\n        char_count[char] += 1\n    \n    # Iterate through the characters of s2 and update the count in the dictionary\n    for char in s2:\n        if char in char_count:\n            char_count[char] -= 1\n        else:\n            return False\n    \n    # If all characters are accounted for and no counts are negative, then the strings are anagrams of each other\n    return all(val == 0 for val in char_count.values())",
+    "tests": [
+        "assert find_anagrams('listen', 'silent') == True",
+        "assert find_anagrams('hello', 'world') == False",
+        "assert find_anagrams('eat', 'tea') == True",
+        "assert find_anagrams('racecar', 'carrerace') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

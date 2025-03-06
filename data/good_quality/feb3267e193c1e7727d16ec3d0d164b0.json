@@ -1,0 +1,13 @@
+{
+    "title": "Maximal Rectangle",
+    "description": "Given an M*N grid of 0s and 1s, find the maximal area rectangle (i.e., the sum of all elements within a given rectangle) that can be inscribed in the grid. \n\n#### Function Signature\n```python\ndef max_rectangle_area(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D list representing an M*N grid of 0s and 1s.\n\n#### Output\n- Returns the maximal area rectangle that can be inscribed in the grid.",
+    "code": "from typing import List\n\ndef max_rectangle_area(grid: List[List[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n    \n    m, n = len(grid), len(grid[0])\n    height = [0] * n\n    max_area = 0\n    \n    for row in grid:\n        for j, cell in enumerate(row):\n            height[j] = 1 if cell else 0\n        \n        stack = []\n        top_index = -1\n        for i in range(n + 1):\n            while len(stack) > 0 and (i == n or height[stack[-1]] >= height[i]):\n                top_index = stack.pop()\n                width = i - top_index - 1\n                max_area = max(max_area, width * height[top_index])\n            stack.append(i)\n        \n        for i in range(top_index + 1):\n            while len(stack) > 0 and (i == n or height[stack[-1]] >= height[i]):\n                top_index = stack.pop()\n                width = i - top_index - 1\n                max_area = max(max_area, width * height[top_index])\n        \n    return max_area",
+    "tests": [
+        "assert max_rectangle_area([[0,1,1,0,0],[1,1,1,1,1],[0,1,0,0,0]]) == 6",
+        "assert max_rectangle_area([[1,0,1,0],[1,0,1,0],[0,0,0,1]]) == 2",
+        "assert max_rectangle_area([[0,0,0,0],[0,1,1,1],[1,1,1,1]]) == 9"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

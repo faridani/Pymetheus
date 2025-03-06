@@ -82,9 +82,10 @@ def cleanup_response(response_content_raw):
             return response_content_raw
     
 
-def correct_json_using_deepseek_r1(s: str) -> str:
-    content = "create a valid json string out of this string. Try to maintain the title, description, code, test keys and make it imidiately json parsable   " + s
-    response = ollama.chat(model="deepseek-r1:32b", messages=[{
+def correct_json_using_LLM(s: str, model = "llama3:latest") -> str:
+    content = "Below I have provided an invalid json, please correct the formatting of a json to a valid json string. Try to maintain the following field and pay extra attention to multi line strings that need to become one lines. Please keep the title, description, code, tests keys and make it imidiately json parsable. Just give me the json without saying anything else in the reponse as I need to immediately use it and any extra character will break JSON parsing. For example your output should immediately start with { \"model\" and you should not do \\\" for the keys in the JSON. also \"response\": {\"title\" should return another object and not just a string. below is the JSON string that I'd like you to correct  " + s
+    print(content)
+    response = ollama.chat(model=model, messages=[{
         'role': 'user',
         'content': content 
     }])

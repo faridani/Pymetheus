@@ -1,0 +1,11 @@
+{
+    "title": "Reverse Integer",
+    "description": "Write a function `reverse_integer` that takes an integer as input and returns the reversed integer.\n\n#### Function Signature\n```python\ndef reverse_integer(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): An non-negative integer.\n\n#### Output\n- Returns the reversed integer as an integer.",
+    "code": "def reverse_integer(n: int) -> int:\n    # Ensure the input is a non-negative integer\n    if n < 0: raise ValueError('Input must be non-negative')\n    # Convert the number to string\n    s = str(n)\n    # Reverse the string and convert back to integer\n    return int(s[::-1])",
+    "tests": [
+        "assert reverse_integer(123) == 321",
+        "assert reverse_integer(456) == 654",
+        "assert reverse_integer(-123) == ValueError('Input must be non-negative')"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "An anagram is a word or phrase that is formed by rearranging the letters of another word or phrase. Write a function `are_anagrams` that checks if two given strings are anagrams.\n\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n``` \n\n#### Input\n- `s1` (str): A string containing only lowercase alphabets.\n- `s2` (str): A string containing only lowercase alphabets.\n\n#### Output\n- Returns `True` if the two input strings are anagrams, `False` otherwise.",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Ensure both strings have same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Count the frequency of each character in string 1\n    count_dict = {char: s1.count(char) for char in string.ascii_lowercase}\n\n    # Increment count of characters in string 2 that appear in string 1\n    for char in s2:\n        if char in count_dict:\n            count_dict[char] -= 1\n        else:\n            return False\n    \n    # Check if all counts are zero\n    for _, value in count_dict.items():\n        if value != 0:\n            return False\n    \n    # If no mismatch found, the strings are anagrams\n    return True",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('act', 'cat') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

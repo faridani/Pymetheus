@@ -1,0 +1,12 @@
+{
+    "title": "Palindromic Subsequence Finder (Hard)",
+    "description": "Given a string of characters, find the longest contiguous subsequence that forms a palindrome.\n\n#### Function Signature\n```python\ndef find_longest_palindrome(s: str) -> str:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the longest contiguous palindrome as a string. If there is no palindrome subsequence, returns an empty string.",
+    "code": "def find_longest_palindrome(s: str) -> str:\n    # Initialize variables for storing the longest palindrome and its starting index\n    max_length = 0\n    start = 0\n    for i in range(len(s)):\n        # Find all possible center points of the palindrome\n        for j in range(i, len(s)):\n            # Check if the current substring is a palindrome\n            if s[i:j+1] == s[i:j+1][::-1]:\n                # Update the length and starting index if this palindrome is longer than the current longest one\n                if (j - i + 1) > max_length:\n                    max_length = j - i + 1\n                    start = i\n    # Return the found palindrome as a string\n    return s[start:start+max_length]",
+    "tests": [
+        "assert find_longest_palindrome('racecar') == 'racecar'",
+        "assert find_longest_palindrome('A man, a plan, a canal, Panama') == 'amanaplanacanalpanama'",
+        "assert find_longest_palindrome('mom') == 'mom'",
+        "assert find_longest_palindrome('abcbacdba') == 'bacdba'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

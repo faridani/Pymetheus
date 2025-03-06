@@ -1,0 +1,11 @@
+{
+    "title": "Reverse Words in a String (Hard)",
+    "description": "Write a function `reverse_words` that takes a string as input and returns the same string but with the words reversed in order.\n#### Function Signature\n```python\ndef reverse_words(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string that contains one or more words separated by spaces, commas, periods, question marks, exclamation marks, or other delimiters.\n\n#### Output\n- Returns a string where the order of words is reversed but each word remains in its original form, including capitalization and punctuation.",
+    "code": "def reverse_words(s: str) -> str:\n    s = ''.join(char for char in s if char.isalpha() or char.isspace() or char in [',', '. ', '!', '?'])\n    words = s.split()\n    reversed_words = words[::-1]\n    return ' '.join(reversed_words) + s[s.rfind(','):]",
+    "tests": [
+        "assert reverse_words('hello world') == 'world hello'",
+        "assert reverse_words('apple, banana, cherry') == 'cherry, banana, apple'",
+        "assert reverse_words('.Hi there !') == '!there Hi .'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

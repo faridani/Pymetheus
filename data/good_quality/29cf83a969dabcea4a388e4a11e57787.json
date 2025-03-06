@@ -1,0 +1,14 @@
+{
+    "title": "Maximal Rectangle",
+    "description": "Given a 2D binary matrix filled with 0's and 1's, return the size of the largest rectangle that can be formed by rotating the matrix. The matrix will always contain only 0's and 1's.\n\n#### Function Signature\n\n```python\ndef maximal_rectangle(matrix: list[list[int]]) -> int:\n```\n\n#### Input\n\n- `matrix` (list[list[int]]): A 2D binary matrix filled with 0's and 1's, where each row is a list of integers and the length of all rows is equal.\n\n#### Output\n\n- Returns an integer representing the size of the largest rectangle that can be formed by rotating the matrix.",
+    "code": "\nimport copy\nfrom collections import defaultdict\n\ndef maximal_rectangle(matrix: list[list[int]]) -> int:\n    if not matrix or not matrix[0]:\n        return 0\n\n    m, n = len(matrix), len(matrix[0])\n    result = 0\n    hist = defaultdict(int)\n\n    for i in range(m):\n        for j in range(n):\n            hist[j] = 1 if matrix[i][j] else -1\n        stack = []\n        max_area = 0\n        height = 0\n        for j in range(n + 1):\n            if not stack or hist[stack[-1]] < hist[j]:\n                if stack:\n                    max_area = max(max_area, min((n - k) * height for k, height in ((k,) for k in stack)) or 0)\n                    stack.pop()\n                    height += hist[stack[-1]]\n            else:\n                stack.append(j)\n        result = max(result, max_area)\n\n    return result",
+    "tests": [
+        "assert maximal_rectangle([[]]) == 0",
+        "assert maximal_rectangle([[0]]) == 0",
+        "assert maximal_rectangle([[1], [0], [0]]) == 2",
+        "assert maximal_rectangle([[0, 0, 0, 0], [1, 1, 1, 1], [1, 1, 1, 1], [0, 0, 0, 0]]) == 16"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

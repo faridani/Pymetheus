@@ -1,0 +1,13 @@
+{
+    "title": "Sum of Squares",
+    "description": "Given a list of integers, write a function `sum_of_squares` that returns the sum of squares of all the elements in the list.\n\n#### Function Signature\n```python\ndef sum_of_squares(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns the sum of squares of all the elements in the input list.",
+    "code": "def sum_of_squares(nums: list[int]) -> int:\n    return sum(num ** 2 for num in nums)",
+    "tests": [
+        "assert sum_of_squares([1, 2, 3, 4, 5]) == 55",
+        "assert sum_of_squares([-1, -2, -3]) == 14",
+        "assert sum_of_squares([]) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

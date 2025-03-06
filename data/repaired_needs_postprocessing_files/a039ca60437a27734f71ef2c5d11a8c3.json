@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Divisible by Two",
+    "description": "Write a function `is_divisible_by_two` that checks if a given integer is divisible by 2. The function should return `True` if the input integer is divisible by 2, and `False` otherwise.\n#### Function Signature\n```python\ndef is_divisible_by_two(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): An integer that may be positive or negative.\n#### Output\n- Returns `True` if the input integer is divisible by 2, `False` otherwise.\n",
+    "code": "def is_divisible_by_two(n: int) -> bool:\n    return n % 2 == 0",
+    "tests": [
+        "assert is_divisible_by_two(10) == True",
+        "assert is_divisible_by_two(-4) == True",
+        "assert is_divisible_by_two(3) == False",
+        "assert is_divisible_by_two(100000) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

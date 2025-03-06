@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Path Sum II",
+    "description": "Given a 2D binary grid, which contains zeros and ones. We define an increasing path from top to bottom as follows: A value of 1 in the cell means that two adjacent cells must have values either both 0 or both 1. The goal is to find the length of the longest increasing path from top to bottom.\n\n#### Function Signature\n```python\ndef longestIncreasingPath(grid: List[List[int]]) -> int:\n```\n\n#### Input\n- `grid` (List[List[int]]): A 2D binary grid, where each cell can have a value of either 0 or 1.\n\n#### Output\n- Returns the length of the longest increasing path from top to bottom.",
+    "code": "from typing import List\ndef longestIncreasingPath(grid: List[List[int]]) -> int:\n    if not grid:\n        return 0\n    rows, cols = len(grid), len(grid[0])\n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n    memo = [[-1 for _ in range(cols)] for _ in range(rows)]\n\n    def dfs(r: int, c: int) -> int:\n        if memo[r][c] != -1:\n            return memo[r][c]\n        val = grid[r][c]\n        longest = 0\n        for dr, dc in directions:\n            nr, nc = r + dr, c + dc\n            if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == (val + 1) % 2:\n                longest = max(longest, dfs(nr, nc))\n        memo[r][c] = 1 + longest\n        return memo[r][c]\n\n    max_path_length = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 0:\n                max_path_length = max(max_path_length, dfs(r, c))\n    return max_path_length",
+    "tests": [
+        "assert longestIncreasingPath([[0]]) == 1",
+        "assert longestIncreasingPath([[0], [1]]) == 2",
+        "assert longestIncreasingPath([[0, 0], [1, 0]]) == 3",
+        "assert longestIncreasingPath([[0, 0], [1, 1], [0, 0]]) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

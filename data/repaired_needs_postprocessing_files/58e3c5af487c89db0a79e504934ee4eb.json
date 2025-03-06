@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "Write a function `find_anagrams` that finds all anagrams of a given string within a list of strings. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n#### Function Signature\n```python\ndef find_anagrams(target: str, words: List[str]) -> List[str]:\n``` \n\n#### Input\n- `target` (str): The string you are looking for anagrams of.\n- `words` (List[str]): A list of strings to search for anagrams within.\n\n#### Output\n- Returns a list of strings that are anagrams of the target string. If no anagram is found, return an empty list.\n",
+    "code": "def find_anagrams(target: str, words: List[str]) -> List[str]:\n    # Create a frequency map for the target string\n    freq_map = {char: target.count(char) for char in set(target)}\n    \n    # Initialize an empty list to store the results\n    results = []\n    \n    # Iterate through all words in the input list\n    for word in words:\n        # Create a frequency map for the current word\n        word_freq_map = {char: word.count(char) for char in set(word)}\n        \n        # Check if the two frequency maps are equal (ignoring order)\n        if freq_map == {key: val for key, val in word_freq_map.items()}: \n            # If they are, add the current word to the results list\n            results.append(word)\n    \n    return results",
+    "tests": [
+        "assert find_anagrams(\"listen\", [\"enlist\", \"silent\", \"net\", \"hill\"] ) == [\"enlist\", \"silent\"]",
+        "assert find_anagrams(\"elves\", [\"eleven\", \"level\"] ) == [\"eleven\"]",
+        "assert find_anagrams(\"racecar\", [\"A man, a plan, a canal, Panama\", \"No 'x' in Nixon\"] ) == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

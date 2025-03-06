@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Solver (Hard)",
+    "description": "An anagram is a word or phrase that consists of the same letters as another, typically arranged differently. Write a function `find_anagrams` that finds all anagrams of a given string.\n#### Function Signature\n```python\ndef find_anagrams(word: str) -> List[str]:\n``` \n\n#### Input\n- `word` (str): A non-empty string that may contain letters, numbers, spaces and punctuation.\n#### Output\n- Returns a list of strings that are anagrams of the input word. If no anagram exists, return an empty list.\n",
+    "code": "import itertools\ndef find_anagrams(word: str) -> List[str]:\n    # Remove non-alphabetic characters and convert to lowercase\n    word = word.translate(str.maketrans('', '', string.punctuation)).lower()\n    # Generate all possible permutations of the remaining characters\n    perms = [''.join(perm) for perm in itertools.permutations(word)]\n    # Filter out anagrams by comparing to the input word using sorted characters\n    return [word for word in perms if sorted(word) == sorted(word)]",
+    "tests": [
+        "assert find_anagrams(\"listen\") == [\"silent\", \"enlist\"]",
+        "assert find_anagrams(\"hello\") == []",
+        "assert find_anagrams(\"practice\") == [\"active\", \"contest\", \"experiment\", \"peculate\", \"speculate\"]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

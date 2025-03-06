@@ -1,0 +1,10 @@
+{
+    "title": "Easy: Reversing the Maze",
+    "description": "A maze is a grid of cells where some cells are connected by edges. A path through the maze consists of alternating horizontal and vertical steps, with no cell being visited more than once.\n\nWrite a function `solve_maze` that takes a 2D list of strings representing the maze and a starting point `(x, y)` as input, and returns the shortest path from the starting point to the exit if there is one. If there is no path, return an empty string.\n\n#### Function Signature\n```python\ndef solve_maze(maze: List[List[str]], x: int, y: int) -> str:\n``` \n\n#### Input\n- `maze` (List[List[str]]): A 2D list of strings where each cell can be either a space (`' '`) or an obstacle (`'*'`).\n- `x` (int), `y` (int): The coordinates of the starting point in the maze.\n\n#### Output\n- Returns the shortest path from the starting point to the exit if there is one. If there is no path, returns an empty string.",
+    "code": "",
+    "tests": [
+        "assert solve_maze([[' ', ' ', '*'], [' ', '*', ' '], [' ', ' ', ' ']], 0, 0) == 'HV'",
+        "assert solve_maze([[' ', ' ', ' '], ['* ', ' ', '*'], [' ', ' ', ' ']], 1, 1) == ''"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

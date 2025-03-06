@@ -1,0 +1,12 @@
+{
+    "title": "Palindromic Substrings Counting",
+    "description": "Given a string, count the number of palindromic substrings that it contains. A palindromic string is one that reads the same forwards and backwards.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the number of palindromic substrings in the input string.",
+    "code": "import collections\ndef count_palindromes(s: str) -> int:\n    # Initialize a counter to store unique counts of odd and even length palindromes\n    odd, even = 0, 0\n    # Iterate through all possible substrings of the input string (with overlaps)\n    for i in range(len(s)):\n        for j in range(i + 1, len(s) + 1):\n            # Check if the current substring is a palindrome\n            if s[i:j] == s[i:j][::-1]:\n                # If the length of the substring is odd, increment the counter for odd palindromes\n                if (j - i) % 2 == 1:\n                    odd += 1\n                # If the length of the substring is even, increment the counter for even palindromes\n                else:\n                    even += 1\n            # Increment the count of total substrings processed\n            n = j - i + 1\n    # Compute the total number of palindromic substrings\n    return (odd * (odd - 1)) // 2 + even",
+    "tests": [
+        "assert count_palindromes('babad') == 1",
+        "assert count_palindromes('cbbd') == 3",
+        "assert count_palindromes('abcd') == 1",
+        "assert count_palindromes('acbaba') == 5"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

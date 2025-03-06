@@ -1,0 +1,15 @@
+{
+    "title": "Coin Change Problem (Hard)",
+    "description": "You are given a list of denominations of coins available to make change, and an amount that you want to change. Write a function `coin_change` that returns the minimum number of coins required to make this change.\n\n#### Function Signature\n```python\ndef coin_change(coins: list[int], amount: int) -> int:\n```\n\n#### Input\n- `coins`: A list of integers representing the denominations of coins available.\n- `amount`: An integer representing the amount that you want to change.\n\n#### Output\n- Returns the minimum number of coins required to make this change. If it is not possible to make the change, return -1.",
+    "code": "",
+    "\ndef coin_change(coins: list[int], amount: int) -> int:\n    dp = [float('inf')] * (amount + 1)\n    dp[0] = 0\n\n    for coin in coins:\n        for i in range(coin, amount + 1):\n            dp[i] = min(dp[i], dp[i - coin] + 1)\n\n    return dp[amount] if dp[amount] != float('inf') else -1": "",
+    "tests": [
+        "assert coin_change([1, 2, 5], 11) == 3",
+        "assert coin_change([2], 4) == 2",
+        "assert coin_change([1, 4, 5], 6) == 2",
+        "assert coin_change([1, 2], 12) == -1"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

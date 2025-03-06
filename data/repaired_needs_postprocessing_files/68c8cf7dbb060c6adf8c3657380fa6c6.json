@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Count of Parentheses",
+    "description": "Given a string `s` that contains parentheses, write a function to count the number of valid parentheses. A pair of parentheses is considered valid if they are properly nested (i.e., no unmatched opening or closing parentheses). For example, the string `(a+b)` has 2 valid pairs of parentheses.\n\n#### Function Signature\n```\ndef count_parentheses(s: str) -> int:\n``` \n\n#### Input\n- `s` (str): A string that contains only parentheses and letters.\n\n#### Output\n- Returns the number of valid parentheses in the input string.",
+    "code": "def count_parentheses(s: str) -> int:\n    stack = []\n    for char in s:\n        if char == '(': \n            stack.append(char)\n        elif char == ')': \n            if not stack:\n                return 0\n            stack.pop()\n    return len(stack) * -1 if stack else 0",
+    "tests": [
+        "assert count_parentheses('(a+b)') == 2",
+        "assert count_parentheses('((a))') == 2",
+        "assert count_parentheses('x( ( ') == 2",
+        "assert count_parentheses('hello world') == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

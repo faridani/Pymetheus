@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Word Chain",
+    "description": "A word chain is a sequence of words where each word starts with the last letter of the previous word. For example, 'dog' -> 'goat' -> 'tiger'. \nWrite a function `longest_word_chain` that takes a list of words as input and returns the longest possible word chain formed from those words.\n\n#### Function Signature\n```python\ndef longest_word_chain(words: list[str]) -> list[str]:\n```\n\n#### Input\n- `words` (list[str]): A list of strings representing the words.\n\n#### Output\n- Returns a list of strings representing the longest word chain that can be formed from the input words.",
+    "code": "def longest_word_chain(words: list[str]) -> list[str]:\n    word_map = {}\n    for word in words:\n        last_letter = word[-1]\n        if last_letter not in word_map:\n            word_map[last_letter] = []\n        word_map[last_letter].append(word)\n\n    longest_chain = []\n    for start_letter in word_map.keys():\n        current_chain = [word for word in word_map[start_letter]]\n        while current_chain[-1][-1] in word_map:\n            next_letter = current_chain[-1][-1]\n            possible_words = word_map.get(next_letter, [])\n            match_found = False\n            for possible_word in possible_words:\n                if possible_word not in current_chain:\n                    current_chain.append(possible_word)\n                    match_found = True\n                    break\n            if not match_found:\n                break\n        if len(current_chain) > len(longest_chain):\n            longest_chain = current_chain\n    return longest_chain",
+    "tests": [
+        "assert longest_word_chain(['dog', 'goat', 'tiger', 'rose', 'eat']) == ['dog', 'goat', 'tiger']",
+        "assert longest_word_chain(['cat', 'apple', 'eat', 'tree']) == ['cat', 'tree']",
+        "assert longest_word_chain(['a', 'ab', 'abc', 'abcd']) == ['a', 'ab', 'abc', 'abcd']"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

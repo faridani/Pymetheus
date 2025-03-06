@@ -1,0 +1,13 @@
+{
+    "title": "Elegant Binary Tree Node Sum",
+    "description": "Given the root of a binary tree, calculate the sum of all nodes that are at an odd distance from the root. A node's distance from the root is the number of edges on the path from the root to the node.\n\n#### Function Signature\n```python\ndef elegant_sum(root: TreeNode) -> int:\n```\n\n#### Input\n- `root` (TreeNode): The root of a binary tree, where each node has an integer value and two children.\n\n#### Output\n- Returns the sum of all nodes that are at an odd distance from the root.",
+    "code": "\nclass TreeNode:\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\ndef elegant_sum(root: TreeNode) -> int:\n    if not root:\n        return 0\n    \n    queue = [(root, 0)]\n    total_sum = 0\n    \n    while queue:\n        node, distance = queue.pop(0)\n        \n        if distance % 2 == 1:\n            total_sum += node.val\n        \n        if node.left:\n            queue.append((node.left, distance + 1))\n        if node.right:\n            queue.append((node.right, distance + 1))\n    \n    return total_sum",
+    "tests": [
+        "assert elegant_sum(TreeNode(1)) == 1",
+        "assert elegant_sum(TreeNode(5, TreeNode(3), TreeNode(2))) == 4",
+        "assert elegant_sum(None) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

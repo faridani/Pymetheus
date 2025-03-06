@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Graph Cycle Detector",
+    "description": "Given a directed graph represented as an adjacency list, write a function `has_cycle` that detects whether there exists at least one cycle in the graph. The input graph may contain both directed and undirected edges.\n\n#### Function Signature\n```python\ndef has_cycle(graph: dict) -> bool:\n``` \n\n#### Input\n- `graph` (dict): A dictionary where each key is a node and its corresponding value is a list of nodes that the key node directly points to.\nFor example, if there are three nodes 'A', 'B', and 'C' in the graph, and 'A' points to both 'B' and 'C', then `graph` would be `{'A': ['B', 'C'], 'B': [], 'C': []}`.\n\n#### Output\n- Returns `True` if there exists at least one cycle in the input graph, `False` otherwise.\n",
+    "code": "import copy\ndef has_cycle(graph: dict) -> bool:\n    visited = set()\n    recursion_stack = set()\n\n    def dfs(node):\n        visited.add(node)\n        recursion_stack.add(node)\n\n        for neighbor in graph.get(node, []):\n            if neighbor not in visited:\n                if dfs(neighbor):\n                    return True\n            elif neighbor in recursion_stack:\n                return True\n\n        recursion_stack.remove(node)\n        return False\n\n    for node in graph:\n        if node not in visited:\n            if dfs(node):\n                return True\n\n    return False",
+    "tests": [
+        "assert has_cycle({'A': ['B'], 'B': ['C'], 'C': []}) == True",
+        "assert has_cycle({'A': [], 'B': [], 'C': []}) == False",
+        "assert has_cycle({'A': ['B'], 'B': ['A'], 'C': []}) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `are_anagrams` that checks if two given strings are anagrams. This function ensures both strings are lowercase and have the same length. Then it counts the frequency of each letter in the first string and checks if all letters in the second string have a matching count. If no mismatch found, the strings are anagrams.",
+    "code": "import collections\ndef are_anagrams(str1: str, str2: str) -> bool:\n    # Ensure both strings are lowercase and have the same length\n    if len(str1) != len(str2): return False\n    str1 = str1.lower()\n    str2 = str2.lower()\n    \n    # Count the frequency of each letter in str1\n    count_str1 = collections.Counter(str1)\n    \n    # Check if all letters in str2 have a matching count in str1\n    for char, freq in count_str1.items():\n        if str2.count(char) != freq:\n            return False\n    \n    # If no mismatch found, the strings are anagrams\n    return True",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('actors', 'starcraft') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Kissing Cousins",
+    "description": "Given a list of integers, find the total number of kissing cousins. A kissing cousin is defined as an integer that has exactly two distinct prime factors. Write a function `kissing_cousins` that takes in a list of integers and returns the count of kissing cousins.\n\n#### Function Signature\n```python\ndef kissing_cousins(integers: list[int]) -> int:\n```\n\n#### Input\n- `integers` (list[int]): A list of positive integers.\n\n#### Output\n- Returns the total number of kissing cousins in the input list.\n",
+    "code": "import math\ndef is_prime(n: int) -> bool:\n    if n <= 1:\n        return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef kissing_cousins(integers: list[int]) -> int:\n    def count_prime_factors(n: int) -> int:\n        count = 0\n        for i in range(2, n):\n            if is_prime(i) and n % i == 0:\n                while n % i == 0:\n                    n //= i\n                count += 1\n        return count\n    kissing_cousins_count = 0\n    for integer in integers:\n        prime_factors_count = count_prime_factors(integer)\n        if prime_factors_count == 2:\n            kissing_cousins_count += 1\n    return kissing_cousins_count\n",
+    "tests": [
+        "assert kissing_cousins([4, 5, 6, 7]) == 2",
+        "assert kissing_cousins([24, 36, 48]) == 3",
+        "assert kissing_cousins([]) == 0",
+        "assert kissing_cousins([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

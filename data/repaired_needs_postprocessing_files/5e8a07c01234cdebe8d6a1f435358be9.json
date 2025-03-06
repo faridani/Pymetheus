@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Binary Tree Diameter",
+    "description": "#### Problem\n Given the root node of a binary tree, find the diameter of the tree. The diameter of a binary tree is the length of the longest path between any two nodes in the tree.\n\n#### Function Signature\n```python\ndef diameter_of_binary_tree(root: Optional[TreeNode]) -> int:\n```\nWhere `TreeNode` is defined as follows:\n```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n```n#### Input\n- `root`: The root node of the binary tree.\n\n#### Output\n- Return an integer representing the diameter of the binary tree.",
+    "code": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\ndef height(node: Optional[TreeNode]) -> int:\n    if not node:\n        return 0\n    return 1 + max(height(node.left), height(node.right))\ndef diameter_of_binary_tree(root: Optional[TreeNode]) -> int:\n    if not root:\n        return 0\n    lheight = height(root.left)\n    rheight = height(root.right)\n    ldiameter = diameter_of_binary_tree(root.left)\n    rdiameter = diameter_of_binary_tree(root.right)\n    return max(lheight + rheight + 1, max(ldiameter, rdiameter))\n",
+    "tests": [
+        "t1 = TreeNode(1)\nt1.left = TreeNode(2)\nt1.right = TreeNode(3)\nt1.left.left = TreeNode(4)\nt1.left.right = TreeNode(5)\nassert diameter_of_binary_tree(t1) == 4",
+        "t2 = TreeNode(1)\nt2.left = TreeNode(2)\nt2.right = TreeNode(3)\nt2.left.left = TreeNode(4)\nassert diameter_of_binary_tree(t2) == 3"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

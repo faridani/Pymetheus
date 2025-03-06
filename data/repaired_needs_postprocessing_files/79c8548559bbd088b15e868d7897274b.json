@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Check if Two Sets of Numbers are Equal",
+    "description": "Write a function `is_equal_sets` that takes two sets of numbers as input and checks if they contain the same elements. Note that order matters, so if one set contains the number 1 followed by the number 2, and the other set contains the number 2 followed by the number 1, it should return `False`. The function should also handle cases where one set contains duplicates, but the other set does not.\n\n#### Function Signature\n```python\ndef is_equal_sets(set1: list, set2: list) -> bool:\n``` \n\n#### Input\n- `set1` (list): A list of numbers that may contain duplicates.\n- `set2` (list): Another list of numbers that may contain duplicates.\n\n#### Output\n- Returns `True` if the two sets contain the same elements, and `False` otherwise.",
+    "code": "from typing import List\n\ndef is_equal_sets(set1: List[int], set2: List[int]) -> bool:\n    return sorted(set1) == sorted(set2)\n",
+    "tests": [
+        "assert not is_equal_sets([1, 2, 3], [3, 2, 1])",
+        "assert is_equal_sets([1, 2, 3], [1, 2, 3])",
+        "assert not is_equal_sets([1, 2, 2, 3], [1, 2, 3])",
+        "assert not is_equal_sets([1, 2, 3], [1, 1, 2, 3])"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

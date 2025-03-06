@@ -1,0 +1,12 @@
+{
+    "title": "Counting Triangles",
+    "description": "Given a list of integers representing the lengths of the sides of triangles, write a function `count_triangles` that counts the number of valid triangles.\n\n#### Function Signature\n```python\ndef count_triangles(sides: List[int]) -> int:\n``` \n\n#### Input\n- `sides` (List[int]): A list of integers representing the lengths of the sides of triangles, where each length is at least 1 and at most 10^6.\n\n#### Output\n- Returns the number of valid triangles that can be formed from the given side lengths.",
+    "code": "from typing import List\ndef count_triangles(sides: List[int]) -> int:\n    sides.sort()\n    count = 0\n    for i in range(len(sides) - 2):\n        k = len(sides) - 1\n        for j in range(i + 1, k):\n            if sides[i] < sides[j] + sides[k]:\n                count += 1\n                k -= 1\n            else:\n                break\n    return count",
+    "tests": [
+        "assert count_triangles([3, 5, 2]) == 1",
+        "assert count_triangles([10, 4, 7]) == 3",
+        "assert count_triangles([1, 2, 3]) == 0",
+        "assert count_triangles([5, 6, 8, 9, 1]) == 2"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

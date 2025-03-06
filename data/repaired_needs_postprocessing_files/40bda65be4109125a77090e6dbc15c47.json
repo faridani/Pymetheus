@@ -1,0 +1,11 @@
+{
+    "title": "Sudoku Validator",
+    "description": "Sudoku is a 9x9 grid filled with numbers from 1 to 9. A valid Sudoku must have the following properties:\n- Each row contains each number from 1 to 9 without repetition.\n- Each column contains each number from 1 to 9 without repetition.\n- Each of the nine 3x3 sub-grids (also called 'regions' or 'blocks') contains each number from 1 to 9 without repetition.\nWrite a function `is_valid_sudoku` that takes a 2D list of integers representing a Sudoku grid and returns `True` if it is valid, `False` otherwise.\n\n#### Function Signature\n```python\ndef is_valid_sudoku(grid: list[list[int]]) -> bool:\n``` \n\n#### Input\n- `grid` (list[list[int]]): A 2D list of integers representing a Sudoku grid.\n- Each inner list represents a row in the grid, and each integer in the inner list represents the value at that position in the grid.\n\n#### Output\n- Returns `True` if the input Sudoku grid is valid, `False` otherwise.",
+    "code": "import itertools\n\ndef is_valid_sudoku(grid: list[list[int]]) -> bool:\n    # Check rows and columns\n    for row in grid:\n        if not set(row) == set(range(1, 10)):\n            return False\n    for col in zip(*grid):\n        if not set(col) == set(range(1, 10)):\n            return False\n\n    # Check blocks\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            block = [grid[x][y] for x in range(i, i+3) for y in range(j, j+3)]\n            if not set(block) == set(range(1, 10)):\n                return False\n    return True",
+    "tests": [
+        "assert is_valid_sudoku([[5,3,4,6,7,8,9,1,2],[6,7,8,9,1,2,3,4,5],[1,2,3,4,5,6,7,8,9],[8,9,1,2,3,4,5,6,7],[4,5,6,7,8,9,1,2,3],[7,8,9,1,2,3,4,5,6],[2,3,4,5,6,7,8,9,1],[3,4,5,6,7,8,9,1,2],[9,1,2,3,4,5,6,7,8]]) == True",
+        "assert is_valid_sudoku([[1,2,3],[4,5,6],[7,8,9]]) == False",
+        "assert is_valid_sudoku([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16],[17,18,19,20]]) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Minimum Steps to Remove Substrings",
+    "description": "You are given a string `s` consisting of lowercase English letters. You can perform the following operation on the string:\r\n- Choose any two adjacent characters and remove them from the string.\r\n\r\nThe goal is to find the minimum number of steps required to remove all characters from the string.\r\n\r\n#### Function Signature\r\n```python\rndef min_steps_to_remove(s: str) -> int:\r``` \r\n\r\n#### Input\r\n- `s` (str): A string consisting of lowercase English letters.\r\n\r\n#### Output\r\n- Returns the minimum number of steps required to remove all characters from the string.",
+    "code": "def min_steps_to_remove(s: str) -> int:\n    n = len(s)\n    dp = [0] * (n + 1)\n    for i in range(n - 1, -1, -1):\n        dp[i] = dp[i + 2] + 1\n        if s[i] == s[i + 1]:\n            dp[i] = min(dp[i], dp[i + 2])\n    return dp[0]",
+    "tests": [
+        "assert min_steps_to_remove('aab') == 1",
+        "assert min_steps_to_remove('aabbcc') == 3",
+        "assert min_steps_to_remove('aaabbbccc') == 4",
+        "assert min_steps_to_remove('aba') == 2"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

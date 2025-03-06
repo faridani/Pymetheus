@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams. \n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing only lowercase letters and no spaces.\n- `s2` (str): A string containing only lowercase letters and no spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams, `False` otherwise.\n",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    # Count the frequency of each letter in both strings\n    count1 = {}\n    count2 = {}\n    for char in s1:\n        if char not in count1:\n            count1[char] = 1\n        else:\n            count1[char] += 1\n    for char in s2:\n        if char not in count2:\n            count2[char] = 1\n        else:\n            count2[char] += 1\n    # Compare the frequency counts of both strings\n    return count1 == count2",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"hello\", \"olleh\") == True",
+        "assert is_anagram(\"world\", \"dragon\") == False",
+        "assert is_anagram(\"java\", \"javascript\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

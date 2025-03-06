@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Balanced Parentheses",
+    "description": "Given a string containing parentheses (), {}, and [], determine if the parentheses are balanced. A string with balanced parentheses has the following properties:\n- Every opening parenthesis must have a corresponding closing parenthesis of the same type.\n- The order of the parentheses matters. For example, \"({[]})\" is balanced, but \"([)]\" is not.",
+    "code": "def is_balanced(s: str) -> bool:\n    stack = []\n    parentheses_map = {')': '(', '}': '{', ']': '['}\n\n    for char in s:\n        if char in parentheses_map.values():  # Opening parenthesis\n            stack.append(char)\n        elif char in parentheses_map.keys():  # Closing parenthesis\n            if not stack or stack.pop() != parentheses_map[char]:\n                return False\n    return len(stack) == 0",
+    "tests": [
+        "'assert is_balanced(\"({[]})\") == True'",
+        "'assert is_balanced(\"( [] )\") == True'",
+        "'assert is_balanced(\"([)]\") == False'",
+        "'assert is_balanced(\"{[()]}\") == True'",
+        "'assert is_balanced(\"((())\") == False'",
+        "'assert is_balanced(\"{}\") == True'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

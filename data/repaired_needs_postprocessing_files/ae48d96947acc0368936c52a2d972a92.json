@@ -1,0 +1,13 @@
+{
+    "title": "'Prime Digit Sums' - Hard",
+    "description": "Write a function `prime_digit_sum` that calculates the sum of the prime digits in a given number. A prime digit is any digit which is a prime number when considered as an individual single-digit integer.\n\n#### Function Signature\n```python\ndef prime_digit_sum(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer with no more than 10 digits.\n\n#### Output\n- Returns the sum of the prime digits in the given number.",
+    "code": "def prime_digit_sum(n: int) -> int:\n    primes = {2: True, 3: True, 5: True, 7: True}\n    prime_digits = []\n    for num in range(10, n + 1):\n        if num not in primes or num < 4 and num % 2 == 0:\n            continue\n        for potential_divisor in range(3, int(num**0.5) + 1):\n            if num % potential_divisor == 0:\n                break\n        else:\n            primes[num] = True\n            prime_digits.append(num)\n    return sum(int(digit) for digit in str(n) if digit in prime_digits)",
+    "tests": [
+        "assert prime_digit_sum(127) == 1 + 7 == 8",
+        "assert prime_digit_sum(9007199) == 7 + 3 + 9 + 7 + 1 + 9 + 9 + 9 == 43",
+        "assert prime_digit_sum(2357) == 2 + 7 == 9",
+        "assert prime_digit_sum(10) == 0",
+        "assert prime_digit_sum(831) == 8 + 3"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

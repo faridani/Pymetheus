@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Eulerian Path",
+    "description": "An Eulerian path in a graph is a path that uses every edge exactly once. Given an undirected graph represented as an adjacency list, write a function `eulerian_path` that finds the longest possible Eulerian path in the graph.\n\n#### Function Signature\n```python\ndef eulerian_path(graph: dict) -> str:\n```\n\n#### Input\n- `graph` (dict): An undirected graph represented as an adjacency list, where each key is a node and its corresponding value is a set of neighboring nodes.\n\n#### Output\n- Returns the longest possible Eulerian path in the graph as a string, where each character represents a move from one node to another. The path should start at any arbitrary node and end at the same node it started with.",
+    "code": "",
+    "\nfrom collections import deque\n\ndef eulerian_path(graph: dict) -> str:\n    nodes = list(graph.keys())\n    visited = set()\n    path = []\n    queue = deque([(nodes[0], [])])\n\n    while queue:\n        node, current_path = queue.popleft()\n        if node not in visited:\n            visited.add(node)\n            for neighbor in graph[node]:\n                if neighbor not in visited:\n                    queue.append((neighbor, current_path + [node]))\n                else:\n                    path = current_path + [node]\n                    break\n        else:\n            path = current_path + [node]\n\n    return ''.join(str(i) for i in path)": "",
+    "tests": [
+        "assert eulerian_path({0: [1], 1: [0, 2], 2: [1]}) == '012012'",
+        "assert eulerian_path({0: [1, 2], 1: [0, 3], 2: [0, 3], 3: [1, 2]}) == '01231203'",
+        "assert eulerian_path({0: [1], 1: [0, 2], 2: [1, 3], 3: [2]}) == '01320321'"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

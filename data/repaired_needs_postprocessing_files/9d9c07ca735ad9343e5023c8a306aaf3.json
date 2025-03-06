@@ -1,0 +1,12 @@
+{
+    "title": "Recurring Fibonacci Sequence Checker (Hard)",
+    "description": "Write a function `has_recurring_fibonacci` that checks if an array of numbers contains a recurring sequence of Fibonacci numbers.\n\n#### Function Signature\n```python\ndef has_recurring_fibonacci(arr: List[int]) -> bool:\n```\n\n#### Input\n- `arr` (List[int]): A non-empty list of integers.\n\n#### Output\n- Returns `True` if the input array contains a recurring sequence of Fibonacci numbers, `False` otherwise.",
+    "code": "def has_recurring_fibonacci(arr: List[int]) -> bool:\n    # Define Fibonacci function\n    def fib(n):\n        if n <= 1:\n            return n\n        return fib(n - 1) + fib(n - 2)\n    \n    # Initialize set of Fibonacci numbers for efficiency\n    fib_set = {0, 1}\n    \n    # Iterate through input array\n    for num in arr:\n        # Check if the number is a Fibonacci number and not already in the set\n        if num in fib_set:\n            continue\n        else:\n            # Calculate the difference between the number and the last Fibonacci number\n            diff = num - arr[-1] if len(arr) > 0 else None\n            \n            # If the difference is a valid Fibonacci number, add it to the set and continue checking the next number\n            if diff in fib_set:\n                fib_set.add(num)\n            else:\n                # If the difference cannot be found as a Fibonacci number, return False since there is no recurring sequence of Fibonacci numbers\n                return False\n    \n    # If no recursions were found, all numbers must be unique and there are at least three numbers in the array, so return False\n    if len(arr) < 3 or not all(num not in fib_set for num in arr):\n        return False\n    else:\n        # Since all checks have passed, return True as a recurring sequence of Fibonacci numbers was found\n        return True\n",
+    "tests": [
+        "assert has_recurring_fibonacci([0, 1, 1]) == True",
+        "assert has_recurring_fibonacci([1, 1, 2, 3]) == True",
+        "assert has_recurring_fibonacci([0, 1, 2, 5]) == False",
+        "assert has_recurring_fibonacci([8, 13]) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

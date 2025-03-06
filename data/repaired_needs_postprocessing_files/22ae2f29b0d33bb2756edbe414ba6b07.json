@@ -1,0 +1,11 @@
+{
+    "title": "'Is it a Pangram Checker (Easy)'",
+    "description": "A pangram is a sentence that uses every letter of the alphabet at least once. Write a function `is_pangram` that checks if a given string is a pangrem.\n#### Function Signature\n```python\ndef is_pangram(s: str) -> bool:\n``` \n#### Input\n- `s` (str): A sentence that may contain repeated letters, spaces, and punctuation.\n#### Output\n- Returns `True` if the input string is a pangrem, `False` otherwise.",
+    "code": "def is_pangram(s: str) -> bool:\n    # Remove non-alphabetic characters\n    s = ''.join(char for char in s if char.isalpha())\n    alphabet = list('abcdefghijklmnopqrstuvwxyz')\n    return sorted(s) == alphabet or sorted(reversed(s)) == alphabet",
+    "tests": [
+        "assert is_pangram(\"The quick brown fox jumps over the lazy dog.\") == True",
+        "assert is_pangram(\"The quick white fox jumps over the lazy zebra.\") == False",
+        "assert is_pangram(\"A programmers perspective of a programming language is different from that of an artist. An artist looks at a blank canvas and sees beauty; a programmer sees a blank canvas and sees a solution.\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

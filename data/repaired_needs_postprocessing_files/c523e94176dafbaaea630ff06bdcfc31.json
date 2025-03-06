@@ -1,0 +1,11 @@
+{
+    "title": "'Palindromic Substrings' (Hard)",
+    "description": "Given a string, find all the non-overlapping palindromic substrings of the given string. A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of all the non-overlapping palindromic substrings in the given string.",
+    "code": "def find_palindromes(s: str) -> List[str]:\n    results = []\n    for length in range(1, len(s) + 1):\n        for start in range(len(s) - length + 1):\n            end = start + length\n            if s[start:end] == s[start:end][::-1]:\n                results.append(s[start:end])\n    return results",
+    "tests": [
+        "assert find_palindromes('abcdcba') == ['ab', 'cd', 'cba']",
+        "assert find_palindromes('racecar') == ['r', 'ace', 'car']",
+        "assert find_palindromes('hello world hello') == ['ello']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

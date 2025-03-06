@@ -1,0 +1,13 @@
+{
+    "title": "Matrix Manipulation (Hard)",
+    "description": "You are given a matrix of integers and your task is to find the maximum sum of any non-overlapping subsequence, subject to certain constraints. The subsequence can only traverse through adjacent cells in an upwards diagonal direction.\n\n#### Function Signature\n```python\ndef max_diagonal_sum(matrix: List[List[int]]) -> int:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A 2D list of integers representing the matrix.\n\n#### Output\n- Returns an integer that is the maximum sum possible following the constraints mentioned above. Note: The subsequence can start from any cell in the first row, and subsequent cells must be directly diagonal upwards to the previous cell (i.e., you cannot move left or right).\n\n### Constraints\n- `matrix` is at least 1x1 and no more than 100x100.\n- Each element of `matrix` is an integer between -10^9 and 10^9, inclusive.",
+    "code": "def max_diagonal_sum(matrix: List[List[int]]) -> int:\n    if not matrix or not matrix[0]:\n        return 0\n    rows = len(matrix)\n    cols = len(matrix[0])\n    dp = [[0 for _ in range(cols)] for _ in range(rows)]\n    # Initialize the first row of DP table with the values from the matrix's first row.\n    for j in range(cols):\n        dp[0][j] = matrix[0][j]\n    # Populate the rest of the DP table following constraints on diagonal movement.\n    for i in range(1, rows):\n        for j in range(max(0, cols - i), cols):  # Start index depends on row number\n            dp[i][j] = max(dp[i-1][j], (dp[i-1][j-1] if j > 0 else 0) + matrix[i][j])\n    \n    return max(max(row) for row in dp) # Find the maximum value from DP table.",
+    "tests": [
+        "assert max_diagonal_sum([[1]]) == 1",
+        "assert max_diagonal_sum([[1,2],[3,4]]) == 6",
+        "assert max_diagonal_sum([[5,7],[8,9]]) == 13",
+        "assert max_diagonal_sum([[-10,-9,-8,-7], [10, 9, 8, 7], [-2, -1, 4, 6], [3, 2, 1, 5]]) == 15",
+        "assert max_diagonal_sum([[1,2,3],[4,-5,6],[7,8,9]]) == 17"
+    ],
+    "model": "phi3:14b-repaired by Llama 3"
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Hard - Prime Spiral",
+    "description": "You are given an odd integer *n*.  Imagine a spiral pattern of numbers starting from 1 at the center, extending outwards. For example, if *n* = 5, the spiral would look like:\n```17 16 15 14 13\n18  5  4  3 12\n19  6  1  2 11\n20  7  8  9 10\n21 22 23 24 25\n```Write a function `prime_spiral` that takes an odd integer *n* as input and returns the number of prime numbers in this spiral pattern.\n#### Function Signature\n```python\ndef prime_spiral(n: int) -> int:\n```\n#### Input\n- `n` (int): An odd integer representing the size of the spiral.\n#### Output\n- Returns the number of prime numbers in the generated spiral pattern.",
+    "code": "def is_prime(num):\n    if num <= 1:\n        return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\ndef prime_spiral(n: int) -> int:\n    spiral = [[0 for _ in range(n)] for _ in range(n)]\n    row, col = n // 2, n // 2\n    direction = 0  # 0: right, 1: down, 2: left, 3: up\n    steps = 1\n    count = 1\n    prime_count = 0\n    \n    while count <= n * n:\n        spiral[row][col] = count\n        if is_prime(spiral[row][col]):\n            prime_count += 1\n        \n        # Change direction after each set of steps\n        if direction == 0 and col == n - 1 or direction == 2 and col == 0:\n            direction = (direction + 1) % 4\n            steps += 1\n        elif direction == 1 and row == n - 1 or direction == 3 and row == 0:\n            direction = (direction + 1) % 4\n            steps += 1\n    \n    # Move according to the current direction\n    if direction == 0:\n        col += 1\n    elif direction == 1:\n        row += 1\n    elif direction == 2:\n        col -= 1\n    elif direction == 3:\n        row -= 1\n    \n    count += 1\n    \n    return prime_count",
+    "tests": [
+        "assert prime_spiral(5) == 3",
+        "assert prime_spiral(7) == 6"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

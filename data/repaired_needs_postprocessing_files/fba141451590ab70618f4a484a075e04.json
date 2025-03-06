@@ -1,0 +1,11 @@
+{
+    "title": "'Palindromic Substring Finder' - Medium",
+    "description": "Write a function named `find_palindromes` that finds all non-overlapping palindromic substrings (also called center symmetric words) in a given string.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces and punctuation.\n\n#### Output\n- Returns a list of palindromic substrings found in the input string.\n\n#### Constraints\n- Time complexity: O(n^2)\n- Space complexity: O(n)",
+    "code": "import re\ndef find_palindromes(s: str) -> List[str]:\n    # Find all possible palindromes of length 1 to the half of the string length\n    lengths = range(1, len(s) // 2 + 1)\n    # Initialize an empty list to store the results\n    result = []\n    for length in lengths:\n        # Find all possible palindromes of the given length using a regular expression\n        palindromes = re.findall('.' + s[length - 1:] + '.', s[:length][::-1] + s[length:])\n        # Add the found palindromes to the result list\n        result += palindromes\n    return result",
+    "tests": [
+        "assert find_palindromes('racecar') == ['r', 'a', 'c', 'e', 'c', 'a', 'r', 'c', 'c', 'a', 'r', 'r']",
+        "assert find_palindromes('A man, a plan, a canal: Panama') == ['A', ',', 'a', 'm', 'a', 'n', ',', 'p', 'a', 'n', 'a', 'm', ',', 'c', 'o', 'n', 'a', 'l', ':', 'P', 'a', 'n', 'a', 'm', 'a']",
+        "assert find_palindromes('hello') == ['h', 'e', 'l', 'l', 'o']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

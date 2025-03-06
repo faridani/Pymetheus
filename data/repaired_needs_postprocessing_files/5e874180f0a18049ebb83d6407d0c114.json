@@ -1,0 +1,12 @@
+{
+    "title": "'Is it a Repdigit? (Easy)'",
+    "description": "An repdigit is a number that consists entirely of repeated digits, such as 11, 22, 333, etc.\n#### Function Signature\n```python\ndef is_repdigit(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A non-negative integer.\n#### Output\n- Returns `True` if the input number is a repdigit, `False` otherwise.",
+    "code": "def is_repdigit(n: int) -> bool:\n    # Convert to string for easier comparison\n    n_str = str(n)\n    # Check if all characters are equal\n    first = n_str[0]\n    return len(n_str) > 1 and all([char == first for char in n_str])\n",
+    "tests": [
+        "assert is_repdigit(11) == True",
+        "assert is_repdigit(222) == True",
+        "assert is_repdigit(3333) == True",
+        "assert is_repdigit(45678) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

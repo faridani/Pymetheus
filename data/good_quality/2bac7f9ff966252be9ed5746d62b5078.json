@@ -1,0 +1,15 @@
+{
+    "title": "Euler's Totient Function (Hard)",
+    "description": "Given two integers n and k, calculate the Euler's totient function \u03c6(k) which gives the number of positive integers less than or equal to n that are relatively prime to k.\n\n#### Function Signature\n```python\ndef euler_totient(n: int, k: int) -> int:\n```\n\n#### Input\n- `n` (int): An integer representing the upper bound.\n- `k` (int): An integer representing the modulus.\n\n#### Output\n- Returns the Euler's totient function \u03c6(k) value.",
+    "code": "",
+    "\nimport math\n\ndef gcd(a: int, b: int) -> int:\n    while b:\n        a, b = b, a % b\n    return a\n\ndef euler_totient(n: int, k: int) -> int:\n    result = 0\n    for i in range(1, n + 1):\n        if math.gcd(i, k) == 1:\n            result += 1\n    return result": "",
+    "tests": [
+        "assert euler_totient(10, 5) == 4",
+        "assert euler_totient(20, 7) == 12",
+        "assert euler_totient(25, 3) == 8",
+        "assert euler_totient(100, 11) == 90"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

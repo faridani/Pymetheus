@@ -1,0 +1,13 @@
+{
+    "title": "Prime Cubes (Hard)",
+    "description": "A cube of a prime number is called a prime cube. For example, the cubes 1^3=1, 2^3=8, 4^3=64 are all prime cubes. Write a function `is_prime_cube` that takes a single integer as input and returns `True` if it's a prime cube, `False` otherwise.",
+    "code": "import math\n\ndef is_prime_cube(n: int) -> bool:\n    def is_prime(m: int) -> bool:\n        if m < 2:\n            return False\n        for i in range(2, math.isqrt(m)+1):\n            if m % i == 0:\n                return False\n        return True\n    cube_root = round(n ** (1/3))\n    return is_prime(cube_root) and all(is_prime(i) for i in range(cube_root**3+1, n**2+1, cube_root**3+1))\n",
+    "tests": [
+        "assert is_prime_cube(8) == True",
+        "assert is_prime_cube(9) == False",
+        "assert is_prime_cube(64) == True",
+        "assert is_prime_cube(25) == True",
+        "assert is_prime_cube(36) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

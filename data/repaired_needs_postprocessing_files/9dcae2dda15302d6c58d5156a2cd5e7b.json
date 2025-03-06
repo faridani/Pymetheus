@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Optimal Matrix Chain Multiplication",
+    "description": "Given a sequence of matrices, find the most efficient way to multiply these matrices together. The problem is not actually to perform the multiplications, but rather to determine the order in which to perform the multiplications. Write a function `optimal_matrix_chain` that calculates the minimum number of multiplications needed for a given sequence of matrix dimensions.\n\n#### Function Signature\n```python\ndef optimal_matrix_chain(dims: List[int]) -> int:\n```\n\n#### Input\n- `dims` (List[int]): A list of integers representing the dimensions of matrices in a sequence. The length of the list represents the number of matrices plus one, as each matrix multiplication requires two matrices and one result.\n\n#### Output\n- Returns an integer that is the minimum number of multiplications needed to multiply all matrices in the given order.",
+    "code": "from typing import List\ndef optimal_matrix_chain(dims: List[int]) -> int:\n    n = len(dims) - 1\n    dp = [[0] * n for _ in range(n)]\n    for length in range(2, n + 1):\n        for i in range(n - length + 1):\n            j = i + length - 1\n            dp[i][j] = float('inf')\n            for k in range(i, j):\n                cost = dp[i][k] + dp[k + 1][j] + dims[i] * dims[k + 1] * dims[j + 1]\n                if cost < dp[i][j]:\n                    dp[i][j] = cost\n    return dp[0][-1]",
+    "tests": [
+        "assert optimal_matrix_chain([40, 20, 30, 10, 30]) == 26000",
+        "assert optimal_matrix_chain([10, 20, 30, 40, 50]) == 7000",
+        "assert optimal_matrix_chain([10, 20, 30]) == 6000",
+        "assert optimal_matrix_chain([10, 20, 30, 40]) == 9000"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Fibonacci Sequence Sum (Easy)",
+    "description": "Write a function `fibonacci_sum` that calculates the sum of the first n numbers in the Fibonacci sequence.\n\n#### Function Signature\n```python\ndef fibonacci_sum(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The number of terms in the Fibonacci sequence to sum.\n\n#### Output\n- Returns the sum of the first n numbers in the Fibonacci sequence.",
+    "code": "def fibonacci_sum(n: int) -> int:\n    # Base case for n = 1 and n = 2\n    if n <= 1: return n\n    prev, current = 0, 1\n    total = 1\n    for _ in range(2, n):\n        next_term = prev + current\n        total += next_term\n        prev, current = current, next_term\n    return total",
+    "tests": [
+        "assert fibonacci_sum(1) == 1",
+        "assert fibonacci_sum(2) == 1",
+        "assert fibonacci_sum(10) == 55",
+        "assert fibonacci_sum(20) == 6765"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Circular Linked List Detection",
+    "description": "Implement a function `is_circular_linked_list(head)` to determine if the given linked list is circular. A linked list is considered circular if it has at least one node whose next node points back to one of its nodes in the same or previous positions.\n#### Function Signature\n```python\ndef is_circular_linked_list(head: ListNode) -> bool:\n``` \n#### Input\n- `head`: The head of a linked list (ListNode)\n#### Output\n- Returns `True` if the linked list is circular, `False` otherwise\n#### Constraints\n- The linked list may contain up to 10^3 nodes.\n#### Hints\nUse a slow and fast pointer technique where fast moves twice as fast as slow. If there's a cycle, fast will eventually catch up with slow.",
+    "code": "from typing import Optional\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\ndef is_circular_linked_list(head: Optional[ListNode]) -> bool:\n    if not head or not head.next:\n        return False\n\n    slow = fast = head\n\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n\n        if slow == fast:\n            return True\n\n    return False",
+    "tests": [
+        "assert is_circular_linked_list(ListNode(1, ListNode(2, ListNode(3)))) == False",
+        "assert is_circular_linked_list(ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))) == True",
+        "assert is_circular_linked_list(ListNode()) == False",
+        "assert is_circular_linked_list(ListNode(1)) == False"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

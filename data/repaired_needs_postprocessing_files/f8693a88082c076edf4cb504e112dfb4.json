@@ -1,0 +1,13 @@
+{
+    "title": "Goldbach's Conjecture Solver (Hard)",
+    "description": "Goldbach's conjecture states that every even integer greater than 2 can be expressed as the sum of two primes. Write a function `goldbach_conjecture` that takes an input positive integer and returns True if it can be expressed as the sum of two prime numbers, False otherwise.\n\n#### Function Signature\n```python\ndef goldbach_conjecture(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer greater than 2.\n\n#### Output\n- Returns `True` if the input number can be expressed as the sum of two prime numbers, `False` otherwise.\n",
+    "code": "def is_prime(n: int) -> bool:\n    # Check if a number is prime by checking divisibility from 2 to the square root\n    if n <= 1 or (n % 2 == 0 and n > 2):\n        return False\n    for i in range(3, int(n**0.5) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndef goldbach_conjecture(n: int) -> bool:\n    # Check for the trivial cases of 2 and even numbers greater than 4\n    if n == 2 or (n % 2 != 0 and n > 4):\n        return False\n    # Try possible prime numbers as candidates up to the square root of the number\n    for i in range(3, int(n**0.5) + 1, 2):\n        if is_prime(i) and is_prime(n - i):\n            return True\n    return False",
+    "tests": [
+        "assert goldbach_conjecture(4) == True",
+        "assert goldbach_conjecture(7) == False",
+        "assert goldbach_conjecture(9) == True",
+        "assert goldbach_conjecture(10) == True",
+        "assert goldbach_conjecture(257) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

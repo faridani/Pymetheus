@@ -1,0 +1,10 @@
+{
+    "title": "[Hard] Matrix Spiral Unraveling",
+    "description": "Write a function `spiral_unravel` that takes a 2D list (matrix) as input and returns the elements of the matrix in spiral order. The first element should be at the top left corner of the matrix, going right along the first row, then down the last column, left along the last row, up the second column, repeat this pattern until all elements are included.\n#### Function Signature\n```python\ndef spiral_unravel(matrix: List[List[int]]) -> List[int]:\n``` \n#### Input\n- `matrix` (List[List[int]]): A 2D list of integers.\n#### Output\n- Returns a list of integers representing the elements of the input matrix in spiral order.",
+    "code": "from typing import List\n\ndef spiral_unravel(matrix: List[List[int]]) -> List[int]:\n    result = []\n    while matrix:\n        # Append first row and rotate matrix\n        result += matrix.pop(0)\n        if matrix and matrix[0]:\n            matrix = list(zip(*matrix))[::-1]\n    return result",
+    "tests": [
+        "assert spiral_unravel([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == [1, 2, 3, 6, 9, 8, 7, 4, 5]",
+        "assert spiral_unravel([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]) == [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

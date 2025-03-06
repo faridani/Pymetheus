@@ -1,0 +1,11 @@
+{
+    "title": "Prime Sums under Thousand (Hard)",
+    "description": "Write a function `prime_sums` that finds all the pairs of prime numbers whose sum is less than 1000. Write a function `primes_under_50()` that generates all primes up to 50. Then, use this function in `prime_sums()` to generate all pairs of primes whose sum is less than 1000 and returns them as a list.",
+    "code": "def primes_under_50():\n    primes = [2]\n    sieve = [True] * 100\n    for num in range(3, len(sieve)):\n        if sieve[num]:\n            primes.append(num)\n            for multiple in range(num*num, len(sieve), num):\n                sieve[multiple] = False\n    return primes\n\ndef prime_sums() -> list:\n    primes = primes_under_50()\n    pairs = []\n    for prime1 in primes:\n        for prime2 in primes[prime1:]:\n            if prime1 + prime2 < 1000 and prime1 + prime2 <= prime2:\n                pairs.append((prime1, prime2))\n    return sorted(pairs)\n",
+    "tests": [
+        "assert len(prime_sums()) == 168",
+        "assert prime_sums()[0] == (3, 967)",
+        "assert prime_sums()[-1] == (291, 709)"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

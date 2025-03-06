@@ -1,0 +1,12 @@
+{
+    "title": "Polindrome of Digits (Medium)",
+    "description": "Write a function `is_polindrome` that checks if a given string consists only of digits and reads the same forwards and backwards. The function should ignore leading zeros.\n\n#### Function Signature\n```python\ndef is_polindrome(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that only contains digits, may have leading zeros and spaces.\n\n#### Output\n- Returns `True` if the input string is a polindrome of digits, `False` otherwise.",
+    "code": "def is_polindrome(s: str) -> bool:\n    # Remove non-digit characters and leading zeros\n    s = ''.join(char for char in s if char.isdigit())\n    # Check if the string reads the same forwards and backwards after removing spaces\n    return s == s[::-1]",
+    "tests": [
+        "assert is_polindrome('12321') == True",
+        "assert is_polindrome('01234567890') == False",
+        "assert is_polindrome('1 a1') == False",
+        "assert is_polindrome(' 01201 0 ') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

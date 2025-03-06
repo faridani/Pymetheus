@@ -1,0 +1,13 @@
+{
+    "title": "Counting Substrings",
+    "description": "Given a list of strings, write a function `count_substrings` that counts the number of substrings in each string that appear in another string. For example, if you have the strings ['abc', 'def', 'ghi'] and the target string is 'abcd', then your function should return [2, 1, 0] because there are two substrings 'ab' and 'cd' in the first string, one substring 'de' in the second string, and no substrings in the third. #### Function Signature\n```python\ndef count_substrings(strings: list[str], target: str) -> list[int]:\n```\n#### Input\n- `strings` (list[str]): A list of strings.\n- `target` (str): The target string.\n#### Output\n- Returns a list of integers where each integer represents the number of substrings in its corresponding input string that appear in the target string.",
+    "code": "def count_substrings(strings: list[str], target: str) -> list[int]:\n    counts = [0] * len(strings)\n    for i, s in enumerate(strings):\n        for j in range(len(s) - len(target) + 1):\n            if s[j:j+len(target)] == target:\n                counts[i] += 1\n    return counts",
+    "tests": [
+        "assert count_substrings(['abc', 'def', 'ghi'], 'abcd') == [2, 1, 0]",
+        "assert count_substrings(['hello', 'world'], 'll') == [1, 2]",
+        "assert count_substrings(['hello', 'world', 'python'], 'notfound') == [0, 0, 0]"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

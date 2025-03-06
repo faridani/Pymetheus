@@ -1,0 +1,11 @@
+{
+    "title": "'Ciphertext Cracker' (hard)",
+    "description": "Given a string of letters and digits, some of which may be encrypted using the Atbash cipher, determine the original plaintext.  #### Function Signature```pythondef decode_atbash(ciphertext: str) -> str:\n```\n\n#### Input\n- `ciphertext` (str): A string containing only letters (A-Z in uppercase and lowercase) and digits (0-9). Some of the characters may be encrypted using the Atbash cipher, a simple substitution cipher that replaces a letter with its 21st letter in the alphabet, wrapping around if necessary.\n\n#### Output\n- Returns the original plaintext as a string.",
+    "code": "def decode_atbash(ciphertext: str) -> str:\n    # Create a mapping of cipher characters to their corresponding plaintext characters\n    atbash = {ord(char): ord('A' - ord(char)) for char in string.ascii_letters + string.digits}\n    # Decode the ciphertext character by character\n    decoded = []\n    for char in ciphertext:\n        if char in atbash:\n            decoded.append(chr(atbash[ord(char)]))\n        else:\n            decoded.append(char)\n    # Return the decoded string\n    return ''.join(decoded)",
+    "tests": [
+        "assert decode_atbash('zrsab') == 'hello'",
+        "assert decode_atbash('1021gfba') == 'atbash'",
+        "assert decode_atbash('3589ufcd') == 'thinkful'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

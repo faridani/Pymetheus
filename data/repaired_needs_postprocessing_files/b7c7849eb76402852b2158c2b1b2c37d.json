@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "Write a function `find_anagrams(words: List[str]) -> Dict[str, List[str]]` that takes a list of words and returns a dictionary where the keys are unique words and the values are lists of all the anagrams for each key.\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n``` \n\n#### Input\n- `words` (List[str]): A list of strings containing only lowercase alphabetic characters.\n\n#### Output\n- Returns a dictionary where each key is a unique word and the value is a list of all its anagrams. For example, if the input was `['listen', 'silent', 'enlists']`, the output would be: `{ 'listen': ['enlists'], 'silent': [], 'enlist': ['listen', 'silent']} \n\n",
+    "code": "def find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n    # Create a dictionary to store anagram groups\n    anagrams = {}\n    # Sort each word and make it the key in the dictionary\n    for word in words:\n        sorted_word = ''.join(sorted(word))\n        if sorted_word not in anagrams:\n            anagrams[sorted_word] = []\n        anagrams[sorted_word].append(word)\n    \n    # Remove empty groups (words without any anagrams)\n    for key, value in anagrams.items():\n        if not value:\n            del anagrams[key]\n    \n    return anagrams",
+    "tests": [
+        "assert find_anagrams(['listen', 'silent', 'enlists']) == {'listen': ['enlists'], 'silent': [], 'enlist': ['listen', 'silent']}",
+        "assert find_anagrams(['apple', 'peel', 'plea', 'appeal']) == {'apple': ['peel', 'appeal'], 'peel': ['apple'], 'plea': [], 'appeal': ['apple']}",
+        "assert find_anagrams(['racecar', 'level', 'deified', 'rotor', 'radar']) == {'racecar': ['carrerA', 'eraCcar'], 'level': [], 'deified': [], 'rotor': [], 'radar': ['level', 'racecar']}",
+        "assert find_anagrams(['python', 'htopy', 'typhon']) == {'python': ['typhon', 'htopy'], 'htopy': ['python'], 'typhon': ['python']}"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

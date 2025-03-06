@@ -1,0 +1,11 @@
+{
+    "title": "Palindromic Substrings Finder (Medium)",
+    "description": "Given a string, find all the palindromic substrings within it.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n``` \n\n#### Input\n- `s` (str): A non-empty string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of palindromic substrings found in the input string. The order of the elements within the returned list is not important.\n",
+    "code": "import re\ndef find_palindromes(s: str) -> List[str]:\n    # Find all possible length of palindromes\n    lengths = [i for i in range(1, len(s) + 1)]\n\n    # Initialize an empty list to store the found palindromes\n    palindromes = []\n\n    # Iterate through all possible length of substrings\n    for length in lengths:\n        # Get all substrings of given length and iterate through them\n        for i in range(len(s) - length + 1):\n            # Check if the substring is a palindrome by comparing it with its reverse\n            if s[i:i+length] == s[i+length-1:-1+i][::-1]:\n                # Add the found palindrome to the list\n                palindromes.append(s[i:i+length])\n    \n    # Return the list of found palindromes\n    return palindromes",
+    "tests": [
+        "assert find_palindromes('racecar') == ['racecar', 'cc']",
+        "assert find_palindromes('babad') == ['bab', 'aba', 'bb']",
+        "assert find_palindromes('abcdefg') == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

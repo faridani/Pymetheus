@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Permutation Checker",
+    "description": "Given a list of integers, write a function `has_permutation` that checks if there exists a permutation of the given list such that each number is greater than its predecessor. If such a permutation exists, return True; otherwise, return False.\n\n#### Function Signature\n```python\ndef has_permutation(lst: list[int]) -> bool:\n``` \n\n#### Input\n- `lst` (list[int]): A list of integers.\n\n#### Output\n- Returns `True` if there exists a permutation of the input list such that each number is greater than its predecessor, `False` otherwise.",
+    "code": "def has_permutation(lst: list[int]) -> bool:\n    for i in range(len(lst) - 1):\n        if lst[i] >= lst[i + 1]:\n            return False\n    return True",
+    "tests": [
+        "assert has_permutation([1, 2, 3]) == True",
+        "assert has_permutation([5, 4, 3]) == False",
+        "assert has_permutation([1, 4, 2, 5]) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

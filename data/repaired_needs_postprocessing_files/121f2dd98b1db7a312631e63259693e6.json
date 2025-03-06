@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Matrix Chain Multiplication",
+    "description": "Given a chain of matrices, the task is to find the minimum number of multiplications needed to multiply them. Matrix chain multiplication can be solved using dynamic programming and it has optimal substructure property. Write a function `matrix_chain_multiplication` that takes a list of dimensions of matrices as input and returns the minimum number of multiplications.\r\n\r\n#### Function Signature\r\n```python\r\ndef matrix_chain_multiplication(dimensions: List[int]) -> int:\r```\r\r\n#### Input\r\n- `dimensions` (List[int]): A list of dimensions of matrices where the ith matrix is of dimension dimensions[i-1] x dimensions[i]. The input list will have at least two elements.\r\r\n#### Output\r\n- Returns an integer that represents the minimum number of multiplications needed to multiply the chain of matrices.",
+    "code": "from typing import List\r\ndef matrix_chain_multiplication(dimensions: List[int]) -> int:\r    n = len(dimensions) - 1\r    m = [[0 for x in range(n)] for y in range(n)]\r    for chainLength in range(2, n + 1):\r        for i in range(1, n - chainLength + 2):\r            j = i + chainLength - 1\r            m[i - 1][j - 1] = float('inf')\r            for k in range(i, j):\r                cost = m[i - 1][k - 1] + m[k][j - 1] + dimensions[i - 1]*dimensions[k]*dimensions[j]\r                if cost < m[i - 1][j - 1]:\r                    m[i - 1][j - 1] = cost\r    return m[0][n - 1]\r",
+    "tests": [
+        "assert matrix_chain_multiplication([40, 20, 30, 10, 30]) == 26000",
+        "assert matrix_chain_multiplication([10, 20, 30, 40, 50]) == 30000"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

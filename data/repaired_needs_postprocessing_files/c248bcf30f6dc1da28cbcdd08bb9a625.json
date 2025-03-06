@@ -1,0 +1,12 @@
+{
+    "title": "[Hard] Prime Pairing",
+    "description": "In number theory, a Goldbach partition of an even integer n greater than 4 is a way of writing n as the sum of two prime numbers. One such possible partition for each even integer 6 <= n < 100 is:\n- 6 = 3 + 3\n- 8 = 5 + 3\n- ... \n- 92 = 71 + 21\n- ... \nYour task is to write a function `goldbach_partition` that returns a list of all Goldbach partitions for a given even integer n, where 6 <= n < 100. Each partition should be represented as a tuple of two prime numbers.\n#### Function Signature\n```python\ndef goldbach_partition(n: int) -> List[Tuple[int, int]]:\n```\n\n#### Input\n- `n` (int): An even integer where 6 <= n < 100.\n#### Output\n- Returns a list of all Goldbach partitions for the input integer, with each partition represented as a tuple of two prime numbers.",
+    "code": "def goldbach_partition(n: int) -> List[Tuple[int, int]]:\n    def is_prime(num):\n        if num < 2:\n            return False\n        for i in range(2, int(num**0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n    partitions = []\n    for i in range(2, n // 2 + 1):\n        if is_prime(i) and is_prime(n - i):\n            partitions.append((i, n - i))\n    return partitions",
+    "tests": [
+        "assert goldbach_partition(6) == [(3, 3)]",
+        "assert goldbach_partition(8) == [(5, 3), (3, 5)]",
+        "assert goldbach_partition(20) == [(3, 17), (7, 13)]",
+        "assert goldbach_partition(94) == [(3, 91), (17, 77), (19, 75), (29, 65), (41, 53), (43, 51), (47, 47)]"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

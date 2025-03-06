@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Number of Islands",
+    "description": "Given a non-empty array of unique integers representing the coordinates of 'islands' on an infinite grid, write a function `count_islands` that counts the number of islands.\n\n#### Function Signature\n```python\ndef count_islands(islands: list[list[int]]) -> int:\n```\n\n#### Input\n- `islands` (list[list[int]]): A 2D array where each element is a pair of coordinates `(x, y)` representing an island on the grid.\n\n#### Output\n- Returns the total number of islands.",
+    "code": "def count_islands(islands: list[list[int]]) -> int:\n    if not islands:\n        return 0\n    visited = [[False for _ in range(len(island[0]))] for island in islands]\n    def dfs(i, j):\n        if i < 0 or j < 0 or i >= len(islands) or j >= len(islands[0]) or visited[i][j]:\n            return\n        visited[i][j] = True\n        for x, y in [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]:\n            if 0 <= x < len(islands) and 0 <= y < len(islands[0]) and not visited[x][y]:\n                dfs(x, y)\n    count = 0\n    for i in range(len(islands)):\n        for j in range(len(islands[i])):\n            if not visited[i][j]:\n                dfs(i, j)\n                count += 1\n    return count",
+    "tests": [
+        "assert count_islands([[0,0],[0,1],[1,2]]) == 1",
+        "assert count_islands([[0,0],[0,1],[1,2],[2,3]]) == 2",
+        "assert count_islands([]) == 0",
+        "assert count_islands([[-5,-6],[-4,-7]]) == 1"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

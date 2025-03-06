@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Check if a Given List of Strings are Unique",
+    "description": "Write a function that takes a list of strings as input and returns `True` if all the strings in the list are unique, `False` otherwise. The function should be case-insensitive and ignore spaces.\n\n#### Function Signature\n```python\ndef is_all_unique(lst: list[str]) -> bool:\n```\n\n#### Input\n- `lst` (list[str]): A list of strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if all the input strings are unique, `False` otherwise.\n",
+    "code": "def is_all_unique(lst: list[str]) -> bool:\n    seen = set()\n    for s in lst:\n        s = s.replace(' ', '').lower()\n        if s in seen:\n            return False\n        seen.add(s)\n    return True",
+    "tests": [
+        "assert is_all_unique(['A', 'B', 'C']) == True",
+        "assert is_all_unique(['Hello', 'World', 'World']) == False",
+        "assert is_all_unique(['a', 'b', 'c']) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

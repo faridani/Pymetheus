@@ -1,0 +1,11 @@
+{
+    "title": "Longest Substring with At Least K Distinct Characters",
+    "description": "Write a function `longest_substring` that takes a string `s` and an integer `k` as input. The function should return the length of the longest substring of `s` that contains at least `k` distinct characters.\n\n#### Function Signature\n```python\ndef longest_substring(s: str, k: int) -> int:\n```\n\n#### Input\n- `s` (str): A string of letters and spaces. The string may contain uppercase and lowercase letters.\n- `k` (int): An integer representing the minimum number of distinct characters required in a substring.\n\n#### Output\n- Returns the length of the longest substring that contains at least `k` distinct characters.\n",
+    "code": "def longest_substring(s: str, k: int) -> int:\n    max_length = 0\n    for i in range(len(s)):\n        char_count = {}\n        for j in range(i, len(s)):\n            if s[j] not in char_count:\n                char_count[s[j]] = 1\n            else:\n                char_count[s[j]] += 1\n            if len(char_count) >= k:\n                max_length = max(max_length, j - i + 1)\n    return max_length\n",
+    "tests": [
+        "assert longest_substring(\"abcabc\", 3) == 3",
+        "assert longest_substring(\"aabbcc\", 2) == 6",
+        "assert longest_substring(\"ab\", 5) == 0"
+    ],
+    "model": "llama3.1:8b-repaired by Llama 3"
+}

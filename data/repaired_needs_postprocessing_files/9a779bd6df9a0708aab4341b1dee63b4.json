@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Maximum Profit from Stock Trades with Transaction Fee (K Days Window)",
+    "description": "You are given an array `prices` where `prices[i]` is the price of a given stock on the i-th day, and an integer `fee` which represents the transaction fee for each trade. Additionally, you are provided with an integer `k`, representing the maximum number of days within which you must complete all trades (a buy-sell pair counts as one trade). Your task is to calculate the maximum profit that can be achieved under these conditions.\n\nYour function should have the following signature: `def maxProfitWithFee(prices: List[int], fee: int, k: int) -> int:`\n\nInput:\n- `prices` (List[int]): An array of integers representing the stock prices on each day.\n- `fee` (int): The transaction fee for each trade.\n- `k` (int): Maximum number of days within which all trades must be completed.\n\nOutput:\n- Returns an integer representing the maximum profit that can be achieved.\n\nConstraints:\n- 1 <= len(prices) <= 10^5\n- 0 <= prices[i] <= 10^4\n- 0 <= fee < max(prices)\n- 1 <= k <= len(prices)\n\nHints:\nConsider using dynamic programming to keep track of the maximum profit that can be achieved with and without holding a stock at any given day.\n",
+    "code": "from typing import List\ndef maxProfitWithFee(prices: List[int], fee: int, k: int) -> int:\n    n = len(prices)\n    if n == 0 or k == 0:\n        return 0\n    \n    dp = [[0 for _ in range(k + 1)] for _ in range(n)]\n    \n    dp[0][0] = 0\n    dp[0][1] = -prices[0]\n    \n    for i in range(1, n):\n        dp[i][0] = 0  # No stock held, so profit is zero\n        for j in range(1, k + 1):\n            dp[i][j] = max(dp[i-1][j], dp[i-1][j-1] + prices[i] - fee)  # Max of not holding today or selling today\n            if i > 0:\n                dp[i][j] = max(dp[i][j], dp[i-1][j] + prices[i] - prices[i])  # Maintain previous stock hold status if no new buy/sell\n                dp[i][j] = max(dp[i][j], dp[i-1][j-1] - prices[i])  # Buying a stock today\n    \n    return max(dp[n-1][j] for j in range(k + 1))\n",
+    "tests": [
+        "assert maxProfitWithFee([1, 3, 2, 8, 4, 9], 2, 2) == 8",
+        "assert maxProfitWithFee([1, 3, 7, 5, 10, 3], 3, 2) == 6",
+        "assert maxProfitWithFee([1, 2, 3, 4, 5], 0, 3) == 4",
+        "assert maxProfitWithFee([], 1, 2) == 0",
+        "assert maxProfitWithFee([1, 2, 3, 4, 5], 10, 2) == 0"
+    ],
+    "model": "phi4:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Given two strings, write a function `anagram_checker` that checks if they are anagrams of each other.\n\n#### Function Signature\n```python\ndef anagram_checker(string1: str, string2: str) -> bool:\n```\n\n#### Input\n- `string1` (str): A string that may contain letters in any case and spaces.\n- `string2` (str): Another string that may contain letters in any case and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\nAn anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. For example, 'listen' and 'silent' are anagrams of each other.",
+    "code": "import collections\ndef anagram_checker(string1: str, string2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    string1 = ''.join(char for char in string1.lower() if char.isalpha()).replace(' ', '')\n    string2 = ''.join(char for char in string2.lower() if char.isalpha()).replace(' ', '')\n    # Check if the two strings have the same number of characters\n    if len(string1) != len(string2):\n        return False\n    # Count the frequency of each character in both strings\n    count_dict = collections.Counter(string1)\n    for char, freq in count_dict.items():\n        # If any character's frequency does not match in the other string, they are not anagrams\n        if count_dict[char] != string2.count(char):\n            return False\n    return True",
+    "tests": [
+        "assert anagram_checker(\"listen\", \"silent\") == True",
+        "assert anagram_checker(\"racecar\", \"carrace\") == True",
+        "assert anagram_checker(\"hello\", \"world\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

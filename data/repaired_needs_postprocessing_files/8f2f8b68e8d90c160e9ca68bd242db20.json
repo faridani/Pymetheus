@@ -1,0 +1,11 @@
+{
+    "title": "Is it a Pangram Palindrome? (Medium)",
+    "description": "A pangram is a sentence that uses every letter of the alphabet at least once. A pangram palindrome is a special kind of pangram where the sentence reads the same forwards and backwards, with no changes in capitalization or punctuation.\n\n#### Function Signature\n```python\ndef is_pangram_palindrome(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string containing at least one uppercase and one lowercase letter for each alphabet, as well as any number of spaces and punctuation.\n\n#### Output\n- Returns `True` if the input string is a pangram palindrome, `False` otherwise.",
+    "code": "import string\ndef is_pangram_palindrome(s: str) -> bool:\n    # Check if the input string is a pangram (uses every letter of the alphabet)\n    used_letters = set()\n    for char in s.lower():\n        if char not in string.ascii_letters:\n            continue\n        used_letters.add(char)\n    if len(used_letters) != 26:\n        return False\n    # Remove non-alphanumeric characters and convert to lowercase\n    s = ''.join(char for char in s.lower() if char in string.ascii_letters + string.digits)\n    # Check if the string reads the same forwards and backwards\n    return s == s[::-1]\n",
+    "tests": [
+        "assert is_pangram_palindrome(\"A man, a plan, a canal: Panama\") == True",
+        "assert is_pangram_palindrome(\"Was it a car or a cat I saw?\") == False",
+        "assert is_pangram_palindrome(\"Never odd or even.\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

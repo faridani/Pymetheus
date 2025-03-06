@@ -1,0 +1,12 @@
+{
+    "title": "Hard - Minimum Deletions for Unique Substring",
+    "description": "Given a string `s`, find the minimum number of deletions required to make all substrings of `s` unique.\n\n#### Function Signature\n```python\ndef min_deletions(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string consisting of lowercase English letters.\n\n#### Output\n- Returns the minimum number of deletions required to make all substrings of `s` unique.",
+    "code": "def min_deletions(s: str) -> int:\n    n = len(s)\n    seen = set()\n    deletions = 0\n    for i in range(n):\n        for j in range(i, n):\n            substring = s[i:j+1]\n            if substring in seen:\n                deletions += 1\n            else:\n                seen.add(substring)\n    return deletions",
+    "tests": [
+        "assert min_deletions(\"abc\") == 0",
+        "assert min_deletions(\"aba\") == 1",
+        "assert min_deletions(\"abcabc\") == 3",
+        "assert min_deletions(\"aabaa\") == 2"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

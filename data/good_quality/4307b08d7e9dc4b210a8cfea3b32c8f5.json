@@ -1,0 +1,15 @@
+{
+    "title": "Eulerian Cycles",
+    "description": "An Eulerian cycle on a graph is a walk that uses every edge of the graph exactly once. Write a function `find_eulerian_cycle` that finds an Eulerian cycle in a given directed graph.\n\n#### Function Signature\n```python\ndef find_eulerian_cycle(graph: list[list[str]]) -> list[tuple[str, str]]:\n```\n\n#### Input\n- `graph` (list of lists): A directed graph represented as an adjacency list. Each element is a string representing the edge from one node to another.\n\n#### Output\n- Returns a list of tuples, where each tuple contains two nodes that are connected by an edge in the Eulerian cycle.",
+    "code": "",
+    "\nfrom collections import deque\n\ndef find_eulerian_cycle(graph):\n    in_degree = {node: 0 for node in graph}\n    for edge in graph:\n        source, destination = edge\n        in_degree[destination] += 1\n    \n    queue = deque([node for node in graph if in_degree[node] == 0])\n    \n    eulerian_cycle = []\n    while queue:\n        node = queue.popleft()\n        for edge in graph:\n            source, destination = edge\n            if source == node:\n                in_degree[destination] -= 1\n                if in_degree[destination] == 0:\n                    queue.append(destination)\n                eulerian_cycle.append((node, destination))\n                break\n    \n    return eulerian_cycle": "",
+    "tests": [
+        "assert find_eulerian_cycle([['A', 'B'], ['B', 'C'], ['C', 'D'], ['D', 'A']]) == [('A', 'B'), ('B', 'C'), ('C', 'D'), ('D', 'A')]",
+        "assert find_eulerian_cycle([['1', '2'], ['2', '3'], ['3', '4'], ['4', '5'], ['5', '1']]) == [('1', '2'), ('2', '3'), ('3', '4'), ('4', '5'), ('5', '1')]",
+        "assert find_eulerian_cycle([['A', 'B'], ['B', 'C']]) == [('A', 'B'), ('B', 'C')]",
+        "assert find_eulerian_cycle([[]]) == []"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

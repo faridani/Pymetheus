@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Sum of Cubes",
+    "description": "A sequence of numbers starts with 1, 2, 4, 7, 13, 21, and so on. The next number is obtained by adding the square of each digit in the previous number to itself. Write a function `sequence_sum` that calculates the sum of cubes of all terms up to the nth term.",
+    "code": "def sequence_sum(n: int) -> int:\n    if n < 1:\n        return 0\n    total = 0\n    current = 1\n    for _ in range(n):\n        total += current ** 3\n        current = sum(int(digit) ** 3 for digit in str(current))\n    return total",
+    "tests": [
+        "assert sequence_sum(4) == 30",
+        "assert sequence_sum(5) == 231",
+        "assert sequence_sum(6) == 2280"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

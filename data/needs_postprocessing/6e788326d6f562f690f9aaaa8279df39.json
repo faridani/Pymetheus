@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Last Digit Finder\\\", \\\"description\\\": \\\"Write a function `last_digit_finder` that takes a list of numbers as input and returns the last digit of each number. The function should work for both positive and negative integers.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef last_digit_finder(numbers: list[int]) -> list[int]:\\\\n```\\\\n\\\\n#### Input\\\\n- `numbers` (list[int]): A list of integers that may be positive or negative.\\\\n\\\\n#### Output\\\\n- Returns a list of integers where each element is the last digit of the corresponding input number.\\\", \\\"code\\\": \\\"def last_digit_finder(numbers: list[int]) -> list[int]:\\\\n    return [abs(num) % 10 for num in numbers]\\\", \\\"tests\\\": [\\\"assert last_digit_finder([12, -45, 0, 786]) == [2, 5, 0, 6]\\\", \\\"assert last_digit_finder([-1, 100, 3.14, -123.456]) == [1, 0, 4, 7]\\\"] }\""
+}

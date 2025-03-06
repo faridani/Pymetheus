@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Minimum Swaps for Increasing Subsequence",
+    "description": "You are given an array of integers `nums`. Find the minimum number of swaps required to transform `nums` into a strictly increasing subsequence. A swap consists of choosing two elements and exchanging their positions.\n\n#### Function Signature\n```python\ndef min_swaps(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): An array of integers.\n\n#### Output\n- Returns the minimum number of swaps required to transform `nums` into a strictly increasing subsequence. If it is impossible to achieve a strictly increasing subsequence, return -1.\n",
+    "code": "def min_swaps(nums: list[int]) -> int:\n    n = len(nums)\n    dp = [0] * n\n    for i in range(n):\n        dp[i] = 1\n        for j in range(i):\n            if nums[j] < nums[i] and dp[j] + 1 > dp[i]:\n                dp[i] = dp[j] + 1\n    max_len = max(dp)\n    return n - max_len if max_len < n else -1",
+    "tests": [
+        "assert min_swaps([1, 2, 3, 4]) == 0",
+        "assert min_swaps([3, 1, 2, 4]) == 1",
+        "assert min_swaps([1, 5, 2, 4, 3]) == 2",
+        "assert min_swaps([4, 3, 2, 1]) == -1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

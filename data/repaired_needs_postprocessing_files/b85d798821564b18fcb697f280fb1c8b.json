@@ -1,0 +1,11 @@
+{
+    "title": "Binary Tree Node Depths (Hard)",
+    "description": "Given a binary tree, calculate the depth of each node and return the sum of all depths. A node's depth is the number of edges from the root to the node. The depth of the root is 0.\n\n#### Function Signature\n```python\ndef get_node_depths(root: TreeNode) -> int:\n``` \n\n#### Input\n- `root` (TreeNode): The root node of a binary tree.\n\n#### Output\n- Returns an integer representing the sum of all node depths in the binary tree.\n\n#### Constraints\n- The number of nodes in the binary tree is between 1 and 10^5.\n- Each node's value will be an integer between -1000 and 1000.",
+    "code": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\n\ndef get_node_depths(root: TreeNode) -> int:\n    if not root:\n        return 0\n    depths = [0]\n    def dfs(node, depth):\n        if node:\n            depths[0] += depth\n            dfs(node.left, depth + 1)\n            dfs(node.right, depth + 1)\n\n    dfs(root, 0)\n    return depths[0]",
+    "tests": [
+        "assert get_node_depths(TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3))) == 9",
+        "assert get_node_depths(TreeNode(10, TreeNode(20, TreeNode(40), TreeNode(50)), TreeNode(30))) == 14",
+        "assert get_node_depths(TreeNode(100)) == 0"
+    ],
+    "model": "codegeex4:9b-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Medium - Flatten a List",
+    "description": "Write a function `flatten` that takes a nested list as input and returns a single flattened list.  #### Function Signature```python def flatten(nested_list: list) -> list:    ```  #### Input- `nested_list` (list): A list that may contain other lists, integers, or strings.-  #### Output- Returns a single flattened list containing all elements from the nested input list.",
+    "code": "def flatten(nested_list: list) -> list:\n    flattened = []\n    for element in nested_list:\n        if isinstance(element, list):\n            flattened.extend(flatten(element))\n        else:\n            flattened.append(element)\n    return flattened",
+    "tests": [
+        "assert flatten([1, 2, [3, 4], 5]) == [1, 2, 3, 4, 5]",
+        "assert flatten([[1], [2, [3]]]) == [1, 2, 3]",
+        "assert flatten([1, [2, [3, 4]], 5]) == [1, 2, 3, 4, 5]",
+        "assert flatten(['a', ['b', 'c'], 'd']) == ['a', 'b', 'c', 'd']"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

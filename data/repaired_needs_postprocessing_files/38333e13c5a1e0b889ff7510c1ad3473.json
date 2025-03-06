@@ -1,0 +1,11 @@
+{
+    "title": "'Reverse Words and Keep Case (Hard)'",
+    "description": "Write a function `reverse_words` that takes a string as input, reverses the order of words while keeping their original casing.\n\n#### Function Signature\n```python\ndef reverse_words(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string that may contain spaces, letters, numbers and punctuation marks.\n\n#### Output\n- Returns a new string where the order of words is reversed but their original casing is preserved. Spaces are replaced with a single space at the beginning and end of the string.\n\n#### Constraints\n- The input string contains only English letters, digits, spaces, punctuation marks and the period (.).",
+    "code": "def reverse_words(s: str) -> str:\n    # Remove extra spaces and periods at the beginning and end of the string\n    s = s.strip().replace('.', ' ').replace('  ', ' ') \n    # Split the string into words by spaces\n    words = s.split(' ') \n    # Reverse the order of words\n    reversed_words = words[::-1] \n    # Join the reversed words back into a single string\n    return ' '.join(reversed_words)",
+    "tests": [
+        "assert reverse_words('Hi there. How are you doing today?') == 'today you are doing How are there Hi'",
+        "assert reverse_words('I.am.fine.thank.you.   ') == '  .you.thank .fine am I.'",
+        "assert reverse_words('.') == '. '"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

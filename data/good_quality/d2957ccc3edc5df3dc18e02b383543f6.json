@@ -1,0 +1,14 @@
+{
+    "title": "Counting Islands",
+    "description": "Given a list of points (represented as tuples of two integers), write a function `count_islands` that counts the number of distinct islands in the plane. An island is defined as any group of connected points, where 'connected' means that each point shares at least one edge with another point.\n\n#### Function Signature\n```python\ndef count_islands(points: list[tuple[int, int]]) -> int:\n```\n\n#### Input\n- `points` (list[tuple[int, int]]): A list of points in the plane, where each point is represented as a tuple of two integers.\n\n#### Output\n- Returns the number of distinct islands.",
+    "code": "",
+    "\nimport collections\n\ndef count_islands(points: list[tuple[int, int]]) -> int:\n    if not points:\n        return 0\n    \n    graph = collections.defaultdict(list)\n    \n    for x1, y1 in points:\n        for x2, y2 in points:\n            if (x1, y1) != (x2, y2) and abs(x1 - x2) + abs(y1 - y2) == 1:\n                graph[(x1, y1)].append((x2, y2))\n    \n    visited = set()\n    islands = 0\n    \n    for point in points:\n        if point not in visited:\n            dfs(graph, point, visited)\n            islands += 1\n    \n    return islands\n\ndef dfs(graph, point, visited):\n    if point in visited:\n        return\n    visited.add(point)\n    \n    for neighbor in graph[point]:\n        dfs(graph, neighbor, visited)": "",
+    "tests": [
+        "assert count_islands([(0, 0), (0, 1), (0, 2)]) == 1",
+        "assert count_islands([(0, 0), (0, 1), (0, 2), (1, 1), (1, 2)]) == 3",
+        "assert count_islands([]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

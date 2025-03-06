@@ -1,0 +1,11 @@
+{
+    "title": "'Palindromic Substrings' (Medium)",
+    "description": "Write a function `find_palindromes` that finds all non-overlapping palindromic substrings in a given string. A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization).\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of all non-overlapping palindromic substrings found in the input string.",
+    "code": "import re\ndef find_palindromes(s: str) -> List[str]:\n    # Remove non-alphanumeric characters\n    s = re.sub('[^A-Za-z0-9]', '', s)\n    \n    # Find all possible palindromic substrings (without checking if they are valid palindromes yet)\n    substrings = [''.join(substring) for length in range(1, len(s)+1) for substring in itertools.product(s, repeat=length)]\n    \n    # Filter out invalid palindromes (i.e., those that are not the same forward and backward)\n    palindromes = [substring for substring in substrings if len(substring) > 1 and substring == substring[::-1]]\n    return palindromes",
+    "tests": [
+        "assert find_palindromes('madam') == ['madam']",
+        "assert find_palindromes('racecar') == ['racecar', 'ccar', 'rac', 'c']",
+        "assert find_palindromes('hello') == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

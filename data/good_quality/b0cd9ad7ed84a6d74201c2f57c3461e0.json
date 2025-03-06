@@ -1,0 +1,15 @@
+{
+    "title": "Easy: Sum of Divisors",
+    "description": "The sum of divisors of a number N includes 1 and N. For example, the sum of divisors of 12 is 1 + 2 + 3 + 4 + 6 + 12 = 28. Write a function `sum_of_divisors` that takes an integer as input and returns the sum of its divisors.\n\n#### Function Signature\n```python\ndef sum_of_divisors(n: int) -> int:\n```\n\n#### Input\n- `n` (int): An integer greater than 1.\n\n#### Output\n- Returns the sum of divisors of the input integer.",
+    "code": "",
+    "\ndef sum_of_divisors(n: int) -> int:\n    total = 0\n    for i in range(1, n + 1):\n        if n % i == 0:\n            total += i\n    return total": "",
+    "tests": [
+        "assert sum_of_divisors(12) == 28",
+        "assert sum_of_divisors(24) == 60",
+        "assert sum_of_divisors(48) == 80",
+        "assert sum_of_divisors(99) == 247"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Reversed Words Palindrome Checker (Hard)",
+    "description": "Write a function `is_palindrome` that checks if a given sentence is a palindrome, where the individual words read the same forwards and backwards. Ignore case and punctuation.\n\n#### Function Signature\n```python\ndef is_palindrome(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A sentence that may contain letters, numbers, spaces, punctuation, and words of any length.\n\n#### Output\n- Returns `True` if the input sentence is a palindrome, `False` otherwise.",
+    "code": "import re\ndef is_palindrome(s: str) -> bool:\n    # Remove punctuation and convert to lowercase\n    s = re.sub('[^\\w\\s]', '', s).strip().lower()\n    # Split into words\n    words = s.split()\n    # Check if the length of the list is odd\n    if len(words) % 2 != 0:\n        return False\n    # Reverse half of the words and compare with the original\n    for i in range(len(words) // 2):\n        if words[i] != words[-(i+1)]:\n            return False\n    return True",
+    "tests": [
+        "assert is_palindrome(\"A man, a plan, a canal: Panama\") == True",
+        "assert is_palindrome(\"Was it a car or a cat I saw?\") == True",
+        "assert is_palindrome(\"Hello World!\") == False",
+        "assert is_palindrome(\"A Santa at NASA\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

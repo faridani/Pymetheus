@@ -1,0 +1,12 @@
+{
+    "title": "Median Element Finder",
+    "description": "Write a function `find_median` that takes an unsorted list of integers as input and returns the median element of the list. The median is defined as the middle value in an ordered, sorted list; if there are two middle values (an even number of elements), it should return their average.\n\n#### Function Signature\n```python\ndef find_median(nums: List[int]) -> float:\n``` \n\n#### Input\n- `nums` (List[int]): An unsorted list of integers. The length of the list is guaranteed to be at least 1 and not more than 5 * 10^6.\n\n#### Output\n- Returns the median value as a floating-point number.",
+    "code": "from typing import List\ndef find_median(nums: List[int]) -> float:\n    nums.sort()\n    mid = len(nums) // 2\n    if len(nums) % 2 == 0:\n        return (nums[mid - 1] + nums[mid]) / 2\n    else:\n        return nums[mid]\n",
+    "tests": [
+        "assert find_median([3, 1, 2, 4, 5]) == 3",
+        "assert find_median([-10, 4, 6, 5, 7]) == 5.0",
+        "assert find_median([1, 2, 3, 4, 5]) == 3",
+        "assert find_median([-5, -2, -3, -1, 0, 1, 2, 3]) == 0"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

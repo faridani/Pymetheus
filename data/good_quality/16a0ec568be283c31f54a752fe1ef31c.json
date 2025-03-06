@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Beautiful Garden",
+    "description": "A garden is said to be beautiful if the number of rows and columns are equal. Given a 2D list of plants, where each inner list represents a row, write a function `is_beautiful_garden` that checks if the given garden is beautiful.\n\n#### Function Signature\n```python\ndef is_beautiful_garden(garden: list[list[str]]) -> bool:\n```\n\n#### Input\n- `garden` (list[list[str]]): A 2D list of plants, where each inner list represents a row.\n\n#### Output\n- Returns `True` if the garden is beautiful, `False` otherwise.",
+    "code": "\nimport math\n\ndef is_beautiful_garden(garden: list[list[str]]) -> bool:\n    # Get the number of rows and columns in the garden\n    rows = len(garden)\n    cols = len(garden[0])\n\n    # Check if the number of rows and columns are equal\n    return rows == cols",
+    "tests": [
+        "assert is_beautiful_garden([['sunflower', 'daisy'], ['rose', 'lily']]) == True",
+        "assert is_beautiful_garden([['sunflower', 'daisy', 'lily'], ['rose', 'sunflower', 'daisy']]) == False",
+        "assert is_beautiful_garden([[], []]) == True",
+        "assert is_beautiful_garden([['sunflower', 'daisy']]) == False"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

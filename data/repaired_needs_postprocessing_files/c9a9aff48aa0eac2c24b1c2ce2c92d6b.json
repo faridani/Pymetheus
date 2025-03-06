@@ -1,0 +1,11 @@
+{
+    "title": "Max Consecutive Ones in Binary Representation",
+    "description": "A binary representation of an integer `n` consists of a sequence of 0s and 1s. The `max_ones` function should return the maximum number of consecutive 1s that appear in the binary representation of all integers from 1 to `n`. For example, if `n = 10`, then the maximum number of consecutive 1s is 3 (in the binary representation of 8 and 9). A positive integer. - Returns the maximum number of consecutive 1s that appear in the binary representation of all integers from 1 to `n`. ",
+    "code": "def max_ones(n: int) -> int:\n    ones = 0\n    max_ones_count = 0\n\n    for i in range(2, n + 1):\n        bin_i = bin(i)[2:] \n        current_ones = 0\n\n        for j in range(len(bin_i)):\n            if bin_i[j] == '1':\n                current_ones += 1\n            else:\n                max_ones_count = max(max_ones_count, current_ones)\n                current_ones = 0\n        max_ones_count = max(max_ones_count, current_ones)\n\n    return max_ones_count",
+    "tests": [
+        "assert max_ones(10) == 3",
+        "assert max_ones(20) == 5",
+        "assert max_ones(30) == 6"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

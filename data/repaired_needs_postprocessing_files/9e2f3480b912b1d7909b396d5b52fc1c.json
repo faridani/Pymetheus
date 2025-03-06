@@ -1,0 +1,11 @@
+{
+    "title": "'Anagram Detection (Hard)'",
+    "description": "An anagram is a word or phrase that consists of the same letters as another, typically in a different order.\n#### Function Signature\n```python\ndef find_anagrams(wordlist: List[str], target: str) -> List[str]:\n``` \n\n#### Input\n- `wordlist` (List[str]): A list of strings, each representing a word or phrase.\n- `target` (str): A string to find anagrams for.\n\n#### Output\n- Returns a list of strings in the input `wordlist` that are anagrams of the given `target` string.",
+    "code": "def find_anagrams(wordlist: List[str], target: str) -> List[str]:\n    # Sort the characters in both the wordlist and the target string\n    sorted_target = sorted(target)\n    anagrams = []\n    for word in wordlist:\n        # If the sorted characters of the current word match the sorted target, add it to the list of anagrams\n        if sorted(word) == sorted_target:\n            anagrams.append(word)\n    return anagrams",
+    "tests": [
+        "assert find_anagrams(['listen', 'silent', 'enlist', 'education'], 'enlist') == ['listen', 'silent']",
+        "assert find_anagrams(['warsaw', 'shrew', 'swash', 'sowar'], 'shrew') == ['warsaw', 'sowar']",
+        "assert find_anagrams(['apple', 'apples', 'banana', 'orange'], 'apples') == ['apple']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "\"Is it anagram checker (Easy)\"",
+    "description": "An anagram is a word or phrase that consists of the same letters as another, but arranged differently. Write a function `is_anagram` that checks if two given strings are anagrams of each other.\r\n\r\n#### Function Signature\r\n```\ndef is_anagram(str1: str, str2: str) -> bool:\r\n``` \r\n\r\n#### Input\r\n- `str1`, `str2` (str): Two strings that may contain letters, numbers, and spaces.\r\n\r\n#### Output\r\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.",
+    "code": "def is_anagram(str1: str, str2: str) -> bool:\r\n    # Remove non-alphabetic characters and convert to lowercase\r\n    str1 = ''.join([char for char in str1.lower() if char in string.ascii_letters])\r\n    str2 = ''.join([char for char in str2.lower() if char in string.ascii_letters])\r\n    # Check if both strings have the same length\r\n    if len(str1) != len(str2):\r\n        return False\r\n    # Sort both strings and compare them\r\n    return sorted(str1) == sorted(str2)",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False",
+        "assert is_anagram(\"Movies, watch one now\", \"watches one now, Movies\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Words Palindrome Checker (Hard)",
+    "description": "Write a function `is_reverse_words_palindrome` that checks if a given string is a palindrome where each word read the same forwards and backwards. Words may contain spaces, punctuation, numbers and special characters, but the entire string should not be a palindrome due to these non-alphanumeric characters.\n\n#### Function Signature\n```python\ndef is_reverse_words_palindrome(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that contains words separated by spaces and may contain letters, numbers, spaces, punctuation or special characters.\n\n#### Output\n- Returns `True` if the input string is a palindrome where each word reads the same forwards and backwards, `False` otherwise.",
+    "code": "import re\ndef is_reverse_words_palindrome(s: str) -> bool:\n    # Split the string into words\n    words = s.split()\n    # Check if there is an odd number of words (odd number means string cannot be a palindrome)\n    if len(words) % 2 != 0:\n        return False\n    # Remove non-alphanumeric characters from each word and reverse the order of the characters in each word\n    for i, word in enumerate(words):\n        words[i] = ''.join(char.lower() for char in word if char.isalnum())\n        words[i] = words[i][::-1]\n    # Check if the reversed and cleaned words are equal to the original words\n    return words == s.split()",
+    "tests": [
+        "assert is_reverse_words_palindrome('A man, a plan, a canal: Panama') == True",
+        "assert is_reverse_words_palindrome('racecar') == False",
+        "assert is_reverse_words_palindrome('hello world') == False",
+        "assert is_reverse_words_palindrome('was it a car or a cat I saw') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Sum of Subarrays",
+    "description": "Given a 2D array, find the maximum sum of any subarray within it. A subarray is a contiguous sequence of elements in an array. The input array will be non-empty and contain at least one row with only positive integers.\n#### Function Signature\n```python\ndef max_sum_subarray(arr: list[list[int]]) -> int:\n``` \n\n#### Input\n- `arr` (list[list[int]]): A 2D array of integers, where each row contains at least one positive integer.\n\n#### Output\n- Returns the maximum sum of any subarray within the input array.\n",
+    "code": "def max_sum_subarray(arr: list[list[int]]) -> int:\n    max_sum = float('-inf')\n    for i in range(len(arr)):\n        current_sum = 0\n        for j in range(len(arr[i])):\n            current_sum += arr[i][j]\n            if current_sum < 0:\n                current_sum = 0\n            else:\n                max_sum = max(max_sum, current_sum)\n    return max_sum",
+    "tests": [
+        "assert max_sum_subarray([[1,2,3], [4,5,-6], [7,8,9]]) == 15",
+        "assert max_sum_subarray([[10,20,30], [40,50,60], [70,80,90]]) == 150",
+        "assert max_sum_subarray([[1,-2,3], [-4,5,6], [7,8,9]]) == 18"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

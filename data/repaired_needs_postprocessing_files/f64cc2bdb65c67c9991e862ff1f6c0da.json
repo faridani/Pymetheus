@@ -1,0 +1,11 @@
+{
+    "title": "Finding Islands",
+    "description": "An island in a given grid is defined as a connected group of one or more cells that is entirely surrounded by other cells. You are given an integer grid size n, and a 2D grid represented as a list of lists of integers, where 0 represents land and 1 represents water.\r\n\r\n#### Function Signature\r\n```python\r\ndef find_islands(grid: list[list[int]]) -> int:\r\r```\r\r#### Input\r\n- `grid` (list[list[int]]): A 2D grid represented as a list of lists of integers, where 0 represents land and 1 represents water.\r-n `n` (int): The integer grid size.\r\r#### Output\r\n- Returns the number of islands in the given grid.\"",
+    "code": "import copy\r\ndef find_islands(grid: list[list[int]]) -> int:\r\r    if not grid or not grid[0]:\r        return 0\r\r    n = len(grid)\r    m = len(grid[0])\r\r    def dfs(i: int, j: int) -> None:\r\r        if i < 0 or i >= n or j < 0 or j >= m or grid[i][j] == 1:\r            return\r\r        grid[i][j] = 1\r\r        for dx in [-1, 0, 1]:\r            for dy in [-1, 0, 1]:\r                if abs(dx) + abs(dy) != 1:\r                    continue\r\r                ni, nj = i + dx, j + dy\r\r                if 0 <= ni < n and 0 <= nj < m and grid[ni][nj] == 0:\r                    dfs(ni, nj)\r\r    islands = 0\r\r    for i in range(n):\r        for j in range(m):\r            if grid[i][j] == 0:\r                dfs(i, j)\r                islands += 1\r\r    return islands - (grid[0][0] == 0)",
+    "tests": [
+        "assert find_islands([[0, 0], [0, 0]]) == 1",
+        "assert find_islands([[0, 0, 0], [0, 1, 0], [0, 0, 0]]) == 2",
+        "assert find_islands([[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0], [0, 0, 0, 0]]) == 3"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

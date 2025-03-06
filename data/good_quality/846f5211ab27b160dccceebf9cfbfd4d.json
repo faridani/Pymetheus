@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Number of Islands",
+    "description": "Given a 2D binary grid, count the number of islands. An island is a group of connected `1`s. The grid cells are represented by a 0 (water) or a 1 (land). You may assume that the input is always valid and there are no adjacent land cells to each other (connected `1`s).\n\n#### Function Signature\n```\ndef count_islands(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D binary grid, where `0` represents water and `1` represents land.\n\n#### Output\n- Returns the number of islands in the input grid.",
+    "code": "\ndef count_islands(grid: list[list[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[i])):\n            if grid[i][j] == 1:\n                dfs(grid, i, j)\n                count += 1\n\n    return count\n\ndef dfs(grid: list[list[int]], i: int, j: int) -> None:\n    if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[i]) or grid[i][j] != 1:\n        return\n    grid[i][j] = -1  # mark as visited\n    dfs(grid, i + 1, j)\n    dfs(grid, i - 1, j)\n    dfs(grid, i, j + 1)\n    dfs(grid, i, j - 1)",
+    "tests": [
+        "assert count_islands([[0,0,1,0,0],[1,0,1,1,0],[0,1,0,0,0],[0,1,0,0,0],[0,1,1,1,0]]) == 1",
+        "assert count_islands([[1,1,0,0,0],[1,1,0,0,0],[0,0,1,0,0],[0,0,0,1,1]]) == 3",
+        "assert count_islands([]) == 0",
+        "assert count_islands([[]]) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

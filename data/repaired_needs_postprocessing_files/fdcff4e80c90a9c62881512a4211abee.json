@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Write a function `find_anagrams` that finds all the anagrams of a given string within a list of strings.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str, words: List[str]) -> List[str]:\n```\n\n#### Input\n- `word` (str): A string to be checked for anagrams.\n- `words` (List[str]): A list of strings containing potential anagrams.\n\n#### Output\n- Returns a list of strings that are anagrams of the input word, empty list if no anagrams found.\n\n#### Constraints and hints\n- The words in the list may contain any lowercase letter from the alphabet, spaces and punctuation. However, for this exercise, only consider the lowercase letters when determining whether two strings are anagrams.\n",
+    "code": "def find_anagrams(word: str, words: List[str]) -> List[str]:\n    # Create a dictionary to store the frequency of each letter in the word\n    word_freq = {}\n    for char in word:\n        if char not in word_freq:\n            word_freq[char] = 0\n        word_freq[char] += 1\n    # Create a list to store the potential anagrams\n    potential_anagrams = []\n    \n    for word_check in words:\n        # Check if the number of occurrences of each letter in the current word is equal to the number of occurrences in the input word\n        word_freq_check = {}\n        for char in word_check:\n            if char not in word_freq_check:\n                word_freq_check[char] = 0\n            word_freq_check[char] += 1\n        if word_freq == word_freq_check:\n            potential_anagrams.append(word_check)\n    \n    return potential_anagrams",
+    "tests": [
+        "assert find_anagrams('listen', ['enlists', 'silent', 'enlist', 'service']) == ['enlist', 'silent']",
+        "assert find_anagrams('programming', ['program', 'python', 'google', 'rampog']) == ['program']",
+        "assert find_anagrams('island', ['animal', 'sadist', 'world']) == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

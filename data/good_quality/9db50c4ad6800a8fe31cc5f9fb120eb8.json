@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Reorder List",
+    "description": "Given a list of integers `nums` and an integer `k`, reorder the list so that all elements less than or equal to `k` come first. Then, all elements greater than `k` should come next. Finally, any remaining elements (if there are) should be at the end in their original order.\n\n#### Function Signature\n```python\ndef reorder_list(nums: list[int], k: int) -> list[int]:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers to be reordered.\n- `k` (int): The threshold integer.\n\n#### Output\n- Returns the reordered list of integers.",
+    "code": "",
+    "\ndef reorder_list(nums: list[int], k: int) -> list[int]:\n    # Separate elements less than or equal to k\n    left = [num for num in nums if num <= k]\n    \n    # Separate elements greater than k\n    right = [num for num in nums if num > k]\n    \n    # Sort the remaining elements\n    remaining = sorted([num for num in nums if num not in left and num not in right])\n    \n    # Combine the three lists\n    return left + remaining + right": "",
+    "tests": [
+        "assert reorder_list([3, 2, 1, 4], 2) == [1, 2, 2, 3, 4]",
+        "assert reorder_list([1, 2, 3, 4, 5], 3) == [1, 2, 3, 4, 5]",
+        "assert reorder_list([5, 4, 3, 2, 1], 2) == [1, 2, 2, 3, 4, 5]"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Substring Rotation",
+    "description": "You are given two strings, `s` and `t`. Determine if `t` is a rotation of `s`. \n\n#### Function Signature\n```python\ndef is_rotation(s: str, t: str) -> bool:\n```\n\n#### Input\n- `s` (str): The first string.\n- `t` (str): The second string.\n\n#### Output\n- Returns `True` if `t` is a rotation of `s`, `False` otherwise.\n",
+    "code": "def is_rotation(s: str, t: str) -> bool:\n    if len(s) != len(t):\n        return False\n    return t in s + s\n",
+    "tests": [
+        "assert is_rotation(\"waterbottle\", \"erbottlewat\") == True",
+        "assert is_rotation(\"abcde\", \"bcdea\") == True",
+        "assert is_rotation(\"apple\", \"orange\") == False",
+        "assert is_rotation(\"helloworld\", \"worldhello\") == True"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

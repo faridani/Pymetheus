@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Maximum Island Size",
+    "description": "Given a 2D array `grid` of size `m x n`, where `grid[i][j]` is either '0' (water) or '1' (land), write a function `max_island_size` that returns the maximum size of an island in the grid. An island is defined as a connected group of '1's (land) that are not separated by water ('0's).\n\n#### Function Signature\n```python\ndef max_island_size(grid: list[list[str]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[str]]): A 2D array where each cell is either '0' or '1', representing water and land, respectively.\n\n#### Output\n- Returns the maximum size of an island in the grid. If there are no islands, returns 0.",
+    "code": "",
+    "\n\nimport copy\n\ndef max_island_size(grid: list[list[str]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n    \n    m, n = len(grid), len(grid[0])\n    visited = [[False] * n for _ in range(m)]\n    \n    def dfs(i: int, j: int) -> int:\n        if i < 0 or i >= m or j < 0 or j >= n or visited[i][j] or grid[i][j] == '0':\n            return 0\n        \n        visited[i][j] = True\n        size = 1\n        for x, y in [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]:\n            if 0 <= x < m and 0 <= y < n and grid[x][y] == '1' and not visited[x][y]:\n                size += dfs(x, y)\n        \n        return size\n    \n    max_size = 0\n    for i in range(m):\n        for j in range(n):\n            if grid[i][j] == '1' and not visited[i][j]:\n                max_size = max(max_size, dfs(i, j))\n    \n    return max_size": "",
+    "tests": [
+        "assert max_island_size([['0', '0', '0', '0'], ['1', '1', '0', '0'], ['0', '1', '0', '0']]) == 2",
+        "assert max_island_size([['0', '0', '0', '0'], ['1', '1', '0', '0'], ['0', '0', '1', '1']]) == 4",
+        "assert max_island_size([]) == 0",
+        "assert max_island_size([[0, 0], [1, 1]]) == 2"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Path Sum in a Triangle",
+    "description": "Given a triangle as an array of arrays, where each inner array represents a row in the triangle. Each element in the triangle is either 0 or positive integer. The goal is to find the maximum path sum from top to bottom in this triangle.\n\n#### Function Signature\n```python\ndef max_path_sum(triangle: list[list[int]]) -> int:\n```\n\n#### Input\n- `triangle` (list[list[int]]): A triangle represented as a 2D array, where each element is either 0 or positive integer.\n\n#### Output\n- Returns the maximum path sum from top to bottom in the given triangle.",
+    "code": "def max_path_sum(triangle: list[list[int]]) -> int:\n    n = len(triangle)\n    for i in range(n - 2, -1, -1):\n        for j in range(len(triangle[i])):\n            if j == 0:\n                triangle[i][j] += triangle[i + 1][j]\n            elif j == len(triangle[i]) - 1:\n                triangle[i][j] += triangle[i + 1][j - 1]\n            else:\n                triangle[i][j] += max(triangle[i + 1][j], triangle[i + 1][j - 1])\n    return triangle[0][0]",
+    "tests": [
+        "assert max_path_sum([[2,3,4],[6,5,7],[11,18,10]]) == 24",
+        "assert max_path_sum([[1,2],[3,4,5]]) == 8",
+        "assert max_path_sum([[1,2,3],[3,4,5,6]]) == 12"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

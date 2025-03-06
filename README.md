@@ -1,11 +1,14 @@
 # Pymetheus
 Synthetic Dataset of Python Code for Reinforcement Learning
 
-This repository has more than 4K coding examples. All of these are stored in four subfolders in the `data` folder. 
+This repository has more than 6K coding examples. All of these are stored in four subfolders in the `data` folder. 
 * `good_quality` has good quality data, the python code and unit tests all compile and the json file adheres to the `schema` highlighed below. 
 * `invalid_python_code` contains jsons that are well formatted but their python code has errors 
 * `invalid_tests` contains jsons whose python code compile but their tests don't 
 * `needs_postprocessing` these contain outputs of LLMs that don't conform strictly to the `schema` but they are still useful 
+* `repaired_needs_postprocessing_files` contains all of the files from `needs_postprocessing` that are automatically repaired using Llama 3 and now pass the json schema validation. I have not tried to compile either the python code or the tests for these json files 
+
+If you just want to use the data I encourage you to use `good_quality` and `repaired_needs_postprocessing_files` and filter them further 
 
 to run, try:
 

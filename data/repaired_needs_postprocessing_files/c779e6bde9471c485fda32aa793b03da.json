@@ -1,0 +1,15 @@
+{
+    "title": "'Prime Factorization' - A Hard Problem",
+    "description": "Write a function `prime_factors` that takes an integer `n` as input and returns a list of the prime numbers that are multiplied together to equal `n`. If `n` is 1 or less, return an empty list.\r\n\r\n#### Function Signature\r\n```python\rndef prime_factors(n: int) -> List[int]:\r``` \r\n\r\n#### Input\r\n- `n` (int): An integer greater than 0.\r\n\r\n#### Output\r\n- Returns a list of integers that are the prime factors of `n`. \r\n",
+    "code": "def prime_factors(n: int) -> List[int]:\r    # Initialize variables for storing primes and factors\r    primes = [2]\r    factors = []\r\r    def is_prime(num: int) -> bool:\r        # If the number is less than 2, it's not prime\r        if num < 2: return False\r        for i in range(2, int(num**0.5)+1):\r            if num % i == 0:\r                return False\r        return True\r\r    # Find all the prime factors of n\r    for i in range(2, n + 1):\r        if is_prime(i):\r            while n % i == 0:\r                primes.append(i)\r                n //= i\r    return primes",
+    "tests": [
+        "assert prime_factors(1) == []",
+        "assert prime_factors(2) == [2]",
+        "assert prime_factors(4) == [2, 2]",
+        "assert prime_factors(5) == [5]",
+        "assert prime_factors(6) == [2, 3]",
+        "assert prime_factors(17) == [17]",
+        "assert prime_factors(22) == [2, 11]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

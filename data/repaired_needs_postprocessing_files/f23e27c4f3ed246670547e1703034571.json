@@ -1,0 +1,12 @@
+{
+    "title": "'Levenshtein Distance Calculator (Hard)'",
+    "description": "The Levenshtein distance between two strings is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.\n\n#### Function Signature\n```python\ndef levenshtein_distance(s1: str, s2: str) -> int:\n```\n\n#### Input\n- `s1` (str): A string of characters.\n- `s2` (str): Another string of characters.\n\n#### Output\n- An integer representing the Levenshtein distance between the two strings.",
+    "code": "def levenshtein_distance(s1: str, s2: str) -> int:\n    if len(s1) == 0 and len(s2) == 0:\n        return 0\n    elif len(s1) == 0:\n        return len(s2)\n    elif len(s2) == 0:\n        return len(s1)\n    else:\n        matrix = [[0 for _ in range(len(s2)+1)] for _ in range(len(s1)+1)]\n        for i in range(len(s1) + 1):\n            for j in range(len(s2) + 1):\n                if i == 0 or j == 0:\n                    matrix[i][j] = i+j\n                else:\n                    if s1[i-1] == s2[j-1]:\n                        matrix[i][j] = matrix[i-1][j-1]\n                    else:\n                        matrix[i][j] = min(matrix[i-1][j]+1, matrix[i][j-1]+1, matrix[i-1][j-1]+1)\n        return matrix[-1][-1]",
+    "tests": [
+        "assert levenshtein_distance(\"kitten\", \"sitting\") == 3",
+        "assert levenshtein_distance(\"hello\", \"world\") == 4",
+        "assert levenshtein_distance(\"Python\", \"Java\") == 2",
+        "assert levenshtein_distance(\"mississippi\", \"nsmipssism\") == 1"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

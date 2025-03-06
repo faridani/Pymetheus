@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Knights' Tour",
+    "description": "A knight on a chessboard can move in an L shape: two squares in one direction (horizontal or vertical) and then one square perpendicular to that direction.\nGiven the dimensions of a chessboard (rows x columns), write a function `knights_tour` that returns the number of possible unique tours the knight can make starting from the top-left corner, considering all valid moves within the board boundaries.\n\n#### Function Signature```python\ndef knights_tour(rows: int, cols: int) -> int:\n```\n\n#### Input\n- `rows` (int): The number of rows on the chessboard.\n- `cols` (int): The number of columns on the chessboard.\n\n#### Output\n- Returns the number of unique knight's tours possible.",
+    "code": "def knights_tour(rows: int, cols: int) -> int:\n    def is_valid(x, y):\n        return 0 <= x < rows and 0 <= y < cols\n\n    def dfs(x, y, visited):\n        visited[x][y] = True\n        count = 1\n        for dx, dy in [(2, 1), (1, 2), (-1, 2), (-2, 1), (-2, -1), (-1, -2), (1, -2), (2, -1)]:\n            nx, ny = x + dx, y + dy\n            if is_valid(nx, ny) and not visited[nx][ny]:\n                count += dfs(nx, ny, visited)\n        visited[x][y] = False\n        return count\n\n    total_tours = 0\n    for i in range(rows):\n        for j in range(cols):\n            visited = [[False for _ in range(cols)] for _ in range(rows)]\n            total_tours += dfs(i, j, visited)\n    return total_tours",
+    "tests": [
+        "assert knights_tour(3, 4) == 0",
+        "assert knights_tour(5, 5) == 1728"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

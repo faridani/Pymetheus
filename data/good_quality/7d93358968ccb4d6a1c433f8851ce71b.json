@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Guessing Game",
+    "description": "A guessing game is a simple text-based game where the user thinks of an object, and you try to guess what it might be. Write a function `guess_object` that takes a string as input, which represents the description of the object being guessed.\n\n#### Function Signature\n```python\ndef guess_object(description: str) -> int:\n```\n\n#### Input\n- `description` (str): A string that describes an object, for example, \"It's something you find in a kitchen\" or \"It's something your pet might do\". The description may contain keywords, phrases, and hints.\n\n#### Output\n- Returns the guessed object as an integer from 1 to 5. Each number corresponds to a specific object: 1 - Animal, 2 - Food, 3 - Vehicle, 4 - Furniture, 5 - Electronic Device.",
+    "code": "guess_objects = {\"kitchen\": 2, \"pet\": 1, \"drive\": 3, \"sit\": 1, \"eat\": 2}\n\ndef guess_object(description: str) -> int:\n    # Convert to lowercase and remove non-alphanumeric characters\n    description = ''.join(char for char in description.lower() if char.isalnum() or char.isspace())\n    # Split the description into keywords and phrases\n    keywords = [word for word in description.split() if len(word) > 3]\n    # Check each keyword against the guess_objects dictionary\n    for keyword in keywords:\n        if keyword in guess_objects:\n            return guess_objects[keyword]\n    # If no match is found, return -1 (unknown)\n    return -1",
+    "tests": [
+        "assert guess_object(\"It's something you find in a kitchen\") == 2",
+        "assert guess_object(\"My cat likes to sit\") == 1",
+        "assert guess_object(\"I'm driving my car\") == 3",
+        "assert guess_object(\"I'm eating an apple\") == 2"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

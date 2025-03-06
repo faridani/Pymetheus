@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Word Length Counter",
+    "description": "Write a function `word_length_counter` that takes a list of strings as input and returns the frequency of each word length. The function should return a dictionary where the keys are the word lengths and the values are their respective frequencies.\n\n#### Function Signature\n```python\ndef word_length_counter(words: List[str]) -> Dict[int, int]:\n```\n\n#### Input\n- `words` (List[str]): A list of strings that may contain spaces and punctuation.\n\n#### Output\n- Returns a dictionary where the keys are the word lengths and the values are their respective frequencies.",
+    "code": "from collections import defaultdict\nimport re\n\ndef word_length_counter(words: list[str]) -> dict[int, int]:\n    frequency_dict = defaultdict(int)\n    for word in words:\n        length = len(word.strip())\n        if not re.match('^[a-zA-Z\\s]+$', word):\n            continue\n        if length not in frequency_dict:\n            frequency_dict[length] += 1\n    return dict(frequency_dict)",
+    "tests": [
+        "assert word_length_counter(['Hello World', 'Python is fun']) == {5: 2, 4: 1}",
+        "assert word_length_counter(['apple', 'banana', 'orange', 'grape']) == {5: 3, 6: 1}",
+        "assert word_length_counter(['']) == {0: 1}",
+        "assert word_length_counter(['a', 'bb', 'ccc']) == {1: 1, 2: 1, 3: 1}"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

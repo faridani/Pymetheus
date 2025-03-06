@@ -1,0 +1,12 @@
+{
+    "title": "Eulerian Path Checker",
+    "description": "An Eulerian path in a graph is a path that visits every edge exactly once. Write a function `is_eulerian_path` that checks if a given list of edges represents an Eulerian path.\n\n#### Function Signature\n```python\ndef is_eulerian_path(edges: list[tuple[int, int]]) -> bool:\n```\n\n#### Input\n- `edges` (list[tuple[int, int]]): A list of edges in the graph, where each edge is represented as a tuple of two integers.\n\n#### Output\n- Returns `True` if the input list represents an Eulerian path, `False` otherwise.\n",
+    "code": "def is_eulerian_path(edges: list[tuple[int, int]]) -> bool:\n    nodes = set()\n    for edge in edges:\n        nodes.add(edge[0])\n        nodes.add(edge[1])\n    if len(nodes) % 2 != 0:\n        return False\n    odd_nodes = [node for node in nodes if list(edges).count((node, i)) % 2 != 0 for i in range(max(node for node in nodes), min(node for node in nodes) + 1)]\n    return len(odd_nodes) <= 1,\n",
+    "tests": [
+        "assert is_eulerian_path([(0, 1), (1, 2), (2, 3)]) == True",
+        "assert is_eulerian_path([(0, 1), (1, 2), (2, 0)]) == False",
+        "assert is_eulerian_path([(0, 1), (1, 2), (2, 3), (3, 4)]) == True",
+        "assert is_eulerian_path([(0, 1), (1, 2), (2, 3), (3, 0)]) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

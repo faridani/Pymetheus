@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detection",
+    "description": "Write a function `are_anagrams` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string that may contain letters (case-insensitive).\n- `s2` (str): Another string that may contain letters (case-insensitive).\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n\n#### Constraints\n- The maximum length of a string is 100 characters.",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = ''.join(char for char in s1.replace(' ', '') if char in string.ascii_letters)\n    s2 = ''.join(char for char in s2.replace(' ', '').lower() if char in string.ascii_letters)\n    \n    # Sort the characters of each string\n    sorted_s1 = sorted(list(s1))\n    sorted_s2 = sorted(list(s2))\n    \n    # Check if the sorted character lists are equal\n    return sorted_s1 == sorted_s2",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('python', 'typhon') == False",
+        "assert are_anagrams('A man, a plan, a canal: Panama', 'Amana lips a lan plan a tan mana pa') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

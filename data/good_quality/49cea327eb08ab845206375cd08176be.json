@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Find the Shortest Common Supersequence of Two Strings",
+    "description": "Given two strings `str1` and `str2`, write a function `shortest_common_supersequence` that returns the shortest common supersequence (SCS) of these two strings. An SCS is a string that contains all characters from both `str1` and `str2`. The order of characters in `str1` or `str2` does not matter.\n\n#### Function Signature\n```\ndef shortest_common_supersequence(str1: str, str2: str) -> str:\n```\n\n#### Input\n- `str1` (str): The first string.\n- `str2` (str): The second string.\n\n#### Output\n- Returns the SCS of the input strings as a string.\n\nFor example, if we have `str1 = \"abc\"` and `str2 = \"def\"`, then the SCS is `\"abcdef\"`. If we have `str1 = \"abc\"` and `str2 = \"cde\"`, then the SCS is also `\"abcdef\"`.\n\nThis problem requires dynamic programming to solve. Think about how you can use a 2D array to store the lengths of SCSES for subproblems, then build up the solution from these subproblem solutions.",
+    "code": "\ndef shortest_common_supersequence(str1: str, str2: str) -> str:\n    m = len(str1)\n    n = len(str2)\n\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n\n    for i in range(m + 1):\n        for j in range(n + 1):\n            if i == 0:\n                dp[i][j] = j\n            elif j == 0:\n                dp[i][j] = i\n            elif str1[i - 1] == str2[j - 1]:\n                dp[i][j] = 1 + dp[i - 1][j - 1]\n            else:\n                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1])\n\n    i, j = m, n\n    result = []\n    while i > 0 and j > 0:\n        if str1[i - 1] == str2[j - 1]:\n            result.append(str1[i - 1])\n            i -= 1\n            j -= 1\n        elif dp[i - 1][j] < dp[i][j - 1]:\n            result.append(str1[i - 1])\n            i -= 1\n        else:\n            result.append(str2[j - 1])\n            j -= 1\n\n    while i > 0:\n        result.append(str1[i - 1])\n        i -= 1\n    while j > 0:\n        result.append(str2[j - 1])\n        j -= 1\n\n    return ''.join(reversed(result))",
+    "tests": [
+        "assert shortest_common_supersequence('abc', 'def') == 'abcdef'",
+        "assert shortest_common_supersequence('abc', 'cde') == 'abcde'",
+        "assert shortest_common_supersequence('', '') == ''",
+        "assert shortest_common_supersequence('abc', '') == 'abc'",
+        "assert shortest_common_supersequence('', 'def') == 'def'"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

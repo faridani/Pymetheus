@@ -1,0 +1,11 @@
+{
+    "title": "Longest Increasing Subsequence",
+    "description": "Write a function `longest_increasing_subsequence` that takes as input an integer array `nums` and returns the length of the longest increasing subsequence (LIS) in `nums`. \n#### Function Signature\n```python\ndef longest_increasing_subsequence(nums: list[int]) -> int:\n``` \n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns the length of the longest increasing subsequence in `nums`. \n",
+    "code": "def longest_increasing_subsequence(nums: list[int]) -> int:\n    if not nums:\n        return 0\n    dp = [1] * len(nums)\n    for i in range(1, len(nums)):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    return max(dp)",
+    "tests": [
+        "assert longest_increasing_subsequence([10,9,2,5,3,7,101,18]) == 4",
+        "assert longest_increasing_subsequence([0,1,2,3,4,5]) == 6",
+        "assert longest_increasing_subsequence([]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

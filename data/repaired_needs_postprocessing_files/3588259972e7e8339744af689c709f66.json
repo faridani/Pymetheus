@@ -1,0 +1,12 @@
+{
+    "title": "Binary to Decimal Converter",
+    "description": "You are given a string representing a binary number. Your task is to write a function that converts the binary number into its decimal representation.\n\n#### Function Signature\n```python\ndef convert_binary_to_decimal(binary_str: str) -> int:\n```\n\n#### Input\n- `binary_str` (str): A string containing only '0's and '1's, representing a non-negative integer in binary form. The length of the string can be from 1 to 64.\n\n#### Output\n- Returns an integer which is the decimal representation of the given binary number.",
+    "code": "def convert_binary_to_decimal(binary_str: str) -> int:\n    return int(binary_str, 2)",
+    "tests": [
+        "assert convert_binary_to_decimal(\"101\") == 5",
+        "assert convert_binary_to_decimal(\"11111111\") == 255",
+        "assert convert_binary_to_decimal(\"1000000\") == 64",
+        "assert convert_binary_to_decimal(\"0\") == 0"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Minimum Area Rectangle",
+    "description": "Given an array of points where each point is represented as a pair of integers (x, y), find the minimum area rectangle that covers all these points. The rectangle should have its sides parallel to x and y axes.\n\n#### Function Signature\n```python\ndef min_area_rectangle(points: list[tuple[int, int]]) -> tuple[int, int]:\n```\n\n#### Input\n- `points` (list[tuple[int, int]]): A list of points where each point is a pair of integers representing the x and y coordinates.\n\n#### Output\n- Returns a tuple containing the minimum area rectangle that covers all given points. The tuple contains two pairs of integers representing the top-left and bottom-right corners of the rectangle.",
+    "code": "",
+    "\nimport math\n\ndef min_area_rectangle(points: list[tuple[int, int]]) -> tuple[tuple[int, int], tuple[int, int]]:\n    x_coords = [point[0] for point in points]\n    y_coords = [point[1] for point in points]\n\n    min_x = min(x_coords)\n    max_x = max(x_coords)\n\n    min_y = min(y_coords)\n    max_y = max(y_coords)\n\n    return ((min_x, min_y), (max_x, max_y))": "",
+    "tests": [
+        "assert min_area_rectangle([(1, 1), (2, 2), (3, 3)]) == ((1, 1), (3, 3))",
+        "assert min_area_rectangle([(0, 0), (1, 0), (1, 1), (0, 1)]) == ((0, 0), (1, 1))"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

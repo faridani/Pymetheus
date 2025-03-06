@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Sum of Subarrays",
+    "description": "Given a list of integers, write a function `sum_subarrays` that returns the sum of all possible subarrays within the given list. A subarray is any contiguous sequence of elements within the original array.\n\n#### Function Signature\n```python\ndef sum_subarrays(arr: list[int]) -> int:\n``` \n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the sum of all possible subarrays within the given list.",
+    "code": "def sum_subarrays(arr: list[int]) -> int:\n    n = len(arr)\n    total_sum = 0\n    for i in range(n):\n        for j in range(i, n):\n            total_sum += sum(arr[i:j+1])\n    return total_sum",
+    "tests": [
+        "assert sum_subarrays([1, 2, 3, 4]) == 40",
+        "assert sum_subarrays([-1, -2, -3]) == -14",
+        "assert sum_subarrays([0, 0, 0]) == 6"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

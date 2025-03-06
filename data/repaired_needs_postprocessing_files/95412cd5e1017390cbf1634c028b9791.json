@@ -1,0 +1,10 @@
+{
+    "title": "'Space Remover': Remove All Spaces From a Given String",
+    "description": "Write a function `remove_spaces` that removes all spaces from a given string.\n\n#### Function Signature\n```python\ndef remove_spaces(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string that may contain one or more spaces.\n\n#### Output\n- Returns a string with all spaces removed.",
+    "code": "def remove_spaces(s: str) -> str:\n    # Remove spaces from the input string using replace() method\n    return s.replace(' ', '')",
+    "tests": [
+        "assert remove_spaces('Hello World') == 'HelloWorld'",
+        "assert remove_spaces('I am a test string') == 'Iamateststring'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

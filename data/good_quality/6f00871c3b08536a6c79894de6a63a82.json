@@ -1,0 +1,13 @@
+{
+    "title": "Sorting a List of Rectangles",
+    "description": "Write a function `sort_rectangles` that takes a list of rectangles as input. Each rectangle is represented by a dictionary with keys 'width' and 'height'. The function should return the list of rectangles in descending order based on their areas, and then in ascending order based on their perimeters.\n\n#### Function Signature\n```python\ndef sort_rectangles(rectangles: list[dict[str, int]]) -> list[dict[str, int]]:\n```\n\n#### Input\n- `rectangles` (list[dict[str, int]]): A list of dictionaries representing rectangles. Each dictionary has keys 'width' and 'height', both integers.\n\n#### Output\n- Returns the input list of rectangles in descending order based on their areas, and then in ascending order based on their perimeters.",
+    "code": "\nimport math\n\ndef sort_rectangles(rectangles: list[dict[str, int]]) -> list[dict[str, int]]:\n    def area(rectangle: dict[str, int]) -> int:\n        return rectangle['width'] * rectangle['height']\n\n    def perimeter(rectangle: dict[str, int]) -> float:\n        return 2 * (rectangle['width'] + rectangle['height'])\n\n    rectangles.sort(key=lambda x: (-area(x), perimeter(x)))\n    return rectangles",
+    "tests": [
+        "assert sort_rectangles([{'width': 3, 'height': 4}, {'width': 5, 'height': 1}]) == [{'width': 5, 'height': 1}, {'width': 3, 'height': 4}]",
+        "assert sort_rectangles([{'width': 2, 'height': 6}, {'width': 7, 'height': 1}]) == [{'width': 7, 'height': 1}, {'width': 2, 'height': 6}]",
+        "assert sort_rectangles([]) == []"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Circular Knapsack",
+    "description": "You are given a circular knapsack with a capacity of W units. You also have N items, each with its own weight w[i] and value v[i]. The knapsack is arranged in a circle, meaning that the last item is adjacent to the first item.\n\nYou can choose any number of items from the circle (including picking items multiple times if they appear more than once) as long as the total weight does not exceed W. Your goal is to maximize the total value of the chosen items.\n\n#### Function Signature\n```python\ndef max_circular_knapsack_value(w: list[int], v: list[int], W: int) -> int:\n```\n\n#### Input\n- `w` (list[int]): A list of weights for each item.\n- `v` (list[int]): A list of values corresponding to each item.\n- `W` (int): The capacity of the knapsack.\n\n#### Output\n- Returns the maximum total value that can be achieved within the knapsack's weight limit.",
+    "code": "def max_circular_knapsack_value(w: list[int], v: list[int], W: int) -> int:\n    n = len(w)\n    dp = [[0 for _ in range(W + 1)] for _ in range(n + 1)]\n    \n    for i in range(1, n + 1):\n        for j in range(1, W + 1):\n            dp[i][j] = dp[i - 1][j]\n            if w[i - 1] <= j:\n                dp[i][j] = max(dp[i][j], v[i - 1] + dp[i][j - w[i - 1]])\n    \n    max_value = dp[n][W]\n    \n    for i in range(n):\n        total_weight = sum(w)\n        current_weight = total_weight - w[i]\n        remaining_capacity = W - current_weight\n        if remaining_capacity >= 0:\n            max_value = max(max_value, v[i] + dp[n][remaining_capacity])\n    return max_value",
+    "tests": [
+        "assert max_circular_knapsack_value([1, 2, 3], [6, 10, 12], 5) == 22",
+        "assert max_circular_knapsack_value([4, 2, 3], [10, 5, 7], 6) == 17",
+        "assert max_circular_knapsack_value([3, 2, 4, 1], [8, 5, 10, 2], 7) == 18"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}
