@@ -1,0 +1,13 @@
+{
+    "title": "Egg Drop Puzzle",
+    "description": "The egg drop puzzle is a classic problem where you are given n eggs and a building with k floors. The goal is to find the highest floor that you can check without breaking any of the eggs. You can place an egg on a floor, but then it will be broken if the egg is dropped from a higher floor. If the egg survives, you know the floor above that one is safe.\n\n#### Function Signature\n```python\ndef max_egg_floor(n: int, k: int) -> int:\n```\n\n#### Input\n- `n` (int): The number of eggs available.\n- `k` (int): The number of floors in the building.\n\n#### Output\n- Returns the highest floor that you can check without breaking any of the eggs.",
+    "code": "def max_egg_floor(n: int, k: int) -> int:\n    # Initialize the maximum floor that we can check with 0 and update it accordingly.\n    max_floor = 0\n    egg_left = n\n    for floor in range(1, k + 1):\n        if 2 ** (floor.bit_length() - 1) <= egg_left:\n            max_floor = floor\n        else:\n            break\n    return max_floor",
+    "tests": [
+        "assert max_egg_floor(2, 4) == 3",
+        "assert max_egg_floor(3, 5) == 4",
+        "assert max_egg_floor(1, 10) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

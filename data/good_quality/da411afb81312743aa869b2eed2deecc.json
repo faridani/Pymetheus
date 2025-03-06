@@ -1,0 +1,15 @@
+{
+    "title": "Check if a number is prime",
+    "description": "Given a positive integer n, write a function `is_prime(n: int) -> bool` that returns True if the number is prime, False otherwise. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.",
+    "code": "",
+    "def is_prime(n: int) -> bool:\r\n    \"\"\"\r\n    Returns True if n is prime, False otherwise.\r\n    \"\"\"\r\n    if n < 2 or (n > 2 and n % 2 == 0): # If the number is less than 2 or even, it can": "be prime\r\n        return False\r\n    for i in range(3",
+    "2)": "",
+    "0": "return False\r\n    return True'''",
+    "tests": [
+        "assert is_prime(7) == True",
+        "assert is_prime(8) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "wizardcoder:latest",
+    "style": "HackerRank"
+}

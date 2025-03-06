@@ -1,0 +1,15 @@
+{
+    "title": "Easy: Perfect Numbers",
+    "description": "A perfect number is a positive integer that is equal to the sum of its positive divisors, excluding itself. For example, 6 is a perfect number because it can be divided by 1, 2, and 3, and 1 + 2 + 3 = 6. Write a function `is_perfect` that checks if a given integer is a perfect number.\n\n#### Function Signature\n```\ndef is_perfect(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer to be checked for being a perfect number.\n\n#### Output\n- Returns `True` if the input integer is a perfect number, `False` otherwise.",
+    "code": "",
+    "\nimport math\n\ndef is_perfect(n: int) -> bool:\n    sum_divisors = 0\n    for i in range(1, n):\n        if n % i == 0:\n            sum_divisors += i\n    return sum_divisors == n": "",
+    "tests": [
+        "assert is_perfect(6) == True",
+        "assert is_perfect(28) == True",
+        "assert is_perfect(12) == False",
+        "assert is_perfect(50050030) == True"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

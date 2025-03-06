@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Sum of Even Integers\\\", \\\"description\\\": \\\"Write a function `sum_even` that calculates the sum of all even integers from 2 to n, where n is a given integer.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef sum_even(n: int) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `n` (int): A positive integer.\\\\n\\\\n#### Output\\\\n- Returns the sum of all even integers from 2 to `n`.\\\", \\\"code\\\": \\\"def sum_even(n: int) -> int:\\\\n    total = 0\\\\n    for i in range(2, n+1):\\\\n        if i % 2 == 0:\\\\n            total += i\\\\n    return total\\\\n\\\", \\\"tests\\\": [\\\"assert sum_even(10) == 30\\\", \\\"assert sum_even(5) == 0\\\", \\\"assert sum_even(20) == 110\\\"] }\""
+}

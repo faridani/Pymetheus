@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Matrix Chain Multiplication",
+    "description": "Given a sequence of matrices, find the most efficient way to multiply these matrices together. The problem is not about adding the matrices but finding the order of multiplications that minimizes the number of operations.\n\n#### Function Signature\n```python\ndef matrix_chain_order(p: List[int]) -> int:\n```\n\n#### Input\n- `p` (List[int]): A list containing dimensions of matrices in the order they are given. For example, if there are four matrices A, B, C, and D with dimensions 2x3, 3x4, 4x5, and 5x6 respectively, then p = [2, 3, 4, 5, 6].\n\n#### Output\n- Returns the minimum number of multiplications needed to multiply all matrices.",
+    "code": "",
+    "from typing import List\n\ndef matrix_chain_order(p: List[int]) -> int:\n    n = len(p) - 1\n    dp = [[0]*n for _ in range(n)]\n\n    for l in range(2, n+1):\n        for i in range(n-l+1):\n            j = i + l\n            dp[i][j-1] = float('inf')\n            for k in range(i, j-1):\n                q = dp[i][k] + dp[k+1][j-1] + p[i]*p[k+1]*p[j]\n                if q < dp[i][j-1]:\n                    dp[i][j-1] = q\n\n    return dp[0][n-1]": "",
+    "tests": [
+        "assert matrix_chain_order([2, 3, 4, 5, 6]) == 30",
+        "assert matrix_chain_order([10, 30, 5, 60]) == 4500"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "codestral:22b",
+    "style": "CodeChef"
+}

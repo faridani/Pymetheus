@@ -1,0 +1,4 @@
+{
+    "model": "codestral:22b",
+    "response": "\"{ \\\"title\\\": \\\"Medium: Sum of Unique Elements\\\", \\\"description\\\": \\\"Given a list of integers, calculate the sum of all unique elements. Write a function `sum_unique` that computes this sum.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef sum_unique(numbers: List[int]) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `numbers` (List[int]): A list of integers with potential duplicates.\\\\n\\\\n#### Output\\\\n- Returns the sum of all unique elements in the input list.\\\\n\\\", \\\"code\\\": \\\"from typing import List\\\\n\\\\ndef sum_unique(numbers: List[int]) -> int:\\\\n    # Create a set to store unique numbers and calculate the sum\\\\n    return sum(set(numbers))\\\\n\\\", \\\"tests\\\": [\\\"assert sum_unique([1, 2, 3, 4, 5, 5, 4, 3, 2, 1]) == 15\\\", \\\"assert sum_unique([]) == 0\\\", \\\"assert sum_unique([7]) == 7\\\"] }\""
+}

@@ -1,0 +1,13 @@
+{
+    "title": "[Hard] Array Manipulation",
+    "description": "You are given a list of size N, initialized with zeros. You have to perform M operations on the list and output the maximum value of any element in the final array.\n\n#### Function Signature\n```python\ndef arrayManipulation(N: int, queries: List[List[int]]) -> int:\n```\n\n#### Input\n- `N` (int): The size of the list.\n- `queries` (List[List[int]]): A 2D list containing M sublists where each sublist contains three integers, a, b, and k. Each sublist indicates that the value at every index from a to b (both inclusive) should be increased by k.\n\n#### Output\n- Returns the maximum value in the final array.",
+    "code": "",
+    "def arrayManipulation(N: int, queries: List[List[int]]) -> int:\n        arr = [0] * N\n        for query in queries:\n            a, b, k = query\n            arr[a-1] += k\n            if b < N:\n                arr[b] -= k\n        max_value = curr_sum = 0\n        for i in range(N):\n            curr_sum += arr[i]\n            max_value = max(max_value, curr_sum)\n        return max_value": "",
+    "tests": [
+        "assert arrayManipulation(5, [[1,2,100], [2,5,100], [3,4,100]]) == 200",
+        "assert arrayManipulation(10, [[1,5,3],[4,8,7],[6,9,1]]) == 10"
+    ],
+    "difficulty": "hard",
+    "model": "codestral:22b",
+    "style": "HackerRank"
+}

@@ -1,0 +1,4 @@
+{
+    "model": "wizardcoder:latest",
+    "response": "{\"title\": \"Reverse a string without using recursion\", \"description\": \"Write a function called `reverse` that takes a string as input and returns the reverse of it. Do not use any built-in functions like `reversed()` or slicing, instead, implement your own recursive solution.\\n\\n#### Function Signature\\n```python\\ndef reverse(s: str) -> str:\\n```\\n\\n#### Input\\n- A string to be reversed.\\n\\n#### Output\\n- Returns the input string in reverse order.\", \"code\": \"def reverse(s: str) -> str:\\n    if len(s) == 0 or len(s) == 1:\\n        return s\\n    else:\\n        return reverse(s[1:]) + s[0]\", \"tests\": [\"assert reverse(\\\"abc\\\") == \\\"cba\\\"\", \"assert reverse(\\\"Hello, World!\\\") == \\\"dlroW ,olleH\\\"\", \"assert reverse(\\\"racecar\\\") == \\\"racecar\\\",\\n    \\\"The output should be \\\\\\\"racecar\\\\\\\" as the input is a palindrome.\\\"]}\"]}"
+}

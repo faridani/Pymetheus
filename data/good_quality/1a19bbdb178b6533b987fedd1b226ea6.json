@@ -1,0 +1,13 @@
+{
+    "title": "Finding the Longest Common Substring",
+    "description": "Write a function `longest_common_substring` that takes two strings as input and returns the longest common substring between them.\n\n#### Function Signature\n```python\ndef longest_common_substring(s1: str, s2: str) -> str:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings consisting of lowercase English letters.\n\n#### Output\n- Returns the longest common substring between `s1` and `s2`. If there are multiple common substrings with the same length, return the one that occurs first.\n\n#### Example\n```python\nassert longest_common_substring('abcdef', 'zabcz') == 'abc'\nassert longest_common_substring('hello world', 'world hello') == 'hello'\nassert longest_common_substring('abc', 'xyz') == ''\n```",
+    "code": "def longest_common_substring(s1: str, s2: str) -> str:\n    m = [[0] * (len(s2) + 1) for _ in range(len(s1) + 1)]\n    max_length = 0\n    end = 0\n    for i in range(1, len(s1) + 1):\n        for j in range(1, len(s2) + 1):\n            if s1[i - 1] == s2[j - 1]:\n                m[i][j] = m[i - 1][j - 1] + 1\n                if m[i][j] > max_length:\n                    max_length = m[i][j]\n                    end = i\n            else:\n                m[i][j] = 0\n    return s1[end - max_length:end]",
+    "tests": [
+        "assert longest_common_substring('abcdef', 'zabcz') == 'abc'",
+        "assert longest_common_substring('hello world', 'world hello') == 'hello'",
+        "assert longest_common_substring('abc', 'xyz') == ''"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "codebooga:latest",
+    "style": "Internationals Olympiad"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Spanning Tree",
+    "description": "Given a weighted, undirected graph with n vertices and m edges, construct the minimum spanning tree (MST) of the graph.\n\n#### Function Signature\n```python\ndef find_mst(graph: list[tuple[int, int, int]]) -> list[tuple[int, int]]:\n```\n\n#### Input\n- `graph` (list[tuple[int, int, int]]): A list of tuples, where each tuple represents an edge in the graph. The first two elements of each tuple are the vertices connected by the edge, and the third element is the weight of the edge.\n\n#### Output\n- Returns a list of edges representing the MST of the input graph.",
+    "code": "",
+    "\nfrom typing import List, Tuple\n\ndef find_mst(graph: List[Tuple[int, int, int]]) -> List[Tuple[int, int]]:\n    # Create a disjoint set\n    parent = {}\n    rank = {}\n\n    def make_set(vertex):\n        parent[vertex] = vertex\n        rank[vertex] = 0\n\n    def find(vertex):\n        if parent[vertex] != vertex:\n            parent[vertex] = find(parent[vertex])\n        return parent[vertex]\n\n    def union(vertex1, vertex2):\n        root1 = find(vertex1)\n        root2 = find(vertex2)\n\n        if rank[root1] > rank[root2]:\n            parent[root2] = root1\n        else:\n            parent[root1] = root2\n            if rank[root1] == rank[root2]:\n                rank[root2] += 1\n\n    # Initialize the disjoint set\n    for edge in graph:\n        vertex1, vertex2, _ = edge\n        make_set(vertex1)\n        make_set(vertex2)\n\n    # Sort the edges by weight\n    graph.sort(key=lambda x: x[2])\n\n    # Construct the MST\n    mst = []\n    for edge in graph:\n        vertex1, vertex2, _ = edge\n        if find(vertex1) != find(vertex2):\n            union(vertex1, vertex2)\n            mst.append((vertex1, vertex2))\n\n    return mst": "",
+    "tests": [
+        "assert len(find_mst([(0, 1, 3), (0, 2, 5), (1, 2, 2)])) == 2",
+        "assert len(find_mst([(0, 1, 2), (1, 2, 3), (2, 3, 4)])) == 2",
+        "assert len(find_mst([(0, 1, 10), (1, 2, 5), (0, 2, 7)])) == 2"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

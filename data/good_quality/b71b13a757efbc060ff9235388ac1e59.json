@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Prime Factorization",
+    "description": "A positive integer is said to be prime if it has exactly two distinct positive divisors: 1 and itself. Write a function `prime_factorize` that takes an integer as input and returns its prime factorization in ascending order, with each factor repeated according to its multiplicity.\n\n#### Function Signature\n```python\ndef prime_factorize(n: int) -> str:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the prime factorization of the input integer in ascending order, with each factor repeated according to its multiplicity. For example, for the number 36, the output would be '2*2*3*', indicating that 2 appears twice and 3 once.",
+    "code": "\nimport math\n\ndef prime_factorize(n: int) -> str:\n    factors = []\n    i = 2\n    while i * i <= n:\n        if n % i:\n            i += 1\n        else:\n            n //= i\n            factors.append(str(i))\n            while n % i == 0:\n                n //= i\n                factors[-1] += '***'\n    if n > 1:\n        factors.append(str(n))\n    return '*'.join(factors)",
+    "tests": [
+        "assert prime_factorize(36) == '2*2*3'",
+        "assert prime_factorize(1000) == '2**2*5**2'",
+        "assert prime_factorize(7) == '7'",
+        "assert prime_factorize(12) == '2*2*3'"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Elegant Enigma",
+    "description": "Write a function `solve` that takes an integer `n` as input and returns the number of ways to arrange `n` balls into exactly three rows, such that each row contains at least one ball. For example, for `n = 2`, there are two possible arrangements: `[1, 1]` and `[1, 0, 1].\n\n#### Function Signature\n```python\ndef solve(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The number of balls to arrange.\n\n#### Output\n- Returns the number of ways to arrange the balls into three rows.",
+    "code": "def solve(n: int) -> int:\n    if n < 3:\n        return 1\n    total = 0\n    for i in range(2, min(n//3 + 1, n)):\n        remain = n - i*3\n        if remain >= 2:\n            total += solve(remain)\n        elif remain == 1 and (n % 3) != 0:\n            total += 1\n    return total",
+    "tests": [
+        "assert solve(2) == 2",
+        "assert solve(4) == 7",
+        "assert solve(5) == 12",
+        "assert solve(6) == 16"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

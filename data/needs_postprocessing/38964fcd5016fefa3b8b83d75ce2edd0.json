@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Maximum Sum of Three Elements (Medium)\", \"description\": \"Given an array of integers, return the maximum sum of three elements. The maximum sum should not be more than 3 times the maximum number in the array.\\n\\n#### Function Signature\\n```python\\ndef max_sum_of_three(arr: list[int)) -> int:\\n```\\n\\n#### Input\\n- `arr` (list[int]): A list of integers.\\n\\n#### Output\\n- Returns the maximum sum of three elements from the input list, not exceeding 3 times the maximum number in the array.\", \"code\": \"def max_sum_of_three(arr: list[int)) -> int:\\n    if len(arr) < 3:\\n        return -1\\n    arr.sort()\\n    return min(arr[-1] * 3, sum(arr[-2:] + [arr[0]]))\", \"tests\": [\"assert max_sum_of_three([1, 2, 3]) == 6\", \"assert max_sum_of_three([-1, -2, -3, -4, -5]) == -6\", \"assert max_sum_of_three([10, 10, 20, 30, 40]) == 90\", \"assert max_sum_of_three([1000, 2000, 3000]) == 6000\"]}"
+}

@@ -7,6 +7,11 @@ This repository has more than 4K coding examples. All of these are stored in fou
 * `invalid_tests` contains jsons whose python code compile but their tests don't 
 * `needs_postprocessing` these contain outputs of LLMs that don't conform strictly to the `schema` but they are still useful 
 
+to run, try:
+
+```bash 
+python SyntheticDataGenerator.py
+```
 ## Data Card 
 
 Focusing on the `good_quality` folder, below is the number of data points per model 
@@ -91,7 +96,7 @@ Longest Common Prefix: 2
 Even Fibonacci Numbers: 2
 ```
 ## Introduction
-The good examples of synthetic python codes exist in the `data` folder
+The good examples of synthetic python codes exist in the `good_quality` folder. To create more synthetic examples, you need to have your models on Ollama. The code automatically pulls all of the available models that are smaller than your available NVRAM on your GPU. This is to make sure the code is not spending time on swapping models in and out of NVRAM on the GPU. Once a model is loaded, the code tries to create as much data as possible but if the model is repeatedly failing to produce useful examples, the code loads another model. 
 
 each example follows the following JSON schema
 

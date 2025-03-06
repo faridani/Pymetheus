@@ -1,0 +1,15 @@
+{
+    "title": "Counting Islands",
+    "description": "An island in the land is defined as a group of connected points that are all higher than the surrounding points. Write a function `count_islands` that takes a 2D grid of integers as input, where the integer at each position represents the height of the point at that position.\n\n#### Function Signature\n```python\ndef count_islands(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D grid of integers representing the heights of points.\n\n#### Output\n- Returns the number of islands in the given grid.",
+    "code": "",
+    "\nimport copy\n\ndef count_islands(grid: list[list[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n    \n    island_count = 0\n    visited = [[False for _ in range(len(grid[0]))] for _ in range(len(grid))]\n    \n    def dfs(i, j):\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or visited[i][j]:\n            return\n        \n        visited[i][j] = True\n        for x, y in [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]:\n            if 0 <= x < len(grid) and 0 <= y < len(grid[0]) and grid[x][y] > grid[i][j]:\n                dfs(x, y)\n    \n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if not visited[i][j] and grid[i][j] > 0:\n                island_count += 1\n                dfs(i, j)\n    \n    return island_count": "",
+    "tests": [
+        "assert count_islands([[], [], []]) == 0",
+        "assert count_islands([[0, 0], [0, 0]]) == 0",
+        "assert count_islands([[2, 2], [3, 1]]) == 1",
+        "assert count_islands([[2, 0, 2], [0, 2, 0], [2, 0, 2]]) == 2"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

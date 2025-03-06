@@ -1,0 +1,12 @@
+{
+    "title": "Closest Pair of Points",
+    "description": "Given a list of 2D points, find the pair of points that are closest to each other. The distance between two points is calculated as the Euclidean distance between them.\n\n#### Function Signature\n```python\ndef closest_pair(points: list[tuple[float, float]]) -> tuple[tuple[float, float], tuple[float, float]]:\n```\n\n#### Input\n- `points` (list of tuples): A list of 2D points, where each point is represented as a tuple of two floats.\n\n#### Output\n- Returns a tuple containing the two closest points.",
+    "code": "\nfrom math import sqrt\n\ndef distance(p1: tuple[float, float], p2: tuple[float, float]) -> float:\n    return sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)\n\ndef closest_pair(points: list[tuple[float, float]]) -> tuple[tuple[float, float], tuple[float, float]]:\n    min_distance = float('inf')\n    closest_points = None\n    for i in range(len(points)):\n        for j in range(i + 1, len(points)):\n            dist = distance(points[i], points[j])\n            if dist < min_distance:\n                min_distance = dist\n                closest_points = (points[i], points[j])\n    return closest_points",
+    "tests": [
+        "assert closest_pair([(0.0, 0.0), (3.0, 4.0)]) == ((0.0, 0.0), (3.0, 4.0))",
+        "assert closest_pair([(1.0, 2.0), (-1.0, -2.0), (3.0, 4.0)]) == ((-1.0, -2.0), (1.0, 2.0))"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

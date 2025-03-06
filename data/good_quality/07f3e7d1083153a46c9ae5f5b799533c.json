@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Knight's Tour Checker",
+    "description": "A knight's tour is a sequence of moves of a chess knight that visits every square on the board exactly once. The knight's move consists of two squares in an L-shape (two squares in one direction, then one square to the side). Write a function `is_knights_tour` that checks if a given sequence of moves represents a valid knight's tour.\n\n#### Function Signature\n```python\ndef is_knights_tour(moves: list[tuple[int, int]]) -> bool:\n```\n\n#### Input\n- `moves` (list[tuple[int, 8]]): A list of tuples representing the moves of a chess knight. Each tuple contains two integers representing the coordinates of the starting and ending squares in an L-shape.\nThe input will always be valid, i.e., it will always represent a sequence of moves on a standard 8x8 chessboard.\n\n#### Output\n- Returns `True` if the input sequence represents a valid knight's tour, `False` otherwise.",
+    "code": "\nimport itertools\n\ndef is_knights_tour(moves: list[tuple[int, int]]) -> bool:\n    # Create a set to store visited squares\n    visited = set()\n\n    # Iterate over all possible squares on the board\n    for x in range(8):\n        for y in range(8):\n            # Initialize variables to track the tour's direction and current position\n            dx, dy = 0, 1\n            prev_x, prev_y = -1, -1\n\n            # Simulate the knight's moves\n            for move in itertools.cycle(moves):\n                # Calculate the new position based on the current direction\n                x += dx\n                y += dy\n\n                # If we've visited this square before or gone out of bounds, break the loop\n                if (x, y) in visited or not (0 <= x < 8 and 0 <= y < 8):\n                    break\n\n                # Mark the current square as visited\n                visited.add((x, y))\n\n                # Update the direction based on the move's coordinates\n                if move[1] - move[0] == dx:\n                    dy = move[1] - move[0]\n                    dx = 0 if dy > 0 else 2\n                elif move[1] - move[0] == -dy:\n                    dx, dy = 0, 1\n\n            # If we've visited all squares or the tour is still going, it's a valid knight's tour\n            return len(visited) == 64 and prev_x != x and prev_y != y\n\n    # If we haven't visited all squares after simulating all moves, the tour isn't valid\n    return False",
+    "tests": [
+        "assert is_knights_tour([(0, 1), (2, 3), (4, 5)]) == True",
+        "assert is_knights_tour([(0, 1), (2, 3), (6, 7)]) == False",
+        "assert is_knights_tour([(0, 1), (2, 3), (4, 5), (6, 7)]) == True",
+        "assert is_knights_tour([(0, 1), (2, 3), (4, 5), (6, 7), (-1, -1)]) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

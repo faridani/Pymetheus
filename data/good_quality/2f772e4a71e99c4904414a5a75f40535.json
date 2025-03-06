@@ -1,0 +1,15 @@
+{
+    "title": "Maximum Product of Three Numbers (Hard)",
+    "description": "Given an integer array `nums`, return the maximum product of three numbers in the array. You can assume that the input will always include at least three numbers.\n\n#### Function Signature\n```python\ndef maximum_product(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum product of three numbers in the input list.",
+    "code": "",
+    "\nimport functools\n\ndef maximum_product(nums: list[int]) -> int:\n    # Sort the array in ascending order\n    nums.sort()\n    \n    # The maximum product can be either the largest three numbers or the smallest two numbers (which could be negative) times the largest number\n    return max(nums[-1] * nums[-2] * nums[-3], nums[0] * nums[1] * nums[-1])": "",
+    "tests": [
+        "assert maximum_product([3, 3, 4, 2]) == 36",
+        "assert maximum_product([-3, -2, 0, 5]) == 15",
+        "assert maximum_product([0, 0, 0]) == 0",
+        "assert maximum_product([1, 2, 3, 4, 5]) == 60"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Hard - Lattice Paths",
+    "description": "Given a grid of size n x m, find the number of paths from top left corner to bottom right corner that only move either down or right at each step.\n\n#### Function Signature\n```python\ndef lattice_paths(n: int, m: int) -> int:\n```\n\n#### Input\n- `n` (int): The height of the grid (number of rows).\n- `m` (int): The width of the grid (number of columns).\n\n#### Output\n- Returns the total number of lattice paths from top left corner to bottom right corner.",
+    "code": "\nimport math\n\ndef lattice_paths(n: int, m: int) -> int:\n    # Calculate the total number of paths\n    return math.comb(n+m-2, n-1)",
+    "tests": [
+        "assert lattice_paths(3, 3) == 10",
+        "assert lattice_paths(4, 5) == 70",
+        "assert lattice_paths(10, 10) == 64951040"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

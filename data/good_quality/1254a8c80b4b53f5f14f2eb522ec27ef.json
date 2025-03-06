@@ -1,0 +1,13 @@
+{
+    "title": "[Hard] Longest Common Subsequence",
+    "description": "Given two strings, find the length of their longest common subsequence.\n\nA subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters. For example, 'ace' is a subsequence of 'abcde'. A common subsequence of two strings is a subsequence that appears in both strings.\n\nWrite a function `longest_common_subsequence` that computes the length of the longest common subsequence of two given strings.\n\n#### Function Signature\n```python\ndef longest_common_subsequence(s1: str, s2: str) -> int:\n```\n\n#### Input\n- `s1` (str): A string consisting of lowercase English letters.\n- `s2` (str): Another string consisting of lowercase English letters.\n\n#### Output\n- Returns an integer representing the length of the longest common subsequence of `s1` and `s2`.",
+    "code": "",
+    "def longest_common_subsequence(s1: str, s2: str) -> int:\n        len1 = len(s1)\n        len2 = len(s2)\n        dp = [[0] * (len2 + 1) for _ in range(len1 + 1)]\n        for i in range(1, len1 + 1):\n            for j in range(1, len2 + 1):\n                if s1[i - 1] == s2[j - 1]:\n                    dp[i][j] = dp[i - 1][j - 1] + 1\n                else:\n                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])\n        return dp[len1][len2]": "",
+    "tests": [
+        "assert longest_common_subsequence(\"abcde\", \"ace\") == 3",
+        "assert longest_common_subsequence(\"dynamic\", \"programming\") == 5"
+    ],
+    "difficulty": "hard",
+    "model": "codestral:22b",
+    "style": "AtCoder"
+}

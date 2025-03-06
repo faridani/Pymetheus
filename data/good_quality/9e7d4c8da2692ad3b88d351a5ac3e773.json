@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Prime Path Finder",
+    "description": "A grid of size n x m is given where some cells contain prime numbers. Write a function `prime_path` that finds and prints all possible paths from the top-left cell to the bottom-right cell in the grid such that each step only moves either right or down, and each path contains at least one prime number.\n\n#### Function Signature\n```python\ndef prime_path(n: int, m: int, grid: list) -> None:\n```\n\n#### Input\n- `n` (int): The number of rows in the grid.\n- `m` (int): The number of columns in the grid.\n- `grid` (list): A 2D list where each element is either a prime number or zero, and represents whether the cell contains a prime number or not.\n\n#### Output\n- Prints all possible paths from the top-left cell to the bottom-right cell that satisfy the conditions described above.",
+    "code": "",
+    "\nimport math\n\ndef prime_path(n: int, m: int, grid: list) -> None:\n    def is_prime(num: int) -> bool:\n        if num < 2:\n            return False\n        for i in range(2, int(math.sqrt(num)) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    paths = []\n    def dfs(i: int, j: int, path: list) -> None:\n        if i >= n or j >= m:\n            return\n        if grid[i][j] > 0 and is_prime(grid[i][j]):\n            paths.append(path + [grid[i][j]])\n        for di in range(1, 2):\n            ni = i + di\n            nj = j\n            dfs(ni, nj, path + [grid[ni][nj]])\n            ni = i\n            nj = j + 1\n            dfs(ni, nj, path + [grid[ni][nj]])\n\n    dfs(0, 0, [])\n    for path in paths:\n        print(path)": "",
+    "tests": [
+        "print(prime_path(3, 4, [[2, 3, 5, 7], [11, 13, 17, 19], [23, 29, 31, 37]]))"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

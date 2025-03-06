@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Find the Minimum Window Covering All Bad Characters",
+    "description": "Given a string `s` and an array of characters `bad_chars`, write a function `min_window_covering_all_bad_chars` that returns the minimum window substring (if it exists) that covers all occurrences of the bad characters in `s`. If no such window exists, return an empty string.\n\n#### Function Signature\n```python\ndef min_window_covering_all_bad_chars(s: str, bad_chars: list[str]) -> str:\n```\n\n#### Input\n- `s` (str): The input string to search for the minimum window.\n- `bad_chars` (list[str]): A list of characters that are considered 'bad' and should be covered by the minimum window.\n\n#### Output\n- Returns the minimum window substring that covers all occurrences of the bad characters in `s`. If no such window exists, return an empty string.",
+    "code": "from collections import defaultdict\n\ndef min_window_covering_all_bad_chars(s: str, bad_chars: list[str]) -> str:\n    if not s or not bad_chars:\n        return \"\"\n    # Create a dictionary to store the count of each character in `s`\n    char_count = defaultdict(int)\n    for char in s:\n        char_count[char] += 1\n\n    # Initialize the minimum window size and the result string\n    min_window_size = float('inf')\n    min_window = \"\"\n\n    left = 0\n    bad_chars_covered = 0\n    for right in range(len(s)):\n        if s[right] in bad_chars:\n            bad_chars_covered += 1\n        while all(char_count[char] == 0 for char in bad_chars):\n            # Update the minimum window size and result string if necessary\n            if right - left + 1 < min_window_size:\n                min_window_size = right - left + 1\n                min_window = s[left:right+1]\n            # Move the left pointer to the right until all bad characters are covered again\n            left += 1\n            if s[left-1] in bad_chars:\n                bad_chars_covered -= 1\n    return min_window",
+    "tests": [
+        "assert min_window_covering_all_bad_chars('abc def ghi', ['d', 'f']) == 'def'",
+        "assert min_window_covering_all_bad_chars('hello world', ['o']) == 'olo'",
+        "assert min_window_covering_all_bad_chars('bad apple', ['b', 'a']) == ''"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

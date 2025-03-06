@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Steps to Reach the Target",
+    "description": "A description of the problem in string form, the description may contain function signature, input format, output format, constraints and hints.\n\n#### Problem Description\nYou are standing at a certain position on an infinite number line. You can move either left or right by 1, 2 or 3 steps at a time. Your goal is to reach a target position (target) on the number line. Write a function `min_steps` that calculates the minimum number of steps required to reach the target.\n\n#### Function Signature\n```python\ndef min_steps(target: int, steps: list[int]) -> int:\n```\n\n#### Input\n- `target` (int): The target position on the number line.\n- `steps` (list[int]): A list of available step sizes (1, 2 or 3).\n\n#### Output\n- Returns the minimum number of steps required to reach the target.",
+    "code": "def min_steps(target: int, steps: list[int]) -> int:\n    if target < 0:\n        return -min_steps(-target, steps)\n    min_step = float('inf')\n    for i in range(1 << len(steps)):\n        step_sum = 0\n        for j in range(len(steps)):\n            step_sum += ((i >> j) & 1) * steps[j]\n        if target % (step_sum + 1) == 0 and step_sum <= target:\n            min_step = min(min_step, step_sum)\n    return min_step if min_step != float('inf') else -1",
+    "tests": [
+        "assert min_steps(10, [1, 2, 3]) == 5",
+        "assert min_steps(-15, [1, 2, 3]) == 8",
+        "assert min_steps(7, [1, 2]) == 4",
+        "assert min_steps(0, [1, 2, 3]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

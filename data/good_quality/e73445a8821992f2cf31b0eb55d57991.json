@@ -1,0 +1,14 @@
+{
+    "title": "Counting Permutations",
+    "description": "Given a list of integers, write a function `count_permutations` that returns the number of permutations of this list. A permutation is an arrangement of all the elements in the original order.\n\n#### Function Signature\n```python\ndef count_permutations(nums: list) -> int:\n```\n\n#### Input\n- `nums` (list): A list of integers.\n\n#### Output\n- Returns the number of permutations of the input list.",
+    "code": "\nimport math\n\ndef count_permutations(nums: list) -> int:\n    n = len(nums)\n    if n == 1:\n        return 1\n    total = 1\n    for num in nums[1:]:\n        total *= math.factorial(n - 1)\n        n -= 1\n    return total",
+    "tests": [
+        "assert count_permutations([1, 2]) == 2",
+        "assert count_permutations([1, 2, 3]) == 6",
+        "assert count_permutations([]) == 1",
+        "assert count_permutations([1, 2, 3, 4, 5]) == 120"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

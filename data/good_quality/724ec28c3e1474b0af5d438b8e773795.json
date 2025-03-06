@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Sum of Divisors",
+    "description": "Given a positive integer n, calculate the sum of all its divisors. Write a function `sum_of_divisors` that takes an integer as input and returns the sum of its divisors.\n\n#### Function Signature\n```python\ndef sum_of_divisors(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the sum of all divisors of the input number, including 1 and the number itself.",
+    "code": "def sum_of_divisors(n: int) -> int:\n    total = 0\n    for i in range(1, n + 1):\n        if n % i == 0:\n            total += i\n    return total",
+    "tests": [
+        "assert sum_of_divisors(28) == 60",
+        "assert sum_of_divisors(5) == 6",
+        "assert sum_of_divisors(10) == 18"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

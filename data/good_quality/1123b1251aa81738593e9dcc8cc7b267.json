@@ -1,0 +1,15 @@
+{
+    "title": "Medium: Fizz Buzz",
+    "description": "Write a function `fizz_buzz` that takes an integer `n` as input and returns a list of strings representing the numbers from 1 to `n`, inclusive. The function should follow these rules:\n\n#### Rules\n- If the number is divisible by 3, the string should contain 'Fizz'.\n- If the number is divisible by 5, the string should contain 'Buzz'.\n- If the number is divisible by both 3 and 5, the string should contain 'FizzBuzz'.\n- Otherwise, the string should contain the number as a string.\n\n#### Function Signature\n```python\ndef fizz_buzz(n: int) -> list[str]:\n```\n\n#### Input\n- `n` (int): An integer representing the upper limit for the sequence.\n\n#### Output\n- A list of strings, each representing a number from 1 to `n`, inclusive.",
+    "code": "\nimport typing\n\ndef fizz_buzz(n: int) -> list[str]:\n    result = []\n    for i in range(1, n + 1):\n        if i % 3 == 0 and i % 5 == 0:\n            result.append('FizzBuzz')\n        elif i % 3 == 0:\n            result.append('Fizz')\n        elif i % 5 == 0:\n            result.append('Buzz')\n        else:\n            result.append(str(i))\n    return result",
+    "tests": [
+        "assert '1' in fizz_buzz(15)",
+        "assert 'FizzBuzz' in fizz_buzz(15)",
+        "assert '4' in fizz_buzz(15)",
+        "assert '6' in fizz_buzz(15)",
+        "assert '3' in fizz_buzz(15)"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

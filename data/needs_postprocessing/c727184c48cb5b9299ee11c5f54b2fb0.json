@@ -1,0 +1,4 @@
+{
+    "model": "codegeex4:9b",
+    "response": "\"{ \\\"title\\\": \\\"Medium - Word Counter\\\", \\\"description\\\": \\\"Write a function `word_count` that takes a string and returns the number of words in the string. Words are defined as sequences of alphabetic characters separated by non-alphabetic characters. The input will not contain any leading or trailing spaces, but it may contain punctuation marks.\\\", \\\"code\\\": \\\"import re\\\\n\\\\ndef word_count(s: str) -> int:\\\\n    # Use regular expression to split the string into words\\\\n    words = re.findall(r'[a-zA-Z]+', s)\\\\n    # Return the number of words\\\\n    return len(words)\\\\n\\\", \\\"tests\\\": [\\\"assert word_count(\\\\\\\"Hello, world!\\\\\\\") == 2\\\", \\\"assert word_count(\\\\\\\"Python is fun\\\\\\\") == 3\\\", \\\"assert word_count(\\\\\\\"42 is a number\\\\\\\") == 4\\\"] }\""
+}

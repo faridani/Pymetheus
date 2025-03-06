@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Anagram Checker",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): The first string to check for anagram.\n- `s2` (str): The second string to check for anagram.\n\n#### Output\n- Returns `True` if the two input strings are anagrams, `False` otherwise.",
+    "code": "",
+    "\ndef is_anagram(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = s1.replace(' ', '').lower()\n    s2 = s2.replace(' ', '').lower()\n\n    # Check if the sorted strings are equal\n    return sorted(s1) == sorted(s2)\n     ": "",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"Anagram\", \"nag a ram\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False"
+    ],
+    "difficulty": "medium",
+    "model": "codestral:22b",
+    "style": "CodeWars"
+}

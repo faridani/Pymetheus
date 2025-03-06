@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Tree of Numbers",
+    "description": "Consider a tree where each node contains an integer. Each node may have zero or more children, and all leaf nodes contain numbers between 1 and 100 (inclusive). The root node has no parent. We can traverse this tree in various ways by starting at the root and choosing a child until we reach a leaf node.\n\n#### Function Signature\n```python\ndef total_values(root: Node) -> int:\n```\n\n#### Input\n- `root` (Node): The root of the tree, where each node contains an integer.\n\n#### Output\n- Returns the sum of all values stored in the tree nodes.",
+    "code": "class Node:\n    def __init__(self, value: int):\n        self.value = value\n        self.children = []\n\ndef total_values(root: Node) -> int:\n    if not root:\n        return 0\n    return root.value + sum(total_values(child) for child in root.children)\n\n# Example usage\nroot = Node(5)\nchild1 = Node(2)\nchild2 = Node(7)\ngrandchild1 = Node(3)\ngrandchild2 = Node(4)\ngrandchild3 = Node(9)\n\nroot.children = [child1, child2]\nchild1.children = [grandchild1, grandchild2]\nchild2.children = [grandchild3]\n\nprint(total_values(root))  # Output: 25",
+    "tests": [
+        "assert total_values(Node(5)) == 5",
+        "assert total_values(Node(5).add_child(Node(2)).add_child(Node(7))) == 14",
+        "assert total_values(Node(1).add_child(Node(10)).add_child(Node(100).add_child(Node(50)))) == 161",
+        "assert total_values(None) == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

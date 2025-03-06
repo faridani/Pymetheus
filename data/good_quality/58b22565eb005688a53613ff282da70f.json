@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Maximum Sum Subarray",
+    "description": "Given an array of integers, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.\n\n#### Function Signature\n```python\ndef max_subarray_sum(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums` (List[int]): A list of integers, the size of which is at least 1 and less than or equal to 3*10^5.\n\n#### Output\n- Returns an integer that represents the maximum sum of a contiguous subarray within the input array.",
+    "code": "",
+    "def max_subarray_sum(nums):\n    if not nums:\n        return 0\n\n    current_sum = max_sum = nums[0]\n    for num in nums[1:]:\n        current_sum = max(num, current_sum + num)\n        max_sum = max(max_sum, current_sum)\n\n    return max_sum": "",
+    "tests": [
+        "assert max_subarray_sum([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6",
+        "assert max_subarray_sum([1]) == 1",
+        "assert max_subarray_sum([0]) == 0",
+        "assert max_subarray_sum([-1, -2, -3, -4, -5]) == -1"
+    ],
+    "difficulty": "super hard",
+    "model": "codestral:22b",
+    "style": "Competitive Programming"
+}

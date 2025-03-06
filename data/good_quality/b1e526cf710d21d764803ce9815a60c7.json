@@ -1,0 +1,14 @@
+{
+    "title": "Sudoku Validator (Hard)",
+    "description": "Write a function `validate_sudoku` that takes as input a 2D list representing a Sudoku grid, and returns `True` if the input is a valid Sudoku puzzle, and `False` otherwise.\n\n#### Function Signature\n```python\ndef validate_sudoku(grid: List[List[int]]) -> bool:\n```\n\n#### Input\n- `grid` (List[List[int]]): A 2D list of size 9x9 representing a Sudoku grid, where each cell can contain an integer from 0 to 9.\n\n#### Output\n- Returns `True` if the input Sudoku puzzle is valid, `False` otherwise.",
+    "code": "",
+    "\nimport copy\n\ndef validate_sudoku(grid):\n    def is_valid_row(row):\n        seen = set()\n        for num in row:\n            if num > 0 and num not in seen:\n                seen.add(num)\n            else:\n                return False\n        return True\n\n    def is_valid_col(col):\n        seen = set()\n        for num in col:\n            if num > 0 and num not in seen:\n                seen.add(num)\n            else:\n                return False\n        return True\n\n    def is_valid_box(box):\n        seen = set()\n        for row in box:\n            for num in row:\n                if num > 0 and num not in seen:\n                    seen.add(num)\n                else:\n                    return False\n        return True\n\n    # Check rows\n    for row in grid:\n        if not is_valid_row(row):\n            return False\n\n    # Check columns\n    for col in zip(*grid):\n        if not is_valid_col(col):\n            return False\n\n    # Check boxes\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            box = [grid[x][y] for x in range(i, i+3) for y in range(j, j+3)]\n            if not is_valid_box(box):\n                return False\n\n    return True": "",
+    "tests": [
+        "assert validate_sudoku([[5,3,4,6,7,8,9,1,2], [6,7,8,9,1,2,3,4,5], [1,2,3,4,5,6,7,8,9], [8,9,1,2,3,4,5,6,7], [4,5,6,7,8,9,1,2,3], [7,8,9,1,2,3,4,5,6], [9,1,2,3,4,5,6,7,8], [2,3,4,5,6,7,8,9,1], [3,4,5,6,7,8,9,1,2]]) == True",
+        "assert validate_sudoku([[1,2,3],[4,5,6],[7,8,9]]) == False",
+        "assert validate_sudoku([[0]*9 for _ in range(9)]) == False"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

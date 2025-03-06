@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Counting Substrings",
+    "description": "Write a function that takes two strings and returns the count of substrings common to both strings.\n\n#### Function Signature\n```python\ndef common_substrings_count(str1: str, str2: str) -> int:\n```\n\n#### Input\n- `str1` (str): The first string.\n- `str2` (str): The second string.\n\n#### Output\n- Returns the count of substrings common to both strings.",
+    "code": "",
+    "\nimport re\n\ndef common_substrings_count(str1: str, str2: str) -> int:\n    # Convert both strings to lowercase\n    str1 = str1.lower()\n    str2 = str2.lower()\n\n    # Find all substrings in the first string\n    substrings = set(re.findall('.{' + str(len(min((str1, str2), key=len))) + '}.', str1))\n\n    # Initialize count of common substrings\n    count = 0\n\n    # Iterate over each substring\n    for substring in substrings:\n        # Check if the substring is present in both strings\n        if substring in str2:\n            # If it is, increment the count\n            count += 1\n\n    return count": "",
+    "tests": [
+        "assert common_substrings_count('abcabc', 'abcdcba') == 3",
+        "assert common_substrings_count('hello', 'world') == 0",
+        "assert common_substrings_count('abab', 'bababa') == 2"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

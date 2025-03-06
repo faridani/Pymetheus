@@ -1,0 +1,15 @@
+{
+    "title": "Maximum Average Subtree (Medium)",
+    "description": "Given the root of a binary tree, consider all the lowest left to right leaf nodes. Return the maximum sum of node values of these leaves.\n\n#### Function Signature\n```python\ndef max_sum_of_leaves(root: Optional[TreeNode]) -> int:\n```\n\n#### Input\n- `root` (Optional[TreeNode]): The root of a binary tree, where each node is an integer and the leaf nodes have no children.\n\n#### Output\n- Returns the maximum sum of node values for all lowest left to right leaf nodes in the binary tree.",
+    "code": "",
+    "\nimport heapq\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef max_sum_of_leaves(root: Optional[TreeNode]) -> int:\n    if root is None:\n        return 0\n\n    leaves = []\n\n    def dfs(node):\n        if node is None:\n            return 0\n\n        left_sum = dfs(node.left)\n        right_sum = dfs(node.right)\n\n        if node.left is None and node.right is None:  # leaf node\n            heapq.heappush(leaves, -node.val)  # push the negative value to simulate max heap\n            return 0\n        else:\n            return left_sum + right_sum\n\n    def get_max_sum_of_leaves():\n        max_sum = 0\n        while leaves:\n            max_sum -= heapq.heappop(leaves)\n        return max_sum\n\n    dfs(root)\n    return get_max_sum_of_leaves()": "",
+    "tests": [
+        "assert max_sum_of_leaves(None) == 0",
+        "assert max_sum_of_leaves(TreeNode(1)) == 1",
+        "assert max_sum_of_leaves(TreeNode(1, left=TreeNode(2), right=TreeNode(3))) == 5",
+        "assert max_sum_of_leaves(TreeNode(4, left=TreeNode(2, left=TreeNode(3)), right=TreeNode(5, left=TreeNode(6), right=TreeNode(7)))) == 15"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Find the Smallest Number",
+    "description": "Write a function `smallest_number` that takes a list of integers as input and returns the smallest number in the list.\n\n#### Function Signature\n```\ndef smallest_number(numbers: list[int]) -> int:\n```",
+    "code": "\ndef smallest_number(numbers: list[int]) -> int:\n    return min(numbers)",
+    "tests": [
+        "assert smallest_number([1, 3, -5]) == -5",
+        "assert smallest_number([-1, 0, 3]) == -1",
+        "assert smallest_number([]) == None"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

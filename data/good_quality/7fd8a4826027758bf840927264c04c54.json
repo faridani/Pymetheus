@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Max Consecutive Ones in Binary String",
+    "description": "Given a binary string, find the maximum number of consecutive ones that can be obtained by flipping at most one 0 to a 1. Write a function `max_consecutive_ones` that takes a binary string as input and returns the maximum number of consecutive ones.\n\n#### Function Signature\n```python\ndef max_consecutive_ones(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A binary string where 0 represents a 0 and 1 represents a 1.\n\n#### Output\n- Returns the maximum number of consecutive ones that can be obtained by flipping at most one 0 to a 1.",
+    "code": "def max_consecutive_ones(s: str) -> int:\n    if not s:\n        return 0\n    n = len(s)\n    max_count = current_count = 0\n    for i in range(n):\n        if s[i] == '1':\n            current_count += 1\n            max_count = max(max_count, current_count)\n        else:\n            current_count = 0\n    one_flips_needed = n - max_count\n    return max(max_count + (one_flips_needed > 0), 0)",
+    "tests": [
+        "assert max_consecutive_ones('00011') == 3",
+        "assert max_consecutive_ones('11111') == 6",
+        "assert max_consecutive_ones('10001') == 4",
+        "assert max_consecutive_ones('10101010') == 5"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

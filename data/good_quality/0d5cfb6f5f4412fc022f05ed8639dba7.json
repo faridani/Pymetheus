@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Time to Make a Word",
+    "description": "Write a function `min_time_to_make_word` that calculates the minimum time it takes to make a given word using a set of letters and their respective times. The function should return -1 if it is impossible to form the word.\n\n#### Function Signature\n```python\ndef min_time_to_make_word(letters: list[tuple[str, int]], target_word: str) -> int:\n```\n\n#### Input\n- `letters` (list[tuple[str, int]]): A list of tuples where each tuple contains a letter and its time to use.\n- `target_word` (str): The word that needs to be formed.\n\n#### Output\n- Returns the minimum time it takes to form the target word using the given letters, or -1 if it is impossible.",
+    "code": "\ndef min_time_to_make_word(letters: list[tuple[str, int]], target_word: str) -> int:\n    # Create a dictionary to store the frequency of each letter in the target word\n    target_word_freq = {}\n    for char in target_word:\n        if char not in target_word_freq:\n            target_word_freq[char] = 1\n        else:\n            target_word_freq[char] += 1\n\n    # Initialize the minimum time and the current letters\n    min_time = float('inf')\n    curr_letters = letters.copy()\n\n    def dfs(time: int, remaining_chars: str) -> bool:\n        nonlocal min_time, curr_letters\n        if time > min_time:\n            return False\n        if not remaining_chars:\n            return True\n        for letter in curr_letters:\n            if letter[0] in remaining_chars and letter[1] <= target_word_freq.get(letter[0], 0):\n                new_remaining_chars = remaining_chars.replace(letter[0], '', 1)\n                if dfs(time + letter[1], new_remaining_chars):\n                    return True\n        return False\n\n    for _ in range(len(target_word)):\n        if not dfs(0, target_word):\n            return -1\n        curr_letters = letters.copy()\n        min_time = float('inf')\n\n    return time",
+    "tests": [
+        "assert min_time_to_make_word([['a', 3], ['b', 2]], 'aba') == 5",
+        "assert min_time_to_make_word([['x', 10], ['y', 7]], 'xyx') == 17",
+        "assert min_time_to_make_word([['n', 1], ['o', 2]], 'no') == 3",
+        "assert min_time_to_make_word([['a', 5], ['b', 8]], 'abba') == -1"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

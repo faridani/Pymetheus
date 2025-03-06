@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Tree Traversal",
+    "description": "Write a function `find_path` that takes the root of a binary tree, a target sum, and returns the path from the root to any node that sums up to the target. If no such path exists, return an empty list.\n\n#### Function Signature\n```python\ndef find_path(root: Node, target_sum: int) -> list:\n```\n\n#### Input\n- `root` (Node): The root of a binary tree where each node has a value and two children.\n- `target_sum` (int): A sum that we're looking for in the tree.\n\n#### Output\n- Returns a list of node values representing the path from the root to any node that sums up to the target. If no such path exists, return an empty list.",
+    "code": "",
+    "\nclass Node:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef find_path(root: Node, target_sum: int) -> list:\n    if root is None:\n        return []\n\n    path = []\n    stack = [(root, [root.value])]\n\n    while stack:\n        node, path_values = stack.pop()\n        path_values.append(node.value)\n        total_sum = sum(path_values)\n\n        if total_sum == target_sum:\n            return path_values\n\n        for child in (node.left, node.right):\n            if child is not None:\n                stack.append((child, path_values[:]))\n\n    return []": "",
+    "tests": [
+        "assert find_path(Node(1), 3) == [1]",
+        "assert find_path(Node(4, Node(2, Node(1), Node(3)), Node(5, Node(4), Node(6))), 7) == [4, 2, 1]",
+        "assert find_path(None, 10) == []",
+        "assert find_path(Node(0), 0) == [0]"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

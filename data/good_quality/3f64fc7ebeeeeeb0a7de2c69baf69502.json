@@ -1,0 +1,15 @@
+{
+    "title": "Maximum Sum of Divisible Integers (Hard)",
+    "description": "Given a list of integers and an integer divisor, find the maximum sum that can be achieved by selecting some of these integers such that the selected integers are all divisible by the given divisor.\n\n#### Function Signature\n```python\ndef max_sum_divisible(nums: list[int], d: int) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n- `d` (int): An integer divisor.\n\n#### Output\n- Returns the maximum sum that can be achieved by selecting some integers from `nums` such that the selected integers are all divisible by `d`.",
+    "code": "",
+    "\nimport itertools\n\ndef max_sum_divisible(nums: list[int], d: int) -> int:\n    # Find all combinations of numbers in nums that are divisible by d\n    combinations = []\n    for r in range(len(nums) + 1):\n        for combination in itertools.combinations(nums, r):\n            if all(num % d == 0 for num in combination):\n                combinations.append(combination)\n\n    # Return the maximum sum of these combinations\n    return max(sum(c) for c in combinations)": "",
+    "tests": [
+        "assert max_sum_divisible([1, 2, 3, 4, 5], 2) == 10",
+        "assert max_sum_divisible([10, 20, 30, 40, 50], 5) == 75",
+        "assert max_sum_divisible([-100, -200, -300, -400, -500], 3) == -900",
+        "assert max_sum_divisible([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2) == 20"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

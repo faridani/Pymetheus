@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Nth Fibonacci Number",
+    "description": "The Fibonacci sequence is a series of numbers where the next number is found by adding up the two numbers before it. The sequence starts with 0 and 1. Write a function `nth_fibonacci` that calculates the nth Fibonacci number.\n\n#### Function Signature\n```python\ndef nth_fibonacci(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The position of the desired Fibonacci number in the sequence, where the first number is at position 0.\n\n#### Output\n- Returns the nth Fibonacci number as an integer.",
+    "code": "",
+    "def nth_fibonacci(n: int) -> int:\n            if n <= 1:\n                return n\n            else:\n                a, b = 0, 1\n                for _ in range(2, n + 1):\n                    a, b = b, a + b\n                return b": "",
+    "tests": [
+        "assert nth_fibonacci(0) == 0",
+        "assert nth_fibonacci(1) == 1",
+        "assert nth_fibonacci(2) == 1",
+        "assert nth_fibonacci(10) == 55"
+    ],
+    "difficulty": "super hard",
+    "model": "codestral:22b",
+    "style": "Project Euler"
+}

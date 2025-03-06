@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Maximum Sum of Subarray with a Constraint",
+    "description": "Given an array of integers and a target sum, find the maximum sum of a subarray that does not contain any integer larger than the target. If no such subarray exists, return -1.\n\n#### Function Signature\n```python\ndef max_sum_subarray(arr: list[int], target: int) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n- `target` (int): The target sum.\n\n#### Output\n- Returns the maximum sum of a subarray that does not contain any integer larger than the target. If no such subarray exists, return -1.",
+    "code": "from typing import List\n\ndef max_sum_subarray(arr: List[int], target: int) -> int:\n    if not arr:\n        return -1\n    max_sum = 0\n    current_sum = 0\n    for num in arr:\n        if num > target:\n            break\n        current_sum += num\n        max_sum = max(max_sum, current_sum)\n    if current_sum > target:\n        return -1\n    return max_sum",
+    "tests": [
+        "assert max_sum_subarray([5, 3, 4], 2) == 7",
+        "assert max_sum_subarray([-1, 2, 3, 4], 1) == 6",
+        "assert max_sum_subarray([10, 10, 10], 0) == -1"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

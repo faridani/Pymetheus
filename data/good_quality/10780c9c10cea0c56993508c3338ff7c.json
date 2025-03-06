@@ -1,0 +1,13 @@
+{
+    "title": "[Hard] Tree Traversal: In-Order Successor",
+    "description": "Given a binary search tree and a node in the BST, find the in-order successor of that node.\n\n#### Definition\nIn-order successor of a node is the next node in In-order traversal of the BST.\n\n#### Function Signature\n```python\ndef in_order_successor(root: Node, n: Node) -> Node:\n```\n\n#### Input\n- `root` (Node): Root node of the binary search tree.\n- `n` (Node): A node in the BST.\n\n#### Output\n- Returns the in-order successor of the input node. If there is no in-order successor, return None.\n\n#### Node Class\n```python\nclass Node:\n    def __init__(self, key):\n        self.left = None\n        self.right = None\n        self.key = key\n```",
+    "code": "",
+    "\n    class Node:\n      def __init__(self, key):\n          self.left = None\n          self.right = None\n          self.key = key\n\n    def min_value(node):\n        current = node\n        while(current.left is not None):\n            current = current.left\n        return current\n\n    def in_order_successor(root, n):\n        if n.right is not None:\n            return min_value(n.right)\n        p = root\n        successor = None\n        while p != n:\n            if n.key < p.key:\n                successor = p\n                p = p.left\n            else:\n                p = p.right\n        return successor\n    ": "",
+    "tests": [
+        "root = Node(20)\nroot.left = Node(8)\nroot.right = Node(22)\nassert in_order_successor(root, root.left).key == 20",
+        "root = Node(50)\nroot.left = Node(30)\nroot.right = Node(60)\nroot.left.left = Node(10)\nroot.left.right = Node(40)\nassert in_order_successor(root, root.left).key == 40"
+    ],
+    "difficulty": "super hard",
+    "model": "codestral:22b",
+    "style": "Codeforces"
+}

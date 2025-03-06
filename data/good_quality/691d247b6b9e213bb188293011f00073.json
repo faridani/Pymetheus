@@ -1,0 +1,14 @@
+{
+    "title": "Hard - Counting Duplicates",
+    "description": "Given a list of integers, count the number of duplicates. The function should return a dictionary where keys are the numbers and values are counts.\n\n#### Function Signature\n```python\ndef count_duplicates(lst: list) -> dict:\n```\n\n#### Input\n- `lst` (list): A list of integers that may contain duplicates.\n\n#### Output\n- Returns a dictionary where keys are the numbers and values are their counts.",
+    "code": "def count_duplicates(lst: list) -> dict:\n    freq_dict = {}\n    for num in lst:\n        if num in freq_dict:\n            freq_dict[num] += 1\n        else:\n            freq_dict[num] = 1\n    return freq_dict",
+    "tests": [
+        "assert count_duplicates([1, 2, 3, 4, 5]) == {1: 1, 2: 1, 3: 1, 4: 1, 5: 1}",
+        "assert count_duplicates([1, 1, 2, 2, 3, 3, 4, 4, 5, 5]) == {1: 2, 2: 2, 3: 2, 4: 2, 5: 2}",
+        "assert count_duplicates([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) == {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1}",
+        "assert count_duplicates([1, 2, 3, 1, 2, 3]) == {1: 2, 2: 2, 3: 2}"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

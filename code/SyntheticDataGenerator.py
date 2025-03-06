@@ -62,7 +62,7 @@ while True:
         content = """
         I want you to generate a **REPLACE WITH DIFFICULTY** python coding question for me in the style of **IN THE STYLE OF** and provide the answer, write the test questions and the function signature. 
         Use the following template as a guide and maintain the formatting strictly. 
-        Your returned string should be in the form of json, and have title, description, code and tests keys. 
+        Your returned string should be in the form of a json, and have title, description, code and tests keys. 
         The code should be a function that solves the problem. You are expected to put the full functioning code in the code section. 
         The tests should be a list of strings that test the function.
         Use this template as a guide and create other creative python questions. 
@@ -75,6 +75,7 @@ while True:
         Absolutely do not reply by "Here's a new Python coding question for you" and instead just give me a json string right away 
         Make sure keys and values of the json string are in double quotes.
         This is the template: 
+        
         """+str(template)
         difficulty = random.choice(difficulties)
 
@@ -88,13 +89,14 @@ while True:
 
         if response:
             fail_counter -= 1 
-            useful_models.append(model) #increase the probability of using this model again
+            useful_models.append(model) #increase the probability of using this model again like multi armed bandits
         else:
             print(f"Failed to generate {difficulty} question")
             fail_counter += 1
-            
-        model_counts = Counter(useful_models)
-        sorted_model_counts = sorted(model_counts.items(), key=lambda x: x[1], reverse=True)
+         
+        # In case you like to see which models are used the most   
+        # model_counts = Counter(useful_models)
+        # sorted_model_counts = sorted(model_counts.items(), key=lambda x: x[1], reverse=True)
         # print("\n\nModel usage counts in descending order:")
         # for model, count in sorted_model_counts:
         #     print(f"{model}: {count}", end=", ")

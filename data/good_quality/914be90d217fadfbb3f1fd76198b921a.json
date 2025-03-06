@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Find the Maximum Sum of Subarray",
+    "description": "Given an array of integers, find the maximum sum of a subarray within it. A subarray is a contiguous part of the array.\n\n#### Function Signature\n```python\ndef max_sum_subarray(arr: list[int)) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum of a subarray within the input array.",
+    "code": "",
+    "\nimport sys\n\ndef max_sum_subarray(arr: list[int)) -> int:\n    # Initialize maximum sum and current sum\n    max_sum = -sys.maxsize\n    curr_sum = 0\n\n    # Iterate through each element in the array\n    for num in arr:\n        # If the current sum is negative, reset it to the current number\n        if curr_sum < 0:\n            curr_sum = num\n        else:\n            # Otherwise, add the current number to the current sum\n            curr_sum += num\n\n        # Update the maximum sum if necessary\n        max_sum = max(max_sum, curr_sum)\n\n    return max_sum": "",
+    "tests": [
+        "assert max_sum_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6",
+        "assert max_sum_subarray([1, -2, 3, 10, -4, 7, 2, -5]) == 12",
+        "assert max_sum_subarray([-1, -2, -3, -4, -5]) == -1"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

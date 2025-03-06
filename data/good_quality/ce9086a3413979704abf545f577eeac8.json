@@ -1,0 +1,14 @@
+{
+    "title": "Fibonacci Tree Builder",
+    "description": "Write a function `build_fibonacci_tree` that constructs and returns a binary tree where the left child of each node represents the previous Fibonacci number, while the right child represents the next one. The function takes two parameters: `n`, an integer representing the height of the tree, and `root_value`, the value of the root node.\n\n#### Function Signature\n```python\ndef build_fibonacci_tree(n: int, root_value: int) -> TreeNode:\n```\n\n#### Input\n- `n` (int): The height of the Fibonacci tree to construct.\n- `root_value` (int): The value of the root node.\n\n#### Output\n- Returns a TreeNode object representing the constructed Fibonacci tree.",
+    "code": "",
+    "\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef build_fibonacci_tree(n: int, root_value: int) -> TreeNode:\n    if n == 0:\n        return None\n\n    node = TreeNode(root_value)\n\n    if n > 1:\n        node.left = build_fibonacci_tree(n-1, root_value-1)\n        node.right = build_fibonacci_tree(n-2, root_value+1)\n\n    return node": "",
+    "tests": [
+        "assert build_fibonacci_tree(5, 0).val == 0",
+        "assert build_fibonacci_tree(5, 0).left.val == -1 and build_fibonacci_tree(5, 0).right.val == 1",
+        "assert build_fibonacci_tree(3, 2).val == 2 and build_fibonacci_tree(3, 2).left.val == 1 and build_fibonacci_tree(3, 2).right.val == -1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

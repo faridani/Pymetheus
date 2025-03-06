@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Easy: Divisor Game\", \"code\": \"\", \"def winner(a: int, b: int) -> str:\\n    while a > 0 and b > 0:\\n        if a <= b:\\n            b -= a\\n        else:\\n            a -= b\\n    return \": \" if a > 0 else \\\"B\\\"\", \",\": \"ests\", \"assert winner(4, 5) == 'A'\": \"assert winner(3, 6) == 'B'\", \"assert winner(7, 2) == 'A'\": \"assert winner(1, 1) == 'B'\"}"
+}

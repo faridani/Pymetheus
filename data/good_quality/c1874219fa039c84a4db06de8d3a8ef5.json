@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Closest Pair",
+    "description": "#### Problem Statement\nGiven a list of intervals, where each interval is represented as a tuple of two integers (start, end), write a function `closest_pair` that returns the pair of intervals with the smallest sum of their ends.\n\n#### Function Signature\n```python\ndef closest_pair(intervals: list[tuple[int, int]]) -> tuple[tuple[int, int], tuple[int, int]]:\n```\n\n#### Input\n- `intervals` (list[tuple[int, int]]): A list of intervals, where each interval is a tuple of two integers representing the start and end points.\n\n#### Output\n- Returns a tuple containing the pair of intervals with the smallest sum of their ends.",
+    "code": "def closest_pair(intervals: list[tuple[int, int]]) -> tuple[tuple[int, int], tuple[int, int]]:\n    min_sum = float('inf')\n    closest_pair = (None, None)\n    for i in range(len(intervals)):\n        for j in range(i+1, len(intervals)):\n            total_end = intervals[i][1] + intervals[j][1]\n            if total_end < min_sum:\n                min_sum = total_end\n                closest_pair = (intervals[i], intervals[j])\n    return closest_pair",
+    "tests": [
+        "assert closest_pair([(1, 3), (2, 4), (5, 7)]) == ((1, 3), (2, 4))",
+        "assert closest_pair([(10, 15), (20, 25), (30, 35)]) == ((10, 15), (20, 25))"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

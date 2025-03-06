@@ -1,0 +1,15 @@
+{
+    "title": "Counting Islands",
+    "description": "A map of an island can be represented as a 2D grid where each cell can be either land (represented by '1') or water (represented by '0'). Write a function `count_islands` that counts the number of islands in a given grid.\n\n#### Function Signature\n```python\ndef count_islands(grid: list) -> int:\n```\n\n#### Input\n- `grid` (list): A 2D grid where each cell is either '1' (land) or '0' (water). The grid may contain multiple islands.\n\n#### Output\n- Returns the number of islands in the input grid.",
+    "code": "",
+    "\ndef count_islands(grid):\n    if not grid:\n        return 0\n    \n    def dfs(i, j):\n        if i<0 or j<0 or i>=len(grid) or j>=len(grid[0]) or grid[i][j] == '0':\n            return\n        grid[i][j] = '0'\n        dfs(i-1, j)\n        dfs(i+1, j)\n        dfs(i, j-1)\n        dfs(i, j+1)\n\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == '1':\n                dfs(i, j)\n                count += 1\n    return count": "",
+    "tests": [
+        "assert count_islands([['1', '1', '0'], ['0', '0', '1']]) == 1",
+        "assert count_islands([['0', '0', '0'], ['0', '0', '0']]) == 0",
+        "assert count_islands([['1', '1', '1'], ['1', '1', '1'], ['1', '1', '1']]) == 1",
+        "assert count_islands([]) == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

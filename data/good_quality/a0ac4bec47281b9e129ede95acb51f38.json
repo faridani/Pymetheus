@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Counting FizzBuzz",
+    "description": "Write a function `fizz_buzz` that prints numbers from 1 to n, replacing multiples of 3 with 'Fizz', multiples of 5 with 'Buzz' and for numbers which are multiples of both 3 and 5 print 'FizzBuzz'.\n\n#### Function Signature\n```python\ndef fizz_buzz(n: int) -> None:\n```\n\n#### Input\n- `n` (int): The upper limit up to which you should print the FizzBuzz sequence.\n\n#### Output\n- Prints a sequence of numbers from 1 to n, replacing multiples of 3 with 'Fizz', multiples of 5 with 'Buzz' and for numbers which are multiples of both 3 and 5 prints 'FizzBuzz'.",
+    "code": "def fizz_buzz(n: int) -> None:\n    for i in range(1, n+1):\n        if i % 15 == 0:\n            print('FizzBuzz')\n        elif i % 5 == 0:\n            print('Buzz')\n        elif i % 3 == 0:\n            print('Fizz')\n        else:\n            print(i)",
+    "tests": [
+        "fizz_buzz(15);",
+        "assert 'FizzBuzz' in str(fizz_buzz(20))",
+        "assert 'Fizz' in str(fizz_buzz(18))",
+        "assert 'Buzz' in str(fizz_buzz(25))"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

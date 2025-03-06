@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Matrix Chain Multiplication",
+    "description": "Given a sequence of matrices, find the most efficient way to multiply these matrices together. The problem is not actually to perform the multiplications, but merely to decide in which order to perform the multiplications. Write a function `matrix_chain_multiplication` that takes as input a list of dimensions of the matrices and returns the minimum number of multiplications needed to multiply them.\n\n#### Function Signature\n```python\ndef matrix_chain_multiplication(dims: List[int]) -> int:\n```\n\n#### Input\n- `dims` (List[int]): A list of n + 1 integers where size of i-th matrix is dims[i-1] x dims[i].\n\n#### Output\n- Returns an integer representing the minimum number of multiplications needed to multiply the chain of matrices.",
+    "code": "",
+    "from typing import List\ndef matrix_chain_multiplication(dims: List[int]) -> int:\n    n = len(dims)\n    # Create a table to store results of subproblems\n    m = [[0 for x in range(n)] for x in range(n)]\n    # Build the table in bottom-up manner\n    for chain_len in range(2, n):\n        for i in range(1, n - chain_len + 1):\n            j = i + chain_len - 1\n            m[i][j] = float('inf')\n            for k in range(i, j):\n                cost = m[i][k] + m[k+1][j] + dims[i-1]*dims[k]*dims[j]\n                if cost < m[i][j]:\n                    m[i][j] = cost\n    return m[1][n-1]": "",
+    "tests": [
+        "assert matrix_chain_multiplication([40, 20, 30, 10, 30]) == 26000",
+        "assert matrix_chain_multiplication([10, 20, 30, 40, 30]) == 30000",
+        "assert matrix_chain_multiplication([5, 10, 3, 12, 5, 50, 6]) == 1975"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "codestral:22b",
+    "style": "Facebook Hacker Cup"
+}

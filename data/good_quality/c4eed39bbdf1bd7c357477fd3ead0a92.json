@@ -1,0 +1,14 @@
+{
+    "title": "Harshad Numbers Generator (Hard)",
+    "description": "A Harshad number, also known as a Niven number, is a natural number that is divisible by the sum of its digits. Write a function `harshad_numbers` that generates all Harshad numbers within a given range.\n\n#### Function Signature\n```python\ndef harshad_numbers(start: int, end: int) -> list:\n```\n\n#### Input\n- `start` (int): The starting number of the range.\n- `end` (int): The ending number of the range.\n\n#### Output\n- Returns a list of all Harshad numbers within the given range.",
+    "code": "def harshad_numbers(start: int, end: int) -> list:\n    def is_harshad(n: int) -> bool:\n        return n % sum(int(digit) for digit in str(n)) == 0\n    return [n for n in range(start, end + 1) if is_harshad(n)]",
+    "tests": [
+        "assert len(harshad_numbers(1, 100)) > 10",
+        "assert len(harshad_numbers(1000, 2000)) > 20",
+        "assert harshad_numbers(1, 2) == [1]",
+        "assert harshad_numbers(4, 6) == [4, 6]"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

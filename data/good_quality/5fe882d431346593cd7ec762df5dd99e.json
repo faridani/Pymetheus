@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Number of Subarrays With Equal Sum",
+    "description": "A subarray is a contiguous part of an array. Write a function `count_subarrays` that takes two integers, `n` and `m`, as input and returns the number of subarrays in an array of size `n` with sum equal to `m`. The array consists of random integers between 0 and `k-1`, where `k` is also given. Note that a subarray can have zero elements.\n\n#### Function Signature\n```python\ndef count_subarrays(n: int, m: int, k: int) -> int:\n```\n\n#### Input\n- `n` (int): The size of the array.\n- `m` (int): The sum of the subarray.\n- `k` (int): The range of values in the array, i.e., all elements will be between 0 and `k-1`.\n\n#### Output\n- Returns the number of subarrays with sum equal to `m`.",
+    "code": "from collections import defaultdict\ndef count_subarrays(n: int, m: int, k: int) -> int:\n    # Initialize a hashmap to store the cumulative sum and its frequency\n    cum_sum_freq = defaultdict(int)\n    cum_sum_freq[0] = 1\n    curr_cum_sum = 0\n    total_subarrays = 0\n    for i in range(n):\n        num = (m + i) % k\n        curr_cum_sum += num\n        if cum_sum_freq.get(curr_cum_sum - m, 0): # If the cumulative sum minus m exists in the hashmap,\n            total_subarrays += cum_sum_freq[curr_cum_sum - m] # then add its frequency to the result.\n        cum_sum_freq[curr_cum_sum] = cum_sum_freq.get(curr_cum_sum, 0) + 1\n    return total_subarrays",
+    "tests": [
+        "assert count_subarrays(5, 3, 2) == 3",
+        "assert count_subarrays(10, 7, 4) == 8"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

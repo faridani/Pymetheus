@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Chessboard Filling",
+    "description": "A chessboard has 8 rows and 8 columns. You are given a list of integers, where each integer represents the number of queens that should be placed on a specific row of the board. Your task is to determine if it's possible to place these queens on the board such that no two queens attack each other.\n\n#### Function Signature\n```python\ndef can_place_queens(queens_per_row: list[int]) -> bool:\n```\n\n#### Input\n- `queens_per_row` (list[int]): A list of 8 integers, where each integer represents the number of queens that should be placed on a specific row of the board.\n\n#### Output\n- Returns `True` if it's possible to place these queens on the board such that no two queens attack each other, `False` otherwise.",
+    "code": "from typing import List\n\ndef can_place_queens(queens_per_row: List[int]) -> bool:\n    # Create a list of sets for each row\n    rows = [set() for _ in range(8)]\n    \n    for row_index, num_queens in enumerate(queens_per_row):\n        for _ in range(num_queens):\n            found_position = False\n            while not found_position:\n                position = (row_index, 0)  # Start from the leftmost column\n                while True:\n                    if position[1] >= 8:  # If we've reached the end of the row or the board\n                        break\n                    if position[1] in rows[position[0]]:  # Check if this column is already occupied on this row\n                        position = (position[0], position[1] + 1)  # Move to the next column\n                    else:\n                        rows[position[0]].add(position[1])  # Place a queen at this position\n                        found_position = True\n                        break\n    \n    for row in rows:\n        if len(row) != 8:  # Check if all columns are occupied on each row (except for the last row, which may be shorter)\n            return False\n    \n    return True",
+    "tests": [
+        "assert can_place_queens([1, 0, 2, 0, 3, 0, 4, 0]) == True",
+        "assert can_place_queens([2, 2, 2, 2, 2, 2, 2, 2]) == False",
+        "assert can_place_queens([1, 1, 1, 1, 1, 1, 1, 1]) == True"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Sudoku Solver (Hard)",
+    "description": "A Sudoku puzzle is a 9x9 grid, divided into nine 3x3 sub-grids or \"regions.\" Some numbers are given as hints, and the goal is to fill in the remaining blank cells with numbers from 1-9, making sure each row, column, and region contains each number only once. Write a function `sudoku_solver` that takes a 2D list representing the Sudoku puzzle and returns whether it can be solved or not.\n\n#### Function Signature\n```python\ndef sudoku_solver(puzzle: list[list[int]]) -> bool:\n```\n\n#### Input\n- `puzzle` (list[list[int]]): A 2D list representing the Sudoku puzzle, where empty cells are represented by zeros. The puzzle may contain hints in the range of 1-9.\n\n#### Output\n- Returns `True` if the input puzzle can be solved, and `False` otherwise.",
+    "code": "\nimport copy\n\ndef sudoku_solver(puzzle: list[list[int]]) -> bool:\n    def is_valid(num: int, row: int, col: int) -> bool:\n        for i in range(9):\n            if puzzle[row][i] == num or puzzle[i][col] == num:\n                return False\n        region_row = (row // 3) * 3\n        region_col = (col // 3) * 3\n        for i in range(3):\n            for j in range(3):\n                if puzzle[region_row + i][region_col + j] == num:\n                    return False\n        return True\n\n    def solve(puzzle: list[list[int]]) -> bool:\n        for row in range(9):\n            for col in range(9):\n                if puzzle[row][col] == 0:\n                    for num in range(1, 10):\n                        if is_valid(num, row, col):\n                            puzzle[row][col] = num\n                            if solve(puzzle):\n                                return True\n                            else:\n                                puzzle[row][col] = 0\n                    return False\n        return True\n\n    return not solve(copy.deepcopy(puzzle))",
+    "tests": [
+        "assert sudoku_solver([[5,3,4,6,7,8,9,1,2],[6,7,8,9,1,2,3,4,5]]) == True",
+        "assert sudoku_solver([[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]) == False",
+        "assert sudoku_solver([[5,3,4,6,7,8,9,1,2],[6,7,8,9,1,2,3,4,5],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,8,9]]) == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

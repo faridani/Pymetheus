@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Chess Knight Moves",
+    "description": "Write a function `knight_moves` that takes as input the current position of a chess knight on an 8x8 chessboard and returns all possible moves the knight can make. The position is given as a tuple (x, y) where x is the row number (1-8) and y is the column number (a-h).\n\n#### Function Signature\n```python\ndef knight_moves(current_position: tuple[int, int]) -> list[tuple[int, int]]:\n```\n\n#### Input\n- `current_position` (tuple(int, int)): The current position of the chess knight on the board.\n\n#### Output\n- Returns a list of all possible moves the knight can make from its current position. Each move is represented as a tuple (x, y).",
+    "code": "import re\ndef knight_moves(current_position: tuple[int, int]) -> list[tuple[int, int]]:\n    # Define the possible movements of a chess knight\n    movements = [(2, 1), (-2, 1), (2, -1), (-2, -1), (1, 2), (-1, 2), (1, -2), (-1, -2)]\n    \n    # Convert the current position to indices\n    x, y = current_position\n    a_to_h = 'abcdefgh'\n    y_index = ord(a_to_h[y-1]) - ord('a')\n    \n    possible_moves = []\n    for dx, dy in movements:\n        new_x = x + dx\n        new_y = y_index + dy\n        \n        # Check if the new position is within the board and not the same as the current position\n        if 1 <= new_x <= 8 and 0 <= new_y <= 7 and (new_x, a_to_h[new_y]) != current_position:\n            possible_moves.append((new_x, a_to_h[new_y]))\n    \n    return possible_moves",
+    "tests": [
+        "assert knight_moves((2, 'b')) == [(1, 'a'), (1, 'c'), (3, 'a'), (3, 'c')]",
+        "assert knight_moves((8, 'h')) == [(7, 'g'), (7, 'f'), (6, 'g'), (6, 'f')]"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

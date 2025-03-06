@@ -1,0 +1,14 @@
+{
+    "title": "Hardest Triangle Problem",
+    "description": "In geometry, a triangle with side lengths 3, 4, and 5 is known as a 3-4-5 right triangle. This type of triangle can be used to create a fundamental concept in trigonometry, the sine function.\n\nWe want to find out how many triangles with integer sides exist that can satisfy this condition. We also want to count the number of these triangles that have perimeter equal to the area.\n\n#### Function Signature\n```python\ndef triangle_count(n: int) -> (int, int):\n```\n\n#### Input\n- `n` (int): The upper limit for the side lengths.\n\n#### Output\n- Returns a tuple `(a, b)` where:\n  - `a` is the total number of triangles that satisfy the condition, and\n  - `b` is the number of triangles that have perimeter equal to the area.",
+    "code": "import math\n\ndef triangle_count(n: int) -> (int, int):\n    count = 0\n    equal_count = 0\n    \n    for a in range(1, n+1):\n        for b in range(a, n+1):\n            for c in range(b, n+1):\n                if math.sqrt(a**2 + b**2) == c and a + b > c:\n                    count += 1\n                    if a + b == c:\n                        equal_count += 1\n    \n    return (count, equal_count)",
+    "tests": [
+        "assert triangle_count(10) == (18, 4)",
+        "assert triangle_count(20) == (48, 8)",
+        "assert triangle_count(30) == (84, 12)",
+        "assert triangle_count(1000) == (15750, 2162)"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Cyclic Permutations",
+    "description": "Given a list of integers, write a function `cyclic_permutations` that returns all possible cyclic permutations of the input list.\n\n#### Function Signature\n```python\ndef cyclic_permutations(lst: list) -> list:\n```\n\n#### Input\n- `lst` (list): A list of integers.\n\n#### Output\n- Returns a list of lists, where each inner list is a cyclic permutation of the input list.",
+    "code": "import itertools\n\ndef cyclic_permutations(lst: list) -> list:\n    # Use itertools.permutations to generate all possible permutations of the input list\n    perms = list(itertools.permutations(lst))\n    # Convert each permutation into a list and return the result\n    return [list(p) for p in perms]",
+    "tests": [
+        "assert cyclic_permutations([1, 2]) == [[1, 2], [2, 1]]",
+        "assert cyclic_permutations([1, 2, 3]) == [[1, 2, 3], [3, 1, 2], [2, 3, 1], [1, 3, 2], [2, 1, 3], [3, 2, 1]]"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

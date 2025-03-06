@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Subarray With Min Size",
+    "description": "Given an array `nums` of integers, return the maximum sum of a subarray with minimum size. A subarray is a contiguous part of the array.\n\n#### Function Signature\n```python\ndef minSizeMaxSum(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): An integer array containing positive and negative numbers.\n\n#### Output\n- Returns the maximum sum of a subarray with minimum size.",
+    "code": "",
+    "\nimport heapq\n\ndef minSizeMaxSum(nums):\n    if not nums:\n        return 0\n    \n    max_sum = current_sum = max_heap = []\n    for num in nums:\n        current_sum += num\n        heapq.heappush(max_heap, -current_sum)\n    \n    while True:\n        if not max_heap:\n            return 0\n        \n        last_sum = -heapq.heappop(max_heap)\n        if last_sum > 1:\n            break\n    \n    return max(last_sum, current_sum)": "",
+    "tests": [
+        "assert minSizeMaxSum([-2,3,-4]) == 5",
+        "assert minSizeMaxSum([1,2,3,4,5,6]) == 15",
+        "assert minSizeMaxSum([]) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

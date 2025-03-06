@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Recursive Fibonacci Sequence",
+    "description": "The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, usually starting with 0 and 1. Write a recursive function `fib` that returns the n-th number in the Fibonacci sequence.\n\n#### Function Signature\n```python\ndef fib(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A non-negative integer representing the position of the desired number in the Fibonacci sequence.\n\n#### Output\n- Returns the n-th number in the Fibonacci sequence as an integer.",
+    "code": "",
+    "def fib(n: int) -> int:\n    if n <= 1:\n       return n\n    else:\n       return(fib(n-1) + fib(n-2))": "",
+    "tests": [
+        "assert fib(0) == 0",
+        "assert fib(1) == 1",
+        "assert fib(6) == 8",
+        "assert fib(10) == 55"
+    ],
+    "difficulty": "super hard",
+    "model": "codestral:22b",
+    "style": "Exercism"
+}

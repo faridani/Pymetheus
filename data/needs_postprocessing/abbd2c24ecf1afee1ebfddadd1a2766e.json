@@ -1,0 +1,4 @@
+{
+    "model": "codebooga:latest",
+    "response": "\"{ \\\"title\\\": \\\"Find the Sum of Squares (Hard)\\\", \\\"description\\\": \\\"Write a function `find_sum_of_squares(n)` that finds the sum of squares of first n natural numbers.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef find_sum_of_squares(n: int) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `n` (int): A positive integer representing the number of natural numbers to sum up their squares.\\\\n\\\\n#### Output\\\\n- An integer representing the sum of squares of first n natural numbers.\\\\n\\\", \\\"code\\\": \\\"def find_sum_of_squares(n: int) -> int:\\\\n    return (n * (n + 1) * (2 * n + 1)) // 6\\\\n\\\", \\\"tests\\\": [\\\"assert find_sum_of_squares(5) == 55\\\", \\\"assert find_sum_of_squares(7) == 91\\\", \\\"assert find_sum_of_squares(10) == 385\\\"] }\""
+}

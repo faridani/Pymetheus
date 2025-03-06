@@ -1,0 +1,13 @@
+{
+    "title": "Reverse a string by swapping adjacent characters",
+    "description": "Given a string, write a function that reverses the string by swapping adjacent characters.\n\n#### Function Signature\n```python\r\ndef reverse_string(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string with no whitespace in between\n\n#### Output\n- Returns the reversed string with adjacent characters swapped.\n\n#### Constraints\n- The input string will only contain lowercase and uppercase letters, digits and underscore `_`.\n- The length of the string is less than or equal to 10^4.\n\n#### Examples\n```python\r\nassert reverse_string(\"hello\") == \"olleh\"\r\nassert reverse_string(\"world!\") == \"dlrow!\"\r\nassert reverse_string(\"Python3.7\") == \".nphtyPno\"\r\nassert reverse_string(\"123456\") == \"654321\"\r\n```\n\nHints:\n- You can use string slicing to swap characters in a string.\n- Use `len(s)` and a loop to iterate over the string.\n- You may need to remove any non-alphanumeric characters from the string.",
+    "code": "def reverse_string(s: str) -> str:\n    # Remove all non-alphanumeric characters\n    s = ''.join(char for char in s if char.isalnum())\n    n = len(s)\n    # Iterate over the string, swapping adjacent characters\n    for i in range(len(s) // 2):\n        if s[i] != s[-1 - i]:\n            s = s[:i] + s[-i - 1] + s[i+1:] + s[i]\n    return s",
+    "tests": [
+        "assert reverse_string(\"hello\") == \"olleh\"",
+        "assert reverse_string(\"world!\") == \"dlrow!\"",
+        "assert reverse_string(\"Python3.7\") == \".nphtyPno\""
+    ],
+    "difficulty": "insanely difficult",
+    "model": "wizardcoder:latest",
+    "style": "Internationals Olympiad"
+}

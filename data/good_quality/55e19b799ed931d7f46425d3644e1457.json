@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Maximum Sum of Unique Intervals",
+    "description": "Given a list of unique integer intervals, find the maximum sum of non-overlapping intervals. Each interval is represented by two integers, start and end, inclusive.\n\n#### Function Signature\n```python\ndef max_sum_non_overlapping_intervals(intervals):\n```\n\n#### Input\n- `intervals` (list): A list of unique integer intervals, where each interval is a tuple of two integers, representing the start and end of the interval.\n\n#### Output\n- Returns an integer representing the maximum sum of non-overlapping intervals.",
+    "code": "",
+    "\nimport heapq\n\ndef max_sum_non_overlapping_intervals(intervals):\n    # Sort the intervals by their end points\n    intervals.sort(key=lambda x: x[1])\n    \n    # Initialize the priority queue with the first interval\n    pq = [intervals[0][1]]\n    total_sum = intervals[0][1] - intervals[0][0]\n    \n    for start, end in intervals[1:]:\n        if start >= pq[0]:\n            # If the current interval doesn't overlap with the previous one, add it to the queue\n            heapq.heappop(pq)\n            total_sum += end - start\n        else:\n            # If the current interval overlaps with the previous one, update its end point\n            total_sum = total_sum + end - pq[0]\n        \n        heapq.heappush(pq, end)\n    \n    return total_sum": "",
+    "tests": [
+        "assert max_sum_non_overlapping_intervals([(1, 5), (2, 3), (4, 8)]) == 10",
+        "assert max_sum_non_overlapping_intervals([(1, 2), (3, 4), (6, 7)]) == 6",
+        "assert max_sum_non_overlapping_intervals([(1, 1000), (101, 2000)]) == 2000",
+        "assert max_sum_non_overlapping_intervals([]) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Validating Sudoku Grids",
+    "description": "A Sudoku grid is a 9x9 array of integers where each row, column, and 3x3 sub-grid contains the numbers 1-9 without repetition. Write a function `is_valid_sudoku` that checks if a given 2D list represents a valid Sudoku grid.\n\n#### Function Signature\n```\ndef is_valid_sudoku(grid: list[list[int]]) -> bool:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 9x9 array of integers where each row, column, and 3x3 sub-grid should contain the numbers 1-9 without repetition.\n\n#### Output\n- Returns `True` if the input grid is valid, `False` otherwise.",
+    "code": "",
+    "\nimport copy\n\ndef is_valid_sudoku(grid: list[list[int]]) -> bool:\n    # Check rows\n    for row in grid:\n        seen = set()\n        for num in row:\n            if num not in seen:\n                seen.add(num)\n            else:\n                return False\n    \n    # Check columns\n    for col in range(9):\n        seen = set()\n        for row in grid:\n            if row[col] not in seen:\n                seen.add(row[col])\n            else:\n                return False\n    \n    # Check 3x3 sub-grids\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            seen = set()\n            for k in range(3):\n                for num in grid[i + k][j:j+3]:\n                    if num not in seen:\n                        seen.add(num)\n                    else:\n                        return False\n    \n    return True": "",
+    "tests": [
+        "assert is_valid_sudoku([[5,3,4,6,7,8,9,1,2],[6,7,8,9,1,2,3,4,5]]) == True",
+        "assert is_valid_sudoku([[1,2,3],[4,5,6],[7,8,9]]) == True",
+        "assert is_valid_sudoku([[5,3,4,6,7,8,9,1,0],[6,7,8,9,0,2,3,4,5]]) == False"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

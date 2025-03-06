@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Coding Contest Ranking",
+    "description": "You are tasked with creating a function that ranks teams based on their performance in a coding contest. The ranking criteria are as follows:\n\n1. Total number of problems solved.\n2. Less time penalty for solving the same problem multiple times.\n3. Earlier submission time for the last problem solved.\n\nWrite a function `rank_teams` that takes in a list of dictionaries, each representing a team's performance with keys 'team', 'problems_solved', 'total_penalty', and 'last_submission'. The function should return the ranking of the teams as a list of team names.\n\n#### Function Signature\n```python\ndef rank_teams(performance: List[Dict[str, Union[str, int]]]) -> List[str]:\n```",
+    "code": "",
+    "from typing import List, Dict, Union\ndef rank_teams(performance: List[Dict[str, Union[str, int]]]) -> List[str]:\n    # Sort the teams based on ranking criteria\n    sorted_teams = sorted(performance, key=lambda x: (-x['problems_solved'], x['total_penalty'], x['last_submission']))\n    return [team['team'] for team in sorted_teams]": "",
+    "tests": [
+        "assert rank_teams([{\"team\":\"A\",\"problems_solved\":5,\"total_penalty\":200,\"last_submission\":180}, {\"team\":\"B\",\"problems_solved\":4,\"total_penalty\":300,\"last_submission\":200}]) == [\"A\", \"B\"]",
+        "assert rank_teams([{\"team\":\"X\",\"problems_solved\":6,\"total_penalty\":150,\"last_submission\":180}, {\"team\":\"Y\",\"problems_solved\":6,\"total_penalty\":200,\"last_submission\":190}]) == [\"X\", \"Y\"]"
+    ],
+    "difficulty": "super hard",
+    "model": "codestral:22b",
+    "style": "Facebook Hacker Cup"
+}

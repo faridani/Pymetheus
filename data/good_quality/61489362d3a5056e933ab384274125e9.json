@@ -1,0 +1,12 @@
+{
+    "title": "Easiest Sudoku Solver",
+    "description": "A Sudoku puzzle is a 9x9 grid, divided into nine 3x3 sub-grids or 'regions.' Some values are already filled in, while others are blank. The goal is to fill in all the blank cells with numbers from 1 to 9 such that each row, column and region contains each number exactly once. Write a function `solve_sudoku` that takes a Sudoku puzzle as input and returns whether it can be solved or not.\n\n#### Function Signature\n```python\ndef solve_sudoku(board: list[list[int]]) -> bool:\n```\n\n#### Input\n- `board` (list[list[int]]): A 9x9 grid of integers, where 0 represents an empty cell and the other numbers represent filled-in cells.\n\n#### Output\n- Returns `True` if the Sudoku puzzle can be solved, `False` otherwise.",
+    "code": "def solve_sudoku(board: list[list[int]]) -> bool:\n    def is_valid(board, row, col, num):\n        for i in range(9):\n            if board[row][i] == num or board[i][col] == num:\n                return False\n        region_row = row // 3\n        region_col = col // 3\n        for i in range(region_row*3, (region_row+1)*3):\n            for j in range(region_col*3, (region_col+1)*3):\n                if board[i][j] == num:\n                    return False\n        return True\n\n    def solve(board):\n        for i in range(9):\n            for j in range(9):\n                if board[i][j] == 0:\n                    for num in range(1, 10):\n                        if is_valid(board, i, j, num):\n                            board[i][j] = num\n                            if solve(board):\n                                return True\n                            board[i][j] = 0\n                    return False\n        return True\n\n    return solve(board)",
+    "tests": [
+        "assert solve_sudoku([[5,3,0,0,7,0,0,0,0],[6,0,0,1,9,5,0,0,0],[0,9,8,0,0,0,0,6,0], [1,0,0,0,0,3,0,0,0],[4,0,0,8,0,0,0,0,6],[7,0,0,0,2,0,0,0,0],[0,6,0,0,0,0,2,8,0], [0,0,0,4,1,9,0,0,3],[0,0,2,0,8,5,0,0,7]]) == True",
+        "assert solve_sudoku([[5,3,0,0,7,0,0,0,0],[6,0,0,1,9,5,0,0,0],[0,9,8,0,0,0,0,6,0], [1,0,0,0,0,3,0,0,0],[4,0,0,8,0,0,0,0,6],[7,0,0,0,2,0,0,0,0],[0,6,0,0,0,0,2,8,0], [0,0,0,4,1,9,0,0,3],[0,0,2,0,8,5,0,0,7]]) == False"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

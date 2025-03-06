@@ -1,0 +1,13 @@
+{
+    "title": "Sorting a List of Integers by Sum of Digits",
+    "description": "Given a list of integers, sort it in ascending order based on the sum of digits. For example, if the input is `[54, 36, 12, 21, 90]`, the output should be `[12, 21, 36, 54, 90]`. \n\n#### Function Signature\n```python\ndef sort_by_sum_of_digits(lst: list) -> list:\n```\n\n#### Input\n- `lst` (list): A list of integers.\n\n#### Output\n- Returns the input list sorted in ascending order based on the sum of digits.",
+    "code": "\ndef sort_by_sum_of_digits(lst: list) -> list:\n    return sorted(lst, key=lambda x: sum(int(digit) for digit in str(x)))",
+    "tests": [
+        "assert sort_by_sum_of_digits([54, 36, 12, 21, 90]) == [12, 21, 36, 54, 90]",
+        "assert sort_by_sum_of_digits([9, 10, 11]) == [9, 10, 11]",
+        "assert sort_by_sum_of_digits([123, 234, 345]) == [123, 234, 345]"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

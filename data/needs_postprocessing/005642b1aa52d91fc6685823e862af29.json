@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Hard: Tree Traversal\", \"code\": \"def tree_traversal(t, target_sum):\\n    if t:\\n        if not t.left and not t.right:\\n            return [(t.val)]\\n        left_result = []\\n        right_result = []\\n        if t.left:\\n            left_result += tree_traversal(t.left, target_sum - t.val)\\n        if t.right:\\n            right_result += tree_traversal(t.right, target_sum - t.val)\\n        all_results = [(t.val) + result for sublist in [left_result, right_result] for result in sublist]\\n        return all_results\\n    else:\\n        return []\", \"tests\": [\"assert sorted(tree_traversal(Node(1), 1)) == [[1]]\", \"assert tree_traversal(Node(2), 3) == []\", \"assert sorted(tree_traversal(Node(1, Node(2)), 3)) == [[1, 2], [2, 1]]\", \"assert sorted(tree_traversal(Node(1, Node(1)), 2)) == [[1, 1]]\"]}"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "[Hard] Matrix Layer Rotation",
+    "description": "You are given a 2D matrix of size M x N. The task is to rotate the elements of each layer of the matrix by R steps clockwise. A layer refers to the outermost border of the matrix, which wraps around the inner layers.\n\n#### Function Signature\n```python\ndef matrix_rotation(matrix: List[List[int]], R: int) -> List[List[int]]:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A 2D matrix of size M x N with integers.\n- `R` (int): The number of rotation steps to perform on each layer.\n\n#### Output\n- Returns a new 2D matrix that represents the original matrix after rotating each layer R steps clockwise.",
+    "code": "",
+    "from typing import List\n\ndef matrix_rotation(matrix: List[List[int]], R: int) -> List[List[int]]:\n    def rotate(matrix, top, left, bottom, right, depth):\n        if top >= bottom or left >= right:\n            return\n\n        prev = matrix[top+depth][left+depth]\n\n        # Move elements of the first row from the remaining rows counter clockwise\n        for i in range(left + depth + 1, right + depth + 1):\n            curr = matrix[top + depth][i]\n            matrix[top + depth][i] = prev\n            prev = curr\n\n        # Move elements of the last column from the remaining columns clockwise\n        for i in range(top + depth + 1, bottom + depth + 1):\n            curr = matrix[i][right + depth]\n            matrix[i][right + depth] = prev\n            prev = curr\n\n        # Move elements of the last row from the remaining rows counter clockwise\n        for i in range(right - depth - 1, left - depth - 1, -1):\n            curr = matrix[bottom + depth][i]\n            matrix[bottom + depth][i] = prev\n            prev = curr\n\n        # Move elements of the first column from the remaining rows clockwise\n        for i in range(bottom - depth - 1, top - depth - 1, -1):\n            curr = matrix[i][left + depth]\n            matrix[i][left + depth] = prev\n            prev = curr\n\n        rotate(matrix, top + 1, left + 1, bottom - 1, right - 1, depth)\n\n    m, n = len(matrix), len(matrix[0])\n    R %= 2*(m+n-4)  # simplify rotations to one full cycle of the layers\n\n    for _ in range(R):\n        rotate(matrix, 0, 0, m-1, n-1, 0)\n\n    return matrix": "",
+    "tests": [
+        "assert matrix_rotation([[1,2,3],[4,5,6],[7,8,9]], 1) == [[4,1,2],[7,5,3],[8,9,6]]",
+        "assert matrix_rotation([[1,2,3,4],[5,6,7,8],[9,10,11,12]], 2) == [[9,10,5,1],[11,12,6,2],[12,6,7,3]]"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "codestral:22b",
+    "style": "ACM-ICPC"
+}

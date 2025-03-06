@@ -1,0 +1,15 @@
+{
+    "title": "Medium: Binary Tree Level Order Traversal",
+    "description": "Given a binary tree, write a function `level_order_traversal` that returns the level order traversal of the binary tree.\n\n#### Function Signature\n```python\ndef level_order_traversal(root: TreeNode) -> List[List[int]]:\n```\n\n#### Input\n- `root` (TreeNode): The root node of the binary tree.\n\n#### Output\n- Returns a list of lists, where each inner list represents the nodes at a given level from top to bottom. Each node is represented as an integer.",
+    "code": "",
+    "\nclass TreeNode:\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\ndef level_order_traversal(root: TreeNode) -> List[List[int]]:\n    if not root:\n        return []\n\n    result = []\n    queue = [root]\n\n    while queue:\n        current_level = []\n        next_queue = []\n\n        for node in queue:\n            current_level.append(node.val)\n\n            if node.left:\n                next_queue.append(node.left)\n            if node.right:\n                next_queue.append(node.right)\n\n        queue = next_queue\n        result.append(current_level)\n\n    return result": "",
+    "tests": [
+        "assert level_order_traversal(None) == []",
+        "assert level_order_traversal(TreeNode(1)) == [[1]]",
+        "assert level_order_traversal(TreeNode(1, TreeNode(2), TreeNode(3))) == [[1], [2, 3]]",
+        "assert level_order_traversal(TreeNode(1, left=TreeNode(2), right=TreeNode(3, left=TreeNode(4), right=TreeNode(5)))) == [[1], [2, 3], [4, 5]]"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Egg Drop Puzzle",
+    "description": "You are given a number of eggs and a number of floors in a building. You want to find the minimum number of attempts you need to make to determine whether there is a floor that will cause an egg to break or not.\n\n#### Function Signature\n```python\ndef min_attempts(eggs: int, floors: int) -> int:\n```\n\n#### Input\n- `eggs` (int): The number of eggs you have.\n- `floors` (int): The number of floors in the building.\n\n#### Output\n- Returns the minimum number of attempts you need to make to determine whether there is a floor that will cause an egg to break or not.",
+    "code": "def min_attempts(eggs: int, floors: int) -> int:\n    # If we have only one egg, we can try each floor once\n    if eggs == 1:\n        return floors\n    # If we have more than one egg and less than or equal to the number of floors,\n    # we can simply drop an egg on each floor, so we'll need at most as many attempts as there are floors.\n    if eggs <= floors:\n        return min(eggs, floors)\n    # If we have more than one egg and more floors than eggs,\n    # the minimum number of attempts is going to be the maximum number of attempts that can still be made with a single egg\n    # or one attempt less than that.\n    return 1 + min_attempts(eggs - 1, floors)",
+    "tests": [
+        "assert min_attempts(2, 4) == 3",
+        "assert min_attempts(3, 5) == 6",
+        "assert min_attempts(1, 10) == 10",
+        "assert min_attempts(10, 1) == 1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

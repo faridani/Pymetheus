@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Non-Adjacent Elements",
+    "description": "Given a list of integers `nums`, write a function that returns the maximum sum of non-adjacent elements. For example, if `nums = [2, 7, 9, 3, 1]`, the maximum sum of non-adjacent elements is `12` (2 + 9 + 1). Note that we cannot include two adjacent elements in the sum.\n\n#### Function Signature\n```python\ndef max_sum_of_non_adjacent_elements(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum of non-adjacent elements in the input list.",
+    "code": "from typing import List, Union\n\ndef max_sum_of_non_adjacent_elements(nums: List[int]) -> int:\n    if not nums:\n        return 0\n    elif len(nums) <= 2:\n        return max(0, max(nums))\n    else:\n        incl = exclude = 0\n        for num in nums:\n            new_excl = max(incl, exclude)\n            incl, exclude = exclude + num, new_incl\n            if new_excl > incl:\n                incl, exclude = new_excl, incl\n        return max(0, incl)",
+    "tests": [
+        "assert max_sum_of_non_adjacent_elements([2, 7, 9, 3, 1]) == 12",
+        "assert max_sum_of_non_adjacent_elements([-5, 1, -10, 4, -8]) == 6",
+        "assert max_sum_of_non_adjacent_elements([0]) == 0",
+        "assert max_sum_of_non_adjacent_elements([]) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

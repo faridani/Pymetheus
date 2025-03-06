@@ -1,0 +1,18 @@
+{
+    "title": "[Hard] Merge k Sorted Lists",
+    "description": "You are given an array of `k` linked-lists `lists`, each linked-list is sorted in ascending order.\n\nMerge all the linked-lists into one sorted linked-list and return it.\n\n#### Function Signature\n```python\ndef mergeKLists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:\n```\n\n#### Input\n- `lists` (List[Optional[ListNode]]): A list of linked-lists where each linked-list is sorted in ascending order.\n\n#### Output\n- Returns the head of a merged linked-list which should be sorted in ascending order.",
+    "code": "",
+    "class ListNode:\n          def __init__(self, val=0, next=None):\n              self.val = val\n              self.next = next\n\n        import heapq\n\n        def mergeKLists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:\n            dummy = ListNode(-1)\n            head = dummy\n            heap = [(node.val, i, node) for i, node in enumerate(lists) if node]\n            heapq.heapify(heap)\n\n            while heap:\n                val, _, curr_node = heapq.heappop(heap)\n                head.next = ListNode(val)\n                head = head.next\n                if curr_node.next:\n                    heapq.heappush(heap, (curr_node.next.val, i, curr_node.next))\n                else:\n                    lists[i] = None\n            return dummy.next": "",
+    "tests": [
+        "list1 = ListNode(1, ListNode(4, ListNode(5)))",
+        "list2 = ListNode(1, ListNode(3, ListNode(4)))",
+        "list3 = ListNode(2, ListNode(6))",
+        "merged_list = mergeKLists([list1, list2, list3])",
+        "assert merged_list.val == 1",
+        "assert merged_list.next.val == 1",
+        "assert merged_list.next.next.val == 2"
+    ],
+    "difficulty": "super hard",
+    "model": "codestral:22b",
+    "style": "LeetCode"
+}

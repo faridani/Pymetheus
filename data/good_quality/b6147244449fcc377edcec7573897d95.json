@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Finding the First Duplicate",
+    "description": "Write a function `find_first_duplicate` that finds the first duplicate in a list of integers. The function should return the first duplicate and its index.\n\n#### Function Signature\n```python\ndef find_first_duplicate(nums: list[int)) -> tuple[int, int]:\n```\n\n#### Input\n- `nums` (list[int]): A list of unique positive integers.\n\n#### Output\n- Returns a tuple `(num, index)` where `num` is the first duplicate and `index` is its index in the original list.",
+    "code": "def find_first_duplicate(nums: list[int]) -> tuple[int, int]:\n    seen = set()\n    for i, num in enumerate(nums):\n        if num in seen:\n            return (num, i)\n        seen.add(num)\n    return (-1, -1)",
+    "tests": [
+        "assert find_first_duplicate([2, 5, 3, 7, 4]) == (4, 4)",
+        "assert find_first_duplicate([10, 20, 30, 40, 50]) == (-1, -1)",
+        "assert find_first_duplicate([1, 2, 3, 2, 1]) == (2, 3)",
+        "assert find_first_duplicate([-5, 0, 1, 7, 3, -5, 2, 4, 6]) == (-5, 0)"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

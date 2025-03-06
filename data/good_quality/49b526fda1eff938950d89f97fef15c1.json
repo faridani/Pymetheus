@@ -1,0 +1,14 @@
+{
+    "title": "Elegant Tiles",
+    "description": "A set of tiles is said to be elegant if the sum of all possible products of 2 or more tiles is equal to the product of their counts. Write a function `is_elegant` that checks if a given set of tiles is elegant.\n\n#### Function Signature\n```python\ndef is_elegant(tiles: list[int]) -> bool:\n```\n\n#### Input\n- `tiles` (list[int]): A list of integers representing the number of each tile type.\n\n#### Output\n- Returns `True` if the set of tiles is elegant, `False` otherwise.",
+    "code": "def is_elegant(tiles: list[int]) -> bool:\n    n = len(tiles)\n    product = 1\n    for i in range(n):\n        product *= tiles[i]\n    sum_of_products = 0\n    for i in range(2**n):\n        product_sum = 1\n        for j in range(n):\n            if (i >> j) & 1:\n                product_sum *= tiles[j]\n        sum_of_products += product_sum\n    return sum_of_products == product",
+    "tests": [
+        "assert is_elegant([2,3]) == True",
+        "assert is_elegant([4,5]) == False",
+        "assert is_elegant([1,2,3]) == True",
+        "assert is_elegant([10,20]) == False"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

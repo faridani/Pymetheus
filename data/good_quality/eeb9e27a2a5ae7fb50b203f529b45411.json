@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Word Chaining",
+    "description": "Write a function `chain_words` that takes two lists of words as input and returns a list of strings, where each string represents a chain of words. The first word in the output list is from the first list of words, and the last word is from the second list of words. The words are chained together if they start with the same letter.\n\n#### Function Signature\n```python\ndef chain_words(list1: list[str], list2: list[str]) -> list[str]:\n```\n\n#### Input\n- `list1` (list[str]): A list of strings, each representing a word.\n- `list2` (list[str]): Another list of strings, each representing a word.\n\n#### Output\n- Returns a list of strings, where each string is a chain of words from the input lists.",
+    "code": "from typing import List\n\ndef chain_words(list1: List[str], list2: List[str]) -> List[str]:\n    result = []\n    current_chain = [list1[0]]\n    for i in range(len(list1) - 1, 0, -1):\n        if list1[i][0] == list1[i-1][-1]:\n            current_chain.append(list1[i])\n        else:\n            result.append(' -> '.join(current_chain))\n            current_chain = [list2[0]]\n    result.append(' -> '.join(current_chain))\n    return result",
+    "tests": [
+        "assert chain_words(['apple', 'banana'], ['orange', 'grape']) == ['grape -> orange']",
+        "assert chain_words(['hello', 'world'], ['python', 'java']) == ['java -> python']",
+        "assert chain_words(['a', 'b', 'c'], ['d', 'e', 'f']) == []"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

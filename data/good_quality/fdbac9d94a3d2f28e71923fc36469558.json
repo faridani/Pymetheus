@@ -1,0 +1,14 @@
+{
+    "title": "[Hard] Matrix Multiplication Chain Ordering",
+    "description": "Given a sequence of matrices, find the most efficient way to multiply these matrices together. The problem is not about adding the matrices but determining the order of multiplications that minimizes the number of scalar multiplications. Implement a function `matrix_chain_order` which takes an array of dimensions of matrices and returns the minimum number of multiplications needed to multiply them in this order.\n\n#### Function Signature\n```python\ndef matrix_chain_order(dims: List[int]) -> int:\n```\n\n#### Input\n- `dims` (List[int]): A list representing the chain of matrices. For example, a chain of three matrices with dimensions 40x20, 20x30, and 30x10 would be represented as [40, 20, 30, 10].\n\n#### Output\n- Returns an integer representing the minimum number of scalar multiplications needed to multiply all matrices in the given order.",
+    "code": "",
+    "from typing import List\n\ndef matrix_chain_order(dims: List[int]) -> int:\n    n = len(dims) - 1\n    dp = [[0 for _ in range(n)] for __ in range(n)]\n\n    for gap in range(1, n):\n        for i in range(n - gap):\n            j = i + gap\n            dp[i][j] = float('inf')\n            for k in range(i, j):\n                cost = dp[i][k] + dp[k+1][j] + dims[i-1]*dims[k]*dims[j]\n                if cost < dp[i][j]:\n                    dp[i][j] = cost\n\n    return dp[0][n-1]": "",
+    "tests": [
+        "assert matrix_chain_order([40, 20, 30, 10]) == 26000",
+        "assert matrix_chain_order([10, 20, 30]) == 6000",
+        "assert matrix_chain_order([5, 10, 3, 12, 4, 7]) == 940"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "codestral:22b",
+    "style": "Codeforces"
+}

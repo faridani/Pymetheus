@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Matrix Rotation",
+    "description": "Given a square 2D matrix, rotate the matrix by 90 degrees clockwise. You are given an integer `n` and a 2-dimensional list (matrix) `mat` of size n x n. Write a function `rotate_matrix` that rotates the matrix in place.\n\n#### Function Signature\n```python\ndef rotate_matrix(mat: List[List[int]])\n```",
+    "code": "",
+    "from typing import List\n\ndef rotate_matrix(mat: List[List[int]]):\n    n = len(mat)\n\n    # Transpose the matrix\n    for i in range(n):\n        for j in range(i, n):\n            mat[j][i], mat[i][j] = mat[i][j], mat[j][i]\n\n    # Reverse each row\n    for i in range(n):\n        mat[i].reverse()": "",
+    "tests": [
+        "matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\nrotate_matrix(matrix)\nassert matrix == [[7, 4, 1], [8, 5, 2], [9, 6, 3]]",
+        "matrix = [[1, 2], [3, 4]]\nrotate_matrix(matrix)\nassert matrix == [[3, 1], [4, 2]]"
+    ],
+    "difficulty": "hard",
+    "model": "codestral:22b",
+    "style": "ACM-ICPC"
+}

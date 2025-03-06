@@ -1,0 +1,13 @@
+{
+    "title": "Maximum Island Size",
+    "description": "Given a 2D grid of characters, where each character can be either '.' (water) or 'X' (land), find the maximum size of an island. An island is a connected group of land cells.\n\n#### Function Signature\n```python\ndef max_island_size(grid: list[list[str]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[str]]): A 2D grid of characters, where each character is either '.' (water) or 'X' (land).\n\n#### Output\n- Returns the maximum size of an island in the input grid.",
+    "code": "from collections import deque\n\ndef max_island_size(grid: list[list[str]]) -> int:\n    if not grid:\n        return 0\n\n    def dfs(i, j):\n        queue = deque([(i, j)])\n        size = 1\n        while queue:\n            x, y = queue.popleft()\n            for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n                nx, ny = x + dx, y + dy\n                if (0 <= nx < len(grid)) and (0 <= ny < len(grid[0])) and grid[nx][ny] == 'X':\n                    queue.append((nx, ny))\n                    size += 1\n                    grid[nx][ny] = '. '\n        return size\n    max_size = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == 'X':\n                size = dfs(i, j)\n                max_size = max(max_size, size)\n    return max_size",
+    "tests": [
+        "assert max_island_size([['.','.','.','.','X'],['X','.','.','X','.'],['.X','.','.','.','X']]) == 4",
+        "assert max_island_size([['.','.','.','.'], ['X','.','.','.'], ['.','.','.','.']]) == 1",
+        "assert max_island_size([['X', '.', '.'], ['.', 'X', '.'], ['. ', '.', 'X']]) == 5"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

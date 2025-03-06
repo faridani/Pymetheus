@@ -1,0 +1,15 @@
+{
+    "title": "Medium: Counting Islands",
+    "description": "Given a 2D array of binary values (0s and 1s), where each 1 represents an island, write a function `count_islands` that returns the number of islands in the given grid.\n\n#### Function Signature\n```python\ndef count_islands(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D array of binary values, where each 1 represents an island and each 0 represents water.\n\n#### Output\n- Returns the number of islands in the given grid.",
+    "code": "",
+    "\ndef count_islands(grid: list[list[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n\n    def dfs(r, c):\n        if r < 0 or c < 0 or r >= len(grid) or c >= len(grid[0]) or grid[r][c] == 0:\n            return\n        grid[r][c] = 0\n        dfs(r-1, c)\n        dfs(r+1, c)\n        dfs(r, c-1)\n        dfs(r, c+1)\n\n    count = 0\n    for r in range(len(grid)):\n        for c in range(len(grid[0])):\n            if grid[r][c] == 1:\n                dfs(r, c)\n                count += 1\n\n    return count": "",
+    "tests": [
+        "assert count_islands([[0,1,0,0],[0,1,1,0],[0,0,1,0]]) == 1",
+        "assert count_islands([[1,1,1,1],[1,1,1,1],[1,1,1,1]]) == 4",
+        "assert count_islands([]) == 0",
+        "assert count_islands([[]]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

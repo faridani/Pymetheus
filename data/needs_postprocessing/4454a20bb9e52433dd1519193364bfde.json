@@ -1,0 +1,4 @@
+{
+    "model": "codestral:22b",
+    "response": "\"{ \\\"title\\\": \\\"[Hard] Fibonacci Sequence: Nth Term\\\", \\\"description\\\": \\\"Write a function `fibonacci` that returns the nth term of the Fibonacci sequence.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef fibonacci(n: int) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `n` (int): The position of the desired number in the Fibonacci sequence. The first term is at position 0.\\\\n\\\\n#### Output\\\\n- Returns the nth term of the Fibonacci sequence as an integer.\\\\n\\\\n#### Constraints\\\\n- 0 <= n < 10^6\\\", \\\"code\\\": \\\"def fibonacci(n: int) -> int:\\\\n    if n == 0 or n == 1:\\\\n        return n\\\\n    else:\\\\n        a, b = 0, 1\\\\n        for _ in range(2, n + 1):\\\\n            a, b = b, a + b\\\\n        return b\\\", \\\"tests\\\": [\\\"assert fibonacci(0) == 0\\\", \\\"assert fibonacci(1) == 1\\\", \\\"assert fibonacci(10) == 55\\\", \\\"assert fibonacci(23) == 28657\\\"] }\""
+}

@@ -1,0 +1,15 @@
+{
+    "title": "[Hard] Inverse Fibonacci",
+    "description": "The inverse Fibonacci sequence is a series of numbers formed by placing the order of each Fibonacci number at its corresponding position, with all non-Fibonacci positions filled with zeros. Given an integer `n`, write a function `inverse_fibonacci` that returns the element at index `n` in this sequence.\n\n#### Function Signature\n```python\ndef inverse_fibonacci(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A non-negative integer representing the index in the sequence.\n\n#### Output\n- Returns an integer that is the element at the input index `n` in the inverse Fibonacci sequence.",
+    "code": "",
+    "def inverse_fibonacci(n: int) -> int:\n    fib = [0, 1]\n    while fib[-1] < n:\n        fib.append(fib[-1] + fib[-2])\n    if fib[-1] == n:\n        return len(fib) - 1\n    else:\n        return 0": "",
+    "tests": [
+        "assert inverse_fibonacci(5) == 3",
+        "assert inverse_fibonacci(7) == 4",
+        "assert inverse_fibonacci(6) == 0",
+        "assert inverse_fibonacci(11) == 6"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "codestral:22b",
+    "style": "HackerEarth"
+}

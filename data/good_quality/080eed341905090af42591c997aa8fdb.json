@@ -1,0 +1,14 @@
+{
+    "title": "Finding the First Duplicate",
+    "description": "Write a function `find_first_duplicate` that finds the first duplicate number in an array of unique integers. The function should return the first duplicate it encounters, and if no duplicates are found, it should return None.\n\n#### Function Signature\n```python\ndef find_first_duplicate(arr: list[int]) -> int | None:\n```\n\n#### Input\n- `arr` (list[int]): A list of unique integers.\n\n#### Output\n- Returns the first duplicate number in the input array, or None if no duplicates are found.",
+    "code": "def find_first_duplicate(arr: list[int]) -> int | None:\n    seen = set()\n    for num in arr:\n        if num in seen:\n            return num\n        seen.add(num)\n    return None",
+    "tests": [
+        "assert find_first_duplicate([1, 2, 3, 4, 5]) == None",
+        "assert find_first_duplicate([1, 2, 3, 2]) == 2",
+        "assert find_first_duplicate([0, 1, 2, 3, 4, 5]) == None",
+        "assert find_first_duplicate([0, 1, 2, 0]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

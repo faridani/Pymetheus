@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Counting Inversions",
+    "description": "Count the number of inversions in an array.\n\n#### Problem Statement\nGiven a list of integers, count the number of times a larger value appears to the left of a smaller value. This is known as an inversion.\n\n#### Function Signature\n```python\ndef count_inversions(arr: list[int]) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the number of inversions in the input array.",
+    "code": "def count_inversions(arr: list[int]) -> int:\n    n = len(arr)\n    if n <= 1:\n        return 0\n    left = [x for x in arr[0:n//2]]\n    right = [x for x in arr[n//2:]]\n    inversions_left = count_inversions(left)\n    inversions_right = count_inversions(right)\n    merged, inversions_moved = merge_and_count_inversions(left, right)\n    return inversions_left + inversions_right + inversions_moved\n\ndef merge_and_count_inversions(left: list[int], right: list[int]) -> (list[int], int):\n    merged = [\n        x for y in zip([None]*len(right), left) if y[0] is None or y[1] > y[0]][1:] + right\n    inversions_moved = 0\n    for i in range(len(left)):\n        while len(merged) > i+1 and merged[i] > merged[i+1]:\n            merged.insert(i+1, merged.pop(i))\n            inversions_moved += len(right)\n    return merged, inversions_moved",
+    "tests": [
+        "assert count_inversions([2, 3, 8, 7, 3]) == 5",
+        "assert count_inversions([1, 20, 6, 4, 5]) == 5"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

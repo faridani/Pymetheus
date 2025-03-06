@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Time to Reach All Nodes",
+    "description": "You are standing at the root of a tree. Each node has exactly one outgoing edge, and you can only move along this edge. The edges are labeled with non-negative integers representing the time it takes to traverse each edge.\n\nWrite a function `min_time` that calculates the minimum time required to reach all nodes in the tree.\n\n#### Function Signature\n\n```python\ndef min_time(edges: list[tuple[int, int]]) -> int:\n```\n\n#### Input\n\n- `edges` (list[tuple[int, int]]): A list of tuples where each tuple represents an edge. The first element of the tuple is the time it takes to traverse the edge and the second element is the destination node.\n\n#### Output\n\n- Returns the minimum time required to reach all nodes in the tree.",
+    "code": "\nimport heapq\ndef min_time(edges: list[tuple[int, int]]) -> int:\n    if not edges:\n        return 0\n    \n    time = 0\n    visited = set()\n    \n    heap = [(0, 1)]  # (time, node)\n    while heap:\n        curr_time, node = heapq.heappop(heap)\n        \n        if node in visited:\n            continue\n        \n        visited.add(node)\n        time += curr_time\n        \n        for edge in edges:\n            if edge[1] == node:\n                next_node = edge[0]\n                heapq.heappush(heap, (next_node, next_node))\n    \n    return time",
+    "tests": [
+        "assert min_time([(5, 2), (3, 4)]) == 8",
+        "assert min_time([]) == 0",
+        "assert min_time([(1, 2)]) == 1",
+        "assert min_time([(5, 2), (3, 4), (10, 1)]) == 18"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

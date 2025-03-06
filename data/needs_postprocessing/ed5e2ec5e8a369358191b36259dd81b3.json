@@ -1,0 +1,4 @@
+{
+    "model": "codegemma:7b",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Two Sum\\\", \\\"description\\\": \\\"Given an array of integers and a target sum, find two numbers in the array that add up to the target sum. You may assume that each input would have exactly one solution, and you may not use the same element twice.\\\", \\\"code\\\": \\\"def two_sum(nums: list[int], target: int) -> list[int]:\\\\n    seen = {}\\\\n    for i, num in enumerate(nums):\\\\n        complement = target - num\\\\n        if complement in seen:\\\\n            return [seen[complement], i]\\\\n        seen[num] = i\\\", \\\"tests\\\": [\\\"assert two_sum([2, 7, 11, 15], 9) == [0, 1]\\\", \\\"assert two_sum([3, 2, 4], 6) == [1, 2]\\\", \\\"assert two_sum([3, 3], 6) == [0, 1]\\\"] }\""
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Elegant List Slicer",
+    "description": "Write a function `slice_list` that takes a list of integers as input and returns the first half of the list if it has an odd length, or two halves if it has an even length.\n\n#### Function Signature\n```python\ndef slice_list(lst: list[int]) -> list[int]:\n```\n\n#### Input\n- `lst` (list[int]): A list of integers.\n\n#### Output\n- Returns the first half of the input list if it has an odd length, or two halves if it has an even length.",
+    "code": "import math\n\ndef slice_list(lst: list[int]) -> list[int]:\n    half_length = len(lst) // 2\n    if len(lst) % 2 == 0:\n        return [lst[:half_length], lst[half_length:]]\n    else:\n        return lst[:half_length]",
+    "tests": [
+        "assert slice_list([1, 2, 3, 4]) == [[1, 2], [3, 4]]",
+        "assert slice_list([5]) == [5]",
+        "assert slice_list([6, 7, 8, 9, 10]) == [[6, 7, 8], [9, 10]]"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

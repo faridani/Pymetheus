@@ -1,0 +1,15 @@
+{
+    "title": "Finding the Shortest Simple Path",
+    "description": "Given a graph, find the shortest simple path from one node to another. A graph is represented as an adjacency list where each key is a node and its corresponding value is a list of neighboring nodes. The edges are bidirectional. Write a function `shortest_simple_path` that takes two nodes as input and returns the length of the shortest simple path from the first node to the second node.\n\n#### Function Signature\n```python\ndef shortest_simple_path(graph: dict, start: str, end: str) -> int:\n```\n\n#### Input\n- `graph` (dict): A graph represented as an adjacency list where each key is a node and its corresponding value is a list of neighboring nodes.\n- `start` (str): The starting node.\n- `end` (str): The ending node.\n\n#### Output\n- Returns the length of the shortest simple path from the start node to the end node. If there's no path, return -1.",
+    "code": "",
+    "\nfrom collections import deque\n\ndef shortest_simple_path(graph, start, end):\n    queue = deque([(start, 0)])\n    visited = set()\n    \n    while queue:\n        node, dist = queue.popleft()\n        \n        if node == end:\n            return dist\n        \n        if node not in visited:\n            visited.add(node)\n            \n            for neighbor in graph.get(node, []):\n                queue.append((neighbor, dist + 1))\n                \n    return -1": "",
+    "tests": [
+        "assert shortest_simple_path({'A': ['B', 'C'], 'B': ['A', 'D'], 'C': ['A', 'F'], 'D': ['B'], 'E': ['F'], 'F': ['C', 'E']}, 'A', 'E') == 3",
+        "assert shortest_simple_path({'A': ['B', 'C'], 'B': ['A', 'D'], 'C': ['A', 'F'], 'D': ['B'], 'E': ['F'], 'F': ['C', 'E']}, 'E', 'A') == -1",
+        "assert shortest_simple_path({'0': ['1'], '1': ['2', '3'], '2': ['3'], '3': []}, '0', '3') == 4",
+        "assert shortest_simple_path({'0': ['1'], '1': ['2', '3'], '2': ['3'], '3': []}, '3', '0') == -1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

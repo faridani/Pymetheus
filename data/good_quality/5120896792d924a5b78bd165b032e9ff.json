@@ -1,0 +1,14 @@
+{
+    "title": "Triangle Perimeter",
+    "description": "A triangle is a polygon with three edges. The perimeter of a triangle is the sum of its edge lengths.\n\n#### Function Signature\n```python\ndef triangle_perimeter(a: int, b: int, c: int) -> int:\n```\n\n#### Input\n- `a`, `b`, and `c` (int): Edge lengths of a triangle. These values should satisfy the triangle inequality, meaning that the sum of any two edge lengths must be strictly greater than the third edge length.\n\n#### Output\n- Returns the perimeter of the given triangle.",
+    "code": "\nimport math\n\ndef triangle_perimeter(a: int, b: int, c: int) -> int:\n    # Check if the input values satisfy the triangle inequality\n    if not (a + b > c and a + c > b and b + c > a):\n        return -1  # Return an error code to indicate that the input is invalid\n\n    # Calculate the perimeter of the triangle\n    perimeter = a + b + c\n\n    return perimeter",
+    "tests": [
+        "assert triangle_perimeter(3, 4, 5) == 12",
+        "assert triangle_perimeter(1, 2, 3) == 6",
+        "assert triangle_perimeter(10, 20, 30) == 60",
+        "assert triangle_perimeter(-5, -3, -7) == 15"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

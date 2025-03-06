@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Tower of Hanoi",
+    "description": "The Tower of Hanoi is a classic problem in computer science. It's an abstract representation of the famous puzzle that involves moving disks from one peg to another. The objective is to move all the disks from the source peg (A) to the destination peg (C), subject to certain constraints.\n\n#### Function Signature\n```python\ndef hanoi(n: int, source: str, target: str, auxiliary: str) -> None:\n```\n\n#### Input\n- `n` (int): The number of disks on the source peg.\n- `source` (str): The initial location of the disks, either 'A', 'B' or 'C'.\n- `target` (str): The destination where all the disks should be moved to, either 'A', 'B' or 'C'.\n- `auxiliary` (str): A temporary peg used for moving disks, also can be 'A', 'B' or 'C'.\n\n#### Output\nNo return value. The function modifies the source string by moving all the disks from the source to the target peg.",
+    "code": "import string\n\ndef hanoi(n: int, source: str, target: str, auxiliary: str) -> None:\n    if n > 0:\n        # Move n-1 disks from source to auxiliary peg using target peg\n        hanoi(n-1, source, auxiliary, target)\n        print(f'Move disk {n} from {source} to {target}')\n        # Move n-1 disks from auxiliary peg to target peg using source peg\n        hanoi(n-1, auxiliary, target, source)\n    else:\n        pass",
+    "tests": [
+        "assert hanoi(3, 'A', 'C', 'B') == None",
+        "assert str(hanoi(2, 'A', 'C', 'B')) == None",
+        "assert hanoi(1, 'A', 'C', 'B') == None"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

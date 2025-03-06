@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Minimum Cost to Connect All Cities",
+    "description": "Given a list of cities and the cost to connect each pair of cities, find the minimum cost to connect all cities such that there is a path between any two cities. This problem can be solved using Kruskal's algorithm for Minimum Spanning Tree (MST).\n\n#### Function Signature\n```python\ndef min_cost(N: int, connections: List[List[int]]) -> int:\n```\n\n#### Input\n- `N` (int): The number of cities.\n- `connections` (List[List[int]]): A list of lists where each sublist contains three integers representing a city, another city and the cost to connect those two cities. For example, [1, 2, 5] represents connecting city 1 and city 2 at a cost of 5.\n\n#### Output\n- Returns the minimum cost to connect all cities such that there is a path between any two cities.",
+    "code": "",
+    "\nfrom typing import List\n\ndef find(parent, i):\n    if parent[i] == i:\n        return i\n    return find(parent, parent[i])\n\ndef union(parent, rank, x, y):\n    xroot = find(parent, x)\n    yroot = find(parent, y)\n\n    if rank[xroot] < rank[yroot]:\n        parent[xroot] = yroot\n    elif rank[xroot] > rank[yroot]:\n        parent[yroot] = xroot\n    else:\n        parent[yroot] = xroot\n        rank[xroot] += 1\n\ndef min_cost(N: int, connections: List[List[int]]) -> int:\n    parent = [i for i in range(N+1)]\n    rank = [0] * (N + 1)\n    edges = sorted(connections, key=lambda item: item[2])\n    cost = 0\n\n    for edge in edges:\n        u, v, w = edge\n        i = find(parent, u)\n        j = find(parent, v)\n\n        if i != j:\n            union(parent, rank, i, j)\n            cost += w\n\n    return cost": "",
+    "tests": [
+        "assert min_cost(4, [[1, 2, 1], [2, 3, 2], [3, 4, 3], [1, 4, 5]]) == 6",
+        "assert min_cost(3, [[1, 2, 3], [2, 3, 4], [1, 3, 5]]) == 7"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "codestral:22b",
+    "style": "Competitive Programming"
+}
