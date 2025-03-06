@@ -17,7 +17,7 @@ python SyntheticDataGenerator.py
 ```
 ## Data Card 
 
-Focusing on the `good_quality` folder, below is the number of data points per model 
+Focusing on the `good_quality` folder, below is the number of data points per model (calculated on a small sample early on during the process)
 
 ```
 mistral:latest: 355
