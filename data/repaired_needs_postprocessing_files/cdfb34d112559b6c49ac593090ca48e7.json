@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Longest Increasing Path in a Matrix",
+    "description": "Given an m x n integers matrix representing a map of heights, find the length of the longest increasing path you can take from any cell to another. You can only move up, down, left, or right.\n\n#### Function Signature\n```python\ndef longest_increasing_path(matrix: list[list[int]]) -> int:\n```\n\n#### Input\n- `matrix` (list[list[int]]): A 2D integer array representing the map.\n\n#### Output\n- Returns the length of the longest increasing path.",
+    "code": "def longest_increasing_path(matrix: list[list[int]]) -> int:\n    rows = len(matrix)\n    cols = len(matrix[0])\n    dp = [[-1 for _ in range(cols)] for _ in range(rows)]\n\n    def dfs(row, col):\n        if dp[row][col] != -1:\n            return dp[row][col]\n\n        max_length = 1\n        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n        for dr, dc in directions:\n            new_row = row + dr\n            new_col = col + dc\n            if 0 <= new_row < rows and 0 <= new_col < cols and matrix[new_row][new_col] > matrix[row][col]:\n                max_length = max(max_length, 1 + dfs(new_row, new_col))\n\n        dp[row][col] = max_length\n        return dp[row][col]\n\n    longest_path = 0\n    for row in range(rows):\n        for col in range(cols):\n            longest_path = max(longest_path, dfs(row, col))\n\n    return longest_path",
+    "tests": [
+        "assert longest_increasing_path([[9,9,4],[6,6,8],[2,1,1]]) == 4",
+        "assert longest_increasing_path([[3,4,5],[3,2,6],[2,2,1]]) == 4",
+        "assert longest_increasing_path([[1]]) == 1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

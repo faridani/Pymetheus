@@ -1,0 +1,11 @@
+{
+    "title": "Medium - String Transformation",
+    "description": "You are given a string consisting of lowercase letters. Your task is to transform the string into another string by following these rules:\n* You can only perform one type of operation: swapping two adjacent characters.\n* The goal is to transform the input string into a lexicographically smaller string.\n\n#### Function Signature\n```python\ndef smallest_transformation(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string consisting of lowercase letters.\n\n#### Output\n- Returns the lexicographically smallest string that can be obtained by performing swap operations on the input string. If no smaller string can be formed, return the original string.",
+    "code": "def smallest_transformation(s: str) -> str:\n    smallest = list(s)\n    for i in range(len(s) - 1):\n        if smallest[i] > smallest[i + 1]:\n            smallest[i], smallest[i + 1] = smallest[i + 1], smallest[i]\n            return ''.join(smallest)\n    return s",
+    "tests": [
+        "assert smallest_transformation(\"cba\") == \"abc\"",
+        "assert smallest_transformation(\"abcd\") == \"abcd\"",
+        "assert smallest_transformation(\"dcba\") == \"dcba\""
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

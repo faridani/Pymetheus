@@ -1,0 +1,10 @@
+{
+    "title": "Medium -  Binary Search Tree Validation",
+    "description": "#### Function Signature\n```python\ndef is_valid_bst(root):\n``` A Binary Search Tree (BST) is a tree where the value of each node is greater than all values in its left subtree and less than all values in its right subtree. Write a function `is_valid_bst` that takes the root node of a binary tree as input and returns `True` if it is a valid BST, and `False` otherwise.\n#### Input\n- `root` (TreeNode): The root node of the binary tree.\n#### Output\n- Returns `True` if the input tree is a valid BST, `False` otherwise.\nNote: You can assume that nodes have unique values.",
+    "code": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root):\n    def validate(node, lower_bound, upper_bound):\n        if not node:\n            return True\n        if node.val <= lower_bound or node.val >= upper_bound:\n            return False\n        return (validate(node.left, lower_bound, node.val) and\n                validate(node.right, node.val, upper_bound))\n    \n    return validate(root, float('-inf'), float('inf'))",
+    "tests": [
+        "# Test case 1: Valid BST\ntree1 = TreeNode(2, TreeNode(1), TreeNode(3))\nassert is_valid_bst(tree1) == True",
+        "# Test case 2: Invalid BST\ntree2 = TreeNode(1, TreeNode(2), None)\nassert is_valid_bst(tree2) == False"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Knights and the Chessboard",
+    "description": "A knight is placed on a standard chessboard (8x8). Given the starting position of the knight (row, column), determine the minimum number of moves required for the knight to reach every square on the board exactly once. The knight's movement follows standard chess rules: two squares in one direction (horizontal or vertical) and then one square perpendicular to that direction.\n\n#### Function Signature\n```python\ndef min_moves(row: int, col: int) -> int:\n```\n\n#### Input\n- `row` (int): The row number of the starting position (0-indexed).\n- `col` (int): The column number of the starting position (0-indexed).\n\n#### Output\n- Returns the minimum number of moves required for the knight to visit every square on the board exactly once. Return -1 if it is impossible.",
+    "code": "from collections import deque\ndef min_moves(row: int, col: int) -> int:\n    if not (0 <= row < 8 and 0 <= col < 8):  # Check for valid starting position\n        return -1\n    moves = [(2, 1), (1, 2), (-1, 2), (-2, 1), (-2, -1), (-1, -2), (1, -2), (2, -1)] # Possible knight moves\n    visited = set([(row, col)])\n    queue = deque([(row, col, 0)])  # (row, col, number of moves)\n    while queue:\n        r, c, move_count = queue.popleft()\n        for dr, dc in moves:\n            new_r, new_c = r + dr, c + dc\n            if 0 <= new_r < 8 and 0 <= new_c < 8 and (new_r, new_c) not in visited:\n                visited.add((new_r, new_c))\n                queue.append((new_r, new_c, move_count + 1))\n    return move_count if len(visited) == 64 else -1 ",
+    "tests": [
+        "assert min_moves(0, 0) == 62",
+        "assert min_moves(3, 3) == 62",
+        "assert min_moves(7, 0) == 62",
+        "assert min_moves(-1, 0) == -1",
+        "assert min_moves(8, 0) == -1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

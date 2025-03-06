@@ -1,0 +1,12 @@
+{
+    "title": "Sieve of Eratosthenes",
+    "description": "The Sieve of Eratosthenes is an ancient algorithm for finding all primes smaller than a given number n. It is based on the idea that every prime number greater than 2 can be written in the form 6k + 1 or 6k - 1, for some integer k.\r\n\r\nWrite a function `sieve_of_eratosthenes` that returns a list of all prime numbers up to and including n. The function should use the Sieve of Eratosthenes algorithm.\r\n\r\n#### Function Signature\r\n```python\r\ndef sieve_of_eratosthenes(n: int) -> list:\r```\r\r\n#### Input\r\n- `n` (int): A positive integer.\r\r\n#### Output\r\n- Returns a list of all prime numbers up to and including n.\r\r\n",
+    "code": "import math\r\ndef sieve_of_eratosthenes(n: int) -> list:\r    if n < 2:\r        return []\r    sieve = [True] * (n + 1)\r    sieve[0] = sieve[1] = False\r    for i in range(2, math.isqrt(n) + 1):\r        if sieve[i]:\r            for j in range(i ** 2, n + 1, i):\r                sieve[j] = False\r    return [p for p in range(2, n + 1) if sieve[p]]\r",
+    "tests": [
+        "assert sorted(sieve_of_eratosthenes(10)) == [2, 3, 5, 7]",
+        "assert len(sieve_of_eratosthenes(1000)) == 168",
+        "assert set(sieve_of_eratosthenes(50)) == {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47}",
+        "assert sieve_of_eratosthenes(-1) == []"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

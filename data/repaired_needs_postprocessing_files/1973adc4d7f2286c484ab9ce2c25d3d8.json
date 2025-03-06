@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Minimum Coins",
+    "description": "A minimum number of coins are needed to make change for a given amount. This problem involves writing a function that calculates the minimum number of coins required.\n\n#### Function Signature\n```python\ndef min_coins(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): The target amount in cents, represented as an integer.\n\n#### Output\n- Returns the minimum number of coins needed to make change for the given amount. Note that a quarter is worth 25 cents, a dime is worth 10 cents, and a nickel is worth 5 cents. You can use these denominations freely.\n",
+    "code": "import math\ndef min_coins(n: int) -> int:\n    coins = [25, 10, 5]\n    min_num_coins = float('inf')\n    for coin in coins:\n        if n >= coin:\n            num_coins = math.floor(n / coin)\n            remaining = n % coin\n            min_num_coins = min(min_num_coins, num_coins + 1 if remaining > 0 else num_coins)\n    return min_num_coins",
+    "tests": [
+        "assert min_coins(37) == 3",
+        "assert min_coins(99) == 4",
+        "assert min_coins(5) == 1",
+        "assert min_coins(101) == 5"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

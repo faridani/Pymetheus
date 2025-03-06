@@ -1,0 +1,12 @@
+{
+    "title": "'Valid Parentheses' (Medium)",
+    "description": "Given a string containing just the characters `(`, `)`, `{`, `}`, `[` and `]`, determine if the input string is valid. An input string is valid if:\n- It starts with a left parenthesis, curly brace or square bracket.\n- The corresponding right parenthesis, curly brace or square bracket appears later in the same grouping and the parentheses, curly braces or square brackets close in the correct order.\n- There are no extra characters, other than spaces, within the parentheses, curly braces or square brackets.\n\n#### Function Signature\n```python\ndef is_valid(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string containing only the characters `(`, `)`, `{`, `}`, `[` and `]`.\n\n#### Output\n- Returns `True` if the input string is valid, `False` otherwise.\n",
+    "code": "def is_valid(s: str) -> bool:\n    stack = []\n    opening = {'(': ')', '{': '}', '[': ']'}\n    for char in s:\n        if char in opening:\n            stack.append(char)\n        elif char == closing[stack[-1]] and len(stack) > 0:\n            stack.pop()\n        else:\n            return False\n    return len(stack) == 0",
+    "tests": [
+        "assert is_valid('()[]{}') == True",
+        "assert is_valid('([)]') == False",
+        "assert is_valid('{[]}') == True",
+        "assert is_valid('([(])') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

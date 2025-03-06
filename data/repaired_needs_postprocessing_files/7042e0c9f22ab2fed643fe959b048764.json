@@ -1,0 +1,12 @@
+{
+    "title": "'Project Euler - Number Spiral Diagonals Sum' - Medium",
+    "description": "Create a Python function `sum_of_diagonal_numbers(n)` that calculates the sum of the numbers on the nth diagonal of the number spiral starting from 1. The spiral is constructed by starting with 1, then moving to the right and down until hitting a previously visited number, then going up and left until reaching a new number and continuing this pattern. If there are multiple paths at the same point, choose the path with the smaller diagonal index (diagonal distance from the start).\n\n#### Function Signature\n```python\ndef sum_of_diagonal_numbers(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The nth diagonal number to sum.\n\n#### Output\n- Returns the sum of the numbers on the nth diagonal as an integer.",
+    "code": "def is_valid(x, y, grid, visited):\n    return x >= 0 and y >= 0 and (x < len(grid) and y < len(grid[0])) and not visited[(x, y)]\ndef sum_of_diagonal_numbers(n: int) -> int:\n    grid = [[0] * n for _ in range(n)]\n    direction = 1\n    x, y = 0, 0\n    total = 0\n    visited = set()\n    while len(visited) < n**2:\n        num = total + direction\n        grid[x][y] = num\n        visited.add((x, y))\n        next_x, next_y = x + direction, y + (direction + 1) // 2\n        if not is_valid(next_x, next_y, grid, visited):\n            direction = -direction\n            next_x, next_y = x - direction, y + (direction + 1) // 2\n        x, y = next_x, next_y\n        total += 1\n    diagonal = len(grid) - 1\n    return grid[diagonal][diagonal] + sum([grid[i][i] for i in range(len(grid)) if i != diagonal])\n",
+    "tests": [
+        "assert sum_of_diagonal_numbers(1) == 1",
+        "assert sum_of_diagonal_numbers(3) == 10",
+        "assert sum_of_diagonal_numbers(5) == 26",
+        "assert sum_of_diagonal_numbers(10) == 64"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

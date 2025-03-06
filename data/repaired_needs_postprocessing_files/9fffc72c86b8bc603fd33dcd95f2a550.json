@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Coin Change Problem",
+    "description": "You are given a list of coin denominations and an amount of money. Write a function that returns the minimum number of coins needed to make up this amount.\n\n#### Function Signature\n```python\ndef min_coins(coins: list[int], amount: int) -> int:\n``` \n\n#### Input\n- `coins` (list[int]): A list of coin denominations.\n- `amount` (int): The amount of money to make up using the given coins.\n\n#### Output\n- Returns the minimum number of coins needed to make up the given amount. If it's not possible to make up the amount, return -1.\n",
+    "code": "import functools\ndef min_coins(coins: list[int], amount: int) -> int:\n    # Create a dp table with size (amount + 1) filled with infinity\n    dp = [float('inf')] * (amount + 1)\n    dp[0] = 0\n    \n    for coin in coins:\n        for i in range(coin, amount + 1):\n            dp[i] = min(dp[i], dp[i - coin] + 1)\n    \n    # If the minimum number of coins is still infinity, it's not possible to make up the amount\n    if dp[amount] == float('inf'):\n        return -1\n    else:\n        return dp[amount]\n",
+    "tests": [
+        "assert min_coins([1, 2, 5], 11) == 3",
+        "assert min_coins([2], 10) == 5",
+        "assert min_coins([3], 4) == 2",
+        "assert min_coins([1, 2, 5], 1000) == -1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

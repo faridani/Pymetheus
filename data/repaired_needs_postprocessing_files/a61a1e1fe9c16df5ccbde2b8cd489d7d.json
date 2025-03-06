@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Matrix Rotation",
+    "description": "Given a square matrix of integers, rotate it 90 degrees clockwise.\n\n#### Function Signature\n```python\ndef rotate_matrix(matrix):\n``` \nOutput:\n- Returns the rotated matrix (list of lists of ints).\n\n#### Example\nInput: \n``` \n[[1, 2, 3],\n [4, 5, 6],\n [7, 8, 9]]\n``` \nOutput:\n``` \n[[7, 4, 1],\n [8, 5, 2],\n [9, 6, 3]]\n``` ```",
+    "code": "def rotate_matrix(matrix):\n    n = len(matrix)\n    for i in range(n // 2):\n        for j in range(i, n - i - 1):\n            temp = matrix[i][j]\n            matrix[i][j] = matrix[n - 1 - j][i]\n            matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j]\n            matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i]\n            matrix[j][n - 1 - i] = temp\n    return matrix",
+    "tests": [
+        "assert rotate_matrix([[1,2],[3,4]]) == [[3,1],[4,2]]",
+        "assert rotate_matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == [[7, 4, 1], [8, 5, 2], [9, 6, 3]]",
+        "assert rotate_matrix([[1]]) == [[1]]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

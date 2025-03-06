@@ -1,0 +1,12 @@
+{
+    "title": "'Removing Duplicates from a List (Hard)'",
+    "description": "Write a function `remove_duplicates` that takes a list of integers as input and returns a new list with duplicate values removed.\n\n#### Function Signature\n```python\ndef remove_duplicates(nums: List[int]) -> List[int]:\n``` \n\n#### Input\n- `nums` (List[int]): A sorted list of integers with possible duplicates.\n\n#### Output\n- Returns a new list that contains only the unique elements from the input list.\nNote: The given list is already sorted, so you do not need to sort it again before removing duplicates.",
+    "code": "def remove_duplicates(nums: List[int]) -> List[int]:\n    result = []\n    for num in nums:\n        if num not in result:\n            result.append(num)\n    return result",
+    "tests": [
+        "assert remove_duplicates([1, 1, 2, 3, 4, 4, 5]) == [1, 2, 3, 4, 5]",
+        "assert remove_duplicates([0, 0, 1, 1, 2, 2, 3, 3, 4]) == [0, 1, 2, 3, 4]",
+        "assert remove_duplicates([]) == []",
+        "assert remove_duplicates([5, 5, 5, 5, 5]) == [5]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

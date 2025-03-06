@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Complex String Sorting",
+    "description": "Given a list of strings, sort them based on the following rules:\n1. **Case Sensitive**: Strings are first compared case sensitively.\n2. **Alphabetical Order**: If two strings have the same case, they should be sorted alphabetically.\n3. **Length**: In cases where multiple strings have the same alphabetical order, sort them by length in descending order. \n\n#### Function Signature```python\ndef custom_sort(strings: list) -> list:\n```\n\n#### Input\n- `strings` (list): A list of non-empty strings.\n\n#### Output\n- Returns a sorted list based on the rules specified above.",
+    "code": "def custom_sort(strings: list) -> list:    return sorted(strings, key=lambda x: (x.lower(), x), reverse=True)",
+    "tests": [
+        "assert custom_sort(['banana', 'Apple', 'cherry']) == ['Apple', 'cherry', 'banana']",
+        "assert custom_sort(['Dog', 'cat', 'Elephant']) == ['Elephant', 'dog', 'cat']",
+        "assert custom_sort(['a', 'A', 'b']) == ['A', 'a', 'b']",
+        "assert custom_sort(['Zebra', 'zebra', 'Monkey', 'monkey']) == ['Zebra', 'Monkey', 'zebra', 'monkey']"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Easy Valid Triangle",
+    "description": "A triangle is valid if the sum of any two sides is greater than the third side. Write a function `is_valid_triangle` that checks whether three given numbers can form a valid triangle.\n\n#### Function Signature\n```python\ndef is_valid_triangle(a: int, b: int, c: int) -> bool:\n``` \n\n#### Input\n- `a`, `b`, and `c` (int): The lengths of the sides of the potential triangle.\n\n#### Output\n- Returns `True` if the given numbers can form a valid triangle, `False` otherwise.\n",
+    "code": "def is_valid_triangle(a: int, b: int, c: int) -> bool:\n    return (a + b > c and a + c > b and b + c > a)",
+    "tests": [
+        "assert is_valid_triangle(1, 2, 3) == True",
+        "assert is_valid_triangle(5, 10, 15) == False",
+        "assert is_valid_triangle(1, 1, 1) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

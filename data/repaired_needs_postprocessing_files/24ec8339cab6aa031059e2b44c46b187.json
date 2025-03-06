@@ -1,0 +1,11 @@
+{
+    "title": "List Reversal Function (Hard)",
+    "description": "Write a function `reverse_list` that takes a given list and returns the same list in reversed order. The input list may contain any data types, including nested lists. Note that changing the original list is not allowed.\n\n#### Function Signature\n```python\ndef reverse_list(lst: List[Any]) -> List[Any]:\n``` \n\n#### Input\n- `lst` (List[Any]): A list containing any data types, including nested lists.\n\n#### Output\n- Returns the input list in reversed order without modifying the original list.",
+    "code": "def reverse_list(lst: List[Any]) -> List[Any]:\n  # Create a new empty list to store the reversed elements\n  reversed_lst = []\n  # Recursively traverse the input list and append the elements in reverse order to the new list\n  def _reverse(element):\n    if isinstance(element, list):\n      for item in element[::-1]:\n        _reverse(item)\n    else:\n      reversed_lst.insert(0, element)\n  _reverse(lst)\n  return reversed_lst",
+    "tests": [
+        "assert reverse_list([1, 2, [3, 4], 5]) == [5, 1, [4, 3], 2, 1]",
+        "assert reverse_list(['a', 'b', ['c', 'd'], 'e']) == ['e', 'a', ['d', 'c'], 'b']",
+        "assert reverse_list([[1, 2, [3, 4]], 5]) == [[5], [4, 3], [2, 1]]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Fibonacci Series Sum Finder - Easy",
+    "description": "Write a function `fib_sum` that finds the sum of all Fibonacci numbers up to and including the n-th Fibonacci number.\n\n#### Function Signature\n```python\ndef fib_sum(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The index of the last Fibonacci number to consider for summing.\n\n#### Output\n- Returns an integer representing the sum of all Fibonacci numbers up to and including the n-th Fibonacci number.",
+    "code": "def fib_sum(n: int) -> int:\n    # List of first n Fibonacci numbers\n    fib = [0, 1]\n    for i in range(2, n+1):\n        fib.append(fib[i-1] + fib[i-2])\n    return sum(fib)",
+    "tests": [
+        "assert fib_sum(5) == 5",
+        "assert fib_sum(10) == 34",
+        "assert fib_sum(20) == 6798",
+        "assert fib_sum(100) == 514229"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

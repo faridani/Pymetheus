@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Movie Ratings",
+    "description": "Write a function that determines the rating of a movie based on its name. The ratings are as follows:\n- If the movie contains the word 'romantic', it is rated 'PG'\n- If the movie contains the words 'action' and 'comedy', it is rated 'R'\n- Otherwise, it is rated 'G'.\n\n#### Function Signature\n```python\ndef rate_movie(title: str) -> str:\n```\n\n#### Input\n- `title` (str): The name of the movie.\n\n#### Output\n- Returns a string representing the rating of the movie ('PG', 'R' or 'G').",
+    "code": "def rate_movie(title: str) -> str:\n    if 'romantic' in title.lower():\n        return 'PG'\n    elif 'action' in title.lower() and 'comedy' in title.lower():\n        return 'R'\n    else:\n        return 'G'",
+    "tests": [
+        "assert rate_movie('Romantic Comedy') == 'PG'",
+        "assert rate_movie('Action Man') == 'R'",
+        "assert rate_movie('The Lion King') == 'G'",
+        "assert rate_movie('Comedy of Errors') == 'G'"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

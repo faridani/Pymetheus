@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Prime Factorization",
+    "description": "Write a function `prime_factorization` that takes an integer `n` as input and returns the prime factorization of `n`. Write a function `prime_factorization(n: int) -> List[int]:`.\r\n\r\n#### Function Signature\r\n```python\r\ndef prime_factorization(n: int) -> List[int]:\r```\r\n\r\n#### Input\r\n- `n` (int): A positive integer greater than 1.\r\n\r\n#### Output\r\n- Returns a list of unique prime factors of `n` in ascending order.\r\n\r\n#### Example\r\n- `prime_factorization(36) -> [2, 3]`\r\n- `prime_factorization(56) -> [2, 7]`\r\n- `prime_factorization(100) -> [2, 5, 5]`, not `[2, 2, 5, 5]` because the factors should be unique.\r\n",
+    "code": "from typing import List\r\ndef prime_factorization(n: int) -> List[int]:\r    def factorize(n, i=2):\r        factors = []\r        while n % i == 0:\r            factors.append(i)\r            n //= i\r        return factors\r\n    primes = [2] + [x for x in range(3, n+1) if all(x % y != 0 for y in range(2, int(x**0.5)+1))]\r    factors = []\r    for p in primes:\r        f = factorize(n, i=p)\r        if f:\r            factors += f\r            n //= p\r        if n == 1:\r            break\r    return factors",
+    "tests": [
+        "assert prime_factorization(36) == [2, 3]",
+        "assert prime_factorization(56) == [2, 7]",
+        "assert prime_factorization(100) == [2, 5]"
+    ],
+    "model": "codebooga:latest-repaired by Llama 3"
+}

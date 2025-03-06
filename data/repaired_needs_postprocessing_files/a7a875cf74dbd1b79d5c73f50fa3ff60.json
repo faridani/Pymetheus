@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Convex Hull",
+    "description": "Given a set of points in a 2D plane, find the convex hull of these points. The convex hull is the smallest convex polygon that encloses all the points.\n\n#### Function Signature\n```python\ndef convex_hull(points):\n``` \n\n#### Input\n- `points` (list of tuples): A list of points, where each point is represented as a tuple `(x, y)`. \n\n#### Output\n- Returns a list of tuples representing the points on the convex hull in clockwise order.\n",
+    "code": "def convex_hull(points):\n    \"\"\"\n    Computes the convex hull of a set of points using Graham Scan algorithm.\n    \"\"\"\n    if len(points) < 3:\n        return points  # Convex hull is trivial for less than 3 points\n\n    def orientation(p, q, r):\n        val = (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1])\n        if val == 0: return 0  # Collinear\n        return 1 if val > 0 else 2  # Clockwise or counterclockwise\n\n    # Find the bottommost point\n    p0 = min(points, key=lambda p: (p[1], p[0]))\n\n    # Sort points by polar angle with respect to p0\n    sorted_points = sorted(points, key=lambda p: (orientation(p0, p, (float('inf'), p0[1])), ((p[0] - p0[0])**2 + (p[1] - p0[1])**2)))  # Sort by angle then distance for collinear points\n    hull = [p0]\n\n    for i in range(1, len(sorted_points)):\n        while len(hull) >= 2 and orientation(hull[-2], hull[-1], sorted_points[i]) != 2:\n            hull.pop()\n        hull.append(sorted_points[i])\n    return hull",
+    "tests": [
+        "assert convex_hull([(0, 0), (3, 0), (0, 4)]) == [(0, 0), (3, 0), (0, 4)]",
+        "assert convex_hull([(1, 1), (2, 2), (3, 1)]) == [(1, 1), (3, 1), (2, 2)]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

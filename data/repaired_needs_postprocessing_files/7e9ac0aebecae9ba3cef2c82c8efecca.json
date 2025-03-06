@@ -1,0 +1,11 @@
+{
+    "title": "'Remove Duplicates from a List (Medium)'",
+    "description": "Write a function `remove_duplicates` that removes all duplicated elements from an input list. The order of the remaining elements doesn't matter.\n#### Function Signature\n```python\ndef remove_duplicates(lst: List[Any]) -> List[Any]:\n```\n\n#### Input\n- `lst` (List[Any]): A list containing any data type including integers, strings, and other lists.\n\n#### Output\n- Returns a new list that contains only unique elements from the input list in any order.",
+    "code": "def remove_duplicates(lst: List[Any]) -> List[Any]:\n    # Convert the list to a set to remove duplicates and then convert it back to a list\n    return list(set(lst))",
+    "tests": [
+        "assert remove_duplicates([1, 2, 3, 2, 5, 8, 3]) == [1, 2, 3, 5, 8]",
+        "assert remove_duplicates(['apple', 'banana', 'kiwi', 'apple', 'orange']) == ['apple', 'banana', 'kiwi', 'orange']",
+        "assert remove_duplicates([1, [2, 3], 4, [2, 3]]) == [1, [2, 3], 4]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

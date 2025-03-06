@@ -1,0 +1,13 @@
+{
+    "title": "Roman Numeral Converter (Medium)",
+    "description": "Write a function `convert_to_roman` that converts an integer from 1 to 3999 into its equivalent Roman numeral.\n\n#### Function Signature\n```python\ndef convert_to_roman(number: int) -> str:\n```\n\n#### Input\n- `number` (int): An integer between 1 and 3999, inclusive.\n\n#### Output\n- Returns the equivalent Roman numeral for the given number as a string.",
+    "code": "def convert_to_roman(number: int) -> str:\n    roman = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    numbers = [(number % 1000), (number // 1000), (number // 100) % 10]\n    result = ''\n    for i in range(len(numbers)):\n        if numbers[i] > 0:\n            for _ in range(numbers[i]):\n                if i == len(numbers) - 1 and roman[result[-1]] < roman['M']:\n                    result += 'M'\n                elif i == len(numbers) - 1 and (roman[result[-1]] >= roman['M'] or roman[result[-2]] >= roman['M']):\n                    result += 'M' * (9 - len(result) % 9)\n                    break\n                elif numbers[i] < roman[result[-1]]:\n                    if i == len(numbers) - 1 and number > 0:\n                        result += roman[result[-1]] * (len(result) % len(result[-1]) - 1)\n                        result += roman[result[-2]]\n                        break\n                else:\n                    result += roman[str(number // (10 ** (i + 1)))]\n            result = list(reversed(result))\n    return ''.join(result)",
+    "tests": [
+        "assert convert_to_roman(3) == 'III'",
+        "assert convert_to_roman(4) == 'IV'",
+        "assert convert_to_roman(9) == 'IX'",
+        "assert convert_to_roman(58) == 'LVIII'",
+        "assert convert_to_roman(1994) == 'MCMXCIV'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

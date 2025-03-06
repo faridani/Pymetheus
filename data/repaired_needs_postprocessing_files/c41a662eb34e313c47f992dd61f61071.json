@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Number Swapping",
+    "description": "Given two integers `num1` and `num2`, swap their values without using a temporary variable. Return the modified values of `num1` and `num2`.#### Function Signature\n```python\ndef swap_numbers(num1: int, num2: int) -> tuple[int, int]:\n```\n\n#### Input\n- `num1` (int): An integer.\n- `num2` (int): Another integer.\n\n#### Output\n- Returns a tuple `(num1, num2)` with the values of `num1` and `num2` swapped.",
+    "code": "def swap_numbers(num1: int, num2: int) -> tuple[int, int]:\n    \"\"\"\n    Swaps the values of num1 and num2 without using a temporary variable.\n    \"\"\"\n    # Add your code here\n    num1 += num2\n    num2 = num1 - num2\n    num1 -= num2\n    return num1, num2",
+    "tests": [
+        "assert swap_numbers(3, 4) == (7, 3)",
+        "assert swap_numbers(-5, 7) == (2, -12)",
+        "assert swap_numbers(0, 0) == (0, 0)"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

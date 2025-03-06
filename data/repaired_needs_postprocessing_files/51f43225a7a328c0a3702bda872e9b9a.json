@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "Given two strings, write a function `find_anagrams` that returns True if the given strings are anagrams of each other, and False otherwise.\n\n#### Function Signature```python\ndef find_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): The first string to compare.\n- `s2` (str): The second string to compare.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.\n\n#### Constraints and Hints\n- Strings may contain letters (uppercase or lowercase) only. No numbers, spaces, punctuation or special characters will be present.\n- You can ignore case sensitivity while comparing the strings.",
+    "code": "def find_anagrams(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = ''.join(sorted(s1.lower().replace(' ', '')))\n    s2 = ''.join(sorted(s2.lower().replace(' ', '')))\n    \n    # Check if the sorted strings are equal, ignoring case sensitivity\n    return s1 == s2",
+    "tests": [
+        "assert find_anagrams(\"listen\", \"silent\") == True",
+        "assert find_anagrams(\"hello\", \"world\") == False",
+        "assert find_anagrams(\"Movies\", \"Vismeo\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

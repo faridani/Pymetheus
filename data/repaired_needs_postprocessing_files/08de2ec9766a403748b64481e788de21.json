@@ -1,0 +1,13 @@
+{
+    "title": "Roman Numerals Converter (Hard)",
+    "description": "Write a function `convert_to_roman` that converts an integer into its equivalent Roman numeral.\n\n#### Function Signature\n```python\ndef convert_to_roman(num: int) -> str:\n```\n\n#### Input\n- `num` (int): An integer between 1 and 3999 (inclusive).\n\n#### Output\n- Returns a string that represents the Roman numeral equivalent of the input integer.\n\n**Hint**: Use the following symbols for the Roman numerals:\n- I = 1\n- V = 5\n- X = 10\n- L = 50\n- C = 100\n- D = 500\n- M = 1000\n",
+    "code": "def convert_to_roman(num: int) -> str:\n    roman_numerals = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV']\n    powers = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    result = ''\n    for i in range(len(powers)):\n        while num >= powers[i]:\n            result += roman_numerals[i] \n            num -= powers[i]\n    return result",
+    "tests": [
+        "assert convert_to_roman(3) == 'III'",
+        "assert convert_to_roman(4) == 'IV'",
+        "assert convert_to_roman(9) == 'IX'",
+        "assert convert_to_roman(58) == 'LVIII'",
+        "assert convert_to_roman(1994) == 'MCMXCIV'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

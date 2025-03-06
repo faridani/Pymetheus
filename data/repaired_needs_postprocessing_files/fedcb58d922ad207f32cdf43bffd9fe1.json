@@ -1,0 +1,12 @@
+{
+    "title": "Reversed Words Checker (Hard)",
+    "description": "Write a function `are_words_reversed` that checks if the words in a given sentence are reversed. For this problem, we consider a word to be any sequence of non-space characters. A sentence is reversed if each word in it reads backwards from left to right when compared with its corresponding word read from right to left.\n\n#### Function Signature\n```\ndef are_words_reversed(sentence: str) -> bool:\n``` \n\n#### Input\n- `sentence` (str): A non-empty string that contains words separated by one or more spaces.\n\n#### Output\n- Returns `True` if the input sentence's words are reversed, `False` otherwise.",
+    "code": "def are_words_reversed(sentence: str) -> bool:\n    # Split the sentence into words\n    words = sentence.split()\n    # Ensure there is at least one word in the sentence\n    if not words:\n        return False\n    # Reverse the order of the words and join them back together\n    reversed_words = ' '.join(reversed(words))\n    # Compare the original sentence with the reversed sentence\n    return sentence == reversed_words",
+    "tests": [
+        "assert are_words_reversed('hi world hello') == True",
+        "assert are_words_reversed('hello world hi') == False",
+        "assert are_words_reversed('was it a car or cat I saw') == True",
+        "assert are_words_reversed('I saw a cat in the car') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

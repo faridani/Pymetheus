@@ -1,0 +1,11 @@
+{
+    "title": "Hardest Mode: Perfect Squares",
+    "description": "Write a function `perfect_squares` that takes two integers, `n` and `m`, as input and returns the number of perfect squares that are greater than or equal to `n` and less than or equal to `m.\r\n\r\n#### Function Signature\r\n```\ndef perfect_squares(n: int, m: int) -> int:\r\n``` \r\n\r\n#### Input\r\n- `n` (int): The lower bound for perfect squares.\r\n- `m` (int): The upper bound for perfect squares.\r\n\r\n#### Output\r\n- Returns the number of perfect squares that are greater than or equal to `n` and less than or equal to `m.\r\n\r\n#### Hint\r\nThink about how you can generate a list of perfect squares within the given range. Then, use set operations to find the count of these perfect squares.\r\n\r\n",
+    "code": "from math import sqrt, ceil\r\n\r\ndef perfect_squares(n: int, m: int) -> int:\r\n    # Generate perfect squares up to `m`\r\n    perfect_squares = [int(sqrt(i)) ** 2 for i in range(ceil(n ** 0.5) ** 2, (m + 1) ** 0.5 ** 2)]\r\n    \r\n    # Count the number of perfect squares within the given range\r\n    return len(set(perfect_squares) & set(range(n, m + 1)))\r\n",
+    "tests": [
+        "assert perfect_squares(16, 25) == 4",
+        "assert perfect_squares(-10, 0) == 0",
+        "assert perfect_squares(100, 200) == 7"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

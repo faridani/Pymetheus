@@ -1,0 +1,12 @@
+{
+    "title": "Hard - Fractal Spiral Generator",
+    "description": "A fractal spiral is a pattern that repeats itself at different scales. Write a function `generate_fractal_spiral` that takes an integer `n` representing the number of iterations and returns a list of tuples, where each tuple represents the (x, y) coordinates of a point in the spiral. \\\n#### Function Signature\\\ndef generate_fractal_spiral(n: int) -> list[tuple[int, int]]:\n",
+    "code": "def generate_fractal_spiral(n: int) -> list[tuple[int, int]]:\n    spiral = [(0, 0)]\n    direction = 0  # 0: right, 1: up, 2: left, 3: down\n    steps = 1\n    x, y = 0, 0\n    for _ in range(n):\n        for _ in range(steps):\n            if direction == 0:\n                x += 1\n            elif direction == 1:\n                y += 1\n            elif direction == 2:\n                x -= 1\n            else:\n                y -= 1\n            spiral.append((x, y))\n        direction = (direction + 1) % 4\n        if direction % 2 == 0:\n            steps += 1\n    return spiral",
+    "tests": [
+        "assert generate_fractal_spiral(1) == [(0, 0), (1, 0)]",
+        "assert len(generate_fractal_spiral(3)) == 13",
+        "assert (1, -1) in generate_fractal_spiral(2)",
+        "assert generate_fractal_spiral(5)[-1] == (4, 2)"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

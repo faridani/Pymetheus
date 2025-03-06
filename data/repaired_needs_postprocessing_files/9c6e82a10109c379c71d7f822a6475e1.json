@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "Write a function `find_anagrams` that finds all anagrams of a given word or phrase within a list of words.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str, words: List[str]) -> List[str]:\n```\n\n#### Input\n- `word` (str): The word or phrase to find anagrams of.\n- `words` (List[str]): A list of words that the function will search through for anagrams.\n\n#### Output\n- Returns a list of words in the input list that are anagrams of the given word or phrase, sorted in ascending order.\nAnagrams are words that contain the same letters in the same frequency as each other. For example, 'listen' and 'silent' are anagrams of each other because they contain the same letters with the same frequency (l-4, i-3, s-2, t-1, n-1).",
+    "code": "def find_anagrams(word: str, words: List[str]) -> List[str]:\n    # Create a dictionary to store the frequency of each letter in the word\n    word_freq = {char: word.count(char) for char in set(word)}\n    \n    # Find anagrams by comparing the frequency of letters in the current word with the frequency of letters in other words\n    anagrams = [word for word in words if all(word_freq[char] == word.count(char) for char in set(word))] \n    return sorted(anagrams)",
+    "tests": [
+        "assert find_anagrams('listen', ['silent', 'enlist', 'school', 'hello']) == ['silent', 'enlist']",
+        "assert find_anagrams('eliza', ['able', 'lizard', 'basil', 'zale']) == ['lizard', 'basil', 'zale']",
+        "assert find_anagrams('python', ['try', 'nopython', 'pythagoras', 'racecar']) == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Words Checker (Easy)",
+    "description": "Write a function `is_reverse_words` that checks if a given string consists of words read the same forwards and backwards. Words can contain letters, numbers, spaces, and punctuation.\n\n#### Function Signature\n```python\ndef is_reverse_words(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that may contain words separated by any number of spaces, tabs, or newlines.\n\n#### Output\n- Returns `True` if all the individual words in the input string are palindromes when ignoring case and punctuation, `False` otherwise.",
+    "code": "import re\ndef is_reverse_words(s: str) -> bool:\n    # Remove non-alphanumeric characters and split into words\n    s = re.sub('[^A-Za-z0-9]+', ' ', s).strip().split()\n    for word in s:\n        # Convert to lowercase and check if the word is a palindrome\n        if not is_palindrome(word):\n            return False\n    return True",
+    "tests": [
+        "assert is_reverse_words(\"A man, a palindrome, a man\") == True",
+        "assert is_reverse_words(\"racecar radiarracer\") == True",
+        "assert is_reverse_words(\"hello world\") == False",
+        "assert is_reverse_words(\"No 'x' in WOX X NO\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

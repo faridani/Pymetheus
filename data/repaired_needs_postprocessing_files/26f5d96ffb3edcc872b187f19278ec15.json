@@ -1,0 +1,12 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "Given two words, write a function `find_anagrams` that determines if the two words are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagrams(word1: str, word2: str) -> bool:\n```\n\n#### Input\n- `word1`, `word2` (str): Two words to compare, each containing only lowercase letters.\n\n#### Output\n- Returns `True` if the two input words are anagrams of each other, `False` otherwise.",
+    "code": "def find_anagrams(word1: str, word2: str) -> bool:\n    # Ensure both words have the same length before comparing\n    if len(word1) != len(word2):\n        return False\n    # Create a dictionary to count the frequency of each letter in the first word\n    word1_count = {letter: word1.count(letter) for letter in set(word1)}\n    # Decrease the count for each occurrence of the letter in the second word, if it exists\n    for letter in word2:\n        if letter in word1_count:\n            word1_count[letter] -= 1\n        else:\n            return False\n    # If all letters are accounted for and their counts are zero, the words are anagrams\n    return all(value == 0 for value in word1_count.values())",
+    "tests": [
+        "assert find_anagrams('listen', 'silent') == True",
+        "assert find_anagrams('example', 'examine') == True",
+        "assert find_anagrams('hello', 'world') == False",
+        "assert find_anagrams('movie', 'evil') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

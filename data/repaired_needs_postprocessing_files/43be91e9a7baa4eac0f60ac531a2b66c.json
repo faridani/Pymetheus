@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Number of Islands",
+    "description": "You are given a 2D grid where each cell contains either 0 or 1. A cell containing 1 represents an island, and a cell containing 0 represents water. Write a function that takes the size of the grid and the grid itself as input, and returns the number of islands in the grid.\n\n#### Function Signature\n```python\ndef count_islands(grid_size: tuple, grid: list) -> int:\n```\n\n#### Input\n- `grid_size` (tuple): A tuple containing two integers representing the width and height of the grid.\n- `grid` (list): A 2D list where each cell contains either 0 or 1.\n\n#### Output\n- Returns the number of islands in the grid.\n",
+    "code": "def count_islands(grid_size: tuple, grid: list) -> int:\n    def dfs(i, j):\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == 0:\n            return\n        grid[i][j] = 0\n        dfs(i - 1, j)\n        dfs(i + 1, j)\n        dfs(i, j - 1)\n        dfs(i, j + 1)\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == 1:\n                dfs(i, j)\n                count += 1\n    return count",
+    "tests": [
+        "assert count_islands((3, 3), [[1,1,1],[1,0,1],[1,1,1]]) == 2",
+        "assert count_islands((5, 5), [[1,1,1,1,1],[1,1,0,0,1],[1,1,1,1,1],[1,0,0,0,0],[1,1,1,1,1]]) == 4",
+        "assert count_islands((2, 2), [[0,1],[0,0]]) == 1",
+        "assert count_islands((1, 1), [[1]]) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Fizz Buzz",
+    "description": "Write a function `fizz_buzz` that generates a list of numbers from 1 to `n`, where:\n- If the number is divisible by both 3 and 5, print 'FizzBuzz'.\n- If the number is only divisible by 3, print 'Fizz'.\n- If the number is only divisible by 5, print 'Buzz'.\n- Otherwise, print the number.\n\n#### Function Signature\n```python\ndef fizz_buzz(n: int) -> list:\n``` \n\n#### Input\n- `n` (int): An integer that represents the end of the sequence.\n\n#### Output\n- A list of strings representing the FizzBuzz sequence.\n",
+    "code": "def fizz_buzz(n: int) -> list:\n    result = []\n    for i in range(1, n+1):\n        if i % 3 == 0 and i % 5 == 0:\n            result.append('FizzBuzz')\n        elif i % 3 == 0:\n            result.append('Fizz')\n        elif i % 5 == 0:\n            result.append('Buzz')\n        else:\n            result.append(str(i))\n    return result\n",
+    "tests": [
+        "assert fizz_buzz(15) == ['1', '2', 'Fizz', '4', 'Buzz', 'Fizz', '7', '8', 'Fizz', 'Buzz', '11', 'Fizz', '13', '14', 'FizzBuzz']",
+        "assert len(fizz_buzz(20)) == 20",
+        "assert 'Fizz' in fizz_buzz(30)",
+        "assert 'Buzz' in fizz_buzz(25)"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Hard - Binary Tree Depth Sum",
+    "description": "Given a binary tree, each node has an integer value. Calculate the sum of all nodes at each depth level and return a list containing these sums.\n\n#### Function Signature\n```python\ndef depth_sum(root: TreeNode) -> List[int]:\n``` \n\n#### Input\n- `root` (TreeNode): The root node of the binary tree.\n\n#### Output\n- Returns a list of integers where each element represents the sum of nodes at a specific depth level.  The first element in the list corresponds to the sum of nodes at depth 0, the second element corresponds to the sum of nodes at depth 1, and so on.",
+    "code": "from collections import deque\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef depth_sum(root: TreeNode) -> list[int]:\n    if not root:\n        return []\n    result = []\n    queue = deque([(root, 0)])\n    while queue:\n        node, depth = queue.popleft()\n        if len(result) == depth:\n            result.append(node.val)\n        else:\n            result[depth] += node.val\n        if node.left:\n            queue.append((node.left, depth + 1))\n        if node.right:\n            queue.append((node.right, depth + 1))\n    return result",
+    "tests": [
+        "root = TreeNode(1)\nroot.left = TreeNode(2)\nroot.right = TreeNode(3)\nassert depth_sum(root) == [1, 5]",
+        "root = TreeNode(1)\nroot.left = TreeNode(2)\nroot.right = TreeNode(3)\nroot.left.left = TreeNode(4)\nroot.left.right = TreeNode(5)\nassert depth_sum(root) == [1, 5, 9]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

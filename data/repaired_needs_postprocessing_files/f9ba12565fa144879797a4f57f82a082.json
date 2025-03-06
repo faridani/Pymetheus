@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Medium)",
+    "description": "Given two strings, write a function `is_anagram` that determines whether one string is an anagram of the other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature```python\ndef is_anagram(s1: str, s2: str) -> bool:\n``` \n\n#### Input\n- `s1` (str): The first string to compare.\n- `s2` (str): The second string to compare.\n\n#### Output\n- Returns `True` if the two strings are anagrams of each other, `False` otherwise. Case should be ignored and only alphabetic characters considered in comparison.",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    def preprocess(s: str) -> str:\n        return ''.join(sorted(filter(str.isalpha, s))).lower()\n    processed_s1 = preprocess(s1)\n    processed_s2 = preprocess(s2)\n    return processed_s1 == processed_s2\n",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'bye') == False",
+        "assert is_anagram('pythonx!', 'happyton') == False",
+        "assert is_anagram('Dormitory', 'dirty room') == True"
+    ],
+    "model": "phi3:14b-repaired by Llama 3"
+}

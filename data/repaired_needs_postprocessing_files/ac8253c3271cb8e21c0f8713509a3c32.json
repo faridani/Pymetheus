@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Sum of Divisible Numbers",
+    "description": "Given a positive integer `n` and an array `nums` of integers, find the sum of all integers in the array that are divisible by `n`. \n\n#### Function Signature\n```python\ndef sum_divisible(n: int, nums: List[int]) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n- `nums` (List[int]): An array of integers.\n\n#### Output\n- Returns the sum of all integers in the array that are divisible by `n`. \n",
+    "code": "def sum_divisible(n, nums):\n    return sum(num for num in nums if num % n == 0)",
+    "tests": [
+        "assert sum_divisible(3, [1, 2, 3, 4, 5]) == 9",
+        "assert sum_divisible(4, [1, 2, 3, 4, 5]) == 8",
+        "assert sum_divisible(5, [1, 2, 3, 4, 5]) == 5"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

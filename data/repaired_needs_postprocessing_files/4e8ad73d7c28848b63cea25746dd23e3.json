@@ -1,0 +1,11 @@
+{
+    "title": "Super Hard Python: The Tower of Hanoi",
+    "description": "The Tower of Hanoi is a classic puzzle consisting of three rods, and a number of disks of different sizes which can be moved onto any rod. The puzzle starts with the disk arrangement as shown below:\nDisk    Rod\n       | \n     o   |\n    ooo   |\n   ooooo  |\nThe objective of the puzzle is to move the entire stack to another rod, obeying the following rules:\n- Only one disk can be moved at a time.\n- Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty rod.\n- No larger disk may be placed on top of a smaller disk.\n\nWrite a function `hanoi` that takes the number of disks as input and outputs the sequence of moves to solve the puzzle. Assume there are three rods numbered 1, 2, and 3.\n\n#### Function Signature\n```python\ndef hanoi(n: int) -> list:\n```\n\n#### Input\n- `n` (int): The number of disks (1 <= n <= 30).\n\n#### Output\n- Returns a list of strings representing the moves. Each string has the format 'Move disk X from rod Y to rod Z', where X is the size of the disk, Y and Z are the rods.\n",
+    "code": "def hanoi(n: int) -> list:\n    moves = []\n    def move_disks(n, source, target, auxiliary):\n        if n > 0:\n            move_disks(n - 1, source, auxiliary, target)\n            moves.append(f'Move disk {n} from rod {source + 1} to rod {target + 1}')\n            move_disks(n - 1, auxiliary, target, source)\n    move_disks(n, 0, 2, 1)\n    return moves",
+    "tests": [
+        "assert hanoi(1) == ['Move disk 1 from rod 1 to rod 3']",
+        "assert len(hanoi(2)) == 3",
+        "assert len(hanoi(3)) == 7"
+    ],
+    "model": "mistral-nemo:latest-repaired by Llama 3"
+}

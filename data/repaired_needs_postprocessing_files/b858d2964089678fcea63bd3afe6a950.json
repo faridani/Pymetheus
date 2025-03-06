@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "An anagram is a word or phrase that is formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once. Write a function `anagram_checker` that checks if two given strings are anagrams. This function should remove non-alphabetic characters and convert to lowercase before counting the frequency of each character in both strings and comparing them. If the counts match, it means the input strings are anagrams. Otherwise, they're not.",
+    "code": "import collections\n\ndef anagram_checker(string1: str, string2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    string1 = ''.join(char for char in string1 if char.isalpha()).lower()\n    string2 = ''.join(char for char in string2 if char.isalpha()).lower()\n    # Count the frequency of each character in both strings and compare\n    counts1 = collections.Counter(string1)\n    counts2 = collections.Counter(string2)\n    return counts1 == counts2",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('act', 'cat') == True",
+        "assert anagram_checker('hello', 'world') == False",
+        "assert anagram_checker('Python', 'htpnyoP') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

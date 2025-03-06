@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Maximum Path Sum in a Binary Tree",
+    "description": "Given the root of a binary tree, find the maximum path sum. The path sum of a path is the sum of the node values in the path. A path can start and end at any node in the tree.\n\n#### Function Signature\n```python\ndef max_path_sum(root: TreeNode) -> int:\n```\nwhere `TreeNode` is defined as follows:\n```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n```\n#### Input\n- `root` (TreeNode): The root of the binary tree.\n\n#### Output\n- Returns the maximum path sum in the binary tree.",
+    "code": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef max_path_sum(root: TreeNode) -> int:\n    max_sum = float('-inf')\n\n    def dfs(node: TreeNode) -> int:\n        nonlocal max_sum\n        if not node:\n            return 0\n        left_gain = max(dfs(node.left), 0)\n        right_gain = max(dfs(node.right), 0)\n        price_newpath = node.val + left_gain + right_gain\n        max_sum = max(max_sum, price_newpath)\n        return node.val + max(left_gain, right_gain)\n\n    dfs(root)\n    return max_sum",
+    "tests": [
+        "'assert max_path_sum(TreeNode(10, TreeNode(2, TreeNode(7), TreeNode(4)), TreeNode(15))) == 37'",
+        "'assert max_path_sum(TreeNode(-1)) == -1'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

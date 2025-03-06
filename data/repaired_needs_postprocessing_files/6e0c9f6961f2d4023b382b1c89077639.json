@@ -1,0 +1,12 @@
+{
+    "title": "Polindromic Prime Checker (Hard)",
+    "description": "Given a positive integer, check if it is both polindromic and prime.\n\n#### Function Signature\n```python\ndef is_polindromic_prime(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): A positive integer that may be a polindrome.\n\n#### Output\n- Returns `True` if the input integer is both a polindrome and a prime, `False` otherwise.\n\n#### Constraints\n- 1 <= n <= 10^18\n\n#### Hints\n- A number that remains the same when its digits are reversed is called a palindromic number.\n- A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.",
+    "code": "import math\ndef is_polindromic_prime(n: int) -> bool:\n    # Check if the number is palindromic\n    n_str = str(n)\n    return n_str == n_str[::-1]\n    \n    # Check if the number is prime\n    if n < 2: return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True",
+    "tests": [
+        "assert is_polindromic_prime(311) == True",
+        "assert is_polindromic_prime(181) == True",
+        "assert is_polindromic_prime(237) == False",
+        "assert is_polindromic_prime(16783) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

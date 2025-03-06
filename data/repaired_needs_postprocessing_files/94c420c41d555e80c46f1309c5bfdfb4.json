@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Balanced Brackets Checker",
+    "description": "A balanced bracket sequence has the same number of opening brackets as closing brackets and they are properly nested. Write a function `are_balanced` that checks if a given string containing parentheses '(', ')', square brackets '[', ']'; curly braces '{', '}'. is balanced.\n\n#### Function Signature\n```python\ndef are_balanced(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string containing parentheses, square brackets, and/or curly braces.\n\n#### Output\n- Returns `True` if the input string is balanced, `False` otherwise.\n",
+    "code": "def are_balanced(s: str) -> bool:\n    stack = []\n    brackets = {'(': ')', '[': ']', '{': '}'}\n    for char in s:\n        if char in brackets:\n            stack.append(char)\n        elif not stack or brackets[stack.pop()] != char:\n            return False\n    return not stack",
+    "tests": [
+        "assert are_balanced('({[]})') == True",
+        "assert are_balanced('([)]') == False",
+        "assert are_balanced('{(([[(())]])))') == True",
+        "assert are_balanced('{(([[))]]') == False"
+    ],
+    "model": "mistral-nemo:latest-repaired by Llama 3"
+}

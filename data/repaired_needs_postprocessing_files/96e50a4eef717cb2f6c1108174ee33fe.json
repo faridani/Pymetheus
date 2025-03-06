@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Maximum Sum of Subarray K Times",
+    "description": "Given an integer array `nums` and an integer `k`, write a function that returns the maximum sum of a subarray that can be obtained by considering any number of contiguous elements from the array, not necessarily all. The function should return this maximum sum repeated `k` times.\n\n#### Function Signature\n```python\ndef max_sum_k_times(nums: list[int], k: int) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n- `k` (int): An integer.\n\n#### Output\n- Returns the maximum sum of a subarray that can be obtained by considering any number of contiguous elements from the array, not necessarily all, repeated `k` times.",
+    "code": "def max_sum_k_times(nums: list[int], k: int) -> int:\n    max_sum = float('-inf')\n    for i in range(len(nums)):\n        current_sum = 0\n        for j in range(i, len(nums)):\n            current_sum += nums[j]\n            if current_sum > max_sum:\n                max_sum = current_sum\n    return max_sum * k",
+    "tests": [
+        "assert max_sum_k_times([1, -2, 3, 10, -4, 7.5], 6) == 12",
+        "assert max_sum_k_times([-1,-2,-3,-4,-5],2) == -6",
+        "assert max_sum_k_times([1],5) == 1",
+        "assert max_sum_k_times([],5) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

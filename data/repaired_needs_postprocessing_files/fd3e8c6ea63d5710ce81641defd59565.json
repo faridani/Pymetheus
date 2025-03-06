@@ -1,0 +1,11 @@
+{
+    "title": "Reverse List Order (Medium)",
+    "description": "Write a function `reverse_list` that takes a list and returns the same list with its elements in reverse order.\n\n#### Function Signature\n```python\ndef reverse_list(numbers: List[int]) -> List[int]:\n``` \n\n#### Input\n- `numbers` (List[int]): A list of integers, can be empty or contain any number of elements.\n\n#### Output\n- Returns a new list with the same elements as input but in reverse order.",
+    "code": "def reverse_list(numbers: List[int]) -> List[int]:\n    # Return the reversed list\n    return numbers[::-1]",
+    "tests": [
+        "assert reverse_list([1, 2, 3, 4]) == [4, 3, 2, 1]",
+        "assert reverse_list([]) == []",
+        "assert reverse_list([5, 6, 7]) == [7, 6, 5]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Tic-Tac-Toe Game Solver (Hard)",
+    "description": "Write a function `tic_tac_toe_solver` that takes as input the current state of a Tic-Tac-Toe game, represented as a 3x3 list of lists (`board`). The board is initialized with empty spaces (`' '`) and players X and O will make moves by replacing the space at their chosen position. Your function should return the winning player (either `'X'` or `'O'`) if there's a winner, or `None` if it's not possible to determine the winner yet.\n\n#### Function Signature\n```\ndef tic_tac_toe_solver(board: list) -> str | None:\n``` \n\n#### Input\n- `board` (list): A 3x3 list of lists representing the current state of the Tic-Tac-Toe game. Each element is either a space (`' '`) or an X or O.\n\n#### Output\n- Returns the winning player if there's a winner, or `None` otherwise.",
+    "code": "import copy\ndef tic_tac_toe_solver(board: list) -> str | None:\n    def check_win(player: str, symbol: str) -> bool:\n        for i in range(3):\n            if board[i][0] == board[i][1] == board[i][2] == symbol or \\\n               board[0][i] == board[1][i] == board[2][i] == symbol or \\\n               board[0][0] == board[1][1] == board[2][2] == symbol or \\\n               board[0][2] == board[1][1] == board[2][0] == symbol:\n                return True\n        return False\n    for i in range(3):\n        for j in range(3):\n            if board[i][j] == ' ':  # empty space found, game not over yet\n                return None\n    for player in ['X', 'O']:\n        if check_win(player, player):\n            return player\n    return None",
+    "tests": [
+        "assert tic_tac_toe_solver([[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]) == None",
+        "assert tic_tac_toe_solver([['X', ' ', ' '], ['O', ' ', ' '], [' ', ' ', ' ']]) == None",
+        "assert tic_tac_toe_solver([['X', 'X', ' '], ['O', 'O', ' '], [' ', ' ', ' ']]) == 'X'",
+        "assert tic_tac_toe_solver([['X', 'O', 'X'], ['O', 'X', 'O'], ['X', 'O', 'X']]) == 'X'"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,15 @@
+{
+    "title": "Prime Number Palindromes Checker (Medium)",
+    "description": "A prime number palindrome is a natural number that reads the same forward and backward, and it is also a prime number. Write a function `is_prime_palindrome` that checks if a given natural number is a prime number palindrome.\n\n#### Function Signature\n```python\ndef is_prime_palindrome(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A natural number that may contain leading zeros.\n\n#### Output\n- Returns `True` if the input natural number is a prime number palindrome, `False` otherwise.\n\n#### Constraints and Hints\n- You can assume that `n` will always be an integer and it will never exceed 10^18. Use this constraint to optimize your solution.\n- To check if a number is prime, you can use the Sieve of Eratosthenes algorithm or any other method that you find efficient.",
+    "code": "def is_prime(n):\n    # Initialize a list of bools indicating whether each number up to n is prime\n    primes = [True] * (n + 1)\n    for i in range(2, int(n**0.5) + 1):\n        if primes[i]:\n            # Mark multiples of i as non-prime\n            for j in range(i*i, n+1, i):\n                primes[j] = False\n    return primes[n]\n\ndef is_palindrome(n: int) -> bool:\n    # Convert the number to a string and reverse it\n    s = str(n) + str(n)[::-1]\n    # Remove leading zeros from the reversed string\n    s = s.lstrip('0')\n    return s == s[::-1]\n\ndef is_prime_palindrome(n: int) -> bool:\n    if not n > 0:\n        return False\n    # Check if the number is a palindrome\n    if not is_palindrome(n):\n        return False\n    # Check if the number is prime\n    if not is_prime(n):\n        return False\n    return True",
+    "tests": [
+        "assert is_prime_palindrome(3) == True",
+        "assert is_prime_palindrome(5) == True",
+        "assert is_prime_palindrome(6) == False",
+        "assert is_prime_palindrome(7) == True",
+        "assert is_prime_palindrome(101) == False",
+        "assert is_prime_palindrome(9009) == True",
+        "assert is_prime_palindrome(11311) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

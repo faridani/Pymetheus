@@ -1,0 +1,12 @@
+{
+    "title": "'String Rotation Checker (Hard)'",
+    "description": "A string rotation is a cyclic shift of one string relative to another. Service messages are encrypted by rotating the characters n places in the message text. Write a function `is_string_rotation` that checks if two given strings are rotations of each other.\n\n#### Function Signature\n```python\ndef is_string_rotation(s1: str, s2: str) -> bool:\n``` \n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if either of the given strings is a rotation of the other, `False` otherwise.\n",
+    "code": "def is_string_rotation(s1: str, s2: str) -> bool:\n    # If lengths are not equal, they cannot be rotations\n    if len(s1) != len(s2):\n        return False\n    \n    # Calculate the length of the rotation (difference between the lengths modulo the length)\n    n = abs(len(s1) - s1.find(s2))\n    \n    # Check if one of the strings is a prefix of the other, and then if they are equal after the nth character\n    return (s1[:n] == s2 or s2[:n] == s1) and s1[n:] == s2[n:]\n",
+    "tests": [
+        "assert is_string_rotation('waterbottle', 'erbottlewat') == True",
+        "assert is_string_rotation('abcde', 'bcdea') == True",
+        "assert is_string_rotation('Hello World', 'World Hello') == True",
+        "assert is_string_rotation('abcdefghijklmn', 'mnopqrstuvwxyz') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

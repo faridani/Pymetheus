@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Number of Islands",
+    "description": "You are given a 2D grid where each cell can be either water or land. Write a function num_islands that returns the number of islands in the grid.\n\n#### Function Signature\n```python\ndef num_islands(grid: list[list[str]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[str]]): A 2D grid where each cell can be either 'W' for water or 'L' for land.\n\n#### Output\n- Returns the number of islands in the grid.",
+    "code": "def num_islands(grid: list[list[str]]) -> int:\n    if not grid:\n        return 0\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == 'L':\n                self.dfs(grid, i, j)\n                count += 1\n    return count\n\n    def dfs(self, grid: list[list[str]], i: int, j: int):\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] != 'L':\n            return\n        grid[i][j] = 'W'\n        self.dfs(grid, i-1, j)\n        self.dfs(grid, i+1, j)\n        self.dfs(grid, i, j-1)\n        self.dfs(grid, i, j+1)",
+    "tests": [
+        "assert num_islands([['W', 'L', 'W'], ['L', 'L', 'L'], ['W', 'W', 'W']]) == 1",
+        "assert num_islands([['W'], ['L'], ['W']]) == 1",
+        "assert num_islands([]) == 0",
+        "assert num_islands([['W', 'W', 'W'], ['W', 'L', 'W'], ['W', 'W', 'W']]) == 2"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

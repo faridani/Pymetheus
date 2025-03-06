@@ -1,0 +1,13 @@
+{
+    "title": "Palindromic Anagrams (Medium)",
+    "description": "Given two strings, write a function `find_anagram_palindromes` that checks if the given strings are anagrams of each other and are also palindromes.\n\n#### Function Signature\n```python\ndef find_anagram_palindromes(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other and are also palindromes, `False` otherwise.",
+    "code": "import string\ndef find_anagram_palindromes(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Remove non-alphanumeric characters and convert to lowercase\n    s1 = ''.join(char for char in s1 if char in string.ascii_letters + string.digits).lower()\n    s2 = ''.join(char for char in s2 if char in string.ascii_letters + string.digits).lower()\n    \n    # Check if the sorted strings are equal\n    return sorted(s1) == sorted(s2)\n    # Also check if both strings read the same forwards and backwards\n    # (This is optional, but good to include for a more robust solution)\n    #return s1 == s1[::-1] and s2 == s2[::-1]\n",
+    "tests": [
+        "assert find_anagram_palindromes(\"racecar\", \"carrer\") == True",
+        "assert find_anagram_palindromes(\"madam\", \"madam\") == True",
+        "assert find_anagram_palindromes(\"hello\", \"olleh\") == False",
+        "assert find_anagram_palindromes(\"No 'x' in Nixon\", \"xix 'enon siPXino'\") == False",
+        "assert find_anagram_palindromes(\"A man, a plan, a canal: Panama\", \"amanaplanacanalpanamamapilomanocapa\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

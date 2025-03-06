@@ -1,0 +1,12 @@
+{
+    "title": "Permutation Checker (Hard)",
+    "description": "Write a function `is_permutation` that checks if two given strings are permutations of each other.\n\n#### Function Signature\n```python\ndef is_permutation(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters and numbers.\n\n#### Output\n- Returns `True` if the two input strings are permutations of each other, `False` otherwise.\n",
+    "code": "def is_permutation(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to sets\n    set1 = set(s1.replace(' ', ''))\n    set2 = set(s2.replace(' ', ''))\n    \n    # Check if the two sets have the same number of elements (length)\n    # And every element in one set appears exactly once in the other set\n    return len(set1) == len(set2) and set1.issubset(set2) and set2.issubset(set1)",
+    "tests": [
+        "assert is_permutation('hello world', 'world hello') == True",
+        "assert is_permutation('racecar', 'carcarr') == True",
+        "assert is_permutation('hello', 'olleh') == True",
+        "assert is_permutation('abcdefgh', 'ghfedcba') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

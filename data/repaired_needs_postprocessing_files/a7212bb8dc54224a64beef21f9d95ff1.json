@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Anagram Checker",
+    "description": "Write a function `is_anagram` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): The first string.\n- `str2` (str): The second string.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "import re\ndef is_anagram(str1: str, str2: str) -> bool:\n    # Remove spaces and punctuation from both strings\n    str1 = re.sub('[^a-zA-Z0-9]', '', str1)\n    str2 = re.sub('[^a-zA-Z0-9]', '', str2)\n    # Check if the sorted characters in both strings are equal\n    return sorted(str1) == sorted(str2)",
+    "tests": [
+        "assert is_anagram('Listen', 'Silent') == True",
+        "assert is_anagram('Hello', 'olleh') == True",
+        "assert is_anagram('abcde', 'edcba') == True",
+        "assert is_anagram('hello', 'world') == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

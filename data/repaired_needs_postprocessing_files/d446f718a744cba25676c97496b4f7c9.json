@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Subsequence Count' - Easy",
+    "description": "In computer science, a palindromic subsequence of a given string is a subsequence that reads the same forward and backward. Write a function `count_palindromes` that counts the number of palindromic subsequences in a given string.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces and punctuation.\n\n#### Output\n- Returns the number of palindromic subsequences in the input string.\n",
+    "code": "def count_palindromes(s: str) -> int:\n    dp = [[0] * (len(s)) for _ in range(len(s))]\n    # Filling up the table for each length of substring\n    for i in range(len(s)):\n        for j in range(i, len(s)):\n            if s[i] == s[j] and (i == j or dp[i + 1][j - 1]):\n                dp[i][j] = True\n    # The number of palindromic subsequences is the sum of all diagonals in the table\n    return sum(row for row in dp) + 1",
+    "tests": [
+        "assert count_palindromes('abcd') == 7",
+        "assert count_palindromes('aabbca') == 14",
+        "assert count_palindromes('abcdefghijklmno') == 60",
+        "assert count_palindromes('xxxxx') == 32"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

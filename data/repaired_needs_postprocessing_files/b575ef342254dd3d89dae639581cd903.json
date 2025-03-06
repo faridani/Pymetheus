@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Subsequence Checker (Hard)'",
+    "description": "In mathematics and computer science, a palindromic subsequence of a string is a sequence of characters that can be read the same way forward and backward. Unlike a palindrome, a palindromic subsequence doesn't necessarily have to be continuous or non-empty.\n\n#### Function Signature\n```python\ndef is_palindromic_subsequence(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string contains any palindromic subsequences, `False` otherwise.",
+    "code": "def is_palindromic_subsequence(s: str) -> bool:\n    # If the string is empty or has only one character, it does not have any palindromic subsequences\n    if len(s) <= 1: return False\n\n    # Create a 2D matrix to store all subproblems' solutions (dp[i][j] = True means s[i..j] is a palindrome)\n    dp = [[False]*len(s) for _ in range(len(s))]\n\n    # Iterate through the string\n    for i in range(len(s)):\n        for j in range(i, len(s)):\n            if s[i] == s[j]:\n                # If the characters are the same, check if the middle part is also a palindrome\n                if (i+1 < j-1) and dp[i+1][j-1]:\n                    dp[i][j] = True\n            elif dp[i+1][j-1]:\n                # If the characters are different but there is a palindrome in between, check if the shorter part is also a palindrome\n                dp[i][j] = dp[(i+1) % len(s)][(j-1) % len(s)]\n    return any(dp[-1])",
+    "tests": [
+        "assert is_palindromic_subsequence(\"abba\") == True",
+        "assert is_palindromic_subsequence(\"banana\") == True",
+        "assert is_palindromic_subsequence(\"hello\") == False",
+        "assert is_palindromic_subsequence(\"racecar\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Longest Consecutive Sequence",
+    "description": "Given an unsorted array of integers `nums`, return the length of the longest consecutive sequence. You may assume that there are no duplicates.\n\n#### Function Signature\n```python\ndef longestConsecutive(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): An unsorted list of integers without duplicates.\n\n#### Output\n- Returns the length of the longest consecutive sequence within the input list.",
+    "code": "def longestConsecutive(nums: list[int]) -> int:\n    num_set = set(nums)\n    longest_streak = 0\n    for num in nums:\n        if num - 1 not in num_set:\n            current_num = num\n            current_streak = 1\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_streak += 1\n            longest_streak = max(longest_streak, current_streak)\n    return longest_streak",
+    "tests": [
+        "assert longestConsecutive([100,4,200,1,3,2]) == 4",
+        "assert longestConsecutive([0,3,7,2,5,8,4,6,0,1]) == 9",
+        "assert longestConsecutive([1,2,0,1]) == 3"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

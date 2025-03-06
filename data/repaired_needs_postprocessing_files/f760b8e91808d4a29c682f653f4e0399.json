@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection",
+    "description": "Given two strings, write a function `anagram_checker` that checks if the strings are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of another, such as 'listen' can be rearranged to form 'silent'.\n\n#### Function Signature\n```python\ndef anagram_checker(string1: str, string2: str) -> bool:\n```\n\n#### Input\n- `string1` (str): A non-empty string containing lowercase letters only.\n- `string2` (str): Another non-empty string containing lowercase letters only.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.",
+    "code": "def anagram_checker(string1: str, string2: str) -> bool:\n    # Remove spaces and convert to a sorted list of characters\n    sorted_chars1 = sorted(list(string1.replace(' ', '')))\n    sorted_chars2 = sorted(list(string2.replace(' ', '')))\n    \n    # Check if both lists have the same length and are equal (ignoring the order)\n    return len(sorted_chars1) == len(sorted_chars2) and sorted_chars1 == sorted_chars2",
+    "tests": [
+        "assert anagram_checker(\"listen\", \"silent\") == True",
+        "assert anagram_checker(\"actors\", \"troopers\") == True",
+        "assert anagram_checker(\"hello\", \"world\") == False",
+        "assert anagram_checker(\"Python\", \"htypnO\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

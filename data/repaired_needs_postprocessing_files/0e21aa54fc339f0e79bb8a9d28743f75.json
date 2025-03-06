@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "Write a function `is_anagram` that determines if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing only lowercase alphabets.\n- `s2` (str): Another string containing only lowercase alphabets.\n\n#### Output\n- Returns `True` if the two strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(s1) != len(s2):\n        return False\n\n    # Create two dictionaries to count the frequency of each character in both strings\n    dict1 = {}\n    dict2 = {}\n    for char in s1:\n        if char in dict1:\n            dict1[char] += 1\n        else:\n            dict1[char] = 1\n    for char in s2:\n        if char in dict2:\n            dict2[char] += 1\n        else:\n            dict2[char] = 1\n\n    # Compare the dictionaries to check if they are equal\n    return dict1 == dict2",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"apple\", \"appel\") == False",
+        "assert is_anagram(\"civic\", \"clivis\") == False",
+        "assert is_anagram(\"morsecode\", \"odrecomsem\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

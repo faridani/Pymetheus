@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Word Ladder",
+    "description": "Given two words, `beginWord` and `endWord`, and a word list `wordList`, find the length of the shortest transformation sequence from `beginWord` to `endWord`, such that: Only one letter can be changed at a time. Each transformed word must exist in the word list. Return 0 if there is no such transformation sequence. All words have the same length. All words consist only of lowercase English letters. #### Function Signature```python def ladderLength(beginWord: str, endWord: str, wordList: list[str]) -> int: ``` #### Input- `beginWord` (str): The starting word for the transformation sequence.- `endWord` (str): The target word for the transformation sequence.- `wordList` (list[str]): A list of words that can be used in the transformation sequence. #### Output- Returns the length of the shortest transformation sequence from `beginWord` to `endWord`. If no such sequence exists, returns 0. ",
+    "code": "from collections import deque\ndef ladderLength(beginWord: str, endWord: str, wordList: list[str]) -> int:\n    if endWord not in wordList: \n        return 0\n    wordList = set(wordList)\n    queue = deque([(beginWord, 1)])\n    while queue:\n        current_word, level = queue.popleft()\n        for i in range(len(current_word)):\n            for char in 'abcdefghijklmnopqrstuvwxyz':\n                next_word = current_word[:i] + char + current_word[i+1:]\n                if next_word == endWord:\n                    return level + 1\n                if next_word in wordList:\n                    wordList.remove(next_word)\n                    queue.append((next_word, level + 1))\n    return 0",
+    "tests": [
+        "assert ladderLength('hit', 'cog', ['hot','dot','dog','lot','log','cog']) == 5",
+        "assert ladderLength('hit', 'cog', ['hot','dot','dog','lot','log']) == 0"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

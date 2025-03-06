@@ -1,0 +1,10 @@
+{
+    "title": "Reverse Words in a String (Hard)",
+    "description": "Write a function `reverse_words` that takes a string as input and returns the same string but with each word reversed.\n\n#### Function Signature```python\ndef reverse_words(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string containing any number of words separated by spaces, punctuation or newlines.\n\n#### Output\n- Returns a string where each word in the input is reversed and in its original order.\n",
+    "code": "def reverse_words(s: str) -> str:\n    # Split the string into words by any whitespace, punctuation or newline characters\n    words = s.split()\n    # Reverse each word and join them back together with a space in between\n    return ' '.join(word[::-1] for word in words)",
+    "tests": [
+        "assert reverse_words('Hello, World!') == 'olleH ,dlroW'",
+        "assert reverse_words('Time flies like an arrow; Fruit flies like a banana.') == 'emitoc si ylpmoc etirw ,siht yo lupus ytna si ybaneelab si yfruut'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

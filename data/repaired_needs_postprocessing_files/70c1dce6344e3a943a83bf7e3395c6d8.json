@@ -1,0 +1,10 @@
+{
+    "title": "Reverse Words in a Sentence",
+    "description": "Write a function `reverse_words` that takes a string as input and returns the same string with the words reversed (i.e., each word is written in reverse order). The sentence may contain letters, numbers, spaces, commas, periods, and question marks. Words are separated by any number of whitespace characters.",
+    "code": "def reverse_words(s: str) -> str:\n    words = s.split()\n    return ' '.join(word[::-1] for word in words)",
+    "tests": [
+        "assert reverse_words('Hello, World!') == 'olleH ,dlroW!'",
+        "assert reverse_words('I am learning Python') == 'tnap ym I ma lrehtyP'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

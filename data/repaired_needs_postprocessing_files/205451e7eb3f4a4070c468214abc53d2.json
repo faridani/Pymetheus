@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Counting Fences",
+    "description": "Farmer John has a field with n rows of identical trees. He wants to build fences around each row, and he needs your help to count the number of possible fence configurations.\n#### Function Signature\n```python\ndef count_fences(n: int) -> int:\n```\n#### Input\n- `n` (int): The number of rows in Farmer John's field.\n#### Output\n- Returns the total number of possible fence configurations.\n",
+    "code": "def count_fences(n: int) -> int:\n    # Initialize the total count to 1, representing the empty field with no fences.\n    total_count = 1\n    # For each row in the field,\n    for _ in range(n):\n        # Calculate the number of possible fence configurations for this row (either 0 or 1).\n        row_count = 2 ** n\n        # Multiply the current count by the number of possible configurations for this row.\n        total_count *= row_count\n    # Return the total count.\n    return total_count",
+    "tests": [
+        "assert count_fences(3) == 256",
+        "assert count_fences(1) == 2",
+        "assert count_fences(0) == 1",
+        "assert count_fences(-5) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

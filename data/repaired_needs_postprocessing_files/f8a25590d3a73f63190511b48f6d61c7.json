@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Solver (Hard)",
+    "description": "Write a function `is_anagram(s1: str, s2: str) -> bool` that checks if two given strings are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n``` \n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain only letters and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = ''.join([char for char in s1 if char.isalpha()]).lower()\n    s2 = ''.join([char for char in s2 if char.isalpha()]).lower()\n    # If the two strings have different lengths, they cannot be anagrams\n    if len(s1) != len(s2):\n        return False\n    # Create a dictionary to count the frequency of each character in the first string\n    char_freq = {}\n    for char in s1:\n        if char not in char_freq:\n            char_freq[char] = 0\n        char_freq[char] += 1\n    # Decrease the frequency count of each character in the second string\n    for char in s2:\n        if char not in char_freq or char_freq[char] == 0:\n            return False\n        char_freq[char] -= 1\n    # If all characters have been accounted for, the strings are anagrams\n    return True",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('Movie Time!', 'MinutemoV') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

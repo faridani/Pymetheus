@@ -1,0 +1,13 @@
+{
+    "title": "Prime Factorization",
+    "description": "Write a function `prime_factors` that finds all the prime factors of a given number.\n#### Function Signature\n```python\ndef prime_factors(n: int) -> list:\n```\n\n#### Input\n- `n` (int): A positive integer for which you want to find all the prime factors.\n\n#### Output\n- Returns a list of prime numbers that are factors of the input number in ascending order.",
+    "code": "def prime_factors(n: int) -> list:\n    # Edge case: 1 has no prime factors\n    if n == 1:\n        return []\n    # Initialize list for prime factors and a list to store the prime numbers from 2 to the square root of n\n    prime_factors = []\n    primes = [i for i in range(2, int(n**0.5)+1) if all([n % i != 0 for i in range(2, int(i**0.5)+1)])]\n\n    # Iterate through the prime numbers and find the factors\n    for prime in primes:\n        while n % prime == 0:\n            prime_factors.append(prime)\n            n //= prime\n    \n    # If n is still not 1 (indicating it has another factor), add it to the list of prime factors\n    if n != 1:\n        prime_factors.append(n)\n    return prime_factors",
+    "tests": [
+        "assert prime_factors(3) == [3]",
+        "assert prime_factors(9) == [3, 3]",
+        "assert prime_factors(15) == [3, 5]",
+        "assert prime_factors(28) == [2, 2, 7]",
+        "assert prime_factors(496) == [2, 2, 2, 31, 31]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

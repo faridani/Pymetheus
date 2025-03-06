@@ -1,0 +1,12 @@
+{
+    "title": "Reversed Substring Checker (Easy)",
+    "description": "Given a string, check if there exists any substring that when reversed, it equals to the original substring. For example, for the string 'level', there is no such substring but in the string 'deified', 'ide' and its reverse 'ede' are equal.\n\n#### Function Signature\n```\ndef has_equal_substring(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A non-empty string containing only lowercase English letters.\n\n#### Output\n- Returns `True` if there exists any substring in the input string that when reversed, it equals to the original substring. Otherwise, returns `False`. ",
+    "code": "def has_equal_substring(s: str) -> bool:\n    # Iterate over all substrings of length 2 or more\n    for i in range(1, len(s)):\n        # Check if the substring and its reversed version are equal\n        for j in range(i, len(s)-i+1):\n            substr = s[j:i+j]\n            reversed_substr = substr[::-1]\n            if substr == reversed_substr:\n                return True\n    # If no such substring found, return False\n    return False",
+    "tests": [
+        "assert has_equal_substring('level') == False",
+        "assert has_equal_substring('deified') == True",
+        "assert has_equal_substring('racecar') == False",
+        "assert has_equal_substring('abba') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

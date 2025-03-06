@@ -1,0 +1,12 @@
+{
+    "title": "Even Fibonacci Summator (Medium)",
+    "description": "Write a function `even_fibonacci_sum` that finds the sum of all even-valued Fibonacci numbers below and including n. The Fibonacci sequence is a series of numbers in which each number is the sum of the two preceding ones, usually starting with 0 and 1.\n\n#### Function Signature\n```python\ndef even_fibonacci_sum(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): The upper limit for the Fibonacci numbers to consider.\n\n#### Output\n- Returns the sum of all even-valued Fibonacci numbers below and including n.",
+    "code": "def even_fibonacci_sum(n: int) -> int:\n    # Initialize list for Fibonacci sequence\n    fib = [0, 1]\n    sum = 0\n\n    # Loop through Fibonacci numbers until the current number is greater than n or we have found enough even numbers\n    while len(fib) < n+1:\n        # Get the next number in the Fibonacci sequence\n        current = fib[-1] + fib[-2]\n\n        # If the current number is even, add it to our sum and append it to our list of Fibonacci numbers\n        if current % 2 == 0:\n            sum += current\n            fib.append(current)\n    return sum",
+    "tests": [
+        "assert even_fibonacci_sum(4) == 3",
+        "assert even_fibonacci_sum(7) == 15",
+        "assert even_fibonacci_sum(10) == 26",
+        "assert even_fibonacci_sum(15) == 68"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

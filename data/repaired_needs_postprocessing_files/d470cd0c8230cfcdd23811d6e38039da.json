@@ -1,0 +1,11 @@
+{
+    "title": "Coprime Counting",
+    "description": "Two integers are coprime if their greatest common divisor (GCD) is 1. Write a function `coprime_count` that takes a list of positive integers as input and returns the count of pairs of integers in the list that are coprime.\n#### Function Signature\n```python\ndef coprime_count(numbers: list[int]) -> int:\n```\n\n#### Input\n- `numbers` (list[int]): A list of positive integers.\n\n#### Output\n- Returns the count of pairs of integers in the input list that are coprime.\n",
+    "code": "import math\ndef coprime_count(numbers: list[int]) -> int:\n    def gcd(a: int, b: int) -> int:\n        if b == 0:\n            return a\n        else:\n            return gcd(b, a % b)\n    count = 0\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if gcd(numbers[i], numbers[j]) == 1:\n                count += 1\n    return count",
+    "tests": [
+        "assert coprime_count([2, 3, 4, 5, 6, 7]) == 2",
+        "assert coprime_count([1, 2, 3, 4, 5, 6]) == 0",
+        "assert coprime_count([1, 2, 3, 5, 7]) == 3"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

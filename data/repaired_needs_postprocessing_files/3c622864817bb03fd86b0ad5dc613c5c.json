@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Number of Unique Factors",
+    "description": "Write a function `count_unique_factors` that takes an integer as input and returns the number of unique factors it has.\n\n#### Function Signature\n```python\ndef count_unique_factors(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): An integer greater than 1.\n\n#### Output\n- Returns the number of unique factors of the input integer.",
+    "code": "def count_unique_factors(n: int) -> int:\n    factors = set()\n    for i in range(1, n + 1):\n        if n % i == 0:\n            factors.add(i)\n    return len(factors)",
+    "tests": [
+        "assert count_unique_factors(10) == 4",
+        "assert count_unique_factors(12) == 6",
+        "assert count_unique_factors(15) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

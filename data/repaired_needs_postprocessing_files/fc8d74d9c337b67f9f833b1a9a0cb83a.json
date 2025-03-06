@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Counting Duplicates",
+    "description": "Write a function `count_duplicates` that takes a list of integers as input and returns the count of duplicate elements in the list.\n\n#### Function Signature\n```python\ndef count_duplicates(lst: list) -> int:\n``` \n\n#### Input\n- `lst` (list): A list of integers.\n\n#### Output\n- Returns the count of duplicate elements in the input list.",
+    "code": "def count_duplicates(lst: list) -> int:\n    # Create a dictionary to store frequency of each element\n    freq_dict = {}\n    for num in lst:\n        if num in freq_dict:\n            freq_dict[num] += 1\n        else:\n            freq_dict[num] = 1\n    # Count the number of duplicate elements (frequency > 1)\n    count = 0\n    for freq in freq_dict.values():\n        if freq > 1:\n            count += 1\n    return count",
+    "tests": [
+        "assert count_duplicates([1, 2, 3]) == 0",
+        "assert count_duplicates([1, 2, 2, 3]) == 1",
+        "assert count_duplicates([1, 1, 1, 2]) == 2",
+        "assert count_duplicates([1, 2, 3, 4]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

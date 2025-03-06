@@ -1,0 +1,12 @@
+{
+    "title": "Maximum Sum of an Increasing Subsequence",
+    "description": "Given a list of positive integers, find the maximum sum of a subsequence such that all elements are increasing. For example, for input [1, 3, 6, 7], the maximum sum is 10 (the subsequence being [1, 3, 7]). Write a function `max_increasing_subsequence_sum` that calculates this value.\n\n#### Function Signature\n```python\ndef max_increasing_subsequence_sum(arr: list[int]) -> int:\n``` \n\n#### Input\n- `arr` (list[int]): A list of positive integers.\n\n#### Output\n- Returns the maximum sum of an increasing subsequence in the input array.",
+    "code": "def max_increasing_subsequence_sum(arr: list[int]) -> int:\n    if not arr:\n        return 0\n    dp = [arr[0]]\n    max_sum = arr[0]\n    for num in arr[1:]:\n        last_num = dp[-1]\n        if num > last_num:\n            dp.append(num)\n            max_sum += num - last_num\n        else:\n            i = 0\n            while i < len(dp) and dp[i] <= num:\n                i += 1\n            if i < len(dp):\n                dp[i] = num\n                max_sum += num - dp[i-1]\n    return max_sum",
+    "tests": [
+        "assert max_increasing_subsequence_sum([1, 3, 6, 7]) == 10",
+        "assert max_increasing_subsequence_sum([5, 4, 2, 1]) == 5",
+        "assert max_increasing_subsequence_sum([1, 1, 1]) == 1",
+        "assert max_increasing_subsequence_sum([]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

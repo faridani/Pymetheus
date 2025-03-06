@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Beautiful Arrangement",
+    "description": "#### Problem Statement\nIn a beautiful arrangement, you place identical balls on a table. The balls are arranged in an alternating pattern of two colors. The first ball is red, the second is blue, then red again, and so on. You want to calculate how many different arrangements are possible for n balls.\n#### Function Signature\n```python\ndef beautiful_arrangement(n: int) -> int:\n```  \n\n#### Input\n- `n` (int): The number of balls you have.\n#### Output\n- Returns the number of possible beautiful arrangements.",
+    "code": "def beautiful_arrangement(n: int) -> int:\n    if n == 1:\n        return 2\n    else:\n        return 2 * (2 * n - 3)\n",
+    "tests": [
+        "assert beautiful_arrangement(1) == 2",
+        "assert beautiful_arrangement(2) == 4",
+        "assert beautiful_arrangement(3) == 8",
+        "assert beautiful_arrangement(10) == 45088"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

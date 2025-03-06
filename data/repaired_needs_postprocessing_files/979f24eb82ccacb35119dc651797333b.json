@@ -1,0 +1,11 @@
+{
+    "title": "Reverse Sentence Checker (Hard)",
+    "description": "Write a function `is_reverse_sentence` that checks if a given string represents a sentence where the words are written in reverse order. For example, the string 'olleh siht' is a reverse sentence because it reads as 'hello' backward.\n\n#### Function Signature\n```python\ndef is_reverse_sentence(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that contains at least one space character and the words may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string represents a reverse sentence, `False` otherwise.",
+    "code": "def is_reverse_sentence(s: str) -> bool:\n    # Remove non-alphanumeric characters and split into words\n    words = [word.lower() for word in s.split() if word != '']\n    # Check if the list of words reads the same forward and backwards\n    return words == words[::-1]",
+    "tests": [
+        "assert is_reverse_sentence('olleh siht') == True",
+        "assert is_reverse_sentence('This is a reverse sentence test') == False",
+        "assert is_reverse_sentence('Words, spaces, and punctuation. ,!,.?punctuation .spaces Words,' ) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

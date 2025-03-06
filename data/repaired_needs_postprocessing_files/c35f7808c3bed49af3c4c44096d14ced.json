@@ -1,0 +1,11 @@
+{
+    "title": "[Medium] String Encryption",
+    "description": "You are given a string S and an integer K. Write a function `encrypt_string` that encrypts the input string by shifting each character's ASCII value to the right by K places in the alphabet, wrapping around if it goes past 'z'. If the character is not a lowercase letter, leave it as is.\n\n#### Function Signature\n```python\ndef encrypt_string(S: str, K: int) -> str:\n```\n\n#### Input\n- `S` (str): A string that may contain any characters.\n- `K` (int): An integer indicating the number of places to shift each character's ASCII value to the right in the alphabet.\n\n#### Output\n- Returns a new string where each lowercase letter is shifted K places to the right, and other characters are left as is.",
+    "code": "def encrypt_string(S: str, K: int) -> str:\n    result = ''\n    for char in S:\n        if 'a' <= char <= 'z':\n            new_char = chr((ord(char) - ord('a') + K) % 26 + ord('a'))\n            result += new_char\n        else:\n            result += char\n    return result",
+    "tests": [
+        "assert encrypt_string(\"abc\", 1) == \"bcd\"",
+        "assert encrypt_string(\"xyz\", 2) == \"zab\"",
+        "assert encrypt_string(\"hello, world!\", 3) == \"khoor, zruog!\""
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

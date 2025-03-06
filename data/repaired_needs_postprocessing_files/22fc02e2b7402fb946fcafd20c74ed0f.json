@@ -1,0 +1,16 @@
+{
+    "title": "'Prime Number Checker (Hard)'",
+    "description": "Write a function `is_prime` that checks if a given number is prime.\n\n#### Function Signature\n```python\ndef is_prime(num: int) -> bool:\n``` \n\n#### Input\n- `num` (int): A positive integer.\n\n#### Output\n- Returns `True` if the input number is a prime number, `False` otherwise.",
+    "code": "def is_prime(num: int) -> bool:\n    # Check for edge cases\n    if num <= 1: return False\n    if num == 2 or num == 3: return True\n    for i in range(2, int(num**0.5)+1):\n        if num % i == 0:\n            return False\n    return True",
+    "tests": [
+        "assert is_prime(2) == True",
+        "assert is_prime(3) == True",
+        "assert is_prime(4) == False",
+        "assert is_prime(5) == True",
+        "assert is_prime(6) == False",
+        "assert is_prime(17) == True",
+        "assert is_prime(18) == False",
+        "assert is_prime(1024*33+1) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

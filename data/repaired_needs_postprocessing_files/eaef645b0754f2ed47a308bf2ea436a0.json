@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Maximum Sum of Divisors",
+    "description": "Given an integer `n`, find the maximum sum of divisors of all integers from `1` to `n`. The function should return this maximum sum.\r\n\r\n#### Function Signature\r\n```python\r\ndef max_sum_of_divisors(n: int) -> int:\r```\r\r\n#### Input\r\n- `n` (int): A positive integer.\r\r\n#### Output\r\n- Returns the maximum sum of divisors of all integers from `1` to `n`. ",
+    "code": "import math\r\ndef max_sum_of_divisors(n: int) -> int:\r    max_sum = 0\r    for i in range(1, n + 1):\r        divisor_sum = 0\r        for j in range(1, math.isqrt(i) + 1):\r            if i % j == 0:\r                divisor_sum += j + (i // j if j != 1 else 0)\r        max_sum = max(max_sum, divisor_sum)\r    return max_sum",
+    "tests": [
+        "assert max_sum_of_divisors(10) == 48",
+        "assert max_sum_of_divisors(20) == 96",
+        "assert max_sum_of_divisors(50) == 246",
+        "assert max_sum_of_divisors(1000) == 123750"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Array Sum",
+    "description": "Given an array of integers, find the sum of all non-negative numbers. A negative number should be ignored.\n\n#### Function Signature\n```python\ndef array_sum(arr: list[int]) -> int:\n``` \n\n#### Input\n- `arr` (list[int]): A list of integers that may contain both positive and negative numbers.\n\n#### Output\n- Returns the sum of all non-negative numbers in the input array.",
+    "code": "def array_sum(arr: list[int]) -> int:\n    return sum(num for num in arr if num >= 0)",
+    "tests": [
+        "assert array_sum([1, -2, 3, 4, -5]) == 8",
+        "assert array_sum([-1, 2, -3, 4, 5]) == 11",
+        "assert array_sum([0, 0, 0]) == 0",
+        "assert array_sum([-1, -2, -3, -4, -5]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

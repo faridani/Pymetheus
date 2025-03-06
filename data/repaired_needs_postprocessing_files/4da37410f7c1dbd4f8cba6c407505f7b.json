@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Finding the maximum number of adjacent equal elements",
+    "description": "Write a function `max_adjacent_equal` that takes a list of integers as input and returns the maximum number of adjacent equal elements found in the list.\n\n#### Function Signature\n```python\ndef max_adjacent_equal(lst: list[int]) -> int:\n```\n\n#### Input\n- `lst` (list[int]): A list of integers, where consecutive elements may be equal or different.\n\n#### Output\n- Returns an integer representing the maximum number of adjacent equal elements found in the input list.",
+    "code": "import itertools\ndef max_adjacent_equal(lst: list[int]) -> int:\n    # Initialize a variable to store the maximum count of adjacent equal elements\n    max_count = 0\n    for k, g in itertools.groupby(lst):\n        group_size = len(list(g))\n        if group_size > max_count:\n            max_count = group_size\n    return max_count",
+    "tests": [
+        "assert max_adjacent_equal([1, 2, 3]) == 0",
+        "assert max_adjacent_equal([1, 1, 2, 2, 2]) == 2",
+        "assert max_adjacent_equal([4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

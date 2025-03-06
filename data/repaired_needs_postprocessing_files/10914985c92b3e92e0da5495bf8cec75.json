@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Island Size",
+    "description": "You are given a 2D array of integers `grid` representing a grid of cells, where each cell can be either land (`1`) or water (`0`). Write a function `max_island_size` that returns the size of the largest island in the grid.\n\n#### Function Signature\n```python\ndef max_island_size(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D array of integers representing a grid of cells, where each cell can be either land (`1`) or water (`0`).\n- The size of the grid is `m x n`, where `m` and `n` are positive integers.\n\n#### Output\n- Returns an integer representing the size of the largest island in the grid.",
+    "code": "import copy\n\ndef max_island_size(grid: list[list[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n    m, n = len(grid), len(grid[0])\n    visited = [[False] * n for _ in range(m)]\n    \n    def dfs(i: int, j: int) -> int:\n        if i < 0 or i >= m or j < 0 or j >= n or visited[i][j] or grid[i][j] == 0:\n            return 0\n        visited[i][j] = True\n        size = 1\n        \n        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            nx, ny = i + dx, j + dy\n            if 0 <= nx < m and 0 <= ny < n and grid[nx][ny] == 1:\n                size += dfs(nx, ny)\n        \n        return size\n    \n    max_size = 0\n    for i in range(m):\n        for j in range(n):\n            if grid[i][j] == 1 and not visited[i][j]:\n                max_size = max(max_size, dfs(i, j))\n    \n    return max_size\n",
+    "tests": [
+        "assert max_island_size([[0,1],[0,0]]) == 1",
+        "assert max_island_size([[0,0,1],[1,1,0],[0,0,0]]) == 2",
+        "assert max_island_size([[1,1,1],[0,0,1],[1,1,1]]) == 9"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Medium - Count Occurrences of Anagrams",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.  Write a function `count_anagram_occurrences` that takes two strings as input: `text` and `pattern`. The function should return the number of times the anagram of the `pattern` string appears in the `text` string.\n\n#### Function Signature\n```python\ndef count_anagram_occurrences(text: str, pattern: str) -> int:\n```\n\n#### Input\n- `text` (str): The text string in which to search for anagrams.\n- `pattern` (str): The pattern string whose anagrams are to be counted.\n\n#### Output\n- Returns the number of times an anagram of the `pattern` string appears within the `text` string. ",
+    "code": "def count_anagram_occurrences(text: str, pattern: str) -> int:\n    if len(pattern) > len(text):\n        return 0\n    # Create dictionaries to store character counts for text and pattern\n    text_counts = {}\n    pattern_counts = {}\n    for char in pattern:\n        pattern_counts[char] = pattern_counts.get(char, 0) + 1\n    # Initialize window and count\n    window_start = 0\n    count = 0\n    # Slide the window over the text\n    for window_end in range(len(text)):\n        right_char = text[window_end]\n        text_counts[right_char] = text_counts.get(right_char, 0) + 1\n        if window_end - window_start + 1 == len(pattern):\n            # Check if the current window is an anagram of the pattern\n            if text_counts == pattern_counts:\n                count += 1\n            left_char = text[window_start]\n            text_counts[left_char] -= 1\n            if text_counts[left_char] == 0:\n                del text_counts[left_char]\n            window_start += 1\n    return count ",
+    "tests": [
+        "'assert count_anagram_occurrences(\"forxxorfxdofr\", \"for\") == 3'",
+        "'assert count_anagram_occurrences(\"ababa\", \"ab\") == 4'",
+        "'assert count_anagram_occurrences(\"aaba\", \"bbaa\") == 0'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Check if a string is a valid IPv4 address",
+    "description": "Write a function `isValidIPv4` that checks if a given string is a valid IPv4 address. Valid IPv4 addresses consist of four integers, each between 0 and 255, separated by dots.\n\n#### Function Signature\n```python\ndef isValidIPv4(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string representing an IPv4 address.\n\n#### Output\n- Returns `True` if the input string is a valid IPv4 address, `False` otherwise.",
+    "code": "def isValidIPv4(s: str) -> bool:\n    # Split the string into parts by dots\n    parts = s.split('.')\n    # Check if there are exactly four parts and they are all integers between 0 and 255\n    return len(parts) == 4 and all(map(lambda x: 0 <= int(x) <= 255, parts))",
+    "tests": [
+        "assert isValidIPv4('192.168.1.1') == True",
+        "assert isValidIPv4('256.0.0.1') == False",
+        "assert isValidIPv4('123.456.789.0') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

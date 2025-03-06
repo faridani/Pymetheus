@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Given two strings `s1` and `s2`, write a function that finds the minimum window substring within `s1` that contains all characters of `s2`. If no such window exists, return an empty string. The window must be contiguous in `s1`. \n\n#### Function Signature\n```def min_window_substring(s1: str, s2: str) -> str:\n```\n\n#### Input\n- `s1` (str): A string that may contain letters, numbers, and punctuation.\n- `s2` (str): A string that contains the characters to be found in `s1`.\n\n#### Output\n- Returns a substring of `s1` that contains all characters of `s2`, or an empty string if no such window exists.",
+    "code": "import collections\ndef min_window_substring(s1: str, s2: str) -> str:\n    if not s2:\n        return \n    for right in range(len(s1)):\n        if s1[right] in s1_count:\n            s1_count[s1[right]] -= 1\n            if s1_count[s1[right]] == 0:\n                required_chars -= 1\n    while required_chars == 0:\n        if right - left + 1 < min_length:\n            min_length = right - left + 1\n            min_window = s1[left:right + 1]\n    if s1[left] in s1_count:\n        s1_count[s1[left]] += 1\n        if s1_count[s1[left]] > 0:\n            required_chars += 1\n    left += 1",
+    "tests": [
+        "assert min_window_substring('hello world', 'wo') == 'wo'",
+        "assert min_window_substring('ABCDEF', 'CDE') == 'CDE'",
+        "assert min_window_substring('', 'xyz') == ''",
+        "assert min_window_substring('abcdabcdea', 'abcde') == 'abcdea'"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

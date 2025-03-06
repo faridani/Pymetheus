@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "An anagram is a word or phrase that is formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once. Write a function `anagram_checker` that checks if two strings are anagrams of each other.\n#### Function Signature\n```python\ndef anagram_checker(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string containing only letters (no numbers or punctuation).\n- `str2` (str): Another string containing only letters (no numbers or punctuation).\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "import collections\ndef anagram_checker(str1: str, str2: str) -> bool:\n    # Ensure both strings contain only letters\n    str1 = ''.join([char for char in str1 if char.isalpha()])\n    str2 = ''.join([char for char in str2 if char.isalpha()])\n    \n    # Count the frequency of each letter in the first string\n    count_dict1 = collections.Counter(str1)\n    # Count the frequency of each letter in the second string\n    count_dict2 = collections.Counter(str2)\n    \n    # Check if both dictionaries have the same number of items and if each item is present in the other dictionary with the same frequency.\n    return len(count_dict1) == len(count_dict2) and all([count_dict1[char] == count_dict2[char] for char in set(count_dict1.keys())])\n",
+    "tests": [
+        "assert anagram_checker(\"listen\", \"silent\") == True",
+        "assert anagram_checker(\"motorcycle\", \"yelotcmroM\") == True",
+        "assert anagram_checker(\"hello\", \"world\") == False",
+        "assert anagram_checker(\"python\", \"typhon\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Minimum Swaps to Sort a Binary Array",
+    "description": "Given a binary array `arr` of size `n`, determine the minimum number of swaps required to sort the array in ascending order. A binary array contains only 0s and 1s. Function Signature ````python def min_swaps(arr: list[int]) -> int: ``` ``` Input - `arr` (list[int]): A binary array of size `n` containing only 0s and 1s. Output- Returns the minimum number of swaps required to sort the array in ascending order.",
+    "code": "def min_swaps(arr: list[int]) -> int:\n    n = len(arr)\n    num_ones = arr.count(1)\n    swap_count = 0\n    for i in range(n):\n        if (arr[i] == 1 and i >= n - num_ones) or (arr[i] == 0 and i < n - num_ones):\n            swap_count += 1\n    return swap_count // 2",
+    "tests": [
+        "assert min_swaps([0, 1, 0, 1]) == 1",
+        "assert min_swaps([1, 1, 0, 0]) == 1",
+        "assert min_swaps([1, 0, 1, 0, 1]) == 2",
+        "assert min_swaps([0, 0, 1, 1, 1]) == 0"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

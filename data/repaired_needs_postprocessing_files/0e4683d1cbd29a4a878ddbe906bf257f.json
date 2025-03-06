@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Sum of Two Numbers",
+    "description": "Write a function that takes two numbers as input and returns their sum.\n#### Function Signature\n```python\ndef sum_two_numbers(a: int, b: int) -> int:\n```\n#### Input\n- `a` (int): The first number.\n- `b` (int): The second number.\n#### Output\n- Returns the sum of `a` and `b.",
+    "code": "def sum_two_numbers(a: int, b: int) -> int:\n    return a + b",
+    "tests": [
+        "assert sum_two_numbers(2, 3) == 5",
+        "assert sum_two_numbers(-1, 1) == 0",
+        "assert sum_two_numbers(10, -5) == 5"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

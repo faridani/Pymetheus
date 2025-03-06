@@ -1,0 +1,11 @@
+{
+    "title": "Medium - Sum of Consecutive Even Numbers",
+    "description": "Given a positive integer `n`, your task is to calculate the sum of all consecutive even numbers starting from 2 up to and including `n`. \n#### Function Signature\n```python\ndef sum_even(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the sum of all consecutive even numbers starting from 2 up to and including `n`. ",
+    "code": "def sum_even(n: int) -> int:\n    return sum(range(2, n + 1, 2))\n",
+    "tests": [
+        "assert sum_even(6) == 12",
+        "assert sum_even(10) == 30",
+        "assert sum_even(2) == 2"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Egg Drop Problem",
+    "description": "You are given a number of eggs and a number of floors. Write a function that calculates the minimum number of attempts required to find the highest floor from which an egg will not break if dropped from that floor. The egg may break at any floor.\n\n#### Function Signature\n```python\ndef min_attempts(eggs: int, floors: int) -> int:\n``` \n\n#### Input\n- `eggs` (int): The number of eggs you have.\n- `floors` (int): The number of floors in the building.\n\n#### Output\n- Returns the minimum number of attempts required to find the highest floor from which an egg will not break if dropped from that floor.",
+    "code": "from math import ceil, log2\ndef min_attempts(eggs: int, floors: int) -> int:\n    # Calculate the binary logarithm of the number of floors + 1 to get the number of bits needed to represent the floors\n    num_bits = ceil(log2(floors + 1))\n    # For each bit in the binary representation of the number of floors, we need an egg per attempt\n    attempts_per_bit = eggs - (eggs // 2)\n    # The minimum number of attempts is the product of the number of bits and attempts per bit\n    return num_bits * attempts_per_bit",
+    "tests": [
+        "assert min_attempts(1, 10) == 3",
+        "assert min_attempts(2, 20) == 5",
+        "assert min_attempts(4, 30) == 6",
+        "assert min_attempts(8, 40) == 7"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

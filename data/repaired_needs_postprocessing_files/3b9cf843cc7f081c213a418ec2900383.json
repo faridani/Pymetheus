@@ -1,0 +1,12 @@
+{
+    "title": "Prime Factorization",
+    "description": "Given a positive integer, find its prime factors.\n#### Function Signature\n```python\ndef prime_factors(n: int) -> list[int]:\n```\n\n#### Input\n- `n` (int): A positive integer greater than 1.\n\n#### Output\n- Returns a list of prime numbers that when multiplied together, result in the input number.\n",
+    "code": "def prime_factors(n: int) -> list[int]:\n    # Edge case for 1 (which has no factors)\n    if n == 1:\n        return []\n    # Initialize factor and factors\n    factor = 2\n    factors = []\n    while factor * factor <= n:\n        # If the number is divisible by current factor, add it to the list of factors and update the number\n        if n % factor == 0:\n            factors.append(factor)\n            n //= factor\n        else:\n            # Move on to the next factor\n            factor += 1\n    # If there is a remaining number after the loop, it is a prime factor\n    if n > 1:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factors(6) == [2, 3]",
+        "assert prime_factors(9) == [3, 3]",
+        "assert prime_factors(15) == [3, 5]",
+        "assert prime_factors(229) == [17, 13]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

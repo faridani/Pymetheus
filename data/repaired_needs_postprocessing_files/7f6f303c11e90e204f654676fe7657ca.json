@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "Check if two strings are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): First input string that may contain letters and spaces.\n- `s2` (str): Second input string that may also contain letters and spaces.\n\n#### Output\n- Returns `True` if the strings are anagrams of each other, `False` otherwise. Case sensitivity is not considered in this comparison.\n",
+    "code": "from collections import Counter\nimport re\n\ndef are_anagrams(s1: str, s2: str) -> bool:\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_s1 = re.sub(r'[^A-Za-z0-9]', '', s1).lower()\n    cleaned_s2 = re.sub(r'[^A-Za-z0-9]', '', s2).lower()\n    # Use Counter to compare the letter counts in both strings\n    return Counter(cleaned_s1) == Counter(cleaned_s2)\n",
+    "tests": [
+        "assert are_anagrams(\"A gentleman\", \"Elegant man\") == True",
+        "assert are_anagrams(\"Hello World!\", \"Doll he'll, low!R\") == False",
+        "assert are_anagrams(\"Listen to me for a moment please.\", \"Silent hums, note: emotionless pea lice.\") == True",
+        "assert are_anagrams(\"Madam In Eden I'm Adam\", \"A dame in denim did mom amend\") == True"
+    ],
+    "model": "phi3:14b-repaired by Llama 3"
+}

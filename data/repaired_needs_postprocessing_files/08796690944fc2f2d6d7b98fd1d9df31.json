@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Cyclically Rotating Substring Search",
+    "description": "#### Problem Description\nGiven a string `text` and a substring `pattern`, find all occurrences of the cyclically rotated versions of `pattern` within `text`. A cyclic rotation of a string is obtained by shifting its characters to the left or right. For example, the cyclic rotations of \"abc\" are \"abc\", \"bca\", and \"cab\".\n\n#### Function Signature```pythonndef find_cyclic_rotations(text: str, pattern: str) -> list:```\n\n#### Input\n- `text` (str): The text string to search within.\n- `pattern` (str): The substring pattern to search for.\n\n#### Output\n- Returns a list of indices representing the starting positions of all occurrences of cyclically rotated versions of `pattern` within `text`.",
+    "code": "def find_cyclic_rotations(text: str, pattern: str) -> list:\n    occurrences = []\n    temp = pattern + pattern\n    for i in range(len(text) - len(pattern) + 1):\n        if text[i:i+len(pattern)] in temp:\n            occurrences.append(i)\n    return occurrences",
+    "tests": [
+        "assert find_cyclic_rotations('abcdeabcf', 'abc') == [0, 4]",
+        "assert find_cyclic_rotations('waterbottlewaterbottle', 'waterbottle') == [0, 12]",
+        "assert find_cyclic_rotations('hello world hello', 'world') == [6]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

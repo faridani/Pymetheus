@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Counting Mountains",
+    "description": "Given a list of integers representing elevations, write a function `count_mountains` that counts the number of mountains (i.e., elevations that are greater than their neighboring elevations). The input list will always have at least three elements.\n#### Function Signature\n```python\ndef count_mountains(elevations: list[int]) -> int:\n``` \n#### Input\n- `elevations` (list[int]): A list of integers representing elevations, with at least three elements.\n#### Output\n- Returns the number of mountains in the input list.",
+    "code": "def count_mountains(elevations: list[int]) -> int:\n    count = 0\n    for i in range(1, len(elevations) - 1):\n        if elevations[i] > elevations[i-1] and elevations[i] > elevations[i+1]:\n            count += 1\n    return count",
+    "tests": [
+        "assert count_mountains([1, 2, 3]) == 0",
+        "assert count_mountains([1, 5, 4, 7, 6, 8]) == 2",
+        "assert count_mountains([10, 11, 12, 13, 14, 15]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

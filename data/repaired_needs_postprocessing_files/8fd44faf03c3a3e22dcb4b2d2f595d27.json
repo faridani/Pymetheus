@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Balanced Binary Search Tree",
+    "description": "Given a sorted array of integers, write a function `sorted_array_to_bst` that constructs a balanced binary search tree from the given array. A balanced BST is defined as a BST where the height difference between the left and right subtrees of any node is at most 1.\n\n#### Function Signature```python\ndef sorted_array_to_bst(nums: list[int]) -> TreeNode:\n```\n\n#### Input\n- `nums` (list[int]): A sorted array of integers.\n\n#### Output\n- Returns the root node of the constructed balanced binary search tree. You can define a `TreeNode` class as follows:\n```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n```\ndef sorted_array_to_bst(nums: list[int]) -> TreeNode:\n    if not nums:\n        return None\n    mid = len(nums) // 2\n    root = TreeNode(nums[mid])\n    root.left = sorted_array_to_bst(nums[:mid])\n    root.right = sorted_array_to_bst(nums[mid + 1:])\n    return root",
+    "code": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef sorted_array_to_bst(nums: list[int]) -> TreeNode:\n    if not nums:\n        return None\n    mid = len(nums) // 2\n    root = TreeNode(nums[mid])\n    root.left = sorted_array_to_bst(nums[:mid])\n    root.right = sorted_array_to_bst(nums[mid + 1:])\n    return root",
+    "tests": [
+        "assert sorted_array_to_bst([1, 2, 3, 4, 5]).val == 3",
+        "assert sorted_array_to_bst([]).val is None"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

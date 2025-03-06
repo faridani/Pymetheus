@@ -1,0 +1,13 @@
+{
+    "title": "Roman Numeral Converter (Hard)",
+    "description": "Write a function `roman_to_int` that converts a Roman numeral to an integer. The input is a string containing between 1 and 3 uppercase Roman numerals. You can assume the input is valid, i.e., it will only contain M, D, C, L, X, V, I.\n\n#### Function Signature\n```python\ndef roman_to_int(s: str) -> int:\n``` \n\n#### Input\n- `s` (str): A string containing between 1 and 3 uppercase Roman numerals. Only the following characters are valid: M, D, C, L, X, V, I.\n\n#### Output\n- Returns the integer equivalent of the input Roman numeral.",
+    "code": "def roman_to_int(s: str) -> int:\n    # Create a mapping of Roman numerals to their integer values\n    roman_dict = {'M': 1000,'D': 500,'C': 100,'L': 50,'X': 10,'V': 5,'I': 1}\n    # Initialize the result as zero\n    result = 0\n    \n    # Iterate through the input string from right to left\n    for char in s[::-1]:\n        # If the current character is less than the next one, subtract its value\n        if roman_dict[char] < roman_dict[s[result + 1]]:\n            result -= roman_dict[char]\n        # Otherwise, add its value to the result\n        else:\n            result += roman_dict[char]\n    \n    # Return the final result\n    return result",
+    "tests": [
+        "assert roman_to_int('III') == 3",
+        "assert roman_to_int('IV') == 4",
+        "assert roman_to_int('IX') == 9",
+        "assert roman_to_int('LVIII') == 58",
+        "assert roman_to_int('MCMXCIV') == 1994"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

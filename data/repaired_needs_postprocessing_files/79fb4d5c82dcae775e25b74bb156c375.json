@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Prime Factorization",
+    "description": "Write a function `prime_factors` that takes an integer and returns its prime factors in ascending order as a list of tuples (factor, count). For example, for the number 12, the output should be [(2, 2), (3, 1)].\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> List[Tuple[int, int]]:\n``` \n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns a list of tuples where each tuple contains a prime factor and its count in the input integer. For example, for the number 12, the output should be [(2, 2), (3, 1)].\n\n",
+    "code": "from typing import List, Tuple\nfrom math import sqrt\n\ndef prime_factors(n: int) -> List[Tuple[int, int]]:\n    factors = []\n    i = 2\n    while i <= sqrt(n):\n        if n % i:\n            i += 1\n        else:\n            n //= i\n            count = 1\n            while n % i == 0:\n                n //= i\n                count += 1\n            factors.append((i, count))\n    if n > 1:\n        factors.append((n, 1))\n    return factors\n",
+    "tests": [
+        "assert prime_factors(12) == [(2, 2), (3, 1)]",
+        "assert prime_factors(18) == [(2, 1), (3, 2)]",
+        "assert prime_factors(29) == [(29, 1)]"
+    ],
+    "model": "codegeex4:9b-repaired by Llama 3"
+}

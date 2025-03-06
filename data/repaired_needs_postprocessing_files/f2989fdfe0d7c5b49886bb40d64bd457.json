@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Scheduling Tasks",
+    "description": "Given a list of tasks with their deadlines and execution times, write a function to schedule these tasks such that the total wait time is minimized. The tasks should be scheduled in the order they are given.\n\n#### Function Signature```ndef min_wait_time(tasks: List[Tuple[int, int]]) -> int:\n```\n\n#### Input\n- `tasks` (List[Tuple[int, int]]): A list of tasks where each task is represented as a tuple of two integers. The first integer represents the deadline for the task and the second integer represents the execution time of the task.\n\n#### Output\n- Returns the minimum total wait time that can be achieved by scheduling these tasks.\n",
+    "code": "import heapq\ndef min_wait_time(tasks):\n    # Sort tasks by their deadlines\n    tasks = sorted(tasks, key=lambda x: x[0])\n\n    # Initialize a priority queue to store the tasks\n    pq = []\n\n    # Initialize the minimum wait time\n    min_wait = 0\n\n    # Iterate over the tasks\n    for deadline, execution_time in tasks:\n        # Add the task to the priority queue\n        heapq.heappush(pq, (execution_time, deadline))\n\n        # If the priority queue has more than one task\n        while len(pq) > 1:\n            # Get the tasks from the priority queue\n            first_execution_time, first_deadline = heapq.heappop(pq)\n            second_execution_time, second_deadline = pq[0]\n\n            # Calculate the wait time if we execute the first task now and then the second task\n            wait_time = min_wait + (first_deadline - min_wait) * (second_execution_time / (first_deadline - min_wait))\n\n            # Update the minimum wait time\n            min_wait = max(min_wait, first_deadline)\n\n            # If executing the tasks in this order gives a lower total wait time than previously calculated\n            if wait_time < min_wait:\n                min_wait = wait_time\n\n    # Return the minimum total wait time\n    return min_wait",
+    "tests": [
+        "assert min_wait_time([(1, 2), (3, 4), (5, 6)]) == 8",
+        "assert min_wait_time([(1, 3), (2, 2), (3, 1)]) == 7",
+        "assert min_wait_time([(1, 2), (2, 1), (3, 3)]) == 4",
+        "assert min_wait_time([]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "'Check if a given list of integers contains an even number and an odd number (Medium)'",
+    "description": "Write a function `has_even_and_odd` that checks if a given list of integers contains both an even and an odd number.\n\n#### Function Signature\n```python\ndef has_even_and_odd(numbers: List[int]) -> bool:\n```\n\n#### Input\n- `numbers` (List[int]): A list of integers.\n\n#### Output\n- Returns `True` if the input list contains both an even and an odd number, `False` otherwise.\n",
+    "code": "def has_even_and_odd(numbers: List[int]) -> bool:\n    # Check if any number in the list is even or not\n    has_even = False\n    for num in numbers:\n        if num % 2 == 0:\n            has_even = True\n            break\n    \n    # If no even number was found, return False\n    if not has_even:\n        return False\n    \n    # Check if any number in the list is odd after ensuring there's an even number\n    for num in numbers:\n        if num % 2 != 0:\n            return True\n    return False",
+    "tests": [
+        "assert has_even_and_odd([1, 2, 3]) == False",
+        "assert has_even_and_odd([2, 4, 6]) == False",
+        "assert has_even_and_odd([2, 4, 5]) == True",
+        "assert has_even_and_odd([1, 2, 3, 5]) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

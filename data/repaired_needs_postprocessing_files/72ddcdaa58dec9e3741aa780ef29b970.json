@@ -1,0 +1,12 @@
+{
+    "title": "'Prime Digits Sum' - Hard",
+    "description": "Write a function `prime_digits_sum` that calculates the sum of prime digits of a given number.\n\n#### Function Signature\n```python\ndef prime_digits_sum(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer without leading zeros.\n\n#### Output\n- Returns the sum of the prime digits of the given number.",
+    "code": "def prime_digits_sum(n: int) -> int:\n    # Create a list of primes up to the square root of n\n    primes = [2] + [x for x in range(3, 100) if all([n % y != 0 for y in range(2, int(y**0.5+1))])]\n    # Initialize result as 0\n    result = 0\n    \n    # Iterate through each digit of n in reverse order (rightmost digit first)\n    for digit in str(n):\n        if digit in primes:\n            result += int(digit)\n    \n    return result",
+    "tests": [
+        "assert prime_digits_sum(142857) == 8",
+        "assert prime_digits_sum(958) == 7",
+        "assert prime_digits_sum(767) == 3 + 7",
+        "assert prime_digits_sum(371) == 2 + 7"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

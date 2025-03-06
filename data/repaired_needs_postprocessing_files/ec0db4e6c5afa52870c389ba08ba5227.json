@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Chessboard Filling",
+    "description": "A chessboard is an 8x8 grid, with some squares being black and others white. Given a list of moves (in the form of tuples representing the starting and ending positions), write a function `fill_board` that fills the chessboard accordingly.\n\n#### Function Signature\n```python\ndef fill_board(moves: List[tuple]) -> str:\n``` \n\n#### Input\n- `moves` (List[tuple]): A list of moves, where each move is represented as a tuple `(start_row, start_col, end_row, end_col)`. \n- Each row and column is numbered from 0 to 7.\n\n#### Output\n- Returns the state of the chessboard after all moves have been applied. The board should be represented as an 8x8 grid of characters (e.g., `'. '.join(row) for row in board`). \n- Black squares are represented by 'B', white squares by 'W', and empty squares by '.'.",
+    "code": "import random\n\ndef fill_board(moves):\n    board = [['.' for _ in range(8)] for _ in range(8)]\n    \n    for move in moves:\n        start_row, start_col, end_row, end_col = move\n        if (start_row + start_col) % 2 == 0:  # black square\n            if random.randint(0, 1):\n                board[end_row][end_col] = 'B'\n            else:\n                board[end_row][end_col] = 'W'\n        else:  # white square\n            if random.randint(0, 1):\n                board[end_row][end_col] = 'W'\n            else:\n                board[end_row][end_col] = 'B'\n    \n    return '\\n'.join([' '.join(row) for row in board])",
+    "tests": [
+        "assert fill_board([(0, 0, 0, 1), (1, 7, 1, 6)]) == ''\n'..W... ..B.... ..W... ..B.... ..W... ..B.... ..W...'",
+        "assert fill_board([(3, 3, 3, 4), (5, 5, 5, 6)]) == ''\n'B....... B....... B....... W....... W....... W....... W....... W....... W'",
+        "assert fill_board([(0, 7, 1, 0), (1, 1, 2, 2)]) == ''\n'..W... ..B.... ...B.. ...W... ...B.. ...W...'"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

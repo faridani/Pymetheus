@@ -1,0 +1,12 @@
+{
+    "title": "Polindromes with Frequency Check (Hard)",
+    "description": "Write a Python function named `valid_polindrome` that checks if a given string is a valid palindrome, where the number of each character must be even.\n\n#### Function Signature\n```python\ndef valid_palindrome(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters and digits, with no spaces or punctuation.\n\n#### Output\n- Returns `True` if the input string is a valid palindrome, `False` otherwise.",
+    "code": "import collections\n\ndef valid_palindrome(s: str) -> bool:\n    # Ensure the length of the string is even\n    if len(s) % 2 != 0:\n        return False\n    \n    # Count the frequency of each character\n    freq = collections.Counter(s)\n    \n    # Check if all characters occur an even number of times\n    for char, count in freq.items():\n        if count % 2 != 0:\n            return False\n    \n    # If all characters are even, the string is a valid palindrome\n    return True",
+    "tests": [
+        "assert valid_polindrome('aa') == True",
+        "assert valid_palindrome('abba') == True",
+        "assert valid_polindrome('abbccd') == False",
+        "assert valid_polindrome('a1b2c3d2c1b2a') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

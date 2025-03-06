@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Flatten a Nested List",
+    "description": "Write a function `flatten` that takes a nested list as input and returns a single flattened list. The nested list can contain any number of levels of nesting.\n#### Function Signature\n```python\ndef flatten(nested_list: list) -> list:\n```\n\n#### Input\n- `nested_list` (list): A list that may contain other lists as elements, forming a nested structure.\n\n#### Output\n- Returns a new list containing all the elements from the input nested list in a single, flattened sequence.",
+    "code": "def flatten(nested_list: list) -> list:\n    flattened_list = []\n    for item in nested_list:\n        if isinstance(item, list):\n            flattened_list.extend(flatten(item))\n        else:\n            flattened_list.append(item)\n    return flattened_list",
+    "tests": [
+        "assert flatten([1, 2, [3, 4], [5, [6]]]) == [1, 2, 3, 4, 5, 6]",
+        "assert flatten([[1], [2, 3], [4, [5, 6]]]) == [1, 2, 3, 4, 5, 6]",
+        "assert flatten([1, 2, 3]) == [1, 2, 3]",
+        "assert flatten([]) == []"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Optimal Path Sum with Obstacles",
+    "description": "You are given a grid of integers representing different costs, and some cells contain obstacles that cannot be traversed. Your task is to find the minimum cost path from the top-left corner to the bottom-right corner of the grid, moving only right or down at each step.\nThe input consists of:1. An integer `n` (2 <= n <= 100) representing the size of the grid (n x n).2. A list of lists `grid`, where each element is either a non-negative integer representing the cost of stepping into that cell, or -1 indicating an obstacle.The top-left and bottom-right corners are guaranteed to be free from obstacles.\nYour function should return the minimum cost to reach the bottom-right corner from the top-left corner. If it's not possible to reach the destination, return -1.",
+    "code": "from typing import List\nimport heapq\n\ndef min_path_cost(n: int, grid: List[List[int]]) -> int:\n    pq = [(0, 0, 0)]  # (cost, x, y)\n    dist = [[float('inf')] * n for _ in range(n)]\n    dist[0][0] = 0\n    directions = [(1, 0), (0, 1)]\n    while pq:\n        current_cost, x, y = heapq.heappop(pq)\n        if x == n - 1 and y == n - 1: return current_cost\n        for dx, dy in directions:\n            nx, ny = x + dx, y + dy\n            if 0 <= nx < n and 0 <= ny < n and grid[nx][ny] != -1:\n                new_cost = current_cost + grid[nx][ny]\n                if new_cost < dist[nx][ny]: dist[nx][ny] = new_cost; heapq.heappush(pq, (new_cost, nx, ny))\n    return -1",
+    "tests": [
+        "assert min_path_cost(3, [[0, 1, 2], [1, -1, 1], [4, 5, 0]]) == 7",
+        "assert min_path_cost(3, [[0, 2, 2], [-1, -1, 2], [1, 1, 0]]) == -1",
+        "assert min_path_cost(2, [[0, 1], [1, 0]]) == 2",
+        "assert min_path_cost(4, [[0, 3, 5, 9], [8, 1, 3, 4], [5, 0, 6, 7], [4, 3, 2, 0]]) == 16"
+    ],
+    "model": "phi4:latest-repaired by Llama 3"
+}

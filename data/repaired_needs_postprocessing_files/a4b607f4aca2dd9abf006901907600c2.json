@@ -1,0 +1,13 @@
+{
+    "title": "Prime Number Checker (Hard)",
+    "description": "Create a function `is_prime` that checks if a given number is prime.```python\ndef is_prime(n: int) -> bool:\n```n\nOutput\n- Returns `True` if the input number is a prime, `False` otherwise.\n#### Input\n- `n` (int): A non-negative integer.",
+    "code": "def is_prime(n: int) -> bool:\n    # Check base cases for 0 and 1\n    if n <= 1: return False\n    # Check up to the square root of the number\n    for i in range(2, int(n**0.5)+1):\n        if n % i == 0:\n            return False\n    \n    # If no factors were found, the number is prime\n    return True",
+    "tests": [
+        "assert is_prime(2) == True",
+        "assert is_prime(3) == True",
+        "assert is_prime(4) == False",
+        "assert is_prime(7) == True",
+        "assert is_prime(19) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

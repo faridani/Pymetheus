@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Efficient Substring Search",
+    "description": "Given a large text string `text` and a smaller pattern string `pattern`, write an efficient function `find_all_occurrences` to find all occurrences of the `pattern` within the `text`. Your function should return a list of starting indices where the `pattern` is found.\n#### Function Signature\n```python\ndef find_all_occurrences(text: str, pattern: str) -> list:\n```\n#### Input\n- `text` (str): The main text string in which to search for the pattern. \n- `pattern` (str): The pattern string to be searched within the text.\n#### Output\n- Returns a list of integers representing the starting indices of all occurrences of the `pattern` within the `text`. If no occurrences are found, return an empty list.\n#### Constraints\n- Both `text` and `pattern` will consist only of lowercase letters (a-z).",
+    "code": "def find_all_occurrences(text: str, pattern: str) -> list:\n    occurrences = []\n    for i in range(len(text) - len(pattern) + 1):\n        if text[i:i + len(pattern)] == pattern:\n            occurrences.append(i)\n    return occurrences",
+    "tests": [
+        "assert find_all_occurrences(\"abracadabra\", \"abra\") == [0, 7]",
+        "assert find_all_occurrences(\"hello world\", \"world\") == [6]",
+        "assert find_all_occurrences(\"banana\", \"na\") == [2, 4]",
+        "assert find_all_occurrences(\"codingchallenge\", \"code\") == [0]",
+        "assert find_all_occurrences(\"aaaa\", \"aa\") == [0, 1]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

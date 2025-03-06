@@ -1,0 +1,12 @@
+{
+    "title": "Medium: String Anagram Check",
+    "description": "Determine if two given strings are anagrams of each other. Write a function `are_anagrams(s1: str, s2: str) -> bool` that checks whether the input strings `s1` and `s2` consist of exactly the same characters regardless of their order.\n\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2`: (str): Two strings consisting only of lowercase English letters. The lengths of both inputs will not exceed 50.\n\n#### Output\n- Returns `True` if the input strings are anagrams, `False` otherwise.\n",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Remove whitespaces and convert to lowercase for comparison\n    s1 = s1.replace(' ', '').lower()\n    s2 = s2.replace(' ', '').lower()\n    if len(s1) != len(s2):\n        return False\n\n    # Create dictionaries to count occurrences of each character in both strings\n    char_count_s1 = {}\n    char_count_s2 = {}\n    for char in s1:\n        if char.isalpha():\n            char_count_s1[char] = char_count_s1.get(char, 0) + 1\n    for char in s2:\n        if char.isalpha():\n            char_count_s2[char] = char_count_s2.get(char, 0) + 1\n\n    # Compare the dictionaries to check if they are equal\n    return char_count_s1 == char_count_s2",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('triangle', 'integral') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('aabbcc', 'abcabc') == True"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

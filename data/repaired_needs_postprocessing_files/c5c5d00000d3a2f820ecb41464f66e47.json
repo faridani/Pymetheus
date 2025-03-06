@@ -1,0 +1,12 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "An anagram is a word or phrase that consists of the same letters as another, but arranged differently. Write a function `find_anagrams` that finds all possible anagrams for a given string within a given list.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str, words_list: List[str]) -> List[str]:\n```\n\n#### Input\n- `word` (str): A word that you want to find anagrams for.\n- `words_list` (List[str]): A list of words from which you need to find the anagrams for `word`. \n\n#### Output\n- Returns a list of strings containing all possible anagrams of the given word within the provided list, or an empty list if no anagram is found.",
+    "code": "def find_anagrams(word: str, words_list: List[str]) -> List[str]:\n    sorted_word = sorted(list(word))\n    sorted_word_key = ''.join(sorted_word)\n    word_dict = {sorted(word): word for word in words_list}\n    return [value for key, value in word_dict.items() if key == sorted_word_key]",
+    "tests": [
+        "assert find_anagrams('listen', ['silent', 'enlists', 'google', 'cinema']) == ['enlists']",
+        "assert find_anagrams('act', ['cat', 'dog', 'tac', 'act']) == ['tac', 'cat']",
+        "assert find_anagrams('racecar', ['racecar', 'carcarer', 'yabab']) == ['carcarer', 'yabab']",
+        "assert find_anagrams('apple', ['apples', 'banana', 'orange', 'grape']) == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

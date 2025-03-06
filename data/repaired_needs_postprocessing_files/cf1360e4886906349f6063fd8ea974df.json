@@ -1,0 +1,12 @@
+{
+    "title": "Tree Traversals",
+    "description": "Given a binary tree, write a function that performs an in-order traversal and returns the list of node values. If the tree contains duplicate values, return only unique values.\n\n#### Function Signature\n```python\ndef tree_in_orderaversal(t: object) -> list:\n``` \n\n#### Input\n- `t` (object): A binary tree node with a value and two children, left and right.\n\n#### Output\n- Returns a list of unique node values in the order they were visited during the traversal.",
+    "code": "class TreeNode(object):\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\ndef tree_in_orderaversal(t: object) -> list:\n    if t is None:\n        return []\n    res = set()\n    def inorder(node):\n        if node is not None:\n            inorder(node.left)\n            res.add(node.val)\n            inorder(node.right)\n    inorder(t)\n    return sorted(list(res))",
+    "tests": [
+        "assert tree_in_orderaversal(None) == []",
+        "assert tree_in_orderaversal(TreeNode(1)).sort() == [1]",
+        "assert tree_in_orderaversal(TreeNode(1, TreeNode(2), TreeNode(3))).sort() == [1, 2, 3]",
+        "assert tree_in_orderaversal(TreeNode(1, TreeNode(2), TreeNode(2, TreeNode(3)))).sort() == [1, 2, 3]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

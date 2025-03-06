@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Prime Factorization",
+    "description": "Given a positive integer `n`, write a function `prime_factors` that returns a list of its prime factors. The prime factors should be sorted in ascending order.\r\n\r\n#### Function Signature\r\n```python\r\ndef prime_factors(n: int) -> list:\r```\r\r\n#### Input\r\n- `n` (int): A positive integer to find the prime factors for.\r\r\n#### Output\r\n- Returns a list of prime factors of the input number, sorted in ascending order.",
+    "code": "def prime_factors(n: int) -> list:\r    def is_prime(num: int) -> bool:\r        if num < 2:\r            return False\r        for i in range(2, int(num**0.5) + 1):\r            if num % i == 0:\r                return False\r        return True\r    factors = []\r    i = 2\r    while n > 1:\r        if is_prime(i) and n % i == 0:\r            factors.append(i)\r            n //= i\r        else:\r            i += 1\r    return factors",
+    "tests": [
+        "assert prime_factors(12) == [2, 2, 3]",
+        "assert prime_factors(37) == [37]",
+        "assert prime_factors(100) == [2, 2, 5, 5]",
+        "assert prime_factors(999) == [3, 3, 3, 37]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

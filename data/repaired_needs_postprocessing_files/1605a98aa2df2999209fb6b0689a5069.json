@@ -1,0 +1,12 @@
+{
+    "title": "Medium: String Compression",
+    "description": "String compression is a common technique used to reduce the size of text data by compressing consecutive duplicate characters into a single character followed by the count of that character. For example, 'aabcccccaaa' can be compressed to 'a2b1c5a3'. Write a function `compress_string` that takes in a string and returns its compressed form. If the compressed form is not shorter than the original string, return the original string.\n\n#### Function Signature\n```python\ndef compress_string(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A non-empty string consisting of lowercase English letters and/or digits only.\n\n#### Output\n- Returns a compressed version of the input string, or the original string if compression does not result in shorter length.",
+    "code": "def compress_string(s: str) -> str:\n    # Initialize variables for tracking the current character and count\n    current_char = s[0]\n    current_count = 1\n    compressed_str = \"\"\n    # Iterate through the string starting from the second character\n    for char in s[1:]:\n        if char == current_char:\n            current_count += 1\n        else:\n            # Append the current character and its count to the result string\n            compressed_str += current_char + str(current_count)\n            current_char = char\n            current_count = 1\n    # Append the last character and its count\n    compressed_str += current_char + str(current_count)\n\n    # Return the original string if compression does not result in shorter length\n    if len(compressed_str) >= len(s):\n        return s\n    else:\n        return compressed_str",
+    "tests": [
+        "assert compress_string(\"aabcccccaaa\") == \"a2b1c5a3\"",
+        "assert compress_string(\"abcde\") == \"abcde\"",
+        "assert compress_string(\"aaabbbccc\") == \"a3b3c3\"",
+        "assert compress_string(\"111223311\") == \"111223311\""
+    ],
+    "model": "codegeex4:9b-repaired by Llama 3"
+}

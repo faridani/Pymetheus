@@ -1,0 +1,11 @@
+{
+    "title": "'Is it an Anagram Maker' - Medium",
+    "description": "Anagrams are words or phrases that contain the same letters, but in a different order. For example, 'listen' and 'silent' are anagrams of each other.\n\n#### Function Signature\n```\ndef is_anagram(s1: str, s2: str) -> bool:\n``` \n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain the same letters but in a different order.\n\n#### Output\n- Returns `True` if both input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Normalize the inputs by converting to lowercase and removing duplicates\n    normalized_s1 = sorted(list(set(s1.lower())))\n    normalized_s2 = sorted(list(set(s2.lower())))\n    # Check if both lists are equal in length and if the corresponding elements are the same\n    return len(normalized_s1) == len(normalized_s2) and normalized_s1 == normalized_s2",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('Stars', 'Rats') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

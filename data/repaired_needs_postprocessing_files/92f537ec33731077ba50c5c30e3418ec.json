@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "Given two strings, determine if they are anagrams of each other, meaning the letters in one string can be rearranged to spell the other string. For example, 'listen' and 'silent' are anagrams.\n\n#### Function Signature\n```\ndef are_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing only lowercase letters.\n- `s2` (str): A string containing only lowercase letters.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    # Create dictionaries to count occurrences of each letter in both strings\n    dict1 = {char: s1.count(char) for char in sorted(set(s1))}\n    dict2 = {char: s2.count(char) for char in sorted(set(s2))}\n    # Compare the dictionaries to see if they are the same\n    return dict1 == dict2",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"actress\", \"scary text\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

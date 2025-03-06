@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Circular Prime Finder",
+    "description": "A circular prime is a prime number where all of its rotations are also prime. For example, 197 is a circular prime because 197, 971, and 719 are all prime numbers.\nWrite a function `circular_primes` that takes an integer `n` as input and returns a list containing all the circular primes less than or equal to `n`. \n\n#### Function Signature\n```python\ndef circular_primes(n: int) -> list[int]:\n``` \n\n#### Input\n- `n` (int): An integer representing the upper limit for finding circular primes.\n\n#### Output\n- Returns a list of integers containing all circular primes less than or equal to `n` in ascending order. ",
+    "code": "def is_prime(num: int) -> bool:\n    if num <= 1:\n        return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\ndef circular_primes(n: int) -> list[int]:\n    circular_primes = []\n    for i in range(2, n + 1):\n        str_i = str(i)\n        is_circular = True\n        for _ in range(len(str_i)):\n            rotated_num = int(str_i[1:] + str_i[0])\n            if not is_prime(rotated_num):\n                is_circular = False\n                break\n            str_i = str_i[1:] + str_i[0]\n        if is_circular:\n            circular_primes.append(i)\n    return circular_primes",
+    "tests": [
+        "assert sorted(circular_primes(100)) == [2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, 97]",
+        "assert sorted(circular_primes(1000)) == [2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, 97, 113, 131, 197, 199, 337, 373, 751, 929]"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

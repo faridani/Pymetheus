@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Prime Sum",
+    "description": "Given a list of integers, write a function that returns the sum of all prime numbers in the list.\n\n#### Function Signature\n```python\ndef prime_sum(lst: list) -> int:\n```\n\n#### Input\n- `lst` (list): A list of integers.\n\n#### Output\n- Returns the sum of all prime numbers in the input list.",
+    "code": "def prime_sum(lst: list) -> int:\n    def is_prime(n: int) -> bool:\n        if n <= 1:\n            return False\n        for i in range(2, int(n ** 0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n    total = 0\n    for num in lst:\n        if is_prime(num):\n            total += num\n    return total\n",
+    "tests": [
+        "assert prime_sum([2, 3, 4, 5]) == 9",
+        "assert prime_sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) == 28",
+        "assert prime_sum([-1, -2, -3, -4, -5]) == 0",
+        "assert prime_sum([12]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

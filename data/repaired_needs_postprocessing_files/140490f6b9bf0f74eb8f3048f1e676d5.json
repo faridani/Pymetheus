@@ -1,0 +1,10 @@
+{
+    "title": "Hard - Circular Primes",
+    "description": "A circular prime is a prime number that remains prime when its digits are rotated cyclically. For example, 197 is a circular prime because 197, 971, and 719 are all prime numbers. Write a function `count_circular_primes(n)` that takes an integer `n` as input and returns the number of circular primes less than or equal to `n`. \\\n#### Function Signature\\\ndef count_circular_primes(n: int) -> int:\n",
+    "code": "def is_prime(num):\n    if num <= 1:\n        return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\ndef count_circular_primes(n: int) -> int:\n    count = 0\n    for num in range(2, n + 1):\n        if is_prime(num):\n            str_num = str(num)\n            is_circular = True\n            for i in range(len(str_num)):\n                rotated_num = int(str_num[i:] + str_num[:i])\n                if not is_prime(rotated_num):\n                    is_circular = False\n                    break\n            if is_circular:\n                count += 1\n    return count",
+    "tests": [
+        "assert count_circular_primes(100) == 25",
+        "assert count_circular_primes(1000) == 100"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Counting Occurrences",
+    "description": "A description of the problem in string form, the description may contain function signature, input format, output format, constraints and hints.\n#### Function Signature\n```python\ndef count_occurrences(nums: list[int]) -> dict[int, int]:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers that contains at least two different numbers.\n\n#### Output\n- Returns a dictionary where the keys are the unique numbers in the input list and the values are their occurrences in the list.\n",
+    "code": "def count_occurrences(nums: list[int]) -> dict[int, int]:\n    return {num: nums.count(num) for num in set(nums)}\n",
+    "tests": [
+        "assert count_occurrences([1, 2, 3, 4, 5]) == {1: 1, 2: 1, 3: 1, 4: 1, 5: 1}",
+        "assert count_occurrences([1, 2, 2, 3, 3, 3]) == {1: 1, 2: 2, 3: 3}",
+        "assert count_occurrences([-1, -2, 0, 1, 2]) == {-1: 1, -2: 1, 0: 1, 1: 1, 2: 1}"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

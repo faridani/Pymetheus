@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Write a function `is_anagram` that checks if two given strings are anagrams of each other. Write a function `is_anagram` that checks if two given strings are anagrams of each other.   - `s1`, `s2` (str): Two strings that may contain only lowercase letters and no spaces.  - Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Sort and compare the characters in both strings\n    return sorted(s1) == sorted(s2)",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False",
+        "assert is_anagram(\"act\", \"cat\") == True",
+        "assert is_anagram(\"python\", \"typhon\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

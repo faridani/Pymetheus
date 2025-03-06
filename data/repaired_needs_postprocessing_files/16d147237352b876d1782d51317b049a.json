@@ -1,0 +1,10 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "Write a function `find_anagrams` that takes a list of strings and returns a dictionary where the keys are anagrams and the values are lists of their original inputs.\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n``` \n\n#### Input\n- `words` (List[str]): A list of strings containing only lowercase letters.\n\n#### Output\n- Returns a dictionary where the keys are anagrams and the values are lists of their original inputs.\n\n#### Example\n```python\ndefinder = find_anagrams(['listen', 'silent', 'enlist', 'service']) # {'listen': ['listen'], 'silent': ['silent'], 'enlist': ['enlist'], 'service': ['service']}```",
+    "code": "from collections import Counter\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n    # Create a dictionary of counts for each character in each word\n    count_dict = {word: Counter(char for char in word) for word in words}\n    \n    # Iterate over the counts to find anagrams and group them\n    anagram_groups = {\n        k: [v for v in words if all([count_dict[k][c] == count[c] for c, count in count_dict[v].items()])]\n        for k, count_dict[k] in count_dict.items()\n    }\n    \n    # Convert the lists of anagrams into sets to remove duplicates\n    anagram_groups = {k: list(set(v)) for k, v in anagram_groups.items()}\n",
+    "tests": [
+        "assert find_anagrams(['listen', 'silent', 'enlist', 'service']) == {'listen': ['listen'], 'silent': ['silent'], 'enlist': ['enlist'], 'service': ['service']}",
+        "assert find_anagrams(['act', 'tact', 'cat', 'acta', 'clue']) == {'act': ['act', 'acta'], 'tact': ['tact'], 'cat': ['cat'], 'clue': ['clue']}"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

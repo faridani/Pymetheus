@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Subarray Sum",
+    "description": "A subsequence of a string is a sequence that can be derived from another sequence by deleting some (possibly zero) elements without changing the order of the remaining elements. Write a function `max_substring` that finds the maximum sum of a contiguous subsequence within a given list of integers.\n\n#### Function Signature\n```python\ndef max_substring(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums` (List[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum of a contiguous subsequence.\n",
+    "code": "from typing import List\n\ndef max_substring(nums: List[int]) -> int:\n    # Initialize maximum current sum and overall maximum sum to first element in the list\n    max_current = max_global = nums[0]\n    # Iterate over rest of the list, updating sums as we go\n    for num in nums[1:]:\n        # Update maximum current sum if current number plus maximum current sum is greater than the maximum current sum\n        max_current = max(max_current + num, num)\n        # Update overall maximum sum if maximum current sum is greater than overall maximum sum\n        max_global = max(max_global, max_current)\n    # Return overall maximum sum\n    return max_global",
+    "tests": [
+        "assert max_substring([1,-2,3,4,-2,5]) == 9",
+        "assert max_substring([-1,-2,-3,-4,-2]) == -1",
+        "assert max_substring([0,0,0,0]) == 0"
+    ],
+    "model": "llama3.1:8b-repaired by Llama 3"
+}

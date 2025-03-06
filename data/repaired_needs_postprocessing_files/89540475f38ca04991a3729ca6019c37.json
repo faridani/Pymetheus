@@ -1,0 +1,12 @@
+{
+    "title": "Hard - Longest Subarray Sum",
+    "description": "Given an array of integers, find the length of the longest subarray whose elements sum to zero. If there are multiple subarrays with the same maximum length, return the length of any one of them.\n\n#### Function Signature\n```python\ndef longest_zero_sum_subarray(nums: list[int]) -> int:\n``` \n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns the length of the longest subarray whose elements sum to zero. If no such subarray exists, return 0.",
+    "code": "def longest_zero_sum_subarray(nums: list[int]) -> int:\n    max_len = 0\n    prefix_sums = {0: -1}\n    current_sum = 0\n    for i, num in enumerate(nums):\n        current_sum += num\n        if current_sum in prefix_sums:\n            max_len = max(max_len, i - prefix_sums[current_sum])\n        else:\n            prefix_sums[current_sum] = i\n    return max_len",
+    "tests": [
+        "assert longest_zero_sum_subarray([1, 2, -3, 3]) == 3",
+        "assert longest_zero_sum_subarray([-1, 1]) == 2",
+        "assert longest_zero_sum_subarray([1, 2, 3]) == 0",
+        "assert longest_zero_sum_subarray([0, 0]) == 2"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

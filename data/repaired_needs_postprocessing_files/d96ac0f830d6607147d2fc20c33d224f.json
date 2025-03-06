@@ -1,0 +1,12 @@
+{
+    "title": "'Is it an Anagram Checker (Hard)'",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams of each other.\r\n\r\n#### Function Signature\r\n```\ndef is_anagram(str1: str, str2: str) -> bool:\r\n``` \r\n\r\n#### Input\r\n- `str1` (str): A string that may contain only letters from the English alphabet, spaces, and commas.\r\n- `str2` (str): Another string that may contain only letters from the English alphabet, spaces, and commas.\r\n\r\n#### Output\r\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "import collections\ndef is_anagram(str1: str, str2: str) -> bool:\r\n    # Remove spaces and commas from both strings\r\n    str1 = str1.replace(' ', '').replace(',', '')\r\n    str2 = str2.replace(' ', '').replace(',', '')\r\n    # Count the occurrences of each letter in both strings using a dictionary\r\n    count_dict1 = collections.Counter(str1)\r\n    count_dict2 = collections.Counter(str2)\r\n    \r\n    # Check if the dictionaries have the same number of entries and if their values are the same\r\n    return len(count_dict1) == len(count_dict2) and count_dict1 == count_dict2",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('Mississippi', 'shrimp') == True",
+        "assert is_anagram('apple', 'apples') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

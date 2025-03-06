@@ -1,0 +1,12 @@
+{
+    "title": "Sum of Digits in a Binary Tree",
+    "description": "Given a binary tree where each node has an integer value, write a function `sum_of_digits` that returns the sum of the digits of all nodes at each level. If a level contains only one node with no children (i.e., it is a leaf), its digit sum is included in the total sum.\n#### Function Signature\n```python\ndef sum_of_digits(root: Optional[Node]) -> int:\n```\n#### Input\n- `root` (Optional[Node]): The root of the binary tree. Each node has an integer value and may have zero or two children (i.e., left child, right child).\n#### Output\n- Returns the sum of the digits of all nodes at each level in the binary tree.\nNote that you can assume that the input tree is not empty.",
+    "code": "class Node:\n    def __init__(self, val: int):\n        self.val = val\n        self.left = None\n        self.right = None\n\ndef sum_of_digits(root: Optional[Node]) -> int:\n    if root is None:\n        return 0\n    queue = [(root, 1)]\n    total_sum = 0\n    while queue:\n        node, level = queue.pop(0)\n        total_sum += node.val % 10\n        if node.left:\n            queue.append((node.left, level + 1))\n        if node.right:\n            queue.append((node.right, level + 1))\n    return total_sum",
+    "tests": [
+        "assert sum_of_digits(Node(4, Node(2), None)) == 6",
+        "assert sum_of_digits(None) == 0",
+        "assert sum_of_digits(Node(5)) == 5",
+        "assert sum_of_digits(Node(3, Node(1), Node(2))) == 6"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

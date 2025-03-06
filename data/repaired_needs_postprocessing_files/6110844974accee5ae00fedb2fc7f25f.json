@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Euler's Totient Function",
+    "description": "Euler's totient function, denoted by \u03c6(n), counts the positive integers up to a given number n that are relatively prime to n. Given two positive integers m and n, calculate the value of \u03c6(m*n) in terms of \u03c6(m) and \u03c6(n). Write a function `euler_totient` that calculates Euler's totient function for a product of two numbers.\n\n#### Function Signature\n```python\ndef euler_totient(m: int, n: int) -> int:\n```\n\n#### Input\n- `m` (int): The first positive integer.\n- `n` (int): The second positive integer.\n\n#### Output\n- Returns the value of Euler's totient function for m*n in terms of \u03c6(m) and \u03c6(n).\n",
+    "code": "import math\ndef euler_totient(m: int, n: int) -> int:\n    def gcd(a: int, b: int) -> int:\n        while b != 0:\n            a, b = b, a % b\n        return a\n    phi_m = 1\n    for p in range(2, m + 1):\n        if m % p == 0:\n            phi_p = p - 1\n            k = 0\n            while (p ** (k + 1)) % m != 1:\n                k += 1\n            phi_m *= (phi_p * (p ** k))\n    phi_n = 1\n    for p in range(2, n + 1):\n        if n % p == 0:\n            phi_p = p - 1\n            k = 0\n            while (p ** (k + 1)) % n != 1:\n                k += 1\n            phi_n *= (phi_p * (p ** k))\n    return gcd(m, n) * phi_m // math.gcd(m, n) * phi_n // math.gcd(n, m)\n",
+    "tests": [
+        "assert euler_totient(12, 15) == 8",
+        "assert euler_totient(6, 8) == 4",
+        "assert euler_totient(5, 7) == 4",
+        "assert euler_totient(9, 10) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

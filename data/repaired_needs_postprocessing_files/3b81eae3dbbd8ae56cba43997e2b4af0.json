@@ -1,0 +1,11 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagrams(wordlist: list[str]) -> dict[str, list[str]]:\n```\n\n#### Input\n- `wordlist` (list[str]): A list of lowercase strings.\n\n#### Output\n- Returns a dictionary where the keys are anagrams and their values are lists of words that can form those anagrams. The keys should be sorted in alphabetical order.\n",
+    "code": "def find_anagrams(wordlist: list[str]) -> dict[str, list[str]]:\n    # Create a dictionary to store the anagrams\n    anagram_dict = {}\n    \n    # Sort the wordlist in alphabetical order and join each word as a key for our dictionary\n    sorted_wordlist = sorted(wordlist)\n    for word in sorted_wordlist:\n        sorted_word = ''.join(sorted(word))\n        if sorted_word not in anagram_dict:\n            anagram_dict[sorted_word] = []\n        \n    # Count the occurrence of each letter for the word and store it as a tuple\n    count_tuple = ()\n    for char in word:\n        if char not in ''.join(anagram_dict.keys()):\n            anagram_dict[sorted_word].append(word)\n            continue\n        count_tuple += (char, word.count(char),)\n    \n    # If the count tuple is present as a key in the dictionary, add the current word to its value\n    for key, val in anagram_dict.items():\n        if tuple(val[-1] for val in enumerate(count_tuple)) == (val[1] for val in enumerate(count_tuple)):\n            anagram_dict[key].append(word)\n",
+    "tests": [
+        "assert find_anagrams(['listen', 'silent', 'enlist']) == {'eislnitiedls': ['listen', 'enlist']}",
+        "assert find_anagrams(['python', 'typoth', 'hotpy']) == {'ypohytpt': ['python', 'hotpy']}",
+        "assert find_anagrams(['apple', 'apples', 'app', 'apopalp', 'alppa']) == {'leapplepa': ['apple', 'apples', 'app']}"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

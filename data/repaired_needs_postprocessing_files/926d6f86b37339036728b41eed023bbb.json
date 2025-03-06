@@ -1,0 +1,13 @@
+{
+    "title": "Prime Number Generator (Hard)",
+    "description": "Write a function `generate_primes` that returns all prime numbers less than or equal to a given number n. The Sieve of Eratosthenes algorithm should be used for this purpose.",
+    "function_signature": "def generate_primes(n: int) -> List[int]:\n    from typing import List\n\n    def sieve_of_eratosthenes(n: int) -> List[bool]:\n        primes = [True] * (n + 1)\n        primes[0] = False\n        primes[1] = False\n        for i in range(2, int(n ** 0.5) + 1):\n            if primes[i]:\n                for j in range(i*i, n+1, i):\n                    primes[j] = False\n        return [i for i in range(n+1) if primes[i]]\ndef generate_primes(n: int) -> List[int]:\n    return sieve_of_eratosthenes(n)",
+    "code": "from typing import List\n\ndef sieve_of_eratosthenes(n: int) -> List[bool]:\n    primes = [True] * (n + 1)\n    primes[0] = False\n    primes[1] = False\n    for i in range(2, int(n ** 0.5) + 1):\n        if primes[i]:\n            for j in range(i*i, n+1, i):\n                primes[j] = False\n    return [i for i in range(n+1) if primes[i]]\ndef generate_primes(n: int) -> List[int]:\n    return sieve_of_eratosthenes(n)",
+    "tests": [
+        "assert sorted(generate_primes(5)) == [2, 3, 5]",
+        "assert sorted(generate_primes(10)) == [2, 3, 5, 7]",
+        "assert sorted(generate_primes(20)) == [2, 3, 5, 7, 11, 13, 17, 19]",
+        "assert sorted(generate_primes(50)) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

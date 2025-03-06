@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Longest Increasing Subsequence with Restrictions",
+    "description": "You are given an array of integers `nums` and a list of pairs `restrictions`, where each pair represents a restriction on the indices of elements that can be included in the subsequence.\nFor example, the restriction `[i, j]` means that if element at index `i` is included in the subsequence, then the element at index `j` **must** also be included. \nYour task is to find the length of the longest increasing subsequence of `nums` that satisfies all the given restrictions.\n#### Function Signature\n```python\ndef longest_increasing_subsequence_with_restrictions(nums: list[int], restrictions: list[list[int]]) -> int:\n```\n#### Input\n- `nums`: A list of integers.\n- `restrictions`: A list of pairs representing the index restrictions.\n#### Output\n- Returns an integer representing the length of the longest increasing subsequence that satisfies all restrictions.\n",
+    "code": "def longest_increasing_subsequence_with_restrictions(nums: list[int], restrictions: list[list[int]]) -> int:\n    n = len(nums)\n    dp = [1] * n\n    adj_list = [[] for _ in range(n)]\n    for i, j in restrictions:\n        adj_list[i].append(j)\n\n    def dfs(node):\n        if dp[node] != 1:\n            return dp[node]\n        for neighbor in adj_list[node]:\n            dp[node] = max(dp[node], 1 + dfs(neighbor))\n        return dp[node]\n\n    longest = 0 \n    for i in range(n):\n        longest = max(longest, dfs(i))\n    return longest",
+    "tests": [
+        "assert longest_increasing_subsequence_with_restrictions([1, 3, 2, 4, 5], [[0, 1], [1, 2]]) == 4",
+        "assert longest_increasing_subsequence_with_restrictions([1, 2, 3, 4, 5], []) == 5",
+        "assert longest_increasing_subsequence_with_restrictions([5, 4, 3, 2, 1], [[0, 1]]) == 1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

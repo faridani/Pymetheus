@@ -1,0 +1,11 @@
+{
+    "title": "'Even Number Finder (Medium)'",
+    "description": "Create a function called `find_even_numbers` that takes a list of integers and returns a new list containing only the even numbers from the input list. \n\n#### Function Signature\n```python\ndef find_even_numbers(numbers: List[int]) -> List[int]:\n```\n\n#### Input\n- `numbers` (List[int]): A non-empty list of integers.\n\n#### Output\n- Returns a new list containing only the even numbers from the input list, in the same order.\n",
+    "code": "def find_even_numbers(numbers: List[int]) -> List[int]:\n   # Iterate through the input list\n   even_numbers = []\n   for number in numbers:\n       # Check if the number is even and append it to the result list\n       if number % 2 == 0:\n           even_numbers.append(number)\n   \n   return even_numbers",
+    "tests": [
+        "assert find_even_numbers([1, 2, 3, 4, 5]) == [2, 4]",
+        "assert find_even_numbers([6, 7, 8, 9, 10]) == [6, 8, 10]",
+        "assert find_even_numbers([-2, -3, -4, -5, -6]) == [-2, -4, -6]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Minimum Operations to Make a String Alternating",
+    "description": "Given a string `s` consisting of only characters '0' and '1', find the minimum number of operations required to make the string alternating. An alternating string has the pattern '0101...' or '1010...'.\n\n#### Function Signature\n```python\ndef min_alternating_operations(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing only characters '0' and '1'.\n\n#### Output\n- Returns the minimum number of operations required to make the string alternating.",
+    "code": "def min_alternating_operations(s: str) -> int:\n    n = len(s)\n    operations0 = 0\n    operations1 = 0\n    for i in range(n):\n        if (i % 2 == 0 and s[i] != '0') or (i % 2 != 0 and s[i] != '1'):\n            operations0 += 1\n        if (i % 2 == 0 and s[i] != '1') or (i % 2 != 0 and s[i] != '0'):\n            operations1 += 1\n    return min(operations0, operations1)",
+    "tests": [
+        "'assert min_alternating_operations(\"010101\") == 0'",
+        "'assert min_alternating_operations(\"10010\") == 2'",
+        "'assert min_alternating_operations(\"0000\") == 3'",
+        "'assert min_alternating_operations(\"1111\") == 3'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

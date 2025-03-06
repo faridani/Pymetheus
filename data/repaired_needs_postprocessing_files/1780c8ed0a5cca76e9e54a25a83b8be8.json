@@ -1,0 +1,11 @@
+{
+    "title": "'Radix Sort' - An Easy Problem on Codeforces",
+    "description": "Radix sort is a stable, comparison-based sorting algorithm from the bucket sort family that sorts data using one or more passes, each pass processing a significant digit of numbers in parallel. Write a function `radix_sort` that takes a list of non-negative integers as input and returns the sorted list.\n\n#### Function Signature\n```python\ndef radix_sort(arr: List[int]) -> List[int]:```\n\n#### Input\n- `arr` (List[int]): A list of non-negative integers to be sorted.\n\n#### Output\n- Returns a new list with the input numbers sorted in ascending order.",
+    "code": "def radix_sort(arr: List[int]) -> List[int]:\n    # Find the maximum number of digits (base 10) in any number\n    max_digits = len(str(max(arr))) - 1\n\n    # Create an empty bucket for each digit from 0 to 9\n    buckets = [[] for _ in range(10)]\n\n    # For each digit, distribute the numbers into the buckets and combine them back into the sorted array\n    for digit in range(max_digits, -1, -1):\n        # Create an empty sorted array to store the final result\n        sorted_arr = []\n\n        # Place each number in its correct bucket based on its current digit\n        for num in arr:\n            bucket_index = (num // 10**digit) % 10\n            buckets[bucket_index].append(num)\n\n        # Combine the sorted contents of each bucket back into the main array\n        arr = []\n        for i in range(10):\n            for num in buckets[i]:\n                arr.append(num)\n\n    return arr",
+    "tests": [
+        "assert radix_sort([3, 4, 31, 12, 45, 9]) == [3, 9, 12, 31, 4, 45]",
+        "assert radix_sort([10, 9, 88, 7]) == [7, 88, 9, 10]",
+        "assert radix_sort([]) == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

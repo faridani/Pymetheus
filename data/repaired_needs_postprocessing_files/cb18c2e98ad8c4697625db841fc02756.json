@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "An anagram is a word or phrase that consists of the same letters as another word or phrase, but arranged differently. Write a function `is_anagram` that checks if two given strings are anagrams of each other. This problem statement does not specify what to do in case there's no common character. However, it's assumed that this is a possibility. For simplicity, we'll assume that there will always be at least one common character between the two given strings. You may modify or remove this assumption if you wish to make the problem harder. ",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s1 = ''.join([char for char in s1.lower() if char.isalpha()])\n    s2 = ''.join([char for char in s2.lower() if char.isalpha()])\n    # Check if the two strings have the same number of characters\n    if len(s1) != len(s2):\n        return False\n    # Create a frequency map of each character in s1 and s2\n    freq_map = {char: s1.count(char) - s2.count(char) for char in 'abcdefghijklmnopqrstuvwxyz'}\n    # Check if all values in the frequency map are zero\n    return all([freq == 0 for freq in freq_map.values()])",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"racecar\", \"carrace\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False",
+        "assert is_anagram(\"James, 'a' Train\", \"siamese 'a' man\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

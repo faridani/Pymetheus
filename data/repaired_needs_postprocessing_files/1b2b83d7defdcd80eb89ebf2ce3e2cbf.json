@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Number of Islands",
+    "description": "Given an m x n binary matrix grid where 0 represents land and 1 represents water, return the number of islands. An island is a group of connected 0 cells that are not surrounded by water (1). For example, consider the following input:\n\n```python\ndef num_islands(grid: list) -> int:\n    if not grid:\n        return 0\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == '0':\n                dfs(grid, i, j)\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == '1':\n                return 0\n    return count\n\ndef dfs(grid: list, i: int, j: int) -> None:\n    if i<0 or i>=len(grid) or j<0 or j>=len(grid[0]) or grid[i][j] != '0':\n        return\n    grid[i][j] = '#'\n    dfs(grid, i-1, j)\n    dfs(grid, i+1, j)\n    dfs(grid, i, j-1)\n    dfs(grid, i, j+1)\n",
+    "code": "import copy\ndef num_islands(grid: list) -> int:\n    if not grid:\n        return 0\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == '0':\n                dfs(grid, i, j)\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == '1':\n                return 0\n    return count\n\ndef dfs(grid: list, i: int, j: int) -> None:\n    if i<0 or i>=len(grid) or j<0 or j>=len(grid[0]) or grid[i][j] != '0':\n        return\n    grid[i][j] = '#'\n    dfs(grid, i-1, j)\n    dfs(grid, i+1, j)\n    dfs(grid, i, j-1)\n    dfs(grid, i, j+1)",
+    "tests": [
+        "assert num_islands([['0','1'],['1','0']]) == 1",
+        "assert num_islands([['1','1','1','1','0'], ['1','1','0','1','0'], ['1','1','1','1','1'], ['0','0','0','0','0']]) == 2",
+        "assert num_islands([]) == 0",
+        "assert num_islands([[]]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Medium: Reverse Words in a String",
+    "description": "Write a function `reverse_words` that takes a string `s` as input and returns the words reversed in the string while preserving their order. Write a function `reverse_words` that takes a string `s` as input and returns the words reversed in the string while preserving their order.\n#### Function Signature\n```python\ndef reverse_words(s: str) -> str:\n``` \n\n#### Input\n- `s` (str): A string that contains one or more words separated by spaces.\n\n#### Output\n- Returns a new string with the same words in reversed order.\n",
+    "code": "def reverse_words(s: str) -> str:\n    # Split the string into words\n    words = s.split(' ')\n    # Reverse the list of words\n    words = words[::-1]\n    # Join the words back into a string\n    return ' '.join(words)",
+    "tests": [
+        "assert reverse_words(\"hello world\") == \"world hello\"",
+        "assert reverse_words(\"python is fun\") == \"fun is python\""
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

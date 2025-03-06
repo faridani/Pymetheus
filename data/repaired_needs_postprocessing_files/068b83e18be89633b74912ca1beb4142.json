@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Find the Duplicate",
+    "description": "Given a list of integers, find and return the first duplicate. If there are no duplicates, return None.\n\n#### Function Signature\n```python\ndef find_duplicate(lst: list[int]) -> int | None:\n``` \n\n#### Input\n- `lst` (list[int]): A list of unique integers.\n\n#### Output\n- The first duplicate integer in the input list. If there are no duplicates, return `None`.",
+    "code": "def find_duplicate(lst: list[int]) -> int | None:\n    seen = set()\n    for num in lst:\n        if num in seen:\n            return num\n        seen.add(num)\n    return None\n",
+    "tests": [
+        "assert find_duplicate([1, 2, 3, 4, 5]) == None",
+        "assert find_duplicate([1, 2, 3, 4, 3]) == 3",
+        "assert find_duplicate([-1, -2, -3, -4, -5]) == None",
+        "assert find_duplicate([1, 2, 3, 4, 4]) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

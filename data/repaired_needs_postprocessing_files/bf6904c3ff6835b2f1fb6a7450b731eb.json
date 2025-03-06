@@ -1,0 +1,11 @@
+{
+    "title": "Reverse Vowels of a String (Hard)",
+    "description": "Write a function `reverseVowels` that takes a string and returns the same string with its vowels reversed.\n#### Function Signature\n```python\ndef reverseVowels(s: str) -> str:\n``` \n#### Input\n- `s` (str): A string containing any combination of alphabets, spaces and special characters.\n#### Output\n- Returns the same string as input with all vowels (a, e, i, o, u) in reversed order.\n#### Hint:\nUse two pointers: one starting from the beginning of the string and another from the end. Compare each character with a list of vowels. If it's a vowel, swap the characters until all vowels are placed at their respective positions.\n",
+    "code": "def reverseVowels(s: str) -> str:\n    # Define vowels\n    vowels = set(['a', 'e', 'i', 'o', 'u'])\n    # Initialize start and end pointers\n    start, end = 0, len(s)-1\n    # Create a list for the result string\n    result = [None]*len(s)\n    \n    while start < end:\n        # If the current character is not a vowel at the start, increment start\n        if s[start] not in vowels: start += 1\n        # If the current character is not a vowel at the end, decrement end\n        elif s[end] not in vowels: end -= 1\n        # Else swap characters and increment both pointers\n        else:\n            result[start], result[end] = s[end], s[start]\n            start += 1\n            end -= 1\n    \n    # Combine the result list into a single string and return it\n    return ''.join(result)",
+    "tests": [
+        "assert reverseVowels('hello') == 'holle'",
+        "assert reverseVowels('leetcode') == 'deletce'",
+        "assert reverseVowels('A man, a plan, a canal: Panama') == 'A man, palan, nanac a ,namalap a, manA'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

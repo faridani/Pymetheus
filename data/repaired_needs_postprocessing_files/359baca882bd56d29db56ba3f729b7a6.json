@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Substrings Finder (Medium)'",
+    "description": "Given a string `s`, find all the substrings of `s` that are palindromes. A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of palindrome substrings in the order they appear in the input string.",
+    "code": "import collections\ndef find_palindromes(s: str) -> List[str]:\n    char_count = collections.defaultdict(int)\n    start, end = 0, 0\n    palindromes = []\n    for i in range(len(s)):\n        char_count[s[i]] += 1\n        if char_count[s[i]] == 1:\n            start = i\n        if (i + 1) >= len(s):\n            break\n        if i > start and char_count[s[(i+1)//2]] <= 1:\n            end = 2 * (i - start) + 1\n            palindromes.append(s[start:end])\n            start += 1\n    return palindromes",
+    "tests": [
+        "assert find_palindromes('racecar') == ['r', 'a', 'c', 'e', 'c', 'a', 'r']",
+        "assert find_palindromes('babad') == ['b', 'a', 'b', 'd']",
+        "assert find_palindromes('abracadabra') == ['a', 'b', 'a', 'c', 'a', 'd', 'a', 'b', 'a']",
+        "assert find_palindromes('hello world!') == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

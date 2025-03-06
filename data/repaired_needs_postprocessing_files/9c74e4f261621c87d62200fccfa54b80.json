@@ -1,0 +1,11 @@
+{
+    "title": "'Palindromic Substrings Finder (Easy)'",
+    "description": "Given a string, find all its substrings that are palindromes. A palindrome is a sequence of characters that reads the same forward and backward.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of strings where each element is a palindrome substring found in the input string.",
+    "code": "import re\ndef find_palindromes(s: str) -> List[str]:\n    # Find all non-empty substrings of s that are palindromes\n    palindromes = [m.group() for m in re.finditer('(\\b|[^a-zA-Z0-9])(?P<pal>[a-zA-Z0-9]{2,}|[a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9])\\1', s)]\n    # Remove any palindromes that contain only a single character\n    return [pal for pal in palindromes if len(pal) > 1]",
+    "tests": [
+        "assert find_palindromes('racecar') == ['racecar', 'acecar']",
+        "assert find_palindromes('abcbad') == ['b', 'aba', 'bad']",
+        "assert find_palindromes('hello world') == ['ll']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

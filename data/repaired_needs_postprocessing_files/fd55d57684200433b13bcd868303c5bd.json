@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Closest Pair",
+    "description": "In a set of points, the closest pair problem asks for the shortest distance between any two points. Given a list of 2D points (x1, y1), (x2, y2), ..., (xn, yn) and an integer k, write a function `closest_pair` that returns the k-th smallest distance between any two points.\n#### Function Signature\n```python\ndef closest_pair(points: list[tuple[int]], k: int) -> float:\n``` \n#### Input\n- `points` (list[tuple[int]]): A list of 2D points, where each point is represented as a tuple of two integers.\n- `k` (int): The index of the smallest distance to return (0-indexed).\n\n#### Output\n- Returns the k-th smallest distance between any two points in the input list. If there are less than k distances, returns None.",
+    "code": "import math\ndef closest_pair(points: list[tuple[int]], k: int) -> float:\n    distances = [math.sqrt((x2 - x1)**2 + (y2 - y1)**2) for ((x1, y1), (x2, y2)) in itertools.combinations(points, 2)]\n    sorted_distances = sorted(distances)\n    if k < len(sorted_distances):\n        return sorted_distances[k]\n    else:\n        return None\n",
+    "tests": [
+        "assert closest_pair([(0, 0), (1, 1), (-2, -2)], 0) == 1.4142135623730951",
+        "assert closest_pair([(0, 0), (1, 1), (-2, -2)], 1) == 2.8284271247461903",
+        "assert closest_pair([(0, 0), (1, 1), (-2, -2)], 5) is None",
+        "assert closest_pair([(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)], 0) == 1.4142135623730951"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

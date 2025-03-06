@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Prime Factorization",
+    "description": "Write a function `prime_factors` that takes an integer `n` and returns its prime factors as a list.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A positive integer greater than 1.\n\n#### Output\n- Returns a list of integers that are the prime factors of `n`. The order of the factors does not matter, but they should be in ascending order.\n\n#### Constraints\n- `2 <= n <= 10^6`\n\n#### Hints\n- You can use a helper function to check if a number is prime.",
+    "code": "from typing import List\n\ndef is_prime(n: int) -> bool:\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef prime_factors(n: int) -> List[int]:\n    factors = []\n    while n % 2 == 0:\n        factors.append(2)\n        n //= 2\n    for i in range(3, int(n**0.5) + 1, 2):\n        while n % i == 0 and is_prime(i):\n            factors.append(i)\n            n //= i\n    if n > 2 and is_prime(n):\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factors(315) == [3, 3, 5, 7]",
+        "assert prime_factors(48) == [2, 2, 2, 2, 2, 3]",
+        "assert prime_factors(100) == [2, 2, 5, 5]"
+    ],
+    "model": "mistral-nemo:latest-repaired by Llama 3"
+}

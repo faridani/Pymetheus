@@ -1,0 +1,12 @@
+{
+    "title": "'Is it a Pangram Checker (Medium)'",
+    "description": "A pangram is a sentence that uses every letter of the alphabet at least once. Write a function `is_pangram` that checks if a given string is a pangram.\n#### Function Signature\n```python\ndef is_pangram(s: str) -> bool:\n``` \n#### Input\n- `s` (str): A string that may contain spaces, punctuation and alphabets.\n#### Output\n- Returns `True` if the input string is a pangram, `False` otherwise.",
+    "code": "import string\ndef is_pangram(s: str) -> bool:\n    # Remove non-alphanumeric characters and convert to lowercase\n    s = ''.join(char for char in s.lower() if char in string.ascii_letters + string.digits)\n    # Create a set of unique letters from the alphabet\n    alphabet = set(string.ascii_lowercase)\n    # Check if every letter in the alphabet is present in the given string\n    return len(alphabet - set(s)) == 0",
+    "tests": [
+        "assert is_pangram('The quick brown fox jumps over the lazy dog') == True",
+        "assert is_pangram('A very long sentence with multiple words that uses many letters') == False",
+        "assert is_pangram('Try hard, everyone A2Z!') == True",
+        "assert is_pangram('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

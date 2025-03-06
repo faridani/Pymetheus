@@ -1,0 +1,12 @@
+{
+    "title": "Longest Valid Parentheses",
+    "description": "A valid parentheses string can contain three types of brackets: () , {[]} , and * . Write a function longest_valid_parentheses(s: str) -> int:\n\n    stack = [-1]\n    max_len = 0\n    for i in range(len(s)):\n        if s[i] == \"*\":\n            stack.append(i)\n        elif s[i] == \"*\" and stack[-1] != -1:\n            del stack[-1]\n        else:\n            stack.append(i)\n    max_len = max(max_len, i - stack[-1])\n    for i in range(len(stack) - 2):\n        max_len = max(max_len, (stack[i + 2] - stack[i]) % (len(s) + 1))\n    return max_len",
+    "code": "def longest_valid_parentheses(s: str) -> int:\n    stack = [-1]\n    max_len = 0\n    for i in range(len(s)):\n        if s[i] == \"*\":\n            stack.append(i)\n        elif s[i] == \"*\" and stack[-1] != -1:\n            del stack[-1]\n        else:\n            stack.append(i)\n    max_len = max(max_len, i - stack[-1])\n    for i in range(len(stack) - 2):\n        max_len = max(max_len, (stack[i + 2] - stack[i]) % (len(s) + 1))\n    return max_len\n",
+    "tests": [
+        "assert longest_valid_parentheses(\"(()\") == 2",
+        "assert longest_valid_parentheses(\"()\") == 2",
+        "assert longest_valid_parentheses(\"(*)\") == 4",
+        "assert longest_valid_parentheses(\"\") == 0"
+    ],
+    "model": "llama3.1:8b-repaired by Llama 3"
+}

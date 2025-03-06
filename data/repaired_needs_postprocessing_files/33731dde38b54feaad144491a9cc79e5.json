@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Minimum Swaps for Sorted Array",
+    "description": "Given an array of integers, find the minimum number of swaps required to sort the array in ascending order.\n\n#### Function Signature\n```python\ndef min_swaps(arr):\n```\n\n#### Input\n- `arr` (list of int): An unsorted list of integers.\n\n#### Output\n- Returns `int`: The minimum number of swaps required to sort the array.\n\n#### Constraints\n- 1 <= len(arr) <= 10^5\n- 1 <= arr[i] <= 10^9\n\n#### Hints\nConsider using a graph-based approach where elements in the array are represented as nodes and an edge exists between two nodes if their positions need to be swapped.",
+    "code": "def min_swaps(arr):\n    n = len(arr)\n    position = [0] * n\n    for i in range(n):\n        position[arr[i] - 1] = i\n    cycle_count = 0\n    visited = [False] * n\n    for i in range(n):\n        if not visited[i]:\n            j = i\n            count = 0\n            while not visited[j]:\n                visited[j] = True\n                j = position[arr[j] - 1]\n                count += 1\n            cycle_count += count - 1\n    return cycle_count",
+    "tests": [
+        "'assert min_swaps([7, 1, 3, 2, 4, 5, 6]) == 5'",
+        "'assert min_swaps([1, 2, 3, 4, 5]) == 0'",
+        "'assert min_swaps([4, 3, 2, 1]) == 6'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

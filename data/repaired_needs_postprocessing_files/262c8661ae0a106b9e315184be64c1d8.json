@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Circular Array Rotation",
+    "description": "You are given a circular array of `n` integers. You need to perform `k` rotations on the array, where one rotation involves shifting each element one position to the right, and the last element wraps around to become the first element. After performing all the rotations, you need to return the element at a specific index `i`. This problem is about developing a function that takes an array of integers, the number of rotations to perform, and the index of the desired output. The function should return the integer value at the specified index after performing the necessary rotations on the array.\n\n#### Function Signature\n```python\ndef circular_array_rotation(arr: list[int], k: int, i: int) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A circular array of integers.\n- `k` (int): The number of rotations to perform.\n- `i` (int): The index of the element to return after rotations.\n\n#### Output\n- Returns the integer value at index `i` after performing `k` rotations on the array.",
+    "code": "def circular_array_rotation(arr: list[int], k: int, i: int) -> int:\n    n = len(arr)\n    k %= n  # Handle cases where k is larger than the array length\n    return arr[(i - k + n) % n]",
+    "tests": [
+        "'assert circular_array_rotation([1, 2, 3, 4, 5], 2, 0) == 4'",
+        "'assert circular_array_rotation([1, 2, 3, 4, 5], 2, 3) == 2'",
+        "'assert circular_array_rotation([1, 2, 3], 7, 2) == 1'",
+        "'assert circular_array_rotation([10, 20, 30, 40, 50], 3, 1) == 40'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Palindromic Substrings Counter",
+    "description": "A palindromic substring of a string is a contiguous sequence of characters that reads the same forwards and backwards. For example, in the string 'racecar', there are three palindromic substrings: 'e', 'a', and 'racecar'. Write a function `count_palindromes` that takes a string as input and returns the total number of palindromic substrings it contains.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the total number of palindromic substrings in the input string.\n",
+    "code": "def count_palindromes(s: str) -> int:\n    if not s: return 0\n    n = len(s)\n    dp = [[False] * n for _ in range(n)]\n    max_len = 1\n    center = 0\n    for i in range(n):\n        # Consider all possible centers\n        for j in range(i, n):\n            if s[i] != s[j]: break\n            # If current substring is a palindrome and its length is greater than max_len,\n            # update max_len and center.\n            if j - i + 1 > max_len:\n                max_len = j - i + 1\n                center = i\n            dp[i][j] = True\n    # Count palindromes up to the length of half the string, as longer ones are counted twice.\n    total = sum([sum(row) for row in dp[:len(s) // 2]]) + max_len // 2\n    return total",
+    "tests": [
+        "assert count_palindromes('racecar') == 4",
+        "assert count_palindromes('radar') == 3",
+        "assert count_palindromes('banana') == 6"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Prime Factorization",
+    "description": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. Write a function `prime_factors` that takes an integer `n` as input and returns its prime factors.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> list:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns a list of prime factors of the input number.\n",
+    "code": "def prime_factors(n: int) -> list:\n    factors = []\n    i = 2\n    while i * i <= n:\n        if n % i:\n            i += 1\n        else:\n            n //= i\n            while n % i == 0:\n                n //= i\n            factors.append(i)\n    if n > 1:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factors(315) == [3, 3, 5, 7]",
+        "assert prime_factors(121) == [11, 11]",
+        "assert prime_factors(20) == [2, 2, 5]",
+        "assert prime_factors(23) == [23]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

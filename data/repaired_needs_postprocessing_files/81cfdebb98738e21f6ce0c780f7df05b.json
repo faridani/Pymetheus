@@ -1,0 +1,11 @@
+{
+    "title": "Hard: The Knight's Tour",
+    "description": "A knight's tour is a sequence of moves by a knight on a chessboard such that the knight visits every square exactly once. Given an 8x8 chessboard, write a function `knight_tour` that returns a list of tuples representing the order in which the knight visited each square.\n\n#### Function Signature\n```python\ndef knight_tour(start: tuple) -> list:\n```\n\n#### Input\n- `start` (tuple): A tuple representing the starting position of the knight on the chessboard. The tuple should be in the form (row, column), where 0 <= row <= 7 and 0 <= column <= 7.\n\n#### Output\n- Returns a list of tuples representing the order in which the knight visited each square. If no knight's tour is possible from the given starting position, returns an empty list.",
+    "code": "def knight_tour(start: tuple) -> list:\n    board = [[False for _ in range(8)] for _ in range(8)]\n    path = []\n\n    def is_valid(row, col):\n        return 0 <= row < 8 and 0 <= col < 8 and not board[row][col]\n\n    def solve(row, col, move_count):\n        if move_count == 64:\n            return True\n\n        moves = [(2, 1), (1, 2), (-1, 2), (-2, 1), (-2, -1), (-1, -2), (1, -2), (2, -1)]\n\n        for dr, dc in moves:\n            new_row = row + dr\n            new_col = col + dc\n\n            if is_valid(new_row, new_col):\n                board[new_row][new_col] = True\n                path.append((new_row, new_col))\n\n                if solve(new_row, new_col, move_count + 1):\n                    return True\n\n                board[new_row][new_col] = False\n                path.pop()\n\n        return False\n\n    board[start[0]][start[1]] = True\n    path.append(start)\n\n    if solve(start[0], start[1], 1):\n        return path\n    else:\n        return []",
+    "tests": [
+        "assert knight_tour((0, 0)) != []",
+        "assert len(knight_tour((0, 0))) == 64",
+        "assert (7, 7) in knight_tour((0, 0))"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

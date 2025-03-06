@@ -1,0 +1,12 @@
+{
+    "title": "Economic Inequality",
+    "description": "A rich man has some gold coins and wants to distribute them among his 5 children. Each child should have an equal number of coins, but the man doesn't want any child to have more than 10 coins. If he gives each child more than 1 coin, then each will get a whole number of coins between 1 and 10 (inclusive). Write a function `distribute_coins` that calculates how many gold coins each child should receive.\n#### Function Signature\n```python\ndef distribute_coins(total_coins: int) -> list[int]:\n``` \n#### Input\n- `total_coins` (int): The total number of gold coins the rich man has.\n#### Output\n- Returns a list of integers representing the number of coins each child should receive.",
+    "code": "def distribute_coins(total_coins: int) -> list[int]:\n    if total_coins <= 0:\n        return []\n    base, remainder = divmod(total_coins, 10)\n    if remainder > 0:\n        if base == 1:\n            return [11] * (remainder + 1)\n        else:\n            result = [base + 1] * remainder\n            result.extend([base] * (5 - remainder))\n            return result\n    elif base <= 10:\n        return [base] * 5\n    else:\n        if base % 2 == 0 and base // 2 <= 10:\n            return [base // 2, base // 2, base // 2, base // 2, base // 2]\n        elif base % 3 == 0 and (base // 3) * 3 <= 30:\n            result = [(base // 3) * 3] * 5\n            return result\n    if base >= 15:\n        result = [5, 5, 4, 1]\n        for _ in range(10 - 15):\n            result.append(base % 5)\n        return result\n    else:\n        raise ValueError('This should not happen')\n",
+    "tests": [
+        "assert distribute_coins(43) == [8, 8, 8, 8, 1]",
+        "assert distribute_coins(30) == [6, 6, 6, 6, 6]",
+        "assert distribute_coins(50) == [10, 10, 10, 10, 10]",
+        "assert distribute_coins(25) == [5, 5, 5, 5, 5]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

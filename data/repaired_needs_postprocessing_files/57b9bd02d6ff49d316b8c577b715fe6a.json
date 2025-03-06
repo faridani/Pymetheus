@@ -1,0 +1,11 @@
+{
+    "title": "Prime Numbers Summation",
+    "description": "Find the sum of all prime numbers less than 10^6.\n\n#### Function Signature\n```python\ndef primes_sum(limit: int) -> int:\n```\n\n#### Input\n- `limit` (int): The upper limit for searching primes. In this case, it's 10^6.\n\n#### Output\n- Returns an integer which is the sum of all prime numbers less than the input limit.\n\n#### Constraints\n- The function should be efficient enough to handle inputs up to 10^7.\n",
+    "code": "import math\ndef primes_sum(limit: int) -> int:\n    def is_prime(n: int) -> bool:\n        if n <= 1:\n            return False\n        for i in range(2, math.isqrt(n) + 1):\n            if n % i == 0:\n                return False\n        return True\n    \n    primes = [x for x in range(limit) if is_prime(x)]\n    return sum(primes)",
+    "tests": [
+        "assert primes_sum(10) == 17",
+        "assert primes_sum(30) == 40",
+        "assert primes_sum(10**6) == 1548932117"
+    ],
+    "model": "mistral-nemo:latest-repaired by Llama 3"
+}

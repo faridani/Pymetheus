@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Check if a string is a subsequence of another",
+    "description": "A subsequence is a sequence that can be derived from another sequence by deleting some or no characters, without changing the order of the remaining characters.\n#### Function Signature\n```python\ndef is_subsequence(s1: str, s2: str) -> bool:\n``` \n#### Input\n- `s1` (str): The main string to check for subsequences.\n- `s2` (str): A target string that may be a subsequence of the main string.\n#### Output\n- Returns `True` if `s2` is a subsequence of `s1`, `False` otherwise.",
+    "code": "def is_subsequence(s1: str, s2: str) -> bool:\n    i = j = 0\n    while i < len(s1) and j < len(s2):\n        if s1[i] == s2[j]:\n            j += 1\n        i += 1\n    return j == len(s2)\n",
+    "tests": [
+        "assert is_subsequence('hello', 'helo') == True",
+        "assert is_subsequence('hello', 'world') == False",
+        "assert is_subsequence('abcde', 'ca') == True",
+        "assert is_subsequence('abcd', 'bad') == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

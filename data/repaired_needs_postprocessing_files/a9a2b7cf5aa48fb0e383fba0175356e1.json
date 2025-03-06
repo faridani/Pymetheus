@@ -1,0 +1,11 @@
+{
+    "title": "Reverse Words Checker (Easy)",
+    "description": "Write a function `is_reverse_words` that checks if a given string has the same words when read backwards as forwards.\n\n#### Function Signature\n```python\ndef is_reverse_words(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that contains at least one space character, and each word is separated by a single space.\n\n#### Output\n- Returns `True` if the input string has the same words when read backwards as forwards, `False` otherwise.",
+    "code": "def is_reverse_words(s: str) -> bool:\n    s = s.strip()\n    words = s.split(' ')\n    reversed_words = words[::-1]\n    return words == reversed_words",
+    "tests": [
+        "assert is_reverse_words('hello world hello') == True",
+        "assert is_reverse_words('I am a palindrome I am a palindrome') == True",
+        "assert is_reverse_words('This is not a reverse word string This is not a reverse word string') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

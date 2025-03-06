@@ -1,0 +1,11 @@
+{
+    "title": "Tree Traversal",
+    "description": "Given a tree, where each node contains an integer and its children are ordered from left to right. The task is to find the maximum path sum that can be obtained by traversing the tree in any way (i.e., either top-down or bottom-up) and selecting nodes with positive values.\n#### Function Signature\n```python\ndef max_path_sum(tree: dict) -> int:\n```\n#### Input\n- `tree` (dict): A dictionary representing the tree, where each key is a node ID and its corresponding value is another dictionary containing the node's value and its children. For example, `{'A': {'value': 1, 'children': ['B', 'C']}, 'B': {'value': 2, 'children': []}, 'C': {'value': -3, 'children': []}}`.\n#### Output\n- Returns the maximum path sum that can be obtained by traversing the tree in any way and selecting nodes with positive values.",
+    "code": "import math\ndef max_path_sum(tree: dict) -> int:\n    def dfs(node_id):\n        if node_id not in tree:\n            return 0\n        value = tree[node_id]['value']\n        children = [child for child in tree[node_id]['children']]\n        max_child_sum = sum(dfs(child) for child in children)\n        return max(0, value + max_child_sum)\n    return dfs('A')",
+    "tests": [
+        "assert max_path_sum({'A': {'value': 1, 'children': ['B', 'C']}, 'B': {'value': 2, 'children': []}, 'C': {'value': -3, 'children': []}}) == 3",
+        "assert max_path_sum({'A': {'value': 1, 'children': ['B', 'C']}, 'B': {'value': 2, 'children': []}, 'C': {'value': -3, 'children': ['D', 'E']}, 'D': {'value': 4, 'children': []}, 'E': {'value': -5, 'children': []}}) == 6",
+        "assert max_path_sum({'A': {'value': 1, 'children': []}}) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

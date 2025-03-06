@@ -1,0 +1,11 @@
+{
+    "title": "Medium - Count Characters",
+    "description": "Write a function `count_characters` that takes a string as input and returns a dictionary where the keys are the unique characters in the string and the values are the number of times each character appears. \n\n#### Function Signature\n```python\ndef count_characters(s: str) -> dict:\n``` \n\n#### Input\n- `s` (str): A string containing alphanumeric characters.\n\n#### Output\n- Returns a dictionary where keys are unique characters in the string and values are their counts.",
+    "code": "def count_characters(s: str) -> dict:\n    char_counts = {}\n    for char in s:\n        if char in char_counts:\n            char_counts[char] += 1\n        else:\n            char_counts[char] = 1\n    return char_counts",
+    "tests": [
+        "assert count_characters('hello') == {'h': 1, 'e': 1, 'l': 2, 'o': 1}",
+        "assert count_characters('aabbcc') == {'a': 2, 'b': 2, 'c': 2}",
+        "assert count_characters('Programming') == {'P': 1, 'r': 2, 'o': 1, 'g': 2, 'a': 1, 'm': 2, 'i': 1, 'n': 1, 'g': 1}"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

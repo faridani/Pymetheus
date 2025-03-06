@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Counting Substrings",
+    "description": "A substring is a contiguous sequence of characters within a string. Write a function `count_substrings` that counts the number of substrings for each length (from 1 to the length of the input string) in a given string.\n\n#### Function Signature\n```python\ndef count_substrings(s: str) -> dict:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a dictionary where the keys are the lengths of the substrings and the values are the counts of those substrings in the input string.\n",
+    "code": "def count_substrings(s: str) -> dict:\n    substring_counts = {}\n    for length in range(1, len(s) + 1):\n        count = 0\n        for i in range(len(s) - length + 1):\n            substring = s[i:i+length]\n            if substring not in substring_counts:\n                substring_counts[substring] = 0\n            substring_counts[substring] += 1\n    return {str(length): count for length, count in substring_counts.items()}\n",
+    "tests": [
+        "assert count_substrings('abc') == {'a': 1, 'b': 1, 'c': 1, 'ab': 1, 'bc': 1, 'ac': 1}",
+        "assert count_substrings('aaa') == {'a': 3, 'aa': 1, 'aaa': 1}",
+        "assert count_substrings('abcabc') == {'a': 2, 'b': 2, 'c': 2, 'ab': 2, 'bc': 2, 'ac': 2, 'abc': 1}",
+        "assert count_substrings('abcdefg') == {'a': 1, 'b': 1, 'c': 1, 'd': 1, 'e': 1, 'f': 1, 'g': 1, 'ab': 1, 'bc': 1, 'cd': 1, 'de': 1, 'ef': 1, 'fg': 1, 'abc': 1, 'bcd': 1, 'cde': 1, 'def': 1, 'efg': 1}"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

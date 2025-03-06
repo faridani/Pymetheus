@@ -1,0 +1,12 @@
+{
+    "title": "Medium: String Compression",
+    "description": "Given an input string, write a function `compress` that compresses the string using the following run-length encoding scheme. If a character appears consecutively multiple times, replace it with the character followed by the number of times it repeats. For example, 'aaabbbbcc' would become 'a3b4c2'. If the compressed string is not shorter than the original string, return the original string.\n\n#### Function Signature```python\ndef compress(s: str) -> str:\n```\n\n#### Input\n- `s` (str): The input string to be compressed.\n\n#### Output\n- Returns the compressed string if it's shorter than the original, otherwise returns the original string.",
+    "code": "def compress(s: str) -> str:\n    if len(s) == 0:\n        return s\n    compressed = ''\n    count = 1\n    prev_char = s[0]\n    for i in range(1, len(s)):\n        if s[i] == prev_char:\n            count += 1\n        else:\n            compressed += prev_char + (str(count) if count > 1 else '')\n            prev_char = s[i]\n            count = 1\n    compressed += prev_char + (str(count) if count > 1 else '')\n    return compressed if len(compressed) < len(s) else s",
+    "tests": [
+        "assert compress('aaabbbbcc') == 'a3b4c2'",
+        "assert compress('abc') == 'abc'",
+        "assert compress('aabcccccaaa') == 'a2bc5a3'",
+        "assert compress('') == ''"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

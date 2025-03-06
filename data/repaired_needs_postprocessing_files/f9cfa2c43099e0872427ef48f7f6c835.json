@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Fibonacci Sequence Generator",
+    "description": "The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, usually starting with 0 and 1. Write a function `fibonacci(n)` that takes an integer `n` as input and returns a list containing the first `n` Fibonacci numbers.\r\n\r\n#### Function Signature\r\n```python\rndef fibonacci(n: int) -> list:\r```\r\r\n#### Input\r\n- `n` (int): The number of Fibonacci numbers to generate.\r\r\n#### Output\r\n- Returns a list containing the first `n` Fibonacci numbers.\r",
+    "code": "def fibonacci(n: int) -> list:\r    if n <= 0:\r        return []\r    elif n == 1:\r        return [0]\r    else:\r        fib_list = [0, 1]\r        while len(fib_list) < n:\r            next_fib = fib_list[-1] + fib_list[-2]\r            fib_list.append(next_fib)\r        return fib_list\r",
+    "tests": [
+        "assert fibonacci(0) == []",
+        "assert fibonacci(1) == [0]",
+        "assert fibonacci(2) == [0, 1]",
+        "assert fibonacci(5) == [0, 1, 1, 2, 3]",
+        "assert fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

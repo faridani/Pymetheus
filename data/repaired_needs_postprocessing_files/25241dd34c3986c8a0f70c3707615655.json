@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Check if a number is a power of two",
+    "description": "Write a function `is_power_of_two` that takes an integer as input and returns `True` if the number is a power of two, and `False` otherwise.\n#### Function Signature\n```python\ndef is_power_of_two(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): An integer that may be a power of two or not.\n\n#### Output\n- Returns `True` if the input number is a power of two, `False` otherwise.",
+    "code": "def is_power_of_two(n: int) -> bool:\n    if n < 1:\n        return False\n    while n > 1:\n        if n % 2 != 0:\n            return False\n        n = n // 2\n    return True",
+    "tests": [
+        "assert is_power_of_two(16) == True",
+        "assert is_power_of_two(20) == False",
+        "assert is_power_of_two(1) == True",
+        "assert is_power_of_two(3) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "'Is it an Antipalindrome? (Medium)'",
+    "description": "An antipalindrome is a string which does not read the same forwards and backwards. Write a function `is_antipalindrome` that checks if a given string is an antipalindrome.\n\n#### Function Signature\n```python\ndef is_antipalindrome(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string is an antipalindrome, `False` otherwise.\n",
+    "code": "import string\ndef is_antipalindrome(s: str) -> bool:\n    # Convert to lowercase\n    s = s.lower()\n    # Remove non-alphanumeric characters\n    s = ''.join(char for char in s if char in string.ascii_letters + string.digits)\n    # Check if the string reads the same forwards and backwards\n    return len(s) % 2 == 1 or s != s[::-1]",
+    "tests": [
+        "assert is_antipalindrome(\"A man, a plan, a canal, Panama\") == False",
+        "assert is_antipalindrome(\"racecar\") == False",
+        "assert is_antipalindrome(\"hello\") == True",
+        "assert is_antipalindrome(\"No 'x' in Nixon\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

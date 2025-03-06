@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Knights Tour",
+    "description": "A knight's tour is a sequence of moves by a knight on a chessboard such that the knight visits every square only once. Given an NxN chessboard, write a function knights_tour to find one possible knights tour starting from a given position (row, column) and print the path.\n\n#### Function Signature\n```\ndef knights_tour(n: int, row: int, col: int):\n```",
+    "code": "def knights_tour(n: int, row: int, col: int):\n    def is_valid(x, y):\n        return 0 <= x < n and 0 <= y < n\n\n    def solve(board, x, y, move_count):\n        if move_count == n * n:\n            return True\n\n        moves = [(2, 1), (1, 2), (-1, 2), (-2, 1),\n                 (-2, -1), (-1, -2), (1, -2), (2, -1)]\n\n        for dx, dy in moves:\n            nx = x + dx\n            ny = y + dy\n            if is_valid(nx, ny) and board[nx][ny] == -1:\n                board[nx][ny] = move_count\n                if solve(board, nx, ny, move_count + 1):\n                    return True\n                else:\n                    board[nx][ny] = -1  # Backtrack\n        return False\n\n    board = [[-1 for _ in range(n)] for _ in range(n)]\n    board[row][col] = 0\n\n    if solve(board, row, col, 1):\n        path = [(i // n, i % n) for i in range(n * n) if board[i // n][i % n] != -1]\n        print(path)\n    else:\n        print('No solution')",
+    "tests": [
+        "knights_tour(8, 0, 0)",
+        "knights_tour(5, 2, 3)"
+    ],
+    "model": "gemma:27b-repaired by Llama 3"
+}

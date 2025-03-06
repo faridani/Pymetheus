@@ -1,0 +1,12 @@
+{
+    "title": "Polindromic Frequency Detector (Medium)",
+    "description": "A polindromic number is a number that remains the same when its digits are reversed. Write a function `count_polindromes` that takes an integer `n` and returns the count of polindromic numbers in the range [1, n].\n#### Function Signature\n```python\ndef count_polindromes(n: int) -> int:\n```\n\n#### Input\n- `n` (int): An integer greater than or equal to 1.\n\n#### Output\n- Returns the count of polindromic numbers in the range [1, n].\n",
+    "code": "def is_polindrome(n: int) -> bool:\n    # Extract digits from the number\n    digits = [int(digit) for digit in str(n)][::-1]\n    # Check if the original and reversed numbers are equal\n    return n == sum(digit**i for i, digit in enumerate(zip(digits, range(len(digits))))) \ndef count_polindromes(n: int) -> int:\n    # Initialize a count variable\n    count = 0\n    # Loop from 1 to n and check for polindromic numbers\n    for i in range(1, n+1):\n        if is_polindrome(i):\n            count += 1\n    return count",
+    "tests": [
+        "assert count_polindromes(9) == 3",
+        "assert count_polindromes(20) == 5",
+        "assert count_polindromes(100) == 16",
+        "assert count_polindromes(1000) == 89"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Hard:  Longest Palindromic Substring",
+    "description": "Given a string s, return the longest palindromic substring in s.\n#### Function Signature\n```python\ndef longest_palindrome(s: str) -> str:\n```\n#### Input\n- `s` (str): A string containing lowercase English letters.\n#### Output\n- Returns the longest palindromic substring within the input string `s`. If multiple palindromes of the same length exist, return any one of them.",
+    "code": "def longest_palindrome(s: str) -> str:\n    n = len(s)\n    if n < 2:\n        return s\n    dp = [[False] * n for _ in range(n)]\n    for i in range(n):\n        dp[i][i] = True\n    max_len = 1\n    start = 0\n    for i in range(n - 1, -1, -1):\n        for j in range(i + 1, n):\n            if s[i] == s[j]:\n                if j - i == 1 or dp[i + 1][j - 1]:\n                    dp[i][j] = True\n                    if j - i + 1 > max_len:\n                        max_len = j - i + 1\n                        start = i\n    return s[start:start + max_len]\n",
+    "tests": [
+        "assert longest_palindrome('babad') == 'bab' or longest_palindrome('babad') == 'aba'",
+        "assert longest_palindrome('cbbd') == 'bb'",
+        "assert longest_palindrome('a') == 'a'",
+        "assert longest_palindrome('ac') == 'a' or longest_palindrome('ac') == 'c'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

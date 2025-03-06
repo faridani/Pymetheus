@@ -1,0 +1,11 @@
+{
+    "title": "'Palindromic Subsequence Count (Medium)'",
+    "description": "A palindromic subsequence of a string is a sequence that reads the same backward as forward. Write a function `count_palindrome_subsequences` that takes in a string and returns the count of its unique palindromic subsequences.\n\n#### Function Signature\n```python\ndef count_palindrome_subsequences(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the count of unique palindromic subsequences in the input string.",
+    "code": "import collections\ndef count_palindrome_subsequences(s: str) -> int:\n    # Iterate through all possible length of subsequences\n    for len_subseq in range(len(s)):\n        # Initialize a counter to store the count of unique palindromic subsequences of the given length\n        counter = collections.defaultdict(int)\n        \n        # Iterate through all possible starting indices of subsequences of the given length\n        for start in range(len(s)):\n            # Calculate the ending index of the subsequence\n            end = start + len_subseq\n            \n            # If the subsequence is not a palindrome, continue to the next iteration\n            if not is_palindrome(s[start:end]):\n                continue\n            \n            # Increment the count for the current subsequence\n            counter[s[start:end]] += 1\n        \n        # Sum up the counts from all lengths to get the total count of unique palindromic subsequences\n        total = sum(counter.values())\n        # If there are no palindromic subsequences of the current length, break the loop\n        if total == 1:\n            break\n    \n    # Return the total count of unique palindromic subsequences\n    return total",
+    "tests": [
+        "assert count_palindrome_subsequences('aab') == 3",
+        "assert count_palindrome_subsequences('abcd') == 1",
+        "assert count_palindrome_subsequences('aba') == 2"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

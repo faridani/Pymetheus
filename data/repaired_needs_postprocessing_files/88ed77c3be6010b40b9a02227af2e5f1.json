@@ -1,0 +1,11 @@
+{
+    "title": "Even Fibonacci Numbers",
+    "description": "Write a function `even_fibonacci` that finds all even Fibonacci numbers below a given limit (inclusive).\n\n#### Function Signature\n```python\ndef even_fibonacci(limit: int) -> list:\n```\n\n#### Input\n- `limit` (int): An integer representing the upper limit for finding even Fibonacci numbers.\n\n#### Output\n- Returns a list of all even Fibonacci numbers below the given limit.",
+    "code": "def even_fibonacci(limit: int) -> list:\n    # Initialize a list to store the even Fibonacci numbers\n    fibs = [0, 2]\n    # Loop through each Fibonacci number up to the limit\n    for i in range(3, limit+1):\n        next_fib = fibs[-1] + fibs[-2]\n        # Check if the new Fibonacci number is even\n        if next_fib % 2 == 0:\n            fibs.append(next_fib)\n    return fibs",
+    "tests": [
+        "assert even_fibonacci(10) == [0, 2, 8]",
+        "assert even_fibonacci(100) == [0, 2, 8, 34, 50, 66, 144, 220, 266, 378, 440, 578, 660, 890, 988, 1098, 1210, 1542, 1776, 1858, 2026, 2330, 2418, 2722, 2930]",
+        "assert even_fibonacci(1000) == [0, 2, 8, 34, 50, 66, 144, 220, 266, 378, 440, 578, 660, 890, 988, 1098, 1210, 1542, 1776, 1858, 2026, 2330, 2418, 2722, 2930, 3338, 3558, 3878, 4188, 4422, 4662, 4846, 5010, 5182, 5366, 5550, 5716, 5882, 6050, 6178, 6318, 6490, 6606, 6762, 6938, 7026, 7166, 7310, 7462, 7582, 7726, 7890, 8022, 8088, 8226, 8350, 8490, 8618, 8690, 8846, 8998, 9142, 9270, 9386, 9510, 9638, 9762, 9858, 9990]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

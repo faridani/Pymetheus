@@ -1,0 +1,11 @@
+{
+    "title": "Prime Digit Sums, Hard",
+    "description": "Given a positive integer (n), find the sum of its prime digits. For example, the prime digit sum of 314159265 is 7 + 3 + 5 + 7 + 9 + 2 + 6 + 5 = 43.\r\n\r\n#### Function Signature\r\n```\ndef prime_digit_sum(n: int) -> int:\r\n``` \r\n\r\n#### Input\r\n- `n` (int): A positive integer.\r\n\r\n#### Output\r\n- Returns the sum of the prime digits in the given integer.",
+    "code": "def is_prime(number):\r\n    if number <= 1: return False\r\n    for i in range(2, int(number**0.5) + 1):\r\n        if number % i == 0:\r\n            return False\r\n    return True\r\ndef prime_digit_sum(n: int) -> int:\r\n    digits = [int(d) for d in str(n)]\r\n    result = sum([d for d in digits if is_prime(d)])\r\n    return result",
+    "tests": [
+        "assert prime_digit_sum(314159265) == 43",
+        "assert prime_digit_sum(1478517920) == 85",
+        "assert prime_digit_sum(23) == 3"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

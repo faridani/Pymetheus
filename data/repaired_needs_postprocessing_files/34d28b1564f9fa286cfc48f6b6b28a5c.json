@@ -1,0 +1,12 @@
+{
+    "title": "Maximum Sum of Subarray",
+    "description": "Given an integer array `nums`, find the maximum sum of a subarray that contains at most one duplicate. If there is no such subarray, return -1.\n\n#### Function Signature\n```python\ndef max_sum_subarray(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum of a subarray that contains at most one duplicate, or -1 if no such subarray exists.",
+    "code": "def max_sum_subarray(nums: list[int]) -> int:\n    n = len(nums)\n    max_sum = 0\n    seen = set()\n    for i in range(n):\n        for j in range(i+1, n+1):\n            subarray_sum = sum(nums[i:j])\n            if (j - i) > 1 and any(num in seen for num in nums[i:j]):\n                continue\n            max_sum = max(max_sum, subarray_sum)\n    return max_sum if max_sum > 0 else -1",
+    "tests": [
+        "assert max_sum_subarray([3,2,-2,5]) == 6",
+        "assert max_sum_subarray([-10,-20,1]) == -9",
+        "assert max_sum_subarray([1,2,3]) == -1",
+        "assert max_sum_subarray([1,2,3,4]) == -1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

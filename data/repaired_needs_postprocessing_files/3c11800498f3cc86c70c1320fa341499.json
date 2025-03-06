@@ -1,0 +1,13 @@
+{
+    "title": "Prime Number Sum Finder (Hard)",
+    "description": "Write a function `prime_sum` that finds the smallest sum of two prime numbers which are greater than a given limit.\n\n#### Function Signature\n```python\ndef prime_sum(limit: int) -> int:\n``` \n\n#### Input\n- `limit` (int): An integer representing the upper bound for finding primes.\n\n#### Output\n- Returns an integer, the smallest sum of two prime numbers that are greater than the given limit.",
+    "code": "def is_prime(n: int) -> bool:\n    if n <= 1 or (n % 2 == 0 and n > 2):\n        return False\n    for i in range(3, int(n**0.5)+1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndef prime_sum(limit: int) -> int:\n    primes = []\n    num = 3\n    while len(primes) < 2 or max(primes) <= limit:\n        if is_prime(num):\n            primes.append(num)\n        num += 1\n    return sum(primes[-2:]) + min(primes[-1], limit - sum(primes))",
+    "tests": [
+        "assert prime_sum(9) == 7",
+        "assert prime_sum(10) == 5",
+        "assert prime_sum(12) == 5",
+        "assert prime_sum(1000) == 2 + 983",
+        "assert prime_sum(2000) == 3 + 1997"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

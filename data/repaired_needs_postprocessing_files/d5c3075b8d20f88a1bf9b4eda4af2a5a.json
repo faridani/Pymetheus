@@ -1,0 +1,12 @@
+{
+    "title": "Prime Digit Count",
+    "description": "Write a function `prime_digit_count` that takes an integer as input and returns the count of prime digits in the number.\n\n#### Function Signature\n```python\ndef prime_digit_count(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer with at least one digit.\n\n#### Output\n- Returns the count of prime digits in the input number.\n",
+    "code": "def is_prime(num: int) -> bool:\n    if num < 2 or num % 2 == 0: return False\n    for i in range(3, int(num**0.5)+1, 2): \n        if num % i == 0:\n            return False\n    return True\ndef prime_digit_count(n: int) -> int:\n    count = 0\n    num_str = str(n)\n    for digit in num_str:\n        if is_prime(int(digit)): count += 1\n    return count",
+    "tests": [
+        "assert prime_digit_count(371) == 3",
+        "assert prime_digit_count(4994) == 4",
+        "assert prime_digit_count(23) == 1",
+        "assert prime_digit_count(10) == 1"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

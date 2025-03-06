@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Prime Permutations",
+    "description": "Given a number `n`, find all the prime numbers that can be formed by rearranging its digits. The function should return these primes sorted in ascending order, without leading zeroes.\n\n#### Function Signature\n```python\ndef prime_permutations(n: int) -> list:\n```\n\n#### Input\n- `n` (int): A positive integer to generate permutations from.\n\n#### Output\n- Returns a sorted list of unique integers that are prime numbers and can be formed by rearranging the digits in `n`. If no such primes exist, return an empty list. The returned primes should not have leading zeroes.",
+    "code": "from itertools import permutations\nimport math\ndef is_prime(num: int) -> bool:\n    if num < 2 or (num > 2 and num % 2 == 0):\n        return False\n    for i in range(3, int(math.sqrt(num)) + 1, 2):\n        if num % i == 0:\n            return False\n    return True\ndef prime_permutations(n: int) -> list:\n    # Generate all permutations of the digits in `n` and convert them to integers\n    permuts = {''.join(p): int(''.join(p)) for p in set(permutations(str(n))) if n != 0}\n    \n    # Filter out those numbers that are not prime\n    primes = [num for num in permuts.values() if is_prime(num)]\n    \n    return sorted(primes)",
+    "tests": [
+        "assert prime_permutations(1130) == []",
+        "assert prime_permutations(103) == [103]",
+        "assert prime_permutations(7069) == [6097, 6970]"
+    ],
+    "model": "phi3:14b-repaired by Llama 3"
+}

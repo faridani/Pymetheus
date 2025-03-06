@@ -1,0 +1,11 @@
+{
+    "title": "Hard - String Transformation",
+    "description": "You are given a string `s` consisting of lowercase English letters. Your task is to transform the string into a palindrome by performing a series of operations. In each operation, you can choose any character from the string and move it to either end (beginning or end) of the string.\n\n#### Function Signature\n```python\ndef min_operations(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string consisting of lowercase English letters.\n\n#### Output\n- Returns the minimum number of operations required to transform the string into a palindrome.",
+    "code": "def min_operations(s: str) -> int:\n    n = len(s)\n    dp = [[0 for _ in range(n)] for _ in range(n)]\n\n    # Fill diagonal with 0s (single characters are palindromes)\n    for i in range(n):\n        dp[i][i] = 0\n\n    # Iterate over substring lengths\n    for l in range(2, n + 1):\n        for i in range(n - l + 1):\n            j = i + l - 1\n            if s[i] == s[j] and l == 2:\n                dp[i][j] = 0\n            elif s[i] == s[j]:\n                dp[i][j] = dp[i + 1][j - 1]\n            else:\n                dp[i][j] = min(dp[i][j - 1], dp[i + 1][j]) + 1\n\n    return dp[0][n - 1]",
+    "tests": [
+        "assert min_operations(\"aabb\") == 0",
+        "assert min_operations(\"aab\") == 1",
+        "assert min_operations(\"abcde\") == 4"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

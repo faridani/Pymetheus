@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `find_anagrams` that finds all anagrams within a list of words.\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n```\n\n#### Input\n- `words` (List[str]): A list of strings containing words in lowercase.\n\n#### Output\n- Returns a dictionary where each key is an anagram and its value is a list of words that are anagrams of the key.\n",
+    "code": "from collections import Counter, defaultdict\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n    # Create a dictionary to store anagrams and their corresponding list of words\n    anagrams = defaultdict(list)\n    \n    # Iterate through each word in the input list\n    for word in words:\n        # Count the frequency of each character in the word\n        count = Counter(word)\n        \n        # Iterate through all other words and check if they are anagrams\n        for other_word in words:\n            if other_word != word and count == Counter(other_word):\n                # If the counts match, add the current word to the list of anagrams for the other word\n                anagrams[other_word].append(word)\n    \n    # Return the dictionary of anagrams\n    return dict(anagrams)",
+    "tests": [
+        "assert find_anagrams(['listen', 'silent', 'enlist']) == {'silent': ['listen', 'enlist'], 'enlist': ['listen']}",
+        "assert find_anagrams(['hello', 'world', 'hollo', 'dlrow']) == {'dlrow': ['world', 'hollo'], 'world': ['hello']}",
+        "assert find_anagrams(['apple', 'app', 'apples', 'applepie']) == {'app': ['apple', 'apples'], 'apple': ['apple', 'apples'], 'apples': ['apple'], 'applepie': []}"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

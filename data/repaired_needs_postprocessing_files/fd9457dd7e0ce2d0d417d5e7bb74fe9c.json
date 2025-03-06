@@ -1,0 +1,10 @@
+{
+    "title": "'Remove Vowels from a String' - Easy",
+    "description": "Write a function `remove_vowels` that removes all vowels (a, e, i, o, u, A, E, I, O, U) from a given string.\n\n#### Function Signature\n```\ndef remove_vowels(s: str) -> str:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters and spaces.\n\n#### Output\n- Returns a new string without any vowels (a, e, i, o, u, A, E, I, O, U).\r",
+    "code": "def remove_vowels(s: str) -> str:\r    # Create a set of all vowels\r    vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}\r    # Iterate through the string and replace any character that is a vowel with an empty string (\", \" .join(char for char in s if char not in vowels)\r    return s",
+    "tests": [
+        "assert remove_vowels(':ello, World!') == 'Hllwrld!'",
+        "assert remove_vowels('A man, a plan, a canal: Panama') == ' Mmnpmpnpnlm: Pnm'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Medium - Word Ladder",
+    "description": "Given two words, beginWord and endWord, and a wordList containing many words, find the length of the shortest transformation sequence from beginWord to endWord such that:- Only one letter can be changed at a time.- Each transformed word must exist in the wordList.Return the length of the shortest transformation sequence, or 0 if no such transformation sequence exists.",
+    "code": "from collections import deque\ndef ladderLength(beginWord: str, endWord: str, wordList: list[str]) -> int:\n    if endWord not in wordList:\n        return 0\n    neighbors = {}\n    for word in wordList:\n        for i in range(len(word)):\n            pattern = word[:i] + '*' + word[i+1:]\n            neighbors.setdefault(pattern, []).append(word)\n\n    queue = deque([(beginWord, 1)])\n    visited = set([beginWord])\n\n    while queue:\n        current_word, level = queue.popleft()\n        for i in range(len(current_word)):\n            pattern = current_word[:i] + '*' + current_word[i+1:]\n            for neighbor in neighbors.get(pattern, []):\n                if neighbor == endWord:\n                    return level + 1\n                if neighbor not in visited:\n                    visited.add(neighbor)\n                    queue.append((neighbor, level + 1))\n    return 0\n",
+    "tests": [
+        "assert ladderLength('hit', 'cog', ['hot','dot','dog','lot','log','cog']) == 5",
+        "assert ladderLength('hit', 'cog', ['hot','dot','dog','lot','log']) == 0"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

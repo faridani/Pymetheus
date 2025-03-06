@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Triangular Number Sequence",
+    "description": "A triangular number is a number that can be represented as the sum of consecutive positive integers. For example, 6 is a triangular number because it can be written as 1 + 2 + 3.\nWrite a function `find_triangular_number` that takes an integer `n` and returns the nth triangular number in the sequence.\n#### Function Signature\n```python\ndef find_triangular_number(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): The position of the desired triangular number in the sequence.\n\n#### Output\n- Returns the nth triangular number as an integer.",
+    "code": "def find_triangular_number(n: int) -> int:\n    return n * (n + 1) // 2",
+    "tests": [
+        "assert find_triangular_number(1) == 1",
+        "assert find_triangular_number(3) == 6",
+        "assert find_triangular_number(5) == 15"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

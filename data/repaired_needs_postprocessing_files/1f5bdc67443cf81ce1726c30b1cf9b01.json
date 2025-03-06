@@ -1,0 +1,15 @@
+{
+    "title": "Prime Number Checker (Hard)",
+    "description": "Write a function `is_prime` that checks if a given number is prime.\n\n#### Function Signature\n```\ndef is_prime(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns `True` if the input number is prime, `False` otherwise.",
+    "code": "def is_prime(n: int) -> bool:\n    # Check for edge cases (1 is not a prime and numbers less than 2 are also not primes)\n    if n <= 1: return False\n    # Check up to the square root of the number for factors\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    # If no factors were found, the number is prime\n    return True",
+    "tests": [
+        "assert is_prime(2) == True",
+        "assert is_prime(3) == True",
+        "assert is_prime(5) == True",
+        "assert not is_prime(4) == False",
+        "assert not is_prime(6) == False",
+        "assert is_prime(17) == True",
+        "assert not is_prime(18) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

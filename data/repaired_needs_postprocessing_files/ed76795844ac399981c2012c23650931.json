@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detection (Medium)",
+    "description": "Write a function `is_anagram` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n``` \n\n#### Input\n- `str1` (str): A string containing only lowercase letters from the English alphabet.\n- `str2` (str): Another string containing only lowercase letters from the English alphabet.\n\n#### Output\n- Returns `True` if both input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def is_anagram(str1: str, str2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(str1) != len(str2):\n        return False\n    \n    # Create a dictionary to count the frequency of each character in str1\n    char_count = {char: 0 for char in string.ascii_lowercase}\n    for char in str1:\n        char_count[char] += 1\n    \n    # Decrease the count of each character in str2 and check if all counts become 0\n    for char in str2:\n        char_count[char] -= 1\n        if char_count[char] < 0:\n            return False\n    \n    # If no characters have negative count after checking str2, the strings are anagrams\n    return True",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('act', 'cat') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

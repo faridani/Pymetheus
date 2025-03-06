@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Number of Digits",
+    "description": "Write a function `count_digits` that takes an integer as input and returns the number of digits in that integer.\n\n#### Function Signature\n```python\ndef count_digits(num: int) -> int:\n```\n\n#### Input\n- `num` (int): An integer.\n\n#### Output\n- Returns the number of digits in the integer.",
+    "code": "def count_digits(num: int) -> int:\n    if num == 0:\n        return 1\n    count = 0\n    num = abs(num)\n    while num > 0:\n        num //= 10\n        count += 1\n    return count",
+    "tests": [
+        "assert count_digits(123) == 3",
+        "assert count_digits(0) == 1",
+        "assert count_digits(-456) == 3",
+        "assert count_digits(9876543210) == 10"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

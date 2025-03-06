@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Digit Removal Sorter",
+    "description": "Given an integer, write a function `digit_sort` that removes all even digits from the input number and returns the new sorted (in increasing order) list of odd digits.\n\n#### Function Signature\n```python\ndef digit_sort(n: int) -> list:\n```\n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns a list containing all unique odd digits from the input number, sorted in increasing order.",
+    "code": "def digit_sort(n: int) -> list:\n    str_n = str(n)\n    return sorted({int(digit) for digit in str_n if int(digit) % 2 != 0})",
+    "tests": [
+        "assert digit_sort(13579) == [1, 3, 5, 7, 9]",
+        "assert digit_sort(6481) == []",
+        "assert digit_sort(2222) == []",
+        "assert digit_sort(357901) == [1, 3, 5, 7, 9]"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

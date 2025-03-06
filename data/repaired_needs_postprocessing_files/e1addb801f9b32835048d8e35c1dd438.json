@@ -1,0 +1,11 @@
+{
+    "title": "Removing Duplicates from a List - Medium",
+    "description": "Write a function `remove_duplicates` that takes a list of integers as input and returns a new list with duplicate elements removed. The order of the remaining elements does not matter.\n\n#### Function Signature\n```python\ndef remove_duplicates(nums: List[int]) -> List[int]:\n``` \n\n#### Input\n- `nums` (List[int]): A list of integers containing both positive and negative numbers.\n\n#### Output\n- Returns a new list with duplicate elements removed.\n",
+    "code": "def remove_duplicates(nums: List[int]) -> List[int]:\n    # Convert the list to a set, which removes duplicates by default\n    nums = list(set(nums))\n    return nums",
+    "tests": [
+        "assert remove_duplicates([1, 2, 3, 2, 5, 2, 7]) == [1, 2, 3, 5, 7]",
+        "assert remove_duplicates([]) == []",
+        "assert remove_duplicates([10, 20, 10, 30, 20, 40, 10, 30]) == [10, 20, 30, 40]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

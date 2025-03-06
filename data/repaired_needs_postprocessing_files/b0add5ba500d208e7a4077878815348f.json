@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Sums (Medium)'",
+    "description": "Given a list of positive integers, check if any pair of numbers from the list can be added together to form a palindrome. If such a pair exists, return True; otherwise, return False.\n\n#### Function Signature\n```python\ndef find_palindromic_sum(numbers: List[int]) -> bool:\n```\n\n#### Input\n- `numbers` (List[int]): A list of positive integers.\n\n#### Output\n- Returns `True` if any pair of numbers in the input list can be added together to form a palindrome, `False` otherwise.",
+    "code": "def find_palindromic_sum(numbers: List[int]) -> bool:\n    # Create a set to store the numbers and their reversed versions for easier comparison\n    seen = set()\n    for num in numbers:\n        # Reverse the number and add it to the set\n        rev = int(str(num)[::-1])\n        seen.add(rev)\n    \n    # Iterate over all pairs of numbers in the list\n    for i in range(len(numbers)):\n        for j in range(i+1, len(numbers)):\n            # Check if the pair forms a palindrome by checking if their sum and reversed sum are both in the seen set\n            if numbers[i] + numbers[j] in seen and numbers[j] + numbers[i] in seen:\n                return True\n    \n    # No such pair found, return False\n    return False",
+    "tests": [
+        "assert find_palindromic_sum([1, 2, 3, 8, 9]) == False",
+        "assert find_palindromic_sum([1, 2, 3, 5, 5, 2, 1]) == True",
+        "assert find_palindromic_sum([7, 3, 1, 17, 9, 7, 3]) == False",
+        "assert find_palindromic_sum([181, 557, 649, 820, 363, 488, 820, 649, 557, 363]) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

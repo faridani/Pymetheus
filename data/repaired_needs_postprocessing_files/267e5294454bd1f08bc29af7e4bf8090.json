@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Matrix Spiral Traversal",
+    "description": "Given a 2D integer matrix of size `m x n`, return all elements of the matrix in spiral order. \n\n#### Function Signature\n```python\ndef spiral_matrix(matrix: list[list[int]]) -> list[int]:\n``` \n\n#### Input\n- `matrix` (list[list[int]]): A 2D integer matrix.\n\n#### Output\n- Returns a list containing all elements of the matrix in spiral order.",
+    "code": "def spiral_matrix(matrix: list[list[int]]) -> list[int]:\n    m, n = len(matrix), len(matrix[0])\n    top, bottom, left, right = 0, m - 1, 0, n - 1\n    result = []\n    while top <= bottom and left <= right:\n        for i in range(left, right + 1):\n            result.append(matrix[top][i])\n        top += 1\n        for i in range(top, bottom + 1):\n            result.append(matrix[i][right])\n        right -= 1\n        if top <= bottom and left <= right:\n            for i in range(right, left - 1, -1):\n                result.append(matrix[bottom][i])\n            bottom -= 1\n            for i in range(bottom, top - 1, -1):\n                result.append(matrix[i][left])\n            left += 1\n    return result",
+    "tests": [
+        "'assert spiral_matrix([[1,2,3],[4,5,6],[7,8,9]]) == [1,2,3,6,9,8,7,4,5]'",
+        "'assert spiral_matrix([[1,2,3,4],[5,6,7,8],[9,10,11,12]]) == [1,2,3,4,8,12,11,10,9,5,6,7]'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

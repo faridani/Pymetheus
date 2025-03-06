@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Cost Path to Target",
+    "description": "A path from the top-left cell of an n x m grid to any other cell on the grid is called a valid path. The cost of each cell is represented by a number and every step from one cell to another can only be downwards or rightwards.\n\n#### Function Signature\n```python\ndef min_cost_path(grid: list[list[int]], target_x: int, target_y: int) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D grid where each cell represents the cost of stepping to that cell.\n- `target_x` (int): The x-coordinate of the target cell in the grid.\n- `target_y` (int): The y-coordinate of the target cell in the grid.\n\n#### Output\n- Returns the minimum total cost required to reach the target cell from the top-left cell. If there's no valid path, return -1.",
+    "code": "import heapq\ndef min_cost_path(grid: list[list[int]], target_x: int, target_y: int) -> int:\n    if target_x < 0 or target_y < 0 or target_x >= len(grid) or target_y >= len(grid[0]):\n        return -1\n    queue = [(grid[0][0], 0, 0)]\n    visited = set((0, 0))\n    while queue:\n        cost, x, y = heapq.heappop(queue)\n        if x == target_x and y == target_y:\n            return cost\n        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            nx, ny = x + dx, y + dy\n            if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]) and (nx, ny) not in visited:\n                heapq.heappush(queue, (cost + grid[nx][ny], nx, ny))\n                visited.add((nx, ny))\n    return -1\n",
+    "tests": [
+        "assert min_cost_path([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 2, 2) == 11",
+        "assert min_cost_path([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 0, 0) == 1",
+        "assert min_cost_path([[1, 2, 3], [4, 5, 6], [7, 8, 9]], -1, 0) == -1",
+        "assert min_cost_path([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 2, -1) == -1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

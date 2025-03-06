@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Graph Coloring",
+    "description": "The graph coloring problem is a classic problem in computer science and combinatorics. Given an undirected graph, the goal is to color each node with one of k colors such that no two adjacent nodes have the same color. Write a function `graph_color` that takes a graph represented as a list of lists (where each inner list represents a set of edges between nodes) and returns a coloring of the graph if it's possible, or None otherwise.\n\n#### Function Signature\n```python\ndef graph_color(graph: List[List[int]]) -> Optional[List[int]]:\n``` \n\n#### Input\n- `graph` (List[List[int]]): A list of lists where each inner list represents a set of edges between nodes in the graph. Each edge is represented by an integer representing the node it connects to.\n\n#### Output\n- Returns a coloring of the graph if it's possible, or None otherwise. The coloring should be a list of integers where each integer represents the color assigned to the corresponding node.",
+    "code": "import networkx as nx\nfrom typing import List, Optional\ndef graph_color(graph: List[List[int]]) -> Optional[List[int]]:\n    G = nx.Graph()\n    for edge in graph:\n        G.add_edge(edge[0], edge[1])\n    try:\n        coloring = list(nx.algorithms.coloring.greedy_color(G, seed=42).values())\n        return coloring\n    except Exception as e:\n        return None",
+    "tests": [
+        "assert graph_color([[0, 1], [1, 2], [2, 3]]) == [0, 0, 1, 1]",
+        "assert graph_color([[0, 1], [1, 2], [2, 3], [3, 4]]) is None",
+        "assert graph_color([[0, 1], [1, 2], [2, 3], [3, 4], [4, 5]]) == [0, 0, 1, 1, 2]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

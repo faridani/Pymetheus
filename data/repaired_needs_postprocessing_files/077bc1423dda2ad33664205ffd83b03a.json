@@ -1,0 +1,12 @@
+{
+    "title": "Fibonacci Sequence Range Sum Checker (Easy)",
+    "description": "Write a function `check_fibonacci_sum` that checks if a given number is the sum of two consecutive Fibonacci numbers.\n\n#### Function Signature\n```python\ndef check_fibonacci_sum(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): A non-negative integer that is the sum of two consecutive Fibonacci numbers.\n\n#### Output\n- Returns `True` if the input number is the sum of two consecutive Fibonacci numbers, `False` otherwise.",
+    "code": "def check_fibonacci_sum(n: int) -> bool:\n    # Create a dictionary to store fibonacci numbers\n    fib = {0: 0, 1: 1}\n    while True:\n        next_number = fib[len(fib)] + fib[len(fib) - 1]\n        if next_number > n:\n            break\n        fib[len(fib)] = next_number\n    for i, f in enumerate(reversed(list(fib))):\n        if n - f in fib and (i + 1) < len(fib):\n            return True\n    return False",
+    "tests": [
+        "assert check_fibonacci_sum(1) == False",
+        "assert check_fibonacci_sum(13) == False",
+        "assert check_fibonacci_sum(8) == True",
+        "assert check_fibonacci_sum(34) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

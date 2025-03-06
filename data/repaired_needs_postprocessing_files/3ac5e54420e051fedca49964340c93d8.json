@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Number of Ways to Change a Dollar",
+    "description": "You are given a dollar bill and you want to change it into coins. You have an unlimited supply of coins, but you can only use each coin once. The goal is to find the maximum number of ways you can make change for the dollar using only coins. Write a function `max_change` that takes in a list of coin denominations as input and returns the maximum number of ways you can make change for a dollar.\n\n#### Function Signature\n```python\ndef max_change(coins: List[int]) -> int:\n``` \n\n#### Input\n- `coins` (List[int]): A list of coin denominations. Each element represents the value of a coin in cents.\n\n#### Output\n- Returns an integer representing the maximum number of ways you can make change for a dollar using the given coins.\n\n#### Hints\n- You can assume that the input list will always be valid and contain at least one element.\n- Try to come up with a dynamic programming approach to solve this problem.\n",
+    "code": "def max_change(coins: List[int]) -> int:\n    # Sort the coins in descending order\n    coins.sort(reverse=True)\n    \n    # Initialize a dp table to store the maximum number of ways for each amount\n    dp = [0] * (101)  # We only need values up to $1.00\n    dp[0] = 1  # There is always one way to make change for $0\n    \n    # Iterate through the coin denominations\n    for coin in coins:\n        # Update the dp table by checking all possible amounts that can be made using the current coin\n        for i in range(coin, 101):\n            dp[i] += dp[i - coin]\n    \n    # Return the number of ways to make change for $1.00\n    return dp[-1]\n",
+    "tests": [
+        "assert max_change([1, 5, 10, 25, 50]) == 7",
+        "assert max_change([1, 3, 6]) == 4",
+        "assert max_change([99, 98, 97]) == 1"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

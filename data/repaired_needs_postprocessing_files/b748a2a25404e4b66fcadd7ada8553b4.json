@@ -1,0 +1,13 @@
+{
+    "title": "Medium Python Coding Question: Count Unique Words",
+    "description": "You are given a string that contains multiple words separated by spaces. Your task is to write a function `count_unique_words` that returns the number of unique words in the input string. The comparison should be case-insensitive, and punctuation marks such as periods, commas, etc., should be ignored.\n\n#### Function Signature\n```python\ndef count_unique_words(text: str) -> int:\n```\n\n#### Input\n- `text` (str): A string containing multiple words separated by spaces. The string may contain letters, numbers, spaces, and punctuation marks.\n\n#### Output\n- Returns an integer representing the number of unique words in the input string.\n\n#### Constraints\n- The input string can be empty or consist only of whitespace characters.\n\n#### Hints\n- Consider using Python's `str.lower()` method to handle case-insensitivity.\n- Use Python's `str.translate()` and `str.maketrans()` methods to remove punctuation marks.",
+    "code": "import string\n\ndef count_unique_words(text: str) -> int:\n    # Convert text to lowercase\n    text = text.lower()\n    # Remove punctuation using translate method\n    translator = str.maketrans('', '', string.punctuation)\n    text = text.translate(translator)\n    # Split the text into words\n    words = text.split()\n    # Use a set to find unique words and return its length\n    return len(set(words))\n",
+    "tests": [
+        "assert count_unique_words('Hello, world! Hello.') == 2",
+        "assert count_unique_words('Python is fun. Python programming is exciting.') == 4",
+        "assert count_unique_words('') == 0",
+        "assert count_unique_words('  Spaces   between   words  ') == 1",
+        "assert count_unique_words('One fish, two fish, red fish, blue fish.') == 4"
+    ],
+    "model": "phi4:latest-repaired by Llama 3"
+}

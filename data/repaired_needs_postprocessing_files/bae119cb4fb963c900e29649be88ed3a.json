@@ -1,0 +1,12 @@
+{
+    "title": "'Kmp Algorithm: Check if a String is a Subsequence of Another (Easy)'",
+    "description": "Given two strings `s` and `t`, write a function `kmp_check` that checks if string `s` is a subsequence of string `t`. A subsequence is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.\n\n#### Function Signature\n```\ndef kmp_check(s: str, t: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters or numbers in any order.\n- `t` (str): Another string that may contain letters or numbers in any order.\n\n#### Output\n- Returns `True` if string `s` is a subsequence of string `t`, `False` otherwise.",
+    "code": "def kmp_check(s: str, t: str) -> bool:\n    # Initialize pattern and text arrays for KMP algorithm\n    pattern = list(s)\n    text = list(t)\n    m, n = len(pattern), len(text)\n    \n    # Precompute the `next` array for the pattern\n    next = [-1] * (m + 1)\n    next[0] = -1\n    n = 0\n    k = -1\n    while n < m:\n        if pattern[n] == text[k]:\n            next[n + 1] = k + 1\n            n += 1\n            k += 1\n        elif k != -1:\n            k = next[k]\n        else:\n            n += 1\n    \n    # If the pattern matches the entire text, return True; otherwise, return False.\n    if k == m:\n        return True\n    return False",
+    "tests": [
+        "assert kmp_check(\"abc\", \"abcde\") == False",
+        "assert kmp_check(\"abcd\", \"acbde\") == True",
+        "assert kmp_check(\"hello\", \"helldo\") == True",
+        "assert kmp_check(\"world\", \"world\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

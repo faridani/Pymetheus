@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `are_anagrams` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n``` \n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, and spaces. No string will contain any other characters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Remove spaces from both strings and convert to lowercase\n    s1 = ''.join([char for char in s1.lower() if char not in ' '])\n    s2 = ''.join([char for char in s2.lower() if char not in ' '])\n    # If the two strings have a different length, they are not anagrams\n    if len(s1) != len(s2):\n        return False\n    # Create dictionaries to count the frequency of each letter in both strings\n    counts1 = {char: s1.count(char) for char in sorted(set(s1))}\n    counts2 = {char: s2.count(char) for char in sorted(set(s2))}\n    \n    # Check if the dictionaries are equal\n    return counts1 == counts2",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('racecar', 'carcarrace') == True",
+        "assert are_anagrams('eat', 'tea') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

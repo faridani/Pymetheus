@@ -1,0 +1,11 @@
+{
+    "title": "Number Flip Game",
+    "description": "You are given a positive integer `n` and two integers `a` and `b`. You can perform the following operation any number of times: take a positive integer `x` and replace `n` with `n XOR x`. Calculate the minimum number of operations needed to make `n` equal to `a XOR `b`.n\n#### Function Signature\n```python\ndef min_operations(n: int, a: int, b: int) -> int:\n```\n\n#### Input\n- `n` (int): The initial positive integer.\na (int): An integer.\nb (int): Another integer.\n\n#### Output\n- Returns the minimum number of operations needed to make `n` equal to `a XOR b`.n",
+    "code": "def min_operations(n, a, b):\n    # Calculate the initial number of set bits in n\n    initial_bits = bin(n).count('1')\n    # Calculate the final number of set bits needed to match a XOR b\n    final_bits = bin(a ^ b).count('1')\n    # Return the difference between the final and initial number of set bits\n    return final_bits - initial_bits",
+    "tests": [
+        "assert min_operations(5, 3, 6) == 2",
+        "assert min_operations(10, 7, 4) == 3",
+        "assert min_operations(8, 2, 3) == 1"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

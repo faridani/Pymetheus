@@ -1,0 +1,12 @@
+{
+    "title": "Even Fibonacci Numbers",
+    "description": "Write a function `even_fibonacci` that takes an integer `n` and returns the sum of all even Fibonacci numbers that are smaller than or equal to `n`. An Even Fibonacci number is a Fibonacci number multiplied by 2. Here's the function signature, input format, output format and some constraints:\n\n#### Function Signature\n```python\ndef even_fibonacci(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns the sum of all Even Fibonacci numbers that are smaller than or equal to `n`\n\n#### Constraints\n- The function should handle large inputs gracefully.\n",
+    "code": "def even_fibonacci(n: int) -> int:\n    a, b = 0, 1\n    sum = 0\n    while a <= n:\n        if a % 2 == 0:\n            sum += a\n        a, b = b, a + b\n    return sum",
+    "tests": [
+        "assert even_fibonacci(7) == 8",
+        "assert even_fibonacci(10) == 20",
+        "assert even_fibonacci(15) == 44",
+        "assert even_fibonacci(20) == 64"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

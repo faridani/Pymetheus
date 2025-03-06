@@ -1,0 +1,11 @@
+{
+    "title": "Eulerian Path",
+    "description": "An Eulerian path is a path that uses every edge of a graph exactly once. In this problem, you are given the adjacency list representation of an undirected connected simple graph. Write a function `eulerian_path` that generates an Eulerian path in the graph.\n\n#### Function Signature```python\ndef eulerian_path(adj_list: dict) -> str:\n```\n\n#### Input\n- `adj_list` (dict): A dictionary representing the adjacency list of the graph. Each key is a node and its value is a list of nodes that it connects to.\n\n#### Output\n- Returns an Eulerian path in the graph as a string, where each character is either 'U' or 'D', indicating whether the edge was traversed upwards (from a lower-indexed node to a higher-indexed node) or downwards (vice versa).\n",
+    "code": "def eulerian_path(adj_list: dict) -> str:\n    path = ''\n    visited = set()\n    stack = []\n    for node in adj_list:\n        if len(adj_list[node]) % 2 == 1:\n            stack.append(node)\n    while stack or any(len(neighbors) > 0 for neighbors in adj_list.values()):\n        while stack and any(len(neighbors) > 0 for neighbors in adj_list[stack[-1]]):\n            node = stack.pop()\n            path += 'D'\n            visited.add(node)\n            for neighbor in adj_list[node]:\n                if neighbor not in visited:\n                    stack.append(neighbor)\n                    break\n        if stack:\n            path += 'U' + '->'.join(stack) + 'D'\n    return path",
+    "tests": [
+        "assert eulerian_path({'A': ['B', 'C'], 'B': ['A', 'D', 'E'], 'C': ['F'], 'D': [], 'E': ['D'], 'F': []}) == 'UD->ABDCDE->FD'",
+        "assert eulerian_path({'A': ['B', 'C'], 'B': ['A'], 'C': ['D'], 'D': ['C']}) == 'UD->ABCD'",
+        "assert eulerian_path({'A': [], 'B': ['A']}) == 'U'"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

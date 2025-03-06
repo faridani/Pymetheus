@@ -1,0 +1,11 @@
+{
+    "title": "Reversed Pairs in an Array (Hard)",
+    "description": "Given a sorted integer array, find the number of pairs where the difference between the two numbers is 5 or less.\n#### Function Signature\n```python\ndef count_pairs(arr: List[int]) -> int:\n```\n\n#### Input\n- `arr` (List[int]): A sorted integer array.\n#### Output\n- Returns the number of pairs in the input array where the difference between the two numbers is 5 or less.\n",
+    "code": "def count_pairs(arr: List[int]) -> int:\n    result, i = 0, 0\n    while i < len(arr) - 1:\n        j = i + 1\n        while j < len(arr):\n            if arr[j] - arr[i] <= 5:\n                result += (j - i)\n                break\n            j += 1\n        i += 1\n    return result",
+    "tests": [
+        "assert count_pairs([1, 2, 3, 4]) == 2",
+        "assert count_pairs([10, 15, 20]) == 0",
+        "assert count_pairs([5, 25, 50]) == 2"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

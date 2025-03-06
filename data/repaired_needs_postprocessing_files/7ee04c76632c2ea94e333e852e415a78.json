@@ -1,0 +1,12 @@
+{
+    "title": "Check if a Given String is a Palindromic Number",
+    "description": "A palindromic number is a number that remains the same when its digits are reversed. Write a function `is_palindromic` that checks if a given string (which contains only digits) represents a palindromic number.\n\n#### Function Signature\n```\ndef is_palindromic(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that only contains digits.\n\n#### Output\n- Returns `True` if the input string represents a palindromic number, `False` otherwise.",
+    "code": "def is_palindromic(s: str) -> bool:\n    # Ensure the string only contains digits\n    s = s.strip()\n    if not s or not s[::-1].isdigit():\n        return False\n    return s == s[::-1]\n",
+    "tests": [
+        "assert is_palindromic(\"12321\") == True",
+        "assert is_palindromic(\"123456789\") == False",
+        "assert is_palindromic(\"987654321\") == True",
+        "assert is_palindromic(\"0\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

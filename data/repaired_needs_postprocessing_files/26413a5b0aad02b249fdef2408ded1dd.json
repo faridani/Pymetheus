@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Array Rotation",
+    "description": "You are given an array of integers and a number 'k'. Write a function `rotate_array` that rotates the elements of the array to the right by 'k' positions.\n\n#### Function Signature\n```python\ndef rotate_array(nums: list[int], k: int) -> None:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers. \n- `k` (int): The number of positions to rotate the array to the right.\n\n#### Output\n- The function modifies the input array `nums` in-place and does not return any value.",
+    "code": "def rotate_array(nums: list[int], k: int) -> None:\n    n = len(nums)\n    k %= n \n    nums[:] = nums[-k:] + nums[:-k]",
+    "tests": [
+        "nums = [1,2,3,4,5,6,7]; rotate_array(nums, 3); assert nums == [5,6,7,1,2,3,4]",
+        "nums = [-1,-100,3,99]; rotate_array(nums, 2); assert nums == [3,99,-1,-100]",
+        "nums = [1]; rotate_array(nums, 1); assert nums == [1]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

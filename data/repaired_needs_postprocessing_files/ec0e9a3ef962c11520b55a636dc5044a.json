@@ -1,0 +1,11 @@
+{
+    "title": "[Hard] N-Queens Problem",
+    "description": "The n-queens puzzle is the problem of placing n queens on an n*n chessboard such that no two queens attack each other. Write a recursive function `solve_n_queens` that solves the n-queens problem for a given board size `n`. The function should return all possible solutions to the puzzle.\nThe function signature is `def solve_n_queens(n: int) -> List[List[str]]:\n\n#### Input\n- `n` (int): The size of the chessboard and the number of queens to be placed.\n\n#### Output\n- Returns a list of all possible solutions, where each solution is represented as a list of strings. Each string represents a row of the chessboard with 'Q' representing a queen and '.' representing an empty space.",
+    "code": "from typing import List\ndef solve_n_queens(n: int) -> List[List[str]]:\n    def is_safe(board, row, col):\n        for i in range(row):\n            if board[i][col] == 'Q':\n                return False\n        i = row - 1\n        j = col - 1\n        while i >= 0 and j >= 0:\n            if board[i][j] == 'Q':\n                return False\n            i -= 1\n            j -= 1\n        i = row - 1\n        j = col + 1\n        while i >= 0 and j < n:\n            if board[i][j] == 'Q':\n                return False\n            i -= 1\n            j += 1\n        return True\n    def solve(board, row):\n        if row == n:\n            solutions.append([''.join(row) for row in board])\n            return\n        for col in range(n):\n            if is_safe(board, row, col):\n                board[row][col] = 'Q'\n                solve(board, row + 1)\n                board[row][col] = '.'\n    solutions = []\n    board = [['.' for _ in range(n)] for _ in range(n)]\n    solve(board, 0)\n    return solutions",
+    "tests": [
+        "assert len(solve_n_queens(4)) == 2",
+        "assert all(\"Q\" not in row or row.count(\"Q\") == 1 for solution in solve_n_queens(8) for row in solution)",
+        "assert all(len(row) == 6 and \"Q\" in row and all(cell in [\".\", \"Q\"] for cell in row) for solution in solve_n_queens(6) for row in solution)"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

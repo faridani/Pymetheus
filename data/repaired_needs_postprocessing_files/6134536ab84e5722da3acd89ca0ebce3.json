@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Binary Tree Reconstruction",
+    "description": "You are given two lists of integers, preorder and inorder. These represent the preorder and inorder traversal sequences of a binary search tree (BST). Your task is to reconstruct the BST from these traversals.\n\n#### Function Signature\n```python\ndef reconstruct_bst(preorder: list[int], inorder: list[int]) -> TreeNode:\n```\n\n#### Input\n- `preorder` (list[int]): A list representing the preorder traversal of the BST.\n- `inorder` (list[int]): A list representing the inorder traversal of the BST.\n\n#### Output\n- Returns the root node of the reconstructed BST. You need to define a TreeNode class as follows:\n```python\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n```",
+    "code": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef reconstruct_bst(preorder: list[int], inorder: list[int]) -> TreeNode:\n    if not preorder or not inorder:\n        return None\n    root_val = preorder[0]\n    root = TreeNode(root_val)\n    root_index = inorder.index(root_val)\n    left_inorder = inorder[:root_index]\n    right_inorder = inorder[root_index + 1:]\n    left_preorder = preorder[1:len(left_inorder) + 1]\n    right_preorder = preorder[len(left_preorder) + 1:]\n    root.left = reconstruct_bst(left_preorder, left_inorder)\n    root.right = reconstruct_bst(right_preorder, right_inorder)\n    return root",
+    "tests": [
+        "assert reconstruct_bst([3,9,20,15,7], [9,3,15,20,7]).val == 3",
+        "assert reconstruct_bst([1,2,3], [1,2,3]).val == 1",
+        "assert reconstruct_bst([4,2,5,1,3], [1,2,3,4,5]).val == 4"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

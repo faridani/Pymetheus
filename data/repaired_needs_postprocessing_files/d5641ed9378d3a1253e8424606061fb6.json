@@ -1,0 +1,12 @@
+{
+    "title": "Easy FizzBuzz",
+    "description": "Write a function that prints the numbers from 1 to 100. But for multiples of three print \"Fizz\" instead of the number and for multiples of five print \"Buzz\". For numbers which are multiples of both three and five print \"FizzBuzz\". \n\n#### Function Signature\n```python\ndef fizzbuzz():\n```\ndefizzbuzz():    for i in range(1, 101):        if i % 3 == 0 and i % 5 == 0:            print('FizzBuzz')        elif i % 3 == 0:            print('Fizz')        elif i % 5 == 0:            print('Buzz')        else:            print(i)\n",
+    "code": "def fizzbuzz():\n    for i in range(1, 101):\n        if i % 3 == 0 and i % 5 == 0:\n            print('FizzBuzz')\n        elif i % 3 == 0:\n            print('Fizz')\n        elif i % 5 == 0:\n            print('Buzz')\n        else:\n            print(i)\n",
+    "tests": [
+        "print(fizzbuzz())",
+        "assert 'Fizz' in str(fizzbuzz()).split('\\n')[2:4]",
+        "assert 'Buzz' in str(fizzbuzz()).split('\\n')[5,6]",
+        "assert 'FizzBuzz' in str(fizzbuzz()).split('\\n')[15]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

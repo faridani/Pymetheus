@@ -1,0 +1,11 @@
+{
+    "title": "Medium - Character Frequency Counter",
+    "description": "Write a function `char_frequency` that takes a string as input and returns a dictionary where the keys are the characters in the string and the values are the frequency of each character.\n\n#### Function Signature\n```python\ndef char_frequency(s: str) -> dict:\n``` \n\n#### Input\n- `s` (str): A string containing alphanumeric characters.\n\n#### Output\n- Returns a dictionary where keys are characters and values are their frequencies in the input string.",
+    "code": "def char_frequency(s: str) -> dict:\n    freq = {}\n    for char in s:\n        if char in freq:\n            freq[char] += 1\n        else:\n            freq[char] = 1\n    return freq",
+    "tests": [
+        "assert char_frequency('hello') == {'h': 1, 'e': 1, 'l': 2, 'o': 1}",
+        "assert char_frequency('Mississippi') == {'M': 1, 'i': 4, 's': 4, 'p': 2}",
+        "assert char_frequency('Programming') == {'P': 1, 'r': 2, 'o': 1, 'g': 2, 'a': 1, 'm': 2, 'i': 1, 'n': 1, 'g': 1}"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

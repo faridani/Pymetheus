@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Counting Unique Words",
+    "description": "Write a function `count_unique_words` that takes a string of text as input and returns the number of unique words in the text.\n\n#### Function Signature\n```python\ndef count_unique_words(text: str) -> int:\n```\n\n#### Input\n- `text` (str): A string of text that may contain multiple sentences, punctuation, and capitalization.\n\n#### Output\n- Returns an integer representing the number of unique words in the input text.",
+    "code": "def count_unique_words(text: str) -> int:\n    # Split the text into individual words\n    words = text.lower().split()\n    # Convert the list to a set to remove duplicates and count the size of the set\n    return len(set(words))\n",
+    "tests": [
+        "assert count_unique_words('One fish, two fish, red fish, blue fish') == 5",
+        "assert count_unique_words('I love Python! I love coding!') == 3",
+        "assert count_unique_words('') == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

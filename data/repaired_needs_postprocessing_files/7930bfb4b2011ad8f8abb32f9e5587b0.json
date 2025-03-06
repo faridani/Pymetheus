@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Number Digit Count",
+    "description": "Write a Python function `digit_count(n: int) -> dict` which takes an integer `n` as input and returns a dictionary with keys representing the digits from 0 to 9, and values representing how many times each digit appears in `n`. The function should handle both positive and negative integers. Note that leading zeros do not count in the output.",
+    "code": "import collections\n\ndef digit_count(n: int) -> dict:\n    # Make sure n is positive\n    n = abs(n)\n    # Initialize a dictionary to store digit counts\n    digit_counts = collections.defaultdict(int)\n    # Process each digit\n    while n > 0:\n        digit = n % 10\n        digit_counts[digit] += 1\n        n //= 10\n    return dict(digit_counts)",
+    "tests": [
+        "assert digit_count(12345) == {1: 1, 2: 1, 3: 1, 4: 1, 5: 1}",
+        "assert digit_count(-1120) == {0: 1, 1: 3, 2: 1}",
+        "assert digit_count(0) == {0: 1}",
+        "assert digit_count(987654321) == {9: 1, 8: 1, 7: 1, 6: 1, 5: 1, 4: 1, 3: 1, 2: 1, 1: 1}"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

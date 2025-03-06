@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Longest Increasing Subsequence",
+    "description": "Given an integer array `nums`, return the length of the longest strictly increasing subsequence. A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, `[3, 6, 2, 7]` is a subsequence of the array `[0, 3, 1, 6, 2, 2, 7]`. #### Function Signature```pythonndef length_of_LIS(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): An integer array.\n\n#### Output\n- Returns the length of the longest strictly increasing subsequence.",
+    "code": "def length_of_LIS(nums: list[int]) -> int:\n    n = len(nums)\n    dp = [1] * n\n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] > nums[j] and dp[i] < dp[j] + 1:\n                dp[i] = dp[j] + 1\n    return max(dp)",
+    "tests": [
+        "assert length_of_LIS([0, 1, 2, 3]) == 4",
+        "assert length_of_LIS([1, 3, 2, 4, 5]) == 4",
+        "assert length_of_LIS([10, 9, 2, 5, 3, 7, 101, 18]) == 4"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

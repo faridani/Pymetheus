@@ -1,0 +1,14 @@
+{
+    "title": "Prime Number Finder (Hard)",
+    "description": "Write a function `is_prime` that checks if a given positive integer is a prime number.\n\n#### Function Signature\n```python\ndef is_prime(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): A positive integer to check for primality.\n\n#### Output\n- Returns `True` if the input number is a prime, `False` otherwise.\n",
+    "code": "def is_prime(n: int) -> bool:\n    # Check base cases (1 and 0 are not primes)\n    if n <= 1: return False\n    # Check up to the square root of n for factors, as any larger factor would have a smaller factor less than or equal to its square root\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0: return False\n    # If no factors found up to the square root, then the number is a prime\n    return True",
+    "tests": [
+        "assert is_prime(2) == True",
+        "assert is_prime(3) == True",
+        "assert is_prime(4) == False",
+        "assert is_prime(5) == True",
+        "assert is_prime(6) == False",
+        "assert is_prime(17) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

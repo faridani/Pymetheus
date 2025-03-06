@@ -1,0 +1,12 @@
+{
+    "title": "String Reversal Checker (Medium)",
+    "description": "Given a string, write a function `reverse_string` that checks if the string is a palindrome and returns the number of characters that need to be reversed to make it a palindrome. If the input string is already a palindrome, return 0.\n\n#### Function Signature\n```python\ndef reverse_string(s: str) -> int:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns an integer indicating the number of characters to be reversed to make it a palindrome.",
+    "code": "def reverse_string(s: str) -> int:\n    # Check if the string is already a palindrome\n    if s == s[::-1]:\n        return 0\n\n    # Initialize variables to store the count of characters to be reversed and the length of the string\n    count, len_s = 0, len(s)\n\n    # Iterate through the string to find the breaking point where the characters start differing\n    i, j = 0, len_s - 1\n    while i < j:\n        if s[i] != s[j]:\n            break\n        i += 1\n        j -= 1\n\n    # Return the count of characters to be reversed\n    return (len_s - i) + (j - i)",
+    "tests": [
+        "assert reverse_string(\"A man, a plan, a canal, Panama\") == 23",
+        "assert reverse_string(\"racecar\") == 0",
+        "assert reverse_string(\"hello\") == 5",
+        "assert reverse_string(\"No 'x' in Nixon\") == 7"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

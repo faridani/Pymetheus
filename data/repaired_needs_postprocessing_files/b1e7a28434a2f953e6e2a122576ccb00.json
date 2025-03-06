@@ -1,0 +1,13 @@
+{
+    "title": "Lonely Two-Island Contest (Hard)",
+    "description": "In a remote sea, there are two islands: Isla_1 and Isla_2. These islands have been inhabited for centuries, but the inhabitants of each island speak different languages. The inhabitants of Isla_1 use a binary language, while those of Isla_2 use a ternary language (using digits 0, 1, and 2).\nEvery year, the inhabitants organize a unique contest to prove their mathematical prowess: they exchange a series of numbers from their respective languages, aiming to find a number that is equal in both languages. Write a function `binary_ternary_equality` that takes two numbers (one in binary and one in ternary) as input and returns `True` if they are equal when represented in either base, `False` otherwise.\n\n#### Function Signature\n```python\ndef binary_ternary_equality(b: int, t: int) -> bool:\n```\n\n#### Input\n- `b` (int): A non-negative integer representing a number in the binary system.\n- `t` (int): A non-negative integer representing a number in the ternary system.\n\n#### Output\n- Returns `True` if the input numbers are equal when represented in either base, `False` otherwise.\n",
+    "code": "def binary_ternary_equality(b: int, t: int) -> bool:\n    # Convert binary to decimal\n    b_decimal = bin(b)[2:] if b >= 0 else '0' + bin(b)[2:]\n    # Convert ternary to decimal\n    t_decimal = tarian_to_decimal(t)\n    \n    return int(b_decimal) == t_decimal\ndef tarian_to_decimal(t: int) -> int:\n    total = 0\n    exponent = 0\n    while t > 0:\n        remainder = t % 3\n        total += remainder * (3 ** exponent)\n        t //= 3\n        exponent += 1\n    return total",
+    "tests": [
+        "assert binary_ternary_equality(7, 5) == True",
+        "assert binary_ternary_equality(9, 6) == False",
+        "assert binary_ternary_equality(10, 2) == True",
+        "assert binary_ternary_equality(20, 10) == True",
+        "assert binary_ternary_equality(-3, -11) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

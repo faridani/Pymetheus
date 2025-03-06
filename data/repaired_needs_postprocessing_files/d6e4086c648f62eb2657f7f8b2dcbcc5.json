@@ -1,0 +1,12 @@
+{
+    "title": "Palindromic Substrings Count",
+    "description": "Write a function `count_palindromes` that takes a string as input and returns the number of palindromic substrings it contains. Write a function `count_palindromes(s: str) -> int:  # Initialize a 2D boolean matrix to store subproblems solved or not  dp = [[False] * len(s) for _ in range(len(s))]  def is_palindrome(start, end):   if dp[start][end]:    return True   if start == end:    dp[start][end] = True    return True   elif s[start] == s[end] and (start + 1 < end - 1 or (start + 1 == end - 1 and s[start+1] != ' ')):    dp[start][end] = True    return True   return False  # Iterate through the string from left to right, expanding centers horizontally and diagonally  count = 0  for i in range(len(s)):   for j in range(i, -1, -1):    if is_palindrome(i, j):     count += 1  return count",
+    "code": "def count_palindromes(s: str) -> int:\n  # Initialize a 2D boolean matrix to store subproblems solved or not\n  dp = [[False] * len(s) for _ in range(len(s))]\n  def is_palindrome(start, end):\n    if dp[start][end]:\n      return True\n    if start == end:\n      dp[start][end] = True\n      return True\n    elif s[start] == s[end] and (start + 1 < end - 1 or (start + 1 == end - 1 and s[start+1] != ' ')):\n      dp[start][end] = True\n      return True\n    return False\n  # Iterate through the string from left to right, expanding centers horizontally and diagonally\n  count = 0\n  for i in range(len(s)):\n    for j in range(i, -1, -1):\n      if is_palindrome(i, j):\n        count += 1\n  return count",
+    "tests": [
+        "assert count_palindromes('racecar') == 6",
+        "assert count_palindromes('abbba') == 4",
+        "assert count_palindromes('aa') == 1",
+        "assert count_palindromes(' ') == 0"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

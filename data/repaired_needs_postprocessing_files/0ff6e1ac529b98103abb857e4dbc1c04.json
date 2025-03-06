@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Cost Path in Grid (Hard)",
+    "description": "Given a 2D grid of integers, where each cell represents the cost to move into it (0 means obstacle), find the minimal cost path from the top-left corner (0,0) to the bottom-right corner (n-1,m-1). You can only move in four directions (up, down, left, right). If no such path exists, return -1.#### Function Signature```pythondef min_cost_path(grid: List[List[int]]) -> int:``` #### Input- `grid` (List[List[int]]): A 2D list representing the grid. Each cell can be an integer >=0, where 0 represents an obstacle.#### Output- Returns the minimal cost to reach from (0,0) to (n-1,m-1), or -1 if no path exists.#### Constraints- Grid dimensions: 1 <= n,m <= 1000- Each cell's value: 0 <= grid[i][j] <= 10^6",
+    "code": "import heapq\ndef min_cost_path(grid: List[List[int]]) -> int:\n    if not grid or not grid[0]:\n        return -1\n    rows = len(grid)\n    cols = len(grid[0])\n    directions = [(-1,0), (1,0), (0,-1), (0,1)]\n    heap = []\n    heapq.heappush(heap, (grid[0][0], 0, 0))\n    min_cost = [[float('inf')] * cols for _ in range(rows)]\n    min_cost[0][0] = grid[0][0]\n    while heap:\n        current_cost, x, y = heapq.heappop(heap)\n        if x == rows-1 and y == cols-1:\n            return current_cost\n        if current_cost > min_cost[x][y]:\n            continue\n        for dx, dy in directions:\n            nx = x + dx\n            ny = y + dy\n            if 0 <= nx < rows and 0 <= ny < cols and grid[nx][ny] != 0:\n                new_cost = current_cost + grid[nx][ny]\n                if new_cost < min_cost[nx][ny]:\n                    min_cost[nx][ny] = new_cost\n                    heapq.heappush(heap, (new_cost, nx, ny))\n    return -1",
+    "tests": [
+        "assert min_cost_path([[1,3,1],[1,5,1],[4,2,1]]) == 7",
+        "assert min_cost_path([[0,1],[1,0]]) == -1",
+        "assert min_cost_path([[1,2],[3,4]]) == 8",
+        "assert min_cost_path([[1,0,0], [0,5,0], [0,0,1]]) == -1"
+    ],
+    "model": "deepseek-r1:32b-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Alien Language Translator",
+    "description": "You've intercepted a transmission from an alien civilization, but their language uses a unique encoding system. Your task is to decipher this code and translate it into English.\nThe alien alphabet consists of only 5 characters: 'A', 'B', 'C', 'D', and 'E'.\nEach character in the alien language corresponds to a sequence of three letters in English.\n\nHere's the mapping:\n* 'A': 'the'\n* 'B': 'quick'\n* 'C': 'brown'\n* 'D': 'fox'\n* 'E': 'jumps'\nThe aliens write their words by concatenating these three-letter sequences. For example, the alien word 'CAB' would translate to 'the quick brown'.\n\n#### Function Signature\n```\ndef translate_alien_message(message: str) -> str:\n``` \n\n#### Input\n- `message` (str): A string containing the alien message.\n\n#### Output\n- Returns a string with the translated English message.\n\n",
+    "code": "def translate_alien_message(message: str) -> str:\n    mapping = {'A': 'the', 'B': 'quick', 'C': 'brown', 'D': 'fox', 'E': 'jumps'}\n    translated_message = ''\n    for char in message:\n        translated_message += mapping[char] + ' '\n    return translated_message.strip()",
+    "tests": [
+        "assert translate_alien_message('CAB') == 'the quick brown'",
+        "assert translate_alien_message('DEBA') == 'fox jumps the quick'",
+        "assert translate_alien_message('EACBAD') == 'the quick brown fox jumps the quick'",
+        "assert translate_alien_message('AAA') == 'the the the'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

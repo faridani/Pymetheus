@@ -1,0 +1,10 @@
+{
+    "title": "Medium: Find All Anagrams in a String",
+    "description": "Given two strings `s` and `p`, find all the start indices of `p`'s anagrams in `s`. Matches can overlap.\n\n#### Function Signature\n```python\ndef find_anagrams(s: str, p: str) -> list[int]:\n``` \n\n#### Input\n- `s` (str): The main string to search within.\n- `p` (str): The pattern string to find anagrams of.\n\n#### Output\n- Returns a list of integers representing the start indices of all anagrams of `p` found in `s`. ",
+    "code": "def find_anagrams(s: str, p: str) -> list[int]:\n    ns, np = len(s), len(p)\n    if ns < np:\n        return []\n\n    p_count = Counter(p)\n    s_count = Counter()\n\n    output = []\n    for i in range(ns):\n        s_count[s[i]] += 1\n        if i >= np:\n            if s_count[s[i - np]] == 1:\n                del s_count[s[i - np]]\n            else:\n                s_count[s[i - np]] -= 1\n        if p_count == s_count:\n            output.append(i - np + 1)\n\n    return output",
+    "tests": [
+        "assert find_anagrams(\"cbaebabacd\", \"abc\") == [0,6]",
+        "assert find_anagrams(\"abab\", \"ab\") == [0,1,2]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

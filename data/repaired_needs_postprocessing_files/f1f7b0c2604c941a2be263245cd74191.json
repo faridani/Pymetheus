@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Sum of First N Natural Numbers",
+    "description": "Write a function `sum_of_first_n` that calculates the sum of the first N natural numbers. This function should take an integer N as input and return the sum of all positive integers up to and including N.\n\n#### Function Signature\n```python\ndef sum_of_first_n(N: int) -> int:\n``` \n\n#### Input\n- `N` (int): A non-negative integer.\n\n#### Output\n- Returns the sum of all positive integers up to and including N.",
+    "code": "def sum_of_first_n(N: int) -> int:\n    return N * (N + 1) // 2",
+    "tests": [
+        "assert sum_of_first_n(5) == 15",
+        "assert sum_of_first_n(10) == 55",
+        "assert sum_of_first_n(0) == 0",
+        "assert sum_of_first_n(3) == 6"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

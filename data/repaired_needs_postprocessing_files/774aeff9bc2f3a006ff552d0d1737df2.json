@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Substrings Count' (Hard)",
+    "description": "Given a string, find and count the maximum number of non-overlapping palindromic substrings. Note that the empty string is considered as a valid palindrome.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A non-empty string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the maximum number of non-overlapping palindromic substrings in the input string.",
+    "code": "def count_palindromes(s: str) -> int:\n    n = len(s)\n    dp = [[0] * n for _ in range(n)]\n    max_len = 0\n    # Iterate through all substrings with an odd length\n    for i in range(1, n):\n        for j in range(i):\n            if s[j] != s[i]: break\n            dp[j][i] = 1\n            if i - 1 > max_len:\n                max_len = i - j + 1\n    # Iterate through all substrings with an even length\n    for len in range(4, n+1):\n        for i in range(n-len+1):\n            start, end = i, i + len - 1\n            if dp[start + 1][end - 1] == 0 or s[start + 1] != s[end]: continue\n            for j in range(start + 2, end - 1): dp[start][end] |= (dp[start + 2][end - 2] << 1)\n            if len > max_len + 2:\n                max_len = len\n    return max_len // 2 + sum(dp[-1]) + (dp[-1][-1] == 1)",
+    "tests": [
+        "assert count_palindromes(\"babad\") == 4",
+        "assert count_palindromes(\"cbbd\") == 3",
+        "assert count_palindromes(\"abc\") == 0",
+        "assert count_palindromes(\"a\") == 1"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

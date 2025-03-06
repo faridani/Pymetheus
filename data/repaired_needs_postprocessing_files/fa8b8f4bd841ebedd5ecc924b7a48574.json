@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Longest Common Prefix",
+    "description": "Given an array of strings, write a function that finds the longest common prefix among all the strings. The function should return this prefix as a string.\n\n#### Function Signature\n```python\ndef longest_common_prefix(strs: list[str]) -> str:\n```\n\n#### Input\n- `strs` (list[str]): A list of strings.\n\n#### Output\n- Returns the longest common prefix among all the strings in the input list.",
+    "code": "def longest_common_prefix(strs: list[str]) -> str:\n    if not strs:\n        return \"\"\n    shortest = min(strs, key=len)\n    for i, char in enumerate(shortest):\n        for other in strs:\n            if other[i] != char:\n                return shortest[:i]\n    return shortest",
+    "tests": [
+        "assert longest_common_prefix(['dog', 'deal']) == 'de'",
+        "assert longest_common_prefix(['hello', 'helo', 'hel']) == 'hel'",
+        "assert longest_common_prefix([]) == ''",
+        "assert longest_common_prefix(['a', 'b', 'c']) == ''"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

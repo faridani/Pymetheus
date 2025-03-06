@@ -1,0 +1,11 @@
+{
+    "title": "Harshad Numbers",
+    "description": "A Harshad number, also known as a Niven number, is an integer that is divisible by the sum of its digits when written in a given number base. For example, 18 is a Harshad number because it is divisible by 9 (1+8=9), and 12 is not a Harshad number because it is not divisible by 3 (1+2=3). Write a function `is_harshad` that checks if a given integer is a Harshad number in base 10. \n\n#### Function Signature\n```python\ndef is_harshad(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): An integer to be checked as a Harshad number.\n\n#### Output\n- Returns `True` if the input integer is a Harshad number, `False` otherwise.\n",
+    "code": "def is_harshad(n: int) -> bool:\n    sum_of_digits = 0\n    while n > 0:\n        digit = n % 10\n        sum_of_digits += digit\n        n //= 10\n    return n % sum_of_digits == 0\n",
+    "tests": [
+        "assert is_harshad(18) == True",
+        "assert is_harshad(12) == False",
+        "assert is_harshad(9) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

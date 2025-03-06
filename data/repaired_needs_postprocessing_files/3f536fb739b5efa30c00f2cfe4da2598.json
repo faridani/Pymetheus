@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Recursive Digit Sum",
+    "description": "Given a non-negative integer, repeatedly sum its digits until you are left with a single digit. Write a recursive function `digit_sum` that calculates this digital root.\n\n#### Function Signature\n```python\ndef digit_sum(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): A non-negative integer\n\n#### Output\n- Returns the single-digit digital root of the input integer.",
+    "code": "def digit_sum(n: int) -> int:\n  if n < 10:\n    return n\n  else:\n    return digit_sum(sum([int(d) for d in str(n)]))\n",
+    "tests": [
+        "assert digit_sum(12345) == 6",
+        "assert digit_sum(9876) == 3",
+        "assert digit_sum(1) == 1",
+        "assert digit_sum(99999) == 9"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

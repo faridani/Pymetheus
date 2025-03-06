@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection",
+    "description": "Write a function `find_anagrams` that takes a list of words and returns all pairs of words that are anagrams (words having the same letters but possibly in different order).\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> List[List[str]]:\n```\n\n#### Input\n- `words` (List[str]): A list of words, where each word consists only of lowercase English letters.\n\n#### Output\n- Returns a list of lists. Each inner list contains two strings that are anagrams.\n",
+    "code": "def find_anagrams(words: List[str]) -> List[List[str]]:\n    # Create a dictionary where keys are sorted words and values are lists of original words\n    word_dict = {sorted(word): [w for w in words if sorted(w) == sorted(word)] for word in words}\n    # Find pairs of anagrams by iterating over the dictionary values and checking for intersections\n    return [list(intersection(a, b)) for a, b in product(word_dict.values(), repeat=2) if len(set(a) - set(b)) == 0]\n",
+    "tests": [
+        "assert find_anagrams(['listen', 'silent', 'enlist', 'education', 'red', 'deified', 'coder']) == [['listen', 'enlist'], ['silent', 'education']]",
+        "assert find_anagrams(['cat', 'act', 'dog', 'god']) == [['act', 'cat'], ['dog', 'god']]",
+        "assert find_anagrams(['apple', 'apples', 'app', 'apopalypse']) == [['apples', 'apple'], ['app', 'apple']]",
+        "assert find_anagrams([]) == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

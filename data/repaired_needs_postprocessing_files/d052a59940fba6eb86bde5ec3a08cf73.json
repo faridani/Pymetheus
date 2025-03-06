@@ -1,0 +1,11 @@
+{
+    "title": "Euler's Totient Function",
+    "description": "Euler's totient function \u03c6(n) is a function that counts the positive integers up to n that are relatively prime to n. In other words, it counts the numbers up to n that have no common divisors with n except for 1 and itself. Write a function `eulers_totient` that calculates Euler's totient function for a given number. \n\n#### Function Signature\n```python\ndef eulers_totient(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the value of Euler's totient function \u03c6(n).\n",
+    "code": "def eulers_totient(n: int) -> int:\n    def gcd(a, b):\n        if b == 0:\n            return a\n        else:\n            return gcd(b, a % b)\n\n    result = n\n    p = 2\n    while p * p <= n:\n        if n % p == 0:\n            while n % p == 0:\n                n //= p\n            result -= result // p\n        p += 1\n\n    if n > 1:\n        result -= 1\n\n    return result",
+    "tests": [
+        "assert eulers_totient(10) == 4",
+        "assert eulers_totient(12) == 4",
+        "assert eulers_totient(20) == 8"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

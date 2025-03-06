@@ -1,0 +1,11 @@
+{
+    "title": "Reversed Digits Checker (Easy)",
+    "description": "Write a function `check_reversed_digits` that checks if a given non-negative integer has the same digits reversed. This means, for example, that 123321 is a reversed digit number because it reads the same backwards (12321).\n\n#### Function Signature\n```python\ndef check_reversed_digits(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns `True` if the input number is a reversed digit number, `False` otherwise.",
+    "code": "def check_reversed_digits(n: int) -> bool:\n    # Convert to string for easier manipulation\n    n_str = str(n)\n    # Check if length of original and reversed string are equal\n    if len(n_str) != len(n_str[::-1]):\n        return False\n    else:\n        # Loop through the characters and compare with their positions in reverse\n        for i, char in enumerate(n_str):\n            if char != n_str[len(n_str) - 1 - i]:\n                return False\n    return True",
+    "tests": [
+        "assert check_reversed_digits(12321) == True",
+        "assert check_reversed_digits(123456789) == False",
+        "assert check_reversed_digits(1233210) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

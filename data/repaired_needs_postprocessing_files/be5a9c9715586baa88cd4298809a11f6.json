@@ -1,0 +1,18 @@
+{
+    "title": "'Easy' Find Fibonacci Wrapper Function",
+    "description": "Write a Python function `fib` that takes an integer `n` as input and returns the `n`th number in the Fibonacci sequence. However, it should only call the actual Fibonacci function (`fib_helper`) when necessary.\r\n\r\n#### Function Signature\r\n```python\r\ndef fib(n: int) -> int:\r``` \r\n\r\n#### Input\r\n- `n` (int): A non-negative integer.\r\n\r\n#### Output\r\n- Returns the `n`th number in the Fibonacci sequence, where the first number is 0 and the second number is 1.\r\n\r\n",
+    "code": "def fib_helper(a: int, b: int, n: int) -> int:\r    if n == 0:\r        return a\r    else:\r        c = fib_helper(b, a + b, n - 1)\r        return c\r\n\ndef fib(n: int) -> int:\r    # Base case: If the input is 0 or 1, return the corresponding Fibonacci number\r    if n <= 1:\r        return n\r    else:\r        # Recursive call to the helper function, initializing `a` and `b` as 0 and 1 respectively.\r        result = fib_helper(0, 1, n - 1)\r        return result",
+    "tests": [
+        "assert fib(0) == 0",
+        "assert fib(1) == 1",
+        "assert fib(2) == 1",
+        "assert fib(3) == 2",
+        "assert fib(4) == 3",
+        "assert fib(5) == 5",
+        "assert fib(6) == 8",
+        "assert fib(7) == 13",
+        "assert fib(8) == 21",
+        "assert fib(9) == 34"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "'Mad Libs Word Checker (Easy)'",
+    "description": "In the classic game of Mad Libs, players fill in words into a template to create funny and unexpected stories. Write a function `is_madlib_word` that checks if a given word can be used as a part of speech in Mad Libs.\n#### Function Signature\n```python\ndef is_madlib_word(word: str) -> bool:\n``` \n#### Input\n- `word` (str): A string that represents a possible word to be used in the game of Mad Libs.\n#### Output\n- Returns `True` if the input word is suitable for use in the game of Mad Libs, `False` otherwise.\n",
+    "code": "def is_madlib_word(word: str) -> bool:\n    allowed_words = ['noun', 'verb', 'adjective', 'adverb', 'pronoun']\n    for part in allowed_words:\n        if word.lower() == part:\n            return True\n    return False",
+    "tests": [
+        "assert is_madlib_word('house') == True",
+        "assert is_madlib_word('run') == True",
+        "assert is_madlib_word('happy') == True",
+        "assert is_madlib_word('quickly') == True",
+        "assert is_madlib_word('I') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

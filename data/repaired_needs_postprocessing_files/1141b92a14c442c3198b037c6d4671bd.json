@@ -1,0 +1,12 @@
+{
+    "title": "Even Fibonacci Numbers",
+    "description": "Write a function `even_fibonacci` that returns all even Fibonacci numbers up to and including the argument provided.\n\n#### Function Signature\n```python\ndef even_fibonacci(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A non-negative integer that specifies the upper limit of numbers to be returned.\n\n#### Output\n- Returns a list containing all even Fibonacci numbers up to and including `n`. ",
+    "code": "def even_fibonacci(n: int) -> List[int]:\n    # Initialize the first two Fibonacci numbers\n    fibs = [0, 1]\n    result = []\n    \n    # Loop through and find all even Fibonacci numbers up to `n`\n    for i in range(2, n + 1):\n        current_fib = fibs[-1] + fibs[-2]\n        if current_fib > n:\n            break\n        if current_fib % 2 == 0:\n            result.append(current_fib)\n        fibs.append(current_fib)\n    return result",
+    "tests": [
+        "assert even_fibonacci(10) == [0, 2, 8]",
+        "assert even_fibonacci(20) == [0, 2, 6, 10, 14, 18, 22]",
+        "assert even_fibonacci(100) == [0, 2, 6, 10, 14, 18, 22, 30, 34, 38, 46, 50, 58, 62, 66, 70, 78, 82, 86, 90, 98]",
+        "assert even_fibonacci(1000) == [0, 2, 6, 10, 14, 18, 22, 30, 34, 38, 46, 50, 58, 62, 66, 70, 78, 82, 86, 90, 98, 102, 106, 110, 114, 118, 122, 126, 130, 138, 142, 146, 150, 154, 158, 162, 166, 170, 178, 182, 186, 190, 194, 198]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

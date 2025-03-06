@@ -1,0 +1,12 @@
+{
+    "title": "Number Reverser",
+    "description": "Given a positive integer, write a function `reverse_number` that reverses the digits of the number and returns the new integer.\n#### Function Signature\n```python\ndef reverse_number(num: int) -> int:\n```\n\n#### Input\n- `num` (int): A positive integer.\n\n#### Output\n- Returns a new integer which is the reversal of the input integer.",
+    "code": "def reverse_number(num: int) -> int:\n    num_str = str(num)\n    reversed_num = int(str(num)[::-1])\n    return reversed_num",
+    "tests": [
+        "assert reverse_number(123) == 321",
+        "assert reverse_number(4567) == 7654",
+        "assert reverse_number(100) == 1",
+        "assert reverse_number(12000) == 21"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

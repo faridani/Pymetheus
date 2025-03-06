@@ -1,0 +1,12 @@
+{
+    "title": "Palindromic Subsequences - A Medium Python Problem",
+    "description": "Given a string `s`, find the maximum length of contiguous substring that is a palindrome. \n\n#### Function Signature\n```python\ndef find_longest_palindrome(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the maximum length of a palindromic subsequence found in the input string.",
+    "code": "import collections\ndef find_longest_palindrome(s: str) -> int:\n    # Create an empty dictionary to store the count of each character\n    counts = collections.defaultdict(int)\n    max_length = 0\n\n    # Iterate through the string\n    for i in range(len(s)):\n        char = s[i]\n        # Increment the count of the current character\n        counts[char] += 1\n\n        # Find the middle index where we can create a palindrome with odd length starting from the current index\n        half_length = (counts[char] - 1) // 2 + 1\n\n        # Check if there is an even number of the current character to the right\n        if i + half_length < len(s) and counts[s[i + half_length]] > 0:\n            # Update the maximum length, considering the current palindrome and the symmetrical one around the middle index\n            max_length = max(max_length, half_length * 2)\n\n        # If there is an even number of the current character to the right, decrement its count\n        if i + half_length < len(s):\n            counts[s[i + half_length]] -= 1\n    \n    # Check for palindromes with an odd number of characters at the start and end of the string\n    max_length = max(max_length, min(counts.get('?', 0), counts.get('!', 0)) + 1)\n    return max_length",
+    "tests": [
+        "assert find_longest_palindrome('babad') == 4",
+        "assert find_longest_palindrome('cbbd') == 3",
+        "assert find_longest_palindrome('acbc') == 2",
+        "assert find_longest_palindrome('a') == 1"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

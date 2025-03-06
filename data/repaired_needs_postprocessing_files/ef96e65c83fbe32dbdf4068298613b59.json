@@ -1,0 +1,12 @@
+{
+    "title": "Pythonic Anagram Detector (Hard)",
+    "description": "Write a function `are_anagrams` that determines if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): The first string to compare.\n- `str2` (str): The second string to compare.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, and `False` otherwise.\n\n#### Hint\nAnagrams contain the same letters, but they may not be in the same order.",
+    "code": "def are_anagrams(str1: str, str2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    str1 = ''.join([char for char in str1.lower() if char not in ' '])\n    str2 = ''.join([char for char in str2.lower() if char not in ' '])\n    \n    # Check if both strings have the same length\n    if len(str1) != len(str2):\n        return False\n    \n    # Create dictionaries to store letter counts for each string\n    str1_dict = {}  # Initialize an empty dictionary\n    str2_dict = {}  # Initialize an empty dictionary\n    \n    # Iterate through each character in the first string and update its count in the dictionary\n    for char in str1:\n        if char in str1_dict:\n            str1_dict[char] += 1\n        else:\n            str1_dict[char] = 1\n    \n    # Iterate through each character in the second string and update its count in the dictionary\n    for char in str2:\n        if char in str2_dict:\n            str2_dict[char] += 1\n        else:\n            str2_dict[char] = 1\n    \n    # Check if both dictionaries are equal (have the same counts for each letter)\n    return str1_dict == str2_dict",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"cat\", \"act\") == False",
+        "assert are_anagrams(\"Welcome\", \"em Lew\") == True",
+        "assert are_anagrams(\"python\", \"htopy\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

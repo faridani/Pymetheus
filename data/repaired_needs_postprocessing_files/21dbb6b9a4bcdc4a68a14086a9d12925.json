@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detection Master (Hard)",
+    "description": "Write a function named `anagram_check` that takes two strings as input and returns `True` if they are anagrams of each other, and `False` otherwise. Anagrams are words or phrases that contain the same letters in the same frequency, regardless of their order.\n\n#### Function Signature\n```python\ndef anagram_check(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A non-empty string containing only lowercase English letters.\n- `s2` (str): Another non-empty string containing only lowercase English letters.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def anagram_check(s1: str, s2: str) -> bool:\n    # First, make sure the strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Count the frequency of each letter in both strings\n    count_dict1 = {}  # dictionary to store letter counts for string 1\n    count_dict2 = {}  # dictionary to store letter counts for string 2\n    for char in s1:\n        if char not in count_dict1:\n            count_dict1[char] = 1\n        else:\n            count_dict1[char] += 1\n    for char in s2:\n        if char not in count_dict2:\n            count_dict2[char] = 1\n        else:\n            count_dict2[char] += 1\n    \n    # Compare the dictionaries of letter counts\n    for key, value in count_dict1.items():\n        if key not in count_dict2 or count_dict2[key] != value:\n            return False\n    for key, value in count_dict2.items():\n        if key not in count_dict1 or count_dict1[key] != value:\n            return False\n    \n    # If the dictionaries are equal, the strings are anagrams\n    return True",
+    "tests": [
+        "assert anagram_check('listen', 'silent') == True",
+        "assert anagram_check('hello', 'world') == False",
+        "assert anagram_check('act tact', 'cat act') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Area of Island",
+    "description": "You are given a non-empty 2D array grid of 0s and 1s. An island is a group of connected 1s (representing land) and a connection needs to be a contiguous segment consisting of adjacent cells (horizontally or vertically) of land that touches the top, right, left, bottom side of the cell. Write a function `max_area_of_island` that returns the maximum area of an island.\n#### Function Signature\n```python\ndef max_area_of_island(grid: List[List[int]]) -> int:\n```\n#### Input\n- `grid`: A 2D array of integers where each integer can be either 0 or 1, representing a cell as empty or occupied.\n#### Output\n- Returns the maximum area of an island in the grid.",
+    "code": "from typing import List\ndef max_area_of_island(grid: List[List[int]]) -> int:\n    def dfs(i: int, j: int) -> int:\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] != 1:\n            return 0\n        grid[i][j] = -1\n        return 1 + dfs(i-1, j) + dfs(i+1, j) + dfs(i, j-1) + dfs(i, j+1)\n    max_area = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == 1:\n                max_area = max(max_area, dfs(i, j))\n    return max_area",
+    "tests": [
+        "assert max_area_of_island([[0,0,0],[0,1,0],[0,1,0]]) == 2",
+        "assert max_area_of_island([u2605,u2605,0],[u2605,0,u2605],[0,u2605,u2605]) == 6",
+        "assert max_area_of_island([[1,1,0,0,0],[1,1,0,0,0],[0,0,0,0,0]]) == 4"
+    ],
+    "model": "llama3.1:8b-repaired by Llama 3"
+}

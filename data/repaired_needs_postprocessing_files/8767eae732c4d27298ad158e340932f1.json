@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Maximal Rectangle",
+    "description": "Given a 2D binary matrix `matrix` containing `0`s and `1`s, return the area of the largest rectangle that can be formed by selecting all the ones in the matrix.\n\n#### Function Signature\n```python\ndef max_rectangle(matrix: list[list[int]]) -> int:\n``` \n\n#### Input\n- `matrix` (list[list[int]]): A 2D binary matrix where each cell contains either `0` or `1`. The size of the matrix is `m x n`, where `m` and `n` are positive integers.\n\n#### Output\n- Returns an integer representing the area of the largest rectangle that can be formed by selecting all the ones in the matrix.",
+    "code": "from typing import List\n\ndef max_rectangle(matrix: List[List[int]]) -> int:\n    if not matrix or not matrix[0]:\n        return 0\n    m, n = len(matrix), len(matrix[0])\n    height = [0] * (n + 1)\n    max_area = 0\n\n    for row in matrix:\n        for j in range(n):\n            height[j] = height[j] + 1 if row[j] == 1 else 0\n        stack = []\n        i = 0\n        while i <= n:\n            if not stack or height[i] >= height[stack[-1]]:\n                stack.append(i)\n                i += 1\n            else:\n                top = stack.pop()\n                width = i - top - 1 if not stack else i - stack[-1] - 1\n                max_area = max(max_area, width * height[top])\n        while stack:\n            top = stack.pop()\n            width = i - top - 1 if not stack else i - stack[-1] - 1\n            max_area = max(max_area, width * height[top])\n\n    return max_area",
+    "tests": [
+        "assert max_rectangle([[0,1],[1,0]]) == 1",
+        "assert max_rectangle([[1,1,1,1],[1,1,1,1],[1,0,1,1]]) == 6",
+        "assert max_rectangle([]) == 0",
+        "assert max_rectangle([[]]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

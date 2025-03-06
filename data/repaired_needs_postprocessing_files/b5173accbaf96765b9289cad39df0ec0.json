@@ -1,0 +1,10 @@
+{
+    "title": "Easy: Sum of Odd and Even",
+    "description": "Write a function that calculates the sum of odd numbers and even numbers from a given list. The input list can contain both integers and strings, but you should only consider integers in your calculation.\n\n#### Function Signature\n```python\ndef sum_odd_even(numbers: list) -> int:\n``` \n\n#### Input\n- `numbers` (list): A list of integers and/or strings, where strings are ignored.\n\n#### Output\n- Returns the sum of odd numbers and even numbers from the input list.",
+    "code": "def sum_odd_even(numbers: list) -> int:\n    odd_sum = 0\n    even_sum = 0\n    \n    for num in numbers:\n        if isinstance(num, int):\n            if num % 2 == 0:\n                even_sum += num\n            else:\n                odd_sum += num\n    return odd_sum + even_sum",
+    "tests": [
+        "assert sum_odd_even([1, 2, 3, 4, 5]) == 9",
+        "assert sum_odd_even(['a', 'b', 6, 7, 'c']) == 13"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

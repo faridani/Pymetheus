@@ -1,0 +1,11 @@
+{
+    "title": "Medium - Array Rotation",
+    "description": "Given an array of integers and a number *k*, rotate the array to the right by *k* steps. For example, given `arr = [1,2,3,4,5]` and `k = 2`, the rotated array would be `[4,5,1,2,3]`. \n#### Function Signature\n```python\ndef rotate_array(arr: list[int], k: int) -> list[int]:\n``` \n\n#### Input\n- `arr` (list[int]): A list of integers.\n- `k` (int): The number of steps to rotate the array to the right.\n \n#### Output\n- Returns a new list representing the rotated array.",
+    "code": "def rotate_array(arr: list[int], k: int) -> list[int]:\n    n = len(arr)\n    k %= n\n    return arr[-k:] + arr[:-k]",
+    "tests": [
+        "assert rotate_array([1,2,3,4,5], 2) == [4,5,1,2,3]",
+        "assert rotate_array([1,2], 5) == [2,1]",
+        "assert rotate_array([-1,-100,3,99], 2) == [3,99,-1,-100]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

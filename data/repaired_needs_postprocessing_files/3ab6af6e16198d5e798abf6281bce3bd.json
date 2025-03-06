@@ -1,0 +1,11 @@
+{
+    "title": "Medium: String Compression",
+    "description": "Write a function `compress_strings` that compresses a list of strings into a single string where each original string is represented by its length followed by the string itself. The compressed string should be formatted as follows: for each original string, the first character of the string (converted to uppercase) followed by the length of the string in decimal.\n\n#### Function Signature\n```python\ndef compress_strings(strings: list[str]) -> str:\n``` \n\n#### Input\n- `strings` (list[str]): A list of strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a single string where each original string is represented by its length followed by the string itself. The compressed string should be formatted as follows: for each original string, the first character of the string (converted to uppercase) followed by the length of the string in decimal.\n",
+    "code": "def compress_strings(strings: list[str]) -> str:\n    result = ''\n    for s in strings:\n        result += f'{s[0].upper()}{len(s)}{s}'\n    return result\n",
+    "tests": [
+        "assert compress_strings(['hello', 'world']) == 'H5hello' + 'L5world'",
+        "assert compress_strings(['abc', 'def', 'ghi']) == 'A3abc' + 'D3def' + 'G3ghi'",
+        "assert compress_strings([]) == ''"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

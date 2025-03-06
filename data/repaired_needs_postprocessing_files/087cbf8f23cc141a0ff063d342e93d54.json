@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Counting Islands",
+    "description": "Given a 2D grid of size M*N, where each cell contains either a landmass (represented by the character 'L') or water ('W').\n\n#### Function Signature\n```python\ndef count_islands(grid: list) -> int:\n```\n\n#### Input\n- `grid` (list): A 2D grid of size M*N, where each cell contains either a landmass ('L') or water ('W').\n\n#### Output\n- Returns the number of islands in the grid.\nAn island is defined as any group of contiguous landmass cells.\n",
+    "code": "\nimport copy\ndef count_islands(grid: list) -> int:\n    if not grid:\n        return 0\n    M, N = len(grid), len(grid[0])\n    visited = [[False for _ in range(N)] for _ in range(M)]\n    \n    def dfs(r, c):\n        if r < 0 or c < 0 or r >= M or c >= N or grid[r][c] == 'W' or visited[r][c]:\n            return\n        grid[r][c] = 'W'\n        visited[r][c] = True\n        for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            nr, nc = r + dr, c + dc\n            dfs(nr, nc)\n    count = 0\n    for i in range(M):\n        for j in range(N):\n            if grid[i][j] == 'L' and not visited[i][j]:\n                dfs(i, j)\n                count += 1\n    return count",
+    "tests": [
+        "assert count_islands([['L', 'W'], ['W', 'L']]) == 1",
+        "assert count_islands([['L', 'L'], ['L', 'L']]) == 1",
+        "assert count_islands([]) == 0",
+        "assert count_islands([[], []]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

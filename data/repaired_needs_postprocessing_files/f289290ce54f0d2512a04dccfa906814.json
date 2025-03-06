@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Maximum Product",
+    "description": "Given a list of integers, find the maximum product that can be obtained by multiplying any subset of these numbers. For example, given the list [1, 2, 3], the maximum product would be 6 (by multiplying all positive numbers). However, if the list contains negative numbers, like [-1, -2, -3], then the maximum product would be -6 (by multiplying all three negative numbers).\n\n#### Function Signature\n```python\ndef max_product(numbers: list[int]) -> int:\n```\n\n#### Input\n- `numbers` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum product that can be obtained by multiplying any subset of these numbers.",
+    "code": "import itertools\n\ndef max_product(numbers: list[int]) -> int:\n    # Generate all possible subsets of the input list\n    subsets = [itertools.chain(*[iter(subset) for subset in itertools.combinations(numbers, r)]) for r in range(len(numbers) + 1)]\n    # Initialize maximum product with negative infinity and minimum value as positive infinity\n    max_product = float('-inf')\n    min_value = float('inf')\n    # Iterate over all subsets to find the maximum and minimum products\n    for subset in subsets:\n        product = 1\n        for num in subset:\n            product *= num\n        if product > max_product:\n            max_product = product\n        elif product < min_value:\n            min_value = product\n    # Return the absolute value of the maximum product, because it's symmetric with respect to zero.\n    return abs(max_product)",
+    "tests": [
+        "assert max_product([1, 2, 3]) == 6",
+        "assert max_product([-1, -2, -3]) == -6",
+        "assert max_product([1, -2, 3, -4]) == 12",
+        "assert max_product([0, 0, 0]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

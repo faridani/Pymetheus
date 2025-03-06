@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Prime Sum Count",
+    "description": "A Mersenne prime is a prime number that is one less than a power of two. For example, 3 and 7 are both Mersenne primes because they can be written in the form 2^p - 1 for some integer p. However, not all Mersenne primes have this property. For each positive integer n, find the number of Mersenne prime numbers that are less than or equal to n.\n\n#### Function Signature\n```python\ndef mersenne_primes(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the number of Mersenne prime numbers that are less than or equal to `n`.",
+    "code": "import math\ndef mersenne_primes(n: int) -> int:\n    count = 0\n    for i in range(2, int(math.log2(n)) + 1):\n        p = 2 ** i - 1\n        if is_prime(p):\n            count += 1\n    return count\ndef is_prime(num: int) -> bool:\n    if num < 2:\n        return False\n    for i in range(2, int(math.sqrt(num)) + 1):\n        if num % i == 0:\n            return False\n    return True",
+    "tests": [
+        "assert mersenne_primes(10) == 4",
+        "assert mersenne_primes(20) == 8",
+        "assert mersenne_primes(100) == 21"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

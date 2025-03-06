@@ -1,0 +1,11 @@
+{
+    "title": "Number Spiral Diagonals Sum' - Easy",
+    "description": "Write a function `diagonal_sum` that calculates the sum of numbers on a spiral diagonal in a square matrix starting from the top-left corner and moving right, down, left, up until it reaches the center again. \n\n#### Function Signature\n```python\ndef diagonal_sum(matrix: list[list[int]], size: int) -> int:\n```\n\n#### Input\n- `matrix` (list[list[int]]): A square matrix of integers where the number of rows and columns is equal to the given `size`. The values in the matrix can be any positive or non-positive integer.\n- `size` (int): The side length of the square matrix.\n\n#### Output\n- Returns the sum of numbers on the spiral diagonal.",
+    "code": "def diagonal_sum(matrix: list[list[int]], size: int) -> int:\n    r, c, d = 0, 0, 0\n    total = 0\n    while r < size and c < size:\n        total += matrix[r][c]\n        if d == 0:\n            c += 1\n            if c >= size:\n                d = 1\n                r += 1\n        elif d == 1:\n            r += 1\n            if r >= size:\n                d = 2\n                c -= 1\n        elif d == 2:\n            c -= 1\n            if c < 0:\n                d = 3\n                r += 1\n        else:\n            r -= 1\n            if r < 0:\n                d = 0\n                c += 1\n    return total",
+    "tests": [
+        "assert diagonal_sum([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 3) == 25",
+        "'assert diagonal_sum([[-1, -2, -3], [-4, -5, -6], [-7, -8, -9]], 3) == -28'",
+        "'assert diagonal_sum([[1, 0, -1], [0, -2, 0], [-1, 0, 1]], 3) == 0'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Reversed Substring Checker (Hard)",
+    "description": "Given a string, write a function that checks if it contains any substrings which are palindromes and also equal to their reverse. For example, the string 'abba' would pass because 'abba' is both a palindrome and equals its reverse. The string 'abc' would fail because it does not contain any such substrings.\n\n#### Function Signature\n```python\ndef has_reversed_palindromes(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string contains any substrings which are palindromes and also equal to their reverse, `False` otherwise.",
+    "code": "def has_reversed_palindromes(s: str) -> bool:\n    # Remove non-alphanumeric characters\n    s = ''.join(char for char in s if char in string.ascii_letters + string.digits)\n    # Iterate through all possible substrings of the input string\n    for i in range(len(s)):\n        for j in range(i, len(s)):\n            # Check if the substring is a palindrome and equals its reverse\n            sub = s[i:j]\n            if sub == sub[::-1] and len(sub) > 1:\n                return True\n    # If no such substrings were found, return False\n    return False",
+    "tests": [
+        "assert has_reversed_palindromes('abba') == True",
+        "assert has_reversed_palindromes('abc') == False",
+        "assert has_reversed_palindromes('a1b2c3d4c3b2a1') == True",
+        "assert has_reversed_palindromes('hello') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

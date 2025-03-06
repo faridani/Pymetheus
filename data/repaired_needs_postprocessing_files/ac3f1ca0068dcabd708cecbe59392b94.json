@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Subsequence Count' - Hard",
+    "description": "A palindromic subsequence of a string is a sequence that reads the same forwards and backwards. For example, the palindromic subsequences in the string 'banana' are 'a', 'an', 'anna', and 'nan'. Write a function `count_palindrome_subsequences` that takes a given string as input and returns the count of all its palindromic subsequences. \n\n#### Function Signature\n```python\ndef count_palindrome_subsequences(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the count of all palindromic subsequences in the input string.",
+    "code": "def count_palindrome_subsequences(s: str) -> int:\n    if len(s) == 0:\n        return 1\n    dp = [[False] * (len(s)) for _ in range(len(s))]\n    res = 0\n    for i in range(len(s)):\n        for j in range(i, len(s)):\n            if s[i] != s[j]:\n                dp[i][j] = False\n            else:\n                if j - i < 3:\n                    dp[i][j] = True\n                elif dp[i + 1][j - 1]:\n                    dp[i][j] = True\n            if dp[i][j]:\n                res += 1\n    return res ** 2",
+    "tests": [
+        "assert count_palindrome_subsequences(\"banana\") == 12",
+        "assert count_palindrome_subsequences(\"racecar\") == 3",
+        "assert count_palindrome_subsequences(\"abcdefg\") == 15",
+        "assert count_palindrome_subsequences(\"a b c d e f g h i j k l m n o p q r s t u v w x y z\") == 2740"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

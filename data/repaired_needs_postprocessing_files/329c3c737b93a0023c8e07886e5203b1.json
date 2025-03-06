@@ -1,0 +1,11 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "Write a function `find_anagrams` that finds all the anagrams of a given string within a list of strings. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagrams(target: str, words: List[str]) -> Set[str]:\n```\n\n#### Input\n- `target` (str): A string to find anagrams of.\n- `words` (List[str]): A list of strings that may contain anagrams of the target string.\n\n#### Output\n- Returns a set containing all the anagrams of the `target` string found within the `words` list.",
+    "code": "from collections import Counter, defaultdict\ndef find_anagrams(target: str, words: List[str]) -> Set[str]:    # Create a frequency distribution of characters in the target string    target_freq = Counter(target)    # Initialize an empty dictionary to store potential anagrams and their frequencies    potential_anagrams = defaultdict(int)    \n    # Iterate through each word in the list of words    for word in words:\n        # Create a frequency distribution of characters in the current word    word_freq = Counter(word)\n        \n        # Check if the frequency distributions match (ignoring case sensitivity)    if target_freq == word_freq:\n        potential_anagrams[word] += 1\n    \n    # Return only the unique anagrams (words that appear more than once are not considered unique anagrams)    return {key for key, value in potential_anagrams.items() if value == 1}\n",
+    "tests": [
+        "assert find_anagrams(\"listen\", [\"enlists\", \"silent\", \"texts\", \"tinsel\"]) == {'enlist', 'silent'}",
+        "assert find_anagrams(\"abcd\", [\"dcba\", \"abcd\", \"adcb\", \"acdb\", \"bdca\"]) == {'dcba', 'abcd'}",
+        "assert find_anagrams(\"hello\", [\"world\", \"racecar\", \"olleh\", \"madam\"]) == {'olleh', 'madam'}"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

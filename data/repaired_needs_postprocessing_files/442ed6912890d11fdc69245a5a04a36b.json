@@ -1,0 +1,10 @@
+{
+    "title": "Medium: Valid Sudoku",
+    "description": "A description of the problem in string form, the description may contain function signature, input format, output format, constraints and hints. Example: A valid Sudoku board is a 9x9 grid where each row, column, and 3x3 sub-grid contains the numbers from 1 to 9 without repeating any number. Write a function `is_valid_sudoku` that checks if a given 2D list represents a valid Sudoku board.\n\n#### Function Signature\n``python\ndef is_valid_sudoku(board: list[list[int]]) -> bool:\n``` \n\n#### Input\n- `board` (list[list[int]]): A 9x9 grid where each row, column, and 3x3 sub-grid contains the numbers from 1 to 9 without repeating any number.\n\n#### Output\n- Returns `True` if the input board is a valid Sudoku, `False` otherwise.",
+    "code": "def is_valid_sudoku(board: list[list[int]]) -> bool:\n    rows = [set() for _ in range(9)]\n    cols = [set() for _ in range(9)]\n    boxes = [set() for _ in range(9)]\n\n    for i, row in enumerate(board):\n        for j, num in enumerate(row):\n            if num < 1 or num > 9:\n                return False\n\n            box_index = (i // 3) * 3 + j // 3\n            if num in rows[i] or num in cols[j] or num in boxes[box_index]:\n                return False\n\n            rows[i].add(num)\n            cols[j].add(num)\n            boxes[box_index].add(num)\n    \n    return True",
+    "tests": [
+        "assert is_valid_sudoku([[5,3],[6,0,8],[4,1,0],[7,2,0],[1,9,8],[8,7,6],[9,6,3],[4,4,8],[0,9,1]]) == True",
+        "assert is_valid_sudoku([[], [], [], [], [1,9,8], [8,7,6], [9,6,3], [4,4,8], [0,9,1]]) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

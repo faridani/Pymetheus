@@ -1,0 +1,11 @@
+{
+    "title": "Sum of Multiples below a Given Number (Easy)",
+    "description": "Write a function `sum_of_multiples` that calculates the sum of all multiples of a given set of numbers below a specified limit.\\n\\n#### Function Signature```python\\ndef sum_of_multiples(numbers: tuple, limit: int) -> int:\\```\n\\n#### Input\\n- `numbers` (tuple): A tuple containing integers representing the set of numbers to find multiples for.\\n- `limit` (int): An integer representing the upper limit up to which we should sum the multiples.\\n\\n#### Output\\n- Returns the sum of all multiples of the given numbers below the specified limit.\\n",
+    "code": "def sum_of_multiples(numbers: tuple, limit: int) -> int:\n    total = 0\n    for num in numbers:\n        for multiple in range(num, limit + 1, num):\n            total += multiple\n    return total",
+    "tests": [
+        "assert sum_of_multiples((3, 5), 20) == 220",
+        "assert sum_of_multiples((6, 9), 40) == 780",
+        "assert sum_of_multiples((4, 10), 50) == 1750"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "'Spiral Matrix Traversal (Easy)'",
+    "description": "Given an N x N matrix of integers, return the spiral traversal of the matrix. That is, starting from the top left corner and moving right, then down, then left, then up, returning each integer in the sequence.\n\n#### Function Signature\n```python\ndef spiralOrder(matrix: List[List[int]]) -> List[int]:\n``` \n\n#### Input\n- `matrix` (List[List]): A 2D list representing an N x N matrix.\n\n#### Output\n- Returns a list of integers in spiral order.",
+    "code": "def spiralOrder(matrix: List[List[int]]) -> List[int]:\n    m, n = len(matrix), len(matrix[0])\n    direction = [0, 1, 0, -1]\n    result = []\n    r, c = 0, 0\n    visited = [[False for _ in range(n)] for _ in range(m)]\n    while len(result) < m * n:\n        r += direction[2]\n        c += direction[3]\n        if (not (r in range(m) and c in range(n)) or visited[r][c]):\n            direction = [(d + 1) % 4 for d in direction]\n        r += direction[0]\n        c += direction[1]\n        visited[r][c] = True\n        result.append(matrix[r][c])\n    return result",
+    "tests": [
+        "assert spiralOrder([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == [1, 2, 3, 6, 9, 8, 7, 4, 5]",
+        "assert spiralOrder([[1, 2, 3, 4], [12, 5, 6, 7], [11, 10, 13, 8], [9, 8, 7, 4]]) == [1, 2, 3, 7, 4, 8, 12, 5, 6, 11, 10, 13, 9]",
+        "assert spiralOrder([[5]]) == [5]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

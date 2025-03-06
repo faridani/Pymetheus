@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Check if an Array of Numbers Can be Merged to Form a Prime Number",
+    "description": "Given an array of numbers, your task is to check if these numbers can be merged into a single number that is prime. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.\n\n#### Function Signature\n```python\ndef can_merge_to_prime(nums: list[int]) -> bool:\n``` \n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns `True` if the numbers in the input array can be merged into a single prime number, `False` otherwise.",
+    "code": "def can_merge_to_prime(nums: list[int]) -> bool:\n    def is_prime(n: int) -> bool:\n        if n <= 1:\n            return False\n        for i in range(2, int(n ** 0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n    merged = ''.join(map(str, nums))\n    merged_num = int(merged)\n    return is_prime(merged_num)",
+    "tests": [
+        "assert can_merge_to_prime([2,3]) == True",
+        "assert can_merge_to_prime([1,2]) == False",
+        "assert can_merge_to_prime([11,13]) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

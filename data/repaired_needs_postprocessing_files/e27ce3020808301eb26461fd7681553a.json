@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Minimum Time to Make All Strings Equal",
+    "description": "You are given a list of strings `strs` and an integer `k`. The task is to find the minimum time required to make all strings equal. You can rearrange the characters in each string to achieve this goal.\n\n#### Function Signature\n```python\ndef min_time_to_make_equal(strs: List[str], k: int) -> int:\n```\n\n#### Input\n- `strs` (List[str]): A list of strings that may contain letters, numbers, and special characters.\n- `k` (int): The number of operations allowed.\n\n#### Output\n- Returns the minimum time required to make all strings equal in terms of the number of operations performed.\n",
+    "code": "from collections import Counter\nimport heapq\ndef min_time_to_make_equal(strs: List[str], k: int) -> int:\n    # Count the frequency of each character in each string\n    freq = [Counter(s) for s in strs]\n    # Calculate the total difference between the most frequent and least frequent characters in each string\n    diff = [(sum((c1 - c2).values()), i) for i, (c1, c2) in enumerate(zip(*freq))]\n    # Use a priority queue to find the minimum time required\n    return sum(heapq.nsmallest(k, diff)[i][0] for i in range(k))\n",
+    "tests": [
+        "assert min_time_to_make_equal(['abc', 'cab', 'bca'], 3) == 4",
+        "assert min_time_to_make_equal(['aaa', 'bbb', 'ccc'], 2) == 1",
+        "assert min_time_to_make_equal(['xyz', 'zyx'], 5) == 3"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

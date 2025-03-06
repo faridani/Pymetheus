@@ -1,0 +1,12 @@
+{
+    "title": "Binary Number Counter",
+    "description": "Create a Python function that counts the number of binary numbers less than or equal to n with exactly k set bits.\n\n#### Function Signature\n```python\ndef count_binary_with_k_bits(n: int, k: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer representing the limit for counting binary numbers.- `k` (int): The number of set bits in each binary number to be counted.\n\n#### Output\n- Returns an integer value that represents how many binary numbers less than or equal to n have exactly k set bits.",
+    "code": "def count_binary_with_k_bits(n: int, k: int) -> int:\n    result = 0\n    for num in range(1, n + 1):\n        if bin(num).count('1') == k:\n            result += 1\n    return result",
+    "tests": [
+        "assert count_binary_with_k_bits(5, 2) == 3",
+        "assert count_binary_with_k_bits(4, 1) == 4",
+        "assert count_binary_with_k_bits(8, 3) == 6",
+        "assert count_binary_with_k_bits(2, 1) == 2"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

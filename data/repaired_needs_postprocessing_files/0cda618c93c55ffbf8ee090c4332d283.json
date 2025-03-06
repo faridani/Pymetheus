@@ -1,0 +1,13 @@
+{
+    "title": "Roman Numeral Converter (Easy)",
+    "description": "Write a function `convert_to_roman` that converts an integer number to its equivalent Roman numeral representation.\n\n#### Function Signature\n```python\ndef convert_to_roman(num: int) -> str:\n```\n\n#### Input\n- `num` (int): A positive integer with a maximum value of 3999.\n\n#### Output\n- Returns the equivalent Roman numeral representation of the input number as a string.",
+    "code": "def convert_to_roman(num: int) -> str:\n    roman_numerals = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n\n    result = []\n    thousands = num // 1000\n    if thousands > 0:\n        while thousands > 0:\n            result.append('M')\n            thousands -= 1\n\n    hundreds = num % 1000 // 100\n    if hundreds > 0:\n        if hundreds == 9:\n            result.append('CM')\n        elif hundreds >= 5:\n            result.append('D')\n            hundreds -= 5\n            while hundreds > 0:\n                result.append('C')\n                hundreds -= 1\n\n    if hundreds < 9:\n        if hundreds == 4:\n            result.append('CD')\n        elif hundreds >= 1:\n            result.append('X')\n            hundreds -= 1\n            while hundreds > 0:\n                result.append('I')\n                hundreds -= 1\n\n    tens = num % 100 // 10\n    if tens > 0:\n        if tens == 9:\n            result.append('XC')\n        elif tens >= 5:\n            result.append('L')\n            tens -= 5\n            while tens > 0:\n                result.append('X')\n                tens -= 1\n\n    if tens < 9:\n        if tens == 4:\n            result.append('XL')\n        elif tens >= 1:\n            result.append('V')\n            tens -= 1\n            while tens > 0:\n                result.append('I')\n                tens -= 1\n\n    ones = num % 10\n    if ones > 0:\n        if ones == 9:\n            result.append('IX')\n        elif ones >= 5:\n            result.append('V')\n            ones -= 5\n            while ones > 0:\n                result.append('I')\n                ones -= 1\n\n    return ''.join(result)",
+    "tests": [
+        "assert convert_to_roman(3) == 'III'",
+        "assert convert_to_roman(4) == 'IV'",
+        "assert convert_to_roman(9) == 'IX'",
+        "assert convert_to_roman(58) == 'LVIII'",
+        "assert convert_to_roman(1994) == 'MCMXCIV'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

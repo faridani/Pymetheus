@@ -1,0 +1,10 @@
+{
+    "title": "Capital Letters Counter",
+    "description": "Write a function `count_capitals` that takes a string as input and returns the number of capital letters in that string.\n#### Function Signature\n```python\ndef count_capitals(s: str) -> int:\n``` \n\n#### Input\n- `s` (str): A string containing only lowercase and uppercase letters.\n\n#### Output\n- Returns an integer that represents the number of capital letters in the input string.",
+    "code": "def count_capitals(s: str) -> int:\n    return len([char for char in s if char.isupper()])",
+    "tests": [
+        "assert count_capitals('HelloWorld') == 2",
+        "assert count_capitals('TheQuickBrownFoxJumpsOverTheLazyDog') == 4"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

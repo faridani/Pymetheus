@@ -1,0 +1,12 @@
+{
+    "title": "'Reverse Words Checker (Easy)'",
+    "description": "Write a function `is_reverse_words` that checks if a given string, where words are separated by spaces and commas, reads the same forwards and backwards when each word is reversed. \n\n#### Function Signature\n```python\ndef is_reverse_words(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that contains words separated by spaces or commas.\n\n#### Output\n- Returns `True` if the input string reads the same forwards and backwards when each word is reversed, `False` otherwise.",
+    "code": "def is_reverse_words(s: str) -> bool:\n    # Split the string into words\n    words = s.split()\n    # Reverse each word and join them back together\n    reversed_words = ' '.join(word[::-1] for word in words)\n    # Compare the original and reversed strings\n    return s == reversed_words",
+    "tests": [
+        "assert is_reverse_words('hello world') == False",
+        "assert is_reverse_words('racecar hello') == True",
+        "assert is_reverse_words('madam') == True",
+        "assert is_reverse_words('123 321') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

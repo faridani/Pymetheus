@@ -1,0 +1,10 @@
+{
+    "title": "Easy: Minimum Time to Finish Tasks",
+    "description": "You are given a list of tasks and the time required for each task. Write a function `minimum_time` that calculates the minimum time needed to finish all tasks.\n\n#### Function Signature\n```python\ndef minimum_time(tasks: list, times: list) -> int:\n``` \n\n#### Input\n- `tasks` (list): A list of task names.\n- `times` (list): A list of integers representing the time required for each task.\n\n#### Output\n- Returns the minimum time needed to finish all tasks.\n",
+    "code": "import heapq\ndef minimum_time(tasks, times):\n    # Create a priority queue with tasks and their corresponding times\n    pq = [(time, task) for task, time in zip(tasks, times)]\n    heapq.heapify(pq)\n\n    # Initialize the total time and current task\n    total_time = 0\n    current_task = None\n\n    while pq:\n        time, task = heapq.heappop(pq)\n        if current_task is not None and current_task != task:\n            total_time += time\n            current_task = task\n        else:\n            total_time += time\n\n    return total_time",
+    "tests": [
+        "assert minimum_time(['Task1', 'Task2', 'Task3'], [5, 3, 7]) == 11",
+        "assert minimum_time(['Task4', 'Task5', 'Task6'], [10, 8, 9]) == 27"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Unique Path Count",
+    "description": "You are given an m x n grid. You start from the top-left cell (i.e., (0, 0)) and want to reach the bottom-right cell (m - 1, n - 1). There are two types of cells in this grid: normal cells and blocked cells represented by '.' and 'X', respectively. You can only move right or down from your current cell. Find out how many unique paths exist from the start to the destination without entering any blocked cells.\n\n#### Function Signature\n```python\ndef count_unique_paths(grid: List[List[str]]) -> int:\n```\n\n#### Input\n- `grid` (List[List[str]]): A list of lists where '.' represents a normal cell and 'X' represents a blocked cell. The grid contains at least 1 row and column.\n\n#### Output\n- Returns the number of unique paths from (0, 0) to (m - 1, n - 1). If it's impossible to reach the destination, return 0.",
+    "code": "from typing import List\ndef count_unique_paths(grid: List[List[str]]) -> int:\n    m, n = len(grid), len(grid[0])\n    if grid[0][1:] + grid[1][:] == ['.', 'X'] * (m - 1) + ['.', 'X'] * (n - 1):\n        return 0\n    dp = [[-1 for _ in range(n)] for _ in range(m)]\n    def dfs(x, y):\n        if x < 0 or y < 0 or grid[x][y] == 'X':\n            return 0\n        if x == m - 1 and y == n - 1:\n            return 1\n        if dp[x][y] != -1:\n            return dp[x][y]\n        dp[x][y] = dfs(x + 1, y) + dfs(x, y + 1)\n        return dp[x][y]\n    return dfs(0, 0)",
+    "tests": [
+        "assert count_unique_paths([['X'], ['.'], ['.']]) == 0",
+        "assert count_unique_paths([['.', 'X'], ['.', '.'], ['.', '.']]) == 2"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

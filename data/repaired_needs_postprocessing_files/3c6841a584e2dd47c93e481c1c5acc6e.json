@@ -1,0 +1,11 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "Given two strings, write a function `find_anagrams` that checks if they are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n#### Function Signature\n```python\ndef find_anagrams(s1: str, s2: str) -> bool:\n``` \n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, spaces, and punctuation.\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def find_anagrams(s1: str, s2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s1 = ''.join([char for char in s1.lower() if char in string.ascii_letters])\n    s2 = ''.join([char for char in s2.lower() if char in string.ascii_letters])\n    # Sort the strings\n    s1_sorted = sorted(s1)\n    s2_sorted = sorted(s2)\n    \n    # Check if the sorted strings are equal\n    return s1_sorted == s2_sorted",
+    "tests": [
+        "assert find_anagrams('listen', 'silent') == True",
+        "assert find_anagrams('act', 'cat') == False",
+        "assert find_anagrams('anagram', 'nagaram') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

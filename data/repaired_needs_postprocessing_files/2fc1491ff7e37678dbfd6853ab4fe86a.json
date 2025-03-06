@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "Write a function `anagram_check` that checks if two given strings are anagrams of each other. Anagram is a word or phrase formed by rearranging the letters of another, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef anagram_check(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing only lowercase alphabetic characters.\n- `s2` (str): Another string containing only lowercase alphabetic characters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams, `False` otherwise.",
+    "code": "def anagram_check(s1: str, s2: str) -> bool:\n    # Remove any spaces in the given strings\n    s1 = s1.replace(' ', '').lower()\n    s2 = s2.replace(' ', '').lower()\n    \n    # If the two strings have different lengths, they cannot be anagrams\n    if len(s1) != len(s2):\n        return False\n    \n    # Create a dictionary to store the frequency of each letter in s1\n    freq_dict = {letter: 0 for letter in string.ascii_lowercase}\n    for char in s1:\n        if char in freq_dict:\n            freq_dict[char] += 1\n        else:\n            raise ValueError('Invalid input: not a string of lowercase alphabetic characters')\n    \n    # Now check the frequency dictionary for both strings match exactly\n    for char in s2:\n        if char in freq_dict:\n            freq_dict[char] -= 1\n        else:\n            raise ValueError('Invalid input: not a string of lowercase alphabetic characters')\n    for key, value in freq_dict.items():\n        if value != 0:\n            return False\n    \n    # If we reach here, both strings are anagrams\n    return True",
+    "tests": [
+        "assert anagram_check(\"listen\", \"silent\") == True",
+        "assert anagram_check(\"python\", \"typhon\") == False",
+        "assert anagram_check(\"civic\", \"clvic\") == True",
+        "assert anagram_check(\"hello\", \"world\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

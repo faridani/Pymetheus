@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Longest Increasing Path in a Matrix",
+    "description": "Given an m x n matrix mat of integers, find the length of the longest increasing path you can make from any cell. You can move to cells adjacent (up, down, left, right) only, and each cell visited must have a strictly greater value than the previous one.\n\n#### Function Signature\n```python\ndef longestIncreasingPath(mat: list[list[int]]) -> int:\n```\n\n#### Input\n- `mat` (list[list[int]]): A 2D integer matrix representing a grid.\n\n#### Output\n- Returns the length of the longest increasing path in the matrix.",
+    "code": "def longestIncreasingPath(mat: list[list[int]]) -> int:\n    rows, cols = len(mat), len(mat[0])\n    dp = [[-1 for _ in range(cols)] for _ in range(rows)]\n\n    def dfs(row, col):\n        if dp[row][col] != -1:\n            return dp[row][col]\n\n        max_path = 1\n        for dr, dc in [(0, 1), (1, 0), (0, -1), (-1, 0)]:\n            new_row, new_col = row + dr, col + dc\n            if 0 <= new_row < rows and 0 <= new_col < cols and mat[new_row][new_col] > mat[row][col]:\n                max_path = max(max_path, 1 + dfs(new_row, new_col))\n\n        dp[row][col] = max_path\n        return max_path\n\n    longest_path = 0\n    for row in range(rows):\n        for col in range(cols):\n            longest_path = max(longest_path, dfs(row, col))\n\n    return longest_path",
+    "tests": [
+        "assert longestIncreasingPath([[9,9,4],[6,6,8],[2,1,1]]) == 4",
+        "assert longestIncreasingPath([[3,4],[1,2]]) == 2"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

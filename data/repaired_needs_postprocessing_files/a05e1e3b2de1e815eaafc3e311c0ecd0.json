@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Longest Increasing Subsequence with Rotations",
+    "description": "Given a list of integers, find the length of the longest increasing subsequence (LIS) you can construct by rotating the list. You may rotate the list as many times as needed.\n\n#### Function Signature\n```python\ndef longest_increasing_subsequence_with_rotations(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns the length of the longest increasing subsequence achievable through rotations.",
+    "code": "def longest_increasing_subsequence_with_rotations(nums: list[int]) -> int:\n    n = len(nums)\n    dp = [1] * n\n\n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n\n    max_lis = max(dp)\n    # Consider rotations\n    for i in range(n):\n        rotated_nums = nums[i:] + nums[:i]\n        curr_dp = [1] * n\n        for j in range(1, n):\n            for k in range(j):\n                if rotated_nums[j] > rotated_nums[k]:\n                    curr_dp[j] = max(curr_dp[j], curr_dp[k] + 1)\n        max_lis = max(max_lis, max(curr_dp))\n\n    return max_lis",
+    "tests": [
+        "'assert longest_increasing_subsequence_with_rotations([1, 2, 3, 4]) == 4'",
+        "'assert longest_increasing_subsequence_with_rotations([4, 3, 2, 1]) == 1'",
+        "'assert longest_increasing_subsequence_with_rotations([1, 5, 2, 4, 3]) == 4'",
+        "'assert longest_increasing_subsequence_with_rotations([5, 4, 3, 2, 1]) == 1'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

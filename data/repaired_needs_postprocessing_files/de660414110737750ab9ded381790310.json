@@ -1,0 +1,12 @@
+{
+    "title": "Hard - Find Minimum Operations to Make Array Elements Equal",
+    "description": "Given an array of integers, find the minimum number of operations required to make all elements equal. In one operation, you can either increment or decrement any element by 1.\n\n#### Function Signature\n```python\ndef min_operations(arr: list[int]) -> int:\n``` \n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the minimum number of operations required to make all elements equal.\n",
+    "code": "def min_operations(arr: list[int]) -> int:\n    arr.sort()\n    median = arr[len(arr) // 2]\n    operations = 0\n    for num in arr:\n        operations += abs(num - median)\n    return operations",
+    "tests": [
+        "assert min_operations([1, 2, 3]) == 2",
+        "assert min_operations([1, 1, 1]) == 0",
+        "assert min_operations([-1, 2, 5]) == 6",
+        "assert min_operations([10, 5, 15]) == 10"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

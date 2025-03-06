@@ -1,0 +1,11 @@
+{
+    "title": "Hard:  Binary Tree Level Order Traversal",
+    "description": "Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level). #### Function Signature\n```python\ndef level_order(root: TreeNode) -> List[List[int]]:\n``` \n\n#### Input\n- `root` (`TreeNode`): The root node of a binary tree.\n\n#### Output\n- Returns a list of lists representing the level order traversal of the tree. Each inner list contains the values of nodes at a particular level, starting from the root (level 0).\n\n#### Constraints\n* The number of nodes in the tree is in the range [0, 2000].\n* -1000 <= Node.val <= 1000\n\n",
+    "code": "from collections import deque\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef level_order(root: TreeNode) -> List[List[int]]:\n    if not root:\n        return []\n    result = []\n    queue = deque([root])\n    while queue:\n        level_size = len(queue)\n        current_level = []\n        for _ in range(level_size):\n            node = queue.popleft()\n            current_level.append(node.val)\n            if node.left:\n                queue.append(node.left)\n            if node.right:\n                queue.append(node.right)\n        result.append(current_level)\n    return result",
+    "tests": [
+        "root = TreeNode(3)\nroot.left = TreeNode(9)\nroot.right = TreeNode(20)\nroot.right.left = TreeNode(15)\nroot.right.right = TreeNode(7)\nassert level_order(root) == [[3], [9, 20], [15, 7]]",
+        "root = TreeNode(1)\nassert level_order(root) == [[1]]",
+        "root = None\nassert level_order(root) == []"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

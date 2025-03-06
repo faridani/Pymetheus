@@ -1,0 +1,11 @@
+{
+    "title": "Prime Factorization (Hard)",
+    "description": "Write a function `prime_factorization` that takes an integer as input and returns the prime factors of the given number. The function should return a list containing the unique prime factors in ascending order.\n\n#### Function Signature\n```python\ndef prime_factorization(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns a list of the unique prime factors of the input number in ascending order.",
+    "code": "def prime_factorization(n: int) -> List[int]:\n    def is_prime(num: int) -> bool:\n        if num <= 1: return False\n        for i in range(2, int(num**0.5)+1):\n            if num % i == 0:\n                return False\n        return True\n    factors = []\n    for candidate in range(2, n+1):\n        if is_prime(candidate) and n % candidate == 0:\n            factors.append(candidate)\n            n //= candidate\n    if n > 1: factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factorization(28) == [2, 2, 7]",
+        "assert prime_factorization(496) == [2, 2, 3, 7, 7]",
+        "assert prime_factorization(121) == [11, 11]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

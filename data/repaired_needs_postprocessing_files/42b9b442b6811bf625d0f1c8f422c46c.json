@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Coin Change Problem",
+    "description": "Given a list of coin denominations and an amount of money, write a function that calculates the number of ways to make up this amount with these coins.\n\n#### Function Signature\n```python\ndef count_ways(coins: list[int], amount: int) -> int:\n```\n\n#### Input\n- `coins` (list<int>): A list of coin denominations, where each denomination is a positive integer.\n- `amount` (int): The amount of money to make up with the given coins.\n\n#### Output\n- Returns the number of ways to make up the given amount with the provided coins.\n",
+    "code": "from typing import List\ndef count_ways(coins: List[int], amount: int) -> int:\n    # Create a list to store the number of ways to make up each amount from 0 to the given amount\n    ways = [0] * (amount + 1)\n    \n    # Base case: there is one way to make up an amount of 0, which is to not use any coins\n    ways[0] = 1\n    \n    # Iterate over each coin denomination and each possible amount from that coin's value to the given amount\n    for coin in coins:\n        for i in range(coin, amount + 1):\n            # The number of ways to make up this amount is the sum of the number of ways to make up the remaining amount after using this coin and the number of ways to make up the same amount without using this coin\n            ways[i] += ways[i - coin]\n    \n    # Return the number of ways to make up the given amount\n    return ways[amount]",
+    "tests": [
+        "assert count_ways([1, 2, 5], 11) == 4",
+        "assert count_ways([25, 10, 5], 15) == 6",
+        "assert count_ways([1, 2, 3, 4], 0) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

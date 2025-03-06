@@ -1,0 +1,11 @@
+{
+    "title": "'Spiral Matrix Traversal (Easy)'",
+    "description": "Write a function `spiralOrderTraverse` that takes a 2D matrix as input and returns the elements of the matrix in spiral order.\n\n#### Function Signature\n```python\ndef spiralOrderTraverse(matrix: List[List[int]]) -> List[int]:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A 2D list of integers representing the matrix.\n\n#### Output\n- Returns a list containing the elements of the matrix in spiral order.\n",
+    "code": "def spiralOrderTraverse(matrix: List[List[int]]) -> List[int]:\n    # Initialize starting and ending positions\n    start_row = 0\n    end_row = len(matrix) - 1\n    start_col = 0\n    end_col = len(matrix[0]) - 1\n    result = []\n    \n    # Continue while we have elements to traverse\n    while start_row <= end_row and start_col <= end_col:\n        # Traverse row by column\n        for col in range(start_col, end_col + 1):\n            result.append(matrix[start_row][col])\n        \n        # Move to the next row\n        start_row += 1\n        \n        # If there are still elements in the matrix, traverse column by row from the right side\n        if start_row <= end_row:\n            for row in range(start_row, end_row + 1):\n                result.append(matrix[row][end_col])\n            \n            # Move to the next column\n            end_col -= 1\n    \n    return result",
+    "tests": [
+        "assert spiralOrderTraverse([[1,2,3],[4,5,6],[7,8,9]]) == [1,2,3,6,9,8,7,4,5]",
+        "assert spiralOrderTraverse([]) == []",
+        "assert spiralOrderTraverse([[1]]) == [1]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

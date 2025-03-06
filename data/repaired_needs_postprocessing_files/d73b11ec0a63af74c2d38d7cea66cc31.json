@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Valid Square",
+    "description": "Given the coordinates of four points that form a square, determine if they are valid. A square is valid if the distance between opposite vertices is equal to the sum of the lengths of its two adjacent sides.\n#### Function Signature\n```python\ndef is_valid_square(x1, y1, x2, y2, x3, y3, x4, y4) -> bool:\n```\n#### Input\n- `x1`, `y1` (int): The coordinates of the first point.\n- `x2`, `y2` (int): The coordinates of the second point.\n- `x3`, `y3` (int): The coordinates of the third point.\n- `x4`, `y4` (int): The coordinates of the fourth point.\n\n#### Output\n- Returns `True` if the given points form a valid square, `False` otherwise.",
+    "code": "import math\ndef is_valid_square(x1, y1, x2, y2, x3, y3, x4, y4) -> bool:\n    # Calculate the distances between opposite vertices\n    AB = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)\n    BC = math.sqrt((x3 - x2)**2 + (y3 - y2)**2)\n    CD = math.sqrt((x4 - x3)**2 + (y4 - y3)**2)\n    DA = math.sqrt((x1 - x4)**2 + (y1 - y4)**2)\n\n    # Check if the distances are equal and sum up to the lengths of adjacent sides\n    return AB == CD and BC == DA\n",
+    "tests": [
+        "assert is_valid_square(0, 0, 3, 0, 3, 3, 0, 3) == True",
+        "assert is_valid_square(-1, -2, 0, 0, 1, -1, 2, -2) == True",
+        "assert is_valid_square(-1, 1, 0, 0, 1, 1, 2, 0) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Fibonacci Number",
+    "description": "A Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, usually starting with 0 and 1. Write a function `fibonacci` that takes an integer `n` as input and returns the nth Fibonacci number. You can assume `n >= 0`. Note: The Fibonacci sequence starts from 0, so for example, `fibonacci(2)` should return 1.\r\n\r\n#### Function Signature\r\n```\ndef fibonacci(n: int) -> int:\r\n``` \r\n\r\n#### Input\r\n- `n` (int): A non-negative integer representing the position of the Fibonacci number to be returned.\r\n\r\n#### Output\r\n- Returns the nth Fibonacci number as an integer.\r\n",
+    "code": "def fibonacci(n: int) -> int:\r\n    if n <= 1:\r\n        return n\r\n    else:\r\n        a, b = 0, 1\r\n        for _ in range(2, n + 1):\r\n            a, b = b, a + b\r\n        return b\r\n",
+    "tests": [
+        "assert fibonacci(0) == 0",
+        "assert fibonacci(1) == 1",
+        "assert fibonacci(2) == 1",
+        "assert fibonacci(10) == 55"
+    ],
+    "model": "codegeex4:9b-repaired by Llama 3"
+}

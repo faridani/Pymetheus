@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Perimeter Covering",
+    "description": "Write a function `perimeter_covered` that takes as input two lists of integers, `a` and `b`, representing the coordinates of points on a 2D plane. The function should return the number of points in list `b` whose perimeter is covered by at least one point from list `a`. A point's perimeter is considered covered if there exists another point that has the same x or y coordinate.\n#### Function Signature\n```python\ndef perimeter_covered(a: List[int], b: List[int]) -> int:\n``` \n#### Input\n- `a` (List[int]): A list of length 2n, where each element is a point's coordinates on the 2D plane.\n- `b` (List[int]): A list of length m, where each element is a point's coordinates on the 2D plane.\n#### Output\n- Returns the number of points in list `b` whose perimeter is covered by at least one point from list `a`.",
+    "code": "import itertools\ndef perimeter_covered(a: List[int], b: List[int]) -> int:\n    a_set = set((x, y) for x, y in itertools.pairwise(a))\n    count = 0\n    for x, y in b:\n        if (x, 0) in a_set or (0, y) in a_set:\n            count += 1\n    return count",
+    "tests": [
+        "assert perimeter_covered([1,2,3,4], [5,6]) == 1",
+        "assert perimeter_covered([1,1,2,2], [3,4]) == 0",
+        "assert perimeter_covered([-1,1,-1,1], [-1,1]) == 2"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

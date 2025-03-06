@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Maximum Increase",
+    "description": "A company wants to increase the price of its product. The price increase should be maximum for all regions, but not exceed 10%. Write a function `max_price_increase` that calculates the maximum price increase that can be applied.\n\n#### Problem\nA company wants to increase the price of its product. The price increase should be maximum for all regions, but not exceed 10%. Write a function `max_price_increase` that calculates the maximum price increase that can be applied.\n\n#### Function Signature\n```python\ndef max_price_increase(prices: list) -> float:\n```\n\n#### Input\n- `prices` (list): A list of prices for different regions. Each region has a unique index, and the price is represented as a floating-point number.\n\n#### Output\n- Returns the maximum price increase that can be applied without exceeding 10%.",
+    "code": "def max_price_increase(prices: list) -> float:\n    # Find the minimum and maximum prices\n    min_price = min(prices)\n    max_price = max(prices)\n    # Calculate the maximum price increase without exceeding 10%\n    max_increase = (max_price - min_price) * 0.1\n    return max_increase",
+    "tests": [
+        "assert max_price_increase([10, 20, 30, 40]) == 2.0",
+        "assert max_price_increase([5.5, 6.5, 7.5, 8.5]) == 0.25",
+        "assert max_price_increase([1, 2, 3, 4]) == 0.33"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

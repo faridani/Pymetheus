@@ -1,0 +1,10 @@
+{
+    "title": "Hard: The Knight's Tour Puzzle",
+    "description": "A knight's tour is a sequence of moves by a knight on a chessboard such that the knight visits every square exactly once. Write a function `knight_tour(n)` that returns `True` if a valid knight's tour is possible on an n x n chessboard, and `False` otherwise.\n\n#### Function Signature\n```python\ndef knight_tour(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): The size of the chessboard (n x n).\n\n#### Output\n- Returns `True` if a valid knight's tour is possible, `False` otherwise.\n",
+    "code": "def knight_tour(n: int) -> bool:\n    def is_valid(x, y, board):\n        return 0 <= x < n and 0 <= y < n and board[x][y] == -1\n\n    def solve_util(x, y, move_count, board):\n        if move_count == n * n:\n            return True\n\n        dx = [2, 1, -1, -2, -2, -1, 1, 2]\n        dy = [1, 2, 2, 1, -1, -2, -2, -1]\n\n        for i in range(8):\n            nx = x + dx[i]\n            ny = y + dy[i]\n            if is_valid(nx, ny, board):\n                board[nx][ny] = move_count\n                if solve_util(nx, ny, move_count + 1, board):\n                    return True\n                board[nx][ny] = -1\n        return False\n\n    board = [[-1 for _ in range(n)] for _ in range(n)]\n    board[0][0] = 0\n    return solve_util(0, 0, 1, board)\n",
+    "tests": [
+        "assert knight_tour(8) == True",
+        "assert knight_tour(5) == False"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

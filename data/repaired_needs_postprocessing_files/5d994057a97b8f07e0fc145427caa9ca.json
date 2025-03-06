@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Given two strings, write a function that checks if they are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing only lowercase letters.\n- `s2` (str): Another string containing only lowercase letters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length before comparison\n    if len(s1) != len(s2):\n        return False\n    # Create two dictionaries to count the frequency of each character in the strings\n    char_dict1 = {}\n    char_dict2 = {}\n    for char in s1:\n        if char in char_dict1:\n            char_dict1[char] += 1\n        else:\n            char_dict1[char] = 1\n    for char in s2:\n        if char in char_dict2:\n            char_dict2[char] += 1\n        else:\n            char_dict2[char] = 1\n    # Compare the two dictionaries to check if they are identical\n    for key, value in char_dict1.items():\n        if key not in char_dict2 or char_dict1[key] != char_dict2[key]:\n            return False\n    return True",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"A man, a plan, a canal: Panama\", \"The zen of saws and sewing machines and I can't sell them, of mice and men.\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Minimum Swaps for Palindrome",
+    "description": "Given a string, find the minimum number of swaps required to convert it into a palindrome. You are allowed to swap any two characters in the string.\n\n#### Function Signature\n```python\ndef min_swaps_for_palindrome(s: str) -> int:\n``` \n\n#### Input\n- `s` (str): The input string consisting of lowercase letters only.\n\n#### Output\n- Returns an integer representing the minimum number of swaps required to make the string a palindrome. If it's not possible to make it a palindrome, return -1.",
+    "code": "def min_swaps_for_palindrome(s: str) -> int:\n    if len(s)%2 != 0 and s.count(s[len(s)//2]) == 1 : \n        return -1\n    from collections import Counter\n    cnt = Counter(s)\n    swaps = 0\n    for c in cnt:\n        if cnt[c] % 2 != 0: \n            swaps += 1\n    return swaps//2",
+    "tests": [
+        "assert min_swaps_for_palindrome(\"aabb\") == 0",
+        "assert min_swaps_for_palindrome(\"aaab\") == 1",
+        "assert min_swaps_for_palindrome(\"aabbc\") == -1",
+        "assert min_swaps_for_palindrome(\"geeksforgeeks\") == 3"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

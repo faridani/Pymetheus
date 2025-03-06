@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Maximal Rectangle",
+    "description": "Given a 2D binary matrix (0s and 1s) where each row is sorted, write a function that finds the maximum area of a rectangle that can be formed from the given matrix. The rectangle should be aligned with the rows and columns of the matrix.\n\n#### Function Signature```python\ndef max_rectangle_area(matrix: list[list[int]]) -> int:\n``` \n\n#### Input\n- `matrix` (list[list[int]]): A 2D binary matrix where each row is sorted.\n\n#### Output\n- Returns the maximum area of a rectangle that can be formed from the given matrix.",
+    "code": "from typing import List\ndef max_rectangle_area(matrix: List[List[int]]) -> int:\n    if not matrix:\n        return 0\n    m, n = len(matrix), len(matrix[0])\n    left, right = [0] * (m + 1), [n] * (m + 1)\n    area = 0\n    for i in range(m):\n        for j in range(n):\n            if matrix[i][j] == 0:\n                right[i] = min(right[i], j) \n            else:   \n                left[i] = max(left[i], j + 1) \n        for j in range(n, -1, -1):\n            if matrix[m-1-j][n-1-j] == 0:\n                right[m-i-1] = min(right[m-i-1], n-1-j)\n            else:   \n                left[m-i-1] = max(left[m-i-1], j) \n        for i in range(m):\n            area = max(area, (right[i] - left[i]) * 1)\n    return area",
+    "tests": [
+        "assert max_rectangle_area([[0, 1], [1, 1]]) == 2",
+        "assert max_rectangle_area([[0, 1, 0], [0, 1, 1], [0, 0, 1]]) == 4",
+        "assert max_rectangle_area([[1, 1, 1], [1, 0, 1], [1, 1, 1]]) == 6"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Write a function `are_anagrams` that determines whether two given strings are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of another, usually a single word or phrase. Note that ignoring case and spaces is acceptable.\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n```\n#### Input\n- `str1` (str): A string containing only letters (ignoring case and spaces)- `str2` (str): A string containing only letters (ignoring case and spaces)\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def are_anagrams(str1: str, str2: str) -> bool:\n    # Remove case and spaces from both strings\n    str1 = ''.join(sorted(char.lower() for char in str1 if char.isalpha()))\n    str2 = ''.join(sorted(char.lower() for char in str2 if char.isalpha()))\n    # Compare the sorted and lowercase strings for equality\n    return len(str1) == len(str2) and str1 == str2",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('actually', 'tacitly') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('Python', 'htpoNy') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

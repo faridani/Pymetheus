@@ -1,0 +1,12 @@
+{
+    "title": "Maximum Sum of a Path in a Tree",
+    "description": "Given a tree where each node has an integer value, write a function that finds the maximum sum of a path from the root to any leaf node.\n\n#### Function Signature\n```python\ndef max_sum_path(root: object) -> int:\n```\n\n#### Input\n- `root` (object): The root node of the tree. Each node has an integer value and zero or more child nodes, represented as a list of children.\n\n#### Output\n- Returns the maximum sum of a path from the root to any leaf node.",
+    "code": "def max_sum_path(root: object) -> int:\n    if not root:\n        return 0\n    max_sum = root.val\n    for child in root.children:\n        max_sum = max(max_sum, max_sum_path(child) + root.val)\n    return max_sum",
+    "tests": [
+        "assert max_sum_path(Node(1)) == 1",
+        "assert max_sum_path(Node(1).add_child(Node(-2)).add_child(Node(-3))) == 1",
+        "assert max_sum_path(Node(5).add_child(Node(2).add_child(Node(4), Node(6))).add_child(Node(3).add_child(Node(9)))) == 14",
+        "assert max_sum_path(None) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "'Count Vowels in a String' - Easy",
+    "description": "Write a function `count_vowels` that takes a string as input and returns the number of vowels (a, e, i, o, u) in that string.\n\n#### Function Signature\n```python\ndef count_vowels(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing only lowercase letters.\n\n#### Output\n- Returns an integer representing the number of vowels in the input string.",
+    "code": "def count_vowels(s: str) -> int:\n    # Initialize a dictionary to store the counts of each vowel\n    vowel_count = {'a': 0, 'e': 0, 'i': 0, 'o': 0, 'u': 0}\n    # Iterate through each character in the input string\n    for char in s:\n        if char in vowel_count:\n            vowel_count[char] += 1\n    # Return the sum of all the vowel counts\n    return sum(vowel_count.values())",
+    "tests": [
+        "assert count_vowels('aeiou') == 5",
+        "assert count_vowels('hello') == 2",
+        "assert count_vowels('python') == 1"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

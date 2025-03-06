@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Prime Factorization",
+    "description": "Prime factorization of a number is the process of breaking down a composite number into its prime factors. Write a function `prime_factors` that takes an integer `n` as input and returns a list of prime factors of `n`. The order of the prime factors does not matter.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A positive integer greater than 1.\n\n#### Output\n- Returns a list of integers representing the prime factors of `n`.",
+    "code": "def prime_factors(n: int) -> List[int]:\n    i = 2\n    factors = []\n    while i * i <= n:\n        if n % i:\n            i += 1\n        else:\n            n //= i\n            factors.append(i)\n    if n > 1:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factors(100) == [2, 2, 5, 5]",
+        "assert prime_factors(315) == [3, 3, 5, 7]",
+        "assert prime_factors(17) == [17]"
+    ],
+    "model": "codegeex4:9b-repaired by Llama 3"
+}

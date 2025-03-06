@@ -1,0 +1,12 @@
+{
+    "title": "Fibonacci Checker",
+    "description": "A sequence of Fibonacci numbers starts with 0 and 1, and each subsequent number is the sum of the previous two. Write a function `is_fibonacci` that takes an integer as input and returns `True` if it's in the Fibonacci sequence, `False` otherwise.\n\n#### Function Signature\n```python\ndef is_fibonacci(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): An integer to be checked against the Fibonacci sequence.\n\n#### Output\n- Returns `True` if the input integer is in the Fibonacci sequence, `False` otherwise.",
+    "code": "def is_fibonacci(n: int) -> bool:\n    a, b = 0, 1\n    while b <= n:\n        if b == n:\n            return True\n        a, b = b, a + b\n    return False",
+    "tests": [
+        "assert is_fibonacci(13) == True",
+        "assert is_fibonacci(-5) == False",
+        "assert is_fibonacci(0) == True",
+        "assert is_fibonacci(144) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

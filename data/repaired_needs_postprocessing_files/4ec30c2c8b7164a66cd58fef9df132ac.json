@@ -1,0 +1,17 @@
+{
+    "title": "Medium: Merge Sorted Arrays",
+    "description": "You are given two sorted integer arrays, `nums1` and `nums2`, where `nums1` has enough space at the end to hold all elements of `nums2`. Write a function `merge_sorted_arrays` that merges the two arrays into one sorted array in-place. \n\n#### Function Signature\n```python\ndef merge_sorted_arrays(nums1: list[int], nums2: list[int]) -> None:\n```\n\n#### Input\n- `nums1` (list[int]): The first sorted array with enough space at the end to hold all elements of `nums2`. \n- `nums2` (list[int]): The second sorted array.\n\n#### Output\n- Modifies `nums1` in-place, merging it with `nums2` into one sorted array. \n",
+    "code": "def merge_sorted_arrays(nums1: list[int], nums2: list[int]) -> None:\n    m = len(nums1) - len(nums2)\n    n = len(nums2)\n    i = m - 1\n    j = n - 1\n    k = m + n - 1\n    while i >= 0 and j >= 0:\n        if nums1[i] > nums2[j]:\n            nums1[k] = nums1[i]\n            i -= 1\n        else:\n            nums1[k] = nums2[j]\n            j -= 1\n        k -= 1\n    while j >= 0:\n        nums1[k] = nums2[j]\n        j -= 1\n        k -= 1\n",
+    "tests": [
+        "nums1 = [1,2,3,0,0,0]; nums2 = [2,5,6]",
+        "merge_sorted_arrays(nums1, nums2)",
+        "assert nums1 == [1, 2, 2, 3, 5, 6]",
+        "nums1 = [1]; nums2 = []",
+        "merge_sorted_arrays(nums1, nums2)",
+        "assert nums1 == [1]",
+        "nums1 = [0]; nums2 = [1]",
+        "merge_sorted_arrays(nums1, nums2)",
+        "assert nums1 == [1, 0]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

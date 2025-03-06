@@ -1,0 +1,12 @@
+{
+    "title": "Sum of Fibonacci Numbers Below a Given Limit (Medium)",
+    "description": "The Fibonacci sequence is a series of numbers where the next number is the sum of the two preceding ones, usually starting with 0 and 1. Write a function `fib_sum` that takes an integer `n` as input, checks if it's greater than or equal to 2, calculates the sum of all Fibonacci numbers less than or equal to `n`, and returns the result.\r\n\r\n#### Function Signature\r\n```python\r\ndef fib_sum(n: int) -> int:\r```\r\r\n#### Input\r\n- `n` (int): An integer greater than or equal to 2.\r\r\n#### Output\r\n- Returns the sum of all Fibonacci numbers less than or equal to `n`.\r",
+    "code": "def fib_sum(n: int) -> int:\r    # Check if n is valid input\r    if n <= 1: return 0\r    prev, current = 0, 1\r    total = 0\r    while current <= n:\r        total += current\r        prev, current = current, prev + current\r    return total",
+    "tests": [
+        "assert fib_sum(7) == 13",
+        "assert fib_sum(8) == 21",
+        "assert fib_sum(10) == 55",
+        "assert fib_sum(1000) == 4446399"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

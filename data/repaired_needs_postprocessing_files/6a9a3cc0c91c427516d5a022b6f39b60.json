@@ -1,0 +1,12 @@
+{
+    "title": "Reversed Words Checker (Hard)",
+    "description": "Write a function `reversed_words` that takes a string as input and checks if it can be formed by concatenating the same words in reverse order. For example, for the string 'hello world', it should return True since we can form the sentence by reversing 'hello' and 'world'. But for the string 'hello world hello', it should return False because 'world' cannot be reversed to match 'hello'. \n#### Function Signature\n```python\ndef reversed_words(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string containing words separated by spaces.\n\n#### Output\n- Returns `True` if the input string can be formed by concatenating the same words in reverse order, `False` otherwise.\n",
+    "code": "def reversed_words(s: str) -> bool:\n    # Split the string into words\n    words = s.split()\n    # Create an empty stack to store reversed words\n    stack = []\n    # Iterate over the words\n    for word in words:\n        # If the stack is empty, push the current word\n        if not stack:\n            stack.append(word)\n        else:\n            # Compare the top of the stack with the current word\n            if stack[-1] != word[::-1]:\n                return False\n            # If they match, pop the top of the stack\n            stack.pop()\n    return len(stack) == 0",
+    "tests": [
+        "assert reversed_words('hello world') == True",
+        "assert reversed_words('hello world hello') == False",
+        "assert reversed_words('A man, a plan, a canal, Panama') == False",
+        "assert reversed_words('racecar') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

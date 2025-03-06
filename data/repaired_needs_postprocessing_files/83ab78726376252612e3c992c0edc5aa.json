@@ -1,0 +1,11 @@
+{
+    "title": "Minimum Window of Substrings that Appear More Than Once in a String",
+    "description": "A string contains several substrings that appear more than once. Write a function `find_minimum_window` that finds the minimum window of characters that appears more than once in the string.\n\n#### Function Signature\n```python\ndef find_minimum_window(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string containing several substrings that appear more than once.\n\n#### Output\n- Returns the minimum window of characters that appears more than once in the string. If no such window exists, return an empty string.",
+    "code": "from collections import defaultdict\nimport string\n\ndef find_minimum_window(s: str) -> str:\n    # Create a hashmap to store the frequency of each substring\n    freq = defaultdict(int)\n    # Iterate over all possible substrings in the string\n    for i in range(len(s)):\n        for j in range(i + 1, len(s) + 1):\n            # Add the current substring to the hashmap\n            freq[''.join(s[i:j])] += 1\n            # If the frequency of the current substring is greater than 1,\n            # mark it as a candidate window\n            if freq[''.join(s[i:j])] > 1:\n                candidate_window = ''.join(s[i:j])\n    # Initialize the minimum window with the first candidate window found\n    min_window = candidate_window\n    # Iterate over all substrings that appear more than once to find the minimum window\n    for substring in freq:\n        if freq[substring] > 1 and len(substring) < len(min_window):\n            min_window = substring\n    # Return the minimum window, or an empty string if no such window exists\n    return min_window if min_window else ''\n",
+    "tests": [
+        "assert find_minimum_window(\"abcabc\") == \"ab\"",
+        "assert find_minimum_window(\"aabbcc\") == \"aab\"",
+        "assert find_minimum_window(\"abcdef\") == \"\""
+    ],
+    "model": "llama3.1:8b-repaired by Llama 3"
+}

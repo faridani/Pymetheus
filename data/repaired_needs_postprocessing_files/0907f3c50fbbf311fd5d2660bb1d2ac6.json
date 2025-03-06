@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Valid Binary Search Tree",
+    "description": "Given a binary tree and its root node, determine whether it is a valid binary search tree (BST). A BST is defined as follows:\n- The left subtree of a node contains only nodes with keys less than the node's key.\n- The right subtree of a node contains only nodes with keys greater than the node's key.\n- Both the left and right subtrees must also be valid binary search trees.\n\n#### Function Signature```python\ndef is_valid_bst(root_node: any) -> bool:\n```\n\n#### Input\n- `root_node` (any): The root node of a binary tree, which can contain nodes with integers or strings as keys.\n\n#### Output\n- Returns `True` if the input binary tree is a valid BST, `False` otherwise.",
+    "code": "class TreeNode:\n    def __init__(self, key):\n        self.key = key\n        self.left = None\n        self.right = None\n\ndef is_valid_bst(root_node: any) -> bool:\n    if root_node is None:\n        return True\n    \n    if isinstance(root_node.key, int):\n        min_key = float('-inf')\n        max_key = float('inf')\n    else:\n        min_key = ''\n        max_key = ''\n\n    def helper(node: any, min_key: str, max_key: str) -> bool:\n        if node is None:\n            return True\n    \n    if isinstance(node.key, int):\n        if node.key < min_key or node.key > max_key:\n            return False\n        min_key = node.key\n        max_key = node.key\n    else:\n        if node.key < min_key or node.key > max_key:\n            return False\n        min_key = node.key\n        max_key = node.key\n    \n    left_valid = helper(node.left, min_key, str(node.key))\n    right_valid = helper(node.right, str(node.key), max_key)\n    \n    return left_valid and right_valid\n\n    return helper(root_node, min_key, max_key)",
+    "tests": [
+        "assert is_valid_bst(None) == True",
+        "assert is_valid_bst(TreeNode(5)) == True",
+        "assert is_valid_bst(TreeNode('a')) == True",
+        "assert is_valid_bst(TreeNode(5)) == True",
+        "assert is_valid_bst(TreeNode(2, TreeNode(1), TreeNode(3))) == True",
+        "assert is_valid_bst(TreeNode(2, TreeNode(0), TreeNode(4))) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Palindromic Substrings Finder (Medium)",
+    "description": "Given a string `s`, find all the non-overlapping palindromic substrings and return them as a list.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of strings containing the palindromic substrings found in the input string.",
+    "code": "import collections\ndef find_palindromes(s: str) -> List[str]:\n    # Create an empty dictionary to store unique lengths of palindromes\n    pal_len = collections.defaultdict(list)\n\n    n = len(s)\n    for i in range(0, n):\n        # Iterate through all possible centers from 0 to n-1\n        for j in range(i+1, min(i+3, n)):\n            # Calculate the length of potential palindrome centered at this index pair\n            length = j - i + 1\n            # Check if the substring is indeed a palindrome\n            if s[i:j] == s[j-length:i-1:-1]:\n                # Add the palindrome to the appropriate list in the dictionary based on its length\n                pal_len[length].append(s[i:j])\n    # Combine all the lists of palindromes into a single list\n    return [pal for sublist in pal_len.values() for pal in sublist]",
+    "tests": [
+        "assert find_palindromes('racecar') == ['r', 'a', 'c', 'ca', 'cc', 'rac', 'car']",
+        "assert find_palindromes('A man, a plan, a canal: Panama') == ['man', 'a', ',', ':', 'anana', 'nalampanac']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

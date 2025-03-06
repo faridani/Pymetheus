@@ -1,0 +1,12 @@
+{
+    "title": "'Is it a Pig Latin Translation?' (easy)",
+    "description": "Write a function `is_pig_latin` that checks if a given string is in Pig Latin or not.\n\n#### Function Signature\n```python\ndef is_pig_latin(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string containing one or more words separated by spaces.\n\n#### Output\n- Returns `True` if the input string is in Pig Latin, `False` otherwise.\nPig Latin is a playful language where alphabetical words starting with consonants are translated by adding 'ay' to the end of the word, and shifting all remaining letters to the front (of the first vowel if it has one). For example: 'apple' in Pig Latin becomes 'appleway'.",
+    "code": "def is_pig_latin(s: str) -> bool:\n    words = s.split()\n    for word in words:\n        # Check if the word starts with a consonant\n        if not (word[0] in 'aeiou'):\n            first_vowel = next((letter for letter in word if letter in 'aeiou'), None)\n            if first_vowel is not None:\n                # Shift all characters before the first vowel to the end and add 'ay'\n                if first_vowel > word[0]:\n                    shifted_word = word[first_vowel:] + word[:first_vowel] + 'ay'\n                else:\n                    shifted_word = word[1:] + word[:1] + 'ay'\n            else:\n                # Word starts with a vowel, it's not in Pig Latin\n                return False\n    # If all words are checked and none of them were found to be in Pig Latin, the string is not in Pig Latin\n    return True",
+    "tests": [
+        "assert is_pig_latin('hello') == False",
+        "assert is_pig_latin('appleway') == True",
+        "assert is_pig_latin('example') == False",
+        "assert is_pig_latin('mangleway') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

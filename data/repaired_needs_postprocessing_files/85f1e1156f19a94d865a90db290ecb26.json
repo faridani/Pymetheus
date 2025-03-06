@@ -1,0 +1,11 @@
+{
+    "title": "Fibonacci Sum",
+    "description": "A Fibonacci sequence is a series of numbers where the next number is the sum of the previous two. The first two numbers in a Fibonacci sequence are 0 and 1. Write a function `fib_sum` that takes three parameters: `n`, the nth Fibonacci number, and `k`, the sum of the kth and (k-1)th Fibonacci numbers.\r\n\r\n#### Function Signature\r\n```python\rndef fib_sum(n: int, k: int) -> int:\r``` \r\n\r\n#### Input\r\n- `n` (int): The nth Fibonacci number.\r\n- `k` (int): The sum of the kth and (k-1)th Fibonacci numbers.\r\n\r\n#### Output\r\n- Returns the correct sum of the kth and (k-1)th Fibonacci numbers.\r",
+    "code": "def fib_sum(n: int, k: int) -> int:\n    a, b = 0, 1\n    if k == 1:\n        return n\n    for _ in range(2, k+1):\n        a, b = b, a+b\n    return b+n",
+    "tests": [
+        "assert fib_sum(5, 3) == 13",
+        "assert fib_sum(8, 4) == 21",
+        "assert fib_sum(10, 5) == 55"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

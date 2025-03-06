@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Tree Similarity",
+    "description": "Given two trees, determine if they are similar. Two trees are considered similar if they have the same structure and the same values at each node, ignoring the order of nodes.\n#### Function Signature\n```python\ndef tree_similarity(t1: list, t2: list) -> bool:\n```\n#### Input\n- `t1` (list): A list representing a tree where each element is either a string or another list.\n- `t2` (list): A list representing another tree with the same structure as `t1`.\n#### Output\n- Returns `True` if the two trees are similar, `False` otherwise.\n",
+    "code": "import copy\ndef tree_similarity(t1: list, t2: list) -> bool:\n    # Check if both trees have the same structure\n    if len(t1) != len(t2):\n        return False\n    \n    for i in range(len(t1)):\n        # Check if current nodes are equal\n        if isinstance(t1[i], str):\n            if t1[i] != t2[i]:\n                return False\n        elif not tree_similarity(t1[i], t2[i]):\n            return False\n    \n    return True\n",
+    "tests": [
+        "assert tree_similarity([1, 2, [3, 4]], [1, 2, [3, 4]]) == True",
+        "assert tree_similarity([1, 2, ['a', 'b']], [1, 2, ['b', 'a']]) == False",
+        "assert tree_similarity([1], [1]) == True",
+        "assert tree_similarity([], []) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

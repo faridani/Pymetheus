@@ -1,0 +1,10 @@
+{
+    "title": "Elegant Spiral",
+    "description": "The golden ratio (approximately 1.618) has many fascinating properties. One of them is the existence of a spiral with unique proportions, known as the elegant spiral or logarithmic spiral. This spiral can be constructed by starting at the center and moving in a curve that gets closer to the center as you move outward. The distance from the center to the point on the spiral is proportional to the angle around the center.\nWrite a function `elegant_spiral` that takes two integers, `start` and `end`, representing the start and end points of the spiral, and returns a string representation of the spiral in the format: ' ' (space) for each point on the spiral.\n\n#### Function Signature\n```python\ndef elegant_spiral(start: int, end: int) -> str:\n```\n\n#### Input\n- `start` (int): The starting point of the spiral.\n- `end` (int): The ending point of the spiral.\n\n#### Output\n- Returns a string representation of the spiral.",
+    "code": "import math\ndef elegant_spiral(start: int, end: int) -> str:\n    result = ''\n    for i in range(start, end + 1):\n        angle = 2 * math.pi * (math.log(i) / math.log(1.618))\n        distance = i / 10\n        x = round(distance * math.cos(angle))\n        y = round(distance * math.sin(angle))\n        result += ' ' if (x ** 2 + y ** 2) > 50 else ''\n    return result",
+    "tests": [
+        "assert elegant_spiral(1, 5) == '     '",
+        "assert elegant_spiral(10, 20) == '\\\\n     ' * (10 + 10).replace('     ', ' ').strip()"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

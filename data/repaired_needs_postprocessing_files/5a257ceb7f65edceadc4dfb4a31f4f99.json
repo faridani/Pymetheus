@@ -1,0 +1,10 @@
+{
+    "title": "'Anagram Solver (Hard)'",
+    "description": "An anagram is a word or phrase that is formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `anagram_solver` that finds all possible anagrams of a given string.\n\n#### Function Signature\n```python\ndef anagram_solver(s: str) -> List[str]:```\n\n#### Input\n- `s` (str): A string containing only lowercase alphabetic characters, with no spaces or punctuation.\n\n#### Output\n- Returns a list of all possible anagrams of the input string, where each anagram is also a valid word in English.",
+    "code": "import itertools\nfrom collections import defaultdict\ndef anagram_solver(s: str) -> List[str]:\n    # Count the frequency of each character\n    char_count = defaultdict(int)\n    for char in s:\n        char_count[char] += 1\n    # Generate all possible permutations\n    permutations = [''.join(perm) for perm in itertools.permutations(s)]\n    # Filter out invalid anagrams (not valid words)\n    anagrams = [word for word in permutations if is_valid_word(word, char_count)]\n    return anagrams\ndef is_valid_word(word: str, char_count: defaultdict) -> bool:\n    # Use a dictionary to store the frequency of characters seen so far\n    char_seen = defaultdict(int)\n    for char in word:\n        if char not in char_seen or char_seen[char] < char_count[char]:\n            continue\n        else:\n            return False\n    # If no characters exceeded their count, the string is a valid word\n    return True",
+    "tests": [
+        "assert anagram_solver('listen') == ['silent', 'enlist']",
+        "assert anagram_solver('programming') == ['gnittiprom', 'programmer', 'margarp', 'rampgnirm']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

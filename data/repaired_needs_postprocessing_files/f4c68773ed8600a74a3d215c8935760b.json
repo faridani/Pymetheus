@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Counting the number of ways to choose k items",
+    "description": "Consider an array of integers. Write a function that counts the number of ways to choose exactly k items from this array.\n\n#### Function Signature\n```python\ndef count_ways(arr: list[int], k: int) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of unique integers.\n- `k` (int): The number of items to choose.\n\n#### Output\n- Returns the number of ways to choose exactly k items from the array.",
+    "code": "import math\ndef count_ways(arr: list[int], k: int) -> int:\n    # Calculate the factorial of k+1 (since we're choosing k items)\n    total_factorial = 1\n    for i in range(2, k + 2):\n        total_factorial *= i\n    # Calculate the number of ways to choose k items from an array of length len(arr)\n    return math.factorial(len(arr)) // (total_factorial * math.factorial(k))\n",
+    "tests": [
+        "assert count_ways([1, 2, 3], 1) == 3",
+        "assert count_ways([1, 2, 3], 2) == 3",
+        "assert count_ways([1, 2, 3], 3) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

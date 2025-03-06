@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Sequence Checker (Medium)",
+    "description": "Write a function `is_reverse_sequence` that checks if a given list of integers forms a reverse sequence.\n\n#### Function Signature\n```python\ndef is_reverse_sequence(nums: List[int]) -> bool:\n``` \n\n#### Input\n- `nums` (List[int]): A non-empty list of integers in any order.\n\n#### Output\n- Returns `True` if the input list is a reverse sequence, `False` otherwise.",
+    "code": "def is_reverse_sequence(nums: List[int]) -> bool:\n    # Sort the list\n    sorted_nums = sorted(nums)\n    # Reverse the sorted list\n    reversed_sorted_nums = sorted_nums[::-1]\n    # Check if the original list is the reverse of the sorted list\n    return nums == reversed_sorted_nums",
+    "tests": [
+        "assert is_reverse_sequence([1, 2, 3]) == False",
+        "assert is_reverse_sequence([3, 2, 1]) == True",
+        "assert is_reverse_sequence([10, 5, 2, 4, 6, 8, 9]) == False",
+        "assert is_reverse_sequence([9, 8, 6, 4, 2, 5, 10]) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

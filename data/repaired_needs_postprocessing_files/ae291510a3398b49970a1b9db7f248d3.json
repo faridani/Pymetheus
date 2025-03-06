@@ -1,0 +1,11 @@
+{
+    "title": "Medium - String Rotation",
+    "description": "Given two strings, s1 and s2, determine if s2 is a rotation of s1. A string rotation occurs when you take a string and shift its characters to the right or left by any number of positions. For example, 'waterbottle' is a rotation of 'erbottlewat'.\n\n#### Function Signature\n```python\ndef is_rotation(s1: str, s2: str) -> bool:\n``` \n\n#### Input\n- `s1` (str): The first string.\n- `s2` (str): The second string.\n\n#### Output\n- Returns `True` if `s2` is a rotation of `s1`, `False` otherwise.",
+    "code": "def is_rotation(s1: str, s2: str) -> bool:\n    if len(s1) != len(s2):\n        return False\n    return s2 in s1 + s1",
+    "tests": [
+        "assert is_rotation('waterbottle', 'erbottlewat') == True",
+        "assert is_rotation('hello', 'world') == False",
+        "assert is_rotation('abcde', 'cdeab') == True"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

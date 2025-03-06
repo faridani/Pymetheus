@@ -1,0 +1,13 @@
+{
+    "title": "Vowel Counting",
+    "description": "Write a function `count_vowels` that takes in a string and returns the number of vowels (a, e, i, o, u) found in it. The input string may contain both uppercase and lowercase letters, spaces, and punctuation.\n\n#### Function Signature\n```python\ndef count_vowels(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing any number of characters.\n\n#### Output\n- Returns the total count of vowels found in the input string.\n\n#### Constraints\n1. The length of the string is between 1 and 1000 characters, inclusive.\n2. The string can contain uppercase and lowercase letters, spaces, and punctuation.\n\n#### Hints\nConsider using a set to store vowel characters for faster lookup, iterate over each character in the input string, convert it to lowercase, check if it's a vowel, and increment a counter accordingly.",
+    "code": "def count_vowels(s: str) -> int:\n    vowels = {'a', 'e', 'i', 'o', 'u'}\n    count = 0\n    s = s.lower()\n    for char in s:\n        if char in vowels:\n            count += 1\n    return count",
+    "tests": [
+        "assert count_vowels(\"Hello World!\") == 3",
+        "assert count_vowels(\"Python Programming\") == 4",
+        "assert count_vowels(\" \") == 0",
+        "assert count_vowels(\"AEIOU\") == 5",
+        "assert count_vowels(\"Quick brown fox jumps over the lazy dog.\") == 12"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

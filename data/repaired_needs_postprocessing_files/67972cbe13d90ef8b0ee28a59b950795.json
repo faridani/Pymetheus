@@ -1,0 +1,12 @@
+{
+    "title": "Unique Character Count in String",
+    "description": "Write a function `unique_chars_count` that takes a string as input and returns the count of unique characters present in it. The function should ignore spaces, punctuation marks, and consider only alphabets (A-Z, a-z).\n\n#### Function Signature\n```python\ndef unique_chars_count(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain uppercase and lowercase letters, digits, spaces, and punctuation.\n\n#### Output\n- Returns the count of distinct alphabetic characters in the given string.",
+    "code": "def unique_chars_count(s: str) -> int:\n    # Remove non-alphabet characters and convert to lowercase\n    clean_s = ''.join([char for char in s if char.isalpha()])\n    clean_s = clean_s.lower()\n    # Use a set to store distinct characters\n    distinct_chars = set(clean_s)\n    return len(distinct_chars)",
+    "tests": [
+        "assert unique_chars_count(\"Hello, World!\") == 7",
+        "assert unique_chars_count(\"Python Programming\") == 10",
+        "assert unique_chars_count(\"123456\") == 0",
+        "assert unique_chars_count('') == 0"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

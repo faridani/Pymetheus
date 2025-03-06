@@ -1,0 +1,11 @@
+{
+    "title": "'Is it a Rot13 Encoded String?' (Easy)",
+    "description": "Rot13 is a simple letter substitution cipher that can be used to encrypt and decrypt messages. The letters of the alphabet are shifted 13 places. For example, 'A' becomes 'N', 'B' becomes 'M', and so on.\nWrite a function `is_rot13` that checks if a given string is encoded with Rot13.\n#### Function Signature\n```\ndef is_rot13(s: str) -> bool:\n``` \n#### Input\n- `s` (str): A string containing only uppercase letters and spaces.\n#### Output\n- Returns `True` if the input string is a valid Rot13 encoded string, `False` otherwise.",
+    "code": "import string\n\ndef is_rot13(s: str) -> bool:\n    # Check if all letters are in alphabet and their rot13 equivalents\n    s = ''.join(char for char in s if char in string.ascii_uppercase)\n    for char in s:\n        if (char != s[::-1].translate(str.maketrans('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'NZRQPONMLKSIJHXDVBAFWERYGTZLC')))[0]:\n            return False\n    return True",
+    "tests": [
+        "assert is_rot13('S ER DREVEFR') == True",
+        "assert is_rot13('WPLFGHNFX OL WVTUGU NER FGEHGTTR') == True",
+        "assert is_rot13('HELLO') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

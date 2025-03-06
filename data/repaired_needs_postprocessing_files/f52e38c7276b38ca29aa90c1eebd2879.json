@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Prime Permutations",
+    "description": "A permutation of a number is the rearrangement of its digits. For example, 123 and 312 are permutations of each other. Write a function `prime_permutations` that takes an integer `n` as input and returns a list containing all prime numbers formed by the permutations of the digits in `n`. #### Function Signature\n```\ndef prime_permutations(n: int) -> list[int]:\n```  #### Input\n-  `n` (int): A positive integer.  #### Output\n- Returns a sorted list containing all prime numbers formed by permutations of the digits in `n`.  \n\n",
+    "code": "import itertools\ndef is_prime(num):\n    if num <= 1: return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\ndef prime_permutations(n: int) -> list[int]:\n    digits = str(n)\n    perms = list(itertools.permutations(digits))\n    prime_list = []\n    for perm in perms:\n        num = int(''.join(perm))\n        if is_prime(num):\n            prime_list.append(num)\n    return sorted(set(prime_list))",
+    "tests": [
+        "assert prime_permutations(1258) == [1258, 1528, 1825]",
+        "assert prime_permutations(103) == []",
+        "assert prime_permutations(1476) == [1467, 1647, 4167, 4617, 6147]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

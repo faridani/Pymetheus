@@ -1,0 +1,12 @@
+{
+    "title": "'Reverse Words Checker (Medium)'",
+    "description": "Given a string, check if each word in the string reads the same forwards and backwards (ignoring spaces). Words can contain alphanumeric characters. Multiple words are separated by a single space.\n\n#### Function Signature\n```python\ndef reverse_words(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that contains one or more words, each word is made of alphanumeric characters and separated by a single space.\n\n#### Output\n- Returns `True` if every word in the input string reads the same forwards and backwards, `False` otherwise.",
+    "code": "import re\ndef reverse_words(s: str) -> bool:\n    # Split the string into words\n    words = s.split()\n    for word in words:\n        # Check if the word is not empty\n        if len(word) == 0:\n            continue\n        # Remove non-alphanumeric characters from the word and reverse it\n        rev_word = ''.join(char for char in reversed(word) if char.isalnum())\n        # Check if the original word is equal to the reversed word\n        if word != rev_word:\n            return False\n    # If no word was found not equal to its reverse, return True\n    return True",
+    "tests": [
+        "assert reverse_words('madam') == True",
+        "assert reverse_words('letters') == False",
+        "assert reverse_words('racecar') == True",
+        "assert reverse_words('hello world') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

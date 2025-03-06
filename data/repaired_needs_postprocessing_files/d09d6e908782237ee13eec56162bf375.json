@@ -1,0 +1,11 @@
+{
+    "title": "Count the Occurrences of Each Word (Medium)",
+    "description": "Write a function `word_count` that takes a string and returns a dictionary where each word is a key, and its count in the given string is the corresponding value.\n\n#### Function Signature\n```python\ndef word_count(s: str) -> dict:\n```\n\n#### Input\n- `s` (str): A string containing words separated by spaces.\n\n#### Output\n- Returns a dictionary where each unique word in the input string is a key, and its count in the given string is the corresponding value.\n**Note:** Ignore capitalization, consider punctuation as part of a word (for example, \"word!\" becomes \"word\"), and treat consecutive spaces as a single space.",
+    "code": "def word_count(s: str) -> dict:\n    # Remove punctuation and convert to lowercase\n    words = [word.lower() for word in s.split() if word.isalnum()]\n    # Count the occurrences of each word\n    counts = {}\n    for word in words:\n        counts[word] = counts.get(word, 0) + 1\n    return counts",
+    "tests": [
+        "assert word_count(\"apple apple\") == {\"apple\": 2}",
+        "assert word_count(\"banana split\") == {\"banana\": 1, \"split\": 1}",
+        "assert word_count(\"google.com google.co.uk\") == {\"google\": 2}"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

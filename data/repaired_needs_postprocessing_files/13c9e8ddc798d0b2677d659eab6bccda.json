@@ -1,0 +1,12 @@
+{
+    "title": "Prime Number Sequence Detector (Hard)",
+    "description": "Write a function `find_prime_sequence` that takes an integer `n` and returns the first prime number sequence of length `n` or more, where each successive number in the sequence differs by exactly 2. The sequence must also start with a prime number. If no such sequence can be found, return None.\n\n#### Function Signature\n```python\ndef find_prime_sequence(n: int) -> Union[List[int], None]:```\n\n#### Input\n- `n` (int): An integer representing the minimum length of the prime number sequence to be found.\n\n#### Output\n- Returns a list of integers, each differing by exactly 2 from the previous, that form a prime number sequence of length `n` or more. If no such sequence can be found, returns `None`.\n",
+    "code": "def is_prime(num: int) -> bool:\n    if num <= 1: return False\n    for i in range(2, int(num ** 0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\ndef find_prime_sequence(n: int) -> Union[List[int], None]:\n    sequence = [2]\n    while len(sequence) < n:\n        next_num = sequence[-1] + 2\n        if is_prime(next_num):\n            sequence.append(next_num)\n    return sequence or None",
+    "tests": [
+        "assert find_prime_sequence(3) == [2, 4]",
+        "assert find_prime_sequence(6) == [2, 4, 6]",
+        "assert find_prime_sequence(10) == [2, 4, 6, 8] or None",
+        "assert find_prime_sequence(5) == None"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

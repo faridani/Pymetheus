@@ -1,0 +1,12 @@
+{
+    "title": "Easy Array of Sum",
+    "description": "Write a function `array_of_sum` that takes an array of integers as input and returns the total sum of all elements. The twist is that the function should return 0 if the total sum is greater than or equal to 10.\n\n#### Function Signature\n```python\ndef array_of_sum(arr: list) -> int:\n``` \n\n#### Input\n- `arr` (list): A list of integers.\n\n#### Output\n- Returns the total sum of all elements in the input array, but if the total sum is greater than or equal to 10, returns 0 instead.",
+    "code": "def array_of_sum(arr: list) -> int:\n    return sum(arr) if sum(arr) < 10 else 0",
+    "tests": [
+        "assert array_of_sum([1, 2, 3]) == 6",
+        "assert array_of_sum([11, 22, 33]) == 0",
+        "assert array_of_sum([-1, -2, -3]) == 0",
+        "assert array_of_sum([]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

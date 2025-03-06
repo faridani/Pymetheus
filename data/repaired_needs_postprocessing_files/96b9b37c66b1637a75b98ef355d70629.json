@@ -1,0 +1,12 @@
+{
+    "title": "Medium: String Compression",
+    "description": "Write a function `compress_string` that compresses a string by replacing sequences of the same character with the character and the number of times it appears in the sequence. For example, if the input string is `aabbcc`, the output should be `a2b2c2`. If the input string has no repeated characters, the function should return the original string.\n\n#### Function Signature\n```python\ndef compress_string(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, and special characters.\n\n#### Output\n- Returns a compressed version of the input string, where sequences of repeated characters are replaced with the character followed by the number of times it appears in the sequence.",
+    "code": "def compress_string(s: str) -> str:\n    if not s:\n        return ''\n    compressed = ''\n    count = 1\n\n    for i in range(1, len(s)):\n        if s[i] == s[i - 1]:\n            count += 1\n        else:\n            compressed += s[i - 1] + str(count)\n            count = 1\n    compressed += s[-1] + str(count)\n    return compressed",
+    "tests": [
+        "assert compress_string('aabbcc') == 'a2b2c2'",
+        "assert compress_string('abc') == 'abc'",
+        "assert compress_string('a' * 10) == 'a10'",
+        "assert compress_string('') == ''"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,9 @@
+{
+    "title": "Hard: Tower of Hanoi",
+    "description": "The Tower of Hanoi problem is a classic problem in computer science. It involves moving disks from one peg to another, with the constraint that a disk can only be moved on top of a smaller disk.\n\n#### Function Signature\n```ndef hanoi(n: int, from_peg: str, to_peg: str, aux_peg: str) -> None:\n```\n\n#### Input\n- `n` (int): The number of disks to move.\n- `from_peg` (str): The initial peg where the disks are located.\n- `to_peg` (str): The target peg where the disks should be moved.\n- `aux_peg` (str): An auxiliary peg that can be used as a temporary location for the disks.\n\n#### Output\nNo output is expected, but the function should print the moves in the format 'Move disk X from peg Y to peg Z' for each step of the process.",
+    "code": "import time\ndef hanoi(n: int, from_peg: str, to_peg: str, aux_peg: str) -> None:\n    if n > 0:\n        # Move top n-1 disks from from_peg to aux_peg using to_peg as an auxiliary peg\n        hanoi(n - 1, from_peg, aux_peg, to_peg)\n        \n        print(f'Move disk {n} from {from_peg} to {to_peg}')\n        \n        # Move the n-1 disks that we left on the from_peg to the to_peg using the aux_peg\n        hanoi(n - 1, aux_peg, to_peg, from_peg)\n    time.sleep(0.5)\n\n# Test cases:\nhanoi(3, 'A', 'C', 'B')\n",
+    "tests": [
+        "print(f'Move disk {n} from {from_peg} to {to_peg}')"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

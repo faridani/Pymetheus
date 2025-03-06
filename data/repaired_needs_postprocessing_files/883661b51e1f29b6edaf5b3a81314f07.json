@@ -1,0 +1,12 @@
+{
+    "title": "'Is it a Perfect Square? (Easy)'",
+    "description": "Determine if a given number is a perfect square. A perfect square is an integer that is the square of another integer. For example, 1, 4, 9, 16, 25, and 36 are perfect squares because they can be written as 1^2, 2^2, 3^2, 4^2, 5^2, and 6^2 respectively.\n#### Function Signature\n```python\ndef is_perfect_square(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): A positive integer to check if it's a perfect square.\n\n#### Output\n- Returns `True` if the input number is a perfect square, `False` otherwise.",
+    "code": "def is_perfect_square(n: int) -> bool:\n    # Handle edge cases\n    if n <= 0: return False\n    sqrt = int(math.sqrt(n))\n    return sqrt * sqrt == n",
+    "tests": [
+        "assert is_perfect_square(4) == True",
+        "assert is_perfect_square(9) == True",
+        "assert is_perfect_square(10) == False",
+        "assert is_perfect_square(256) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

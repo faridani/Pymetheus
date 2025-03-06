@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Sum of Unique Numbers",
+    "description": "Given a list of integers, find the maximum sum that can be obtained by selecting at most two unique numbers from the list. Write a function `max_sum` that takes a list of integers as input and returns the maximum sum.\n\n#### Function Signature\n```python\ndef max_sum(numbers: list[int]) -> int:\n``` \n\n#### Input\n- `numbers` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum that can be obtained by selecting at most two unique numbers from the input list.",
+    "code": "def max_sum(numbers: list[int]) -> int:\n    # Sort the numbers in descending order\n    numbers = sorted(set(numbers), reverse=True)\n    # Calculate the sum of the two largest unique numbers and add any remaining non-negative numbers to it\n    return sum([numbers[0], numbers[1]]) + sum(num for num in numbers if num > 0)",
+    "tests": [
+        "assert max_sum([-10, -4, -2, 0, 3, 10, 12]) == 13",
+        "assert max_sum([-10, -4, -2, 0, 1, 5, 6]) == 7",
+        "assert max_sum([1, 2, 3, 4, 5]) == 9"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

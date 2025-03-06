@@ -1,0 +1,12 @@
+{
+    "title": "Prime Factorization (Easy)",
+    "description": "A number is prime if it has only two distinct positive divisors: 1 and itself. Write a function `prime_factors` that takes an integer as input and returns its prime factors.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> list[int]:\n```\n\n#### Input\n- `n` (int): An integer greater than 1.\n\n#### Output\n- Returns a list of integers representing the prime factors of the input number in non-descending order.",
+    "code": "def prime_factors(n: int) -> list[int]:\n    i = 2\n    factors = []\n    while i * i <= n:\n        if n % i == 0:\n            factors.append(i)\n            n //= i\n        else:\n            i += 1\n    if n > 1:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factors(12) == [2, 2, 3]",
+        "assert prime_factors(7) == [7]",
+        "assert prime_factors(9) == [3, 3]",
+        "assert prime_factors(17) == [17]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Divisor Sum",
+    "description": "Given a list of integers, find the maximum value of k such that the sum of all divisors of k (excluding itself) is equal to or greater than the sum of all divisors of i for every integer i in the list.\n\n#### Function Signature\n```python\ndef max_divisor_sum(lst: list[int]) -> int:\n``` \n\n#### Input\n- `lst` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum value of k that satisfies the condition.",
+    "code": "from typing import List, Dict, Tuple\nfrom math import gcd\n\ndef max_divisor_sum(lst: List[int]) -> int:\n    def sum_of_divisors(n: int) -> int:\n        total = 1\n        for i in range(2, int(n ** 0.5) + 1):\n            if n % i == 0:\n                total += i + n // i\n        return total\n    max_sum = sum_of_divisors(lst[0])\n    max_k = lst[0]\n    for k in lst:\n        current_sum = sum_of_divisors(k)\n        for i in lst:\n            if i != k and gcd(i, k) == 1:\n                total = current_sum + sum_of_divisors(i)\n                if total > max_sum:\n                    max_sum = total\n                    max_k = k\n    return max_k\n",
+    "tests": [
+        "assert max_divisor_sum([1, 2, 3]) == 6",
+        "assert max_divisor_sum([10, 20, 30, 40, 50]) == 60",
+        "assert max_divisor_sum([4, 8, 12, 16, 20]) == 24"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Divisor Sum of a Number",
+    "description": "Given a positive integer N, find the number of integers 1 <= K <= N that are divisible by at least one integer between 2 and sqrt(N). Write a function `divisor_sum` that returns this count.\n#### Function Signature\n```python\ndef divisor_sum(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the number of integers 1 <= K <= N that are divisible by at least one integer between 2 and sqrt(N).\n",
+    "code": "import math\ndef divisor_sum(n: int) -> int:\n    count = 0\n    for k in range(1, n + 1):\n        is_divisible = False\n        for i in range(2, math.isqrt(n) + 1):\n            if k % i == 0:\n                is_divisible = True\n                break\n        if is_divisible:\n            count += 1\n    return count",
+    "tests": [
+        "assert divisor_sum(10) == 4",
+        "assert divisor_sum(15) == 6",
+        "assert divisor_sum(20) == 8",
+        "assert divisor_sum(25) == 9"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

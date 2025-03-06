@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Write a function `is_anagram(s1: str, s2: str) -> bool` that checks if two given strings are anagrams of each other. Two strings are considered anagrams when they contain the same characters in the same quantity.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string of alphanumeric characters.\n- `s2` (str): Another string of alphanumeric characters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams, `False` otherwise.\n",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = ''.join(sorted(s1.replace(' ', '').lower()))\n    s2 = ''.join(sorted(s2.replace(' ', '').lower()))\n    return len(s1) == len(s2) and s1 == s2",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('A man, a plan, a canal: Panama', 'Panama canal: a plan, a man!') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

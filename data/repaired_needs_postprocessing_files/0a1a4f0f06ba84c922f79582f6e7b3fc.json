@@ -1,0 +1,11 @@
+{
+    "title": "'Anagram Detection (Hard)'",
+    "description": "Given two strings, determine if they are anagrams of each other. An anagram is a word or phrase that contains the same letters as another word or phrase, but in a different order.\n\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain the same letters in different orders.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def is_anagram(str1: str, str2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    str1 = ''.join(sorted(str1.replace(' ', '').lower()))\n    str2 = ''.join(sorted(str2.replace(' ', '').lower()))\n    # Check if the sorted strings are equal\n    return str1 == str2",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('apple', 'apples') == False",
+        "assert is_anagram('cat', 'act') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

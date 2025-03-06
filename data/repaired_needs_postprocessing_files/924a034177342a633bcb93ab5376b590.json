@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Sum of Triangular Numbers",
+    "description": "A triangular number or triangle number is a figurate number that represents the sum of the integers from 1 to any integer. For example, the 6th triangular number is 1 + 2 + 3 + 4 + 5 + 6 = 21. Write a function `triangular_sum` that calculates the sum of all triangular numbers up to and including a given input number `n`. The function should return this sum as an integer.\r\nWrite a function `triangular_sum` that calculates the sum of all triangular numbers up to and including a given input number `n`. The function should return this sum as an integer.\\r\\n\\r\\n#### Problem Statement\\\\\r\\nA triangular number or triangle number is a figurate number that represents the sum of the integers from 1 to any integer. For example, the 6th triangular number is 1 + 2 + 3 + 4 + 5 + 6 = 21.\r\nWrite a function `triangular_sum` that calculates the sum of all triangular numbers up to and including a given input number `n`. The function should return this sum as an integer.\\r\\n\r\\n#### Function Signature\\\\\r\\n``python\\\\r\\ndef triangular_sum(n: int) -> int:\\\\r\\```python\r\\n    total = 0\r\\n    for i in range(1, n + 1):\r\\n        total += (i * (i + 1)) // 2\r\\n    return total\r\\n``\\\\r\\n\r\\n#### Input\\\\\r\\n- `n` (int): A positive integer.\\\\r\\n\r\\n#### Output\\\\\r\\n- Returns the sum of all triangular numbers up to and including `n`.\\\\",
+    "code": "def triangular_sum(n: int) -> int:\r\n    total = 0\r\n    for i in range(1, n + 1):\r\n        total += (i * (i + 1)) // 2\r\n    return total\r\n",
+    "tests": [
+        "assert triangular_sum(10) == 55",
+        "assert triangular_sum(15) == 120",
+        "assert triangular_sum(20) == 210",
+        "assert triangular_sum(-5) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

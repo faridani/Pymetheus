@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Find the Median of Two Sorted Arrays",
+    "description": "Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively, return the **median** of the two sorted arrays.\n\n#### Function Signature\n```python\ndef find_median_sorted_arrays(nums1: list[int], nums2: list[int]) -> float:\n``` \n\n#### Input\n- `nums1` (list[int]): The first sorted array.\n- `nums2` (list[int]): The second sorted array.\n\n#### Output\n- Returns the median of the two sorted arrays as a float. If the combined length of the two arrays is even, return the average of the two middle elements.",
+    "code": "def find_median_sorted_arrays(nums1: list[int], nums2: list[int]) -> float:\n    m, n = len(nums1), len(nums2)\n    if m > n:\n        nums1, nums2, m, n = nums2, nums1, n, m\n    imin, imax, half_len = 0, m, (m + n + 1) // 2\n    while imin <= imax:\n        i = (imin + imax) // 2\n        j = half_len - i\n        if i < m and nums2[j-1] > nums1[i]:\n            # i is too small, increase it\n            imin = i + 1\n        elif i > 0 and nums1[i-1] > nums2[j]:\n            # i is too big, decrease it\n            imax = i - 1\n        else:\n            # i is perfect\n            if i == 0: max_left = nums2[j-1]\n            elif j == 0: max_left = nums1[i-1]\n            else: max_left = max(nums1[i-1], nums2[j-1])\n        if (m + n) % 2 == 1:\n            return max_left\n        else:\n            if i == m: min_right = nums2[j]\n            elif j == n: min_right = nums1[i]\n            else: min_right = min(nums1[i], nums2[j])\n        return (max_left + min_right) / 2.0",
+    "tests": [
+        "assert find_median_sorted_arrays([1,3], [2]) == 2.0",
+        "assert find_median_sorted_arrays([1,2], [3,4]) == 2.5",
+        "assert find_median_sorted_arrays([0,0], [0,0]) == 0.0",
+        "assert find_median_sorted_arrays([], [1]) == 1.0",
+        "assert find_median_sorted_arrays([2], []) == 2.0"
+    ],
+    "model": "gemma:27b-repaired by Llama 3"
+}

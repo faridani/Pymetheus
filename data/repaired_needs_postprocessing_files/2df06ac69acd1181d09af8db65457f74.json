@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Given two strings, determine if they are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef are_anagrams(string1: str, string2: str) -> bool:\n``` \n\n#### Input\n- `string1`, `string2` (str): Two strings that may contain letters, numbers, and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def sort_and_compare(a: str, b: str) -> bool:\n    # Remove any non-alphanumeric characters\n    a = ''.join(char for char in a if char.isalpha() or char.isdigit())\n    b = ''.join(char for char in b if char.isalpha() or char.isdigit())\n    # Sort the alphabetic characters and compare the sorted strings\n    return sorted(a) == sorted(b)\n\ndef are_anagrams(string1: str, string2: str) -> bool:\n    # Remove any non-alphanumeric characters from both strings\n    string1 = ''.join(char for char in string1 if char.isalpha() or char.isdigit())\n    string2 = ''.join(char for char in string2 if char.isalpha() or char.isdigit())\n    # If the sorted strings are equal, they are anagrams of each other\n    return sort_and_compare(string1, string2)\n",
+    "tests": [
+        "assert are_anagrams('Listen', 'Silent') == True",
+        "assert are_anagrams('hello world', 'world hello') == True",
+        "assert are_anagrams('apple', 'appel') == True",
+        "assert are_anagrams('quick brown fox', 'fox quick brown') == True",
+        "assert are_anagrams('hello', 'olleh') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

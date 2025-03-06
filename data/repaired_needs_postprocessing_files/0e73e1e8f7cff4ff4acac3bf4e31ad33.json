@@ -1,0 +1,12 @@
+{
+    "title": "'Reverse Case Checker (Easy)'",
+    "description": "Given a string that may contain both lowercase and uppercase letters, write a function `reverse_case` that returns the same string with the case of each character reversed. For example, if the input is 'Hello World', the output should be 'hELLO wORLD'.\n\n#### Function Signature\n```python\ndef reverse_case(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string containing only letters, both lowercase and uppercase.\n\n#### Output\n- Returns a new string with the case of each character reversed.",
+    "code": "def reverse_case(s: str) -> str:\n    # Iterate through the string\n    result = ''\n    for char in s:\n        if char.isupper():\n            result += char.lower()\n        elif char.islower():\n            result += char.upper()\n    \n    return result",
+    "tests": [
+        "assert reverse_case('Hello World') == 'hELLO WORLD'",
+        "assert reverse_case('A B C D') == 'a b c d'",
+        "assert reverse_case('1 2 3') == '1 2 3'",
+        "assert reverse_case('M y s t e r Y') == 'm y s t e r y'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Hard - Prime Permutations",
+    "description": "A prime number is a whole number greater than 1 that has only two divisors: 1 and itself. Write a function `prime_permutations` that takes an integer `n` as input and returns the number of permutations of the digits of `n` that are also prime numbers.\n\n#### Function Signature\n```python\ndef prime_permutations(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the number of permutations of the digits of `n` that are also prime numbers. ",
+    "code": "def is_prime(num):\n    if num <= 1:\n        return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\ndef prime_permutations(n: int) -> int:\n    from itertools import permutations\n    count = 0\n    for perm in permutations(str(n)):\n        num = int(''.join(perm))\n        if is_prime(num):\n            count += 1\n    return count",
+    "tests": [
+        "assert prime_permutations(123) == 2",
+        "assert prime_permutations(102) == 0"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

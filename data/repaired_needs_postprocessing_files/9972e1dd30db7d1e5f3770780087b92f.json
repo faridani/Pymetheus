@@ -1,0 +1,13 @@
+{
+    "title": "URL Validation (Hard)",
+    "description": "Write a function `isValidURL` that checks if a given string is a valid URL.\n\n#### Function Signature\n```python\ndef isValidURL(url: str) -> bool:\n``` \n\n#### Input\n- `url` (str): A string that represents the potential URL.\n\n#### Output\n- Returns `True` if the input string is a valid URL, `False` otherwise.",
+    "code": "import re\ndef isValidURL(url: str) -> bool:\n    url_pattern = r'http[s]?://(?:[a-zA-Z]([a-zA-Z-]*[a-zA-Z])*)?(::([0-9]+))?(.[a-zA-Z]{2,})\\.(com|edu|gov|int|mil|net|org|biz|info|name|pro|mobi|tel|travel)(/[a-zA-Z0-9./?%&=]*)?',\n    url = re.match(url_pattern, url)\n    return bool(url)",
+    "tests": [
+        "assert isValidURL('http://www.example.com') == True",
+        "assert isValidURL('https://www.example.edu') == True",
+        "assert isValidURL('http://example') == False",
+        "assert isValidURL('www.example.com') == False",
+        "assert isValidURL('ftp://example.com') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

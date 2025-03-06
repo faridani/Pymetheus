@@ -1,0 +1,11 @@
+{
+    "title": "Reverse Words Checker - Medium",
+    "description": "Write a function `is_reverse_words` that checks if a given string consists of words arranged in reverse order. For example, the string 'olleh' is a valid reverse word because it can be rearranged as 'hello'. The string 'world' is not a reverse word. Note that spaces are included in the comparison and the input may contain multiple words with spaces between them.\n#### Function Signature\n```python\ndef is_reverse_words(s: str) -> bool:\n``` \n#### Input\n- `s` (str): A string that consists of letters, spaces and punctuation.\n#### Output\n- Returns `True` if the input string contains words arranged in reverse order, `False` otherwise.",
+    "code": "def is_reverse_words(s: str) -> bool:\n    # Split the string into a list of words by spaces\n    words = s.split(' ')\n    # If there's only one word or an empty string, return False\n    if len(words) <= 1 or not words[0]: return False\n    # Reverse the order of the list\n    reversed_words = words[-1:] + words[:-1]\n    # Check if the list reads the same forwards and backwards\n    return words == reversed_words",
+    "tests": [
+        "assert is_reverse_words('olleh') == True",
+        "assert is_reverse_words('hello world') == False",
+        "assert is_reverse_words('world hello') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

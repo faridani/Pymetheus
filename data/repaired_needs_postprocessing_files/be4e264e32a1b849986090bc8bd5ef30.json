@@ -1,0 +1,12 @@
+{
+    "title": "Sum of Digits Checker - Easy",
+    "description": "A function to check if the sum of digits in a given number equals or exceeds a threshold. The input is an integer and the threshold, output is a boolean indicating whether the condition is met.\n\n#### Function Signature\n```python\ndef digit_sum_check(number: int, threshold: int) -> bool:\n``` \n\n#### Input\n- `number` (int): The integer whose digits are to be summed up. Negative numbers and zero should return False.\n- `threshold` (int): The minimum value that the digit's sum must reach or exceed for the function to return True.\n\n#### Output\n- Returns `True` if the sum of the digits in 'number' is greater than or equal to 'threshold', otherwise `False`.",
+    "code": "def digit_sum_check(number: int, threshold: int) -> bool:\n    # Check for non-positive numbers\n    if number <= 0:\n        return False\n    \n    sum_of_digits = sum([int(digit) for digit in str(abs(number))])\n    \n    return sum_of_digits >= threshold",
+    "tests": [
+        "assert digit_sum_check(123, 6) == True",
+        "assert digit_sum_check(-456, 9) == False",
+        "assert digit_sum_check(0, 1) == False",
+        "assert digit_sum_check(714, 8) == True"
+    ],
+    "model": "phi3:14b-repaired by Llama 3"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Fibonacci Number Finder (Hard)",
+    "description": "Write a function `find_fibonacci` that finds the nth Fibonacci number, where n is a non-negative integer. The function should return the Fibonacci number at the specified index. \n\n#### Function Signature\n```python\ndef find_fibonacci(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A non-negative integer representing the index of the Fibonacci number to find.\n\n#### Output\n- Returns the nth Fibonacci number as an integer.",
+    "code": "def find_fibonacci(n: int) -> int:\n    # Base case: Fibonacci numbers up to 1 are 0 and 1\n    if n <= 1: return n\n    # Initialize the first two Fibonacci numbers\n    fibs = [0, 1]\n    \n    # Calculate remaining Fibonacci numbers using the recursive formula\n    while len(fibs) < n:\n        next_fib = fibs[-1] + fibs[-2]\n        fibs.append(next_fib)\n    \n    # Return the requested Fibonacci number\n    return fibs[n - 1]",
+    "tests": [
+        "assert find_fibonacci(0) == 0",
+        "assert find_fibonacci(1) == 1",
+        "assert find_fibonacci(2) == 1",
+        "assert find_fibonacci(3) == 2",
+        "assert find_fibonacci(5) == 5",
+        "assert find_fibonacci(10) == 55"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

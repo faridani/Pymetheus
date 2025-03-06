@@ -1,0 +1,11 @@
+{
+    "title": "Reversed Words Checker (Hard)",
+    "description": "Given a string, check if the words in it are written in reverse order. The string may contain spaces and punctuation, but no numbers.\n\n#### Function Signature\n```python\ndef is_reversed(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that contains words separated by at least one space or a punctuation mark. The string may contain spaces, but no numbers.\n\n#### Output\n- Returns `True` if the words in the input string are written in reverse order, `False` otherwise.",
+    "code": "import re\ndef is_reversed(s: str) -> bool:\n    # Remove non-alphabetic characters\n    s = re.sub('[^A-Za-z]', '', s)\n    # Split the string into words\n    words = s.split()\n    # Check if the list of words is a palindrome\n    return words == words[::-1]",
+    "tests": [
+        "assert is_reversed(\"Madam, in Eden I'm Adam\") == True",
+        "assert is_reversed(\"This is just a test\") == False",
+        "assert is_reversed(\"I am feeling great!\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

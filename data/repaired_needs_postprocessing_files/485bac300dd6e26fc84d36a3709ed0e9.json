@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Sentence Case Checker (Hard)",
+    "description": "Write a function `check_reverse_sentence_case` that checks if a given string follows the reverse sentence case rule. A string follows the reverse sentence case rule if each word is in uppercase and every character between words is lowercase.\n\n#### Function Signature\n```python\ndef check_reverse_sentence_case(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain spaces and letters in any case.\n\n#### Output\n- Returns `True` if the input string follows the reverse sentence case rule, `False` otherwise.",
+    "code": "def check_reverse_sentence_case(s: str) -> bool:\n    # Split the string into words\n    words = s.split()\n    # Check if all words are uppercase and every character between words is lowercase\n    for word in words:\n        if not word.isupper() or any(char.islower() for char in ' '.join(words)[word.index():]):\n            return False\n    return True",
+    "tests": [
+        "assert check_reverse_sentence_case('UPPERCASE WORD') == True",
+        "assert check_reverse_sentence_case('lowercase word') == False",
+        "assert check_reverse_sentence_case('MiXeD cAsE WOrDs') == False",
+        "assert check_reverse_sentence_case('UPPERCASE   WORD') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

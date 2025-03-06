@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Island Size",
+    "description": "In a given land of islands, you are trying to find the maximum size of an island. Write a function `max_island_size` that takes a 2D list of binary values as input and returns the maximum size of any island.\n\n#### Function Signature\n```python\ndef max_island_size(grid: list) -> int:\n``` \n\n#### Input\n- `grid` (list): A 2D list where each element is either 0 or 1. 0 represents water and 1 represents land.\n\n#### Output\n- Returns the maximum size of any island in the grid.",
+    "code": "import copy\n\ndef max_island_size(grid: list) -> int:\n    if not grid:\n        return 0\n    \n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n    \n    def dfs(i: int, j: int) -> int:\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == 0:\n            return 0\n        grid[i][j] = 0\n        size = 1\n        for direction in directions:\n            new_i, new_j = i + direction[0], j + direction[1]\n            size += dfs(new_i, new_j)\n        return size\n    \n    max_size = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == 1:\n                max_size = max(max_size, dfs(i, j))\n    \n    return max_size",
+    "tests": [
+        "assert max_island_size([[0,0,0,0,0],[1,0,1,1,0],[0,1,0,0,0],[0,0,0,1,1]]) == 4",
+        "assert max_island_size([[1,1,0,0,0],[1,1,0,0,0],[0,0,1,0,0],[0,0,0,1,1]]) == 9",
+        "assert max_island_size([]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

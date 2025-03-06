@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Minimum Deletions for K-Sorted List",
+    "description": "You are given a list of integers `nums` and an integer `k`. You can delete any number of elements from the list. The goal is to find the minimum number of deletions required to make the remaining list k-sorted. A list is k-sorted if for every element at index `i`, the elements at indices `i - k` through `i + k` (within the bounds of the list) are all less than or equal to the element at index `i`. \n\n#### Function Signature\n```\ndef min_deletions(nums: list[int], k: int) -> int:\n``` \n\n#### Input\n- `nums` (list[int]): A list of integers.\n- `k` (int): An integer representing the allowed sorting range.\n\n#### Output\n- Returns an integer representing the minimum number of deletions required to make the list k-sorted.",
+    "code": "def min_deletions(nums: list[int], k: int) -> int:\n    n = len(nums)\n    dp = [1] * n\n    for i in range(1, n):\n        for j in range(max(0, i - k), i):\n            if nums[i] >= nums[j] and dp[i] < dp[j] + 1:\n                dp[i] = dp[j] + 1\n    return n - max(dp)",
+    "tests": [
+        "assert min_deletions([4, 2, 6, 1, 5], 1) == 2",
+        "assert min_deletions([1, 2, 3, 4, 5], 2) == 0",
+        "assert min_deletions([5, 4, 3, 2, 1], 1) == 4"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

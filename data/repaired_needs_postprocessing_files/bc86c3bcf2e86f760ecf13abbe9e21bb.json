@@ -1,0 +1,10 @@
+{
+    "title": "Maximum Island Size",
+    "description": "You are given a list of islands and their positions in a 2D grid. The island is represented by its coordinates (x, y) in the grid. Write a function `max_island_size` that finds the maximum size of an island.\n\n#### Function Signature\n```python\ndef max_island_size(islands: list[tuple[int, int]]) -> int:\n```\n\n#### Input\n- `islands` (list[tuple[int, int]]): A list of islands where each island is represented by its coordinates (x, y) in the grid.\n\n#### Output\n- Returns the maximum size of an island.",
+    "code": "def max_island_size(islands: list[tuple[int, int]]) -> int:\n    # Initialize a set to store visited cells\n    visited = set()\n    \n    # Initialize the maximum island size\n    max_size = 0\n    \n    # Iterate over each island\n    for x, y in islands:\n        # If this cell has not been visited before\n        if (x, y) not in visited:\n            # Perform DFS from this cell and mark all cells in this island as visited\n            size = dfs(x, y, visited)\n            \n            # Update the maximum island size\n            max_size = max(max_size, size)\n    \n    return max_size\ndef dfs(x: int, y: int, visited: set[tuple[int, int]]) -> int:\n    if (x, y) in visited or x < 0 or x >= len(islands[0]) or y < 0 or y >= len(islands):\n        return 0\n    \n    visited.add((x, y))\n    \n    # Perform DFS in all four directions\n    size = 1\n    for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n        nx, ny = x + dx, y + dy\n        if (nx, ny) not in visited and (nx, ny) in [(i, j) for i, row in enumerate(islands) for j, _ in enumerate(row) if row[j]]:\n            size += dfs(nx, ny, visited)\n    \n    return size",
+    "tests": [
+        "assert max_island_size([(0, 0), (1, 1), (2, 2)]) == 3",
+        "assert max_island_size([(0, 0), (0, 1), (1, 1), (2, 2)]) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

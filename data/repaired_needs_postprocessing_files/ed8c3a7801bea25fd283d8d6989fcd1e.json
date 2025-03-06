@@ -1,0 +1,12 @@
+{
+    "title": "Permutations Checker",
+    "description": "Given a string of digits from 0 to 9, write a function `check_permutations` that checks if all permutations of the input string are valid decimal numbers. A decimal number is considered valid if it does not start with zero unless it's '0.x' where x can be any digit or decimal point.",
+    "code": "import itertools\ndef check_permutations(s: str) -> bool:\n    def is_valid_decimal(num: str) -> bool:\n        if num.startswith('0') and len(num) > 1:\n            return False\n        for i in range(1, len(num)):\n            if num[i] == '.':\n                left, right = num[:i], num[i:]\n                if not left.isdigit() or not right.replace('.', '', 1).isdigit():\n                    return False\n        return True\n    permutations = [''.join(p) for p in itertools.permutations(s)]\n    for permutation in permutations:\n        if not is_valid_decimal(permutation):\n            return False\n    return True",
+    "tests": [
+        "assert check_permutations('123') == True",
+        "assert check_permutations('020') == False",
+        "assert check_permutations('0123.45') == True",
+        "assert check_permutations('0.123') == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

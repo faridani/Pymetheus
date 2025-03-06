@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Number Spiral Diagonal Sum",
+    "description": "Given an integer `n`, return the sum of the diagonal elements in a spiral matrix of size `n x n`. \n#### Function Signature\n```python\ndef diagonal_sum(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): The size of the spiral matrix.\n\n#### Output\n- Returns an integer representing the sum of the diagonal elements in the spiral matrix.\n\n**Constraints**:\n1 <= n <= 10^5",
+    "code": "def diagonal_sum(n: int) -> int:\n    total = 1 \n    for i in range(3, n + 1, 2):\n        total += i * i \n        total += (i - 2) * (i - 2)\n    return total",
+    "tests": [
+        "assert diagonal_sum(1) == 1",
+        "assert diagonal_sum(3) == 25",
+        "assert diagonal_sum(5) == 101"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

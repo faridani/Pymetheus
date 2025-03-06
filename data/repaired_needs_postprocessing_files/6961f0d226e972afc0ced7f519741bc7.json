@@ -1,0 +1,12 @@
+{
+    "title": "Even Summed Digits",
+    "description": "Write a function `even_sum` that takes an integer as input and returns the sum of its even digits. If the input is less than zero, return -1.\n\n#### Function Signature\n```python\ndef even_sum(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns the sum of the even digits of the input number.",
+    "code": "def even_sum(n: int) -> int:\n    # Handle edge case - negative numbers\n    if n < 0:\n        return -1\n    # Initialize sum\n    total = 0\n    # Convert number to a string and iterate through digits\n    for digit in str(n):\n        # Check if the digit is even\n        if int(digit) % 2 == 0:\n            # Add the digit to the sum\n            total += int(digit)\n    \n    # Return the final sum\n    return total",
+    "tests": [
+        "assert even_sum(123456789) == 48",
+        "assert even_sum(-1234567890) == -1",
+        "assert even_sum(10) == 0",
+        "assert even_sum(456) == 14"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

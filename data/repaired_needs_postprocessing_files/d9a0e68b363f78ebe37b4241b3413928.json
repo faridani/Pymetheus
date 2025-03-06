@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Maximum Sum of Array Subsets",
+    "description": "Given an integer array `nums` and an integer `target`, write a function that returns the maximum sum of any subset of `nums` such that the sum does not exceed `target`. The subsets can be empty, which means their sum is 0.\n\n#### Function Signature\n```python\ndef max_sum_subsets(nums: list[int], target: int) -> int:\n``` \n\n#### Input\n- `nums` (list[int]): A list of integers.\n- `target` (int): The maximum allowed sum.\n\n#### Output\n- Returns the maximum sum of any subset of `nums` that does not exceed `target`. ",
+    "code": "def max_sum_subsets(nums: list[int], target: int) -> int:\n    # Initialize the dp array with zeros, its size is (len(nums)+1) x (target+1)\n    dp = [[0] * (target + 1) for _ in range(len(nums) + 1)]\n\n    for i in range(1, len(nums) + 1):\n        for j in range(1, target + 1):\n            # If the current number is less than or equal to the target,\n            if nums[i-1] <= j:\n                # The maximum sum is either the maximum sum of the subset without the current number,\n                dp[i][j] = max(dp[i-1][j], dp[i-1][j-nums[i-1]] + nums[i-1])\n            else:\n                # The maximum sum is the same as the maximum sum of the subset without the current number.\n                dp[i][j] = dp[i-1][j]\n\n    return dp[-1][-1]",
+    "tests": [
+        "assert max_sum_subsets([10, 20, 30], 50) == 60",
+        "assert max_sum_subsets([-2, -3, 4, -5], 6) == 9",
+        "assert max_sum_subsets([1, 2, 3, 4, 5], 15) == 15",
+        "assert max_sum_subsets([], 10) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

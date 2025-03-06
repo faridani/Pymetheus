@@ -1,0 +1,11 @@
+{
+    "title": "Harmonious Melodies",
+    "description": "Write a function `harmonious_melody` that takes two lists of integers, `notes1` and `notes2`, representing musical notes. The function should return the sum of all harmonious melodies created by combining each note from `notes1` with every note from `notes2`. A melody is considered harmonious if it consists of only one type of note (i.e., all notes are the same or there are no notes at all). #### Function Signature```python def harmonious_melody(notes1: list[int], notes2: list[int]) -> int: ``` #### Input - `notes1` (list[int]): A list of integers representing musical notes. - `notes2` (list[int]): A list of integers representing musical notes. #### Output - The sum of all harmonious melodies created by combining each note from `notes1` with every note from `notes2`.",
+    "code": "def harmonious_melody(notes1: list[int], notes2: list[int]) -> int:\n    result = 0\n    for note1 in notes1:\n        for note2 in notes2:\n            melody = [note1, note2]\n            if len(set(melody)) == 1 or not melody:\n                result += 1\n    return result",
+    "tests": [
+        "assert harmonious_melody([3, 4], [5, 6]) == 8",
+        "assert harmonious_melody([1], []) == 0",
+        "assert harmonious_melody([], [2]) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Egg Carton Filler",
+    "description": "An egg carton has 12 cells, each capable of holding one egg. Write a function `fill_carton` that takes a list of integers as input and returns the minimum number of cartons needed to hold all eggs. The input list represents the number of eggs in each cell.\n\n#### Function Signature\n```python\ndef fill_carton(eggs: list[int]) -> int:\n``` \n\n#### Input\n- `eggs` (list[int]): A list of 12 integers representing the number of eggs in each cell of the carton.\n\n#### Output\n- Returns the minimum number of cartons needed to hold all eggs.",
+    "code": "def fill_carton(eggs: list[int]) -> int:\n    total_eggs = sum(eggs)\n    return -(-total_eggs // 144) if total_eggs % 12 == 0 else -(-total_eggs // 12 + 1)",
+    "tests": [
+        "assert fill_carton([3, 4, 2, 6, 5, 3, 7, 8, 1, 9, 10, 11]) == 3",
+        "assert fill_carton([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]) == 2",
+        "assert fill_carton([12] * 12) == 1",
+        "assert fill_carton([1] + [12] * 11) == 2"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

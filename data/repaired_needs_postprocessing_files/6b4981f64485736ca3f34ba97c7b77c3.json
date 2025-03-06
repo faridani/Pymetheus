@@ -1,0 +1,10 @@
+{
+    "title": "'Mad Libs Word Scrambler (Medium)'",
+    "description": "Create a function `scramble_words` that takes a list of words, shuffles the letters within each word to create a scrambled version of the original. The order of the words in the list should remain the same.\n\n#### Function Signature\n```python\ndef scramble_words(words: List[str]) -> List[str]:\n``` \n\n#### Input\n- `words` (List[str]): A list of strings containing words that will be scrambled.\n\n#### Output\n- Returns a new list where each word has been scrambled and the order of words remains the same.",
+    "code": "import random\ndef scramble_words(words: List[str]) -> List[str]:\n    # Scramble each word in the list\n    result = []\n    for word in words:\n        # Create a copy of the word and shuffle its letters\n        scrambled_word = ''.join(random.sample(word, len(word)))\n        # Check if the scrambled word is still a valid word (no empty strings or duplicated letters)\n        if all([len(scrambled_word) == len(word) and not any(letter in scrambled_word for letter in scrambled_word if scrambled_word.count(letter) > 1)]):\n            result.append(scrambled_word)\n    \n    # Return the scrambled list of words\n    return result",
+    "tests": [
+        "assert scramble_words(['cat', 'dog', 'mouse']) == ['act', 'god', 'seumoc']",
+        "assert scramble_words(['apple', 'banana', 'cherry']) == ['paelppa', 'nanabna', 'yhcrehcc']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

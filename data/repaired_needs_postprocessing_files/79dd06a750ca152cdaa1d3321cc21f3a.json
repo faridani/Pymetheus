@@ -1,0 +1,11 @@
+{
+    "title": "Number of Distinct Binary Sequences with Given Parity",
+    "description": "Given a positive integer `n`, write a function called `count_binary_sequences` that returns the number of distinct binary sequences (0s and 1s) of length `n` having a specific parity. The parity is either odd or even, specified as an argument to the function.\r\n\r\n#### Function Signature\r\n```\ndef count_binary_sequences(n: int, parity: str) -> int:\r\n``` \r\n\r\n#### Input\r\n- `n` (int): The length of the binary sequence.\r\n- `parity` (str): 'odd' or 'even', specifying the required parity of the sequence.\r\n\r\n#### Output\r\n- Returns an integer representing the number of distinct binary sequences with the given parity and length `n`. \r\n",
+    "code": "def count_binary_sequences(n: int, parity: str) -> int:\r\n    if parity == 'odd':\r\n        return (2 ** n - 1) // 2\r\n    elif parity == 'even':\r\n        return 2 ** n // 2\r\n",
+    "tests": [
+        "assert count_binary_sequences(3, 'odd') == 3",
+        "assert count_binary_sequences(4, 'even') == 6",
+        "assert count_binary_sequences(5, 'odd') == 10"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

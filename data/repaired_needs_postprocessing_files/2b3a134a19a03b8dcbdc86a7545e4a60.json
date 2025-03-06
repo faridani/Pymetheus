@@ -1,0 +1,13 @@
+{
+    "title": "Prime Factorization Challenge (Hard)",
+    "description": "Write a function `prime_factors` that takes a positive integer as input and returns a list of its prime factors. The function should be able to handle any positive integers without raising exceptions.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> List[int]:\n``` \n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns a list of the prime numbers that multiply together to form the input number.",
+    "code": "def prime_factors(n: int) -> List[int]:\n    if n < 2:\n        return []\n    factors = []\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            factors.append(i)\n            n //= i\n        else:\n            i += 1\n    if n > 1:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factors(4) == [2, 2]",
+        "assert prime_factors(9) == [3, 3]",
+        "assert prime_factors(17) == [17]",
+        "assert prime_factors(41) == [7, 5]",
+        "assert prime_factors(220) == [2, 2, 5, 5, 11, 13]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

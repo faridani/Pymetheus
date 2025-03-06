@@ -1,0 +1,11 @@
+{
+    "title": "Find the Longest Common Subsequence",
+    "description": "A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. For example, \"ace\" is a subsequence of \"abcde\". A common subsequence of two strings is a subsequence that appears in both strings.\n\nWrite a function `longest_common_subsequence` to find the longest common subsequence of two given strings.\n\n#### Function Signature\n```python\ndef longest_common_subsequence(s1: str, s2: str) -> str:\n``` \n\n#### Input\n- `s1`, `s2` (str): Two input strings consisting of lowercase English letters.\n\n#### Output\n- Returns the longest common subsequence of `s1` and `s2`. ",
+    "code": "def longest_common_subsequence(s1: str, s2: str) -> str:\n    m = len(s1)\n    n = len(s2)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n\n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            if s1[i - 1] == s2[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1] + 1\n            else:\n                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])\n\n    lcs = \"\"\n    i, j = m, n\n    while i > 0 and j > 0:\n        if s1[i - 1] == s2[j - 1]:\n            lcs = s1[i - 1] + lcs\n            i -= 1\n            j -= 1\n        elif dp[i][j - 1] > dp[i - 1][j]:\n            j -= 1\n        else:\n            i -= 1\n    return lcs\n",
+    "tests": [
+        "assert longest_common_subsequence(\"ABCDGH\", \"AEDFHR\") == \"ADH\"",
+        "assert longest_common_subsequence(\"AGGTAB\", \"GXTXAYB\") == \"GTAB\"",
+        "assert longest_common_subsequence(\"aaaa\", \"aaabbb\") == \"aaa\""
+    ],
+    "model": "codebooga:latest-repaired by Llama 3"
+}

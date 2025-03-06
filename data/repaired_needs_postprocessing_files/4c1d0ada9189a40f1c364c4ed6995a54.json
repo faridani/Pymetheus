@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "An anagram is a word or phrase that contains all the same letters as another word or phrase but not necessarily in the same order. Write a function `are_anagrams` that checks if two given strings are anagrams of each other. This function should return `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Ensure both strings are in lowercase\n    s1 = sorted(s1.lower())\n    s2 = sorted(s2.lower())\n    \n    # If the sorted strings are equal, they form anagrams of each other\n    return s1 == s2",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('actor', 'rotter') == True",
+        "assert are_anagrams('abcd', 'dcba') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

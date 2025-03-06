@@ -1,0 +1,12 @@
+{
+    "title": "Medium - Maximum Number of Balloons",
+    "description": "Given a string `text` containing lowercase letters, determine the maximum number of times you can spell the word \"balloon\" using the characters in `text`. Each character in \"balloon\" must be used exactly once for each spelling.\n\n#### Function Signature\n```python\ndef max_balloons(text: str) -> int:\n``` \n\n#### Input\n- `text` (str): A string containing lowercase letters.\n\n#### Output\n- Returns the maximum number of times you can spell \"balloon\" using the characters in `text`. \n",
+    "code": "from collections import Counter\ndef max_balloons(text: str) -> int:\n    balloon_counts = Counter(\"balloon\")\n    text_counts = Counter(text)\n    max_count = float('inf')\n    for char, count in balloon_counts.items():\n        max_count = min(max_count, text_counts.get(char, 0) // count)\n    return max_count\n",
+    "tests": [
+        "assert max_balloons(\"nlaeballoo\") == 1",
+        "assert max_balloons(\"balloon\") == 1",
+        "assert max_balloons(\"leetcode\") == 0",
+        "assert max_balloons(\"balonballon\") == 2"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

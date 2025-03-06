@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Valid Parentheses",
+    "description": "Given a string `s` containing just the characters '(', ')', '{', '}', '[' and ']'. Determine if the input string is valid. An input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n\n#### Function Signature\n```python\ndef is_valid(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string containing parentheses characters.\n\n#### Output\n- Returns `True` if the input string is valid, `False` otherwise.\n",
+    "code": "def is_valid(s: str) -> bool:\n    stack = []\n    parentheses_map = {')': '(', '}': '{', ']': '['}\n    for char in s:\n        if char in parentheses_map.values():\n            stack.append(char)\n        elif char in parentheses_map.keys():\n            if stack and stack[-1] == parentheses_map[char]:\n                stack.pop()\n            else:\n                return False\n        else:\n            return False  # Invalid character\n    return len(stack) == 0",
+    "tests": [
+        "assert is_valid('()') == True",
+        "assert is_valid('()[]{}') == True",
+        "assert is_valid('(]') == False",
+        "assert is_valid('([)]') == False",
+        "assert is_valid('{[]}') == True"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

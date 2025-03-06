@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Word Chaining",
+    "description": "Write a function `word_chain` that takes two lists of strings, `words1` and `words2`, as input. The function should return the maximum length chain of words where each word in the chain is from either `words1` or `words2`. Two words are said to be connected if they have the same last character.\n\n#### Function Signature\n```python\ndef word_chain(words1: list[str], words2: list[str]) -> int:\n```\n\n#### Input\n- `words1` (list[str]): A list of strings.\n- `words2` (list[str]): Another list of strings.\n\n#### Output\n- Returns the maximum length chain of connected words from either `words1` or `words2`.",
+    "code": "def word_chain(words1: list[str], words2: list[str]) -> int:\n    words = words1 + words2\n    visited = set()\n    max_length = 0\n    \n    for word in words:\n        if word not in visited:\n            current_word = word\n            length = 1\n            while True:\n                next_word = None\n                for w in words:\n                    if w != current_word and w[-1] == current_word[-1]:\n                        next_word = w\n                        break\n                if next_word is None:\n                    break\n                visited.add(next_word)\n                current_word = next_word\n                length += 1\n            max_length = max(max_length, length)\n    \n    return max_length",
+    "tests": [
+        "assert word_chain(['apple', 'banana', 'cherry'], ['date', 'elderberry', 'fig']) == 4",
+        "assert word_chain(['hello', 'world', 'java', 'python'], []) == 3",
+        "assert word_chain([], ['abc', 'xyz', 'pqr']) == 2",
+        "assert word_chain(['abc', 'def', 'ghi'], ['jkl', 'mno', 'pqr']) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

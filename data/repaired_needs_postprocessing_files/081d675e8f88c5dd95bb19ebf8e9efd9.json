@@ -1,0 +1,12 @@
+{
+    "title": "Hard - Longest Subarray with Sum Less Than K",
+    "description": "Given an array of integers `nums` and an integer `k`, find the length of the longest subarray whose sum is less than `k`. \n#### Function Signature\n```python\ndef longest_subarray(nums: list[int], k: int) -> int:\n```\n#### Input\n- `nums` (list[int]): A list of integers.\n- `k` (int): An integer representing the target sum threshold.\n#### Output\n- Returns the length of the longest subarray whose sum is less than `k`. If no such subarray exists, return 0.",
+    "code": "def longest_subarray(nums: list[int], k: int) -> int:\n    max_len = 0\n    start = 0\n    curr_sum = 0\n    for end in range(len(nums)):\n        curr_sum += nums[end]\n        while curr_sum >= k:\n            curr_sum -= nums[start]\n            start += 1\n        max_len = max(max_len, end - start + 1)\n    return max_len",
+    "tests": [
+        "assert longest_subarray([1,2,3,4,5], 8) == 3",
+        "assert longest_subarray([1,2,3,4,5], 7) == 2",
+        "assert longest_subarray([10,5,7,2,1], 15) == 3",
+        "assert longest_subarray([1,1,1,1,1], 5) == 5"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

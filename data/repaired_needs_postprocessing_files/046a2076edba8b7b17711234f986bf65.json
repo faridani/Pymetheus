@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Word Chain",
+    "description": "Write a function `word_chain` that takes a list of words and returns the longest chain of words where each word starts with the last letter of the previous word. For example, if you pass in ['apple', 'banana', 'cherry'], it should return ['apple', 'elephant', 'tiger'] because apple ends with e, elephant starts with e, tiger starts with t, and there is no other chain that is longer.\n\n#### Function Signature\n```python\ndef word_chain(words: list[str]) -> list[str]:\n``` \n\n#### Input\n- `words` (list[str]): A list of words.\n\n#### Output\n- Returns the longest chain of words where each word starts with the last letter of the previous word.",
+    "code": "import string\n\ndef word_chain(words: list[str]) -> list[str]:\n    def is_valid_word(word: str, prev_letter: str) -> bool:\n        return word[0].lower() == prev_letter.lower()\n\n    max_chain = []\n    for word in words:\n        current_chain = [word]\n        for letter in word.lower():\n            if not any(is_valid_word(new_word, letter) for new_word in words):\n                break\n            for new_word in words:\n                if is_valid_word(new_word, letter) and new_word not in current_chain:\n                    current_chain.append(new_word)\n        max_chain = max(max_chain, current_chain, key=len)\n    return max_chain\n\n",
+    "tests": [
+        "assert word_chain(['apple', 'banana', 'cherry']) == ['apple', 'elephant', 'tiger']",
+        "assert word_chain(['hello', 'world']) == ['hello']",
+        "assert word_chain(['a', 'b', 'c', 'd']) == ['a', 'd']"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

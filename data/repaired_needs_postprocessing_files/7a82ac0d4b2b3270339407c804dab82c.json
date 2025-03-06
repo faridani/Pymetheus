@@ -1,0 +1,10 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "Write a function `find_anagrams` that finds all the anagrams of a given word. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str) -> List[str]:\n```\n\n#### Input\n- `word` (str): A string that contains only lowercase English alphabets.\n\n#### Output\n- Returns a list of strings, where each string is an anagram of the input word.",
+    "code": "def find_anagrams(word: str) -> List[str]:\n    alphabet = {chr(i): 0 for i in range(ord('a'), ord('z')+1)}\n    for char in word:\n        alphabet[char] += 1\n    anagrams = []\n    for perm in itertools.permutations(alphabet.keys()):\n        if sum([perm[i] == alphabet[perm[i]] for i in range(len(perm))]) != len(word):\n            continue\n        new_word = ''.join(perm)\n        if len(new_word) == len(word) and new_word != word:\n            anagrams.append(new_word)\n    return anagrams",
+    "tests": [
+        "assert find_anagrams('listen') == ['silent', 'enlist']",
+        "assert find_anagrams('programming') == ['gnipprom', 'grapmopin', 'grammap', 'margoppam', 'margopp', 'margonipp']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

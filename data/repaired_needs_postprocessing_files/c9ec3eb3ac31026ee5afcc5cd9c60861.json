@@ -1,0 +1,13 @@
+{
+    "title": "Polish Notation Calculator (Medium)",
+    "description": "In mathematics and computer science, Polish notation, also known as prefix notation or reverse Polish notation (RPN), is a notation for expressing mathematical expressions where operators follow their operands. Write a function `calculate_polish` that evaluates postfix expressions given in Polish notation.\n\n#### Function Signature\n```python\ndef calculate_polish(arr: List[str]) -> float:\n``` \n\n#### Input\n- `arr` (List[str]): A list of strings containing the Polish notation expression where operators follow their operands.\n\n#### Output\n- Returns the result of the given Polish notation expression as a floating-point number.\n",
+    "code": "from operator import add, sub, mul, div, mod, pow\nimport functools\n\ndef calculate_polish(arr: List[str]) -> float:\n    # Define operators and their precedence\n    ops = {'+': add,\n           '-': sub,\n           '*': mul,\n           '/': div,\n           '%': mod,\n           '^': pow\n        }\n\n    def apply_operator(a, op, b):\n        return ops[op](a, b)\n\n    stack = []\n    for token in arr:\n        if token.isnumeric():\n            stack.append(float(token))\n        elif len(stack) < 2:\n            raise ValueError('Invalid Polish notation expression')\n        else:\n            b = stack.pop()\n            a = stack.pop()\n            stack.append(apply_operator(a, token, b))\n    if len(stack) != 1:\n        raise ValueError('Invalid Polish notation expression')\n    return stack[0]\n",
+    "tests": [
+        "assert calculate_polish([2, 3, '+', 4]) == 9.0",
+        "assert calculate_polish(['5', '*', '2', '3']) == 30.0",
+        "assert calculate_polish(['10', '^', '3']) == 1000.0",
+        "assert calculate_polish(['4', '*', '3', '+', '2']) == 14.0",
+        "assert calculate_polish(['8', '/', '3', '%', '2']) == 1.0"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

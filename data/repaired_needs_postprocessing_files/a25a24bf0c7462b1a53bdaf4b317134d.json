@@ -1,0 +1,10 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "In cryptography, an anagram is a word or phrase formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once. Write a function `find_anagrams` that finds all anagrams of a given string.\n#### Function Signature\n```python\ndef find_anagrams(word: str) -> list[str]:\n``` \n\n#### Input\n- `word` (str): A non-empty string containing only lowercase letters\n\n#### Output\n- Returns a list of strings, each one being a possible anagram of the input word.\n",
+    "code": "def find_anagrams(word: str) -> list[str]:\n    # Create a dictionary to store letter counts for the current word and potential anagrams\n    letter_count = {letter: 0 for letter in string.ascii_lowercase}\n    count = {letter: word.count(letter) for letter in word}\n    anagrams = []\n    # Iterate through all permutations of letters in the input word\n    from itertools import permutations\n    for perm in permutations(word):\n        # Check if the current permutation is a valid anagram (i.e., has the same letter counts as the input word)\n        if all((count[letter] == perm.count(letter)) for letter in string.ascii_lowercase):\n            new_word = ''.join(perm)\n            # Remove the current anagram from further processing to avoid duplicates\n            if new_word != word:\n                anagrams.append(new_word)\n    return anagrams",
+    "tests": [
+        "assert find_anagrams('listen') == ['silent', 'enlist']",
+        "assert find_anagrams('implementation') == ['leadmeintopment', 'leadmenintope', 'leadneintomp', 'leadmeanotip', 'mentalimpep']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

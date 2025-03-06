@@ -1,0 +1,12 @@
+{
+    "title": "Prime Pairs Summing to a Given Number (Hard)",
+    "description": "Given a number `n`, find all pairs of prime numbers whose sum equals `n`. \n\n#### Function Signature\n```python\ndef find_prime_pairs(n: int) -> list:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns a list of pairs of prime numbers that sum to `n`. If no such pair exists, return an empty list.",
+    "code": "def find_prime_pairs(n: int) -> list:\n    # List of primes up to the square root of n\n    primes = [2] + [i for i in range(3, int(n ** 0.5) + 1) if all([i % j != 0 for j in primes])]\n    # Pairs of primes that sum to n\n    pairs = []\n    for p in primes:\n        if n - p < p:\n            continue\n        if (n - p) in primes:\n            pairs.append((p, n - p))\n    return pairs",
+    "tests": [
+        "assert find_prime_pairs(5) == [(2, 3)]",
+        "assert find_prime_pairs(6) == [(2, 4), (3, 3)]",
+        "assert find_prime_pairs(9) == [(3, 6)]",
+        "assert find_prime_pairs(10) == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

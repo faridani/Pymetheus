@@ -1,0 +1,11 @@
+{
+    "title": "Reverse String using Recursion (Medium)",
+    "description": "Write a recursive function `reverse_string` that takes a string as an argument and returns the same string reversed. Note that the string may contain spaces, punctuation, and other non-alphanumeric characters.\n\n#### Function Signature\n```python\ndef reverse_string(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the input string reversed.",
+    "code": "def reverse_string(s: str) -> str:\n    # If the length of the string is less than or equal to 1, return the string itself\n    if len(s) <= 1:\n        return s\n    else:\n        # Remove the first character from the string and reverse the rest of the string recursively\n        return reverse_string(s[1:]) + s[0]\n",
+    "tests": [
+        "assert reverse_string('Hello, World!') == '!dlroW ,olleH'",
+        "assert reverse_string('A man, a plan, a canal, Panama') == 'amanaplanacanaltaplanamanam'",
+        "assert reverse_string('Reverse String using Recursion (Medium)') == 'ydurcreveser (nedumifedum) ytnereruS revirerS'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams of each other.\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n#### Input\n- `s1` (str): A string that may contain letters and spaces.\n- `s2` (str): Another string that may contain letters and spaces.\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    s1 = ''.join(sorted(s1.lower().replace(' ', '')))\n    s2 = ''.join(sorted(s2.lower().replace(' ', '')))\n    # Check if the sorted strings are equal\n    return s1 == s2",
+    "tests": [
+        "assert is_anagram('Listen', 'Silent') == True",
+        "assert is_anagram('Racecar', 'Carrace') == True",
+        "assert is_anagram('Hello', 'World') == False",
+        "assert is_anagram('Stars', 'Rats') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

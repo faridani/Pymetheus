@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "Write a function `are_anagrams` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n``` \n\n#### Input\n- `s1` (str): A string that may contain letters (in any case).\n- `s2` (str): Another string that may contain letters (in any case).\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n\n#### Constraints and Hints\n- Both strings will have the same length.\n- The function should ignore spaces and special characters when comparing the strings.",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s1 = ''.join(char for char in s1 if char.isalpha()).lower()\n    s2 = ''.join(char for char in s2 if char.isalpha()).lower()\n    \n    # If the two strings are of different lengths, they cannot be anagrams.\n    if len(s1) != len(s2):\n        return False\n    \n    # Sort both strings and compare them character by character\n    return sorted(s1) == sorted(s2)",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"Madam, I'm Adam\", \"Adam, I'm Madam\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Write a function `find_anagrams(words: List[str]) -> Dict[str, List[str]]` that finds all anagram pairs within a list of words.\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n```\n\n#### Input\n- `words` (List[str]): A list of strings containing only lowercase letters.\n\n#### Output\n- Returns a dictionary where the keys are anagrams and the values are lists of all words in the input that form anagram pairs with the key.\n\n**Hint:** Use the `collections.Counter` class to count the frequency of each character in a word, then compare these frequencies between words.",
+    "code": "import collections\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n    anagrams = { ''.join(sorted(word)): [w for w in words if ''.join(sorted(w)) == ''.join(sorted(word))] for word in words }\n    # Convert to dictionaries with unique keys and values\n    anagrams = dict((k, v) for k, v in anagrams.items() if not any([len(v) > 1]))\n    return anagrams",
+    "tests": [
+        "assert find_anagrams(['listen', 'silent', 'enlist']) == {'silent': ['listen', 'enlist'], 'enlist': []}",
+        "assert find_anagrams(['civics', 'scyphus', 'washing', 'church', 'programming', 'gymnasium', 'cinema']) == {'programming': ['cinema', 'gymnasium'], 'civics': [], 'washing': [], 'church': [], 'scyphus': []}",
+        "assert find_anagrams(['apple', 'apples', 'appell']) == {'apples': ['apple', 'appell']}",
+        "assert find_anagrams(['antidisestablishmentarianism', 'disestablishmentarianism']) == {'antidisestablishmentarianism': ['disestablishmentarianism']}",
+        "assert find_anagrams(['racecar', 'crazer', 'racar']) == {'racecar': ['crazer', 'racar'], 'crazer': [], 'racar': []}"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

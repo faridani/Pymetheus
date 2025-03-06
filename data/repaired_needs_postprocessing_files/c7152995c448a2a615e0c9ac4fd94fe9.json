@@ -1,0 +1,11 @@
+{
+    "title": "Hard: String Transformation",
+    "description": "Given a string `s` consisting of lowercase letters, you can perform the following operation any number of times:\n* Choose two adjacent characters in `s` and swap them.\nYour goal is to transform the string `s` into a lexicographically sorted string (i.e., all characters are in alphabetical order).  \nWrite a function `min_swaps(s: str) -> int` that returns the minimum number of swaps required to sort the string lexicographically.\n#### Function Signature\n```python\ndef min_swaps(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string consisting of lowercase letters.\n#### Output\n- Returns the minimum number of swaps required to sort the string lexicographically.",
+    "code": "def min_swaps(s: str) -> int:\n    n = len(s)\n    sorted_s = sorted(s)\n    pos = [0] * n\n    for i in range(n):\n        pos[i] = s.index(sorted_s[i])\n\n    swaps = 0\n    visited = [False] * n\n\n    for i in range(n):\n        if visited[i]:\n            continue\n\n        cycle_len = 1\n        j = pos[i]\n        while j != i:\n            visited[j] = True\n            j = pos[j]\n            cycle_len += 1\n\n        swaps += cycle_len - 1\n\n    return swaps",
+    "tests": [
+        "assert min_swaps('cba') == 2",
+        "assert min_swaps('abc') == 0",
+        "assert min_swaps('dcba') == 4"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

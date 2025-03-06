@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Subsequence Count (Hard)'",
+    "description": "Given a string `s`, find the number of unique palindromic subsequences in it.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the number of unique palindromic subsequences in the given string.\n\n#### Constraints\n- Time complexity should be O(n^2)\n",
+    "code": "import itertools\ndef count_palindromes(s: str) -> int:\n    # Initialize a dictionary to store the number of unique palindromic subsequences\n    palindrome_count = {'': 1}\n    \n    # Iterate through all possible length of subsequences\n    for length in range(2, len(s) + 1):\n        # Generate all combinations of the given length from the string\n        for comb in itertools.combinations(s, length):\n            # Check if the combination is a palindrome\n            if comb == comb[::-1]:\n                # If it is, add it to the dictionary only if it's not already there\n                palindrome_count[comb] = palindrome_count.get(comb, 0) + 1\n        \n        # Iterate through all combinations of length-1 from the current combination\n        for i in range(len(s)):\n            # Take each combination and its left half and right half\n            left, right = comb[:i], comb[i+1:]\n            # Check if both halves are palindromes themselves and concatenate them to get a new palindrome\n            # If they are, add the new palindrome to the dictionary only if it's not already there\n            if left in palindrome_count and right in palindrome_count and left != right:\n                new_palindrome = left + '' + right\n                palindrome_count[new_palindrome] = 1\n    \n    # Return the total count of unique palindromic subsequences\n    return sum(palindrome_count.values())",
+    "tests": [
+        "assert count_palindromes('abcd') == 3",
+        "assert count_palindromes('abba') == 4",
+        "assert count_palindromes('aabbccdd') == 8",
+        "assert count_palindromes('abcbdaba') == 9"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

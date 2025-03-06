@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Substring Summation",
+    "description": "You are given a string containing only digits. Your task is to find the sum of all possible substrings within the string.\n\n#### Function Signature\n```python\ndef substring_sum(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string consisting only of digits.\n\n#### Output\n- Returns the sum of all possible substrings within the input string as an integer.\n\n#### Constraints\n- 1 <= len(s) <= 10^5",
+    "code": "def substring_sum(s: str) -> int:\n    n = len(s)\n    total_sum = 0\n    for i in range(n):\n        current_sum = 0\n        for j in range(i, n):\n            current_sum = current_sum * 10 + int(s[j])\n            total_sum += current_sum\n    return total_sum",
+    "tests": [
+        "assert substring_sum(\"123\") == 66",
+        "assert substring_sum(\"42\") == 56",
+        "assert substring_sum(\"10\") == 11"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

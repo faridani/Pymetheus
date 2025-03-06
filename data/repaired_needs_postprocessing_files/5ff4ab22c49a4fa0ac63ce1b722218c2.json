@@ -1,0 +1,14 @@
+{
+    "title": "Prime Number Checker (Hard)",
+    "description": "Write a function `is_prime` that checks if a given non-negative integer is a prime number.\r\n\r\n#### Function Signature\r\n```python\r\ndef is_prime(n: int) -> bool:\r```\r\r\n#### Input\r\n- `n` (int): A non-negative integer.\r\r\n#### Output\r\n- Returns `True` if the input number is a prime number, `False` otherwise.\r",
+    "code": "def is_prime(n: int) -> bool:\r    # Check if the number is less than 2 or greater than or equal to 4\r    if n < 2 or n >= 4:\r        return False\r    # Check divisibility by 2 and 3\r    if n % 2 == 0 or n % 3 == 0:\r        return False\r    # Implement the Sieve of Eratosthenes algorithm for numbers greater than 3\r    i = 5\r    while i * i <= n:\r        if n % i == 0 or n % (i + 2) == 0:\r            return False\r        i += 6\r    return True",
+    "tests": [
+        "assert is_prime(2) == True",
+        "assert is_prime(3) == True",
+        "assert is_prime(4) == False",
+        "assert is_prime(5) == True",
+        "assert is_prime(17) == True",
+        "assert is_prime(28) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

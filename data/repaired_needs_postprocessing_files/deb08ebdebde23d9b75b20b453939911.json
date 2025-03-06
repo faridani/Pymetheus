@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "Write a function `anagram_checker` that checks if two given strings are anagrams of each other.\n\n#### Function Signature```python\ndef anagram_checker(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing lowercase letters only.\n- `s2` (str): Another string containing lowercase letters only.\n\n#### Output\n- Returns `True` if the two strings are anagrams of each other, `False` otherwise.\nAnagrams are words or phrases that contain the same letters in the same frequency. For example, 'listen' and 'silent' are anagrams because they both use the letters l, i, s, e, n, t in the same quantity.",
+    "code": "def anagram_checker(s1: str, s2: str) -> bool:\n    # Ensure strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Create two dictionaries to store frequencies of characters\n    dict_s1 = {}\n    for char in s1:\n        if char not in dict_s1:\n            dict_s1[char] = 0\n        dict_s1[char] += 1\n    dict_s2 = {}\n    for char in s2:\n        if char not in dict_s2:\n            dict_s2[char] = 0\n        dict_s2[char] += 1\n    \n    # Compare dictionaries\n    return dict_s1 == dict_s2",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('hello', 'olleh') == True",
+        "assert anagram_checker('abcdefghijklmnopqrstuvwxyz', 'zyxwvutsrqponmlkjihgfedcba') == True",
+        "assert anagram_checker('apple', 'apples') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

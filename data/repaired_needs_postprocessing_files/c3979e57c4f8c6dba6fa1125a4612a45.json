@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Tribonacci Sequence Summation",
+    "description": "The Tribonacci sequence is a generalization of the Fibonacci sequence where each number is the sum of the preceding three numbers. The first three numbers are 0, 0, and 1.\nWrite a function `tribonacci_sum` that takes two arguments:\n* `n`: An integer representing the number of terms in the Tribonacci sequence to calculate.\n* `k`: An integer representing the starting index (inclusive) for the summation.\nThe function should return the sum of the elements in the Tribonacci sequence from index `k` to index `n-1`.\n#### Function Signature\n```python\ndef tribonacci_sum(n: int, k: int) -> int:\n``` \n\n#### Input\n* `n`: An integer representing the number of terms in the Tribonacci sequence. (1 <= n <= 50)\n * `k`: An integer representing the starting index for summation. (0 <= k < n)\n\n#### Output\n* Returns the sum of the elements in the Tribonacci sequence from index `k` to index `n-1`.\n\n",
+    "code": "def tribonacci_sum(n: int, k: int) -> int:\n    tribonacci = [0, 0, 1]\n    for i in range(3, n):\n        tribonacci.append(tribonacci[i - 1] + tribonacci[i - 2] + tribonacci[i - 3])\n    return sum(tribonacci[k:n])",
+    "tests": [
+        "assert tribonacci_sum(5,0) == 1",
+        "assert tribonacci_sum(10,2) == 149",
+        "assert tribonacci_sum(20, 5) == 13867"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

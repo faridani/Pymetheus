@@ -1,0 +1,11 @@
+{
+    "title": "'Remove Duplicates from List' - Easy",
+    "description": "Write a function `remove_duplicates` that takes a list of elements as input and returns the same list without any duplicate elements.\n\n#### Function Signature\n```python\ndef remove_duplicates(lst: List[Any]) -> List[Any]:\n``` \n\n#### Input\n- `lst` (List[Any]): A list of any data type that may contain duplicate elements.\n\n#### Output\n- Returns a list containing the same elements as input but without any duplicates.",
+    "code": "def remove_duplicates(lst: List[Any]) -> List[Any]:\n    # Use a set to remove duplicates since sets do not allow duplicate values\n    return list(set(lst))",
+    "tests": [
+        "assert remove_duplicates([1, 2, 3, 2, 4, 5]) == [1, 2, 3, 4, 5]",
+        "assert remove_duplicates(['a', 'b', 'c', 'a']) == ['a', 'b', 'c']",
+        "assert remove_duplicates([True, False, True]) == [True, False]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

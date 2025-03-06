@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Unique Character String",
+    "description": "Write a function `is_unique` that checks if all characters in the given string are unique. The function should return `True` if every character appears only once, otherwise return `False`. Write a function `is_unique` that checks if all characters in the given string are unique. The function should return `True` if every character appears only once, otherwise return `False`. \n#### Function Signature\n```python\ndef is_unique(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string has all unique characters, `False` otherwise. ",
+    "code": "def is_unique(s: str) -> bool:\n    char_set = set()\n    for char in s:\n        if char in char_set:\n            return False\n        char_set.add(char)\n    return True",
+    "tests": [
+        "assert is_unique(\"abcdef\") == True",
+        "assert is_unique(\"aabbcc\") == False",
+        "assert is_unique(\"1234567890\") == True",
+        "assert is_unique(\"hello world!\") == False"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

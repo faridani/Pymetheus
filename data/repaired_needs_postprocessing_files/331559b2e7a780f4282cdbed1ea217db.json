@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Counting Binary Subarrays",
+    "description": "Given two binary strings of equal length, determine the number of contiguous substrings where each substring has an equal number of 0's and 1's.\n\n#### Function Signature\n```python\ndef count_equal_substrings(s1: str, s2: str) -> int:\n``` \n\n#### Input\n- `s1` (str): A binary string consisting only of '0' and '1'.\n- `s2` (str): Another binary string with the same length as `s1`, also consists of '0' and '1'.\n\n#### Output\n- Returns an integer indicating how many contiguous substrings have equal number of 0's and 1's.\n",
+    "code": "from itertools import pairwise, combinations_with_replacement\n\ndef count_equal_substrings(s1: str, s2: str) -> int:\n    # Find all possible lengths for the substring\n    length_options = list(range(len(s1) + 1))\n    # Convert strings to tuples of booleans (True for '1', False for '0') and filter equal substrings\n    matching_pairs = [s2[i:i+len] == s1[i:i+len] for i, len in combinations_with_replacement(length_options, r=1)]\n    # Calculate the length differences for each valid substring pair\n    diff_lengths = [(x - y) for x, y in pairwise(range(len(matching_pairs))) if matching_pairs[y]]\n    # Count the number of times the difference is 0 (equal number of 0's and 1's)\n    return sum(1 for diff in diff_lengths if diff == 0)",
+    "tests": [
+        "assert count_equal_substrings(\"001\", \"010\") == 2",
+        "assert count_equal_substrings(\"110\", \"001\") == 0",
+        "assert count_equal_substrings(\"010101\", \"010101\") == 4"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Fibonacci Series Generator (Medium)",
+    "description": "Write a function `fibonacci_series` that generates the Fibonacci series up to the given number of terms. The Fibonacci series is a sequence of numbers where each number is the sum of the two preceding ones, usually starting with 0 and 1.\n\n#### Function Signature\n```python\ndef fibonacci_series(n: int) -> list:\n```\n\n#### Input\n- `n` (int): The number of terms in the Fibonacci series to generate.\n\n#### Output\n- A list of integers representing the Fibonacci series up to the given number of terms.",
+    "code": "def fibonacci_series(n: int) -> list:\n    if n <= 0:\n        return []\n    elif n == 1:\n        return [0]\n    elif n == 2:\n        return [0, 1]\n    fib_series = [0, 1]\n    for i in range(2, n):\n        next_term = fib_series[i-1] + fib_series[i-2]\n        fib_series.append(next_term)\n    return fib_series",
+    "tests": [
+        "assert fibonacci_series(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]",
+        "assert fibonacci_series(15) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]",
+        "assert fibonacci_series(-10) == []",
+        "assert fibonacci_series(0) == []"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

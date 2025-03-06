@@ -1,0 +1,12 @@
+{
+    "title": "'Is it a Balanced Parentheses String? (Medium)'",
+    "description": "Given a string `s` that contains only opening and closing parentheses, determine if the input is balanced. A balanced string is one where the number of opening parentheses equals the number of closing parentheses.\n\n#### Function Signature\n```python\ndef is_balanced(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that contains only '(' and ')'.\n\n#### Output\n- Returns `True` if the input string is balanced, `False` otherwise.\n",
+    "code": "def is_balanced(s: str) -> bool:\n    # Initialize a stack to keep track of opening parentheses\n    stack = []\n    for char in s:\n        # If an opening parenthesis is encountered, push it onto the stack\n        if char == '(': \n            stack.append(char)\n        # If a closing parenthesis is encountered, pop from the stack and check if there's a matching opening parenthesis\n        elif char == ')':\n            if not stack or stack.pop() != '(': \n                return False\n    # If we reach the end of the string and the stack is empty, the input is balanced\n    return not stack",
+    "tests": [
+        "assert is_balanced('()') == True",
+        "assert is_balanced('(())') == True",
+        "assert is_balanced('(()))') == False",
+        "assert is_balanced('((()))') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

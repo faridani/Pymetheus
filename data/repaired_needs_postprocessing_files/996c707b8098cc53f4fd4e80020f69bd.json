@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Anagram Difference",
+    "description": "Given two strings, find the minimum number of characters that need to be changed in either string to make them anagrams of each other.\n\n#### Function Signature\n```python\ndef min_anagram_diff(str1: str, str2: str) -> int:\n``` \n\n#### Input\n- `str1` (str): The first input string.\n- `str2` (str): The second input string.\n\n#### Output\n- Returns the minimum number of character changes required to make the two strings anagrams.\n\n**Hints**:\n- Consider using frequency maps for characters in each string.",
+    "code": "def min_anagram_diff(str1: str, str2: str) -> int:\n    char_counts1 = {}\n    char_counts2 = {}\n\n    for char in str1:\n        if char.isalpha():\n            char_counts1[char.lower()] = char_counts1.get(char.lower(), 0) + 1\n    for char in str2:\n        if char.isalpha():\n            char_counts2[char.lower()] = char_counts2.get(char.lower(), 0) + 1\n\n    diff = 0\n    for char in char_counts1:\n        diff += abs(char_counts1.get(char, 0) - char_counts2.get(char, 0))\n    for char in char_counts2:\n        diff += abs(char_counts2.get(char, 0) - char_counts1.get(char, 0))\n\n    return diff // 2",
+    "tests": [
+        "assert min_anagram_diff('listen', 'silent') == 0",
+        "assert min_anagram_diff('debit card', 'bad credit') == 5",
+        "assert min_anagram_diff('hello', 'world') == 4"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

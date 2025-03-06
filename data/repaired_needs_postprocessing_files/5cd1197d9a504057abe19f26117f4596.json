@@ -1,0 +1,10 @@
+{
+    "title": "Economic Inequality",
+    "description": "Given a list of integers representing the wealth distribution of a population, where each integer represents the number of people with that wealth level, write a function to find the Gini coefficient. The Gini coefficient is a measure of economic inequality. It ranges from 0 (perfect equality) to 1 (perfect inequality). The formula for the Gini coefficient is: G = (1/2 * sum(i * (n-i)/n)).\n#### Function Signature\n```python\ndef gini_coefficient(wealth_distribution: list[int]) -> float:\n```\n\n#### Input\n- `wealth_distribution` (list[int]): A list of integers representing the number of people at each wealth level.\n\n#### Output\n- Returns the Gini coefficient as a float value between 0 and 1.",
+    "code": "def gini_coefficient(wealth_distribution: list[int]) -> float:\n    n = len(wealth_distribution)\n    total_wealth = sum(i * count for i, count in enumerate(wealth_distribution))\n    total_people = sum(wealth_distribution)\n    cumulative_wealth = 0\n    cumulative_people = 0\n    cumulative_gini = 0\n    for i, count in enumerate(wealth_distribution):\n        cumulative_wealth += i * count\n        cumulative_people += count\n        if cumulative_people > 0:\n            gini = (2 * cumulative_wealth - cumulative_people)\n            cumulative_gini += gini\n    return cumulative_gini / (total_wealth * total_people)",
+    "tests": [
+        "assert round(gini_coefficient([1, 2, 3, 4, 5]), 10) == 0.1666666667",
+        "assert round(gini_coefficient([1000, 2000, 3000, 4000, 5000]), 10) == 0.8333333333"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

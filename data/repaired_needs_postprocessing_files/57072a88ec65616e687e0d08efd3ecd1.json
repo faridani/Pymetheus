@@ -1,0 +1,12 @@
+{
+    "title": "[Easy] Sum of Even Numbers",
+    "description": "Write a function `sum_even` that calculates the sum of all even numbers between 1 and a given number `n`. Your function should return an integer representing this sum.\n\n#### Function Signature\n```python\ndef sum_even(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the sum of all even numbers between 1 and `n`. If `n` is less than or equal to 0, return 0.",
+    "code": "def sum_even(n: int) -> int:\n    if n <= 0:\n        return 0\n    else:\n        return sum([i for i in range(2, n + 1) if i % 2 == 0])",
+    "tests": [
+        "assert sum_even(5) == 6",
+        "assert sum_even(8) == 20",
+        "assert sum_even(10) == 30",
+        "assert sum_even(-5) == 0"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

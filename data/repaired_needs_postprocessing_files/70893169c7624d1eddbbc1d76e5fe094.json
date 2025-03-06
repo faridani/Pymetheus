@@ -1,0 +1,11 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "You are given two strings `s1` and `s2`. The task is to find the minimum window of `s1` that contains all characters from `s2`. If there are multiple possible windows, return the first one.\n\n#### Function Signature\n```python\ndef min_window(s1: str, s2: str) -> str:\n```\n\n#### Input\n- `s1` (str): The string to search in.\n- `s2` (str): The string containing characters that must be present in the minimum window of `s1`.\n\n#### Output\n- Returns the minimum window of `s1` that contains all characters from `s2`, or an empty string if there is no such window. The window should have the smallest possible length.",
+    "code": "from collections import defaultdict\ndef min_window(s1: str, s2: str) -> str:\n    # Create a dictionary to store the frequency of characters in s2\n    freq_s2 = defaultdict(int)\n    for char in s2:\n        freq_s2[char] += 1\n    # Initialize variables to keep track of the minimum window\n    min_window = ''\n    min_length = float('inf')\n    required_chars = len(freq_s2)\n    left = 0\n    # Create a dictionary to store the frequency of characters in the current window\n    formed_chars = defaultdict(int)\n    for right, char in enumerate(s1):\n        # Add the character at the right end of the window to the frequency dictionary\n        formed_chars[char] += 1\n        if char in freq_s2 and formed_chars[char] == freq_s2[char]:\n            required_chars -= 1\n        while required_chars == 0:\n            if right - left + 1 < min_length:\n                min_window = s1[left:right+1]\n                min_length = right - left + 1\n            formed_chars[s1[left]] -= 1\n            if s1[left] in freq_s2 and formed_chars[s1[left]] < freq_s2[s1[left]]:\n                required_chars += 1\n            left += 1\n    return min_window",
+    "tests": [
+        "assert min_window(\"ADOEAT\" , \"EAO\") == \"EOA\"",
+        "assert min_window(\"a\" , \"aa\") == \"\"",
+        "assert min_window(\"bba\" , \"ab\") == \"ba\""
+    ],
+    "model": "llama3.1:8b-repaired by Llama 3"
+}

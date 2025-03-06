@@ -1,0 +1,12 @@
+{
+    "title": "Unique Subarray Count",
+    "description": "Write a function `unique_subarrays` that calculates the number of unique non-empty subarrays with distinct elements. Given an array `nums`, find and return the count of unique subarrays where all elements are different.\n\n#### Function Signature\n```python\ndef unique_subarrays(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums`: A list of integers (0 <= len(nums) <= 10^5)\n\n#### Output \\\\- Return an integer representing the count of unique non-empty subarrays with distinct elements.\n\n#### Constraints\n- All numbers in `nums` are unique.",
+    "code": "from typing import List\ndef unique_subarrays(nums: List[int]) -> int:\n    n = len(nums)\n    result = set()\n    for i in range(n):\n        seen = {}\n        current = []\n        for j in range(i, n):\n            if nums[j] not in seen:\n                seen[nums[j]] = 1\n                current.append(nums[j])\n                result.add(tuple(current))\n    return len(result)",
+    "tests": [
+        "assert unique_subarrays([1,2,3,4]) == 15",
+        "assert unique_subarrays([1,1,1,1,1]) == 0",
+        "assert unique_subarrays([1,2,3,1]) == 9",
+        "assert unique_subarrays([2,3,4,3,2]) == 12"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

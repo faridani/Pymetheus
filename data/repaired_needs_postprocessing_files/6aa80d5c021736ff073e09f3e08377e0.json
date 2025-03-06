@@ -1,0 +1,12 @@
+{
+    "title": "Hard - Cyclic Substring Rotation",
+    "description": "Given a string `s`, determine the minimum number of rotations required to obtain a lexicographically smallest rotation of the string. A rotation is defined as shifting all characters in the string by a certain position, wrapping around the end. For example, rotating `abcde` by 2 positions results in `cdeab`. \n\n#### Function Signature\n```python\ndef min_rotations(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing lowercase English letters only.\n\n#### Output\n- Returns the minimum number of rotations required to obtain the lexicographically smallest rotation of the string `s`.\n\n",
+    "code": "def min_rotations(s: str) -> int:\n    n = len(s)\n    min_rotation = 0\n    for i in range(1, n):\n        temp = s[i:] + s[:i]\n        if temp < s:\n            min_rotation = i\n            s = temp\n    return min_rotation",
+    "tests": [
+        "'assert min_rotations(\"abcde\") == 0'",
+        "'assert min_rotations(\"cba\") == 2'",
+        "'assert min_rotations(\"zza\") == 1'",
+        "'assert min_rotations(\"bbbaaaaccc\") == 3'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Reverse String",
+    "description": "Write a function `reverse_string` that takes a string as input and returns it reversed. You may not use Python's built-in `[::-1]` slicing method.\n\n#### Function Signature\n```python\ndef reverse_string(s: str) -> str:\n``` \n\n#### Input\n- `s` (str): A string of characters.\n\n#### Output\n- Returns a new string containing the same characters as the input string, but in reverse order.",
+    "code": "def reverse_string(s: str) -> str:\n    result = ''\n    for char in s:\n        result = char + result\n    return result",
+    "tests": [
+        "assert reverse_string(\"hello\") == \"olleh\"",
+        "assert reverse_string(\"abc123!\") == \"!321cba\"",
+        "assert reverse_string(\"\" ) == \"\"",
+        "assert reverse_string(\"a\") == \"a\""
+    ],
+    "model": "codegeex4:9b-repaired by Llama 3"
+}

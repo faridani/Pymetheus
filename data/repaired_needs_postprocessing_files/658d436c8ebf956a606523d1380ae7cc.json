@@ -1,0 +1,13 @@
+{
+    "title": "Prime Pair from Product: Hard",
+    "description": "Given a number `n`, find two prime numbers `a` and `b` such that their product equals `n` and the difference between them is also a prime number.\n\n#### Function Signature\n```python\ndef find_prime_pair(n: int) -> tuple:\n```\n\n#### Input\n- `n` (int): A positive integer greater than 2.\n\n#### Output\n- Returns a tuple containing two prime numbers `a` and `b` such that their product equals `n` and the difference between them is also a prime number, or returns None if no solution exists for the given input.\n",
+    "code": "def is_prime(num: int) -> bool:\n    # Check if a number is prime\n    if num <= 1: return False\n    if num <= 3: return True\n    for i in range(2, int(num**0.5)+1):\n        if num % i == 0:\n            return False\n    return True\n\ndef find_prime_pair(n: int) -> tuple:\n    # Find two prime numbers whose product equals n and the difference is also prime\n    for a in range(2, n):\n        b = n // a\n        if a != b and is_prime(a) and is_prime(b - a):\n            return (a, b)\n    return None\n",
+    "tests": [
+        "assert find_prime_pair(91) == (7, 13)",
+        "assert find_prime_pair(287) == (3, 97)",
+        "assert find_prime_pair(5061) == (29, 169)",
+        "assert find_prime_pair(11293) == (37, 307)",
+        "assert find_prime_pair(138729) is None"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

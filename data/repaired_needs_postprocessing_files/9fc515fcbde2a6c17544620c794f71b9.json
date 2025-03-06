@@ -1,0 +1,10 @@
+{
+    "title": "'Mad Libs Fill-in-the-Blank' - Easy",
+    "description": "In the classic game of Mad Libs, players fill in missing words in a story based on the parts of speech given. Write a function `fill_mad_lib(adjective: str, noun: str, verb: str, adverb: str)` that takes four parameters and returns a filled-in sentence using those words.\n#### Function Signature\n```python\ndef fill_mad_lib(adjective: str, noun: str, verb: str, adverb: str) -> str:\n```\n#### Input\n- `adjective` (str): An adjective describing something or someone.\n- `noun` (str): A noun that refers to a person, place, thing, or idea.\n- `verb` (str): A verb that indicates an action taking place.\n- `adverb` (str): An adverb that modifies the verb and describes how the action is performed.\n\n#### Output\n- Returns a filled-in sentence using the given words.\n",
+    "code": "def fill_mad_lib(adjective: str, noun: str, verb: str, adverb: str) -> str:\n    return f'The {adjective} quick brown {noun} jumped over the lazy dog. It {verb}ed {adverb}ly.'",
+    "tests": [
+        "assert fill_mad_lib('happy', 'cat', 'meowed', 'softly') == 'The happy quick brown cat meowed over the lazy dog. It meowed softly.'",
+        "assert fill_mad_lib('silly', 'owl', 'hooted', 'quietly') == 'The silly quick brown owl hooted over the lazy dog. It hooted quietly.'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

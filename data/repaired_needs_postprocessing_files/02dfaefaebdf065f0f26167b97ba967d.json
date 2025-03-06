@@ -1,0 +1,12 @@
+{
+    "title": "[Medium] Subarray Sum",
+    "description": "Given an array of integers and a target integer, determine if there exists a contiguous subarray that sums up to the target. Write a function `subarray_sum` that checks this condition.\n\n#### Function Signature\n```python\ndef subarray_sum(arr: List[int], k: int) -> bool:\n``` \n\n#### Input\n- `arr` (List[int]): A list of integers.\n- `k` (int): The target integer.\n\n#### Output\n- Returns `True` if there exists a contiguous subarray that sums up to the target, `False` otherwise.",
+    "code": "from typing import List\ndef subarray_sum(arr: List[int], k: int) -> bool:\n    for i in range(len(arr)):\n        curr_sum = arr[i]\n        if curr_sum == k:\n            return True\n        for j in range(i + 1, len(arr)):\n            curr_sum += arr[j]\n            if curr_sum == k:\n                return True\n    return False",
+    "tests": [
+        "assert subarray_sum([1, 4, 20, 3, 10, 5], 33) == True",
+        "assert subarray_sum([1, -1], 0) == True",
+        "assert subarray_sum([-1, 1], 0) == True",
+        "assert subarray_sum([1, 2, 3, 4, 5], 7) == False"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

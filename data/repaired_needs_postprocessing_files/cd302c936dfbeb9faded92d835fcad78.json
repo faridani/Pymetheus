@@ -1,0 +1,13 @@
+{
+    "title": "Prime Factorization Determiner (Medium)",
+    "description": "Write a function `prime_factors` that determines the prime factors of a given positive integer.\n#### Function Signature\n```python\ndef prime_factors(n: int) -> list:\n```\n\n#### Input\n- `n` (int): A positive integer greater than 1.\n\n#### Output\n- Returns a list of the prime factors of the input integer in ascending order.\n",
+    "code": "from math import sqrt\ndef prime_factors(n: int) -> list:\n    # Check if n is prime, if so return [n]\n    if n <= 1 or (3 <= n and n % 2 == 0):\n        return []\n    elif n % 3 == 0:\n        return [3]\n    i = 5\n    factors = []\n    while i * i <= n:\n        if n % i == 0:\n            factors.append(i)\n            n //= i\n        i += 2\n    # If n is an odd prime number, add it to the list of factors\n    if n > 1:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factors(7) == [3, 7]",
+        "assert prime_factors(9) == [3, 3]",
+        "assert prime_factors(25) == [5]",
+        "assert prime_factors(49) == [7, 7]",
+        "assert prime_factors(60) == [2, 2, 3, 5]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Easy - Number Reverser",
+    "description": "Given a positive integer, write a function `reverse_number` that returns the reverse of the number.\n\n#### Function Signature\n```python\ndef reverse_number(num: int) -> int:\n``` \n\n#### Input\n- `num` (int): A positive integer.\n\n#### Output\n- Returns an integer which is the reverse of the input number.\n\n#### Example\nFor num = 1234, the output should be 4321",
+    "code": "def reverse_number(num: int) -> int:\n    reversed_num = 0\n    while num > 0:\n        digit = num % 10\n        reversed_num = reversed_num * 10 + digit\n        num //= 10\n    return reversed_num",
+    "tests": [
+        "assert reverse_number(1234) == 4321",
+        "assert reverse_number(98765) == 56789",
+        "assert reverse_number(1000) == 1"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

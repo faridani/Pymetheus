@@ -1,0 +1,12 @@
+{
+    "title": "Easy Python Coding Question: Unique Substrings",
+    "description": "Given a string, write a function to find the number of unique substrings that can be formed. A substring is defined as a contiguous sequence of characters within a string. For example, in 'abc', the substrings are '', 'a', 'b', 'c', 'ab', 'bc', and 'abc'. Note: Substrings must not contain duplicate letters.\n#### Function Signature```python\ndef count_unique_substrings(s: str) -> int:\n```\n\n#### Input\n- `s` (str): The input string. Length of the string is between 1 and 50 characters, inclusive.\n\n#### Output\n- Returns an integer representing the number of unique substrings that can be formed from the input string without duplicate letters.",
+    "code": "def count_unique_substrings(s: str) -> int:\n    n = len(s)\n    result = set()\n\n    def backtrack(start=0, path=''):\n        if path and (path not in result):\n            result.add(path)\n        for i in range(start, n):\n            char_set = set(s[i])  # Check character uniqueness\n            if len(char_set) == len(s[i]):  # Ensures no duplicates in substring\n                backtrack(i + 1, path + s[i])\n    \n    backtrack()\n    return len(result)",
+    "tests": [
+        "assert count_unique_substrings('abc') == 7",
+        "assert count_unique_substrings('aaa') == 3",
+        "assert count_unique_substrings('abcb') == 10",
+        "assert count_unique_substrings('xyz') == 7"
+    ],
+    "model": "phi3:14b-repaired by Llama 3"
+}

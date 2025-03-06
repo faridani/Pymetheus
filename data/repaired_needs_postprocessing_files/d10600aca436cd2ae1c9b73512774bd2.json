@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Word Ladder",
+    "description": "Write a function `word_ladder` that takes two strings, `start_word` and `end_word`, as input. The function should return the shortest possible ladder of words from `start_word` to `end_word`. A word ladder is a sequence of words where each subsequent word differs from the previous one by exactly one character. If there's no possible ladder, return an empty list.\n\n#### Function Signature\n```python\ndef word_ladder(start_word: str, end_word: str) -> List[str]:\n```\n\n#### Input\n- `start_word` (str): The starting word for the ladder.\n- `end_word` (str): The target word for the ladder.\n\n#### Output\n- A list of words representing the shortest possible ladder from `start_word` to `end_word`. If no ladder exists, return an empty list.",
+    "code": "from collections import deque\ndef word_ladder(start_word: str, end_word: str) -> List[str]:\n    if len(start_word) != len(end_word):\n        return []\n    queue = deque([(start_word, [start_word])])\n    visited = set([start_word])\n\n    while queue:\n        word, path = queue.popleft()\n        if word == end_word:\n            return path\n        for i in range(len(word)):\n            for char in 'abcdefghijklmnopqrstuvwxyz':\n                next_word = word[:i] + char + word[i+1:]\n                if next_word not in visited:\n                    visited.add(next_word)\n                    queue.append((next_word, path + [next_word]))\n\n    return []",
+    "tests": [
+        "assert word_ladder('hit', 'cog') == ['hit', 'hot', 'dot', 'dog', 'cog']",
+        "assert word_ladder('hello', 'world') == []",
+        "assert word_ladder('abc', 'def') == []"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

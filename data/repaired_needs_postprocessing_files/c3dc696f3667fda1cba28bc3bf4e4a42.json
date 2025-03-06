@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Sum of Squares",
+    "description": "A company has N employees, and each employee can have at most one manager. Write a function `sum_of_squares` that calculates the sum of squares of all employee IDs.\n\n#### Function Signature\n```python\ndef sum_of_squares(employees: list[int]) -> int:\n``` \n\n#### Input\n- `employees` (list[int]): A list of N integers representing employee IDs.\n\n#### Output\n- Returns the sum of squares of all employee IDs.",
+    "code": "def sum_of_squares(employees: list[int]) -> int:\n    return sum(i ** 2 for i in employees)",
+    "tests": [
+        "assert sum_of_squares([1, 2, 3, 4, 5]) == 55",
+        "assert sum_of_squares([-1, -2, 0, 0, 1]) == 6",
+        "assert sum_of_squares([]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

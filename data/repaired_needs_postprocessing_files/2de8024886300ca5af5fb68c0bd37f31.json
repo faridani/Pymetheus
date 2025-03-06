@@ -1,0 +1,10 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "An anagram is a word or phrase that is formed by rearranging the letters of another word or phrase, often with all the original letters accounted for. Write a function `find_anagrams` that takes a list of words and returns a dictionary where each key is a word from the input list and its corresponding value is a list of anagrams found in the input list.\n\n#### Function Signature\n```python\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n``` \n\n#### Input\n- `words` (List[str]): A list of words that may contain letters and spaces.\n\n#### Output\n- Returns a dictionary where each key is a word from the input list and its corresponding value is a list of anagrams found in the input list. If no anagram is found, the value will be an empty list.",
+    "code": "import collections\ndef find_anagrams(words: List[str]) -> Dict[str, List[str]]:\n    # Create a dictionary to store the counts of each letter in each word\n    word_counts = {word: collections.Counter(word) for word in words}\n    \n    # Find anagrams by comparing the counts of letters in each pair of words\n    anagrams = {\n        word: [other for other in words if (word != other and all(count1[letter] == count2[letter] for letter, count1, count2 in zip(word_counts[word].items(), word_counts[other].items())))]\n        for word in word_counts\n    }\n    \n    # Remove empty lists from the dictionary\n    anagrams = {k: v for k, v in anagrams.items() if v}\n",
+    "tests": [
+        "assert find_anagrams(['listen', 'silent', 'enlist', 'education', 'edited', 'teacher', 'increment']) == {'enlist': ['listen'], 'silent': ['listen'], 'education': ['edited'], 'edited': ['education'], 'teacher': [], 'increment': []}",
+        "assert find_anagrams(['apple', 'appel', 'beep', 'pear', 'reaped']) == {'apple': ['appel'], 'pear': [], 'beep': [], 'reaped': []}"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

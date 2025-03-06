@@ -1,0 +1,15 @@
+{
+    "title": "Is it a Pyramidical Number? (Medium)",
+    "description": "Pyramidal numbers are the series of integers that can be represented as the sum of n squares in n distinct ways. Write a function `is_pyramidal` that checks if a given number is a pyramidal number.\n\n#### Function Signature\n```python\ndef is_pyramidal(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns `True` if the input number is a pyramidal number, `False` otherwise.",
+    "code": "def is_pyramidal(n: int) -> bool:\n    # Check if the number is non-negative and square root is an integer\n    if not (0 <= n and n ** 0.5).is_integer():\n        return False\n    # Initialize a set to store all possible partitions of the squares sum\n    squares_set = set()\n    # Iterate from 1 to square root of the number and calculate all unique square numbers\n    for i in range(1, int(n ** 0.5) + 1):\n        squares_set.add(i ** 2)\n        squares_set.add((int(n ** 0.5) - i) ** 2)\n    # Check if the given number can be represented as the sum of unique square numbers within the set\n    return len(squares_set) == nCountSquarePartitions(n, squares_set)\n\ndef nCountSquarePartitions(n: int, squares_set: set) -> int:\n    # Iterate through all possible partitions of the set and count the ones that sum to the given number\n    partitions = set()\n    for i in range(1, len(squares_set) + 1):\n        for j in range(i + 1, len(squares_set) + 1):\n            if squares_set.pop(j) + squares_set.pop(i - 1) == n:\n                partitions.add((i, j))\n    return len(partitions)",
+    "tests": [
+        "assert is_pyramidal(1) == True",
+        "assert is_pyramidal(3) == False",
+        "assert is_pyramidal(5) == False",
+        "assert is_pyramidal(7) == False",
+        "assert is_pyramidal(8) == True",
+        "assert is_pyramidal(10) == False",
+        "assert is_pyramidal(13) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

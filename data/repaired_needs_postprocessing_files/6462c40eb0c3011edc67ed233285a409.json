@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Matrix Path Summation",
+    "description": "You are given an `m x n` matrix `matrix` containing non-negative integers. You start at the top-left corner (`matrix[0][0]`) and can only move either down or right at each step. Your goal is to find the sum of all possible paths from the top-left corner to the bottom-right corner (`matrix[m - 1][n - 1]`). \r\n\r\n#### Function Signature\r\n```\ndef path_sum(matrix: list[list[int]]) -> int:\r\n``` \r\n\r\n#### Input\r\n- `matrix` (list[list[int]]): An `m x n` matrix containing non-negative integers.\r\n\r\n#### Output\r\n- Returns the sum of all possible paths from the top-left corner to the bottom-right corner.\r\n",
+    "code": "def path_sum(matrix: list[list[int]]) -> int:\n m, n = len(matrix), len(matrix[0])\n dp = [[0 for _ in range(n)] for _ in range(m)]\n dp[0][0] = matrix[0][0]\n\n for i in range(m):\n  for j in range(n):\n   if i > 0:\n    dp[i][j] += dp[i - 1][j]\n   if j > 0:\n    dp[i][j] += dp[i][j - 1]\n   dp[i][j] += matrix[i][j]\n return dp[m - 1][n - 1]",
+    "tests": [
+        "assert path_sum([[1, 2], [3, 4]]) == 10",
+        "assert path_sum([[1, 3, 1],[1, 5, 1],[4, 2, 1]]) == 7",
+        "assert path_sum([[1]]) == 1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

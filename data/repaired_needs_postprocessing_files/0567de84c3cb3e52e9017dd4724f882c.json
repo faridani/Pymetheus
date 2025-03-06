@@ -1,0 +1,11 @@
+{
+    "title": "Minimum Swaps to Make Binary String Alternating",
+    "description": "Given a binary string `s`, write a function that returns the minimum number of swaps required to make the string alternating between '0' and '1'. For example, if `s = '10100110'`, the output should be `3` because we can swap the first two characters to get `'01010110'`, then swap the fifth and sixth characters to get `'01101110'`, and finally swap the ninth and tenth characters to get `'01010111'`. \n\n#### Function Signature\n```python\ndef min_swaps(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A binary string that may contain only '0's and '1's.\n\n#### Output\n- Returns an integer representing the minimum number of swaps required to make the input string alternating between '0' and '1'.\n\n",
+    "code": "def min_swaps(s: str) -> int:\n    n = len(s)\n    res = 0\n    last_char = s[0]\n    for i in range(1, n):\n        if s[i] == last_char:\n            res += 1\n        last_char = s[i]\n    return res",
+    "tests": [
+        "assert min_swaps('10100110') == 3",
+        "assert min_swaps('11100000') == 4",
+        "assert min_swaps('10001001') == 2"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

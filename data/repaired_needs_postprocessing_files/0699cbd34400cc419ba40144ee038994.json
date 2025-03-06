@@ -1,0 +1,12 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "An anagram is a word or phrase that consists of the same letters as another word or phrase, but arranged differently. For example, 'listen' and 'silent' are anagrams.\nWrite a function `is_anagram` that checks if two given strings are anagrams of each other.\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string that may contain letters, numbers, spaces, and punctuation.\n- `str2` (str): Another string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "import collections\ndef is_anagram(str1: str, str2: str) -> bool:\n    # Remove non-alphabetic characters from both strings\n    str1 = ''.join(char for char in str1 if char.isalpha())\n    str2 = ''.join(char for char in str2 if char.isalpha())\n    \n    # If the two strings have different lengths, they cannot be anagrams.\n    if len(str1) != len(str2):\n        return False\n    \n    # Count the frequency of each letter in both strings\n    freq1 = collections.Counter(str1)\n    freq2 = collections.Counter(str2)\n    \n    # If any frequency does not match, the strings cannot be anagrams.\n    for key, value in freq1.items():\n        if freq2[key] != value:\n            return False\n    \n    # If no mismatches were found, the strings are anagrams.\n    return True",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'olleh') == True",
+        "assert is_anagram('racecar', 'carrace') == True",
+        "assert is_anagram('apple', 'apples') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

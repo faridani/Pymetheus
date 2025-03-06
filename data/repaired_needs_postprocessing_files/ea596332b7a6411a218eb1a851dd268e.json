@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Subarray Sum (Hard)",
+    "description": "Given an integer array nums, find the contiguous subarray (containing at least one number) with the largest sum. Return the maximum sum.\n\n#### Function Signature\n```python\ndef max_subarray_sum(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums` (List[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum of a contiguous subarray in nums.\n\n#### Constraints:\n- 1 <= nums.length <= 30,000\n- -1,000,000 <= nums[i] <= 1,000,000",
+    "code": "def max_subarray_sum(nums):\n    max_sum = current_sum = nums[0]\n    for num in nums[1:]:\n        current_sum = max(num, current_sum + num)\n        max_sum = max(max_sum, current_sum)\n    return max_sum",
+    "tests": [
+        "assert max_subarray_sum([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6",
+        "assert max_subarray_sum([0, 2, 3, -5, 6, -1]) == 7",
+        "assert max_subarray_sum([-1, 2, 0, -3, 4]) == 4"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

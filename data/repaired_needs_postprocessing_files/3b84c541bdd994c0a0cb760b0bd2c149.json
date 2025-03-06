@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Medium)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `are_anagrams` that checks if two given strings are anagrams. This function should take as input two strings `s1`, `s2` and return `True` if the two input strings are anagrams of each other, `False` otherwise. The function signature is `def are_anagrams(s1: str, s2: str) -> bool:\n    # Remove any spaces and convert to lowercase\n    s1 = ''.join(sorted(s1.lower().replace(' ', '')))\n    s2 = ''.join(sorted(s2.lower().replace(' ', '')))\n    # Check if the sorted strings are equal\n    return len(s1) == len(s2) and s1 == s2",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    s1 = ''.join(sorted(s1.lower().replace(' ', '')))\n    s2 = ''.join(sorted(s2.lower().replace(' ', '')))\n    return len(s1) == len(s2) and s1 == s2\n",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"racecar\", \"carrace\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

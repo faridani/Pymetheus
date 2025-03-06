@@ -1,0 +1,14 @@
+{
+    "title": "\"Palindrome with Special Characters\" (easy)",
+    "description": "A palindrome is a sequence of characters that reads the same forward and backward. However, it can also contain special characters.\n\n#### Function Signature\n```python\ndef is_palindrome(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, punctuation or any other characters.\n\n#### Output\n- Returns `True` if the input string is a palindrome, `False` otherwise.",
+    "code": "import re\ndef is_palindrome(s: str) -> bool:\n    # Remove non-alphanumeric characters from both sides of the string\n    s = re.sub(r'[\\W]', '', s).lower()\n    # Check if the string reads the same forwards and backwards\n    return s == s[::-1]",
+    "tests": [
+        "assert is_palindrome(\"A man, a plan, a canal, Panama\") == True",
+        "assert is_palindrome(\"racecar\") == True",
+        "assert is_palindrome(\"hello\") == False",
+        "assert is_palindrome(\"No 'x' in Nixon\") == True",
+        "assert is_palindrome(\"A1b2c3b2a1\") == True",
+        "assert is_palindrome(\"!o(o!\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

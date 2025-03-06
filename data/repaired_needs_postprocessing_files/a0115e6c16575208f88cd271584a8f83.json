@@ -1,0 +1,11 @@
+{
+    "title": "Number of Subarrays with Equal Sum",
+    "description": "Given a list of integers, write a function `count_subarrays` that counts the number of subarrays with equal sum.\n\n#### Function Signature\n```python\ndef count_subarray(s: list) -> int:\n```\n\n#### Input\n- `s` (list): A list of integers.\n\n#### Output\n- Returns the number of subarrays in the input list that have equal sum.",
+    "code": "from collections import defaultdict\ndef count_subarrays(s: list) -> int:\n    n = len(s)\n    hashmap = defaultdict(int)\n    total_sum = 0\n    for i, num in enumerate(s):\n        total_sum += num\n        if hashmap[total_sum % (i + 1)] == 0:\n            hashmap[total_sum % (i + 1)] = 1\n        else:\n            hashmap[total_sum % (i + 1)] += 1\n    return sum(hashmap.values()) - 1",
+    "tests": [
+        "assert count_subarrays([5, 6, 0]) == 3",
+        "assert count_subarrays([-1, -2, 1, 1]) == 4",
+        "assert count_subarrays([]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

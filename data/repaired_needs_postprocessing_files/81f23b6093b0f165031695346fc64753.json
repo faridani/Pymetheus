@@ -1,0 +1,11 @@
+{
+    "title": "'Palindromic Subsequence Length' - Hard",
+    "description": "Given a string, find the length of its longest palindromic subsequence. A subsequence is a sequence that can be derived from a given sequence by deleting some or no elements without changing the order of the remaining elements.\n\n#### Function Signature\n```python\ndef longest_palindrome_subsequence(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the length of the longest palindromic subsequence present in the given string.",
+    "code": "import sys\ndef longest_palindrome_subsequence(s: str) -> int:\n    # If the input string is empty, return 0 as there are no palindromic subsequences\n    if not s: return 0\n    # Create a matrix to store the lengths of longest palindromic subsequences of substrings\n    dp = [[0] * len(s) for _ in range(len(s))]\n\n    # Iterate through the string and calculate the lengths of longest palindromic subsequences of substrings\n    for i in range(1, len(s)):\n        for j in range(i, -1, -1):\n            # If the current substring is a palindrome, update the matrix element\n            if s[i] == s[j] and (i - j <= 1 or dp[i-1][j+1]): dp[i][j] = max(dp[i][j], i - j + 2)\n    # Return the length of the longest palindromic subsequence present in the given string\n    return dp[0][len(s)-1]",
+    "tests": [
+        "assert longest_palindrome_subsequence(\"babad\") == 4",
+        "assert longest_palindrome_subsequence(\"cbbd\") == 3",
+        "assert longest_palindrome_subsequence(\"acbcbabc\") == 6"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

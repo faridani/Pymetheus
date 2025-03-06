@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Counting Triangles",
+    "description": "Given a set of integers representing the lengths of three sides of a triangle, determine how many possible triangles can be formed with these side lengths.\n\n#### Function Signature\n```python\ndef count_triangles(a: int, b: int, c: int) -> int:\n``` \n\n#### Input\n- `a`, `b`, and `c` (int): The lengths of three sides of a triangle.\n\n#### Output\n- Returns the number of possible triangles that can be formed with these side lengths.",
+    "code": "def count_triangles(a: int, b: int, c: int) -> int:\n    # Check if the given side lengths form a valid triangle\n    if (a + b > c and a + c > b and b + c > a):\n        return 1\n    else:\n        return 0\n",
+    "tests": [
+        "assert count_triangles(5, 6, 7) == 1",
+        "assert count_triangles(3, 4, 5) == 1",
+        "assert count_triangles(2, 2, 2) == 1",
+        "assert count_triangles(10, 20, 30) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

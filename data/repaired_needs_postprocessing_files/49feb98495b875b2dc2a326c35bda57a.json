@@ -1,0 +1,11 @@
+{
+    "title": "Repeated Substring Checker (Medium)",
+    "description": "Write a function `repeated_substring` that checks if a given string contains a repeated substring. The repeated substring can occur multiple times but should not necessarily start at the beginning or end of the input string.\n\n#### Function Signature\n```python\ndef repeated_substring(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A non-empty string that may contain repeating substrings, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string contains a repeated substring, `False` otherwise.\n",
+    "code": "def repeated_substring(s: str) -> bool:\n    # If the length of the string is less than 2, it cannot contain a repeated substring\n    if len(s) < 2: return False\n\n    # Create a dictionary to store the counts of each substring in the string\n    count_dict = {}\n    substring = s[0]\n    count = 1\n\n    # Iterate through the characters in the string starting from the second character\n    for char in s[1:]:\n        # If the current character is different from the last one, increment the count and store a new substring if needed\n        if char != substring:\n            if count_dict.get(substring): return True\n            count_dict[substring] = count\n            count = 1\n            substring = char\n        # Increment the count for the same substring\n        else: count += 1\n    \n    # If the last substring was not checked yet and it has a count greater than one, return True\n    if count_dict.get(substring): return True\n    return False",
+    "tests": [
+        "assert repeated_substring('ababc') == True",
+        "assert repeated_substring('xyzxyz') == True",
+        "assert repeated_substring('hello world') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

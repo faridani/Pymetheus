@@ -1,0 +1,12 @@
+{
+    "title": "Reversed Substrings in a String (Medium)",
+    "description": "Given a string, find the longest substring that reads the same forward and backward (ignoring spaces). If there are multiple such substrings, return the one that appears earliest in the original string.\n\n#### Function Signature\n```python\ndef find_reversed(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the longest substring that reads the same forwards and backwards, or an empty string if no such substrings exist.",
+    "code": "import itertools\ndef find_reversed(s: str) -> str:\n    # Remove non-alphanumeric characters and convert to lowercase\n    s = ''.join(char for char in s if char.isalnum()).lower()\n    # Find all reversed substrings of length greater than 1\n    substrings = [''.join(reversed(substring)) for substring in itertools.chain(*[itertools.combinations(s, i+1) for i in range(1, len(s)+1)])]\n    # Remove duplicates and find the longest one\n    reversed_substrings = set(substrings)\n    longest_reversed = max(reversed_substrings, key=len)\n    return longest_reversed or ''",
+    "tests": [
+        "assert find_reversed(\"aabbaaa\") == \"aabbaaa\"",
+        "assert find_reversed(\"abcdcbadb\") == \"dcba\"",
+        "assert find_reversed(\"hello world\") == \"\"",
+        "assert find_reversed(\"1234321\") == \"321\""
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

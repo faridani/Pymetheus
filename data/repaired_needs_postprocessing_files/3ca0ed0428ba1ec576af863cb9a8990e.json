@@ -1,0 +1,12 @@
+{
+    "title": "'Palindrome Words with Given Vowel Counts (Easy)'",
+    "description": "Write a function `count_vowels` that takes a string as input, counts the number of vowels (a, e, i, o, u) in it, and returns the count. After that, write another function `find_palindrome` that checks if there exists a palindrome in a given list of strings where each word has exactly k vowels, for some given positive integer k.\n\n#### Function Signatures\n```python\ndef count_vowels(s: str) -> int:\n``` \n```python\ndef find_palindrome(words: List[str], k: int) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that may contain only lowercase letters.\n- `words` (List[str]): A list of strings where each word has exactly k vowels.\n- `k` (int): The number of vowels in each word in the given list.\n\n#### Output\n- Returns the count of vowels in a given string for the function `count_vowels`. For the function `find_palindrome`, returns `True` if there exists a palindrome in the given list, and `False` otherwise.\n",
+    "code": "import string\ndef count_vowels(s: str) -> int:\n    return sum(char in 'aeiou' for char in s)\ndef find_palindrome(words: List[str], k: int) -> bool:\n    # Count vowels in each word and filter out non-palindromes\n    palindromes = [word for word in words if len(word) == 2*k and count_vowels(word) == k and word == word[::-1]]\n    return len(palindromes) > 0",
+    "tests": [
+        "assert count_vowels('hello') == 2",
+        "assert count_vowels('beautyful') == 3",
+        "assert find_palindrome(['level', 'deified'], 1) == False",
+        "assert find_palindrome(['madam', 'racecar'], 2) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

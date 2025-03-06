@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Subarray Sum",
+    "description": "Write a function `max_subarray_sum` that takes a list of integers as input and returns the maximum sum of a contiguous subarray within the list. The subarray can be either horizontal or vertical, but it must be a continuous range of elements. For example, the list `[3, 2, 5, 8, 3, 7]` has a maximum subarray sum of 19, because the subarray `[3, 5, 8]` has a sum of 19. Return `None` if no such subarray exists.\n",
+    "code": "def max_subarray_sum(arr):\n    # Sort the list in ascending order\n    arr = sorted(arr)\n    # Initialize two variables to keep track of the current sum and the previous sum\n    curr_sum = 0\n    prev_sum = 0\n    # Iterate over the list, keeping track of the current sum and the previous sum\n    for num in arr:\n        curr_sum += num\n        if curr_sum > prev_sum:\n            return curr_sum\n        else:\n            prev_sum = curr_sum\n            curr_sum = 0",
+    "tests": [
+        "assert max_subarray_sum([3, 2, 5, 8, 3, 7]) == 19",
+        "assert max_subarray_sum([-1, -2, -3, -4, -5]) == None",
+        "assert max_subarray_sum([1, 2, 3, 4, 5, 6]) == 15"
+    ],
+    "model": "llama2:latest-repaired by Llama 3"
+}

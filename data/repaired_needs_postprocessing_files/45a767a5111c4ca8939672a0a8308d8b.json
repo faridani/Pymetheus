@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Longest Increasing Subsequence with Rotations",
+    "description": "Given a list of integers, find the length of the longest increasing subsequence that can be obtained by rotating the list. A rotation is defined as shifting elements to the right or left cyclically. For example, rotating [1, 2, 3] by one position to the right results in [3, 1, 2].\n\n#### Function Signature\n```pythonndef longest_increasing_subsequence_with_rotations(nums: list[int]) -> int:\n``` \n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns the length of the longest increasing subsequence obtainable by rotating the input list.",
+    "code": "def longest_increasing_subsequence_with_rotations(nums: list[int]) -> int:\n    n = len(nums)\n    dp = [1] * n\n    for i in range(n):\n        for j in range(i):\n            if nums[(i + j) % n] > nums[(j + j) % n] and dp[i] < dp[j] + 1:\n                dp[i] = dp[j] + 1\n    return max(dp)",
+    "tests": [
+        "assert longest_increasing_subsequence_with_rotations([1, 2, 3]) == 3",
+        "assert longest_increasing_subsequence_with_rotations([3, 1, 2]) == 3",
+        "assert longest_increasing_subsequence_with_rotations([4, 5, 6, 7, 0, 1, 2]) == 7",
+        "assert longest_increasing_subsequence_with_rotations([1, 3, 2, 4]) == 4"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

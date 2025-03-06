@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Matrix Pathfinding with Obstacles",
+    "description": "You are given a 2D matrix representing a grid. The value '0' represents an empty cell, while the value '1' represents an obstacle. You need to write a function `find_path` that determines if there is a path from the top-left corner (0,0) to the bottom-right corner (m-1, n-1) of the matrix, where 'm' is the number of rows and 'n' is the number of columns. You can only move horizontally or vertically (no diagonal movement).\n#### Function Signature\n```python\ndef find_path(matrix: list[list[int]]) -> bool:\n``` \n#### Input\n- `matrix` (list[list[int]]): A 2D matrix representing the grid. The dimensions of the matrix are 'm x n'. \n#### Output\n- Returns `True` if a path exists from the top-left corner to the bottom-right corner, `False` otherwise.\n",
+    "code": "def find_path(matrix: list[list[int]]) -> bool:\n    m = len(matrix)\n    n = len(matrix[0])\n\n    def dfs(row, col):\n        if row == m - 1 and col == n - 1:\n            return True\n        if row < 0 or row >= m or col < 0 or col >= n or matrix[row][col] == 1:\n            return False\n\n        matrix[row][col] = 1 # Mark the current cell as visited\n\n        return dfs(row + 1, col) or dfs(row - 1, col) or dfs(row, col + 1) or dfs(row, col - 1)\n    \n    return dfs(0, 0)",
+    "tests": [
+        "assert find_path([[0,0,0],[0,1,0],[0,0,0]]) == True",
+        "assert find_path([[0,1],[0,0]]) == True",
+        "assert find_path([[0,0,1],[0,1,0],[1,0,0]]) == False",
+        "assert find_path([[1, 0], [0, 1]]) == False"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

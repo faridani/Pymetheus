@@ -1,0 +1,11 @@
+{
+    "title": "Palindromic Anagram Finder (Medium)",
+    "description": "An anagram is a word or phrase that consists of the same letters as another, typically rearranged. However, for this problem, we are looking for palindromes that are anagrams of each other.\nWrite a function `find_palindrome_anagrams` that finds all pairs of palindromic anagrams in a given list of strings.\n\n#### Function Signature```python\ndef find_palindrome_anagrams(words: List[str]) -> List[List[str]]:\n```\n\n#### Input\n- `words` (List[str]): A list of strings, where each string may contain letters and numbers.\n\n#### Output\n- Returns a list of lists. Each inner list contains two palindromic anagrams that are not the same string.",
+    "code": "import collections\ndef find_palindrome_anagrams(words: List[str]) -> List[List[str]]:\n    # Group words by their frequency of characters\n    grouped = {k: [w for w in words if collections.Counter(w) == k] for k in set(collections.Counter(sum(words, '')))}\n    # Find palindromic anagram groups and filter out the single-word groups\n    pal_anagrams = [group for group in grouped.values() if len(group) > 1]\n    # Pair up the palindromes (if there are an odd number of palindromes, just skip the last one)\n    return [[p1, p2] for p1, p2 in zip(*[(pair[0], pair[1]) for pair in itertools.zip_longest(pal_anagrams, pal_anagrams[1:])])]\n",
+    "tests": [
+        "assert find_palindrome_anagrams([\"racecar\", \"level\", \"radar\", \"deified\", \"did\"]) == [[\"racecar\", \"radar\"], [\"level\", \"deified\"]]",
+        "assert find_palindrome_anagrams([\"amanaplanacanalpanama\", \"katak\", \"listen\", \"madam\", \"kayak\"]) == [[\"amanaplanacanalpanama\", \"katak\"], [\"listen\", \"madam\"]]",
+        "assert find_palindrome_anagrams([\"eye\", \"yoy\"]) == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

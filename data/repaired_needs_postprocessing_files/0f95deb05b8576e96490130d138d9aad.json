@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Substring Finder (Hard)'",
+    "description": "Given a string `s`, find the longest palindromic substring within it.\n\n#### Function Signature\n```python\ndef find_longest_palindrome(s: str) -> str:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the longest palindromic substring found within the input string as a string.",
+    "code": "def find_longest_palindrome(s: str) -> str:\n    max_length = 0\n    start = 0\n    for i in range(len(s)):\n        # Check odd-length palindromes\n        low, high = i, i\n        while low >= 0 and high < len(s) and s[low] == s[high]:\n            low -= 1\n            high += 1\n        if max_length < (high - low + 1):\n            start = low + 1\n            max_length = high - low + 1\n    \n    # Check even-length palindromes\n    for i in range(len(s)):\n        for j in range(i+1, len(s)):\n            if s[i] == s[j] and (j - i <= max_length):\n                low, high = i, j\n                while low >= 0 and high < len(s) and s[low] == s[high]:\n                    low -= 1\n                    high += 1\n                if (high - low + 1) > max_length:\n                    start = i\n                    max_length = high - low + 1\n    return s[start:start+max_length]",
+    "tests": [
+        "assert find_longest_palindrome(\"babad\") == \"babba\"",
+        "assert find_longest_palindrome(\"cbbdde\") == \"bb\"",
+        "assert find_longest_palindrome(\"bookkeeper's keep on stoking the fire\") == \"on\"",
+        "assert find_longest_palindrome(\"hello world, hello again\") == \"ello\""
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

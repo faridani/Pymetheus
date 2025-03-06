@@ -1,0 +1,13 @@
+{
+    "title": "Is it a Whole Number Square? (Medium)",
+    "description": "Write a function `is_square_number` that checks if a given number is a whole number square.\n\n#### Function Signature\n```python\ndef is_square_number(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns `True` if the input number is a whole number square, `False` otherwise.\n\n#### Constraints and Hints\n- The given number can be greater than or equal to 0.\n- You can assume that the square root of the number is an integer.",
+    "code": "import math\ndef is_square_number(n: int) -> bool:\n    # Check if n is non-negative and its square root is an integer\n    return n >= 0 and math.isqrt(n)**2 == n",
+    "tests": [
+        "assert is_square_number(4) == True",
+        "assert is_square_number(9) == True",
+        "assert is_square_number(16) == True",
+        "assert is_square_number(25) == True",
+        "assert is_square_number(20) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

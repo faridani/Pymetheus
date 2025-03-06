@@ -1,0 +1,12 @@
+{
+    "title": "Prime Summands (Hard)",
+    "description": "Write a function `is_prime_summands(n: int) -> bool` that checks if a given positive integer `n` can be expressed as the sum of two prime numbers.\r\n\r\n#### Function Signature\r\n```python\r\ndef is_prime_summands(n: int) -> bool:\r\r``` \r\r#### Input\r\n- `n` (int): A positive integer.\r\r#### Output\r\n- Returns `True` if the input integer can be expressed as the sum of two prime numbers, `False` otherwise.",
+    "code": "def is_prime(num):\r    if num <= 1 or (num % 2 == 0 and num > 2):\r        return False\r    for i in range(3, int(num**0.5) + 1, 2):\r        if num % i == 0:\r            return False\r    return True\r\n\r\ndef is_prime_summands(n: int) -> bool:\r    for i in range(2, n // 2):\r        if is_prime(i) and is_prime(n - i):\r            return True\r    return False",
+    "tests": [
+        "assert is_prime_summands(10) == False",
+        "assert is_prime_summands(9) == False",
+        "assert is_prime_summands(25) == True",
+        "assert is_prime_summands(33) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

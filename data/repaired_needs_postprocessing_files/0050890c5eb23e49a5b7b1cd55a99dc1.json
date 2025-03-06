@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Minimum Time Difference",
+    "description": "Given an array of 24-hour time strings in the format HH:MM (where HH is hours and MM is minutes), find the minimum difference between any two times in the list. \n#### Function Signature\n```python\ndef min_time_difference(times: list[str]) -> int:\n```\n\n#### Input\n- `times` (list[str]): A list of time strings in 24-hour format.\n\n#### Output\n- Returns the minimum time difference in minutes between any two times in the list. \n\n#### Constraints\n- The input list will contain at least two times.\n- All times are valid and in the range 00:00 to 23:59.",
+    "code": "def min_time_difference(times: list[str]) -> int:\n    minutes = []\n    for time in times:\n        hours, mins = map(int, time.split(':'))\n        total_mins = hours * 60 + mins\n        minutes.append(total_mins)\n    minutes.sort()\n    min_diff = float('inf')\n    for i in range(1, len(minutes)):\n        diff = minutes[i] - minutes[i-1]\n        min_diff = min(min_diff, diff)\n    # Handle the circular case (difference between last and first time)\n    min_diff = min(min_diff, 1440 - (minutes[-1] - minutes[0]))\n    return min_diff",
+    "tests": [
+        "assert min_time_difference(['23:59', '00:00']) == 1",
+        "assert min_time_difference(['00:00', '23:59','01:00']) == 60",
+        "assert min_time_difference(['01:00', '02:00', '03:00']) == 60"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

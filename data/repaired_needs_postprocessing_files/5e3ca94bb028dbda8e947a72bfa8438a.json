@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Tower of Hanoi Problem",
+    "description": "The Tower of Hanoi problem is a classic puzzle. It states that you have three rods (A, B, and C) and n disks to be moved from rod A to rod C, following these rules:\n- Only one disk can be moved at a time.\n- Each move consists of taking the uppermost disk from one of the stacks and placing it on top of another stack or on an empty rod.\n- No disk may be placed on top of a smaller disk.\nWrite a function `hanoi_moves` that calculates the minimum number of moves required to move n disks from rod A to rod C.\n\n#### Function Signature\n```python\ndef hanoi_moves(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The number of disks to be moved.\n\n#### Output\n- Returns the minimum number of moves required to move n disks from rod A to rod C.",
+    "code": "def hanoi_moves(n: int) -> int:\n    if n == 1:\n        return 1\n    else:\n        # Calculate the moves for the smaller tower (n-1)\n        smaller_moves = hanoi_moves(n - 1)\n        # Calculate the moves to move the nth disk\n        nth_move = 2\n        # Add the moves from the smaller tower and the nth move\n        return 2 * smaller_moves + nth_move",
+    "tests": [
+        "assert hanoi_moves(3) == 7",
+        "assert hanoi_moves(4) == 15",
+        "assert hanoi_moves(5) == 31"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

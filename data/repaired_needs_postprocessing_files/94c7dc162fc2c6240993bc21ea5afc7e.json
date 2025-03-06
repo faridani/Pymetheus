@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Substrings Count Finder (Hard)',",
+    "description": "Given a string, find the count of non-empty palindromic substrings within it. A palindromic substring is a sequence of characters that reads the same forward and backward. The input will only contain lowercase alphabets.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing only lowercase letters.\n\n#### Output\n- Returns the number of non-empty palindromic substrings within the input string.",
+    "code": "def count_palindromes(s: str) -> int:\n    # Initialize a 2D counter matrix to keep track of the count of odd and even length palindromes\n    counter = [[0 for _ in range(len(s))] for _ in range(len(s))]\n\n    for i in range(len(s)):\n        # Iterate through all possible lengths of palindromic substrings from 1 to the length of the string\n        for j in range(min(i, len(s) - i + 1), -1, -1):\n            # Check if the current substring is a palindrome\n            if s[i:j] == s[i:j][::-1]:\n                # If it is, increment the count for odd and even length palindromes accordingly\n                counter[i][j] += 1\n                if (j - i) % 2 == 0:\n                    counter[(i + 1) // 2][(j + 1) // 2] += 1\n    # Sum the values in the matrix to get the final count of palindromes\n    return sum([x * (x + 1) // 2 for x in counter[0]])",
+    "tests": [
+        "assert count_palindromes(\"babad\") == 5",
+        "assert count_palindromes(\"cbbd\") == 3",
+        "assert count_palindromes(\"a\") == 1",
+        "assert count_palindromes(\"ac\") == 2"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

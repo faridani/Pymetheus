@@ -1,0 +1,11 @@
+{
+    "title": "Tree Traversal",
+    "description": "Write a function that takes as input an adjacency list representation of a tree and returns the pre-order traversal of the tree. The adjacency list is represented as a dictionary where each key is a node and its corresponding value is a list of nodes that are directly connected to it.\n\n#### Function Signature\n```python\ndef traverse(tree: dict) -> list:\n```\n\n#### Input\n- `tree` (dict): An adjacency list representation of a tree, where each key is a node and its corresponding value is a list of nodes that are directly connected to it.\n\n#### Output\n- Returns the pre-order traversal of the tree as a list of nodes.",
+    "code": "import collections\ndef traverse(tree: dict) -> list:\n    if not tree:\n        return []\n    visited = set()\n    result = []\n    stack = [next(iter(tree))]\n\n    while stack:\n        node = stack.pop()\n        if node not in visited:\n            visited.add(node)\n            result.append(node)\n            stack.extend(neighbor for neighbor in tree[node] if neighbor not in visited)\n\n    return result",
+    "tests": [
+        "assert traverse({}) == []",
+        "assert traverse({'A': ['B']}) == ['A']",
+        "assert traverse({'A': ['B', 'C'], 'B': ['D'], 'C': ['E']}) == ['A', 'B', 'D', 'C', 'E']"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `anagram_check` that checks if two given strings are anagrams. \n\n#### Function Signature\n```python\ndef anagram_check(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def anagram_check(s1: str, s2: str) -> bool:\n    # Remove spaces and convert to set\n    set1 = set(s1.replace(' ', '').lower())\n    set2 = set(s2.replace(' ', '').lower())\n    \n    # Check if both sets have the same number of elements\n    if len(set1) != len(set2):\n        return False\n    \n    # Check if all elements in set1 are present in set2 and vice versa\n    return set1.issubset(set2) and set2.issubset(set1)\n",
+    "tests": [
+        "assert anagram_check('listen', 'silent') == True",
+        "assert anagram_check('act', 'cat') == False",
+        "assert anagram_check('madam', 'Madam') == True",
+        "assert anagram_check('Hello world!', 'dlroW olleH') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

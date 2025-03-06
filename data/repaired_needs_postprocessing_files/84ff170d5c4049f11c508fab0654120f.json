@@ -1,0 +1,11 @@
+{
+    "title": "Permutation Checker (Hard)",
+    "description": "Given two strings, determine if they are permutations of each other. A permutation is an arrangement of items where the order matters.\n#### Function Signature\n```python\ndef is_permutation(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings of equal length that may contain letters, numbers, and spaces.\n\n#### Output\n- Returns `True` if the two input strings are permutations of each other, `False` otherwise.",
+    "code": "def is_permutation(s1: str, s2: str) -> bool:\n    # Check if the two strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Create dictionaries to store character counts for each string\n    dict_s1 = {char: s1.count(char) for char in sorted(set(s1))}\n    dict_s2 = {char: s2.count(char) for char in sorted(set(s2))}\n    \n    # Check if the dictionaries are equal\n    return dict_s1 == dict_s2",
+    "tests": [
+        "assert is_permutation('abcde', 'ecdba') == True",
+        "assert is_permutation('abcd', 'bacd') == False",
+        "assert is_permutation('m a n', 'n a m') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Given two strings, write a function `anagram_detector` that checks if they are anagrams of each other.\n\n#### Function Signature```python\ndef anagram_detector(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing only lowercase letters.\n- `s2` (str): Another string containing only lowercase letters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n\n#### HintAnagrams are words or phrases that contain the same letters but may differ in their arrangement. For example, \"listen\" and \"silent\" are anagrams.",
+    "code": "def anagram_detector(s1: str, s2: str) -> bool:\n    # Ensure both strings are of equal length\n    if len(s1) != len(s2):\n        return False\n    \n    # Create two frequency dictionaries for the characters in each string\n    freq_dict_s1 = {}\n    for char in s1:\n        freq_dict_s1[char] = 0\n    for char in s2:\n        if char not in freq_dict_s2:\n            freq_dict_s2[char] = 0\n        freq_dict_s2[char] += 1\n    \n    # Check if both frequency dictionaries are the same (apart from order)\n    return freq_dict_s1 == freq_dict_s2",
+    "tests": [
+        "assert anagram_detector(\"listen\", \"silent\") == True",
+        "assert anagram_detector(\"abcde\", \"edcba\") == True",
+        "assert anagram_detector(\"hello\", \"world\") == False",
+        "assert anagram_detector(\"abracadabra\", \"aracadabram\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

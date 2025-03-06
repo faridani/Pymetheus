@@ -1,0 +1,12 @@
+{
+    "title": "Divide and Conquer",
+    "description": "In this problem, you will be given a list of integers representing the weights of n items. You are also given another integer m representing the capacity of a knapsack. Your task is to find the maximum sum of items that can be put in the knapsack without exceeding its capacity.\n\n#### Function Signature\n```python\ndef max_sum(weights: list[int], capacity: int) -> int:\n```\n\n#### Input\n- `weights` (list[int]): A list of integers representing the weights of n items.\n- `capacity` (int): An integer representing the capacity of a knapsack.\n\n#### Output\n- Returns the maximum sum of items that can be put in the knapsack without exceeding its capacity.\n",
+    "code": "from typing import List\n\ndef max_sum(weights: List[int], capacity: int) -> int:\n    n = len(weights)\n    dp = [[0] * (capacity + 1) for _ in range(n + 1)]\n\n    for i in range(1, n + 1):\n        for w in range(capacity + 1):\n            if weights[i - 1] > w:\n                dp[i][w] = dp[i - 1][w]\n            else:\n                dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - weights[i - 1]] + weights[i - 1])\n\n    return dp[n][capacity]",
+    "tests": [
+        "assert max_sum([1, 2, 3, 4, 5], 6) == 9",
+        "assert max_sum([10, 20, 30], 40) == 60",
+        "assert max_sum([1, 2, 3, 4, 5], 1) == 1",
+        "assert max_sum([], 100) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

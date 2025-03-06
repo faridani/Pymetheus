@@ -1,0 +1,11 @@
+{
+    "title": "Reverse Sentence",
+    "description": "Write a function `reverse_sentence` that takes a given string as input and returns the same string with the words reversed. The sentence may contain multiple words, spaces, commas, periods, question marks, exclamation points, and semicolons.\n\n#### Function Signature\n```python\ndef reverse_sentence(s: str) -> str:\n``` \n\n#### Input\n- `s` (str): A string that contains multiple words, spaces, punctuation marks, and possibly a mixture of the two.\n\n#### Output\n- Returns the input sentence with the words reversed.",
+    "code": "def reverse_sentence(s: str) -> str:\n    # Split the string into words by space, comma, period, question mark, exclamation point, and semicolon\n    words = s.split() + s.split(',') + s.split('.') + s.split('?') + s.split('!') + s.split(';')\n    # Reverse the list of words\n    reversed_words = reversed(words)\n    # Join the reversed words back into a string with spaces between them\n    return ' '.join(reversed_words)",
+    "tests": [
+        "assert reverse_sentence('Hello, World!') == 'World! Hello'",
+        "assert reverse_sentence('I love programming, it is fun.') == 'fun. it is programming love I'",
+        "assert reverse_sentence('A man, a plan, a canal: Panama') == 'Panama :canal a plan a man A'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

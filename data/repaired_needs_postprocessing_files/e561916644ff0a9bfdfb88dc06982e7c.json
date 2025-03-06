@@ -1,0 +1,11 @@
+{
+    "title": "Economist's Dilemma",
+    "description": "An economist is trying to calculate the average annual income of his neighborhood. He asks each resident to give him a list of their monthly incomes for the past year. The lists are in the format: [Jan, Feb, Mar, ..., Dec], where each element is an integer. He then adds all these lists together and calculates the average of all these sums. However, he soon realizes that he forgot to include one resident's data. Luckily, this resident told him their total annual income was $25,000. The economist wonders what would have been the average annual income if he had included this resident from the start.\n\n#### Function Signature\n```python\ndef average_annual_income(lists: list[list[int]], total_income: int) -> float:\n```\n\n#### Input\n- `lists`: A list of lists, where each sublist represents a resident's monthly incomes for the past year.\n- `total_income`: The total annual income of the missing resident.\n\n#### Output\n- Returns the average annual income if the missing resident had been included from the start.",
+    "code": "import statistics\ndef average_annual_income(lists: list[list[int]], total_income: int) -> float:\n    # Calculate the sum for each list\n    sums = [sum(lst) for lst in lists]\n    # Add the total income of the missing resident\n    sums.append(total_income)\n    # Calculate the mean of all these sums\n    return statistics.mean(sums)",
+    "tests": [
+        "assert average_annual_income([[100, 200, 300, 400], [500, 600, 700, 800]], 25000) == 5500.0",
+        "assert average_annual_income([[1, 2, 3, 4], [5, 6, 7, 8]], 10000) == 3750.0",
+        "assert average_annual_income([], 20000) == 20000.0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

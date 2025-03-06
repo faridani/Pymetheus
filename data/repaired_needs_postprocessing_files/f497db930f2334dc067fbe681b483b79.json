@@ -1,0 +1,11 @@
+{
+    "title": "Sum of Digits in a Number (Easy)",
+    "description": "Write a function `sum_of_digits` that takes an integer as input and returns the sum of its digits.\n\n#### Function Signature\n```python\ndef sum_of_digits(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns the sum of the digits of the input integer.",
+    "code": "def sum_of_digits(n: int) -> int:\n    total = 0\n    while n > 0:\n        digit = n % 10\n        total += digit\n        n //= 10\n    return total",
+    "tests": [
+        "assert sum_of_digits(12345) == 15",
+        "assert sum_of_digits(987654321) == 45",
+        "assert sum_of_digits(0) == 0"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

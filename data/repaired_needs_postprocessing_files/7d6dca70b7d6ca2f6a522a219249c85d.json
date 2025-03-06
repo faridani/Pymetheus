@@ -1,0 +1,13 @@
+{
+    "title": "The Great Pyramid of Primes (Hard)",
+    "description": "Write a function `is_pyramidal` that determines if a given number is pyramidal. A pyramidal number is a number for which the sum of all its proper divisors (excluding the number itself) equals half of that number.\n\n#### Function Signature\n```python\ndef is_pyramidal(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): A positive integer to be checked for pyramidality.\n\n#### Output\n- Returns `True` if the input number is pyramidal, `False` otherwise.\n",
+    "code": "def is_pyramidal(n: int) -> bool:\n    # Check if the number is negative or 1 (not pyramidal)\n    if n <= 0 or n == 1:\n        return False\n    # Calculate divisors of the given number and sum them up\n    divisors = []\n    for i in range(1, int(n**0.5) + 1):\n        if n % i == 0:\n            divisors.append(i)\n            divisors.append(n // i)\n    # Check if the sum of divisors is equal to half of the number\n    return sum(divisors) == n // 2",
+    "tests": [
+        "assert is_pyramidal(1) == False",
+        "assert is_pyramidal(6) == True",
+        "assert is_pyramidal(28) == True",
+        "assert is_pyramidal(496) == True",
+        "assert is_pyramidal(510) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

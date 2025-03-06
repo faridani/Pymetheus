@@ -1,0 +1,13 @@
+{
+    "title": "Reverse String with Kth Character Removed (Hard)",
+    "description": "Given a string `s` and an integer `k`, write a function that returns the string with the `kth` character removed and then reversed. The index of the first character is 1. If `k` is greater than the length of the string, return the empty string.\n\n#### Function Signature\n```python\ndef remove_kth_and_reverse(s: str, k: int) -> str:\n``` \n\n#### Input\n- `s` (str): A string containing characters.\n- `k` (int): An integer indicating the position of the character to be removed (1-indexed).\n\n#### Output\n- Returns a string with the `kth` character removed and then reversed.",
+    "code": "def remove_kth_and_reverse(s: str, k: int) -> str:\n    # Check if k is within bounds\n    if k > len(s):\n        return ''\n\n    # Remove the kth character and reverse the string\n    return s[:k-1] + s[k:] + s[k-2:-1]\n",
+    "tests": [
+        "assert remove_kth_and_reverse('abcde', 3) == 'abde'",
+        "assert remove_kth_and_remove('hello', 3) == 'hllo'",
+        "assert remove_kth_and_reverse('world', 2) == 'wlrd'",
+        "assert remove_kth_and_reverse('python', 4) == 'pyth'",
+        "assert remove_kth_and_reverse('code', 3) == 'ceod'"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

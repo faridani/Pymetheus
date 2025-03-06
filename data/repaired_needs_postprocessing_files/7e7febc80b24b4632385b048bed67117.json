@@ -1,0 +1,11 @@
+{
+    "title": "'Number Antichain Partition' - Medium",
+    "description": "An antichain in a partially ordered set (poset) is a subset of pairwise incomparable elements. In this problem, you are given an array of numbers and your task is to partition it into antichains.\n\n#### Function Signature\n```python\ndef find_antichains(numbers: List[int]) -> List[List[int]]:\n```\n\n#### Input\n- `numbers` (List[int]): A sorted list of positive integers.\n\n#### Output\n- Returns a list of sublists, where each sublist represents an antichain in the poset formed by the input numbers. The order of these sublists is not significant.\n",
+    "code": "def find_antichains(numbers: List[int]) -> List[List[int]]:\n    result = []\n\n    smalers = {number: float('inf') for number in numbers}\n\n    for number in sorted(numbers, reverse=True):\n        if number > smalers[number]:\n            result.append([number])\n            for smaller_number in numbers[:number - 1]:\n                smalers[smaller_number] = min(smalers[smaller_number], number)\n\n    return [antichain for antichain in result if len(antichain) > 0]",
+    "tests": [
+        "assert find_antichains([1, 2, 3, 4, 5]) == [[1], [2], [3, 4], [5]]",
+        "assert find_antichains([1, 2, 3, 3, 4, 5]) == [[1], [2], [3, 3], [4], [5]]",
+        "assert find_antichains([10, 11, 12, 13, 14, 15, 16]) == [[10], [11], [12], [13, 14], [15], [16]]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Hard: String Transformation to Palindrome",
+    "description": "Given a string `s`, determine if it's possible to make the string a palindrome by swapping two adjacent characters any number of times. Write a function `is_palindrome_possible` that checks this condition.\n\n#### Function Signature\n```python\ndef is_palindrome_possible(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string consisting of lowercase English letters.\n\n#### Output\n- Returns `True` if the input string can be made into a palindrome by swapping two adjacent characters any number of times, `False` otherwise.",
+    "code": "from collections import Counter\ndef is_palindrome_possible(s: str) -> bool:\n    char_counts = Counter(s)\n    odd_occurrences = sum(count % 2 != 0 for count in char_counts.values())\n    return odd_occurrences <= 2",
+    "tests": [
+        "assert is_palindrome_possible(\"aabb\") == True",
+        "assert is_palindrome_possible(\"racecar\") == True",
+        "assert is_palindrome_possible(\"test\") == False",
+        "assert is_palindrome_possible(\"noon\") == True"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

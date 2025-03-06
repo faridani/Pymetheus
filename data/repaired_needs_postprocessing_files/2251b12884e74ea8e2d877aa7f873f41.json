@@ -1,0 +1,12 @@
+{
+    "title": "Reversed Words Palindrome Checker (Hard)",
+    "description": "Write a function `is_reversed_words_palindrome` that checks if a given sentence is a reversed words palindrome.\n\n#### Function Signature```python\ndef is_reversed_words_palindrome(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation. The sentence consists of one or more words separated by one or more whitespace characters.\n\n#### Output\n- Returns `True` if the input sentence is a reversed words palindrome, `False` otherwise.\nFor example, 'A man, a plan, a canal, Panama' is not a reversed words palindrome, but 'was it a car or can it be a cat?' is.",
+    "code": "import re\n\ndef is_reversed_words_palindrome(s: str) -> bool:\n    # Remove non-alphanumeric characters and split into words\n    words = [word.lower() for word in re.findall('\\w+', s)]\n    # Reverse the list of words and join them back into a string\n    reversed_words = ' '.join(reversed(words))\n    # Check if the original sentence and the reversed one are the same after removing spaces and punctuation\n    return re.sub('\\s', '', s) == re.sub('\\s', '', reversed_words)",
+    "tests": [
+        "assert is_reversed_words_palindrome('A man, a plan, a canal, Panama') == False",
+        "assert is_reversed_words_palindrome('was it a car or can it be a cat?') == True",
+        "assert is_reversed_words_palindrome('hello world') == False",
+        "assert is_reversed_words_palindrome('My age is 0, si if I wake at night it x-rays me.') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

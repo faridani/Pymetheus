@@ -1,0 +1,11 @@
+{
+    "title": "Medium - Count Subarrays with Sum",
+    "description": "Given an array of integers, `nums`, write a function `count_subarrays` that counts the number of non-empty subarrays whose sum equals a given target integer `k`. Given an array of integers, `nums`, write a function `count_subarrays` that counts the number of non-empty subarrays whose sum equals a given target integer `k`. \n\n#### Function Signature\n```python\ndef count_subarrays(nums: list[int], k: int) -> int:\n``` \n\n#### Input\n- `nums` (list[int]): A list of integers.\n- `k` (int): The target sum.\n\n#### Output\n- Returns the number of subarrays whose sum equals `k`. ",
+    "code": "def count_subarrays(nums: list[int], k: int) -> int:\n    count = 0\n    for start in range(len(nums)):\n        current_sum = 0\n        for end in range(start, len(nums)):\n            current_sum += nums[end]\n            if current_sum == k:\n                count += 1\n    return count",
+    "tests": [
+        "assert count_subarrays([1, 1, 1], 2) == 2",
+        "assert count_subarrays([1, 2, 3], 3) == 1",
+        "assert count_subarrays([-1, -1, 1], 0) == 1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

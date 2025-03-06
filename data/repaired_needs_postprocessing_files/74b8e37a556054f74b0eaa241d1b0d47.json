@@ -1,0 +1,12 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Given two strings, write a function `is_anagram` that checks if the two input strings are anagrams of each other. An anagram is a word or phrase that consists of the same letters as another, but may have different word order.\n\n#### Function Signature```python\ndef is_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` and `str2` (str): Two strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n\n#### Constraints and Hints\n- Ignore case sensitivity.\n- Allow for different numbers of characters in the two strings (for example 'listen' and 'silent').",
+    "code": "import collections\ndef is_anagram(str1: str, str2: str) -> bool:\n    # Remove non-alphabetic characters from both strings\n    s1 = ''.join(char for char in str1.lower() if char in string.ascii_letters)\n    s2 = ''.join(char for char in str2.lower() if char in string.ascii_letters)\n    # Count the occurrence of each letter\n    count1 = collections.Counter(s1)\n    count2 = collections.Counter(s2)\n    \n    # Check if both strings have the same number of characters and all characters appear with the same frequency in both strings.\n    return len(s1) == len(s2) and count1 == count2",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('Racecar', 'Career') == True",
+        "assert is_anagram('Hello', 'world') == False",
+        "assert is_anagram('A man, a plan, a canal: Panama', 'Panama canal: a plan a mana!') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

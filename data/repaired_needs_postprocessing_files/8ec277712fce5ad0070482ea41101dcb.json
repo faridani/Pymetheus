@@ -1,0 +1,16 @@
+{
+    "title": "Goldbach's Conjecture Solver (Hard)",
+    "description": "Goldbach's Conjecture states that every even integer greater than 2 can be expressed as the sum of two primes. Write a function `goldbach` that takes an integer `n` and returns `True` if `n` is an even integer that can be expressed as the sum of two primes, and `False` otherwise.\n#### Function Signature\n```python\ndef goldbach(n: int) -> bool:\n```\n#### Input\n- `n` (int): An integer greater than 2.\n#### Output\n- Returns `True` if the input is an even integer that can be expressed as the sum of two primes, `False` otherwise.\n",
+    "code": "def goldbach(n: int) -> bool:\n    def is_prime(num: int) -> bool:\n        # Check for edge cases\n        if num <= 1: return False\n        if num == 2: return True\n        for i in range(3, int(num**0.5)+1, 2):\n            if num % i == 0:\n                return False\n        return True\n    # Check if the input is even\n    if n % 2 == 1: return False\n    # Try all possible pairs of primes up to half of the input value\n    for a in range(3, int(n/2)+1):\n        b = n - a\n        if is_prime(a) and is_prime(b):\n            return True",
+    "tests": [
+        "assert goldbach(5) == False",
+        "assert goldbach(6) == True",
+        "assert goldbach(9) == False",
+        "assert goldbach(10) == True",
+        "assert goldbach(13) == False",
+        "assert goldbach(14) == True",
+        "assert goldbach(27) == True",
+        "assert goldbach(35) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

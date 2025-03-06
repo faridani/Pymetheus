@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Sum Increasing Subsequence",
+    "description": "A sequence of numbers is called an increasing if each number is greater than its predecessor. The maximum sum increasing subsequence problem is the task of finding a contiguous subsequence within the given sequence which maximizes this property.\n\n#### Function Signature\n```python\ndef max_sum_increasing_subsequence(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers representing the input sequence.\n\n#### Output\n- Returns the maximum sum that can be obtained by selecting a contiguous subsequence from the given sequence.",
+    "code": "def max_sum_increasing_subsequence(nums: list[int]) -> int:\n    n = len(nums)\n    dp = [0] * (n + 1)\n    for i in range(n):\n        for j in range(i, -1, -1):\n            if nums[i] > nums[j]:\n                dp[i + 1] = max(dp[i + 1], dp[j] + nums[i])\n    return max(dp)",
+    "tests": [
+        "assert max_sum_increasing_subsequence([34, -50, 42, 14, -5, 86]) == 347",
+        "assert max_sum_increasing_subsequence([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6",
+        "assert max_sum_increasing_subsequence([10, 20, 30, 40, 50]) == 150"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

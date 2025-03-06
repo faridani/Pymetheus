@@ -1,0 +1,11 @@
+{
+    "title": "'Reverse a String in Groups of K' - A Medium Python Problem",
+    "description": "Write a function named `reverse_string_in_groups` that takes two arguments: a string `s` and an integer `k`. The function should return a new string where the original string is reversed in groups of `k` characters.\n\n#### Function Signature\n```python\ndef reverse_string_in_groups(s: str, k: int) -> str:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n- `k` (int): An integer greater than 0.\n\n#### Output\n- Returns a new string where the original string is reversed in groups of `k` characters.\n\n#### Constraints\n- The minimum value of `k` is 1.",
+    "code": "def reverse_string_in_groups(s: str, k: int) -> str:\n    if len(s) % k != 0:\n        raise ValueError('Length of the string must be divisible by k.')\n    return ''.join([s[i*k + k - j] for j in range(len(s) // k) for i in range(j, min(j+len(s) // k, len(s)))])",
+    "tests": [
+        "assert reverse_string_in_groups('abcdefghijklmnop', 3) == 'pyhnolpqrstuvwxyzab'",
+        "assert reverse_string_in_groups('Hello World!', 5) == '!dlroW olleH'",
+        "assert reverse_string_in_groups('A', 1) == 'A'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

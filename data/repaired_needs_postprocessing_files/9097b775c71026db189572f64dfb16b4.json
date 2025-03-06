@@ -1,0 +1,12 @@
+{
+    "title": "Hardest Coin Flip Problem",
+    "description": "A set of coins, each with a unique value on both sides (0-9), is randomly flipped. The goal is to maximize the sum of the values that are seen when the coins land on their highest values. Write a function `max_coin_flip_sum` that calculates the maximum possible sum.\n#### Function Signature\n```python\ndef max_coin_flip_sum(num_coins: int) -> int:\n```\n#### Input\n- `num_coins` (int): The number of coins in the set.\n#### Output\n- Returns the maximum possible sum that can be achieved by flipping the coins.",
+    "code": "import itertools\ndef max_coin_flip_sum(num_coins: int) -> int:\n    # Define all possible coin values\n    coin_values = [str(i) for i in range(10)]\n    \n    # Generate all possible permutations of coins\n    permutations = list(itertools.permutations(coin_values, num_coins))\n    \n    # Initialize the maximum sum\n    max_sum = 0\n    \n    # Iterate over each permutation and calculate the sum of the highest values\n    for permutation in permutations:\n        highest_values = [int(value) for value in permutation]\n        total_sum = sum(highest_values)\n        \n        # Update the maximum sum if necessary\n        max_sum = max(max_sum, total_sum)\n    \n    return max_sum",
+    "tests": [
+        "assert max_coin_flip_sum(1) == 9",
+        "assert max_coin_flip_sum(2) == 18",
+        "assert max_coin_flip_sum(3) == 27",
+        "assert max_coin_flip_sum(4) == 36"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Elegant Even Numbers",
+    "description": "Write a function `check_even_numbers` that takes an integer as input and returns the number of even numbers from 0 to the given integer.\n\n#### Function Signature\n```python\ndef check_even_numbers(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns an integer representing the count of even numbers from 0 to `n`.",
+    "code": "def check_even_numbers(n: int) -> int:\n    count = 0\n    for i in range(n + 1):\n        if i % 2 == 0:\n            count += 1\n    return count",
+    "tests": [
+        "assert check_even_numbers(10) == 5",
+        "assert check_even_numbers(20) == 10",
+        "assert check_even_numbers(30) == 15",
+        "assert check_even_numbers(0) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Reverse String Words (Easy)",
+    "description": "Write a function `reverse_words` that takes a string as input and returns the same string but with each word reversed.\n\n#### Function Signature\n```python\ndef reverse_words(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string containing words separated by spaces or punctuation marks.\n\n#### Output\n- Returns a new string where each word in the input string is reversed.",
+    "code": "def reverse_words(s: str) -> str:\n    # Split the string into words using split()\n    words = s.split()\n    # Reverse each word and join them back together\n    return ' '.join(word[::-1] for word in words)",
+    "tests": [
+        "assert reverse_words('Hello, World!') == 'olleH , dlroW!'",
+        "'assert reverse_words(\"The quick brown fox jumps over the lazy dog.\") == \"gtuk ybaj sirop xof nwok siht gnufox kciuq yzal ezid\"'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

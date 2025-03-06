@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Subsequence Length' - Hard",
+    "description": "A palindromic subsequence of a string is a sequence that can be read the same forwards and backwards. Write a function `palindromeSubseqLength` that takes in a string, and returns the maximum length of any palindromic subsequence found within it.\n\n#### Function Signature\n```python\ndef palindromeSubseqLength(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns an integer representing the maximum length of any palindromic subsequence found within the input string.",
+    "code": "import itertools\ndef palindromeSubseqLength(s: str) -> int:\n    # Generate all possible substrings (including overlapping ones)\n    substrings = list(itertools.chain(*[(s[i:j] for i, j in zip(range(len(s), 0, -1), range(len(s))))]))\n    \n    # Initialize maximum length as 0\n    max_length = 0\n    \n    # Iterate through all substrings and check if they are palindromes\n    for substring in substrings:\n        # Check if the substring reads the same forwards and backwards (ignoring case)\n        if len(substring) > max_length and substring.lower() == substring[::-1].lower():\n            max_length = len(substring)\n    \n    return max_length",
+    "tests": [
+        "assert palindromeSubseqLength(\"babad\") == 4",
+        "assert palindromeSubseqLength(\"cbbd\") == 3",
+        "assert palindromeSubseqLength(\"acccbcbbbac\") == 6",
+        "assert palindromeSubseqLength(\"hello\") == 1"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

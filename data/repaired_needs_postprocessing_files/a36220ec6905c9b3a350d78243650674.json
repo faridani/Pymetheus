@@ -1,0 +1,12 @@
+{
+    "title": "\"Fibonacci Palindromes' easy\"",
+    "description": "Write a function `is_fibo_palindrome` that checks if a given positive integer is the sum of two consecutive Fibonacci numbers and forms a palindrome when converted to string. Write a function `is_fibo_palindrome(n: int) -> bool:`.\n\n#### Function Signature\n```python\ndef is_fibo_palindrome(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): A positive integer greater than or equal to 1.\n\n#### Output\n- Returns `True` if the input integer can be written as a palindrome using two consecutive Fibonacci numbers, `False` otherwise.",
+    "code": "def is_fibo_palindrome(n: int) -> bool:\n    # Function to calculate nth Fibonacci number\n    def fib(n: int):\n        if n <= 1:\n            return n\n        else:\n            return fib(n - 1) + fib(n - 2)\n    \n    # Calculate the Fibonacci sequence up to the square root of n\n    fib_sequence = [0, 1] \n    i = 2\n    while True:\n        if fib(i) > n:\n            break\n        fib_sequence.append(fib(i))\n        i += 1\n    \n    # Check if there exists a pair of consecutive numbers in the sequence that forms a palindrome when concatenated and converted to string\n    for i in range(len(fib_sequence) - 1):\n        if str(fib_sequence[i]) + str(fib_sequence[i+1]) == str(fib_sequence[i][::-1] + fib_sequence[i+1][::-1]):\n            return True\n    \n    # If no pair of consecutive Fibonacci numbers forms a palindrome, return False\n    return False",
+    "tests": [
+        "assert is_fibo_palindrome(7) == True",
+        "assert is_fibo_palindrome(8) == True",
+        "assert is_fibo_palindrome(9) == False",
+        "assert is_fibo_palindrome(121) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "'Anagram Detector (Hard)'",
+    "description": "Given two strings, write a function `anagram_checker` that returns `True` if the input strings are anagrams of each other (i.e., the letters in one string can be rearranged to form the other), and `False` otherwise.\n\n#### Function Signature\n```python\ndef anagram_checker(s1: str, s2: str) -> bool:\n``` \n\n#### Input\n- `s1`, `s2` (str): Strings of lowercase alphabets.\n\n#### Output\n- Returns `True` if the input strings are anagrams, `False` otherwise.\n",
+    "code": "def anagram_checker(s1: str, s2: str) -> bool:\n    # Ensure both strings are lowercase and have equal length\n    s1 = sorted(list(s1.lower()))\n    s2 = sorted(list(s2.lower()))\n    if len(s1) != len(s2):\n        return False\n    # Compare the sorted strings to check if they are anagrams\n    return s1 == s2",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('hello', 'world') == False",
+        "assert anagram_checker('actors', 'rotators') == True",
+        "assert anagram_checker('apple', 'pleap') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

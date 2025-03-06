@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Fizz Buzz Counter",
+    "description": "Write a function `fizz_buzz` that takes an integer `n` as input and returns a string containing the numbers from 1 to `n`, but for multiples of three print \"Fizz\" instead of the number. For multiples of five, print \"Buzz\". For numbers which are multiples of both three and five, print \"FizzBuzz\".\n\n#### Function Signature\n```python\ndef fizz_buzz(n: int) -> str:\n```\n\n#### Input\n- `n` (int): An integer that represents the end of the range for counting.\n\n#### Output\n- Returns a string containing the numbers from 1 to `n`, with Fizz, Buzz or FizzBuzz as per the problem description.",
+    "code": "def fizz_buzz(n: int) -> str:\n    result = \"\"\n    for i in range(1, n+1):\n        if i % 3 == 0 and i % 5 == 0:\n            result += \"FizzBuzz\"\n        elif i % 3 == 0:\n            result += \"Fizz\"\n        elif i % 5 == 0:\n            result += \"Buzz\"\n        else:\n            result += str(i) + \"\"\n    return result",
+    "tests": [
+        "assert fizz_buzz(15) == \"1\\n2\\n3\\nFizz\\n4\\nFizz\\nBuzz\\n5\\nFizz\\n6\\n7\\n8\\n9\\nFizz\\n10\\nBuzz\\n11\\nFizz\\n12\\n13\\n14\\nFizzBuzz\"",
+        "assert fizz_buzz(3) == \"1\\n2\\nFizz\"",
+        "assert fizz_buzz(5) == \"1\\n2\\n3\\nFizz\\n4\\nBuzz\\n\"",
+        "assert fizz_buzz(10) == \"1\\n2\\n3\\nFizz\\n4\\nBuzz\\n5\\nFizz\\n6\\n7\\n8\\n9\\nFizz\\n10\\nBuzz\""
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Subsequence Summation",
+    "description": "Given a sequence of numbers, write a function `subsequence_summation` that returns the sum of all possible subsequences of the given sequence. A subsequence is a sequence formed by taking some elements of the original sequence in order, with possibly-consecutive elements being skipped.\n\n#### Function Signature\n```python\ndef subsequence_summation(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums` (List[int]): A list of integers representing the sequence.\n\n#### Output\n- Returns the sum of all possible subsequences of the given sequence.",
+    "code": "def subsequence_summation(nums: List[int]) -> int:\n    # The sum of all subsequences is the sum of all unique combinations of the numbers\n    # in the input list, with duplicates allowed.\n    sums = [0] * (len(nums) + 1)\n    for num in nums:\n        for i in range(len(sums)):\n            sums[i] += nums[num]\n    return sum(sums)",
+    "tests": [
+        "assert subsequence_summation([1, 2]) == 6",
+        "assert subsequence_summation([3, 4, 5]) == 37",
+        "assert subsequence_summation([1, 2, 3]) == 17",
+        "assert subsequence_summation([]) == 0"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

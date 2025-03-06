@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Fibonacci Sequence with Cyclicity",
+    "description": "The Fibonacci sequence starts with 0 and 1, and each subsequent number is the sum of the two preceding ones. It's defined as follows:F(0) = 0 F(1) = 1F(n) = F(n - 1) + F(n - 2) for n > 1.A curious property of the Fibonacci sequence is that it exhibits cyclicity when considering the last digit of each number. For example, in base 10:Fibonacci sequence (last digits): 0, 1, 1, 2, 3, 5, 8, 3, 1, 4, ... Notice that the sequence {0, 1, 1, 2, 3, 5, 8} repeats.Write a function fibonacci_cycle(base) that takes an integer base as input and returns:* The length of the cycle of the Fibonacci sequence when considering its last digits in the given base. For example: fibonacci_cycle(10) should return 60.",
+    "code": "def fibonacci_cycle(base):\n    fib_numbers = [0, 1]\n    seen_digits = {}\n    cycle_length = 0\n\n    while True:\n        next_fib = (fib_numbers[-1] + fib_numbers[-2]) % base\n        fib_numbers.append(next_fib)\n\n        if next_fib in seen_digits:\n            cycle_length = len(fib_numbers) - seen_digits[next_fib]\n            break\n\n        seen_digits[next_fib] = len(fib_numbers)\n\n    return cycle_length",
+    "tests": [
+        "assert fibonacci_cycle(10) == 60",
+        "assert fibonacci_cycle(2) == 3",
+        "assert fibonacci_cycle(5) == 20"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

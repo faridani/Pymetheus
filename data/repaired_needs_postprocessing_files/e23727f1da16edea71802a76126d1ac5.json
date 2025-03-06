@@ -1,0 +1,11 @@
+{
+    "title": "[Hard] Longest Increasing Subsequence",
+    "description": "Given an integer array nums, return the length of the longest strictly increasing subsequence.\n\n#### Function Signature\n```python\ndef lengthOfLIS(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums` (List[int]): An array of distinct integers.\n\n#### Output\n- Returns the length of the longest strictly increasing subsequence.",
+    "code": "def lengthOfLIS(nums: List[int]) -> int:\n    if not nums:\n        return 0\n    dp = [1] * len(nums)\n    for i in range(len(nums)):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    return max(dp)",
+    "tests": [
+        "assert lengthOfLIS([10,9,2,5,3,7,101,18]) == 4",
+        "assert lengthOfLIS([0,1,0,3,2,3]) == 4",
+        "assert lengthOfLIS([7,7,7,7,7,7,7]) == 1"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Balanced Brackets",
+    "description": "Given a string containing brackets (), [], and {}, determine whether the brackets are balanced. A string of brackets is considered balanced if:\n1. Every opening bracket has a corresponding closing bracket of the same type.\n2. The brackets are nested correctly (e.g., ()[]{} is balanced, but ([)] is not).\n\n#### Function Signature\n```python\ndef is_balanced(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string containing brackets.\n\n#### Output\n- Returns `True` if the brackets are balanced, `False` otherwise.\n",
+    "code": "def is_balanced(s: str) -> bool:\n    stack = []\n    bracket_pairs = {')': '(', ']': '[', '}': '{'}\n\n    for char in s:\n        if char in bracket_pairs.values():  # Opening bracket\n            stack.append(char)\n        elif char in bracket_pairs.keys():  # Closing bracket\n            if not stack or stack.pop() != bracket_pairs[char]:\n                return False\n    return len(stack) == 0",
+    "tests": [
+        "assert is_balanced(\"()\") == True",
+        "assert is_balanced(\"[]{}\") == True",
+        "assert is_balanced(\"([{}])\") == True",
+        "assert is_balanced(\"((])\") == False",
+        "assert is_balanced(\"{[}]\") == False",
+        "assert is_balanced(\"{{[[(())]]}}\") == True"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

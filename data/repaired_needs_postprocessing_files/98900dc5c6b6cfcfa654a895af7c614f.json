@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `find_anagrams` that finds all the anagrams of a given string.\n#### Function Signature\n```python\ndef find_anagrams(word: str) -> list[str]:\n``` \n\n#### Input\n- `word` (str): A string containing only lowercase alphabets.\n\n#### Output\n- Returns a list of strings, where each string is an anagram of the input word. The list may be empty if no anagrams are found.\n",
+    "code": "from itertools import permutations\ndef find_anagrams(word: str) -> list[str]:\n    # Generate all possible permutations of the input word\n    perms = set(map(''.join, permutations(word)))\n    \n    # Filter out duplicates and keep only anagrams\n    anagrams = [word] if len(perms) == 1 else list(perms - {word})\n    return sorted(anagrams)\n",
+    "tests": [
+        "assert find_anagrams('listen') == ['enlist', 'silent']",
+        "assert find_anagrams('tact') == ['cat', 'act', 'tac']",
+        "assert find_anagrams('deed') == ['deed']",
+        "assert find_anagrams('zero') == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

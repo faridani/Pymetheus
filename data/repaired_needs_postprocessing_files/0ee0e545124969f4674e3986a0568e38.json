@@ -1,0 +1,12 @@
+{
+    "title": "Divisor Sum",
+    "description": "Given a positive integer n, find the sum of all proper divisors of n.\n#### Function Signature\n```\ndef divisor_sum(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the sum of all proper divisors of `n`, excluding `n` itself.\n",
+    "code": "def divisor_sum(n: int) -> int:\n    def find_divisors(num: int) -> list:\n        divisors = [1]\n        for i in range(2, num):\n            if num % i == 0:\n                divisors.append(i)\n        return divisors\n    sum_divisors = sum(find_divisors(n))\n    return sum_divisors",
+    "tests": [
+        "assert divisor_sum(28) == 28",
+        "assert divisor_sum(1) == 1",
+        "assert divisor_sum(2) == 1",
+        "assert divisor_sum(3) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

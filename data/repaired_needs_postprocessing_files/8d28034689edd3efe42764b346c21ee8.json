@@ -1,0 +1,11 @@
+{
+    "title": "'Remove Vowels from a String (Easy)'",
+    "description": "Write a function `remove_vowels` that takes a string as input and returns the same string but with all vowels removed. Note that vowels include 'a', 'e', 'i', 'o', 'u' and their uppercase equivalents.\n#### Function Signature\n```python\ndef remove_vowels(s: str) -> str:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, spaces and punctuation.\n\n#### Output\n- Returns a string with all vowels removed.\n",
+    "code": "def remove_vowels(s: str) -> str:\n    vowels = {'a', 'e', 'i', 'o', 'u'} \n    result = ''\n    for char in s:\n        if char not in vowels:\n            result += char\n    return result",
+    "tests": [
+        "assert remove_vowels('Hello World!') == 'Hll Wrld!'",
+        "assert remove_vowels('I am a programmer') == ' Im md prgrmrr'",
+        "assert remove_vowels('aeiou') == ''"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

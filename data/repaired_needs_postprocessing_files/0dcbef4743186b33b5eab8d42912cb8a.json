@@ -1,0 +1,13 @@
+{
+    "title": "Medium - Sum of Fibonacci Numbers",
+    "description": "The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, usually starting with 0 and 1. Write a function `sum_fibonacci` that takes an integer `n` as input and returns the sum of the first `n` Fibonacci numbers.\r\n\r\n#### Function Signature\r\n```\ndef sum_fibonacci(n: int) -> int:\r\n``` \r\n\r\n#### Input\r\n- `n` (int): The number of Fibonacci numbers to sum.\r\n\r\n#### Output\r\n- Returns the sum of the first `n` Fibonacci numbers.",
+    "code": "def sum_fibonacci(n: int) -> int:\r\n    if n <= 0:\r\n        return 0\r\n    elif n == 1:\r\n        return 1\r\n    else:\r\n        a = 0\r\n        b = 1\r\n        sum = 1\r\n        for i in range(2, n):\r\n            c = a + b\r\n            sum += c\r\n            a = b\r\n            b = c\r\n        return sum",
+    "tests": [
+        "assert sum_fibonacci(0) == 0",
+        "assert sum_fibonacci(1) == 1",
+        "assert sum_fibonacci(2) == 2",
+        "assert sum_fibonacci(5) == 7",
+        "assert sum_fibonacci(10) == 143"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection (Medium)",
+    "description": "Write a function `is_anagram` that determines whether two given strings are anagrams of each other. Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n``` \n\n#### Input\n- `str1` (str): A string containing only alphabets\n- `str2` (str): A string containing only alphabets\n\n#### Output\n- Returns `True` if the two strings are anagrams of each other, `False` otherwise.\n",
+    "code": "import collections\ndef is_anagram(str1: str, str2: str) -> bool:\n    # Convert both strings to lowercase and remove spaces\n    str1 = ''.join([char for char in str1.lower() if char.isalpha()])\n    str2 = ''.join([char for char in str2.lower() if char.isalpha()])\n    # If the lengths of both strings are not equal, they cannot be anagrams\n    if len(str1) != len(str2):\n        return False\n    # Create a counter to count the frequency of each character in str1 and str2\n    counter = collections.Counter(str1)\n    # Check if all characters in str2 have the same frequency as in str1\n    return all([counter[char] == counter[char] for char in str2])",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'olleh') == True",
+        "assert is_anagram('world', 'earth') == False",
+        "assert is_anagram('Python', 'python') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

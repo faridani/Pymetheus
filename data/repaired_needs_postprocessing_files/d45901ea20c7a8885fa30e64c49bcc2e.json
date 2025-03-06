@@ -1,0 +1,11 @@
+{
+    "title": "Easy - Sum of Even Numbers",
+    "description": "Write a function `sum_even` that takes a list of integers as input and returns the sum of all even numbers in the list.\n\n#### Function Signature\n```python\ndef sum_even(nums: list[int]) -> int:\n``` \n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns an integer representing the sum of all even numbers in the input list.",
+    "code": "def sum_even(nums: list[int]) -> int:\n    sum = 0\n    for num in nums:\n        if num % 2 == 0:\n            sum += num\n    return sum",
+    "tests": [
+        "assert sum_even([1, 2, 3, 4, 5]) == 6",
+        "assert sum_even([10, 15, 20, 25]) == 30",
+        "assert sum_even([-2, 0, 2, 4]) == 8"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

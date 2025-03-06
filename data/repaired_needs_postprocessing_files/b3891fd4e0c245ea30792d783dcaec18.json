@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Prime Factorization",
+    "description": "Implement a function that performs prime factorization of a given integer. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. Write a function `prime_factors` that takes an integer `n` as input and returns a list of its prime factors in ascending order.\r\n\r\n#### Function Signature\r\n```python\ndef prime_factors(n: int) -> List[int]:\r\n``` \r\n\r\n#### Input\r\n- `n` (int): An integer greater than 1.\r\n\r\n#### Output\r\n- Returns a list of integers representing the prime factors of `n`, in ascending order.",
+    "code": "from typing import List\r\n\r\ndef prime_factors(n: int) -> List[int]:\r\n    # Initialize an empty list to store the prime factors\r\n    factors = []\r\n    # Divide n by 2 until it's no longer divisible by 2\r\n    while n % 2 == 0:\r\n        factors.append(2)\r\n        n //= 2\r\n    # Check for odd factors starting from 3\r\n    for i in range(3, int(n**0.5) + 1, 2):\r\n        while n % i == 0:\r\n            factors.append(i)\r\n            n //= i\r\n    # If n is a prime number greater than 2\r\n    if n > 2:\r\n        factors.append(n)\r\n    return factors",
+    "tests": [
+        "assert prime_factors(10) == [2, 5]",
+        "assert prime_factors(15) == [3, 5]",
+        "assert prime_factors(100) == [2, 2, 5, 5]",
+        "assert prime_factors(13195) == [5, 7, 13, 29]"
+    ],
+    "model": "codegeex4:9b-repaired by Llama 3"
+}

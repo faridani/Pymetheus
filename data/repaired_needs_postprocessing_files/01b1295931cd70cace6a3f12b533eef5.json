@@ -1,0 +1,11 @@
+{
+    "title": "Capitalize Each Word (Easy)",
+    "description": "Write a function `capitalize_each_word` that takes a string as input and returns the same string with each word capitalized.\n\n#### Function Signature\n```\ndef capitalize_each_word(s: str) -> str:\n``` \n\n#### Input\n- `s` (str): A string containing words separated by spaces, periods, or other punctuation marks.\n\n#### Output\n- Returns the input string with each word capitalized. For example, `'hello world!'` should return `'Hello World!'`.",
+    "code": "def capitalize_each_word(s: str) -> str:\n    # Split the string into words\n    words = s.split()\n    \n    # Capitalize each word and join them back together with spaces\n    return ' '.join(word.capitalize() for word in words)",
+    "tests": [
+        "assert capitalize_each_word('hello world!') == 'Hello World!'",
+        "assert capitalize_each_word('hELLO, WORLD!') == 'Hello, World!'",
+        "assert capitalize_each_word('Happy birthday to you!') == 'Happy Birthday To You!'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

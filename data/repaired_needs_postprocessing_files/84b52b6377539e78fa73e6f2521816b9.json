@@ -1,0 +1,11 @@
+{
+    "title": "Hard Python Coding Question: Missing Value Imputation",
+    "description": "Given a dictionary with missing values denoted by `None`, write a function to impute these missing values with the average of the existing values. The function should return a new dictionary with imputed values.",
+    "code": "def impute_missing_values(dic):\n    new_dic = dic.copy()\n    for key in new_dic:\n        values = [value for value in new_dic[key] if value is not None]\n        if values:\n            new_dic[key] = [value if value is not None else sum(values) / len(values) for value in new_dic[key]]\n    return new_dic\n",
+    "tests": [
+        "assert impute_missing_values({'a': [1, None, 3], 'b': [4, None, 6]}) == {'a': [1, 2, 3], 'b': [4, 5, 6]}",
+        "assert impute_missing_values({'c': [None, None, None]}) == {'c': [None, None, None]}",
+        "assert impute_missing_values({'d': [7, None, 9], 'e': [None, 5, None]}) == {'d': [7, 8, 9], 'e': [4, 5, 6]}"
+    ],
+    "model": "codegemma:7b-repaired by Llama 3"
+}

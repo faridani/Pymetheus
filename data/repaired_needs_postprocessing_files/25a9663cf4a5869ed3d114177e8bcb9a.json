@@ -1,0 +1,12 @@
+{
+    "title": "'Anagram Detection (Hard)'",
+    "description": "Given two strings, determine if they are anagrams of each other. An anagram is a word or phrase that contains all the same letters as another word or phrase in a different arrangement.\n\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string containing only lowercase alphabets.\n- `s2` (str): Another string containing only lowercase alphabets.\n\n#### Output\n- Returns `True` if the given strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Count occurrences of each letter in string 1 and store in dictionary\n    char_count = {char: s1.count(char) for char in set(s1)}\n    \n    # Decrease the count of each character that appears in string 2\n    for char in s2:\n        if char in char_count:\n            char_count[char] -= 1\n        else:\n            return False\n    \n    # If all counts are zero, then strings are anagrams\n    for count in char_count.values():\n        if count != 0:\n            return False\n    return True",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('python', 'typhon') == True",
+        "assert are_anigrams('hello', 'world') == False",
+        "assert are_anagrams('cat', 'bat') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

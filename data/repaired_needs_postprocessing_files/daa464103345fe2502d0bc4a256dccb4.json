@@ -1,0 +1,11 @@
+{
+    "title": "Reverse Words (Easy)",
+    "description": "Write a function `reverse_words` that takes a string as input and returns the same string with each word reversed in order. For example, given the input 'Hello World', return 'olleh dlroW'. Write a function `reverse_words(s: str) -> str:`\ndef reverse_words(s: str) -> str:\n    # Split the string into a list of words\n    words = s.split()\n    # Reverse each word and join them back together\n    return ' '.join(word[::-1] for word in words)",
+    "code": "def reverse_words(s: str) -> str:\n    # Split the string into a list of words\n    words = s.split()\n    # Reverse each word and join them back together\n    return ' '.join(word[::-1] for word in words)",
+    "tests": [
+        "assert reverse_words('Hello World') == 'olleh dlroW'",
+        "assert reverse_words('I am a computer science student') == 'sihtcam esrever sgnitecsedtsnats emanai'",
+        "assert reverse_words('A man, a plan, a canal: Panama') == 'amanap ,lanap a zalac :nalap ecam a yaw'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

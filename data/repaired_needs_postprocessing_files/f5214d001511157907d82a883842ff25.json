@@ -1,0 +1,12 @@
+{
+    "title": "The Traveling Salesman Problem (Hard)",
+    "description": "The Traveling Salesman Problem (TSP) is a classic problem in computer science and operations research. Given a set of cities and the distances between each pair of cities, the task is to find the shortest possible route that visits each city exactly once and returns to the starting city.\n#### Function Signature\n```python\ndef tsp(cities: list[tuple[int, int]]) -> tuple[int, list[int]]:\n    # cities: A list of tuples, where each tuple contains the x and y coordinates of a city\n    # Returns: A tuple containing the total distance of the shortest route and the route itself as a list of city indices\n```",
+    "code": "import math\nfrom typing import List, Tuple\nimport random\ndef tsp(cities: list[tuple[int, int]]) -> tuple[int, list[int]]:\n    n = len(cities)\n    if n < 3:\n        return (0, list(range(n)))\n    dist = [[0 for _ in range(n)] for _ in range(n)]\n    for i in range(n):\n        for j in range(i + 1, n):\n            dist[i][j] = dist[j][i] = math.sqrt((cities[i][0] - cities[j][0])**2 + (cities[i][1] - cities[j][1])**2)\n    def held_karp(dist: List[List[int]]) -> int:\n        n = len(dist)\n        unvisited = set(range(n))\n        res = 0\n        path = []\n        start = random.choice(list(unvisited))\n        path.append(start)\n        unvisited.remove(start)\n        while unvisited:\n            min_dist = float('inf')\n            next_city = -1\n            for city in unvisited:\n                d = dist[path[-1]][city]\n                if d < min_dist:\n                    min_dist = d\n                    next_city = city\n            res += min_dist\n            path.append(next_city)\n            unvisited.remove(next_city)\n        return res\n    total_distance = held_karp(dist)\n    route = list(range(len(cities)))\n    return (total_distance, route)",
+    "tests": [
+        "assert tsp([[0, 1], [2, 3], [4, 5]])[0] > 0",
+        "assert len(tsp([[0, 1], [2, 3], [4, 5]])[1]) == 3",
+        "assert tsp([[0, 1], [-2, -3], [4, 5]])[0] > 5",
+        "assert tsp([[0, 1], [0, 1], [0, 1]])[0] == 0"
+    ],
+    "model": "command-r7b:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Substring Sum Checker",
+    "description": "Given a string representing an integer and a target sum, check if there is a substring that adds up to the target sum. You may assume that the input string only contains digits (0-9).\n\n#### Function Signature\n```python\ndef check_substring_sum(s: str, target_sum: int) -> bool:\n``` \n\n#### Input\n- `s` (str): A string representing an integer.\n- `target_sum` (int): The target sum you want to check for in a substring.\n\n#### Output\n- Returns `True` if there is a substring that adds up to the target sum, `False` otherwise.\n\n#### Hints\nYou may want to use a sliding window approach to iterate through the string and calculate the sum of characters within the window. Be mindful of the time and space complexity of your solution.\n\n",
+    "code": "def check_substring_sum(s: str, target_sum: int) -> bool:\n    start = 0\n    end = 0\n    current_sum = 0\n    while end < len(s):\n        if current_sum == target_sum:\n            return True\n        end += 1\n        current_sum = current_sum * 10 + int(s[end-1])\n    \n    return False",
+    "tests": [
+        "assert check_substring_sum(\"1234\", 6) == True",
+        "assert check_substring_sum(\"12312\", 12) == True",
+        "assert check_substring_sum(\"1029384756\", 17) == False",
+        "assert check_substring_sum(\"99999999\", 20) == True"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

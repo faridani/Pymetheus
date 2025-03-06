@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Word Ladder",
+    "description": "Given two words `beginWord` and `endWord`, and a dictionary `wordList`, return the length of the shortest transformation sequence from `beginWord` to `endWord`, such that:\nOnly one letter can be changed at a time.\nEach transformed word must exist in the word list.\nReturn 0 if there is no such transformation sequence.",
+    "code": "from collections import deque\ndef ladderLength(beginWord: str, endWord: str, wordList: list[str]) -> int:\n    if endWord not in wordList:\n        return 0\n    # Preprocess wordlist into a dictionary for faster lookup\n    all_combo_dict = {}\n    for word in wordList:\n        for i in range(len(word)):\n            pattern = word[:i] + '*' + word[i+1:]\n            if pattern not in all_combo_dict:\n                all_combo_dict[pattern] = []\n            all_combo_dict[pattern].append(word)\n\n    # Perform BFS\n    queue = deque([(beginWord, 1)])  \n    visited = {beginWord: True}\n    while queue:\n        current_word, level = queue.popleft()\n        for i in range(len(current_word)):\n            pattern = current_word[:i] + '*' + current_word[i+1:]\n            for next_word in all_combo_dict.get(pattern, []):\n                if next_word == endWord:\n                    return level + 1\n                if next_word not in visited:\n                    visited[next_word] = True\n                    queue.append((next_word, level + 1))\n    return 0",
+    "tests": [
+        "assert ladderLength(\"hit\",\"cog\",[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]) == 5",
+        "assert ladderLength(\"hit\",\"cog\",[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]) == 0"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

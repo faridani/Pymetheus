@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "Given two strings, determine if they are anagrams of each other.\n\n#### Function Signature\n```python\ndef is_anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings containing only lowercase English letters without spaces or punctuation.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def is_anagram(s1: str, s2: str) -> bool:\n    # Remove duplicates from the list of characters in each string and sort them\n    char_list1 = sorted(list(set(s1)))\n    char_list2 = sorted(list(set(s2)))\n    \n    # Compare the lists to see if they are equal\n    return char_list1 == char_list2",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anogram('hello', 'world') == False",
+        "assert is_anagram('cats', 'act') == True",
+        "assert is_anagram('python', 'typhon') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

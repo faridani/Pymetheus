@@ -1,0 +1,11 @@
+{
+    "title": "Sorting Numbers",
+    "description": "Write a function `sort_numbers` that takes a list of integers as input and returns the numbers sorted in ascending order. The twist here is that you need to first find all prime numbers in the list, then sort them along with the rest of the numbers. Consider this problem as an extension of the previous one.\n#### Function Signature\n```python\ndef sort_numbers(numbers: list[int]) -> list[int]:\n``` \n\n#### Input\n- `numbers` (list[int]): A list of integers that may contain prime and non-prime numbers.\n\n#### Output\n- Returns a new list containing the input numbers in ascending order, with all prime numbers first.\n",
+    "code": "import math\ndef is_prime(n: int) -> bool:\n    if n <= 1:\n        return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True\ndef sort_numbers(numbers: list[int]) -> list[int]:\n    primes = [num for num in numbers if is_prime(num)]\n    non_primes = [num for num in numbers if not is_prime(num)]\n    primes.sort()\n    non_primes.sort()\n    return primes + non_primes\n",
+    "tests": [
+        "assert sort_numbers([5, 10, 7, 20]) == [5, 7, 10, 20]",
+        "assert sort_numbers([2, 3, 4, 1]) == [1, 2, 3, 4]",
+        "assert sort_numbers([23, 34, 11, 56]) == [11, 23, 34, 56]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

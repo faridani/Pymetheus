@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection",
+    "description": "Given two strings, write a function `anagram_checker` that checks if the given strings are anagrams of each other. Two words are anagrams of each other if they contain the same letters in the same frequency.\n\n#### Function Signature```python\ndef anagram_checker(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings of lowercase alphabets.\n\n#### Output\n- Returns `True` if the given strings are anagrams of each other, `False` otherwise.",
+    "code": "def anagram_checker(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Convert to dictionaries and sort keys (alphabetically)\n    freq_dict1 = dict(sorted([(char, s1.count(char)) for char in sorted(set(s1))]))\n    freq_dict2 = dict(sorted([(char, s2.count(char)) for char in sorted(set(s2))]))\n    \n    # Compare dictionaries\n    return freq_dict1 == freq_dict2",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('act', 'cat') == False",
+        "assert anagram_checker('women', 'goddesses') == True",
+        "assert anagram_checker('hello', 'olleh') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

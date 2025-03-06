@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Maximum Sum of an Hourglass",
+    "description": "An hourglass is formed by connecting the top-left and bottom-right points of a 2D array with a line. The maximum sum of an hourglass can be calculated as the sum of the middle row minus the sums of the first, second, third, fourth, fifth, and sixth rows. Write a function `max_sum_hourglass` that finds the maximum sum of an hourglass in a given 2D array.",
+    "code": "def max_sum_hourglass(arr: list[list[int]]) -> int:\n    if not arr or len(arr) == 1:\n        return 0\n    max_sum = float('-inf')\n    for i in range(len(arr) - 2):\n        for j in range(3, len(arr[0]) - 2):\n            hourglass_sum = 0\n            for k in range(-2, 3):\n                hourglass_sum += arr[i + k][j]\n            max_sum = max(max_sum, hourglass_sum)\n    return max_sum\n",
+    "tests": [
+        "assert max_sum_hourglass([[1, 2, -1, 4], [3, 8, 5, -9], [1, 0, 7, 6]]) == 14",
+        "assert max_sum_hourglass([[1, 2, -1, 4], [-3, 8, 5, -9], [1, 0, 7, 6]]) == 14",
+        "assert max_sum_hourglass([[-1, 2, -1, 4], [3, 8, 5, -9], [1, 0, 7, 6]]) == 14"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Number of Coins",
+    "description": "A greedy algorithm is an optimization technique that makes the optimal choice at each step. A function `min_coins` that determines the minimum number of coins needed to reach a target amount. The available denominations are 1, 5, and 10. \n#### Function Signature\n```python\ndef min_coins(amount: int) -> int:\n``` \n#### Input\n- `amount`: The target amount.\n#### Output\n- Returns the minimum number of coins needed to reach the target amount.\n",
+    "code": "def min_coins(amount: int) -> int:\n    denominations = [1, 5, 10]\n    min_coins_list = [float('inf')] * (amount + 1)\n    min_coins_list[0] = 0\n    for denom in denominations:\n        for i in range(denom, amount + 1):\n            min_coins_list[i] = min(min_coins_list[i], 1 + min_coins_list[i - denom])\n    return min_coins_list[amount]\n",
+    "tests": [
+        "assert min_coins(3) == 2",
+        "assert min_coins(4) == 1",
+        "assert min_coins(5) == 1",
+        "assert min_coins(6) == 2"
+    ],
+    "model": "llama3.1:8b-repaired by Llama 3"
+}

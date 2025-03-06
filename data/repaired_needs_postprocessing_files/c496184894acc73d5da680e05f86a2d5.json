@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Given two strings, determine if they are anagrams of each other. An anagram is a word or phrase formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings containing only lowercase letters.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Count the frequency of each letter in the first string\n    counts = {letter: s1.count(letter) for letter in string.ascii_lowercase}\n    \n    # Decrease the count of each letter found in the second string, and check if any count becomes negative or if any letter is not present in the second string\n    for letter in s2:\n        if letter in counts:\n            counts[letter] -= 1\n            if counts[letter] < 0:\n                return False\n        else:\n            return False\n    \n    # All letters are present and accounted for, so the strings are anagrams of each other\n    return True",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('catsanddog', 'gatsbyodncats') == True",
+        "assert are_anagrams('apple', 'leap') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

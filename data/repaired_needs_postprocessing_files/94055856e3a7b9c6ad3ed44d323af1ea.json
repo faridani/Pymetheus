@@ -1,0 +1,11 @@
+{
+    "title": "'Palindromic Substrings Count Finder (Hard)',",
+    "description": "Write a function `find_palindromes` that finds the count of all non-empty palindromic substrings within a given string.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> list:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces and punctuation. Spaces are considered as part of the string for palindrome detection.\n\n#### Output\n- Returns a list containing integer counts of each unique non-empty palindromic substring found within the input string.\n\n**Note**: A substring 'abcba' is considered different from 'abcdcba' and 'bcba'.\n",
+    "code": "import collections\ndef find_palindromes(s: str) -> list:\n    # Iterate through each character in the string\n    for i in range(len(s)):\n        # Find all possible palindromic substrings starting from the current index\n        for j in range(i, len(s)):\n            # Check if the substring is a palindrome and count it\n            if s[i:j] == s[i:j][::-1]:\n                # Store the count of the substring in a dictionary with the substring as key\n                counts[s[i:j]] = counts.get(s[i:j], 0) + 1\n    # Initialize an empty dictionary to store the counts of unique non-empty palindromic substrings found\n    counts = collections.defaultdict(int)\n    # Find the count of each unique non-empty palindromic substring in the string and return it\n    return list(counts.values())",
+    "tests": [
+        "assert find_palindromes(\"racecar\") == [1, 4, 1]",
+        "assert find_palindromes(\"abccbaabc\") == [1, 3, 2]",
+        "assert find_palindromes(\"a man, a plan, a canal: Panama\") == [1, 5, 2, 9, 1]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

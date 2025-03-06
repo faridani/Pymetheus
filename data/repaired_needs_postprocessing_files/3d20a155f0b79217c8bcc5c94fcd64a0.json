@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Longest Repeating Substring",
+    "description": "Given a string `s`, find the length of the longest repeating substring. A repeating substring must consist of consecutive characters and appear at least twice in the string.\n\n#### Function Signature\n```python\ndef longest_repeating_substring(s: str) -> int:\n```\n\n#### Input\n- `s` (str): The input string.\n\n#### Output\n- Returns the length of the longest repeating substring. If there are no repeating substrings, return 0.",
+    "code": "def longest_repeating_substring(s: str) -> int:\n    n = len(s)\n    longest = 0\n    for i in range(n):\n        for j in range(i + 1, n):\n            substring = s[i:j]\n            if substring in s[j:]:\n                longest = max(longest, len(substring))\n    return longest",
+    "tests": [
+        "assert longest_repeating_substring('abcabcbb') == 3",
+        "assert longest_repeating_substring('banana') == 2",
+        "assert longest_repeating_substring('abcd') == 0"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

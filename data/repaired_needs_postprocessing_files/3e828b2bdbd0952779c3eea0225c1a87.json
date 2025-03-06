@@ -1,0 +1,12 @@
+{
+    "title": "Easiest Puzzle Ever",
+    "description": "You are given a 2D array of integers, where each row represents the height of a brick and each column represents a column. Your task is to find the maximum sum of bricks that can be removed without causing any pile to collapse. A brick pile collapses if its height becomes negative.\n\n#### Function Signature\n```python\ndef max_removed_brick_sum(bricks: list[list[int]]) -> int:\n``` \n\n#### Input\n- `bricks` (list[list[int]]): A 2D array of integers representing the height of bricks.\n\n#### Output\n- Returns the maximum sum of bricks that can be removed without causing any pile to collapse.",
+    "code": "def max_removed_brick_sum(bricks: list[list[int]]) -> int:\n    if not bricks or not bricks[0]:\n        return 0\n    n, m = len(bricks), len(bricks[0])\n    prefix_sum = [[0] * (m + 1) for _ in range(n + 1)]\n    for i in range(1, n + 1):\n        for j in range(1, m + 1):\n            prefix_sum[i][j] = prefix_sum[i - 1][j] + prefix_sum[i][j - 1] - prefix_sum[i - 1][j - 1] + bricks[i - 1][j]\n    max_sum = 0\n    for i in range(n):\n        for j in range(m):\n            for k in range(i, n):\n                for column in range(j, m):\n                    max_sum = max(max_sum, prefix_sum[k][column] - (prefix_sum[i][j] + prefix_sum[k][j] - prefix_sum[i][column]) if i > 0 and j > 0 else prefix_sum[k][column])\n    return max_sum",
+    "tests": [
+        "assert max_removed_brick_sum([[1, 2], [3, 4]]) == 5",
+        "assert max_removed_brick_sum([[1], [1]]) == 1",
+        "assert max_removed_brick_sum([]) == 0",
+        "assert max_removed_brick_sum([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]]) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "Write a function `find_anagram` that determines whether two given strings are anagrams of each other.\n\n#### Function Signature```python\ndef find_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings that contain only letters in lowercase.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\nAnagrams are words or phrases that consist of the same letters in a different arrangement. For example, 'listen' and 'silent' are anagrams of each other.",
+    "code": "def find_anagram(str1: str, str2: str) -> bool:\n    # Ensure strings have the same length\n    if len(str1) != len(str2):\n        return False\n    \n    # Convert to dictionaries and compare\n    dict1 = {char: 0 for char in string.ascii_lowercase}\n    dict2 = {char: 0 for char in string.ascii_lowercase}\n    for char in str1:\n        if char in dict1:\n            dict1[char] += 1\n        else:\n            return False\n    for char in str2:\n        if char in dict1:\n            dict1[char] -= 1\n            if dict1[char] < 0:\n                return False\n        else:\n            return False\n    \n    # If no errors occurred, the strings are anagrams\n    return True",
+    "tests": [
+        "assert find_anagram(\"listen\", \"silent\") == True",
+        "assert find_anagram(\"racecar\", \"carrace\") == True",
+        "assert find_anagram(\"hello\", \"olleh\") == True",
+        "assert find_anagram(\"python\", \"typhon\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

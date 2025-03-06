@@ -1,0 +1,13 @@
+{
+    "title": "Prime Number Sieve (Hard)",
+    "description": "Given an integer `n`, write a function that returns all prime numbers up to `n` using the Sieve of Eratosthenes algorithm. The function should return the list of prime numbers in ascending order.\n\n#### Function Signature\n```python\ndef primes_sieve(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A positive integer less than 10^6.\n\n#### Output\n- Returns a list of all prime numbers up to `n` in ascending order.",
+    "code": "from typing import List\ndef primes_sieve(n: int) -> List[int]:    # Initialize a boolean array 'prime[0..n]' and set all entries as true. A value in prime[i] will finally be false if i is Not a prime, else true.\n    prime = [True for _ in range(n+1)]\n\n    p = 2\n    while (p * p <= n):        # If prime[p] is not changed, then it is a prime\n        if (prime[p]):            # Update all multiples of p\n            for i in range(p * p, n + 1, p):\n                prime[i] = False\n        p += 1\n\n    # Collect and return the primes numbers in ascending order.\n    primes = [p for p in range(2, n) if prime[p]]\n    return primes",
+    "tests": [
+        "assert primes_sieve(10) == [2, 3, 5, 7]",
+        "assert primes_sieve(20) == [2, 3, 5, 7, 11, 13, 17, 19]",
+        "assert primes_sieve(14) == [2, 3, 5, 7, 11, 13]",
+        "assert primes_sieve(1) == []",
+        "assert primes_sieve(30) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

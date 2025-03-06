@@ -1,0 +1,11 @@
+{
+    "title": "Prime Digit Count",
+    "description": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. Write a function `prime_digit_count` that calculates the count of primes in the digits of a given number.\n\n#### Function Signature\n```python\ndef prime_digit_count(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): A positive integer that is greater than or equal to 2.\n\n#### Output\n- Returns the count of unique primes in the digits of the input number.\n",
+    "code": "def prime_digit_count(n: int) -> int:\n    # Store the first 101 prime numbers for quick lookup\n    primes = [2] + list(primerange(3, 101))\n    # Initialize count of each digit and result\n    count = {digit: 0 for digit in range(10)}\n    while n > 0:\n        digit = n % 10\n        if digit in primes:\n            count[digit] += 1\n        n //= 10\n    # Return the count of unique prime digits\n    return sum(count.values())",
+    "tests": [
+        "assert prime_digit_count(371) == 6",
+        "assert prime_digit_count(3) == 3",
+        "assert prime_digit_count(3303) == 3"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

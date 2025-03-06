@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Max Consecutive Ones",
+    "description": "Given an array of 0s and 1s, find the maximum number of consecutive ones that can be obtained by flipping at most k zeros to ones. The goal is to maximize the count of consecutive ones.\n\n#### Function Signature\n```python\ndef max_consecutive_ones(nums: list[int], k: int) -> int:\n``` \n\n#### Input\n- `nums` (list[int]): A list of 0s and 1s.\n- `k` (int): The number of zeros that can be flipped to ones.\n\n#### Output\n- Returns the maximum number of consecutive ones that can be obtained by flipping at most k zeros to ones.",
+    "code": "from typing import List\n\ndef max_consecutive_ones(nums: List[int], k: int) -> int:\n    # Initialize variables to track the maximum and current count of consecutive ones\n    max_count = 0\n    current_count = 0\n    zero_count = 0\n    for num in nums:\n        if num == 1:\n            current_count += 1\n        else:\n            if k > 0:\n                k -= 1\n                current_count += 1\n            else:\n                max_count = max(max_count, current_count)\n                current_count = 0\n                zero_count = 0\n    return max(max_count, current_count)",
+    "tests": [
+        "assert max_consecutive_ones([0, 1, 0, 1, 1], 3) == 4",
+        "assert max_consecutive_ones([0, 0, 0, 0, 0], 2) == 0",
+        "assert max_consecutive_ones([1, 1, 1, 1, 1], 5) == 5",
+        "assert max_consecutive_ones([0, 1, 0, 1, 0], 3) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

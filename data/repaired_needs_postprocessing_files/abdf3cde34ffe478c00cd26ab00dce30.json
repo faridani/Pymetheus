@@ -1,0 +1,10 @@
+{
+    "title": "Maximal Rectangle in Matrix",
+    "description": "Given an `n x m` binary matrix where each cell has either 0 or 1 value. Fill up the array so that every row is of length `m`. Since it's a binary matrix, we are looking for all places where most frequent element of each row is 1.",
+    "code": "def max_rect(matrix: list) -> list:\n    m = len(matrix[0])\n    n = len(matrix)\n    res = [[0 for _ in range(m)] for _ in range(n)]\n\n    for i in range(n):\n        row = [cell for cell in matrix[i] if cell == 1]\n        max_count = row.count(1) if row else 0\n        res[i] = [1 if count >= max_count else 0 for count in [row.count(c) for c in [0, 1]]]\n    return res",
+    "tests": [
+        "assert max_rect([[0,1],[1,0]]) == [[1,0],[1,1]]",
+        "assert max_rect([[0,0,1],[0,0,0],[0,1,1]]) == [[0,0,1],[0,0,0],[0,1,1]]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

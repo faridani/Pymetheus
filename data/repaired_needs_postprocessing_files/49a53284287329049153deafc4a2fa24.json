@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Sum of Divisors",
+    "description": "Given a positive integer `n`, write a function that calculates the sum of all divisors of `n`. For example, if `n` is 6, the function should return 12 because 1, 2, 3, and 6 are the divisors of 6 and their sum is 12.\n\n#### Function Signature\n```python\ndef sum_of_divisors(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the sum of all divisors of the input integer.\n",
+    "code": "def sum_of_divisors(n: int) -> int:\n    def divisor_sum(m: int) -> int:\n        total = 1\n        for i in range(2, int(m ** 0.5) + 1):\n            if m % i == 0:\n                total += i + m // i\n        return total\n    return divisor_sum(n)\n",
+    "tests": [
+        "assert sum_of_divisors(4) == 7",
+        "assert sum_of_divisors(6) == 12",
+        "assert sum_of_divisors(8) == 15",
+        "assert sum_of_divisors(9) == 13"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

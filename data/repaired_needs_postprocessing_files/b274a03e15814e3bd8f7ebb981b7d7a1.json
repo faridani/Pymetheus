@@ -1,0 +1,16 @@
+{
+    "title": "Goldbach's Conjecture Solver (Hard)",
+    "description": "Goldbach's Conjecture states that every even integer greater than 2 can be expressed as the sum of two prime numbers. Write a function `is_prime` and `goldbach_conjecture` to check if an input number is prime and determine its prime factorization, and verify if an even number greater than 2 can be expressed as the sum of two primes.\n\n#### Function Signatures\n```python\ndef is_prime(n: int) -> bool:\n    ...\n\ndef goldbach_conjecture(n: int) -> list or None:\n    if n <= 2: return None\n    if n % 2 == 0 and n > 2: return is_prime(n - 2) + [3]\n    # Implement the Goldbach Conjecture here using your `is_prime` function.\n```",
+    "code": "def is_prime(n: int) -> bool:\n    if n <= 1: return False\n    if n == 2: return True\n    for i in range(2, int(n**0.5)+1):\n        if n % i == 0:\n            return False\n    return True\n\ndef goldbach_conjecture(n: int) -> list or None:\n    if n <= 2: return None\n    if n % 2 == 0 and n > 2: return is_prime(n - 2) + [3]\n    for i in range(5, int(n**0.5)+1, 2):\n        if is_prime(i) and is_prime(n - i):\n            return [i, n - i]\n",
+    "tests": [
+        "assert goldbach_conjecture(4) == [2, 2]",
+        "assert goldbach_conjecture(6) == [3, 3]",
+        "assert goldbach_conjecture(10) == [2, 4] or goldbach_conjecture(10) == [2, 8]",
+        "assert goldbach_conjecture(12) == [2, 5]",
+        "assert goldbach_conjecture(27) == [3, 22]",
+        "assert goldbach_conjecture(28) == [2, 26]",
+        "assert goldbach_conjecture(97) == None",
+        "assert goldbach_conjecture(-5) == None"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

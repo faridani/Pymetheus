@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "An anagram is a word or phrase that consists of the same letters as another word or phrase, but arranged differently. Write a function `are_anagrams` that takes two strings as input and returns `True` if they are anagrams of each other, otherwise it returns `False`. Note that case sensitivity does not matter.\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n``` \n- Returns `True` if the two input strings are anagrams of each other, otherwise it returns `False`\n",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Count the frequency of each letter in the first string\n    freq_dict = {}\n    for char in s1:\n        if char in freq_dict:\n            freq_dict[char] += 1\n        else:\n            freq_dict[char] = 1\n    \n    # Check if the frequency of each letter in the second string matches the first string's frequency\n    for char in s2:\n        if char in freq_dict:\n            freq_dict[char] -= 1\n        else:\n            return False\n    \n    # If no mismatches were found, the strings are anagrams of each other\n    return True",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"racecar\", \"carrerace\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

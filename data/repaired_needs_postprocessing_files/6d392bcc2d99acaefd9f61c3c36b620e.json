@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `are_anagrams` that checks if two given strings are anagrams. This function should only consider alphabetic characters and ignore spaces.#### Function Signature```pythondef are_anagrams(str1: str, str2: str) -> bool:``This function takes two strings as input and returns `True` if the two strings are anagrams, `False` otherwise.The strings will only consist of alphabetic characters.#### Input- `str1`, `str2` (str): Two strings that may contain letters and spaces.#### Output- Returns `True` if the two input strings are anagrams, `False` otherwise. The strings will only consist of alphabetic characters.",
+    "code": "def are_anagrams(str1: str, str2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    str1 = ''.join(sorted(str1.replace(' ', '').lower()))\n    str2 = ''.join(sorted(str2.replace(' ', '').lower()))\n    # Check if the sorted strings are equal\n    return str1 == str2",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"Dormant\", \"Madam I'm Adam\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n``` \n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain letters and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n\n#### Constraints\n- The two input strings will have the same length.\n",
+    "code": "def are_anagrams(str1: str, str2: str) -> bool:\n    # Remove spaces from both strings\n    str1 = str1.replace(' ', '').lower()\n    str2 = str2.replace(' ', '').lower()\n    \n    # If the two strings are equal, they are anagrams of each other.\n    if len(str1) != len(str2):\n        return False\n    else:\n        # Create a dictionary to count the frequency of each character in str1\n        char_count = {char: 0 for char in string.ascii_lowercase}\n        for char in str1:\n            char_count[char] += 1\n        \n        # Decrease the count for each character in str2 and check if all counts become 0.\n        for char in str2:\n            char_count[char] -= 1\n            if char_count[char] < 0:\n                return False\n        \n    return True\n",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"hello\", \"olleh\") == True",
+        "assert are_anagrams(\"racecar\", \"carrace\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

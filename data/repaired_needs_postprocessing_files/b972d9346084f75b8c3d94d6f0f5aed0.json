@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Time to Make the Flowers Bloom",
+    "description": "You are given an array of non-negative integers representing the heights of n flowers. A flower blooms when its height is equal to or greater than k, where k is a given integer. Your goal is to find the minimum time required for all the flowers to bloom.\n\n#### Function Signature\n```python\ndef min_time_to_bloom(flower_heights: list[int], k: int) -> int:\n```\n\n#### Input\n- `flower_heights` (list[int]): A list of non-negative integers representing the heights of n flowers.\n- `k` (int): The minimum height required for a flower to bloom.\n\n#### Output\n- Returns the minimum time required for all the flowers to bloom, or -1 if it's impossible.\n\n",
+    "code": "def min_time_to_bloom(flower_heights: list[int], k: int) -> int:\n    max_height = max(flower_heights)\n    if max_height < k:\n        return -1\n    time = 0\n    for height in flower_heights:\n        time += (k - 1) // (max_height - k + 1) + 1\n    return time",
+    "tests": [
+        "assert min_time_to_bloom([1, 2, 3], 2) == 4",
+        "assert min_time_to_bloom([5, 6, 7], 5) == 0",
+        "assert min_time_to_bloom([8, 9, 10], 8) == -1",
+        "assert min_time_to_bloom([1, 1, 2], 1) == 3"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

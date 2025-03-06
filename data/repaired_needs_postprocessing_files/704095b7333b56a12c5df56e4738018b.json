@@ -1,0 +1,11 @@
+{
+    "title": "'Number of Vowels' - An Easy Python Problem",
+    "description": "Write a function `count_vowels` that counts the number of vowels in a given string.\n\n#### Function Signature\n```python\ndef count_vowels(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing only lowercase letters.\n\n#### Output\n- Returns the number of vowels in the input string as an integer.",
+    "code": "def count_vowels(s: str) -> int:\n    # Define a list of vowels\n    vowels = {'a', 'e', 'i', 'o', 'u'}\n    # Initialize the count variable to 0\n    count = 0\n    # Iterate through each character in the input string\n    for char in s:\n        # If the character is a vowel, increment the count variable by 1\n        if char in vowels:\n            count += 1\n    # Return the final count of vowels\n    return count",
+    "tests": [
+        "assert count_vowels('aeiou') == 5",
+        "assert count_vowels('hello') == 2",
+        "assert count_vowels('Python') == 1"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

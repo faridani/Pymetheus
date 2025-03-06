@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Optimal Path Finder",
+    "description": "You are given a 2D grid representing a map. Each cell in the grid can be either an empty space (represented by '0') or an obstacle (represented by '1'). You are starting at the top-left corner of the grid and your goal is to reach the bottom-right corner.\n\nYou can only move down or right at each step. The path cost for moving right is 1, and the path cost for moving down is 2. Find the minimum total cost required to reach the destination.\n\n#### Function Signature```python\ndef find_optimal_path(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D grid representing the map.\n\n#### Output\n- Returns the minimum total cost to reach the bottom-right corner of the grid, or -1 if it is impossible to reach the destination.\n",
+    "code": "def find_optimal_path(grid: list[list[int]]) -> int:\n    m = len(grid)\n    n = len(grid[0])\n\n    # Initialize a DP table to store minimum costs\n    dp = [[float('inf')] * n for _ in range(m)]\n\n    # Base case: Starting cell cost is 0\n    dp[0][0] = 0\n\n    # Fill the DP table\n    for i in range(m):\n        for j in range(n):\n            if grid[i][j] == 1:  # Obstacle, skip\n                continue\n\n            if i > 0 and dp[i - 1][j] != float('inf'):  # Move down (cost = 2)\n                dp[i][j] = min(dp[i][j], dp[i - 1][j] + 2)\n            if j > 0 and dp[i][j - 1] != float('inf'):  # Move right (cost = 1)\n                dp[i][j] = min(dp[i][j], dp[i][j - 1] + 1)\n\n    # Return the minimum cost at the destination\n    return dp[m - 1][n - 1] if dp[m - 1][n - 1] != float('inf') else -1",
+    "tests": [
+        "grid = [[0, 0, 0], [0, 1, 0], [0, 0, 0]]\nassert find_optimal_path(grid) == 4",
+        "grid = [[0, 1, 0], [0, 1, 0], [0, 0, 0]]\nassert find_optimal_path(grid) == 5",
+        "grid = [[0, 0, 1], [0, 1, 0], [1, 0, 0]]\nassert find_optimal_path(grid) == -1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

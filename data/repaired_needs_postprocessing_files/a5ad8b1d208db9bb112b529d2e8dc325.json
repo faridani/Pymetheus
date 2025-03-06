@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detection",
+    "description": "Write a function `is_anagram` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string that may contain letters (case insensitive).\n- `str2` (str): Another string that may contain letters (case insensitive).\n\n#### Output\n- Returns `True` if the input strings are anagrams, `False` otherwise.\n",
+    "code": "import collections\ndef is_anagram(str1: str, str2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    str1 = ''.join(char for char in str1.replace(' ', '') if char.isalpha()).lower()\n    str2 = ''.join(char for char in str2.replace(' ', '').lower())\n    # Check if both strings have the same number of characters\n    if len(str1) != len(str2):\n        return False\n    \n    # Create a dictionary to count the frequency of each character\n    freq = collections.Counter(str1)\n    # Compare the frequencies with those in str2\n    for char, freq_val in freq.items():\n        if freq_val != collections.Counter(str2)[char]:\n            return False\n    \n    # If all characters have the same frequency, return True\n    return True",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('A man, a plan, a canal, Panama', 'amanaplanacanalpanamaplanamanap') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

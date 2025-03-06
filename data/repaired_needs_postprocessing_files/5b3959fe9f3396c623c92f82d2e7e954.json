@@ -1,0 +1,11 @@
+{
+    "title": "Text Justifier (Medium)",
+    "description": "Write a function `justify_text` that takes a string and an integer as input, and returns the justified version of the input string. The string should be filled with spaces on both sides so that it reaches the specified length without exceeding it.\n\n#### Function Signature\n```python\ndef justify_text(text: str, length: int) -> str:\n```\n\n#### Input\n- `text` (str): The string to be justified.\n- `length` (int): The desired length of the justified string.\n\n#### Output\n- A string of length equal to or less than `length`, where spaces have been added to both sides of each word so that the total length is exactly `length`.",
+    "code": "def justify_text(text: str, length: int) -> str:\n    # Split the input text into words\n    words = text.split()\n    # Calculate the number of spaces needed for each word\n    space_needed = (length - len(text)) // len(words)\n    # If there is an odd number of words, add one more space to account for the last line\n    if len(words) % 2 != 0:\n        space_needed += 1\n    # Add spaces to each word\n    for i in range(len(words)):\n        words[i] = words[i].ljust(length // len(words) + space_needed, ' ')\n    # Join the words back into a single string\n    return ' '.join(words)",
+    "tests": [
+        "assert justify_text('This is a test', 20) == 'This      is   a   test'",
+        "assert justify_text('Short text', 10) == ' Short     text'",
+        "assert justify_text('Long string', 30) == ' Long    string'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

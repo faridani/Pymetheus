@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Check if Two Strings are Anagrams",
+    "description": "Write a function `are_anagrams` that takes two strings as input and returns `True` if they are anagrams of each other, `False` otherwise. Note that the function should be case-insensitive and ignore spaces.\n\n#### Function Signature\n```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str), `s2` (str): Two strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.",
+    "code": "import string\ndef are_anagrams(s1: str, s2: str) -> bool:\n    # Convert both strings to lowercase and remove spaces\n    s1 = s1.lower().replace(' ', '')\n    s2 = s2.lower().replace(' ', '')\n    # Sort the characters in each string and compare them\n    return sorted(s1) == sorted(s2)",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'olleh') == True",
+        "assert are_anagrams('abcde', 'edcba') == True",
+        "assert are_anagrams('abc', 'cbaa') == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

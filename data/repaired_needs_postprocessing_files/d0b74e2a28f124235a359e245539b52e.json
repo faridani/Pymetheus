@@ -1,0 +1,10 @@
+{
+    "title": "Easy Word Frequency Counter",
+    "description": "Write a function `word_frequency_counter` that takes as input a list of strings representing words, and returns a dictionary where the keys are unique words from the input list and the values are their frequencies in the list.\n\n#### Function Signature\n```python\ndef word_frequency_counter(words: list[str]) -> dict[str, int]:\n``` \n\n#### Input\n- `words` (list[str]): A list of strings where each string is a word.\n\n#### Output\n- Returns a dictionary where the keys are unique words from the input list and the values are their frequencies in the list.\n",
+    "code": "def word_frequency_counter(words: list[str]) -> dict[str, int]:\n    frequency_dict = {}\n    for word in words:\n        if word in frequency_dict:\n            frequency_dict[word] += 1\n        else:\n            frequency_dict[word] = 1\n    return frequency_dict",
+    "tests": [
+        "assert word_frequency_counter(['apple', 'banana', 'apple']) == {'apple': 2, 'banana': 1}",
+        "assert word_frequency_counter(['hello', 'world', 'hello', 'python']) == {'hello': 2, 'world': 1, 'python': 1}"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

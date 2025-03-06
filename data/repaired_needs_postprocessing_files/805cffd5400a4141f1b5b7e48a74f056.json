@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Word Ladder",
+    "description": "Given two words, beginWord and endWord, and a dictionary wordList, return the length of the shortest transformation sequence from beginWord to endWord, such that: Only one letter can be changed at a time. Each transformed word must exist in the wordList. Return 0 if there is no such transformation sequence.",
+    "code": "from collections import deque\n\ndef ladderLength(beginWord: str, endWord: str, wordList: list[str]) -> int:\n    if endWord not in wordList:\n        return 0\n    wordList = set(wordList)\n    queue = deque([(beginWord, 1)])\n    visited = {beginWord}\n    while queue:\n        current_word, level = queue.popleft()\n        if current_word == endWord:\n            return level\n        for i in range(len(current_word)):\n            for char in 'abcdefghijklmnopqrstuvwxyz':\n                new_word = current_word[:i] + char + current_word[i+1:]\n                if new_word in wordList and new_word not in visited:\n                    queue.append((new_word, level + 1))\n                    visited.add(new_word)\n    return 0\n",
+    "tests": [
+        "assert ladderLength(\"hit\",\"cog\",[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"])==5",
+        "assert ladderLength(\"hit\",\"cog\",[\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"])==0"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

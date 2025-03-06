@@ -1,0 +1,13 @@
+{
+    "title": "'Is it a Perfect Square Number?' (Easy)",
+    "description": "Given a non-negative integer `n`, write a function `is_perfect_square` that checks if the input number is a perfect square.\n\n#### Function Signature\n```python\ndef is_perfect_square(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns `True` if the input number is a perfect square, `False` otherwise.",
+    "code": "def is_perfect_square(n: int) -> bool:\n    # Check if n is a perfect square\n    sqrt = int(n ** 0.5)\n    return sqrt * sqrt == n",
+    "tests": [
+        "assert is_perfect_square(4) == True",
+        "assert is_perfect_square(9) == True",
+        "assert is_perfect_square(16) == True",
+        "assert is_perfect_square(20) == False",
+        "assert is_perfect_square(25) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

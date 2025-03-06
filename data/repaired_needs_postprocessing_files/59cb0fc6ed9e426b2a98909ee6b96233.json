@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Substrings Count Finder (Hard)'",
+    "description": "Write a function `count_palindromes` that finds the number of non-overlapping palindromic substrings in a given string.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the number of non-overlapping palindromic substrings in the input string.",
+    "code": "def count_palindromes(s: str) -> int:\n    # Initialize a dictionary to store the length-frequency pairs of palindromic substrings\n    palindrome_count = {}\n    \n    # Iterate through all possible center indices (from the first character to the last character)\n    for i in range(len(s)):\n        # Initialize a variable to store the current substring length\n        substring_length = 1\n        \n        # Check for even-length palindromic substrings (with an odd number of characters in between)\n        for j in range(i+1, i+substring_length+2):\n            if j >= len(s): break\n            if s[i] != s[j]: break\n            substring_length += 2\n        \n        # Check for odd-length palindromic substrings (with an even number of characters in between)\n        for j in range(i, i+substring_length):\n            if j >= len(s)-substring_length+1: break\n            if s[j] != s[i+substring_length-1]: break\n            substring_length += 1\n        \n        # If the current substring is a palindrome, update the dictionary accordingly\n        if substring_length > 1:\n            if substring_length in palindrome_count:\n                palindrome_count[substring_length] += 1\n            else:\n                palindrome_count[substring_length] = 1\n    \n    # Return the total count of non-overlapping palindromic substrings\n    return sum(palindrome_count.values())",
+    "tests": [
+        "assert count_palindromes(\"babad\") == 1",
+        "assert count_palindromes(\"cbbd\") == 3",
+        "assert count_palindromes(\"accc\") == 1",
+        "assert count_palindromes(\"abracadabra\") == 5"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

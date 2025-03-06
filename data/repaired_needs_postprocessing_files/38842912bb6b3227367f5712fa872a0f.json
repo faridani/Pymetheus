@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Knight's Tour Solver",
+    "description": "A knight's tour is a sequence of moves by a knight on a chessboard such that the knight visits every square exactly once. Given a starting position (row, column) on an 8x8 chessboard, write a function `knight_tour` that finds and returns one possible valid knight's tour.\n\n#### Function Signature\n```python\ndef knight_tour(start_row: int, start_col: int) -> list:\n```\n\n#### Input\n- `start_row` (int): The row index of the starting position (0-indexed).\n- `start_col` (int): The column index of the starting position (0-indexed).\n\n#### Output\n- Returns a list representing a valid knight's tour, where each element is a tuple `(row, col)` denoting the square visited in that step. If no valid tour exists, return an empty list.",
+    "code": "def knight_tour(start_row: int, start_col: int) -> list:\n    board = [[0 for _ in range(8)] for _ in range(8)]\n    moves = [(2, 1), (1, 2), (-1, 2), (-2, 1), (-2, -1), (-1, -2), (1, -2), (2, -1)]\n\n    def is_valid(row: int, col: int) -> bool:\n        return 0 <= row < 8 and 0 <= col < 8 and board[row][col] == 0\n\n    def solve(row: int, col: int, step: int = 1) -> list:\n        if step == 64:\n            return [(row, col)]\n        for dx, dy in moves:\n            new_row, new_col = row + dx, col + dy\n            if is_valid(new_row, new_col):\n                board[new_row][new_col] = step + 1\n                tour = solve(new_row, new_col, step + 1)\n                if tour:\n                    return [(row, col)] + tour\n                board[new_row][new_col] = 0\n        return []\n    \n    board[start_row][start_col] = 1\n    tour = solve(start_row, start_col)\n    return tour\n",
+    "tests": [
+        "assert knight_tour(0, 0) == [(0, 0), (2, 1), (4, 2), ...]",
+        "assert len(knight_tour(7, 7)) == 64",
+        "assert knight_tour(3, 5) != []"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

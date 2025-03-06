@@ -1,0 +1,12 @@
+{
+    "title": "Pythonic Number Swapper (Medium)",
+    "description": "Given a list of numbers, write a function `swap_evens_odds` that swaps the even and odd indices of the input list. For example, if the input is [1, 2, 3, 4, 5], then the output should be [2, 1, 5, 4, 3].\n\n#### Function Signature\n```python\ndef swap_evens_odds(numbers: List[int]) -> List[int]:\n``` \n\n#### Input\n- `numbers` (List[int]): A list of numbers in any order.\n\n#### Output\n- Returns a new list where the even indices have been swapped with the odd indices, keeping the original order of even and odd numbers.",
+    "code": "def swap_evens_odds(numbers: List[int]) -> List[int]:\n    # Create an empty list to store the result\n    result = []\n    # Iterate through the input list\n    for i in range(len(numbers)):\n        # If the index is even, append the current number\n        if i % 2 == 0:\n            result.append(numbers[i])\n        # If the index is odd, append the next number (if it exists)\n        elif len(numbers) > i + 1:\n            result.append(numbers[i+1])\n    \n    # Iterate through the list again, starting from the second element\n    for i in range(1, len(result), 2):\n        # Swap the current number with the previous one (if it exists)\n        if i - 1 >= 0:\n            numbers[i-1], numbers[i] = numbers[i], numbers[i-1]\n    \n    # Return the final result\n    return result",
+    "tests": [
+        "assert swap_evens_odds([1, 2, 3, 4, 5]) == [2, 1, 5, 4, 3]",
+        "assert swap_evens_odds([0, 1, 2, 3, 4]) == [1, 0, 4, 3, 2]",
+        "assert swap_evens_odds([]) == []",
+        "assert swap_evens_odds([7, 8, 9]) == [8, 7, 9]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

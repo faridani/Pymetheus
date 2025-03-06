@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Reverse Words",
+    "description": "Write a function `reverse_words` that reverses the order of words in a given sentence.\n#### Function Signature\n```python\ndef reverse_words(sentence: str) -> str:\n``` \n\n#### Input\n- `sentence` (str): A string containing one or more words separated by spaces.\n\n#### Output\n- Returns a new string with the words in reverse order.\n\n#### Example\n```python\n>>> reverse_words('The quick brown fox jumps over the lazy dog')\n'dog lazy the over jumps fox brown quick The'\n```",
+    "code": "def reverse_words(sentence: str) -> str:\n    words = sentence.split()\n    return ' '.join(reversed(words))\n",
+    "tests": [
+        "assert reverse_words('The quick brown fox jumps over the lazy dog') == 'dog lazy the over jumps fox brown quick The'",
+        "assert reverse_words('Hello world! This is a test.') == 'test. a is This world! Hello'",
+        "assert reverse_words('A man, a plan, a canal: Panama') == 'Panama :canal a ,a plan, a man A'"
+    ],
+    "model": "codebooga:latest-repaired by Llama 3"
+}

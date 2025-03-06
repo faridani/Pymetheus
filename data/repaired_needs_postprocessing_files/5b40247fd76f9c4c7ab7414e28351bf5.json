@@ -1,0 +1,11 @@
+{
+    "title": "Medium - Sum of Two Numbers",
+    "description": "Write a function `sum_two_numbers` that takes two integers as input and returns their sum.\n#### Function Signature\n```python\ndef sum_two_numbers(a: int, b: int) -> int:\n``` \n\n#### Input\n- `a` (int): The first integer.\n- `b` (int): The second integer.\n\n#### Output\n- Returns the sum of `a` and `b.",
+    "code": "def sum_two_numbers(a: int, b: int) -> int:\n    return a + b",
+    "tests": [
+        "assert sum_two_numbers(1, 2) == 3",
+        "assert sum_two_numbers(0, 0) == 0",
+        "assert sum_two_numbers(-1, 1) == 0"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

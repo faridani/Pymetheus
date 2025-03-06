@@ -1,0 +1,12 @@
+{
+    "title": "Elegant Numbers",
+    "description": "An elegant number is a positive integer whose distinct prime factors are arranged in non-decreasing order. For example, the number 28 has distinct prime factors 2 and 7, which are arranged in non-decreasing order. Write a function `is_elegant` that checks if a given integer is an elegant number.",
+    "code": "import math\ndef is_elegant(n: int) -> bool:\n    factors = set()\n    for i in range(2, n + 1):\n        while n % i == 0 and i not in factors:\n            factors.add(i)\n    if len(factors) > 1 and all(sorted(list(factors))[i-1] <= sorted(list(factors))[i] for i in range(len(factors))):\n        return True\n    else:\n        return False",
+    "tests": [
+        "assert is_elegant(28) == True",
+        "assert is_elegant(24) == False",
+        "assert is_elegant(11) == True",
+        "assert is_elegant(1) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

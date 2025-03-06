@@ -1,0 +1,12 @@
+{
+    "title": "Hard - Minimum Steps to Generate String",
+    "description": "You are given two strings, `start` and `target`. You can perform the following operation on the `start` string:\n- **Insert:** Add a single character at any position in the `start` string.\nThe goal is to find the minimum number of operations required to transform the `start` string into the `target` string.\n#### Function Signature\n```python\ndef min_steps(start: str, target: str) -> int:\n```\n\n#### Input\n- `start` (str): The starting string.\n- `target` (str): The target string to be generated.\n\n#### Output\n- Returns the minimum number of insertion operations required.",
+    "code": "def min_steps(start: str, target: str) -> int:\n    n = len(start)\n    m = len(target)\n    dp = [[0 for _ in range(m + 1)] for _ in range(n + 1)]\n\n    for i in range(n + 1):\n        dp[i][0] = i\n    for j in range(m + 1):\n        dp[0][j] = j\n\n    for i in range(1, n + 1):\n        for j in range(1, m + 1):\n            if start[i - 1] == target[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1]\n            else:\n                dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + 1\n    return dp[n][m]",
+    "tests": [
+        "assert min_steps(\"a\", \"abc\") == 2",
+        "assert min_steps(\"coding\", \"codingninja\") == 6",
+        "assert min_steps(\"apple\", \"aple\") == 1",
+        "assert min_steps(\"\", \"hello\") == 5"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

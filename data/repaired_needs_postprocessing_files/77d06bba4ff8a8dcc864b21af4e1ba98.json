@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Valid Triangle Checker",
+    "description": "Given the lengths of three sides of a triangle, determine if it is valid (i.e., all sides are positive and satisfy the triangle inequality). Write a function `is_valid_triangle` that takes three integers as input and returns `True` if the triangle is valid, `False` otherwise.\n#### Function Signature\n```python\ndef is_valid_triangle(a: int, b: int, c: int) -> bool:\n``` \n\n#### Input\n- `a`, `b`, `c` (int): The lengths of three sides of a triangle.\n\n#### Output\n- Returns `True` if the triangle is valid, `False` otherwise.",
+    "code": "def is_valid_triangle(a: int, b: int, c: int) -> bool:\n    # Check that all sides are positive\n    if any(side <= 0 for side in (a, b, c)):\n        return False\n    # Check the triangle inequality\n    if not (a + b > c and a + c > b and b + c > a):\n        return False\n    return True",
+    "tests": [
+        "assert is_valid_triangle(3, 4, 5) == True",
+        "assert is_valid_triangle(-1, 2, 3) == False",
+        "assert is_valid_triangle(0, 0, 0) == False",
+        "assert is_valid_triangle(1, 2, 3) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

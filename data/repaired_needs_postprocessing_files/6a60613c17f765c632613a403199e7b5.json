@@ -1,0 +1,12 @@
+{
+    "title": "Hard: String Transformation",
+    "description": "You are given two strings, `str1` and `str2`, consisting of lowercase letters. You can perform the following operation any number of times: - Choose a character in `str1` and replace it with another lowercase letter.\nThe goal is to transform `str1` into `str2` using the minimum number of operations. Write a function `min_transformations(str1, str2)` that returns the minimum number of operations required.\n#### Function Signature\n```python\ndef min_transformations(str1: str, str2: str) -> int:\n``` \nOutput - Returns the minimum number of operations required to transform `str1` into `str2`. #### Input\n- `str1` (str): The initial string.\n- `str2` (str): The target string.",
+    "code": "def min_transformations(str1: str, str2: str) -> int:\n    if len(str1) != len(str2):\n        return -1  # Lengths must be equal\n    diff = 0\n    for i in range(len(str1)):\n        if str1[i] != str2[i]:\n            diff += 1\n    return diff\n",
+    "tests": [
+        "'assert min_transformations(\"abc\", \"abd\") == 1'",
+        "'assert min_transformations(\"aabbcc\", \"cceebb\") == 4'",
+        "'assert min_transformations(\"hello\", \"world\") == 5'",
+        "'assert min_transformations(\"cat\", \"dog\") == 3'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

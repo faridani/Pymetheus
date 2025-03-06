@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Tree Traversals",
+    "description": "Write a function `tree_traversal` that takes the root of a binary tree as input and returns the results of three traversals (pre-order, post-order, and in-order) as a tuple. The node values are integers.\n\n#### Function Signature\n```python\ndef tree_traversal(root: int | None) -> tuple:\n```\n\n#### Input\n- `root` (int | None): The root of the binary tree, where `None` represents an empty tree.\n\n#### Output\n- Returns a tuple containing three strings representing the results of the following traversals:\n    - Pre-order traversal: traverse the tree by visiting the current node first, then recursively visit its left and right subtrees.\n    - Post-order traversal: traverse the tree by recursively visit its left and right subtrees, then visit the current node.\n    - In-order traversal: traverse the tree by visiting the left subtree, then the current node, and finally the right subtree.",
+    "code": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef tree_traversal(root: int | None) -> tuple:\n    if root is None:\n        return ('', '', '')\n    pre_order = ''\n    post_order = ''\n    in_order = ''\n\n    def pre_order_helper(node):\n        nonlocal pre_order\n        if node is not None:\n            pre_order += str(node.val) + ' '\n            pre_order_helper(node.left)\n            pre_order_helper(node.right)\n\n    def post_order_helper(node):\n        nonlocal post_order\n        if node is not None:\n            post_order_helper(node.left)\n            post_order_helper(node.right)\n            post_order += str(node.val) + ' '\n\n    def in_order_helper(node):\n        nonlocal in_order\n        if node is not None:\n            in_order_helper(node.left)\n            in_order += str(node.val) + ' '\n            in_order_helper(node.right)\n\n    pre_order_helper(root)\n    post_order_helper(root)\n    in_order_helper(root)\n\n    return (pre_order.strip(), post_order.strip(), in_order.strip())\n",
+    "tests": [
+        "assert tree_traversal(None) == ('', '', '')",
+        "assert tree_traversal(1) == ('1 ', ' 1', '   1')",
+        "assert tree_traversal(1, 2) == ('1 2 ', '  2 1', '   1 2')",
+        "assert tree_traversal(1, 2, 3) == ('1 2 3 ', ' 3 2 1', '   1 2 3')"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

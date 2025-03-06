@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Given two strings, write a function `anagram_checker` that checks if they are anagrams of each other.\n\n#### Function Signature\n```python\ndef anagram_checker(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain letters and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\nAnagrams are words or phrases that contain the same exact letters in the same frequency. For example, 'listen' and 'silent' are anagrams, while 'listen' and 'silence' are not.\nHint: You may find the `collections.Counter` class useful.",
+    "code": "from collections import Counter\n\ndef anagram_checker(str1: str, str2: str) -> bool:\n    # Count the frequency of each character in both strings\n    count1 = Counter(str1)\n    count2 = Counter(str2)\n    \n    # If either string has more characters than the other or a character not present in the other, they cannot be anagrams.\n    if sum(count1.values()) != sum(count2.values()) or set(count1) ^ set(count2):\n        return False\n    \n    # If all characters have the same frequency in both strings, they are anagrams.\n    for key in count1:\n        if count1[key] != count2[key]:\n            return False\n    return True",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('hello', 'olleh') == True",
+        "assert anagram_checker('listen', 'silence') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

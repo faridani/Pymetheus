@@ -1,0 +1,16 @@
+{
+    "title": "Polindromic Fibonacci Numbers",
+    "description": "A polindromic Fibonacci number is a Fibonacci number that reads the same forwards and backwards. Write a function `is_polindromic` that checks if a given Fibonacci number is polindromic.\n\n#### Function Signature\n```python\ndef is_polindromic(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A non-negative integer representing the position of a Fibonacci number in the sequence.\n\n#### Output\n- Returns `True` if the Fibonacci number at the given position is polindromic, `False` otherwise.\n",
+    "code": "def fib(n):\n    if n <= 1:\n        return n\n    else:\n        return fib(n - 1) + fib(n - 2)\ndef is_polindromic(n: int) -> bool:\n    fib_num = fib(n)\n    fib_num_str = str(fib_num)\n    # Check if the string reads the same forwards and backwards\n    return fib_num_str == fib_num_str[::-1]\n",
+    "tests": [
+        "assert is_polindromic(0) == True",
+        "assert is_polindromic(1) == False",
+        "assert is_polindromic(1) == False",
+        "assert is_polindromic(2) == False",
+        "assert is_polindromic(3) == False",
+        "assert is_polindromic(5) == False",
+        "assert is_polindromic(8) == True",
+        "assert is_polindromic(13) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

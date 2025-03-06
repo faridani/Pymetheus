@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Count Occurrences",
+    "description": "Given a string and a character, write a function `count_occurrences` that counts the number of times the given character appears in the string.\n#### Function Signature\n```python\ndef count_occurrences(s: str, c: str) -> int:\n```\n\n#### Input\n- `s` (str): A string.\n- `c` (str): A single character.\n\n#### Output\n- Returns the number of times the character `c` appears in the string `s`.",
+    "code": "def count_occurrences(s: str, c: str) -> int:\n    count = 0\n    for char in s:\n        if char == c:\n            count += 1\n    return count",
+    "tests": [
+        "assert count_occurrences(\"hello world\", \"l\") == 3",
+        "assert count_occurrences(\"banana\", \"a\") == 3",
+        "assert count_occurrences(\"programming\", \"g\") == 2"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

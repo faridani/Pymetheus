@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Quantum Superposition Optimization",
+    "description": "You are a quantum computing pioneer working on optimizing a system with quantum superposition. The system can be represented as a list of complex numbers, where each complex number represents the amplitude and phase of a quantum state.\nYour task is to write a function `optimize_superposition` that takes this list of complex numbers as input and outputs a new list, which is an optimized version of the input list. The optimization process involves finding the global phase rotation that minimizes the variance in the distribution of probabilities represented by the quantum states.\n\n#### Function Signature```python\ndef optimize_superposition(states: List[complex]) -> List[complex]:```\n\n#### Input\n- `states` (List[complex]): A list of complex numbers representing the amplitudes and phases of quantum states.\n\n#### Output\n- Returns a new list of complex numbers that is an optimized version of the input list, with reduced variance in probabilities.\n",
+    "code": "from typing import List\ndef optimize_superposition(states: List[complex]) -> List[complex]:\n    global_phase = sum([state.imag for state in states])\n    return [state * complex(np.cos(global_phase), -np.sin(global_phase)) for state in states]\n",
+    "tests": [
+        "assert np.allclose(optimize_superposition([1+1j, 2-2j]), [0.7071067811865475+0.7071067811865475j, -0.7071067811865475-0.7071067811865475j])",
+        "assert np.allclose(optimize_superposition([3+3j, 4-4j, 5+5j]), [0.32793321412760475+0.32793321412760475j, -0.2850457836987984-0.2850457836987984j, 0.4639715682464142+0.4639715682464142j])"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

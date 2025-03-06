@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Evenly Distributed Integers",
+    "description": "Write a function `evenly_distributed` that takes an integer `n` and returns the number of ways to distribute `n` evenly among `k` integers, where each integer can take on any value from 0 to `m`. The order of distribution does not matter.\r\n\r\n#### Function Signature\r\n```python\r\ndef evenly_distributed(n: int, k: int, m: int) -> int:\r```\r\r\n#### Input\r\n- `n` (int): A positive integer that represents the total number to be distributed.\r\n- `k` (int): A positive integer that represents the number of integers to distribute among.\r\n- `m` (int): A non-negative integer that represents the maximum value each integer can take on.\r\r\n#### Output\r\n- Returns the number of ways to distribute `n` evenly among `k` integers, where each integer can take on any value from 0 to `m`. The order of distribution does not matter.\r",
+    "code": "def evenly_distributed(n: int, k: int, m: int) -> int:\r    # Calculate the maximum and minimum possible values for each integer\r    max_val = min(m, n // k)\r    min_val = 0\r\r    # Initialize the count of ways to distribute `n` among `k` integers\r    count = 0\r\r    # Iterate over all possible values for the first integer\r    for i in range(min_val, max_val + 1):\r        # Calculate the remaining value after distributing `i`\r        remaining = n - i * k\r\r        # If the remaining value is divisible by `k`, add to the count\r        if remaining % k == 0:\r            count += 1\r\r    return count",
+    "tests": [
+        "assert evenly_distributed(6, 2, 3) == 4",
+        "assert evenly_distributed(10, 5, 4) == 7",
+        "assert evenly_distributed(15, 3, 5) == 12",
+        "assert evenly_distributed(20, 4, 8) == 14"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

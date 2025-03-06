@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Number Spiral Diagonals",
+    "description": "You are given a positive integer `n`. This represents the size of an `n x n` square grid. Starting at the center of the grid, numbers are written in a spiral pattern, increasing consecutively from 1. For example:\nFor n = 3:\n```n\n8 9 4\n7 6 5\n```\nYou need to write a function `diagonal_sum` that calculates the sum of all numbers along the diagonals (including the center diagonal) in this spiral pattern.\n#### Function Signature\n```python\ndef diagonal_sum(n: int) -> int:\n```\n#### Input\n- `n` (int): The size of the square grid (n x n).\n#### Output\n- Returns an integer representing the sum of all numbers along the diagonals.\n",
+    "code": "def diagonal_sum(n: int) -> int:\n    total = 1\n    layer = 2\n    while layer <= n:\n        for _ in range(4):\n            total += layer * layer - (layer - 1)\n            layer += 1 if _ == 3 else 0  # Increment layer only after the last element of a diagonal\n    return total\n",
+    "tests": [
+        "assert diagonal_sum(1) == 1",
+        "assert diagonal_sum(3) == 45",
+        "assert diagonal_sum(5) == 101",
+        "assert diagonal_sum(7) == 175"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

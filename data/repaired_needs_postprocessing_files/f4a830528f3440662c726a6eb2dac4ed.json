@@ -1,0 +1,12 @@
+{
+    "title": "Coin Change Problem",
+    "description": "A coin change problem is an optimization problem that asks the following: given a set of coins with different denominations, what's the minimum number of coins needed to make up a certain amount of money? Write a function `coin_change` that takes two inputs: the list of available coin denominations and the target amount. The function should return the minimum number of coins needed to make up the target amount.\n#### Function Signature\n```python\ndef coin_change(coins: list[int], target: int) -> int:\n``` \n#### Input\n- `coins` (list[int]): A list of available coin denominations.\n- `target` (int): The target amount of money to be made up.\n#### Output\n- Returns the minimum number of coins needed to make up the target amount.\n",
+    "code": "def coin_change(coins: list[int], target: int) -> int:\n    dp = [float('inf')] * (target + 1)\n    dp[0] = 0\n    for coin in coins:\n        for i in range(coin, target + 1):\n            dp[i] = min(dp[i], dp[i - coin] + 1)\n    return dp[target] if dp[target] != float('inf') else -1",
+    "tests": [
+        "assert coin_change([1, 2, 5], 11) == 3",
+        "assert coin_change([1, 2, 5], 10) == 4",
+        "assert coin_change([3, 4, 5], 9) == 2",
+        "assert coin_change([1, 2, 3], 0) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

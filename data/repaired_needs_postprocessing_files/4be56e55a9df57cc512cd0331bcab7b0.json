@@ -1,0 +1,12 @@
+{
+    "title": "Capitalize First Letter of Each Word",
+    "description": "Write a function `capitalize_first` that takes a string as input and returns the same string with the first letter of each word capitalized. Write a function `capitalize_first(s: str) -> str:` ```python def capitalize_first(s: str) -> str:    # Split the string into words based on whitespace and punctuation    words = s.split()    # Capitalize the first letter of each word    capitalized_words = [word.capitalize() for word in words]    # Join the capitalized words back together into a single string    return ' '.join(capitalized_words) ``` #### Input - `s` (str): A string containing words separated by spaces or punctuation. #### Output - Returns the input string with the first letter of each word capitalized.",
+    "code": "def capitalize_first(s: str) -> str:\n    # Split the string into words based on whitespace and punctuation\n    words = s.split()\n    # Capitalize the first letter of each word\n    capitalized_words = [word.capitalize() for word in words]\n    # Join the capitalized words back together into a single string\n    return ' '.join(capitalized_words)",
+    "tests": [
+        "assert capitalize_first('hello world') == 'Hello World'",
+        "assert capitalize_first('HELLO WORLD') == 'Hello World'",
+        "assert capitalize_first('this is a test') == 'This Is A Test'",
+        "assert capitalize_first('   this  IS A TEST  ') == 'This Is A Test'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

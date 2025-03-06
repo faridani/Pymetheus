@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Unique Characters in Every Substring",
+    "description": "Given a string, determine if all the characters are unique within every substring of that string. Write a function `is_unique_in_substrings` which takes an input string and returns `True` if each substring contains only distinct characters (i.e., no character repeats), otherwise it should return `False`. \n\n#### Function Signature\n```python\ndef is_unique_in_substrings(s: str) -> bool:\n``` \n\n#### Input\n- `s`: A string made up of lowercase and uppercase letters, digits, and special characters (length of `s` \u2264 10^4).\n\n#### Output\n- Returns `True` if all the characters are unique in every substring of input, otherwise returns `False`. ",
+    "code": "import collections\ndef is_unique_in_substrings(s: str) -> bool:\n    char_count = {} # Dictionary to keep track of character counts\n    for i, char in enumerate(s):\n        if char in char_count:\n            return False  # If the character has already appeared before, return False\n        char_count[char] = True\n        # Keep window size equal to current index by removing characters from start of string\n        if len(char_count) > i + 1 - min(char_count.values()):\n            del char_count[list(min(char_count.items(), key=lambda x: x[1]))[0]]\n    return True\n",
+    "tests": [
+        "assert is_unique_in_substrings(\"abc\") == True",
+        "assert is_unique_in_substrings(\"abac\") == False",
+        "assert is_unique_in_substrings(\"cbbd\") == True",
+        "assert is_unique_in_substrings(\"pwwkew\") == False"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

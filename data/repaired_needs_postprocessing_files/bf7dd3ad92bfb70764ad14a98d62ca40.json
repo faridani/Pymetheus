@@ -1,0 +1,12 @@
+{
+    "title": "Radix Sort Implementation (Medium)",
+    "description": "Radix sort is a stable sorting algorithm that sorts data based on the number of digits and digits themselves. It works best when input data has large numbers with the same number of digits.\n\n#### Function Signature\n```python\ndef radix_sort(arr: List[int]) -> List[int]:\n```\n\n#### Input\n- `arr` (List[int]): A sorted list of non-negative integers, which may contain numbers up to 10^9.\n\n#### Output\n- Returns a sorted list in ascending order using radix sort.",
+    "code": "from functools import reduce\n\ndef digit_count(num: int) -> int:\n    return len(str(num))\n\ndef max_digit(arr: List[int]) -> int:\n    return max(arr, key=digit_count)\n\ndef bucket_counts(arr: List[int], n: int) -> dict(int, list(int)):\n    counts = {i: [] for i in range(10)}\n    for num in arr:\n        counts[num // (n * 10)] += [num % n]\n    return counts\n\ndef radix_sort(arr: List[int]) -> List[int]:\n    max_digit_val = max_digit(arr)\n    for place in range(max_digit_val, -1, -1):\n        buckets = bucket_counts(arr, 10**place)\n        arr = reduce(lambda x, y: x + y, [v[i] for i, v in sorted(buckets.items(), key=lambda item: len(item[1]), reverse=True)])\n    return arr",
+    "tests": [
+        "assert radix_sort([2, 43, 56, 78, 90]) == [2, 43, 56, 78, 90]",
+        "assert radix_sort([123, 456, 789, 10]) == [10, 123, 456, 789]",
+        "assert radix_sort([20, 21, 12, 13, 30, 31]) == [12, 13, 20, 21, 30, 31]",
+        "assert radix_sort([-1, 100, 99, -2]) == [-2, -1, 99, 100]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

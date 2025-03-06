@@ -1,0 +1,17 @@
+{
+    "title": "'Sum of digits of Fibonacci number (Medium)',",
+    "description": "Write a function `sum_fibonacci_digits` that takes an integer `n` and returns the sum of the digits of the nth Fibonacci number.\r\n\r\n#### Function Signature\r\n```python\r\ndef sum_fibonacci_digits(n: int) -> int:\r``` \r\n\r\n#### Input\r\n- `n` (int): A non-negative integer representing the position of the Fibonacci number in the sequence.\r\n\r\n#### Output\r\n- Returns the sum of the digits of the nth Fibonacci number as an integer.\r\n",
+    "code": "def sum_fibonacci_digits(n: int) -> int:\r    # Base case for 0 and 1, they don't have any digits\r    if n == 0 or n == 1: return 0\r    # Calculate the Fibonacci number recursively\r    fib = [0] * (n + 2)\r    fib[0], fib[1] = 0, 1\r    for i in range(2, n + 1):\r        fib[i] = fib[i - 1] + fib[i - 2]\r    # Calculate the sum of digits\r    return sum(int(digit) for digit in str(fib[n]))",
+    "tests": [
+        "assert sum_fibonacci_digits(0) == 0",
+        "assert sum_fibonacci_digits(1) == 1",
+        "assert sum_fibonacci_digits(2) == 1",
+        "assert sum_fibonacci_digits(3) == 2",
+        "assert sum_fibonacci_digits(4) == 3",
+        "assert sum_fibonacci_digits(5) == 5",
+        "assert sum_fibonacci_digits(6) == 8",
+        "assert sum_fibonacci_digits(7) == 0",
+        "assert sum_fibonacci_digits(8) == 1"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

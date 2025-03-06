@@ -1,0 +1,14 @@
+{
+    "title": "Palindromic Anagram Checker (Medium)",
+    "description": "Write a function `is_anagram_palindrome` that checks if a given string can be rearranged to form a palindrome.\n\n#### Function Signature\n```python\ndef is_anagram_palindrome(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string can be rearranged to form a palindrome, `False` otherwise.",
+    "code": "import collections\ndef is_anagram_palindrome(s: str) -> bool:\n    # Remove non-alphanumeric characters and convert to lowercase\n    s = ''.join(char for char in s if char.isalnum()).lower()\n    # Count each character and its reverse index in the sorted string\n    counter = collections.Counter(s)[::-1]\n    # Check if the number of occurrences of each character is even or if there is an odd number of characters\n    for count in counter:\n        if count % 2 != 0 and len(counter) > 1:\n            return False\n    return True",
+    "tests": [
+        "assert is_anagram_palindrome(\"A man, a plan, a canal, Panama\") == True",
+        "assert is_anagram_palindrome(\"racecar\") == True",
+        "assert is_anagram_palindrome(\"hello\") == False",
+        "assert is_anagram_palindrome(\"No 'x' in Nixon\") == False",
+        "assert is_anagram_palindrome(\"A man, a plan, a cat, a Han, a canal: Panama\") == True",
+        "assert is_anagram_palindrome(\"Madam, I'm Adam.\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

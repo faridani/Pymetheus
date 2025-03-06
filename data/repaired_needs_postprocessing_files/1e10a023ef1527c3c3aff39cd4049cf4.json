@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Counting Islands",
+    "description": "Given an n x m grid of cells, where each cell is either land ('L') or water ('W'), write a function to count the number of islands in the grid. Two adjacent cells (horizontally or vertically) are considered part of the same island if they have the same value.\n\n#### Function Signature\n```python\ndef count_islands(grid: list[list[str]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[str]]): A 2D grid of cells, where each cell is either 'L' or 'W'. The grid may have any number of rows and columns.\n\n#### Output\n- Returns the number of islands in the grid.",
+    "code": "def count_islands(grid: list[list[str]]) -> int:\n    def dfs(i: int, j: int) -> None:\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == 'W':\n            return\n        grid[i][j] = 'W'\n        dfs(i - 1, j)\n        dfs(i + 1, j)\n        dfs(i, j - 1)\n        dfs(i, j + 1)\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == 'L':\n                dfs(i, j)\n                count += 1\n    return count",
+    "tests": [
+        "assert count_islands([['L', 'W', 'L'], ['W', 'W', 'W'], ['L', 'W', 'L']]) == 2",
+        "assert count_islands([['L', 'L']]) == 1",
+        "assert count_islands([['L', 'L', 'W'], ['L', 'L', 'W'], ['W', 'W', 'W']]) == 2",
+        "assert count_islands([['L'] * 3 for _ in range(3)]) == 9"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

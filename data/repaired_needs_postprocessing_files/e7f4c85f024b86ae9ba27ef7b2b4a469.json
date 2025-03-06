@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Perfect Cuboid",
+    "description": "A perfect cuboid is a three-dimensional integer rectangle with positive integer side lengths (l), (w), and (h), such that the sum of the areas of its 6 faces equals exactly twice the volume. Given integers (a) and (b) representing dimensions of one face, write a function `is_perfect_cuboid(l: int, w: int, h: int) -> bool` that returns True if there exists at least one cuboid with integer side lengths where (l <= w < h), such that the sum of its surface area equals twice its volume and (a <= l*w + w*h + h*l <= b) for both faces (lw), (wh) and (lh). The function should return False otherwise.",
+    "code": "from typing import Tuple\n\ndef is_perfect_cuboid(l: int, w: int, h: int) -> bool:\n    surface_area = 2 * (l*w + w*h + h*l)\n    volume = l*w*h\n    if surface_area == 2*volume and a <= surface_area <= b:\n        return True\n    return False",
+    "tests": [
+        "assert is_perfect_cuboid(4, 6, 12) == True",
+        "assert is_perfect_cuboid(3, 9, 15) == False",
+        "assert is_perfect_cuboid(5, 10, 20) == True",
+        "assert is_perfect_cuboid(2, 8, 16) == False"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

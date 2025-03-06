@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Write a function `are_anagrams` that determines if two given strings are anagrams of each other.\n\n#### Function Signature\n```\ndef are_anagrams(s1: str, s2: str) -> bool:\n``` \n\n#### Input\n- `s1` (str): A string containing lowercase letters only.\n- `s2` (str): A string containing lowercase letters only.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise. ",
+    "code": "def are_anagrams(s1: str, s2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Create a frequency dictionary for each string and compare them\n    freq_dict = {char: s1.count(char) for char in set(s1)}\n    for char in set(s2):\n        if char not in freq_dict or freq_dict[char] != s2.count(char):\n            return False\n    \n    # If all characters have the same frequency, they are anagrams\n    return True ",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('alpha', 'palm') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

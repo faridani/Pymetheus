@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Minimum Distance Between Similar Elements",
+    "description": "Given a list of integers, find the minimum distance between any two elements that are equal. If there are no equal elements, return 0.\n\n#### Function Signature\n```python\ndef min_distance(lst: list[int]) -> int:\n```\n\n#### Input\n- `lst` (list[int]): A list of integers.\n\n#### Output\n- Returns the minimum distance between any two equal elements in the input list, or 0 if there are no equal elements.",
+    "code": "def min_distance(lst: list[int]) -> int:\n    if len(set(lst)) == 1:\n        return 0\n    lst = sorted((x, i) for i, x in enumerate(lst))\n    prev_same = None\n    min_dist = float('inf')\n    for x, i in lst:\n        if prev_same and prev_same[0] == x:\n            min_dist = min(min_dist, i - prev_same[1])\n        prev_same = (x, i)\n    return 0 if min_dist == float('inf') else min_dist",
+    "tests": [
+        "assert min_distance([1, 2, 3]) == 0",
+        "assert min_distance([1, 2, 1, 4]) == 2",
+        "assert min_distance([1, 1, 1, 2]) == 1",
+        "assert min_distance([]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

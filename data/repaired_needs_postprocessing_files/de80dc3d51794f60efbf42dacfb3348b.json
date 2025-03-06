@@ -1,0 +1,11 @@
+{
+    "title": "'Reverse Words Checker (Easy)'",
+    "description": "Write a function `is_reverse` that checks if a given string reads the same forward and backward\n#### Function Signature\n```python\ndef is_reverse(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string reads the same forwards and backwards with each word in reverse order, `False` otherwise.",
+    "code": "import re\ndef is_reverse(s: str) -> bool:\n    # Split the string into words\n    words = re.findall('\\w+', s)\n    # Check if the string reads the same forwards and backwards with each word in reverse order\n    return s == ' '.join([word[::-1] for word in words][::-1])",
+    "tests": [
+        "assert is_reverse('hello world') == True",
+        "assert is_reverse('Python programming') == True",
+        "assert is_reverse('I love this programing language') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Unique Character Checker",
+    "description": "Create a function that checks if the input string has all unique characters. This means each character appears exactly once throughout the string. The function should return `True` if there are no repeated characters, and `False` otherwise.\n#### Function Signature\n```python\ndef has_unique_characters(s: str) -> bool:\n``` \n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n#### Output\n- Returns `True` if each character in the input string is unique, `False` otherwise.",
+    "code": "def has_unique_characters(s: str) -> bool:\n    # Convert to lowercase for case insensitivity\n    s = s.lower()\n    # Create a set from the string which automatically removes duplicates\n    char_set = set(s)\n    # Compare length of characters in string and unique character count\n    return len(s) == len(char_set)",
+    "tests": [
+        "assert has_unique_characters(\"Python\") == True",
+        "assert has_unique_characters(\"Programming\") == False",
+        "assert has_unique_characters(\"aA\") == True",
+        "assert has_unique_characters(\"123 4567\") == True",
+        "assert has_unique_characters(\"Mississippi\") == False"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

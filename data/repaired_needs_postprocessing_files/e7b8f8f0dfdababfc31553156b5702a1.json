@@ -1,0 +1,10 @@
+{
+    "title": "Easy: Matrix Rotation",
+    "description": "Given an m x n matrix, write a function that rotates the entire matrix by 90 degrees clockwise. The resulting matrix should have the same number of rows and columns as the original matrix.\n\n#### Function Signature\n```python\ndef rotate_matrix(matrix: list[list[int]]) -> list[list[int]]:\n    if not matrix or not matrix[0]:\n        return []\n    result = [[0 for _ in range(len(matrix))] for _ in range(len(matrix[0]))]\n    for i in range(len(matrix)):\n        for j in range(len(matrix[0])):\n            result[j][len(matrix) - 1 - i] = matrix[i][j]\n    return result\n```",
+    "code": "from typing import List\n\ndef rotate_matrix(matrix: List[List[int]]) -> List[List[int]]:\n    if not matrix or not matrix[0]:\n        return []\n    result = [[0 for _ in range(len(matrix))] for _ in range(len(matrix[0]))]\n    for i in range(len(matrix)):\n        for j in range(len(matrix[0])):\n            result[j][len(matrix) - 1 - i] = matrix[i][j]\n    return result\n",
+    "tests": [
+        "assert rotate_matrix([[1,2,3],[4,5,6],[7,8,9]]) == [[7,4,1],[8,5,2],[9,6,3]]",
+        "assert rotate_matrix([[1,2,3],[0,0,0],[0,0,0]]) == [[0,0,0],[1,2,3],[0,0,0]]"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

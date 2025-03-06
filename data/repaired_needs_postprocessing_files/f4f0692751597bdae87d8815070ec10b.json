@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Student Grade Calculator",
+    "description": "Write a function `student_grade_calculator` that takes as input a list of student names and their corresponding grades (as dictionaries). The function should return the average grade of all students.\n\n#### Function Signature\n```python\ndef student_grade_calculator(students_grades: list[dict]) -> float:\n```\n\n#### Input\n- `students_grades` (list[dict]): A list of dictionaries, where each dictionary represents a student's grades. Each dictionary should have the following keys: `name` (str), and `grades` (list[float]).\n\n#### Output\n- Returns the average grade of all students.\n",
+    "code": "def student_grade_calculator(students_grades: list[dict]) -> float:\n    total_grade = 0\n    for student in students_grades:\n        total_grade += sum(student['grades'])\n    return total_grade / len(students_grades)",
+    "tests": [
+        "assert student_grade_calculator([{'name': 'Alice', 'grades': [85, 90]}]) == 87.5",
+        "assert student_grade_calculator([{'name': 'Bob', 'grades': [78, 92]}]) == 85.0",
+        "assert student_grade_calculator([{'name': 'Charlie', 'grades': [95, 98, 100]}]) == 97.66666666666667"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

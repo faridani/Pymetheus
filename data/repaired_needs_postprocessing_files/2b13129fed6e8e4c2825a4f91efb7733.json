@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Finding the Next Date",
+    "description": "Given a date string in the format of 'YYYY-MM-DD', write a function that returns the next date. For example, if you input '2022-07-31', it should return '2022-08-01'. If the input is already the last day of the month (like '2022-02-28'), the function should return the same date.\n#### Function Signature\n```python\ndef next_date(d: str) -> str:\n```\n\n#### Input\n- `d` (str): A string in the format 'YYYY-MM-DD' representing a date.\n\n#### Output\n- Returns the next date in the same format, or the same date if it's already the last day of the month.",
+    "code": "import datetime\ndef next_date(d: str) -> str:\n    date_obj = datetime.datetime.strptime(d, '%Y-%m-%d')\n    next_day = date_obj + datetime.timedelta(days=1)\n\n    return next_day.strftime('%Y-%m-%d')",
+    "tests": [
+        "assert next_date('2022-07-31') == '2022-08-01'",
+        "assert next_date('2022-02-28') == '2022-02-28'",
+        "assert next_date('2000-01-15') == '2000-01-16'"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

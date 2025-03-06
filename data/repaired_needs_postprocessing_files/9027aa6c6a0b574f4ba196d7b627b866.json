@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Maximum Subarray Sum with Rotation",
+    "description": "Given an array of integers, find the maximum sum of a contiguous subarray that can be obtained by rotating the original array. A rotation is defined as shifting all elements to the right by one position and wrapping the last element to the beginning.\n\n#### Function Signature\n```python\ndef max_subarray_sum_with_rotation(arr: list[int]) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum of a contiguous subarray after any possible rotation.",
+    "code": "def max_subarray_sum_with_rotation(arr: list[int]) -> int:\n    n = len(arr)\n    max_so_far = arr[0]\n    curr_max = arr[0]\n    for i in range(1, n):\n        curr_max = max(arr[i], curr_max + arr[i])\n        max_so_far = max(max_so_far, curr_max)\n\n    # Rotate the array and find the maximum sum again\n    for i in range(n - 1):\n        temp = arr[0]\n        for j in range(n - 1):\n            arr[j] = arr[j + 1]\n        arr[-1] = temp\n        curr_max = arr[0]\n        for j in range(1, n):\n            curr_max = max(arr[j], curr_max + arr[j])\n            max_so_far = max(max_so_far, curr_max)\n    return max_so_far",
+    "tests": [
+        "assert max_subarray_sum_with_rotation([1, 2, -3, 4, 5]) == 12",
+        "assert max_subarray_sum_with_rotation([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6",
+        "assert max_subarray_sum_with_rotation([ -1, -2, -3 ]) == -1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

@@ -1,0 +1,16 @@
+{
+    "title": "Hard: Distinct Substrings Counting",
+    "description": "Given a string, write a function that returns the count of distinct substrings. A substring can be any part of the original string and must consist of at least two characters.",
+    "function_signature": "def distinct_substrings_count(s: str) -> int:\n    pass\n```\npython\n```",
+    "input_format": "- `s` (str): The input string for which we need to find the count of distinct substrings.\n\n**Constraints:** len(s) <= 10000.",
+    "output_format": "- Returns an integer representing the total number of distinct substrings in the given string.",
+    "hints": "Consider using a sliding window technique combined with a set data structure to efficiently store and check for unique substrings.",
+    "code": "import itertools\n\ndef distinct_substrings_count(s: str) -> int:\n    n = len(s)\n    if n < 2:\n        return 0\n    result_set, left, right = set(), 0, 1\n    while right <= n - 1:\n        current_window = s[left:right+1]\n        unique_substrings = {current_window}\n        for length in range(2, len(current_window) + 1):\n            start_index = max(left - 1, 0)\n            end_index = min(right, n - length)\n            possible_substrings = set(itertools.islice((s[start:end] for start in range(start_index, end_index) for end in range(start + length, n)), len(s) - right))\n            unique_substrings |= possible_substrings\n        result_set.update(unique_substrings)\n        left += 1\n        right += 1\n    return len(result_set)",
+    "tests": [
+        "assert distinct_substrings_count('') == 0",
+        "assert distinct_substrings_count('abc') == 6",
+        "assert distinct_substrings_count('aaabbbccc') == 27",
+        "assert distinct_substrings_count('aaaaa') == 5"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

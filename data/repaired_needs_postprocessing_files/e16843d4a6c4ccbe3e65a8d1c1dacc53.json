@@ -1,0 +1,11 @@
+{
+    "title": "Even Fibonacci Numbers",
+    "description": "Write a function `even_fibonacci` that finds all even Fibonacci numbers below the given limit.\n\n#### Function Signature\n```python\ndef even_fibonacci(limit: int) -> list:\n``` \n\n#### Input\n- `limit` (int): The maximum number to search for even Fibonacci numbers.\n\n#### Output\n- A list of even Fibonacci numbers below the given limit, ordered from smallest to largest.\n",
+    "code": "def even_fibonacci(limit: int) -> list:\n    # Start with the first two Fibonacci numbers\n    sequence = [0, 1]\n    result = []\n    while True:\n        next_number = sequence[-1] + sequence[-2]\n        if next_number > limit:\n            break\n        if next_number % 2 == 0:\n            result.append(next_number)\n        sequence.append(next_number)\n    return result",
+    "tests": [
+        "assert even_fibonacci(10) == [0, 2, 8]",
+        "assert even_fibonacci(100) == [0, 2, 8, 34, 50, 66, 98]",
+        "assert even_fibonacci(1000) == [0, 2, 8, 34, 50, 66, 98, 250, 374, 476, 682, 770, 926, 988]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

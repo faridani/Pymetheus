@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Given two strings, determine if they are anagrams of each other.\n\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): A string containing only lowercase letters without spaces or punctuation.\n- `str2` (str): Another string containing only lowercase letters without spaces or punctuation.\n\n#### Output\n- Returns `True` if the two input strings are anagrams, `False` otherwise.\nAn anagram is a word or phrase that is formed by rearranging the letters of another word or phrase, usually with all the original letters in the new word or phrase. Example: 'listen' and 'silent' are anagrams.\nHint: You can use collections.Counter to count the frequency of each character in a string.",
+    "code": "from collections import Counter\ndef are_anagrams(str1: str, str2: str) -> bool:\n    # Ensure both strings have the same length\n    if len(str1) != len(str2):\n        return False\n    \n    # Count the frequency of each character in each string\n    char_counts1 = Counter(str1)\n    char_counts2 = Counter(str2)\n    \n    # Check if both counts are equal\n    return char_counts1 == char_counts2",
+    "tests": [
+        "assert are_anagrams(\"listen\", \"silent\") == True",
+        "assert are_anagrams(\"cat\", \"act\") == True",
+        "assert are_anagrams(\"hello\", \"world\") == False",
+        "assert are_anagrams(\"A man, a plan, a canal, Panama\", \"Panama canal: a plan, a man, a Panama\") == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

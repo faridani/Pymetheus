@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Time to Make the Flowers Bloom",
+    "description": "A gardener has n flowers, and it takes m minutes for each flower to bloom. The gardener can only water one row of flowers at a time. Write a function `min_time` that calculates the minimum time needed to make all the flowers bloom.\n\n#### Function Signature\n```python\ndef min_time(n: int, m: int) -> int:\n```\n\n#### Input\n- `n` (int): The number of flowers.\n- `m` (int): The minutes it takes for each flower to bloom.\n\n#### Output\n- Returns the minimum time needed to make all the flowers bloom.\n",
+    "code": "def min_time(n: int, m: int) -> int:\n    if n == 0:\n        return 0\n    if m % (2 * n) == 0:\n        return m // (2 * n)\n    else:\n        return m // (2 * n) + 1",
+    "tests": [
+        "assert min_time(3, 5) == 4",
+        "assert min_time(5, 10) == 5",
+        "assert min_time(10, 20) == 11",
+        "assert min_time(0, 3) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

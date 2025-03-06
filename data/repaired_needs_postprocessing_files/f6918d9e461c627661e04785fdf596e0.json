@@ -1,0 +1,11 @@
+{
+    "title": "Levenshtein Distance Calculator (Hard)",
+    "description": "The Levenshtein distance between two strings is the minimum number of single-character edits (insertion, deletion, or substitution) required to change one word into the other.\n\n#### Function Signature\n```python\ndef levenshtein_distance(s: str, t: str) -> int:\n``` \n\n#### Input\n- `s`, `t` (str): Two strings that may contain letters and nothing else.\n\n#### Output\n- An integer representing the Levenshtein distance between the two inputs.",
+    "code": "def levenshtein_distance(s: str, t: str) -> int:\n    # If either string is empty, return the length of the other\n    if len(s) == 0 and len(t) == 0:\n        return 0\n    elif len(s) == 0:\n        return len(t)\n    elif len(t) == 0:\n        return len(s)\n    else:\n        # Initialize a matrix of size (len(s)+1) x (len(t)+1)\n        matrix = [[0 for _ in range(len(t)+1)] for _ in range(len(s)+1)]\n\n        # Iterate through the strings and fill the matrix with edit distances\n        for i in range(len(s) + 1):\n            for j in range(len(t) + 1):\n                if i == 0 or j == 0:\n                    matrix[i][j] = i + j\n                else:\n                    # If the characters at indices i and j are equal, the edit distance is the one calculated for the substrings ending before index i-1 and j-1.\n                    if s[i-1] == t[j-1]:\n                        matrix[i][j] = matrix[i-1][j-1]\n                    # If they are not equal, take the minimum of the cost of replacing the character at index i with the character at j, inserting a character at index i, or deleting the character at index i.\n                    else:\n                        matrix[i][j] = min(matrix[i-1][j] + 1,\n                                               matrix[i][j-1] + 1,\n                                               matrix[i-1][j-1] + 1)\n        # Return the final edit distance, which is stored at the bottom right corner of the matrix\n        return matrix[-1][-1]\n",
+    "tests": [
+        "assert levenshtein_distance(\"kitten\", \"sitting\") == 3",
+        "assert levenshtein_distance(\"python\", \"pytonton\") == 4",
+        "assert levenshtein_distance(\"hammer\", \"anvil\") == 2"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

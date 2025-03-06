@@ -1,0 +1,12 @@
+{
+    "title": "Elegant Triangle Checker",
+    "description": "An elegant triangle is a triangle with integer side lengths satisfying the conditions below:- The largest side length is at least 2.- For any two sides of the triangle, their difference is at most 1. Write a function `is_elegance` that takes an integer as input and returns True if it represents the number of sides in an elegant triangle, False otherwise.\n\n#### Function Signature\n```\ndef is_elegance(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): An integer representing the number of sides in a triangle.\n\n#### Output\n- Returns True if `n` represents an elegant triangle, False otherwise.",
+    "code": "def is_elegance(n: int) -> bool:\n    return n >= 3 and all((1 <= abs(a - b) <= 1 for a, b in zip(range(2, n + 1), range(1, n))))",
+    "tests": [
+        "assert is_elegance(3) == True",
+        "assert is_elegance(4) == False",
+        "assert is_elegance(5) == True",
+        "assert is_elegance(6) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

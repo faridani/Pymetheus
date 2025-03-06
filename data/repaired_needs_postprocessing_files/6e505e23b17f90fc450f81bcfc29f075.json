@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Sequence of Numbers",
+    "description": "Write a function `reverse_numbers` that takes a list of integers and returns the same list but with the numbers in reverse order. \n\n#### Function Signature\n```python\ndef reverse_numbers(numbers: List[int]) -> List[int]:\n``` \n\n#### Input\n- `numbers` (List[int]): A non-empty list of integers in any order.\n\n#### Output\n- Returns the input list with its elements in reverse order.",
+    "code": "def reverse_numbers(numbers: List[int]) -> List[int]:\n    # Reverse the list using slicing\n    return numbers[::-1]",
+    "tests": [
+        "assert reverse_numbers([1, 2, 3, 4, 5]) == [5, 4, 3, 2, 1]",
+        "assert reverse_numbers([0, -1, 2, 9, 8]) == [8, 9, 2, -1, 0]",
+        "assert reverse_numbers([]) == []",
+        "assert reverse_numbers([-1, 5, 7]) == [7, 5, -1]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

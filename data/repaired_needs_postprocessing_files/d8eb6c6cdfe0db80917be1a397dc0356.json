@@ -1,0 +1,13 @@
+{
+    "title": "Goldbach's Conjecture Solver (Hard)",
+    "description": "Goldbach's Conjecture states that every even integer greater than 2 can be expressed as the sum of two prime numbers. Write a function `is_goldbach` that checks if an input number is a valid representation according to Goldbach's conjecture.\n\n#### Function Signature\n```python\ndef is_goldbach(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): An integer greater than 2.\n\n#### Output\n- Returns `True` if the input number can be expressed as the sum of two prime numbers according to Goldbach's conjecture, `False` otherwise.",
+    "code": "def is_goldbach(n: int) -> bool:\n    def is_prime(number: int) -> bool:\n        if number <= 1: return False\n        for i in range(2, int(number**0.5)+1):\n            if number % i == 0:\n                return False\n        return True\n    primes = [2] + [num for num in range(3, n+1) if is_prime(num)]\n    for prime1 in primes:\n        for prime2 in primes[primes.index(prime1)+1:]:\n            if prime1 + prime2 == n:\n                return True\n    return False",
+    "tests": [
+        "assert is_goldbach(5) == True",
+        "assert is_goldbach(6) == True",
+        "assert is_goldbach(7) == False",
+        "assert is_goldbach(10) == True",
+        "assert is_goldback(19) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

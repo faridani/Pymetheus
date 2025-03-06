@@ -1,0 +1,13 @@
+{
+    "title": "Hard: String Transformation Challenge",
+    "description": "Given two strings, `original` and `target`, determine the minimum number of operations required to transform string `original` into string `target`. An operation consists of replacing a single character with another. The problem guarantees that both strings are composed solely of lowercase English letters.\n\n#### Function Signature```python\ndef min_operations(original: str, target: str) -> int:\n``` \n\n#### Input\n- `original` (str): A string composed of lowercase English letters.\n- `target` (str): Another string composed of lowercase English letters, potentially different from the original one.\n\n#### Output\n- An integer representing the minimum number of operations required to make `original` equal to `target`. ",
+    "code": "def min_operations(original: str, target: str) -> int:\n    mismatch_count = 0\n    original_index, target_index = 0, 0\n\n    while original_index < len(original) or target_index < len(target):\n        if original_index < len(original) and target_index < len(target):\n            if original[original_index] == target[target_index]:\n                original_index += 1\n                target_index += 1\n            else:\n                mismatch_count += 1\n                if original[original_index:].count(original[original_index]) < target[target_index:].count(target[target_index]):\n                    original_index += 1\n                else:\n                    target_index += 1\n        elif len(original) > original_index and len(target) > target_index: \n            mismatch_count += abs(len(original) - (original_index + 1)) if len(original) > len(target) else abs(len(target) - (target_index + 1))\n        else:\n            break\n    return mismatch_count",
+    "tests": [
+        "assert min_operations(\"abcde\", \"abded\") == 2",
+        "assert min_operations(\"abcd\", \"efgh\") == 4",
+        "assert min_operations(\"cat\", \"dog\") == 3",
+        "assert min_operations(\"hello\", \"world\") == 7",
+        "assert min_operations(\"python\", \"java\") == 6"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

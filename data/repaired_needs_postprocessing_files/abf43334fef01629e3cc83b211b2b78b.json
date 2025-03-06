@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Array Rotation (International Olympiad Style)",
+    "description": "Write a function `rotate_array` that takes an array of integers and a positive integer `k` as input, and returns the array after performing a rotation operation. The rotation operation involves shifting all elements in the array to the right by `k` positions.\n\n#### Function Signature\n```python\ndef rotate_array(arr: list[int], k: int) -> list[int]:\n``` \n\n#### Input\n- `arr` (list[int]): A list of integers of any length.\n- `k` (int): A positive integer representing the number of positions to rotate the array to the right.\n\n#### Output\n- Returns the rotated array.",
+    "code": "def rotate_array(arr: list[int], k: int) -> list[int]:\n    n = len(arr)\n    # Calculate the effective rotation positions by taking the modulus of k with n\n    k = k % n\n    # Return a new list with the rotated elements\n    return arr[-k:] + arr[:-k]",
+    "tests": [
+        "assert rotate_array([1, 2, 3, 4, 5], 2) == [4, 5, 1, 2, 3]",
+        "assert rotate_array([7, 8, 9, 10], 3) == [10, 7, 8, 9]",
+        "assert rotate_array([-1, -2, -3, -4], 4) == [-1, -2, -3, -4]"
+    ],
+    "model": "command-r7b:latest-repaired by Llama 3"
+}

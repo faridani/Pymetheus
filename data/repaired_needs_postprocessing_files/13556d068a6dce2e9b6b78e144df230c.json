@@ -1,0 +1,12 @@
+{
+    "title": "Maximum Sum of Non-Adjacent Elements",
+    "description": "Given an array `nums` containing n integers, write a function `max_sum` that returns the maximum sum of non-adjacent elements in the array. For example, if the input is `[2, 7, 9, 3, 1]`, the output should be `12`, which is the sum of the first and third elements (2 + 9 = 11) and the fifth element (1).#### Function Signature``python``ndef max_sum(nums: list[int]) -> int:#### Input- `nums` (list[int]): A list of n integers.#### Output- Returns the maximum sum of non-adjacent elements in the array.",
+    "code": "def max_sum(nums: list[int]) -> int:\n    if len(nums) <= 2:\n        return max(0, max(nums))\n    incl = nums[0]\n    excl = 0\n    for i in range(1, len(nums)):\n        new_excl = max(incl, excl)\n        incl = nums[i] + excl\n        excl = new_excl\n    return max(incl, excl)",
+    "tests": [
+        "assert max_sum([2, 7, 9, 3, 1]) == 12",
+        "assert max_sum([-5, -3, 2, 1]) == 4",
+        "assert max_sum([0, 0, 0]) == 0",
+        "assert max_sum([]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

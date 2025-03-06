@@ -1,0 +1,11 @@
+{
+    "title": "Palindromic Substrings Count Finder (Hard)",
+    "description": "Given a non-empty string `s`, find the number of palindromic substrings in it.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A non-empty string containing lowercase English alphabets and no spaces.\n\n#### Output\n- Returns an integer representing the number of palindromic substrings in the input string.\n",
+    "code": "def count_palindromes(s: str) -> int:\n    # Count palindromic substrings using a dynamic programming approach\n    n = len(s)\n    dp = [[False] * n for _ in range(n)]\n\n    max_len = 0\n    for i in range(n):\n        dp[i][i] = True\n        max_len = 1\n\n    # Check all lengths starting from 2\n    for len_diff in range(1, n):\n        for start in range(n - len_diff):\n            end = start + len_diff\n            if dp[start + 1][end - 1] and s[start] == s[end]:\n                dp[start][end] = True\n                max_len = len_diff + 1\n    \n    return max_len ** 2 + sum([sum(row) for row in dp if row != [False]])",
+    "tests": [
+        "assert count_palindromes('aba') == 3",
+        "assert count_palindromes('abacb') == 7",
+        "assert count_palindromes('aaa') == 1"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Given two strings, write a function `anagram_checker` that checks if the given strings are anagrams of each other.\n\n#### Function Signature```python\ndef anagram_checker(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1` (str): The first string to be checked for anagram.\n- `s2` (str): The second string to be checked for anagram.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.",
+    "code": "from collections import Counter\ndef anagram_checker(s1: str, s2: str) -> bool:\n    # Count the frequency of characters in both strings\n    count1 = Counter(s1)\n    count2 = Counter(s2)\n    \n    # Check if counts are equal\n    return count1 == count2",
+    "tests": [
+        "assert anagram_checker('listen', 'silent') == True",
+        "assert anagram_checker('hello', 'world') == False",
+        "assert anagram_checker('actors', 'torsers') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

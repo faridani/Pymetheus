@@ -1,0 +1,10 @@
+{
+    "title": "Reversed Word Order Checker (Medium)",
+    "description": "Write a function `is_reversed` that checks if a given list of words has its elements in reverse order compared to the original one.\n\n#### Function Signature\n```python\ndef is_reversed(words: List[str]) -> bool:\n``` \n\n#### Input\n- `words` (List[str]): A list of non-empty words, containing only alphabetic characters.\n\n#### Output\n- Returns `True` if the order of the elements in the input list is reverse compared to the original one, `False` otherwise.",
+    "code": "def is_reversed(words: List[str]) -> bool:\n    # Reverse the given list and compare it with the original list\n    return words == words[::-1]",
+    "tests": [
+        "assert is_reversed(['apple', 'pear', 'grape']) == True",
+        "assert is_reversed(['cat', 'dog', 'mouse']) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Counting Islands",
+    "description": "You are given a 2D binary grid where each cell can be either '0' or '1'. An island is defined as any connected group of '1's. Write a function `count_islands` that takes the grid and returns the number of islands.\n\n#### Function Signature\n```python\ndef count_islands(grid: list[list[str]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[str]]): A 2D binary grid where each cell can be either '0' or '1'.\n\n#### Output\n- Returns the number of islands in the given grid.\n",
+    "code": "def count_islands(grid: list[list[str]]) -> int:\n    def dfs(i, j):\n        if i<0 or j<0 or i>=len(grid) or j>=len(grid[0]) or grid[i][j] != '1':\n            return\n        grid[i][j] = '0'\n        dfs(i-1, j)\n        dfs(i+1, j)\n        dfs(i, j-1)\n        dfs(i, j+1)\n    island_count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == '1':\n                dfs(i, j)\n                island_count += 1\n    return island_count",
+    "tests": [
+        "assert count_islands([['0'], ['1']]) == 1",
+        "assert count_islands([['0', '0'], ['1', '0']]) == 1",
+        "assert count_islands([['0', '1', '0'], ['1', '1', '0'], ['0', '0', '0']]) == 2",
+        "assert count_islands([['0', '0', '0'], ['0', '1', '0'], ['0', '0', '0']]) == 1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

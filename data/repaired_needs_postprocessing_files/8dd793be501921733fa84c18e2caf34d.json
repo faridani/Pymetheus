@@ -1,0 +1,12 @@
+{
+    "title": "Medium - Anagram Checker",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of another word or phrase, using all the original letters exactly once. For example, \"listen\" and \"silent\" are anagrams.\nWrite a function `is_anagram` that checks if two given strings are anagrams of each other.\n#### Function Signature\n```\ndef is_anagram(str1: str, str2: str) -> bool:\n``` \nOutput - Returns `True` if the two strings are anagrams of each other, `False` otherwise.\n- `str1` (str): The first string.\n- `str2` (str): The second string.",
+    "code": "def is_anagram(str1: str, str2: str) -> bool:\n    str1 = str1.replace(\" \", \"\").lower()\n    str2 = str2.replace(\" \", \"\").lower()\n    return sorted(str1) == sorted(str2)",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('rail safety', 'fairy tales') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('dormitory', 'dirty room') == True"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

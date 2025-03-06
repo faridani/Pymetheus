@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Number of Jumps",
+    "description": "You are given a list of non-negative integers. A position i can be jumped to from position j (0 <= j < i) if i is reachable by executing at most one jump from position j.\nThe minimum number of jumps required to reach the last index from the first index is 0 if the first index itself is the last index, otherwise it's -1 because we cannot reach the last index.\nWrite a function `min_jumps` that calculates the minimum number of jumps needed to reach the end from the start.\n\n#### Function Signature\n```python\ndef min_jumps(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of non-negative integers representing the positions you can jump to.\n\n#### Output\n- Returns the minimum number of jumps needed to reach the end from the start. If it's impossible to reach the end, return -1.\n",
+    "code": "def min_jumps(nums: list[int]) -> int:\n    if len(nums) == 0 or nums[0] >= len(nums):\n        return 0\n    max_reach = nums[0]\n    step = 0\n    for i in range(1, len(nums)):\n        if i > max_reach:\n            step += 1\n            max_reach = nums[i]\n    \n    if max_reach < len(nums) - 1:\n        return -1\n    return step",
+    "tests": [
+        "assert min_jumps([2,3,1,1,4]) == 2",
+        "assert min_jumps([5,6,7,8,9]) == 0",
+        "assert min_jumps([]) == 0",
+        "assert min_jumps([10]) == -1"
+    ],
+    "model": "llama3.1:8b-repaired by Llama 3"
+}

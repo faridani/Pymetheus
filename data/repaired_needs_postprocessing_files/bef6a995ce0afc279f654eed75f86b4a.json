@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Sum of Digits of Catalan Numbers",
+    "description": "The nth Catalan number can be calculated using the formula `2n choose 2n`, which gives you a sequence of numbers like this: 1, 2, 5, 14, 34, 89, 233, 664, ... A nice property of these numbers is that their digits add up to 1 if n is odd and 9 if n is even. Write a function `sum_of_digits` that takes an integer `n` as input and returns the sum of its digits.\n\n#### Function Signature\n```python\ndef sum_of_digits(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): A positive integer representing the nth Catalan number.\n\n#### Output\n- Returns the sum of the digits of `n`. For example, if you input 3, it should return 5 because the sum of the digits of 3 is 3+0=3.",
+    "code": "def sum_of_digits(n: int) -> int:\n    s = str(n)\n    total = 0\n    for char in s:\n        total += int(char)\n    return total",
+    "tests": [
+        "assert sum_of_digits(1) == 1",
+        "assert sum_of_digits(2) == 2",
+        "assert sum_of_digits(5) == 5",
+        "assert sum_of_digits(14) == 5"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

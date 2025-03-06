@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Given two strings `s1` and `s2`, write a function that returns the minimum window substring of `s1` that contains all characters from `s2`. The function should have the following signature: `min_window_substring(s1: str, s2: str) -> str`. If no such window exists, return an empty string. Note that the order of characters in the window does not matter.\n\n#### Function Signature```python\ndef min_window_substring(s1: str, s2: str) -> str:\n```\n\n#### Input\n- `s1` (str): The original string to search for the minimum window substring.\n- `s2` (str): The target string containing all characters that must be in the minimum window substring.\n\n#### Output\n- Returns a minimum window substring of `s1` that contains all characters from `s2`. If no such window exists, return an empty string.",
+    "code": "def min_window_substring(s1: str, s2: str) -> str:\n    if not s2 or not s1:\n        return \"\"\n    left = 0\n    right = 0\n    min_len = float('inf')\n    min_str = \"\"\n    while right < len(s1):\n        window_str = s1[left:right+1]\n        if set(s2).issubset(set(window_str)):\n            if right - left + 1 < min_len:\n                min_len = right - left + 1\n                min_str = window_str\n            right += 1\n        else:\n            left += 1\n    return min_str",
+    "tests": [
+        "assert min_window_substring('ADOBECODEBANC', 'ABC') == 'BANC'",
+        "assert min_window_substring('hello', 'lo') == 'lo'",
+        "assert min_window_substring('', 'a') == ''",
+        "assert min_window_substring('abc', '') == ''"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

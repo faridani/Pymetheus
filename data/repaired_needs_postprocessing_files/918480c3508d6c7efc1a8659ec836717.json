@@ -1,0 +1,10 @@
+{
+    "title": "'Palindromic Substrings Finder' - Easy",
+    "description": "Write a function `find_palindromes` that finds all the palindromic substrings in a given string.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n```\n\n#### Input\n- `s` (str): A non-empty string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of all palindromic substrings found in the input string. If there are no palindromic substrings, return an empty list.\n",
+    "code": "def find_palindromes(s: str) -> List[str]:\n    result = []\n    for i in range(1, len(s) + 1):\n        for j in range(len(s) - i + 1):\n            if s[j:j+i] == s[j:j+i][::-1]:\n                result.append(s[j:j+i])\n    return result",
+    "tests": [
+        "assert find_palindromes(\"racecar\") == [\"racecar\", \"race\", \"ccar\", \"car\", \"ace\", \"ee\"]",
+        "assert find_Palindromes(\"A man, a plan, a canal: Panama\") == [\"amanaplanacanalpanama\", \"aman\", \"a\", \"panama\"]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Elegant Fizz Buzz",
+    "description": "Write a function `fizz_buzz` that prints the numbers from 1 to n, where n is a given integer. For multiples of three print 'Fizz' instead of the number. For multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.\n#### Function Signature\n```python\ndef fizz_buzz(n: int) -> None:\n``` \n#### Input\n- `n` (int): A positive integer.\n#### Output\n- Prints a sequence of numbers from 1 to n, with the given Fizz Buzz rules applied.",
+    "code": "def fizz_buzz(n: int) -> None:\n    for i in range(1, n + 1):\n        if i % 3 == 0 and i % 5 == 0:\n            print('FizzBuzz')\n        elif i % 3 == 0:\n            print('Fizz')\n        elif i % 5 == 0:\n            print('Buzz')\n        else:\n            print(i)\n",
+    "tests": [
+        "assert fizz_buzz(15) == None",
+        "assert not any(word in str(fizz_buzz(20)) for word in ['fizz', 'buzz'])"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

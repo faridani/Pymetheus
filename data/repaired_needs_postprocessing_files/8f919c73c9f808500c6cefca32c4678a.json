@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Counting Duplicates",
+    "description": "A sequence of numbers from 1 to n (inclusive) contains duplicates if at least one number appears more than once. Write a function `has_duplicates` that takes an integer `n` as input and returns `True` if the sequence from 1 to `n` contains duplicates, and `False` otherwise.\n#### Function Signature\n```python\ndef has_duplicates(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer representing the upper bound of the sequence.\n#### Output\n- Returns `True` if the sequence from 1 to `n` contains duplicates, `False` otherwise.\n",
+    "code": "def has_duplicates(n: int) -> bool:\n    for i in range(2, n+1):\n        if n % i == 0 and n // i <= n:\n            return True\n    return False\n",
+    "tests": [
+        "assert has_duplicates(10) == True",
+        "assert has_duplicates(11) == False",
+        "assert has_duplicates(12) == True",
+        "assert has_duplicates(13) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

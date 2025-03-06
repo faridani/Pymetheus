@@ -1,0 +1,13 @@
+{
+    "title": "Roman Numeral Converter - Hard",
+    "description": "Write a function `convert_to_roman` that converts an integer into its equivalent Roman numeral. Write a function `convert_to_roman` that converts an integer into its equivalent Roman numeral.\n\n#### Function Signature\n```python\ndef convert_to_roman(num: int) -> str:\n```\n\n#### Input\n- `num` (int): A non-negative integer less than 4000.\n\n#### Output\n- Returns a string representing the Roman numeral equivalent of the input integer.\n",
+    "code": "def convert_to_roman(num: int) -> str:\n    roman_numerals = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    int_to_str = {'1': 'I', '4': 'IV', '5': 'V', '9': 'IX', '10': 'X', '40': 'XL', '50': 'L', '90': 'XC', '100': 'C', '400': 'CD', '500': 'D', '900': 'CM', '1000': 'M'}\n    result = ''\n    for key, value in int_to_str.items():\n        while num >= value:\n            result += key\n            num -= value\n    return result",
+    "tests": [
+        "assert convert_to_roman(3) == 'III'",
+        "assert convert_to_roman(4) == 'IV'",
+        "assert convert_to_roman(9) == 'IX'",
+        "assert convert_to_roman(58) == 'LVIII'",
+        "assert convert_to_roman(1994) == 'MCMXCIV'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

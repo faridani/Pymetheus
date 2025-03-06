@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Array Rotation",
+    "description": "You are given an array of integers and a non-negative integer 'k'.  Write a function `rotate_array` that rotates the elements of the array to the right by 'k' positions. For example, rotating the array [1, 2, 3, 4, 5] by 2 positions results in [4, 5, 1, 2, 3].\n\n#### Function Signature\n```python\ndef rotate_array(nums: list[int], k: int) -> None:\n``` \n\n#### Input\n- `nums` (list[int]): An array of integers.\n- `k` (int): The number of positions to rotate the array to the right.\n\n#### Output\n- The function modifies the input array `nums` in-place. No return value is expected.\n",
+    "code": "def rotate_array(nums: list[int], k: int) -> None:\n    n = len(nums)\n    k %= n  # Handle cases where k is larger than the array length\n    nums[:] = nums[-k:] + nums[:-k]\n",
+    "tests": [
+        "nums = [1, 2, 3, 4, 5]; rotate_array(nums, 2); assert nums == [4, 5, 1, 2, 3]",
+        "nums = [-1,-100,3,99]; rotate_array(nums, 2); assert nums == [3, 99, -1, -100]",
+        "nums = [1]; rotate_array(nums, 0); assert nums == [1]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}
