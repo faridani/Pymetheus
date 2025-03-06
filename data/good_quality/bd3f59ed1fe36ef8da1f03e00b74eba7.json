@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Max Sum Without Adjacent Elements",
+    "description": "\nGiven an array of integers, determine the maximum sum that can be obtained by including non-adjacent elements. Write a function `max_sum_no_adjacent` that computes this value.\n\n#### Function Signature\n\n```python\ndef max_sum_no_adjacent(arr: List[int]) -> int:\n```\n\n#### Input\n- `arr` (list): A list of integers.\n\n#### Output\n- Returns the maximum sum obtained by including non-adjacent elements.",
+    "code": "",
+    "\nfrom typing import List\n\ndef max_sum_no_adjacent(arr: List[int]) -> int:\n    if not arr:\n        return 0\n    \n    # Initialize variables to store the maximum sums when including or excluding current element\n    incl = excl = 0\n    for num in arr:\n        # Current max sum is either including this element (previously excluded) OR excluding it\n        new_excl = max(incl, excl)\n        incl = excl + num\n        excl = new_excl\n    \n    return max(incl, excl)\n\n# Test cases\nassert max_sum_no_adjacent([3, 2, 7, 10]) == 13 # Max sum is from elements [3] and [7]\nassert max_sum_no_adjacent([-1, -4, -6, -2]) == 0 # No positive sum possible without adjacent\nassert max_sum_no_adjacent([5, 5, 10, 10, 10]) == 15 # Max sum is from elements [5] and [10]\nassert max_sum_no_adjacent([-1, -2, 3, -4, 5])": "",
+    "tests": [
+        "assert max_sum_no_adjacent([3, 2, 7, 10]) == 13",
+        "assert max_sum_no_adjacent([-1, -4, -6, -2]) == 0",
+        "assert max_sum_no_adjacent([5, 5, 10, 10, 10]) == 15",
+        "assert max_sum_no_adjacent([-1, -2, 3, -4, 5]) >= 8"
+    ],
+    "difficulty": "hard",
+    "model": "qwen2:7b",
+    "style": "CodeChef"
+}

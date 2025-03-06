@@ -1,0 +1,17 @@
+{
+    "title": "Easy: Fibonacci sequence",
+    "description": "Create a function that generates the n-th number in the Fibonacci sequence. The Fibonacci sequence is a series of numbers where the next number is found by adding up the two numbers before it. Start with 0 and 1.\n\n#### Function Signature\n```python\ndef fib(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The position in the Fibonacci sequence to generate a number for.\n\n#### Output\n- Returns an integer that is the n-th number in the Fibonacci sequence.",
+    "code": "def fib(n: int) -> int:\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        a, b = 0, 1\n        for _ in range(2, n + 1):\n            a, b = b, a + b\n        return b",
+    "tests": [
+        "assert fib(0) == 0",
+        "assert fib(1) == 1",
+        "assert fib(2) == 1",
+        "assert fib(3) == 2",
+        "assert fib(4) == 3",
+        "assert fib(5) == 5",
+        "assert fib(6) == 8"
+    ],
+    "difficulty": "easy",
+    "model": "phind-codellama:34b",
+    "style": "Internationals Olympiad"
+}

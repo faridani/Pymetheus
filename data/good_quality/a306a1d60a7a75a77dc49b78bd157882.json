@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Permutation Checker",
+    "description": "Given an array of integers and a target sum, check if it's possible to rearrange the elements in the array to get a permutation that sums up to the target value. The permutation doesn't have to be unique, but all permutations should add up to the target sum.\n\n#### Function Signature\n```python\ndef can_rearrange_to_target_sum(arr: list[int], target_sum: int) -> bool:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers that may contain duplicates.\n- `target_sum` (int): The target sum the permutation should add up to.\n\n#### Output\n- Returns `True` if it's possible to rearrange the elements in the array to get a permutation that sums up to the target value, `False` otherwise.",
+    "code": "from itertools import permutations\ndef can_rearrange_to_target_sum(arr: list[int], target_sum: int) -> bool:\n    # Generate all permutations of the input array\n    perms = set(permutations(arr))\n    for perm in perms:\n        if sum(perm) == target_sum:\n            return True\n    return False",
+    "tests": [
+        "assert can_rearrange_to_target_sum([1, 2, 3], 6) == True",
+        "assert can_rearrange_to_target_sum([-1, -2, 3], 0) == True",
+        "assert can_rearrange_to_target_sum([1, 2, 3, 4], 5) == False"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}
