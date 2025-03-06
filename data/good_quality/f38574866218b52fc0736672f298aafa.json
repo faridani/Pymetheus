@@ -1,0 +1,13 @@
+{
+    "title": "Divisible Matrix",
+    "description": "Write a function `divisible_matrix` that takes as input two lists of integers, each representing the dimensions of a matrix. The function should create and return a new matrix where each cell's value is the product of the corresponding cells in the original matrices. If any cell in either matrix has a value that is not divisible by 3, the entire resulting matrix will be filled with -1.\n\n#### Function Signature\n\n``python\ndef divisible_matrix(matrix1: list[list[int]], matrix2: list[list[int]]) -> list[list[int]]:\n```\n\n#### Input\n\n- `matrix1` (list of lists of int): The dimensions and values of the first matrix.\n- `matrix2` (list of lists of int): The dimensions and values of the second matrix.\n\n#### Output\n\n- Returns a new matrix where each cell's value is the product of the corresponding cells in the original matrices. If any cell in either matrix has a value that is not divisible by 3, the entire resulting matrix will be filled with -1.",
+    "code": "\ndef divisible_matrix(matrix1: list[list[int]], matrix2: list[list[int]]) -> list[list[int]]:\n    if len(matrix1) != len(matrix2) or len(matrix1[0]) != len(matrix2[0]):\n        return [[-1 for _ in range(len(matrix1[0]))] for _ in range(len(matrix1))]\n    \n    result = [[(matrix1[i][j] * matrix2[i][j]) % 3 if (matrix1[i][j] * matrix2[i][j]) % 3 == 0 else -1 \n               for j in range(len(matrix1[0]))] for i in range(len(matrix1))]\n    \n    return result",
+    "tests": [
+        "assert divisible_matrix([[1, 2], [3, 4]], [[5, 6], [7, 8]]) == [[0, 0], [0, 0]]",
+        "assert divisible_matrix([[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]) == [[0, 0, 0], [0, 0, 0]]",
+        "assert divisible_matrix([[1, 2], [3, 4]], [[5, 6], [15, 16]]) == [[-1 for _ in range(2)] for _ in range(2)]"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}
