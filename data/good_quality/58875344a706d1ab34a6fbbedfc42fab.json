@@ -1,0 +1,13 @@
+{
+    "title": "Number of Unique Subarrays",
+    "description": "Given an array of integers, find the number of unique subarrays. A subarray is a contiguous part of the array.\n\n#### Function Signature\n```python\ndef count_unique_subarrays(arr: list[int)) -> int:\n```\n\n#### Input\n- `arr` (list[int]): An array of integers.\n\n#### Output\n- Returns the number of unique subarrays in the input array.",
+    "code": "from typing import List\nfrom math import factorial\n\ndef count_unique_subarrays(arr: List[int]) -> int:\n    n = len(arr)\n    total_count = 0\n    for i in range(n):\n        seen = set()\n        for j in range(i, n):\n            subarray = tuple(arr[i:j+1])\n            if subarray not in seen:\n                seen.add(subarray)\n                total_count += 1\n    return total_count",
+    "tests": [
+        "assert count_unique_subarrays([1, 2, 3]) == 7",
+        "assert count_unique_subarrays([0, 0, 0]) == 4",
+        "assert count_unique_subarrays([1, 2, 3, 1, 2, 3]) == 16"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

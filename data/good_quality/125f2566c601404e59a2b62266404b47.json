@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Even or Odd",
+    "description": "Write a function `even_or_odd` that takes an integer as input and returns the string `\"Even\"` if the number is even, and `\"Odd\"` if it's odd.\n\n#### Function Signature\n```python\ndef even_or_odd(n: int) -> str:\n```\n\n#### Input\n- `n` (int): An integer that may be positive, negative, or zero.\n\n#### Output\n- Returns the string `\"Even\"` if the input number is even, and `\"Odd\"` otherwise.",
+    "code": "def even_or_odd(n: int) -> str:\n    if n % 2 == 0:\n        return \"Even\"\n    else:\n        return \"Odd\"",
+    "tests": [
+        "assert even_or_odd(10) == 'Even'",
+        "assert even_or_odd(-5) == 'Odd'",
+        "assert even_or_odd(3) == 'Odd'",
+        "assert even_or_odd(0) == 'Even'"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

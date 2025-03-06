@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Maximum Path Sum",
+    "description": "A binary tree is a tree where each node has at most two children, i.e., left child and right child. A path in a binary tree is a sequence of nodes connected from the root to any leaf node along a valid path. The maximum sum of all paths in a given binary tree is defined as the maximum sum that can be obtained by summing up the values of the nodes on any path starting from the root node and ending at any leaf node.\n\n#### Function Signature\n```python\ndef max_path_sum(root: TreeNode) -> int:\n```\n\n#### Input\n- `root` (TreeNode): The root node of a binary tree.\n\n#### Output\n- Returns the maximum sum of all paths in the given binary tree.",
+    "code": "\nimport math\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef max_path_sum(root: TreeNode) -> int:\n    max_sum = float('-inf')\n    \n    def dfs(node):\n        nonlocal max_sum\n        if not node:\n            return 0\n        \n        left_sum = max(0, dfs(node.left))\n        right_sum = max(0, dfs(node.right))\n        \n        max_sum = max(max_sum, node.val + left_sum + right_sum)\n        \n        return node.val + max(left_sum, right_sum)\n\n    dfs(root)\n    \n    return max_sum",
+    "tests": [
+        "assert max_path_sum(None) == 0",
+        "assert max_path_sum(TreeNode(1)) == 1",
+        "assert max_path_sum(TreeNode(1, TreeNode(2), TreeNode(3))) == 6",
+        "assert max_path_sum(TreeNode(4, TreeNode(-10, TreeNode(-5)), TreeNode(8, TreeNode(7)))) == 15"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

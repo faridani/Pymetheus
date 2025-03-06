@@ -1,0 +1,14 @@
+{
+    "title": "Permutation Checker (Hard)",
+    "description": "Given a list of strings, write a function `are_permutations_equal` that checks if all the strings are permutations of each other. A permutation is an arrangement of characters in a string. For example, `abc` and `cab` are permutations of each other.\n\n#### Function Signature\n```python\ndef are_permutations_equal(*strings: str) -> bool:\n```\n\n#### Input\n- `*strings` (str): A variable number of strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if all the input strings are permutations of each other, `False` otherwise.",
+    "code": "import functools\ndef are_permutations_equal(*strings: str) -> bool:\n    # Convert all strings to sets of characters for comparison\n    sets = [set(s.lower().replace(' ', '')) for s in strings]\n    \n    # Check if all sets are equal\n    return len(set(sets)) == 1",
+    "tests": [
+        "assert are_permutations_equal('abc', 'cab') == True",
+        "assert are_permutations_equal('abc', 'cab', 'cba') == True",
+        "assert are_permutations_equal('abc', 'def') == False",
+        "assert are_permutations_equal('A man, a plan, a canal, Panama', 'Noman aplan a Panama canal A') == True"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

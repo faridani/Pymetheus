@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Maximize the Score",
+    "description": "A group of students are participating in a programming competition. The student who solves each problem first earns the maximum score, while subsequent solvers earn less. The scores for solving each problem decrease by 1 point with each subsequent solver.\n\n#### Function Signature\n```python\ndef maximize_score(scores: list[int), indices: list[int]) -> int:\n```\n\n#### Input\n- `scores`: A list of integers representing the maximum score for each problem, in descending order (i.e., the first element is the maximum score earned by solving the first problem). The length of this list will be less than or equal to 10.\n- `indices`: A list of indices into the `scores` list. Each index represents the time at which a student solved their first problem, with 0 being the earliest and len(scores) - 1 being the latest.\n\n#### Output\n- Returns the maximum score that can be earned by solving each problem in order of the given indices.",
+    "code": "def maximize_score(scores: list[int], indices: list[int]) -> int:\n    max_earned = [0] * len(scores)\n    for i, idx in enumerate(indices):\n        if idx < 0 or idx >= len(scores):\n            raise ValueError('Invalid index')\n        for j in range(idx, -1, -1):\n            max_earned[j] = min(max_earned[j], scores[j] + (i+1) - 1)\n    return sum(max_earned)",
+    "tests": [
+        "assert maximize_score([10, 7, 4, 3, 2, 1], [0, 2]) == 14",
+        "assert maximize_score([5, 4, 3, 2, 1], [0, 1, 2, 3]) == 9",
+        "assert maximize_score([10, 7, 4, 3, 2, 1], [0, 1, 3]) == 12"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

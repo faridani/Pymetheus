@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Scheduling Tasks",
+    "description": "You are given a list of tasks with their dependencies. Write a function `schedule_tasks` that schedules these tasks based on their dependencies.\n\n#### Function Signature\n```python\ndef schedule_tasks(tasks: List[List[str]], dependencies: List[Tuple[int, int]]) -> List[str]:\n```\n\n#### Input\n- `tasks`: A list of lists where each inner list contains the names of tasks. Each task can have multiple dependencies.\n- `dependencies`: A list of tuples where each tuple represents a dependency between two tasks. The first element in the tuple is the dependent task and the second element is the task it depends on.\n\n#### Output\n- Returns a list of task names in the order they should be scheduled based on their dependencies.",
+    "code": "\nimport heapq\n\ndef schedule_tasks(tasks, dependencies):\n    # Create a graph using adjacency lists\n    graph = {task: [] for task in set(task for task_list in tasks for task in task_list)}\n    for dependent_task, dependency_task in dependencies:\n        graph[dependency_task].append(dependent_task)\n\n    # Initialize the priority queue with tasks that have no dependencies\n    pq = [(0, task) for task in graph if not graph[task]]\n    heapq.heapify(pq)\n\n    # Initialize the result list\n    result = []\n\n    while pq:\n        _, task = heapq.heappop(pq)\n        result.append(task)\n\n        # Add tasks that depend on the current task to the priority queue\n        for dependent_task in graph[task]:\n            graph[dependent_task].remove(task)\n            if not graph[dependent_task]:\n                del graph[dependent_task]\n            heapq.heappush(pq, (0, dependent_task))\n\n    return result",
+    "tests": [
+        "assert schedule_tasks([['A', 'B'], ['C']], [(1, 0), (2, 0)]) == ['A', 'B', 'C']",
+        "assert schedule_tasks([['A', 'B'], ['C'], ['D', 'E']], [(1, 0), (3, 0), (2, 1)]) == ['A', 'B', 'E', 'D', 'C']",
+        "assert schedule_tasks([['A', 'B', 'C'], ['D']], []) == ['A', 'B', 'C', 'D']"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

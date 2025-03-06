@@ -1,0 +1,15 @@
+{
+    "title": "Maximum Sum of Array",
+    "description": "Given an array of integers, find the maximum sum that can be obtained by selecting exactly one element from each pair of adjacent elements.\n\n#### Function Signature\n```python\ndef max_sum(arr: list) -> int:\n```\n\n#### Input\n- `arr` (list): A list of integers.\n\n#### Output\n- Returns the maximum sum that can be obtained by selecting exactly one element from each pair of adjacent elements.",
+    "code": "",
+    "\nimport math\n\ndef max_sum(arr: list) -> int:\n    n = len(arr)\n    if n <= 1:\n        return sum(arr)\n\n    dp = [0] * (n + 1)\n    dp[1] = arr[0]\n\n    for i in range(2, n + 1):\n        dp[i] = max(dp[i - 1], dp[i - 2] + arr[i - 1])\n\n    return dp[n]": "",
+    "tests": [
+        "assert max_sum([10, 20]) == 30",
+        "assert max_sum([-5, 0, 3, 15]) == 13",
+        "assert max_sum([-1, -2, -3, -4, -5]) == -6",
+        "assert max_sum([]) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

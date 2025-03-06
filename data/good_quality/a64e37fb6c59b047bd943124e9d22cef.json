@@ -1,0 +1,14 @@
+{
+    "title": "Permutation Checker (Medium)",
+    "description": "A permutation of an integer n is an arrangement of its digits in any order. Write a function `check_permutations` that checks if all permutations of a given number are unique.\n\n#### Function Signature\n```python\ndef check_permutations(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer with at least three digits.\n\n#### Output\n- Returns `True` if all permutations of the input number are unique, `False` otherwise.",
+    "code": "import math\nfrom functools import lru_cache\n\ndef check_permutations(n: int) -> bool:\n    # Convert the number to a string\n    num_str = str(n)\n    \n    # Calculate the number of digits in the number\n    num_digits = len(num_str)\n    \n    # Generate all permutations of the number\n    @lru_cache(None)\n    def get_permutations(digits):\n        if len(digits) == 1:\n            return [digits]\n        \n        result = []\n        for i, digit in enumerate(digits):\n            remaining_digits = digits[:i] + digits[i+1:]\n            for p in get_permutations(remaining_digits):\n                result.append(digit + p)\n        return result\n    \n    # Sort all permutations and check if there are any duplicates\n    sorted_permutations = sorted(get_permutations(num_str))\n    return len(sorted_permutations) == math.factorial(num_digits)",
+    "tests": [
+        "assert check_permutations(12345) == True",
+        "assert check_permutations(123321) == False",
+        "assert check_permutations(4321) == True",
+        "assert check_permutations(9999) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

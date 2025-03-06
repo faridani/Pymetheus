@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Maximum Sum of Unique Subarrays",
+    "description": "Write a function `max_unique_sum` that takes as input an integer array and returns the maximum sum of unique subarrays. A subarray is considered unique if it contains at least one element that does not exist in any other subarray.\n\n#### Function Signature\n```python\ndef max_unique_sum(arr: list[int]) -> int:\n```\n\n#### Input\n- `arr` (list[int]): An integer array containing integers from 1 to N, where N is the length of the array.\n\n#### Output\n- Returns the maximum sum of unique subarrays. If there are multiple maximum sums, return any one of them.",
+    "code": "",
+    "\nimport itertools\n\ndef max_unique_sum(arr: list[int]) -> int:\n    # Generate all possible subarrays\n    subarrays = []\n    for r in range(1, len(arr) + 1):\n        for subarray in itertools.combinations(arr, r):\n            subarrays.append(list(subarray))\n    \n    # Check if a subarray is unique by comparing it to all other subarrays\n    max_sum = 0\n    for subarray in subarrays:\n        is_unique = True\n        for other_subarray in subarrays:\n            if set(subarray) != set(other_subarray):\n                break\n        else:\n            max_sum = max(max_sum, sum(subarray))\n    \n    return max_sum": "",
+    "tests": [
+        "assert max_unique_sum([1, 2, 3, 4]) == 10",
+        "assert max_unique_sum([1, 2, 2, 3, 3, 3]) == 6",
+        "assert max_unique_sum([5, 6, 7, 8, 9]) == 15"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

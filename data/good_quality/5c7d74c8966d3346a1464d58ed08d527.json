@@ -1,0 +1,12 @@
+{
+    "title": "Number of Islands",
+    "description": "Consider a grid with some cells filled and others not. You are given the dimensions of this grid (n x m) along with the coordinates of all '1' cells in it. Write a function `count_islands` that takes these as input and returns the total number of islands.\n\n#### Function Signature\n```python\ndef count_islands(n: int, m: int, cells: list[tuple[int, int]]) -> int:\n```\n\n#### Input\n- `n` (int): The number of rows in the grid.\n- `m` (int): The number of columns in the grid.\n- `cells` (list[tuple[int, int]]): A list of tuples where each tuple contains the row and column indices of a cell that is filled with '1'.\n\n#### Output\n- Returns the total number of islands in the grid.",
+    "code": "def count_islands(n: int, m: int, cells: list[tuple[int, int]]) -> int:\n    # Initialize the island counter to 0\n    island_count = 0\n    # Create an empty grid filled with '0's of size n x m\n    grid = [['0' for _ in range(m)] for _ in range(n)]\n    # Mark all '1' cells as visited by setting them to '2'\n    for cell in cells:\n        row, col = cell\n        grid[row][col] = '2'\n    # Traverse the grid and count the number of islands (connected '1' regions)\n    for i in range(n):\n        for j in range(m):\n            if grid[i][j] == '0':\n                island_count += 1\n                dfs(grid, i, j)\n    return island_count\n\ndef dfs(grid, row, col):\n    # Check if the current cell is out of bounds or visited before\n    if row < 0 or row >= len(grid) or col < 0 or col >= len(grid[0]) or grid[row][col] != '0':\n        return\n    # Mark the current cell as visited by setting it to '2'\n    grid[row][col] = '2'\n    # Recursively traverse all adjacent cells that are connected to the current island\n    dfs(grid, row - 1, col)\n    dfs(grid, row + 1, col)\n    dfs(grid, row, col - 1)\n    dfs(grid, row, col + 1)",
+    "tests": [
+        "assert count_islands(3, 5, [(0, 0), (1, 1), (2, 2)]) == 1",
+        "assert count_islands(4, 6, [(0, 0), (1, 1), (3, 3)]) == 2"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

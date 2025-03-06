@@ -95,7 +95,7 @@ The good examples of synthetic python codes exist in the `data` folder
 
 each example follows the following JSON schema
 
-```json 
+```python 
  schema = {
                     "type": "object",
                     "properties": {

@@ -1,0 +1,18 @@
+{
+    "title": "Hard: Prime Power Tree Traversal",
+    "description": "A prime power tree is a tree where each node represents a prime number and its children represent the prime powers. The nodes at even levels from the root are the prime numbers themselves, while the nodes at odd levels are their square roots.\n\n#### Function Signature\n```python\ndef traverse_tree(root: int) -> list:\n```\n\n#### Input\n- `root` (int): The root of the prime power tree.\n\n#### Output\n- Returns a list of strings representing the prime powers in the order they should be printed out when traversing the tree, from top to bottom and left to right.",
+    "code": "",
+    "\nimport math\n\ndef is_prime(n": "int) -> bool:\n    if n <= 1:\n        return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef prime_power_tree(root: int) -> list:\n    tree = []\n    def traverse(node: int):\n        nonlocal tree\n        if is_prime(node):\n            tree.append(str(node))\n        else:\n            left = traverse(int(math.sqrt(node)))\n            right = traverse(int(math.sqrt(node)))\n            tree.extend([str(node), str(left[0]), str(right[0])])\n    traverse(root)\n    return tree\n\ndef traverse_tree(root: int) -> list:\n    result = prime_power_tree(root)\n    return [' '.join(result[i:i+4]) for i in range(0, len(result), 4)]\n\nassert traverse_tree(2) == [",
+    "2": "1 1",
+    "3 3": "",
+    "5": "2 2",
+    "7 7": "]",
+    "tests": [
+        "assert traverse_tree(2) == ['2', '1 1', '3 3', '']",
+        "assert traverse_tree(5) == ['5', '2 2', '7 7', '']",
+        "assert traverse_tree(11) == ['11', '1 1', '121 121', '']"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

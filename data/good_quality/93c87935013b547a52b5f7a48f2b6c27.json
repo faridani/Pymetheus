@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Maximize Profit",
+    "description": "You are given an array of integers where each integer represents the cost of a stock on a particular day. Write a function `max_profit` that calculates the maximum possible profit from buying and selling stocks, considering you can buy and sell the same stock multiple times.\n\n#### Function Signature\n```python\ndef max_profit(prices: list[int]) -> int:\n```\n\n#### Input\n- `prices` (list[int]): A list of integers representing the cost of a stock on each day.\n\n#### Output\n- Returns the maximum possible profit from buying and selling stocks.",
+    "code": "\ndef max_profit(prices: list[int]) -> int:\n    total_profit = 0\n    for i in range(1, len(prices)):\n        if prices[i] > prices[i - 1]:\n            total_profit += prices[i] - prices[i - 1]\n    return total_profit",
+    "tests": [
+        "assert max_profit([1, 2, 3, 4]) == 6",
+        "assert max_profit([7, 1, 5, 3, 9, 8]) == 13",
+        "assert max_profit([10, 20, 30, 40, 50]) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

@@ -1,0 +1,15 @@
+{
+    "title": "Counting Trees",
+    "description": "Given a binary tree where each node has an integer value, write a function to count the number of nodes with values that are perfect squares. A perfect square is an integer that can be expressed as the square of an integer. For example, 1, 4, 9, and 16 are all perfect squares.\n\n#### Function Signature\n```python\ndef count_perfect_squares(root: TreeNode) -> int:\n```\n\n#### Input\n- `root` (TreeNode): The root node of the binary tree. Each node has an integer value.\n\n#### Output\n- Returns the number of nodes with values that are perfect squares.",
+    "code": "",
+    "\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef is_perfect_square(n: int) -> bool:\n    if n < 2:\n        return True\n    sqrt_n = int((n ** 0.5) + 0.5)\n    return sqrt_n * sqrt_n == n\n\ndef count_perfect_squares(root: TreeNode) -> int:\n    def dfs(node: TreeNode) -> int:\n        if node is None:\n            return 0\n        if is_perfect_square(node.val):\n            return 1 + dfs(node.left) + dfs(node.right)\n        return dfs(node.left) + dfs(node.right)\n\n    return dfs(root)": "",
+    "tests": [
+        "assert count_perfect_squares(None) == 0",
+        "assert count_perfect_squares(TreeNode(4)) == 1",
+        "assert count_perfect_squares(TreeNode(16, left=TreeNode(4), right=TreeNode(4))) == 2",
+        "assert count_perfect_squares(TreeNode(25, left=TreeNode(9), right=TreeNode(9))) == 3"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

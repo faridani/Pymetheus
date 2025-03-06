@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Knight Moves to Capture the King",
+    "description": "The objective of this problem is to write a function that calculates the minimum number of knight moves required to capture the king.\n\n#### Function Signature\n```python\ndef min_knight_moves(board: list[list[str]]) -> int:\n```\n#### Input\n- `board` (list[list[str]]): A 2D list representing the chess board, where 'K' is the king's position and '.' represents an empty cell.\n\n#### Output\n- Returns the minimum number of knight moves required to capture the king.\n\n#### Constraints\n- The input board will always have exactly one 'K' in it.\n- All cells on the board are either 'K', '.', or other chess pieces. These pieces do not affect the calculation.\n- The function should return -1 if the king is already under attack (i.e., there's an adjacent cell with a piece that can capture the king).\n\n#### Hints\n- You can use depth-first search (DFS) to explore all possible moves from the king's current position.\n- To determine if a cell is under attack, check its eight adjacent cells for any pieces that can capture the king.\n\nExample: For the board [['.', '.', '.'], ['.', 'K', '.'], ['.', '.', '.']], the minimum number of knight moves required to capture the king is 3.",
+    "code": "\ndef min_knight_moves(board: list[list[str]]) -> int:\n    def dfs(row: int, col: int) -> int:\n        if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]):\n            return float('inf')\n        if board[row][col] == 'K':\n            return 0\n        visited.add((row, col))\n        for dr, dc in [(-1, -2), (-1, 2), (1, -2), (1, 2), (-2, -1), (-2, 1), (2, -1), (2, 1)]:\n            nr, nc = row + dr, col + dc\n            if 0 <= nr < len(board) and 0 <= nc < len(board[0]) and board[nr][nc] != 'K' and (nr, nc) not in visited:\n                return 1 + dfs(nr, nc)\n        return float('inf')\n\n    visited = set()\n    for i in range(len(board)):\n        for j in range(len(board[i])):\n            if board[i][j] == 'K':\n                min_moves = dfs(i, j)\n                return min_moves\n\n    return -1",
+    "tests": [
+        "assert min_knight_moves([['.', '.', '.'], ['.', 'K', '.'], ['.', '.', '.']]) == 3",
+        "assert min_knight_moves([['K', '.', '.'], ['.', '.', '.'], ['.', '.', '.']]) == -1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

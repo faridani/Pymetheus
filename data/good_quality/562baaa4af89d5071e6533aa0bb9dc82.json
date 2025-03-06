@@ -1,0 +1,12 @@
+{
+    "title": "Maximum Sum of a Subarray with K Duplicates",
+    "description": "Given an array of integers and an integer k, find the maximum sum of a subarray that contains exactly k duplicates. If there are multiple such subarrays, return the first one you encounter.\n\n#### Function Signature\n```python\ndef max_sum_subarray(arr: list[int], k: int) -> tuple[int, slice]:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n- `k` (int): An integer representing the number of duplicates in the subarray.\n\n#### Output\n- Returns a tuple containing the maximum sum of the subarray and its slice index range.",
+    "code": "\nimport itertools\n\ndef max_sum_subarray(arr: list[int], k: int) -> tuple[int, slice]:\n    # Generate all possible subarrays\n    subarrays = []\n    for i in range(len(arr)):\n        for j in range(i + 1, len(arr) + 1):\n            subarrays.append(arr[i:j])\n\n    # Filter out the subarrays with exactly k duplicates\n    filtered_subarrays = [subarray for subarray in subarrays if len(set(subarray)) == k]\n\n    # Calculate the maximum sum of the filtered subarrays\n    max_sum = 0\n    for subarray in filtered_subarrays:\n        max_sum = max(max_sum, sum(subarray))\n\n    # Return the maximum sum and its slice index range\n    return (max_sum, itertools.argmax(filtered_subarrays, key=lambda x: sum(x)))",
+    "tests": [
+        "assert max_sum_subarray([1, 2, 3, 4, 5], 3) == (9, slice(0, 3))",
+        "assert max_sum_subarray([-10, -20, -30, 1, 2, 3, 4, 5], 3) == (6, slice(3, 6))"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

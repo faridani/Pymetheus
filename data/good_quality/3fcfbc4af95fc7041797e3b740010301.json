@@ -1,0 +1,14 @@
+{
+    "title": "Sorting a List of Strings by Lexicographical Order",
+    "description": "Write a function `sort_lex_order` that takes as input a list of strings and returns the list sorted in lexicographical order. The comparison between two strings should be case-insensitive.\n\n#### Function Signature\n```python\ndef sort_lex_order(strings: list[str]) -> list[str]:\n```\n\n#### Input\n- `strings` (list[str]): A list of strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a sorted list of strings in lexicographical order.",
+    "code": "\nimport string\n\ndef sort_lex_order(strings: list[str]) -> list[str]:\n    # Convert all strings to lowercase\n    strings = [s.lower() for s in strings]\n    \n    # Sort the list of strings in lexicographical order\n    return sorted(strings)",
+    "tests": [
+        "assert sort_lex_order(['hello', 'world', 'abc']) == ['abc', 'hello', 'world']",
+        "assert sort_lex_order(['a', 'b', 'c', 'd']) == ['a', 'b', 'c', 'd']",
+        "assert sort_lex_order(['z', 'y', 'x', 'w']) == ['w', 'x', 'y', 'z']",
+        "assert sort_lex_order([]) == []"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}
