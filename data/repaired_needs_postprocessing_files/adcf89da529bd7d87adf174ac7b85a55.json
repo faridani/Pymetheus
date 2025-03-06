@@ -1,0 +1,11 @@
+{
+    "title": "'Palindromic Substrings Checker' - Easy",
+    "description": "Given a string, find all the non-overlapping palindromic substrings (substrings that read the same forwards and backwards).\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> list[str]:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of all the non-overlapping palindromic substrings found in the input string.",
+    "code": "import re\ndef find_palindromes(s: str) -> list[str]:\n    # Find all possible palindromic substrings using regex pattern for even length palindromes\n    even_length = re.findall('(?=\\b(.*?))\\1\\b', s)\n    \n    # Find all possible palindromic substrings using regex pattern for odd length palindromes, and concatenate with the even-length findings\n    odd_length = [s[i:j] for i, j in zip(reversed(range(len(s))), range(1 + len(even_length))) if s[i:j] == s[::-1][i:j]]\n    return even_length + odd_length",
+    "tests": [
+        "assert find_palindromes('aabccbaabb') == ['a', 'a', 'b', 'c', 'c', 'b', 'b', 'a']",
+        "assert find_palindromes('Hello, World!') == ['o']",
+        "assert find_palindromes('amanaplanacanalpanama') == ['a', 'man', 'nan', 'panama', 'amana', 'alan']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

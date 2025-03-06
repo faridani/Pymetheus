@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Substring Finder (Easy)'",
+    "description": "Given a string, find and return all the palindromic substrings of that string.\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> list:\n```\n\n#### Input\n- `s` (str): A string containing only alphanumeric characters.\n\n#### Output\n- Returns a list of palindromic substrings found in the input string.",
+    "code": "def find_palindromes(s: str) -> list:\n    palindromes = []\n    for i in range(len(s)):\n        for j in range(i, len(s)):\n            if s[i:j] == s[i:j][::-1]:\n                palindromes.append(s[i:j])\n    return palindromes",
+    "tests": [
+        "assert find_palindromes(\"kayak\") == [\"kayak\", \"aya\", \"yak\"]",
+        "assert find_palindromes(\"racecar\") == [\"racecar\", \"ace\", \"e\", \"c\"]",
+        "assert find_palindromes(\"radar\") == [\"radar\", \"ada\", \"dar\"]",
+        "assert find_palindromes(\"level\") == [\"level\", \"live\", \"evil\"]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

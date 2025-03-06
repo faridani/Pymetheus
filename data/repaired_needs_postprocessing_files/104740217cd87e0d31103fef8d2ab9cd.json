@@ -1,0 +1,10 @@
+{
+    "title": "Reverse Sorting (Hard)",
+    "description": "Write a function `reverse_sort` that takes a list of integers as input and returns a new list where the elements are sorted in descending order.\n\n#### Function Signature\n```python\ndef reverse_sort(lst: List[int]) -> List[int]:```\n\n#### Input\n- `lst` (List[int]): A list of integers.\n\n#### Output\n- Returns a new list containing the elements of the input list sorted in descending order.",
+    "code": "from typing import List\ndef reverse_sort(lst: List[int]) -> List[int]:\n    return sorted(lst, reverse=True)",
+    "tests": [
+        "assert reverse_sort([4, 2, 7, 3, 5, 1]) == [7, 5, 4, 3, 2, 1]",
+        "assert reverse_sort([-4, -2, 0, 3, 5, 1]) == [5, 3, 2, 1, 0, -4, -2]"
+    ],
+    "model": "codebooga:latest-repaired by Llama 3"
+}

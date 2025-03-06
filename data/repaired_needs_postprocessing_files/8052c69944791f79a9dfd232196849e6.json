@@ -1,0 +1,12 @@
+{
+    "title": "Maximum Sum of Subarray",
+    "description": "A description of the problem in string form, the description may contain function signature, input format, output format, constraints and hints. Example: Given an array of integers `arr` where each element is in the range `[1, n]`, find the maximum sum of a contiguous subarray within the given array. Write a function `max_sum_subarray` that calculates this value.\n\n#### Function Signature\n```python\ndef max_sum_subarray(arr: list[int]) -> int:\n``` \n\n#### Input\n- `arr` (list[int]): A list of integers where each element is in the range `[1, n]`. The array represents a sequence of distinct positive integers.\n\n#### Output\n- Returns the maximum sum of a contiguous subarray within the given array.",
+    "code": "def max_sum_subarray(arr: list[int]) -> int:\n    n = len(arr)\n    dp = [0]*n\n    for i in range(n):\n        if i == 0:\n            dp[i] = arr[0]\n        else:\n            dp[i] = max(dp[i-1], 0) + arr[i]\n    return max(dp)",
+    "tests": [
+        "assert max_sum_subarray([5, 2, -3, 4, 6]) == 14",
+        "assert max_sum_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6",
+        "assert max_sum_subarray([1, 1, 1, 1, 1]) == 5",
+        "assert max_sum_subarray([]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

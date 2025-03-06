@@ -1,0 +1,11 @@
+{
+    "title": "URLify a String",
+    "description": "Write a function `urlify` that takes a given string as input and replaces all spaces with '%20'. Spaces are represented by a single space character   in Python. The returned string should have the same length as the original string.\n\n#### Function Signature\n```python\ndef urlify(s: str) -> str:\n```",
+    "code": "def urlify(s: str) -> str:\n    # Replace spaces with '%20'\n    return s.replace(' ', '%20')",
+    "tests": [
+        "assert urlify(\"Mr John Smith     \") == 'Mr%20John%20Smith%20'",
+        "assert urlify('') == ''",
+        "assert urlify('google.com, london') == 'google.com,%2C%20london'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

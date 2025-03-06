@@ -1,0 +1,13 @@
+{
+    "title": "Roman Numerals Conversion (Hard)",
+    "description": "Write a function `roman_to_integer` that converts a Roman numeral to an integer. Roman numerals are represented by seven symbols: I, V, X, L, C, D, and M.\n\n#### Function Signature\n```python\ndef roman_to_integer(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing a valid Roman numeral.\n\n#### Output\n- Returns the integer equivalent of the input Roman numeral.",
+    "code": "def roman_to_integer(s: str) -> int:\n    roman = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}\n    result = 0\n    for i in range(len(s)):\n        if i < len(s) - 1 and roman[s[i]] < roman[s[i+1]]:\n            result -= roman[s[i]]\n        else:\n            result += roman[s[i]]\n    return result",
+    "tests": [
+        "assert roman_to_integer('III') == 3",
+        "assert roman_to_integer('IV') == 4",
+        "assert roman_to_integer('IX') == 9",
+        "assert roman_to_integer('LVIII') == 58",
+        "assert roman_to_integer('MCMXCIV') == 1994"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

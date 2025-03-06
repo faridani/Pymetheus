@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Given two strings, write a function that checks if they are anagrams of each other.\n\n#### Function Signature```python\ndef are_anagrams(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters and spaces.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def sorted_char_frequency(string: str) -> dict:\n    # Count the frequency of each character in the string\n    char_freq = {}\n    for char in string:\n        if char not in char_freq:\n            char_freq[char] = 0\n        char_freq[char] += 1\n    return char_freq\n\ndef are_anagrams(s1: str, s2: str) -> bool:\n    # Ensure the two strings have the same length\n    if len(s1) != len(s2):\n        return False\n    \n    # Calculate the frequency of each character in both strings\n    freq1 = sorted_char_frequency(s1)\n    freq2 = sorted_char_frequency(s2)\n    \n    # Compare the two dictionaries, returning True if they are equal and False otherwise\n    return freq1 == freq2",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('a man, a plan, a canal: Panama', 'amanaplanacanalpanamadarow') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

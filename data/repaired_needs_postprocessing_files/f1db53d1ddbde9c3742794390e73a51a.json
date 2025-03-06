@@ -1,0 +1,12 @@
+{
+    "title": "Easy: FizzBuzz with a Twist",
+    "description": "Write a function `fizzbuzz_with_twist` that takes an integer `n` as input and returns the FizzBuzz sequence up to `n`. The FizzBuzz sequence is a series of numbers from 1 to `n`, where each number is replaced by one of three strings: 'Fizz' if it's divisible by 3, 'Buzz' if it's divisible by 5, or the number itself as a string. However, if a number is divisible by both 3 and 5, your function should return the string 'FizzBuzz'. \n\n#### Function Signature\n```python\ndef fizzbuzz_with_twist(n: int) -> list:\n``` \n\n#### Input\n- `n` (int): The last number in the FizzBuzz sequence.\n\n#### Output\n- A list of strings representing the FizzBuzz sequence up to `n`. Each string is either 'Fizz', 'Buzz', or a number as a string.\n",
+    "code": "def fizzbuzz_with_twist(n: int) -> list:\n    result = []\n    for i in range(1, n+1):\n        if i % 3 == 0 and i % 5 == 0:\n            result.append('FizzBuzz')\n        elif i % 3 == 0:\n            result.append('Fizz')\n        elif i % 5 == 0:\n            result.append('Buzz')\n        else:\n            result.append(str(i))\n    return result\n",
+    "tests": [
+        "assert len(fizzbuzz_with_twist(15)) == 15",
+        "assert 'FizzBuzz' in fizzbuzz_with_twist(30)",
+        "assert '3' in fizzbuzz_with_twist(20)",
+        "assert '5' in fizzbuzz_with_twist(10)"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

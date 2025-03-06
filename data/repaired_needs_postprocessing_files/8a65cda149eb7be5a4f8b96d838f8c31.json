@@ -1,0 +1,11 @@
+{
+    "title": "'Removing Duplicates from a List' - Medium",
+    "description": "Write a function `remove_duplicates` that takes a list as an argument and returns a new list with all duplicated elements removed.\n\n#### Function Signature\n```python\ndef remove_duplicates(lst: list) -> list:\n```\n\n#### Input\n- `lst` (list): A non-empty list containing any data type.\n\n#### Output\n- Returns a new list where duplicated elements have been removed.\n\n**Hint:** Use the built-in Python functions such as `set()` to solve this problem.",
+    "code": "def remove_duplicates(lst: list) -> list:\n    # Convert the list to set, which removes duplicates by default\n    return list(set(lst))",
+    "tests": [
+        "assert remove_duplicates([1, 2, 3, 2, 5, 8, 3, 5]) == [1, 2, 3, 5, 8]",
+        "assert remove_duplicates(['apple', 'banana', 'grape', 'apple']) == ['banana', 'grape']",
+        "assert remove_duplicates([True, False, True]) == [True, False]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

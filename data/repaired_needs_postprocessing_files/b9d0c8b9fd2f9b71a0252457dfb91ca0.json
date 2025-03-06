@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Longest Increasing Subsequence",
+    "description": "Given an array of integers, find the length of the longest increasing subsequence.\n\n#### Function Signature\n```python\ndef longest_increasing_subsequence(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns the length of the longest increasing subsequence in the input list.",
+    "code": "def longest_increasing_subsequence(nums: list[int]) -> int:\n    n = len(nums)\n    dp = [1] * n\n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] > nums[j] and dp[i] < dp[j] + 1:\n                dp[i] = dp[j] + 1\n    return max(dp)\n",
+    "tests": [
+        "assert longest_increasing_subsequence([10,9,2,5,3,7,101,18]) == 4",
+        "assert longest_increasing_subsequence([0,1,0,3,2,3]) == 4",
+        "assert longest_increasing_subsequence([7,7,7,7,7,7,7]) == 1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

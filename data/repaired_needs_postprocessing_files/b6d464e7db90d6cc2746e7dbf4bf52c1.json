@@ -1,0 +1,12 @@
+{
+    "title": "Maximum Product Subarray",
+    "description": "Given an array of integers `nums`, find the contiguous subarray within the array (containing at least one number) which has the largest product. Return the maximum product.\n\n#### Function Signature\n```python\ndef max_product(nums: List[int]) -> int:\n``` \n\n#### Input\n- `nums` (List[int]): A list of integers where each integer is between -10^5 and 10^5.\n\n#### Output\n- Returns the maximum product of a contiguous subarray within the input array.",
+    "code": "from typing import List\n\ndef max_product(nums: List[int]) -> int:\n    max_so_far = nums[0]\n    min_so_far = nums[0]\n    result = nums[0]\n\n    for i in range(1, len(nums)):\n        if nums[i] < 0:\n            max_so_far, min_so_far = min_so_far, max_so_far\n\n        max_so_far = max(max_so_far * nums[i], nums[i])\n        min_so_far = min(min_so_far * nums[i], nums[i])\n        result = max(result, max_so_far)\n\n    return result",
+    "tests": [
+        "assert max_product([2, 3, -2, 4]) == 6",
+        "assert max_product([-2, 0, -1]) == 0",
+        "assert max_product([-2, 3, -4]) == 24",
+        "assert max_product([-2, -3, -4, -5]) == 120"
+    ],
+    "model": "codebooga:latest-repaired by Llama 3"
+}

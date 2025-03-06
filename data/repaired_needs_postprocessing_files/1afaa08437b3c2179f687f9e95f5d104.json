@@ -1,0 +1,13 @@
+{
+    "title": "Sum of Fibonacci Numbers Below a Given Limit (Easy)",
+    "description": "Write a Python function `fib_sum` that takes an integer `n` as input and returns the sum of all Fibonacci numbers below `n`. \n#### Function Signature\n```python\ndef fib_sum(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): A positive integer.\n \n#### Output\n- Returns the sum of all Fibonacci numbers below the given `n`. For example, if `n=10`, the output should be `1 + 1 + 2 + 3 + 5 = 11.`",
+    "code": "def fib_sum(n: int) -> int:\n    # Initialize first two Fibonacci numbers\n    a, b = 0, 1\n    total = 0\n    \n    # Loop until we reach the input number `n`\n    while a < n:\n        # Calculate next Fibonacci number\n        c = a + b\n        total += a\n        a, b = b, c\n    return total",
+    "tests": [
+        "assert fib_sum(1) == 1",
+        "assert fib_sum(2) == 2",
+        "assert fib_sum(7) == 8",
+        "assert fib_sum(10) == 11",
+        "assert fib_sum(20) == 34"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

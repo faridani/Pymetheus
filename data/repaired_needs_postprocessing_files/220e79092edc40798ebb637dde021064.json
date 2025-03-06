@@ -1,0 +1,11 @@
+{
+    "title": "Medium: Fibonacci Sequence Validator",
+    "description": "Create a function that determines if a given list of numbers follows the rules of the Fibonacci sequence. A number can be part of the Fibonacci sequence if it is equal to the sum of the two preceding ones, starting from 0 and 1.\n\n#### Function Signature\n```python\ndef validate_fibonacci(arr: List[int]) -> bool:\n``` \n\n#### Input\n- `arr` (List[int]): A list of integers.\n\n#### Output\n- Returns `True` if the input list follows the rules of the Fibonacci sequence, `False` otherwise. The function should return `False` for lists with less than 3 elements.\n",
+    "code": "from typing import List\n\ndef validate_fibonacci(arr: List[int]) -> bool:\n    if len(arr) < 3:\n        return False\n    for i in range(2, len(arr)):\n        if arr[i] != arr[i-1] + arr[i-2]:\n            return False\n    return True",
+    "tests": [
+        "assert validate_fibonacci([0, 1, 1, 2, 3, 5]) == True",
+        "assert validate_fibonacci([0, 1, 2, 4, 8]) == False",
+        "assert validate_fibonacci([0, 1]) == False"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

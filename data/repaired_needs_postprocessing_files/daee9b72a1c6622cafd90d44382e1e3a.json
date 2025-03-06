@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Constrained Path Sum",
+    "description": "You are given a tree represented as an adjacency list. Each node in the tree has a value associated with it. The task is to find the maximum sum of values along any path from the root node to a leaf node, subject to the constraint that the sum must be divisible by a given integer 'k'.\n#### Function Signature\n```pythonndef max_path_sum(adj_list: list[list[int]], values: list[int], root: int, k: int) -> int:\n```\n#### Input\n- `adj_list`: A list of lists representing the adjacency list of the tree.\n- `values`: A list of integers representing the value at each node in the tree. Index corresponds to node index.\n- `root`: The index of the root node in the tree.\n- `k`: The integer by which the path sum must be divisible.\n\n#### Output\n- Returns the maximum path sum divisible by 'k' from the root to any leaf node. If no such path exists, return -1.",
+    "code": "def max_path_sum(adj_list: list[list[int]], values: list[int], root: int, k: int) -> int:\n    def dfs(node, current_sum):\n        if not adj_list[node]:  # Leaf node\n            return current_sum if current_sum % k == 0 else -1\n        max_sum = -1\n        for neighbor in adj_list[node]:\n            neighbor_sum = dfs(neighbor, current_sum + values[neighbor])\n            max_sum = max(max_sum, neighbor_sum)\n        return max_sum\n    \n    return dfs(root, values[root])",
+    "tests": [
+        "'assert max_path_sum([[1, 2], [3], [3], []], [5, 2, 3, 1], 0, 4) == 9'",
+        "'assert max_path_sum([[1, 2], [], [3]], [1, 2, 3], 0, 2) == -1'",
+        "'assert max_path_sum([[1, 2], [3], [4]], [1, 2, 3, 4], 0, 3) == 6'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

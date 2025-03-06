@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "Write a function `find_anagrams` that finds all the anagrams of a given string within a list of strings.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str, words: List[str]) -> List[str]:\n```\n\n#### Input\n- `word` (str): The word to find anagrams for.\n- `words` (List[str]): A list of strings that may contain anagrams of the given word.\n\n#### Output\n- Returns a list of all the anagrams found in the input list.\n\n#### Constraints\n- The function should be case insensitive.\n- Characters other than letters and spaces are ignored when checking for anagrams.\n- Spaces within words do not affect whether they are considered anagrams.\n",
+    "code": "import collections\ndef find_anagrams(word: str, words: List[str]) -> List[str]:\n    word_sorted = sorted(list(word.lower()))\n    freq = collections.Counter(word_sorted)\n    anagrams = []\n    for w in words:\n        w_sorted = sorted(list(w.lower()))\n        if len(w) != len(word): continue\n        if collections.Counter(w_sorted) != freq: continue\n        if w not in anagrams: anagrams.append(w)\n    return anagrams",
+    "tests": [
+        "assert find_anagrams('listen', ['enlistment', 'silent', 'enlisted']) == ['silent', 'enlisted']",
+        "assert find_anagrams('python', ['trypython', 'typhon', 'pythons']) == ['typhon', 'pythons']",
+        "assert find_anagrams('hello', ['world', 'hollo', 'olleh']) == ['hollo', 'olleh']",
+        "assert find_anagrams('example', ['gnepxe', 'mpeagex', 'expaime']) == ['gnepxe', 'mpeagex', 'expaime']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

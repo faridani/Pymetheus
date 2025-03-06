@@ -1,0 +1,12 @@
+{
+    "title": "Divisible Digit Sum",
+    "description": "Write a function that calculates the sum of all digits in an integer. Then, check if this sum is divisible by the original number.\n\n#### Function Signature\n```python\ndef divisible_digit_sum(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns `True` if the sum of all digits in `n` is divisible by `n`, `False` otherwise.",
+    "code": "def divisible_digit_sum(n: int) -> bool:\n    total = 0\n    for digit in str(n):\n        total += int(digit)\n    return total % n == 0",
+    "tests": [
+        "assert divisible_digit_sum(12) == True",
+        "assert divisible_digit_sum(19) == False",
+        "assert divisible_digit_sum(777) == True",
+        "assert divisible_digit_sum(1001) == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

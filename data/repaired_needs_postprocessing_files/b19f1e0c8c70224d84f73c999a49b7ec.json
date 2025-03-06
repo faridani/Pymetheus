@@ -1,0 +1,12 @@
+{
+    "title": "Maximum Non-Overlapping Substrings",
+    "description": "Write a function `max_non_overlapping_substrings` that takes a string and an integer as input. The function should return the maximum number of non-overlapping substrings that can be formed from the given string, where each substring has exactly the same length specified by the input integer.\n\n#### Function Signature\n```python\ndef max_non_overlapping_substrings(s: str, k: int) -> int:\n``` \n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n- `k` (int): The length of each substring.\n\n#### Output\n- Returns the maximum number of non-overlapping substrings that can be formed from the given string.",
+    "code": "def max_non_overlapping_substrings(s: str, k: int) -> int:\n    if len(s) < k or s.count('') == 0 or s[0] != s[k-1]:\n        return 0\n    substrings = 0\n    for i in range(0, len(s), k):\n        if i + k > len(s): break\n        if s[i:i+k].count('') <= 0 and s[i:k] == s[i+1:i+1+k-1]:\n            substrings += 1\n    return substrings",
+    "tests": [
+        "assert max_non_overlapping_substrings('abcabcabc', 3) == 2",
+        "assert max_non_overlapping_substrings('123456', 4) == 1",
+        "assert max_non_overlapping_substrings('aabbbccc', 2) == 3",
+        "assert max_non_overlapping_substrings('x' * 100, 10) == 10"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

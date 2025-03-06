@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "Write a function `is_anagram` that checks if two given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1`, `str2` (str): Two strings that may contain letters and spaces, with no punctuation.\n\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n\n#### Constraints\n- Strings may have multiple spaces between words.\n",
+    "code": "def is_anagram(str1: str, str2: str) -> bool:\n    # Remove any spaces and convert to lowercase\n    str1 = ''.join(str1.split()).lower()\n    str2 = ''.join(str2.split()).lower()\n    \n    # If the two strings have different lengths, they cannot be anagrams\n    if len(str1) != len(str2):\n        return False\n    \n    # Count the frequency of each letter in both strings\n    count_str1 = [0]*26\n    count_str2 = [0]*26\n    for char in str1:\n        count_str1[ord(char) - ord('a')] += 1\n    for char in str2:\n        count_str2[ord(char) - ord('a')] += 1\n    \n    # Compare the counts of each letter in both strings\n    for i in range(len(count_str1)):\n        if count_str1[i] != count_str2[i]:\n            return False\n    \n    # If all letters have the same count, the strings are anagrams\n    return True",
+    "tests": [
+        "assert is_anagram(\"listen\", \"silent\") == True",
+        "assert is_anagram(\"hello\", \"world\") == False",
+        "assert is_anagram(\"mis\\nmismatched\", \"mist\\natatched\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

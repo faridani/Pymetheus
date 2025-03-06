@@ -1,0 +1,10 @@
+{
+    "title": "Medium - Word Frequency Counter",
+    "description": "Write a function `word_frequency` that takes a string as input and returns a dictionary where the keys are the unique words in the string and the values are the number of times each word appears. Ignore punctuation and capitalization.\n\n#### Function Signature\n```python\ndef word_frequency(text: str) -> dict:\n``` \n\n#### Input\n- `text` (str): A string containing sentences or words.\n\n#### Output\n- Returns a dictionary where keys are unique words and values are their frequencies.\n\n",
+    "code": "import re\ndef word_frequency(text: str) -> dict:\n    text = text.lower()\n    words = re.findall(r'\b[a-z]+\b', text)\n    frequency = {}\n    for word in words:\n        if word in frequency:\n            frequency[word] += 1\n        else:\n            frequency[word] = 1\n    return frequency\n",
+    "tests": [
+        "assert word_frequency('This is a test sentence. This sentence is a test.') == {'this': 2, 'is': 2, 'a': 2, 'test': 2, 'sentence': 2}",
+        "assert word_frequency('Quiet, the birds are chirping. Quiet!') == {'quiet': 2, 'the': 1, 'birds': 1, 'are': 1, 'chirping': 1}"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

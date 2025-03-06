@@ -1,0 +1,12 @@
+{
+    "title": "Harshad Number Checker",
+    "description": "A Harshad number, also known as a Niven number, is a natural number that is divisible by the sum of its digits. Write a function `is_harshad_number` that checks if a given integer is a Harshad number.\n#### Function Signature\n```python\ndef is_harshad_number(n: int) -> bool:\n``` \n\n#### Input\n- `n` (int): An integer that may be positive, negative or zero.\n#### Output\n- Returns `True` if the input integer is a Harshad number, `False` otherwise.",
+    "code": "def is_harshad_number(n: int) -> bool:\n    # Calculate the sum of digits\n    sum_digits = sum(int(digit) for digit in str(abs(n)))\n    # Check if the number is divisible by the sum of its digits\n    return n % sum_digits == 0,\n",
+    "tests": [
+        "assert is_harshad_number(18) == True",
+        "assert is_harshad_number(-18) == True",
+        "assert is_harshad_number(17) == False",
+        "assert is_harshad_number(0) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

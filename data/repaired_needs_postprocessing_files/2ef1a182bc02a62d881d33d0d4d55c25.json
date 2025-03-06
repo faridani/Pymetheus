@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Substring Frequency",
+    "description": "Given a string `s` and a substring `t`, count the number of occurrences of `t` within `s`. The occurrences can overlap.\n\n#### Function Signature\n```python\ndef substring_frequency(s: str, t: str) -> int:\n```\n\n#### Input\n- `s` (str): The input string.\n- `t` (str): The substring to count.\n\n#### Output\n- Returns the number of occurrences of `t` within `s`.\n\n#### Constraints\n- 1 <= len(s) <= 10^5\n- 1 <= len(t) <= 10^3",
+    "code": "def substring_frequency(s: str, t: str) -> int:\n    count = 0\n    for i in range(len(s) - len(t) + 1):\n        if s[i:i + len(t)] == t:\n            count += 1\n    return count",
+    "tests": [
+        "assert substring_frequency(\"abababa\", \"ab\") == 5",
+        "assert substring_frequency(\"banana\", \"na\") == 4",
+        "assert substring_frequency(\"hello world\", \"world\") == 1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

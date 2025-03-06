@@ -1,0 +1,16 @@
+{
+    "title": "Goldbach's Conjecture Solver (Hard)",
+    "description": "Goldbach's Conjecture states that every even integer greater than 2 can be expressed as the sum of two primes. Write a function `goldbach_conjecture` that checks if an input number is a sum of two primes.\n#### Function Signature\n```python\ndef goldbach_conjecture(n: int) -> bool:\n``` \n#### Input\n- `n` (int): A positive even integer.\n#### Output\n- Returns `True` if the input number can be expressed as a sum of two primes, `False` otherwise.",
+    "code": "def prime_check(num: int) -> bool:\n    if num < 2: return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\ndef goldbach_conjecture(n: int) -> bool:\n    for i in range(2, n//2+1):\n        if prime_check(i) and prime_check(n - i):\n            return True\n    return False",
+    "tests": [
+        "assert goldbach_conjecture(4) == True",
+        "assert goldbach_conjecture(6) == True",
+        "assert goldbach_conjecture(8) == True",
+        "assert goldbach_conjecture(9) == False",
+        "assert goldbach_conjecture(10) == True",
+        "assert goldbach_conjecture(14) == True",
+        "assert goldbach_conjecture(16) == True",
+        "assert goldbach_conjecture(22) == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

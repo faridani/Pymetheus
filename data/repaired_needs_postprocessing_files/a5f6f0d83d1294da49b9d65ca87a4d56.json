@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Valid Triangle",
+    "description": "A triangle is valid if the sum of the lengths of any two sides is greater than or equal to the length of the third side. Write a function `is_valid_triangle` that takes three integers `a`, `b`, and `c` as input, representing the lengths of the sides of a triangle.\n\n#### Function Signature\n```python\ndef is_valid_triangle(a: int, b: int, c: int) -> bool:\n``` \n\n#### Input\n- `a` (int), `b` (int), and `c` (int): The lengths of the sides of a triangle.\n\n#### Output\n- Returns `True` if the input is valid for a triangle, `False` otherwise.\n",
+    "code": "def is_valid_triangle(a: int, b: int, c: int) -> bool:\n    return (a + b > c) and (a + c > b) and (b + c > a)",
+    "tests": [
+        "assert is_valid_triangle(3, 4, 5) == True",
+        "assert is_valid_triangle(1, 2, 3) == False",
+        "assert is_valid_triangle(10, 10, 10) == False",
+        "assert is_valid_triangle(-1, -2, 3) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

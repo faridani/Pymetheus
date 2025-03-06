@@ -1,0 +1,11 @@
+{
+    "title": "Hard - Matrix Pathfinding",
+    "description": "You are given an NxM matrix where each cell contains either a '0' (representing an empty cell) or a '1' (representing an obstacle). You need to find the number of distinct paths from the top-left corner (0, 0) to the bottom-right corner (N-1, M-1) of the matrix. You can only move down or right at any given step.\nYou can only move down or right at any given step.\n#### Function Signature\n```python\ndef count_paths(matrix: list[list[int]]) -> int:\n```\n\n#### Input\n- `matrix` (list[list[int]]): An NxM matrix representing the grid.\n\n#### Output\n- Returns an integer representing the number of distinct paths from the top-left to the bottom-right corner.",
+    "code": "def count_paths(matrix: list[list[int]]) -> int:\n    N = len(matrix)\n    M = len(matrix[0])\n    dp = [[0 for _ in range(M)] for _ in range(N)]\n\n    # Initialize starting point\n    dp[0][0] = 1 if matrix[0][0] == 0 else 0\n\n    # Fill first row and column\n    for i in range(1, N):\n        dp[i][0] = dp[i-1][0] if matrix[i][0] == 0 else 0\n    for j in range(1, M):\n        dp[0][j] = dp[0][j-1] if matrix[0][j] == 0 else 0\n\n    # Calculate paths for remaining cells\n    for i in range(1, N):\n        for j in range(1, M):\n            if matrix[i][j] == 0:\n                dp[i][j] = dp[i-1][j] + dp[i][j-1]\n\n    return dp[N-1][M-1]",
+    "tests": [
+        "'assert count_paths([[0, 0, 0],[0, 1, 0],[0, 0, 0]]) == 2'",
+        "'assert count_paths([[0, 1],[0, 0]]) == 1'",
+        "'assert count_paths([[1, 0],[0, 1]]) == 0'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

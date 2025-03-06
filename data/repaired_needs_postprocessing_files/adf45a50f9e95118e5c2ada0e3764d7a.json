@@ -1,0 +1,12 @@
+{
+    "title": "Hard - Lexicographically Smallest Rotation",
+    "description": "Given a string `s`, find the lexicographically smallest rotation of `s`. A rotation of a string is obtained by moving characters from the end to the beginning. For example, rotating \"abc\" one position to the right gives \"cab\".\n\n#### Function Signature\n```python\ndef smallest_rotation(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string consisting of lowercase English letters.\n\n#### Output\n- Returns the lexicographically smallest rotation of `s` as a string.",
+    "code": "def smallest_rotation(s: str) -> str:\n    smallest = s\n    for i in range(len(s)):\n        rotation = s[i:] + s[:i]\n        if rotation < smallest:\n            smallest = rotation\n    return smallest",
+    "tests": [
+        "assert smallest_rotation(\"abc\") == \"abc\"",
+        "assert smallest_rotation(\"cba\") == \"abc\"",
+        "assert smallest_rotation(\"bba\") == \"aab\"",
+        "assert smallest_rotation(\"aaccccbb\") == \"aaabccccb\""
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

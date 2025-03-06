@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Number Swapping",
+    "description": "Given two numbers, determine if they are equal or not. If they are equal, swap their values and return a boolean indicating whether the numbers have been swapped. If the numbers are already equal, return False.\n\n#### Function Signature:\n```\ndef swap_if_equal(num1: int, num2: int) -> (int, bool):\n``` \n\n#### Input:\n- `num1` (int): The first number to compare and possibly swap.\n- `num2` (int): The second number to compare and possibly swap.\n\n#### Output:\na tuple containing two elements: the swapped value of `num1`, and a boolean indicating whether a swap occurred (`True`) or not (`False`).",
+    "code": "def swap_if_equal(num1, num2):\n    if num1 == num2:\n        num1, num2 = num2, num1\n        return num1, True\n    else:\n        return num1, False",
+    "tests": [
+        "assert swap_if_equal(5, 3) == (3, True)",
+        "assert swap_if_equal(4, 4) == (4, False)",
+        "assert swap_if_equal(-2, -2) == (-2, False)",
+        "assert swap_if_equal(0, 10) == (10, True)"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

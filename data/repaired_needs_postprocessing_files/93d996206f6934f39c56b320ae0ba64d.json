@@ -1,0 +1,11 @@
+{
+    "title": "'Is it a Rot13 Encoded String?' (Easy)",
+    "description": "The rot13 encoding is a simple form of encryption that replaces a letter with the 13th letter after it in the alphabet. Write a function `is_rot13` that checks if a given string is encoded in ROT13.\n\n#### Function Signature\n```python\ndef is_rot13(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input string is encoded in ROT13, `False` otherwise.",
+    "code": "def is_rot13(s: str) -> bool:\n    # Iterate through each character in the string\n    for char in s:\n        # If a letter and not already decoded, decode it\n        if char.isalpha() and char not in rot13_map.get(char.lower(), ''):\n            # Decode the character by finding its 13th position in the alphabet\n            char = chr((ord('a') + ord(char) - 13) % 26) + char.upper() if char.islower() else char\n    # If all letters are decoded and the string is only letters, it's a ROT13 encoded string\n    return all([char in rot13_map for char in s]) and not any([char.isalpha() for char in s])\n\n# Precompute rot13 map\nrot13_map = {chr(ord('a') + i): chr(ord('a') - i) for i in range(1, 14)}",
+    "tests": [
+        "assert is_rot13(\"SERR PBQR PNZC\") == True",
+        "assert is_rot13(\"This is a secret message. It will NOT be understood\") == False",
+        "assert is_rot13(\"Mjqqt jvyy vghel gur puvppr! V'z pbir vf n ccnepbirel!\") == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

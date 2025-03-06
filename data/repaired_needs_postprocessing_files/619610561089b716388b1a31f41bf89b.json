@@ -1,0 +1,10 @@
+{
+    "title": "Medium: Reverse Linked List",
+    "description": "#### Function Signature\n```python\ndef reverse_linked_list(head):\n```\nThe head of a singly linked list, reverse the list and return the new head. You can assume that there are no cycles in the list.\n\n#### Input\n- `head` (ListNode): The head of the linked list.\n\n#### Output\n- Returns the head of the reversed linked list.\n\n#### Constraints\n- The number of nodes in the list is in the range [0, 5000].\n- -5000 <= Node.val <= 5000\n\n#### Hints\n- You can use iterative approach with three pointers: previous, current and next.",
+    "code": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_linked_list(head):\n    prev = None\n    curr = head\n    while curr:\n        next_node = curr.next\n        curr.next = prev\n        prev = curr\n        curr = next_node\n    return prev",
+    "tests": [
+        "# Example Test Case 1\nl1 = ListNode(1)\nl1.next = ListNode(2)\nl1.next.next = ListNode(3)\nl1.next.next.next = ListNode(4)\nl1.next.next.next.next = ListNode(5)\nreversed_list = reverse_linked_list(l1)\nassert reversed_list.val == 5\nassert reversed_list.next.val == 4\nassert reversed_list.next.next.val == 3\nassert reversed_list.next.next.next.val == 2\nassert reversed_list.next.next.next.next.val == 1",
+        "# Example Test Case 2\nempty_list = None\nreversed_list = reverse_linked_list(empty_list)\nassert reversed_list is None"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

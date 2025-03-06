@@ -1,0 +1,12 @@
+{
+    "title": "Binary Number Palindrome Verification",
+    "description": "A binary palindrome number reads the same from left to right or right to left when considering its binary representation. Write a function `is_binary_palindrome` that checks if a given integer is a binary palindrome.\r\n\r\n#### Function Signature\r\n```python\r\ndef is_binary_palindrome(number: int) -> bool:\r```\r\r\n#### Input\r\n- `number`: An integer (non-negative).\r\r\n#### Output\r\n- Returns `True` if the input number represents a binary palindrome, `False` otherwise.",
+    "code": "def is_binary_palindrome(number: int) -> bool:\r    # Convert the integer to its binary representation as string\r    binary_str = bin(number)[2:] \r    # Check if the binary string reads the same forwards and backwards\r    return binary_str == binary_str[::-1]\r",
+    "tests": [
+        "assert is_binary_palindrome(5) == True",
+        "assert is_binary_palindrome(47) == False",
+        "assert is_binary_palindrome(9) == False",
+        "assert is_binary_palindrome(2683) == True"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

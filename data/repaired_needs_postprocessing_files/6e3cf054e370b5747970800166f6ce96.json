@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Closest Pair",
+    "description": "Given a list of integers, find the closest pair of numbers that add up to a given target sum. This function uses a two-pointer technique to efficiently find the closest pair. The function takes as input a list of integers and a target sum, and returns a tuple (a, b) where a and b are the two numbers in the input list that add up to the target sum. If no such pair is found, it returns None. For example, if the input list is [1, 2, 3, 4] and the target sum is 5, the output should be (2, 3) because 2 + 3 = 5. If there are multiple pairs that add up to the target sum, it returns any one of them.",
+    "code": "import math\n\ndef closest_pair(nums: list[int], target_sum: int) -> tuple[int, int] | None:\n    nums.sort()\n    left, right = 0, len(nums) - 1\n    min_diff = float('inf')\n    result = None\n    while left < right:\n        current_sum = nums[left] + nums[right]\n        if abs(current_sum - target_sum) < min_diff:\n            min_diff = abs(current_sum - target_sum)\n            result = (nums[left], nums[right])\n        if current_sum < target_sum:\n            left += 1\n        else:\n            right -= 1\n    return result",
+    "tests": [
+        "assert closest_pair([1, 2, 3, 4], 5) == (2, 3)",
+        "assert closest_pair([-1, -2, 0, 1], 0) == (1, -1)",
+        "assert closest_pair([1, 2, 3, 4, 5], 10) == (2, 8)",
+        "assert closest_pair([], 5) is None"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

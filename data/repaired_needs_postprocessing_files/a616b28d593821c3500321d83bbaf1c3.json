@@ -1,0 +1,11 @@
+{
+    "title": "Word Frequency Counter",
+    "description": "Given a string, count the frequency of each word in the string and return a dictionary with words as keys and their frequencies as values. The input string may contain special characters, punctuation, and spaces. You can assume that all words are separated by space(s) and newlines. All words are converted to lowercase for case-insensitive counting.",
+    "code": "def word_frequency_counter(input_string: str) -> dict:\n    # Remove all non-alphanumeric characters\n    input_string = ''.join(e for e in input_string if e.isalnum()).lower()\n    words = input_string.split()\n    word_counts = {}\n    # Count the frequency of each word\n    for word in words:\n        if word not in word_counts:\n            word_counts[word] = 1\n        else:\n            word_counts[word] += 1\n    return word_counts",
+    "tests": [
+        "assert word_frequency_counter('Hello, world! How are you? I am fine.') == {'hello': 1, 'world': 1, 'how': 1, 'are': 1, 'you': 1, 'i': 1, 'am': 1, 'fine': 1}",
+        "assert word_frequency_counter('This is a test. This is only a test.') == {'this': 2, 'is': 2, 'a': 2, 'test': 2}",
+        "assert word_frequency_counter('This is another test! But this one is important.') == {'this': 1, 'is': 2, 'another': 1, 'but': 1, 'one': 1, 'important': 1}"
+    ],
+    "model": "wizardcoder:latest-repaired by Llama 3"
+}

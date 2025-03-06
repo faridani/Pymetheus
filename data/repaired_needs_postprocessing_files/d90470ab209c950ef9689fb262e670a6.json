@@ -1,0 +1,11 @@
+{
+    "title": "Sum of All Odd-Length Substrings",
+    "description": "Given a string, write a function `sum_odd_substrings` that returns the sum of all substrings whose lengths are odd.\n\n#### Function Signature\n```python\ndef sum_odd_substrings(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing only alphanumeric characters.\n\n#### Output\n- Returns the sum of all substrings whose lengths are odd.",
+    "code": "def sum_odd_substrings(s: str) -> int:\n    total_sum = 0\n    for i in range(len(s)):\n        for j in range(i+1, len(s)+1):\n            if (j - i) % 2 != 0:\n                total_sum += int(''.join([s[k] for k in range(i, j)]))\n    return total_sum",
+    "tests": [
+        "assert sum_odd_substrings('abcdef') == 21",
+        "assert sum_odd_substrings('a1b2c3d4e5f6') == 30",
+        "assert sum_odd_substrings('0123456789') == 405"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

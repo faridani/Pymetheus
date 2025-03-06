@@ -1,0 +1,12 @@
+{
+    "title": "Number of Islands",
+    "description": "Write a function `count_islands` that takes as input an 2D list of characters representing a grid. The function should return the number of islands in the grid.\nThe function is defined as follows:\n#### Function Signature\n```python\ndef count_islands(grid: list[list[str]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[str]]): A 2D list of characters, where each character is either a land cell ('L'), a water cell ('W'), or an unknown cell ('X'). The grid may contain islands.\n\n#### Output\n- Returns the number of islands in the grid. An island is defined as any connected group of 'L' cells that are not surrounded by 'W' cells.",
+    "code": "from collections import deque\ndef count_islands(grid: list[list[str]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n    rows, cols = len(grid), len(grid[0])\n    visited = [[False for _ in range(cols)] for _ in range(rows)]\n    count = 0\n\n    def dfs(r: int, c: int) -> None:\n        if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] == 'W' or visited[r][c]:\n            return\n        visited[r][c] = True\n        for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            nr, nc = r + dr, c + dc\n            dfs(nr, nc)\n\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 'L' and not visited[r][c]:\n                dfs(r, c)\n                count += 1\n    return count",
+    "tests": [
+        "assert count_islands([['L', 'L', 'X'], ['W', 'W', 'L'], ['X', 'W', 'X']]) == 2",
+        "assert count_islands([['L', 'L', 'L'], ['W', 'W', 'W'], ['L', 'L', 'L']]) == 1",
+        "assert count_islands([['L', 'L', 'X'], ['W', 'W', 'X'], ['X', 'X', 'X']]) == 2",
+        "assert count_islands([['W', 'W', 'W'], ['W', 'W', 'W'], ['W', 'W', 'W']]) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

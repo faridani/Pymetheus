@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Detector (Hard)",
+    "description": "Given two strings, write a function `anagram` that checks if the given strings are anagrams of each other.\n\n#### Function Signature\n```python\ndef anagram(s1: str, s2: str) -> bool:\n```\n\n#### Input\n- `s1`, `s2` (str): Two strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns `True` if the input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "def anagram(s1: str, s2: str) -> bool:\n    # Remove non-alphabetic characters and convert to lowercase\n    s1 = ''.join(char for char in s1 if char.isalpha()).lower()\n    s2 = ''.join(char for char in s2 if char.isalpha()).lower()\n    \n    # Sort the resulting strings\n    s1_sorted = sorted(s1)\n    s2_sorted = sorted(s2)\n    \n    # Check if the sorted strings are equal\n    return s1_sorted == s2_sorted",
+    "tests": [
+        "assert anagram('listen', 'silent') == True",
+        "assert anagram('hello', 'world') == False",
+        "assert anagram('Python', 'htypOny') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

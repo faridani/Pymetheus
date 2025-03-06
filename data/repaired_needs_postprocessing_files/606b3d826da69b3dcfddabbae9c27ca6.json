@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Given two strings `s` and `t`, write a function `min_window_substring` that returns the minimum window substring of `s` that contains all characters of `t`. The function should use a sliding window approach to find the minimum window substring. You can assume that both strings only contain lowercase English letters.\n\n#### Function Signature\n```python\ndef min_window_substring(s: str, t: str) -> str:\n```",
+    "code": "from collections import Counter\ndef min_window_substring(s: str, t: str) -> str:\n    if not t or not s:\n        return ''\n    dict_t = Counter(t)\n    required_chars = len(dict_t)\n\n    left, right = 0, 0\n    formed_chars = 0\n    window_counts = {}\n    min_len = float('inf')\n    min_window = ''\n\n    while right < len(s):\n        character = s[right]\n        window_counts[character] = window_counts.get(character, 0) + 1\n\n        if character in dict_t and window_counts[character] == dict_t[character]:\n            formed_chars += 1\n\n        while left <= right and formed_chars == required_chars:\n            character = s[left]\n\n            if right - left + 1 < min_len:\n                min_len = right - left + 1\n                min_window = s[left:right + 1]\n\n            window_counts[character] -= 1\n\n            if character in dict_t and window_counts[character] < dict_t[character]:\n                formed_chars -= 1\n\n            left += 1\n\n        right += 1\n\n    return min_window",
+    "tests": [
+        "assert min_window_substring(\"ADOBECODEBANC\", \"ABC\") == \"BANC\"",
+        "assert min_window_substring('', '') == ''",
+        "assert min_window_substring('abc', 'a') == 'a'",
+        "assert min_window_substring('abc', 'bc') == 'bc'"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

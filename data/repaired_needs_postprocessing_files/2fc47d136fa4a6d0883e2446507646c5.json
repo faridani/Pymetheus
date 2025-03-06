@@ -1,0 +1,11 @@
+{
+    "title": "Easy - Sum of Digits",
+    "description": "Write a function `sum_digits` that calculates the sum of all digits in a given non-negative integer.\r\n\r\n#### Function Signature\r\n```python\rndef sum_digits(num: int) -> int:\r```\r\r\n#### Input\r\n- `num` (int): A non-negative integer.\r\r\n#### Output\r\n- Returns the sum of all digits in the input integer.",
+    "code": "def sum_digits(num: int) -> int:\r    total = 0\r    while num > 0:\r        digit = num % 10\r        total += digit\r        num //= 10\r    return total",
+    "tests": [
+        "assert sum_digits(12345) == 15",
+        "assert sum_digits(9876) == 30",
+        "assert sum_digits(0) == 0"
+    ],
+    "model": "gemma2:27b-instruct-q5_K_S-repaired by Llama 3"
+}

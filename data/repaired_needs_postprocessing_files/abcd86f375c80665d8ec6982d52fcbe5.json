@@ -1,0 +1,12 @@
+{
+    "title": "Hard - String Transformation",
+    "description": "You are given a string consisting only of lowercase English letters. In one step, you can select any two adjacent characters in the string and swap them. You want to transform the string into lexicographically smallest possible order.\n\n#### Function Signature\n```python\ndef min_lexicographical(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string consisting only of lowercase English letters.\n\n#### Output\n- Returns the lexicographically smallest string obtainable by swapping adjacent characters.",
+    "code": "def min_lexicographical(s: str) -> str:\n    s = list(s)\n    n = len(s)\n    for i in range(n - 1):\n        for j in range(i + 1, n):\n            if s[j] < s[i]:\n                s[i], s[j] = s[j], s[i]\n    return ''.join(s)",
+    "tests": [
+        "assert min_lexicographical(\"cba\") == \"abc\"",
+        "assert min_lexicographical(\"abcd\") == \"abcd\"",
+        "assert min_lexicographical(\"cbad\") == \"abcd\"",
+        "assert min_lexicographical(\"zyxwvutsrqponmlkjihgfedcba\") == \"abcdefghijklmnopqrstuvwxyz\""
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

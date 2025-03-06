@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Counting Duplicates",
+    "description": "Given a list of integers, count the number of duplicate values. If there are no duplicates, return 0.\n#### Function Signature\n```python\ndef count_duplicates(lst: list) -> int:\n```\n\n#### Input\n- `lst` (list): A list of integers.\n\n#### Output\n- Returns the number of duplicate values in the input list.",
+    "code": "def count_duplicates(lst: list) -> int:\n    count = 0\n    seen = set()\n    for num in lst:\n        if num in seen:\n            count += 1\n        else:\n            seen.add(num)\n    return count",
+    "tests": [
+        "assert count_duplicates([1, 2, 3, 4, 5]) == 0",
+        "assert count_duplicates([1, 2, 3, 3, 4, 5]) == 1",
+        "assert count_duplicates([1, 1, 2, 2, 3, 3, 4, 4, 5]) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

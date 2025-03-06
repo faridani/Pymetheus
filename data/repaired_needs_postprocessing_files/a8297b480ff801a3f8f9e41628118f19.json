@@ -1,0 +1,10 @@
+{
+    "title": "Closest Pair of Points",
+    "description": "Given a list of n points in the plane, where each point is represented by its x and y coordinates, write a function to find the pair of points that are closest together. The distance between two points (x1, y1) and (x2, y2) is calculated as sqrt((x2-x1)^2 + (y2-y1)^2). Input: - `points` (list[tuple[float, float]]): A list of n points in the plane, where each point is represented by a tuple of two floats. Output: - Returns the pair of points that are closest together. ",
+    "code": "import math\n\ndef closest_pair(points: list[tuple[float, float]]) -> tuple[float, float]:\n    if len(points) < 2:\n        return None\n    min_distance = float('inf')\n    closest_pair_points = (points[0], points[1])\n    for i in range(len(points)):\n        for j in range(i+1, len(points)):\n            distance = math.sqrt((points[j][0] - points[i][0])**2 + (points[j][1] - points[i][1])**2)\n            if distance < min_distance:\n                min_distance = distance\n                closest_pair_points = (points[i], points[j])\n    return closest_pair_points\n",
+    "tests": [
+        "assert closest_pair([(1, 2), (3, 4)]) == ((1, 2), (3, 4))",
+        "assert closest_pair([(0, 0), (0, 0), (0, 0)]) == ((0, 0), (0, 0))"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

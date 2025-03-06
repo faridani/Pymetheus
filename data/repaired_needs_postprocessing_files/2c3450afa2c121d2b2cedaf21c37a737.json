@@ -1,0 +1,11 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "In mathematics and computer science, an anagram is a word or phrase that consists of the same letters as another word or phrase but in a different arrangement. For example, 'listen' and 'silent' are anagrams of each other.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str, dictionary: set[str]) -> list[str]:\n```\n\n#### Input\n- `word` (str): The word to search for anagrams in the provided dictionary.\n- `dictionary` (set[str]): A set of words that the given word is compared with to find potential anagrams.\n\n#### Output\n- Returns a list of all anagrams found in the dictionary as strings. If no anagrams are found, returns an empty list.",
+    "code": "import collections\ndef find_anagrams(word: str, dictionary: set[str]) -> list[str]:\n    # Sort the characters of the given word and the candidate words\n    word_sorted = sorted(list(word))\n    candidates = [sorted(list(candidate)) for candidate in dictionary]\n    \n    # Find potential anagrams by comparing the sorted characters of the given word with the sorted characters of each candidate word\n    anagrams = [candidate for candidate in candidates if word_sorted == candidate]\n",
+    "tests": [
+        "assert find_anagrams('listen', {'listen', 'silent', 'enlist', 'softly'}) == ['silent', 'enlist']",
+        "assert find_anagrams('python', {'python', 'typhon'}) == ['typhon']",
+        "assert find_anagrams('hello', {'world'}) == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

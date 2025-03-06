@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Valid Parentheses",
+    "description": "Write a function that takes a string of parentheses as input and returns True if the parentheses are valid, False otherwise. A set of parentheses is considered valid if every open parenthesis has a corresponding close parenthesis.\n\n#### Function Signature\n```python\ndef valid_parentheses(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that contains only parentheses, i.e., either '(' or ')'.\n\n#### Output\n- Returns True if the input string represents a set of valid parentheses, False otherwise.\n",
+    "code": "def valid_parentheses(s: str) -> bool:\n    count = 0\n    for char in s:\n        if char == '(': \n            count += 1\n        elif char == ')':\n            if count == 0:\n                return False\n            count -= 1\n    return count == 0",
+    "tests": [
+        "assert valid_parentheses('()') == True",
+        "assert valid_parentheses('((()))') == True",
+        "assert valid_parentheses('(()') == False",
+        "assert valid_parentheses(')') == False"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

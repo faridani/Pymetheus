@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Sum of Digits for Strings",
+    "description": "Write a function `sum_of_digits` that takes a string as input and returns the sum of its digits. The function should ignore non-digit characters, case sensitivity, and convert all letters to lowercase.\n\n#### Function Signature\n```python\ndef sum_of_digits(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the sum of digits in the input string.",
+    "code": "import string\ndef sum_of_digits(s: str) -> int:\n    # Convert to lowercase and remove non-digit characters\n    s = ''.join(char for char in s.lower() if char.isdigit())\n    # Calculate the sum of digits\n    return sum(int(digit) for digit in s)",
+    "tests": [
+        "assert sum_of_digits('a2b3c4') == 9",
+        "assert sum_of_digits('hello') == 0",
+        "assert sum_of_digits('123abc456') == 12",
+        "assert sum_of_digits('abcdefg') == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

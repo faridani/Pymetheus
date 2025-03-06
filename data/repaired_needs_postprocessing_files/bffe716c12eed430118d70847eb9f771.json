@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Finder (Hard)",
+    "description": "Write a function `find_anagrams` that finds all anagrams of a given string within a list of strings. \n\n#### Function Signature\n```python\ndef find_anagrams(s: str, words: List[str]) -> List[str]:\n``` \n\n#### Input\n- `s` (str): A string to find anagrams for.\n- `words` (List[str]): A list of strings that may contain anagrams of the input string.\n\n#### Output\n- Returns a list of strings in the same order as they appear in the input list, with any anagrams of the input string removed.",
+    "code": "from collections import Counter\ndef find_anagrams(s: str, words: List[str]) -> List[str]:\n    # Count characters in s\n    count_s = Counter(s)\n    \n    # Filter words that have the same character counts as s\n    filtered_words = [word for word in words if len(word) == len(s) and Counter(word) == count_s]\n    \n    # If there are no filtered words, return the original list\n    if not filtered_words:\n        return words\n    else:\n        # Remove duplicates from the filtered words using set\n        return list(set(filtered_words))",
+    "tests": [
+        "assert find_anagrams(\"listen\", [\"enlists\", \"silent\", \"senate\", \"entinels\"])==[\"silent\"]",
+        "assert find_anagrams(\"wow\", [\"now\", \"wow\", \"two\", \"three\"])==[\"two\"]",
+        "assert find_anagrams(\"java\", [\"java\", \"avis\", \"python\", \"javascript\"])==[]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

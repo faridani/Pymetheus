@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Counting Duplicates",
+    "description": "Write a function `count_duplicates` that takes a list of integers as input and returns the count of duplicate elements in the list.\n\n#### Function Signature\n```python\ndef count_duplicates(lst: list[int]) -> int:\n``` \n\n#### Input\n- `lst` (list[int]): A list of integers.\n\n#### Output\n- Returns the number of duplicate elements in the input list.",
+    "code": "def count_duplicates(lst: list[int]) -> int:\n    count = 0\n    for num in lst:\n        if lst.count(num) > 1:\n            count += 1\n    return count",
+    "tests": [
+        "assert count_duplicates([1, 2, 3, 4, 5]) == 0",
+        "assert count_duplicates([1, 2, 2, 3, 4]) == 1",
+        "assert count_duplicates([1, 1, 2, 3]) == 1",
+        "assert count_duplicates([1, 1, 1, 2, 3]) == 2"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

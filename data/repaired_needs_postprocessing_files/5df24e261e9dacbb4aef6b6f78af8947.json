@@ -1,0 +1,11 @@
+{
+    "title": "Medium - First Unique Character",
+    "description": "Given a string `s`, find the first non-repeating character in it and return its index. If it does not exist, return -1.\n\n#### Function Signature\n```python\ndef first_unique_char(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing lowercase letters.\n\n#### Output\n- Returns the index of the first non-repeating character. If no such character exists, return -1.",
+    "code": "def first_unique_char(s: str) -> int:\n    char_counts = {}\n    for char in s:\n        if char in char_counts:\n            char_counts[char] += 1\n        else:\n            char_counts[char] = 1\n    for i, char in enumerate(s):\n        if char_counts[char] == 1:\n            return i\n    return -1",
+    "tests": [
+        "assert first_unique_char('leetcode') == 0",
+        "assert first_unique_char('loveleetcode') == 2",
+        "assert first_unique_char('aabbcc') == -1"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

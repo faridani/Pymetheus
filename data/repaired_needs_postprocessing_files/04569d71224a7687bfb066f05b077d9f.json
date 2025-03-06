@@ -1,0 +1,13 @@
+{
+    "title": "'Anagram Finder (Hard)'",
+    "description": "Given two strings, determine if they are anagrams of each other. An anagram is a word or phrase that is formed by rearranging the letters of another word or phrase. For example, 'listen' and 'silent' are anagrams.\n\n#### Function Signature\n```python\ndef are_anagrams(a: str, b: str) -> bool:\n```\n\n#### Input\n- `a` (str): A string containing only lowercase letters, numbers and spaces.\n- `b` (str): Another string containing only lowercase letters, numbers and spaces.\n\n#### Output\n- Returns `True` if the two inputs are anagrams, `False` otherwise.",
+    "code": "def are_anagrams(a: str, b: str) -> bool:\n    # Remove any non-alphanumeric characters\n    a = ''.join([char for char in a if char.isalnum()])\n    b = ''.join([char for char in b if char.isalnum()])\n    # Sort the strings and compare them\n    return sorted(a) == sorted(b)",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'olleh') == True",
+        "assert are_anagrams('racecar', 'carrace') == True",
+        "assert are_anagrams('one two three', 'three two one') == True",
+        "assert are_anagrams('a man, a plan, a canal: Panama', 'amanaplanacanalpanama') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

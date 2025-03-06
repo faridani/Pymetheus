@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Finding Prime Numbers",
+    "description": "Given an integer n, write a function `find_primes` that returns the first n prime numbers as a list. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.\n\n#### Function Signature\n```python\ndef find_primes(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): A non-negative integer representing the number of prime numbers to find. The output list should have exactly n elements, each being a prime number.\n\n#### Output\n- Returns a list containing the first n prime numbers in ascending order.",
+    "code": "from typing import List\ndef is_prime(x: int) -> bool:\n    if x <= 1:\n        return False\n    for i in range(2, int(x**0.5) + 1):\n        if x % i == 0:\n            return False\n    return True\ndef find_primes(n: int) -> List[int]:\n    primes = []\n    num = 2\n    while len(primes) < n:\n        if is_prime(num):\n            primes.append(num)\n        num += 1\n    return primes",
+    "tests": [
+        "assert find_primes(5) == [2, 3, 5, 7, 11]",
+        "assert find_primes(0) == []",
+        "assert find_primes(1) == [2]",
+        "assert find_primes(10) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]"
+    ],
+    "model": "qwen2:7b-repaired by Llama 3"
+}

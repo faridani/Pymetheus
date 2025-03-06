@@ -1,0 +1,11 @@
+{
+    "title": "Tree Summation",
+    "description": "Given a binary tree, find the sum of all nodes at each depth level. You can assume that the input tree does not have duplicate values and there are no cycles in the tree.\n\n#### Function Signature\n```python\ndef tree_summation(root: Node) -> List[int]:\n```\n\n#### Input\n- `root` (Node): The root of a binary tree. Each node has an integer value and two child nodes (left and right).\n\n#### Output\n- Returns a list of integers, where each integer is the sum of all nodes at a given depth level.\n",
+    "code": "class Node:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef tree_summation(root: Node) -> List[int]:\n    if root is None:\n        return []\n    queue = [(root, 0)]\n    result = [0]\n    while queue:\n        node, depth = queue.pop(0)\n        if len(result) <= depth:\n            result.append(node.value)\n        else:\n            result[depth] += node.value\n        if node.left:\n            queue.append((node.left, depth + 1))\n        if node.right:\n            queue.append((node.right, depth + 1))\n    return [sum(x) for x in (result[i:] or [0] for i in range(len(result)))]",
+    "tests": [
+        "assert tree_summation(Node(1, Node(2), Node(3))) == [1, 4, 5]",
+        "assert tree_summation(Node(10, Node(20, Node(30)), Node(40, Node(50)))) == [10, 60, 70]",
+        "assert tree_summation(None) == []"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

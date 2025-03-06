@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `is_anagram` that checks if two given strings are anagrams. The function should remove non-alphabetic characters, ensure the two input strings have the same length, count the frequency of each letter in each string, and then check if the frequencies are the same for both strings. If the frequencies are the same, the function returns `True`, indicating that the two input strings are anagrams; otherwise, it returns `False`.",
+    "code": "import collections\n\ndef is_anagram(str1: str, str2: str) -> bool:\n    # Remove non-alphabetic characters\n    str1 = ''.join(char for char in str1 if char.isalpha())\n    str2 = ''.join(char for char in str2 if char.isalpha())\n    \n    # Ensure the two strings have the same length, otherwise they cannot be anagrams\n    if len(str1) != len(str2):\n        return False\n    \n    # Count the frequency of each letter in each string\n    freq1 = collections.Counter(str1)\n    freq2 = collections.Counter(str2)\n    \n    # Check if the frequencies are the same for both strings\n    return freq1 == freq2",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('racecar', 'carcarer') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('A man, a plan, a canal: Panama', 'Panama canal: plan a man a Pal') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

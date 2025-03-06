@@ -1,0 +1,11 @@
+{
+    "title": "Anagram Checker (Hard)",
+    "description": "Given two strings, determine if they are anagrams of each other. Anagrams are words or phrases that contain the same letters but may have a different order.\n\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` and `str2` (str): Two strings that may contain letters (no numbers or special characters).\n\n#### Output\n- Returns `True` if the two inputs are anagrams of each other, `False` otherwise.\n",
+    "code": "def are_anagrams(str1: str, str2: str) -> bool:\n    # Remove spaces and convert to lowercase\n    str1 = ''.join([char for char in str1 if char.isalpha()]).lower()\n    str2 = ''.join([char for char in str2 if char.isalpha()]).lower()\n    # If the two strings have different lengths, they cannot be anagrams.\n    if len(str1) != len(str2):\n        return False\n    # Create frequency dictionary for each string and compare\n    freq_dict = {}\n    for char in str1:\n        if char not in freq_dict:\n            freq_dict[char] = 0\n        freq_dict[char] += 1\n    for char in str2:\n        if char not in freq_dict or freq_dict[char] <= 0:\n            return False\n        freq_dict[char] -= 1\n    # If we've made it this far, the two strings are anagrams.\n    return True",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'world') == False",
+        "assert are_anagrams('acttact', 'tcata') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

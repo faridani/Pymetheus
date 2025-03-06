@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Words Checker (Easy)",
+    "description": "Write a function `is_reverse` that checks if a given string consists of words, each of which is the reverse of its original word.\n\n#### Function Signature\n```python\ndef is_reverse(s: str) -> bool:\n``` \n\n#### Input\n- `s` (str): A string containing words, possibly with spaces, commas, periods, and other punctuation.\n\n#### Output\n- Returns `True` if every word in the input string is a reverse of its original word, `False` otherwise.",
+    "code": "def is_reverse(s: str) -> bool:\n    # Split the string into words by spaces and punctuation\n    words = s.split()\n    # Check if the length of each word is even (since reversing an odd-length word results in a different word)\n    for word in words:\n        if len(word) % 2 != 0:\n            return False\n    # Reverse each word and check if the original string can be obtained from it by joining the reversed words\n    return ' '.join(word[::-1] for word in words) == s",
+    "tests": [
+        "assert is_reverse('radar') == True",
+        "assert is_replace('level') == False",
+        "assert is_reverse('madam') == True",
+        "assert is_reverse('hello world, this is a test') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

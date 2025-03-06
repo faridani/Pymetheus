@@ -1,0 +1,11 @@
+{
+    "title": "'Palindromic Subsequence Checker (Medium)'",
+    "description": "Given a string containing only lowercase letters, find if any non-empty substring of the string read backwards is equal to the original substring. A palindromic subsequence is a sequence that remains unchanged when its characters are reversed.\n\n#### Function Signature\n```python\ndef find_palindrome(s: str) -> list:\n``` \n\n#### Input\n- `s` (str): A string that contains only lowercase letters.\n\n#### Output\n- Returns a list of starting indices of all palindromic subsequences in the input string, sorted in ascending order. If there are no palindromic subsequences, return an empty list.\n",
+    "code": "def find_palindrome(s: str) -> list:\n    # Initialize result list\n    result = []\n    \n    # Loop through all possible length of substring\n    for i in range(1, len(s)+1):\n        # Loop through all positions to find start index of current length substring\n        for j in range(len(s) - i + 1):\n            # Get the substring and check if it's a palindrome\n            substring = s[j:j+i]\n            reversed_substring = substring[::-1]\n            if substring == reversed_substring:\n                # Add the starting index to the result list\n                result.append(j)\n    \n    # Return the sorted result list\n    return sorted(result)",
+    "tests": [
+        "assert find_palindrome('abcdcba') == [0, 1, 3, 4]",
+        "assert find_palindrome('banana') == [1, 2, 3, 5]",
+        "assert find_palindrome('hello') == []"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

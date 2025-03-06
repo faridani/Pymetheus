@@ -1,0 +1,10 @@
+{
+    "title": "Easy: Number of Islands",
+    "description": "Given a 2D binary grid, which contains only 0s and 1s, we need to count the number of islands. An island is a group of contiguous cells (horizontally or vertically connected) that have all ones. The grid's dimensions will be given as input parameters.\n\n#### Function Signature\n```python\ndef num_islands(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D binary grid, where each cell can be either 0 or 1. The grid's dimensions are given as input parameters.\n\n#### Output\n- Returns the total number of islands in the grid.",
+    "code": "import copy\ndef num_islands(grid: list[list[int]]) -> int:\n    if not grid:\n        return 0\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == 1:\n                # Perform a DFS from this cell to mark all connected ones as zeros.\n                self._dfs(grid, i, j)\n                count += 1\n    return count\ndef _dfs(self, grid: list[list[int]], i: int, j: int):\n    if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == 0:\n        return\n    grid[i][j] = 0\n    self._dfs(grid, i - 1, j)\n    self._dfs(grid, i + 1, j)\n    self._dfs(grid, i, j - 1)\n    self._dfs(grid, i, j + 1)",
+    "tests": [
+        "assert num_islands([[0, 0, 1], [1, 1, 0], [0, 0, 0]]) == 1",
+        "assert num_islands([[1, 1, 0, 0, 0, 0], [1, 1, 1, 0, 0, 0], [0, 0, 1, 0, 0, 0]]) == 3"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

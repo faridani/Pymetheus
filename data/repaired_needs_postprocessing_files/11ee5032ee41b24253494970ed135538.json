@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Coin Change",
+    "description": "You are given an array of integers `coins` representing denominations of coins and an integer `amount` representing the target amount. Your task is to write a function `coin_change(coins, amount)` that returns the minimum number of coins required to make up the given `amount`. If it's impossible to make the `amount` using the given coins, return -1.\n\n#### Function Signature\n```python\ndef coin_change(coins: list[int], amount: int) -> int:\n```\n\n#### Input\n- `coins`: A list of integers representing available coin denominations.\n- `amount`: An integer representing the target amount.\n\n#### Output\n- An integer representing the minimum number of coins required to make up the `amount`. Return -1 if it's impossible.",
+    "code": "def coin_change(coins: list[int], amount: int) -> int:\n    dp = [amount + 1] * (amount + 1)\n    dp[0] = 0\n    for a in range(1, amount + 1):\n        for c in coins:\n            if a - c >= 0:\n                dp[a] = min(dp[a], 1 + dp[a - c])\n    return dp[amount] if dp[amount] != amount + 1 else -1",
+    "tests": [
+        "assert coin_change([1, 2, 5], 11) == 3",
+        "assert coin_change([2], 3) == -1",
+        "assert coin_change([1], 0) == 0",
+        "assert coin_change([1, 2, 5], 100) == 20"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

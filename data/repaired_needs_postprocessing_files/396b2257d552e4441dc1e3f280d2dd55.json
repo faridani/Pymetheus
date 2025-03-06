@@ -1,0 +1,12 @@
+{
+    "title": "Maximal Subsequence Sum (Medium)",
+    "description": "Given a list of integers, find the maximum sum of a contiguous subsequence within that list.\n\n#### Function Signature\n```python\ndef max_subsequence_sum(lst: list[int]) -> int:\n``` \n\n#### Input\n- `lst` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum of a contiguous subsequence within the input list.",
+    "code": "def max_subsequence_sum(lst: list[int]) -> int:\n    if not lst:\n        return 0\n    max_current = max_global = lst[0]\n    for num in lst[1:]:\n        max_current = max(num, max_current + num)\n        max_global = max(max_global, max_current)\n    return max_global\n",
+    "tests": [
+        "assert max_subsequence_sum([-2, 3, -1, 5, -3]) == 8",
+        "assert max_subsequence_sum([1, 2, 3, 4, 5]) == 15",
+        "assert max_subsequence_sum([]) == 0",
+        "assert max_subsequence_sum([-10, -20, -30, -40, -50]) == -8"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

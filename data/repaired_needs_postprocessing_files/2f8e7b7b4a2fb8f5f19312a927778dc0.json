@@ -1,0 +1,12 @@
+{
+    "title": "Easy: First Duplicate",
+    "description": "Given an array of integers, find the first duplicate value. If no such value exists, return -1.\n#### Function Signature\n```python\ndef first_duplicate(nums: list[int]) -> int:\n``` \n\n#### Input\n- `nums` (list[int]): A list of unique integer values.\n\n#### Output\n- Returns the first duplicate value if it exists, -1 otherwise.",
+    "code": "def first_duplicate(nums: list[int]) -> int:\n    seen = {}\n    for num in nums:\n        if num in seen:\n            return num\n        seen[num] = True\n    return -1",
+    "tests": [
+        "assert first_duplicate([1, 2, 3, 4, 5]) == -1",
+        "assert first_duplicate([1, 2, 3, 4, 2]) == 2",
+        "assert first_duplicate([1, 2, 3, 1, 4]) == 1",
+        "assert first_duplicate([1, 2, 3, 4, 5, 6]) == -1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

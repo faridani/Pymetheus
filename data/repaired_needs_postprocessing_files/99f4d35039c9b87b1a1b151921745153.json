@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Chessboard Formation",
+    "description": "Imagine a chessboard with n rows and m columns. You are given two integers, r and c, representing the row and column of a cell on the board where you want to start building a formation. The formation consists of a sequence of alternating black and white cells that starts at the specified cell (inclusive) and goes either down or to the right (but not both). Write a function that determines whether it is possible to build this formation on the chessboard without going outside the board's boundaries.\n\n#### Function Signature\n```python\ndef can_form_formation(n: int, m: int, r: int, c: int) -> bool:\n```\n\n#### Input\n- n (int): The number of rows in the chessboard.\n- m (int): The number of columns in the chessboard.\n- r (int): The starting row for the formation.\n- c (int): The starting column for the formation.\n\n#### Output\n- Returns True if it is possible to build the formation, and False otherwise.",
+    "code": "import copy\ndef can_form_formation(n: int, m: int, r: int, c: int) -> bool:\n    # Create a chessboard\n    board = [['white' for _ in range(m)] for _ in range(n)]\n    \n    # Set the starting cell to black\n    board[r][c] = 'black'\n    \n    # Check if it is possible to build the formation\n    while True:\n        new_r, new_c = r + 1, c\n        while new_r < n and new_c < m:\n            if board[new_r][new_c] == 'white':\n                break\n            new_r += 1\n            new_c += 1\n        if new_r >= n or new_c >= m:\n            return False\n        r, c = new_r, new_c\n    \n    return True",
+    "tests": [
+        "assert can_form_formation(8, 8, 0, 0) == True",
+        "assert can_form_formation(3, 3, 1, 1) == True",
+        "assert can_form_formation(2, 2, 0, 0) == False",
+        "assert can_form_formation(4, 4, 0, 3) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

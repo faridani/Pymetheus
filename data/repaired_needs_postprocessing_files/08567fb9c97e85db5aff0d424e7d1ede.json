@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Given two strings s and t, find the minimum window that contains all characters of t. If there are multiple such windows, return any one. The window should contain only valid characters (i.e., all characters in t). If no such window exists, return an empty string.\n\n#### Function Signature\n```python\ndef min_window_substring(s: str, t: str) -> str:\n```\n\n#### Input\n- `s` (str): The main string that may contain the desired window.\n- `t` (str): The target string containing characters to be found in the window.\n\n#### Output\n- Returns a string representing the minimum window of s that contains all characters of t, or an empty string if no such window exists.",
+    "code": "def min_window_substring(s: str, t: str) -> str:\n    if not s or not t:\n        return ''\n    dict_t = {}\n    for char in t:\n        if char not in dict_t:\n            dict_t[char] = 0\n        dict_t[char] += 1\n\n    left, right = 0, 0\n    min_len = float('inf')\n    min_window = ''\n    formed = 0\n\n    while right < len(s):\n        if t[0] in s[right:right + len(t)]:\n            if t[0] in dict_t and dict_t[t[0]] > 0:\n                formed += 1\n                dict_t[t[0]] -= 1\n\n        while formed == len(t) and left <= right:\n            if right - left + 1 < min_len:\n                min_len = right - left + 1\n                min_window = s[left:right + 1]\n\n            if t[0] in s[left: right + 1]:\n                if t[0] in dict_t and dict_t[t[0]] > 0:\n                    formed -= 1\n                    dict_t[t[0]] += 1\n\n                    left += 1\n                else:\n                    break\n\n        right += 1\n\n    return min_window",
+    "tests": [
+        "assert min_window_substring('ADOBECODEBANC', 'ABC') == 'BANC'",
+        "assert min_window_substring('hello', 'lo') == 'lo'",
+        "assert min_window_substring('a', 'b') == ''",
+        "assert min_window_substring('', 'a') == ''"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

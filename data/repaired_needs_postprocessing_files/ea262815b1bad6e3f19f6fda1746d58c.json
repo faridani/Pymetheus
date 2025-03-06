@@ -1,0 +1,11 @@
+{
+    "title": "Coin Change Problem",
+    "description": "A classic problem in dynamic programming. Given a list of coin denominations and an amount, write a function `coin_change` that returns the minimum number of coins required to make up this amount. If it's not possible to make up the amount with the given coins, return -1.\n\n#### Function Signature\n```python\ndef coin_change(coins: list[int], amount: int) -> int:\n```\n\n#### Input\n- `coins` (list<int>): A list of coin denominations.\n- `amount` (int): The amount to be made up with the given coins.\n\n#### Output\n- Returns the minimum number of coins required to make up this amount. If it's not possible, return -1.",
+    "code": "from typing import List\n\ndef coin_change(coins: List[int], amount: int) -> int:\n    dp = [float('inf')] * (amount + 1)\n    dp[0] = 0\n    for coin in coins:\n        for i in range(coin, amount + 1):\n            dp[i] = min(dp[i], dp[i - coin] + 1)\n    return dp[amount] if dp[amount] != float('inf') else -1",
+    "tests": [
+        "assert coin_change([1,2,5], 11) == 3",
+        "assert coin_change([1,3,4], 6) == 2",
+        "assert coin_change([2], 10) == -1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

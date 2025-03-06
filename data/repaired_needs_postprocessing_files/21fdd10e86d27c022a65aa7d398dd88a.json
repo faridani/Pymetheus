@@ -1,0 +1,11 @@
+{
+    "title": "Capitalize Each Word (Medium)",
+    "description": "Write a function `capitalize_each_word` that takes a string as input and returns the same string with each word capitalized. The words are separated by any number of whitespace characters.\n\n#### Function Signature\n```python\ndef capitalize_each_word(s: str) -> str:\n``` \n\n#### Input\n- `s` (str): A string containing one or more words, separated by whitespace.\n\n#### Output\n- Returns a new string where every word is capitalized. The original case of punctuation should be preserved.\n",
+    "code": "def capitalize_each_word(s: str) -> str:\n    # Split the input string into words using split() method\n    words = s.split()\n    # Capitalize each word and join them back together with spaces\n    return ' '.join([word.capitalize() for word in words])\n",
+    "tests": [
+        "assert capitalize_each_word('hello world') == 'Hello World'",
+        "assert capitalize_each_word('a quick brown fox') == 'A Quick Brown Fox'",
+        "assert capitalize_each_word('  HELLO   WORLD  !') == 'Hello World!'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

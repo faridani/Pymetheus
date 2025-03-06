@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Prime Digits Summation",
+    "description": "The sum of the prime digits of a number is obtained by summing up all its digits that are prime numbers. For example, the prime digits of 12345 are 2, 3, and 5, and their sum is 2+3+5=10.\nWrite a function `prime_digits_summation(n)` which takes an integer `n` as input and returns the sum of its prime digits.\n#### Function Signature\n```python\ndef prime_digits_summation(n: int) -> int:\n``` \n#### Input\n- `n` (int): A positive integer.\n#### Output\n- Returns the sum of the prime digits of `n`. If `n` has no prime digits, it should return 0.",
+    "code": "def prime_digits_summation(n: int) -> int:\n    prime_sum = 0\n    while n > 0:\n        digit = n % 10\n        if digit in [2, 3, 5, 7]:\n            prime_sum += digit\n        n //= 10\n    return prime_sum\n",
+    "tests": [
+        "assert prime_digits_summation(12345) == 10",
+        "assert prime_digits_summation(67890) == 22",
+        "assert prime_digits_summation(11111) == 5",
+        "assert prime_digits_summation(44444) == 0"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

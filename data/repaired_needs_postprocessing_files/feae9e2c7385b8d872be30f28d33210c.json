@@ -1,0 +1,11 @@
+{
+    "title": "'Palindromic Subarrays' - A Medium Python Coding Problem",
+    "description": "A palindromic subarray of an array is a contiguous section that reads the same forwards and backwards. Write a function `is_palindromic_subarray` to check if a given list contains any palindromic subarrays.\n\n#### Function Signature\n```python\ndef is_palindromic_subarray(arr: List[int]) -> bool:\n```\n\n#### Input\n- `arr` (List[int]): A sorted, non-empty list of integers.\n\n#### Output\n- Returns `True` if the input list contains any palindromic subarrays, `False` otherwise.\n",
+    "code": "import itertools\ndef is_palindromic_subarray(arr: List[int]) -> bool:\n    # Check all possible subarrays using itertools.combinations\n    for start, end in itertools.combinations(range(len(arr)), 2):\n        if arr[start:end] == arr[start:end][::-1]:\n            return True\n    # If no palindromic subarray was found, return False\n    return False",
+    "tests": [
+        "assert is_palindromic_subarray([1, 2, 2, 3, 2, 1]) == True",
+        "assert is_palindromic_subarray([4, 2, 5, 6, 7, 8, 9]) == False",
+        "assert is_palindromic_subarray([-1, -1, 0, 1, 1, -1]) == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

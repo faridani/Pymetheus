@@ -1,0 +1,12 @@
+{
+    "title": "Anagram Detection (Hard)",
+    "description": "Determine if two given strings are anagrams of each other, meaning they contain the same characters in a different order. The case of characters matters.\n#### Function Signature\n```python\ndef is_anagram(str1: str, str2: str) -> bool:\n```\n#### Input\n- `str1` and `str2` (str): Two strings containing only lowercase letters. The lengths of the strings can be different.\n#### Output\n- Returns `True` if the two input strings are anagrams of each other, `False` otherwise.\n",
+    "code": "from collections import Counter\ndef is_anagram(str1: str, str2: str) -> bool:\n    # Count characters in each string\n    count1 = Counter(str1)\n    count2 = Counter(str2)\n    \n    # Check if both counts have the same total and all keys exist in both counts\n    return len(count1) == len(count2) and set(count1.keys()) == set(count2.keys()) and all([count1[key] == count2[key] for key in count1.keys()])",
+    "tests": [
+        "assert is_anagram('listen', 'silent') == True",
+        "assert is_anagram('hello', 'world') == False",
+        "assert is_anagram('practice', 'experiment') == True",
+        "assert is_anagram('abcd', 'dcba') == True"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

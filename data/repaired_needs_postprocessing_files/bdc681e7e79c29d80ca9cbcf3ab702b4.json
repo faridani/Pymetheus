@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Matrix Path Sum",
+    "description": "Given a matrix of integers and a target sum, determine if there exists a path from the top-left corner to the bottom-right corner of the matrix such that the sum of the values along the path equals the target sum. You can only move down or right at each step.\n\nYou can only move down or right at each step.\n\n#### Function Signature\n```python\ndef has_path_sum(matrix: list[list[int]], target_sum: int) -> bool:\n``` \n\n#### Input\n- `matrix` (list[list[int]]): A 2D matrix of integers.\n- `target_sum` (int): The target sum to be reached.\n\n#### Output\n- Returns `True` if a path with the given sum exists, `False` otherwise.",
+    "code": "def has_path_sum(matrix: list[list[int]], target_sum: int) -> bool:\n    rows = len(matrix)\n    cols = len(matrix[0])\n\n    def backtrack(row, col, current_sum):\n        if row == rows - 1 and col == cols - 1:\n            return current_sum == target_sum\n        if row >= rows or col >= cols:\n            return False\n        \n        current_sum += matrix[row][col]\n        return backtrack(row + 1, col, current_sum) or backtrack(row, col + 1, current_sum)\n    \n    return backtrack(0, 0, 0)",
+    "tests": [
+        "assert has_path_sum([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 21) == True",
+        "assert has_path_sum([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 10) == False"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

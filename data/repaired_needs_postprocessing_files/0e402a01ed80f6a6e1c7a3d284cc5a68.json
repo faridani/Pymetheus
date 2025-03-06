@@ -1,0 +1,12 @@
+{
+    "title": "'Count the Digits of a Number (Medium)'",
+    "description": "Write a function `count_digits` that takes an integer as input and returns the number of digits it contains.\n\n#### Function Signature\n```python\ndef count_digits(n: int) -> int:\n``` \n\n#### Input\n- `n` (int): A non-negative integer.\n\n#### Output\n- Returns the number of digits in the input integer.",
+    "code": "def count_digits(n: int) -> int:\n    # Use a while loop to keep dividing the number by 10 and check if it's zero\n    # Each division removes one digit from the right side of the number\n    count = 0\n    while n != 0:\n        n //= 10\n        count += 1\n    \n    # Since the loop stops when the number is zero, the total number of digits is the count before that\n    return count",
+    "tests": [
+        "assert count_digits(123) == 3",
+        "assert count_digits(0) == 1",
+        "assert count_digits(1000000) == 7",
+        "assert count_digits(-123) == RuntimeError('Input must be a non-negative integer')"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Capitalize First Letter of Each Word",
+    "description": "Write a function `capitalize_first_letter` that takes a string as an argument and returns the same string with the first letter of each word capitalized.\n\n#### Function Signature\n```python\ndef capitalize_first_letter(s: str) -> str:\n``` \n\n#### Input\n- `s` (str): A string that may contain multiple words, spaces, punctuation, and special characters.\n\n#### Output\n- Returns the input string with the first letter of each word capitalized. The rest of the letters in the same word should remain unchanged.",
+    "code": "def capitalize_first_letter(s: str) -> str:\n    # Split the string into words using spaces as delimiters\n    words = s.split(' ')\n    # Capitalize the first letter of each word and join them back together with spaces\n    return ' '.join([word.capitalize() for word in words])\n",
+    "tests": [
+        "assert capitalize_first_letter('hello world') == 'Hello World'",
+        "assert capitalize_first_letter('this is a test') == 'This Is A Test'"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "\"Anagram Finder (Hard)\"",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of another word or phrase, usually using all the original letters exactly once. Write a function `find_anagrams` that finds all the possible anagrams for a given string.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str) -> list:\n```\n\n#### Input\n- `word` (str): A string containing lowercase letters only.\n\n#### Output\n- Returns a list of strings where each string is an anagram of the input word, including the original word itself. For example if the input word is 'listen', then the output would be ['enlist', 'silent', 'slient', ...]. The order of the anagrams in the list does not matter.\n\n#### Hint\n- Use a dictionary to store the frequency count of characters in the word, and compare with other words with similar character distribution.",
+    "code": "from collections import Counter\ndef find_anagrams(word: str) -> list:\n    # Create a dictionary of character frequencies for the given word\n    freq = Counter(word)\n    # List of potential anagrams, initially containing only the original word\n    anagrams = [word]\n    \n    # Loop through all permutations of the letters in the word\n    for perm in itertools.permutations(word):\n        # Create a dictionary of character frequencies for the current permutation\n        candidate = ''.join(perm)\n        cand_freq = Counter(candidate)\n        \n        # Check if the frequency count of characters in the candidate matches the frequency count in the original word\n        if cand_freq == freq:\n            # If so, add the candidate to the list of anagrams\n            anagrams.append(candidate)\n    \n    return anagrams",
+    "tests": [
+        "assert find_anagrams('listen') == ['enlist', 'silent', 'slient', 'lilst']",
+        "assert find_anagrams('eat') == ['ate', 'tea']",
+        "assert find_anagrams('racecar') == ['racecar', 'carcarer']"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

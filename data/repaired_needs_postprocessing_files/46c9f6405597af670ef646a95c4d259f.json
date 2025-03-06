@@ -1,0 +1,10 @@
+{
+    "title": "Removing Duplicates from a List (Medium)",
+    "description": "Given an unsorted list of integers, remove duplicates and return the list without duplicates.\n\n#### Function Signature\n```python\ndef removeDuplicates(nums: List[int]) -> List[int]:\n``` \n\n#### Input\n- `nums` (List[int]): An unsorted list of integers, which may contain duplicates.\n\n#### Output\n- Returns a new list with all duplicates removed, sorted in ascending order.",
+    "code": "def removeDuplicates(nums: List[int]) -> List[int]:\n    # Use a set to store unique numbers and convert the list to a set\n    num_set = set(nums)\n    # Convert the set back to a list in sorted order\n    return list(sorted(num_set))",
+    "tests": [
+        "assert removeDuplicates([1, 2, 3, 2, 5, 4, 2, 7]) == [1, 2, 3, 4, 5, 7]",
+        "assert removeDuplicates([1, 1, 1, 2, 2, 3, 4, 4, 4, 4, 5, 6]) == [1, 2, 3, 4, 5, 6]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

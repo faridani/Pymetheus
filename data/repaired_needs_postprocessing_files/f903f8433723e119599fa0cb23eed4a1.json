@@ -1,0 +1,11 @@
+{
+    "title": "Medium Python Coding Question",
+    "description": "Write a function `find_median` that takes a list of integers as input and returns the median of the list. The median is the middle value of a sorted list. If there are an odd number of elements in the list, the median is the middle value. If there are an even number of elements in the list, the median is the average of the two middle values.",
+    "code": "def find_median(nums: list) -> float:\n    nums.sort()\n    n = len(nums)\n    if n % 2 == 1:\n        return nums[n // 2]\n    else:\n        return (nums[n // 2] + nums[n // 2 - 1]) / 2",
+    "tests": [
+        "assert find_median([1, 2, 3]) == 2.0",
+        "assert find_median([1, 2, 3, 4]) == 2.5",
+        "assert find_median([1, 2, 3, 4, 5]) == 3.0"
+    ],
+    "model": "codegemma:7b-repaired by Llama 3"
+}

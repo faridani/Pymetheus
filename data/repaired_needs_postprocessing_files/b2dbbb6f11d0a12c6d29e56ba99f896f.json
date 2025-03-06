@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Find the Longest Substring Without Repeating Characters",
+    "description": "Given a string s, find the length of the longest substring without repeating characters. You may exclude the characters themselves but not the spaces between them.\n\n#### Function Signature\n```python\ndef length_of_longest_substring(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing characters and spaces.\n\n#### Output\n- Returns the length of the longest substring without repeating characters.\n\n#### Example\nInput: \"abcabcbb\"\nOutput: 3\nExplanation: The longest substring without repeating characters is \"abc\", which has a length of 3.\n\n#### Hints\n- You can use two pointers, one at the left end and another at the right end of the current substring. Expand the substring by moving the right pointer until you find a repeating character. Then, move the left pointer to the right of the repeating character and continue expanding.\n- Keep track of the maximum length encountered so far.\n",
+    "code": "def length_of_longest_substring(s: str) -> int:\n    n = len(s)\n    max_length = 0\n    start = 0\n    char_index_map = {}\n    end = 0\n    while end < n:\n        if s[end] in char_index_map and char_index_map[s[end]] >= start:\n            start = char_index_map[s[end]] + 1\n        char_index_map[s[end]] = end\n        max_length = max(max_length, end - start + 1)\n        end += 1\n    return max_length",
+    "tests": [
+        "assert length_of_longest_substring(\"abcabcbb\") == 3",
+        "assert length_of_longest_substring(\"bbbbb\") == 1",
+        "assert length_of_longest_substring(\"pwwkew\") == 3",
+        "assert length_of_longest_substring(\"a\") == 1",
+        "assert length_of_longest_substring(\"au\") == 2"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

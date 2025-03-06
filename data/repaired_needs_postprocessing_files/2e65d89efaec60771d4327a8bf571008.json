@@ -1,0 +1,12 @@
+{
+    "title": "Reverse Words Checker (Hard)",
+    "description": "Write a function `is_reverse_words` that checks if a given string consists of words that read the same forwards and backwards, ignoring spaces, punctuation, and capitalization. Note that words can be in any order. For example, the string 'hello World Hello' is considered as true because it consists of two palindromic words 'hello' and 'olleh'.  #### Function Signature```python def is_reverse_words(s: str) -> bool: ```  #### Input- `s` (str): A string that may contain letters, numbers, spaces, punctuation. All words are separated by at least one space or a newline.-  #### Output- Returns `True` if the input string consists of words that read the same forwards and backwards, ignoring spaces, punctuation, and capitalization. Returns `False` otherwise.",
+    "code": "import re\ndef is_reverse_words(s: str) -> bool:\n    # Remove non-alphanumeric characters and split into words\n    s = re.sub(r'[\\W]', '', s).split()\n    if not s:\n        return False\n    # Create a dictionary to store the original and reversed words\n    rev_words = {word: word[::-1] for word in s}\n    # Check if each word is present in the reversed list and vice versa\n    return set(s) <= set(rev_words.values()) and set(rev_words.values()) <= set(s)",
+    "tests": [
+        "assert is_reverse_words('hello World Hello') == True",
+        "assert is_reverse_words('racecar Mirror') == True",
+        "assert is_reverse_words('hello world') == False",
+        "assert is_reverse_words('A man, a plan, a canal, Panama') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

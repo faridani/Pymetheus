@@ -1,0 +1,12 @@
+{
+    "title": "Alphabetical Reversal Checker (Easy)",
+    "description": "Write a function `is_reverse_alphabetic` that checks if a given string is the reverse of an alphabetical string (ignoring case).\n\n#### Function Signature\n```python\ndef is_reverse_alphabetic(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters (uppercase or lowercase), numbers, spaces and punctuation.\n\n#### Output\n- Returns `True` if the input string is the reverse of an alphabetical string (ignoring case), `False` otherwise.",
+    "code": "def is_reverse_alphabetic(s: str) -> bool:\n    # Remove non-alphabetic characters\n    s = ''.join(char for char in s if char.isalpha())\n    # If the string is empty, it's not reverse alphabetic\n    if len(s) == 0: return False\n    # Reverse the string and convert to lowercase\n    reversed_s = s[::-1].lower()\n    # Check if the original string is equal to the reversed string after sorting\n    return sorted(s.lower()) == sorted(reversed_s)",
+    "tests": [
+        "assert is_reverse_alphabetic('radar') == True",
+        "assert is_reverse_alphetic('madam') == True",
+        "assert is_reverse_alphabetic('hello') == False",
+        "assert is_reverse_alphabetic('world') == False"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,12 @@
+{
+    "title": "\"Reverse Multiplication - Hard\"",
+    "description": "Write a function `reverse_multiply` that takes two strings as input, multiplies them together, and then reverses the resulting string. If either of the input strings is not a number (only consists of digits), return None.\n#### Function Signature\n```python\ndef reverse_multiply(a: str, b: str) -> str or None:\n``` \n#### Input\n- `a` and `b` (str): Strings consisting only of digits.\n#### Output\n- Returns the result of multiplying the two input strings together, then reversing the resulting string. If either of the input strings is not a number, return None.",
+    "code": "def reverse_multiply(a: str, b: str) -> str or None:\n    # Check if both inputs are numbers\n    if not all(char.isdigit() for char in a) or not all(char.isdigit() for char in b):\n        return None\n    # Multiply the two numbers and reverse the result\n    product = int(a)*int(b)\n    reversed_product = str(product)[::-1]\n    return reversed_product",
+    "tests": [
+        "assert reverse_multiply('3', '4') == '1234'",
+        "assert reverse_multiply('7', '9') == '63078490'",
+        "assert reverse_multiply('5', '0') == None",
+        "assert reverse_multiply('123', 'abc') == None"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

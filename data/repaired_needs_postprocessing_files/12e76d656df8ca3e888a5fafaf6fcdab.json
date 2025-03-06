@@ -1,0 +1,10 @@
+{
+    "title": "Fibonacci Series",
+    "description": "Write a function to generate the Fibonacci series up to n terms, where n is given as input. The first two terms of the series are 0 and 1, while the next terms are obtained by adding the previous two terms. Return the series in a list.\n\n#### Function Signature\n```python\ndef generate_fibonacci(n: int) -> List[int]:\n``` \n\n#### Input\n- `n` (int): The number of terms to generate in the Fibonacci series.\n\n#### Output\n- Returns a list of integers representing the Fibonacci series up to n terms.",
+    "code": "def generate_fibonacci(n: int) -> List[int]:\n    fib = [0, 1]\n    if n == 0 or n == 1:\n        return [0]\n    elif n > 1:\n        for i in range(2, n):\n            next_fib = sum(fib[-2:]) # add the previous two terms to get the next term\n            fib.append(next_fib)\n        return fib",
+    "tests": [
+        "assert generate_fibonacci(1) == [0]",
+        "assert generate_fibonacci(7) == [0, 1, 1, 1, 2, 3, 5, 8, 13, 21]"
+    ],
+    "model": "wizardcoder:latest-repaired by Llama 3"
+}

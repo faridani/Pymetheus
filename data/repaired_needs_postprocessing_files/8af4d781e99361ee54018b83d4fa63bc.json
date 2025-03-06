@@ -1,0 +1,12 @@
+{
+    "title": "The Anagram Seeker - Hard",
+    "description": "An anagram is a word or phrase that is formed by rearranging the letters of another word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef find_anagrams(word: str, words: list[str]) -> list[bool]:\n```\n\n#### Input\n- `word` (str): The target word to find anagrams for.\n- `words` (list[str]): A list of possible anagram candidates. Words are case insensitive, can contain spaces and punctuation, but only the letters in `word` should be present in the anagram candidates without repetition.\n\n#### Output\n- Returns a list of boolean values indicating if each word from the given list is an anagram of the target word. The order does not matter, so for example [True, False, True] indicates that two words are anagrams of `word` and one is not.",
+    "code": "import string\ndef find_anagrams(word: str, words: list[str]) -> list[bool]:\n    # Remove non-alphabetic characters from the target word and potential anagrams\n    word = ''.join(char for char in word if char in string.ascii_letters)\n    filtered_words = [word_filtered for word_filtered in words if len(word) == len(word_filtered)]\n    # Create a dictionary to store the frequency of each letter in the target word\n    freq_dict = {char: word.count(char) for char in word}\n    results = []\n    \n    # Iterate through the potential anagrams\n    for possible_anagram in filtered_words:\n        # Create a dictionary to store the frequency of each letter in the potential anagram\n        anagram_freq_dict = {char: possible_anagram.count(char) for char in possible_anagram}\n        \n        # Check if the frequencies match and add the result to the list\n        if anagram_freq_dict == freq_dict:\n            results.append(True)\n        else:\n            results.append(False)\n    \n    return results",
+    "tests": [
+        "assert find_anagrams(\"listen\", [\"silent\", \"enlist\", \"google\"])==[True, True, False]",
+        "assert find_anagrams(\"racecar\", [\"A man, a plan, a canal, Panama\", \"Madam\", \"level\"])==[False, True, True, False]",
+        "assert find_anagrams(\"supercalifragilisticexpialidocious\", [\"aocd\", \"sos\", \"discuss\", \"supercalifragile\"])==[True, True, True, True]",
+        "assert find_anagrams(\"Hello, World!\", [\"hello world\", \"HELLO WORLD\", \"world hello\", \"World Hello\"])==[True, True, True, True]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "Hard: Substring with Maximum XOR",
+    "description": "Given a string 's' consisting of binary digits ('0' and '1'), find the substring of maximum length that has the maximum XOR value. The XOR value of a substring is calculated by treating each digit as a bit and performing the bitwise XOR operation on all the bits in the substring.\n\n#### Function Signature\n```python\ndef max_xor_substring(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string consisting only of binary digits ('0' and '1').\n\n#### Output\n- Returns the substring with maximum length and maximum XOR value. If there are multiple substrings with the same maximum XOR value, return any one of them.",
+    "code": "def max_xor_substring(s: str) -> str:\n    max_xor = 0\n    result = ''\n    for i in range(len(s)):\n        for j in range(i, len(s)):\n            substring = s[i : j + 1]\n            xor_val = int(substring, 2)\n            if xor_val > max_xor:\n                max_xor = xor_val\n                result = substring\n    return result",
+    "tests": [
+        "assert max_xor_substring(\"10101\") == \"101\"",
+        "assert max_xor_substring(\"11010\") == \"1101\"",
+        "assert max_xor_substring(\"0011\") == \"0011\""
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

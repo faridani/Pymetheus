@@ -1,0 +1,10 @@
+{
+    "title": "Hard: Matrix Rotation",
+    "description": "Given a square matrix of integers, write a function to rotate it 90 degrees clockwise. You should modify the matrix in-place, without using any additional data structures.\n\n#### Function Signature\n```python\ndef rotate_matrix(matrix):\n```\n\n#### Input\n- `matrix` (list of lists): A square matrix represented as a list of lists.\n\n#### Output\n- None. The function modifies the input matrix in-place.",
+    "code": "def rotate_matrix(matrix):\n    n = len(matrix)\n    for layer in range(n // 2):\n        first = layer\n        last = n - 1 - layer\n        for i in range(first, last):\n            offset = i - first\n            top = matrix[first][i]\n            # left -> top\n            matrix[first][i] = matrix[last-offset][first]\n            # bottom -> left\n            matrix[last-offset][first] = matrix[last][last-offset]\n            # right -> bottom\n            matrix[last][last-offset] = matrix[i][last]\n            # top -> right\n            matrix[i][last] = top",
+    "tests": [
+        "matrix1 = [[1,2,3],[4,5,6],[7,8,9]]\nrotate_matrix(matrix1)\nassert matrix1 == [[7,4,1],[8,5,2],[9,6,3]]",
+        "matrix2 = [[1,2],[3,4]]\nrotate_matrix(matrix2)\nassert matrix2 == [[3,1],[4,2]]"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

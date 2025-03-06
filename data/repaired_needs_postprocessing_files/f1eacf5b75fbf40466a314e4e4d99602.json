@@ -1,0 +1,10 @@
+{
+    "title": "Hard - Prime Permutations",
+    "description": "The prime numbers below 100 are: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, and 97.\r\n\r\nWrite a function `prime_permutations` that takes an integer `n` as input and returns the number of unique permutations of prime numbers below `n` that are also themselves prime.\r\n\r\n#### Function Signature\r\n```python\r\ndef prime_permutations(n: int) -> int:\r```\r\n\r\n#### Input\r\n- `n` (int): An integer representing the upper limit for prime number search.\r\r\n#### Output\r\n- Returns the count of unique prime permutations below `n`.\\",
+    "code": "def is_prime(num):\r  if num <= 1:\r    return False\r  for i in range(2, int(num**0.5) + 1):\r    if num % i == 0:\r      return False\r  return True\r\ndef prime_permutations(n: int) -> int:\r  primes = [p for p in range(2, n) if is_prime(p)]\r  count = 0\r  for i in range(len(primes)):\r    for j in range(i + 1, len(primes)):\r      p1 = str(primes[i])\r      p2 = str(primes[j])\r      if sorted(p1) == sorted(p2) and is_prime(int(p2)):\r        count += 1\r  return count",
+    "tests": [
+        "assert prime_permutations(100) == 2",
+        "assert prime_permutations(1000) == 5"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

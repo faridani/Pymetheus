@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Fibonacci Sequence",
+    "description": "The Fibonacci sequence is a series of numbers in which each number (Fibonacci number) is the sum of the two preceding ones, usually starting with 0 and 1. Write a function `fibonacci` that returns the nth term of the Fibonacci sequence.\r\n\r\n#### Function Signature\r\n```\r\ndef fibonacci(n: int) -> int:\r``\r\r\n\r\n#### Input\r\n- `n` (int): The position in the Fibonacci sequence to return. It must be a non-negative integer.\r\r\n\r\n#### Output\r\n- Returns the nth term of the Fibonacci sequence.\r",
+    "code": "def fibonacci(n: int) -> int:\r    if n == 0:\r        return 0\r    elif n == 1:\r        return 1\r    else:\r        a, b = 0, 1\r        for _ in range(2, n + 1):\r            a, b = b, a + b\r        return b\r",
+    "tests": [
+        "assert fibonacci(0) == 0",
+        "assert fibonacci(1) == 1",
+        "assert fibonacci(6) == 8",
+        "assert fibonacci(10) == 55"
+    ],
+    "model": "codestral:22b-repaired by Llama 3"
+}

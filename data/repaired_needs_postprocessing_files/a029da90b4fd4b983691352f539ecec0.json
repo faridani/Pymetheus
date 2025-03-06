@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Substrings Finder (Hard)'",
+    "description": "Given a string, find all the substrings of this string that are palindromes (read the same forwards and backwards).\n\n#### Function Signature\n```python\ndef find_palindromes(s: str) -> List[str]:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns a list of substrings in the input string that are palindromes.",
+    "code": "import re\ndef find_palindromes(s: str) -> List[str]:\n    # Find all possible substrings with an even length (palindromes must have an even number of characters)\n    palindromes = []\n    for i in range(len(s)):\n        for j in range(i + 2, len(s) + 1, 2):\n            substring = s[i:j]\n            if substring == substring[::-1] and len(substring) > 0:\n                palindromes.append(substring)\n    # Find all possible substrings with an odd length (can be extended by adding a character from the beginning or end of the string)\n    for i in range(len(s)):\n        for j in range(i + 3, len(s) + 1, 2):\n            substring = s[i:j] + substring[::-1]\n            if substring == s[i + 1:j] and len(substring) > 1:\n                palindromes.append(substring)\n    return palindromes",
+    "tests": [
+        "assert find_palindromes(\"A man, a plan, a canal, Panama\") == [\"amanaplanacanalpanama\", \"aman\", \"a\"]",
+        "assert find_palindromes(\"racecar\") == [\"racecar\", \"race\", \"carc\", \"cc\"]",
+        "assert find_palindromes(\"hello\") == []",
+        "assert find_palindromes(\"No 'x' in Nixon\") == [\"Nixo\", \"''in\", \"xi\"]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

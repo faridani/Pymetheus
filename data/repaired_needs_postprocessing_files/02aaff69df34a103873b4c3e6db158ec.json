@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Substrings' - Easy",
+    "description": "Given a string, find the longest palindromic substring in it.\n\n#### Function Signature\n```python\ndef longest_palindrome(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A non-empty string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the longest palindromic substring found in the input string.",
+    "code": "def longest_palindrome(s: str) -> str:\n    if len(s) == 1: return s\n    max_length = 1\n    start, end = 0, 0\n    for i in range(len(s)):\n        # Check the current character and its mirror image\n        temp_start, temp_end = i, i\n        while temp_start >= 0 and temp_end < len(s) and s[temp_start] == s[temp_end]:\n            temp_start -= 1\n            temp_end += 1\n        if max_length < temp_end - temp_start + 1:\n            start, end = temp_start + 1, temp_end\n            max_length = temp_end - temp_start + 1\n    # Check for the center of an odd-length palindrome and its mirrored half\n    if max_length % 2 == 1:\n        return s[start : start + max_length]\n    else:\n        return s[start : start + max_length // 2] + s[end : end - (max_length // 2)]\n",
+    "tests": [
+        "assert longest_palindrome(\"babad\") == \"bab\"",
+        "assert longest_palindrome(\"cbbdde\") == \"bb\"",
+        "assert longest_palindrome(\"a\") == \"a\"",
+        "assert longest_palindrome(\"racecar\") == \"racecar\""
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Easy: Closest Pair",
+    "description": "Given a list of points in the plane, where each point is represented by its x and y coordinates, write a function `closest_pair` that finds the closest pair of points. If there are multiple pairs with the same minimum distance, return any one of them.\n\n#### Function Signature\n```python\ndef closest_pair(points: list[tuple[int, int]]) -> tuple[tuple[int, int], tuple[int, int]]:\n``` \n\n#### Input\n- `points` (list[tuple[int, int]]): A list of points in the plane, where each point is represented by its x and y coordinates.\n\n#### Output\n- Returns a tuple of two tuples, representing the closest pair of points. The first element of the returned tuple is the point with the smaller x-coordinate, and the second element is the point with the larger x-coordinate.\n",
+    "code": "import math\ndef closest_pair(points: list[tuple[int, int]]) -> tuple[tuple[int, int], tuple[int, int]]:\n    # Sort points by their x-coordinates\n    points.sort(key=lambda point: point[0])\n\n    # Initialize minimum distance and the corresponding pair of points\n    min_distance = float('inf')\n    closest_pair = None\n\n    for i in range(len(points)):\n        for j in range(i + 1, len(points)):\n            # Calculate the distance between two points\n            distance = math.sqrt((points[i][0] - points[j][0]) ** 2 + (points[i][1] - points[j][1]) ** 2)\n            if distance < min_distance:\n                min_distance = distance\n                closest_pair = ((points[i][0], points[i][1]), (points[j][0], points[j][1]))\n\n    return closest_pair",
+    "tests": [
+        "assert closest_pair([(0, 0), (3, 4), (-1, -1), (2, 3)]) == ((-1, -1), (0, 0))",
+        "assert closest_pair([(0, 0), (1, 1), (2, 2), (3, 3)]) == ((0, 0), (1, 1))"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

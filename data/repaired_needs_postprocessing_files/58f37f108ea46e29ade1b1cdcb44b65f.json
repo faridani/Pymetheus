@@ -1,0 +1,11 @@
+{
+    "title": "Easy: Finding the First Duplicate",
+    "description": "Find the first duplicate value in an unsorted list of integers. If there are no duplicates, return -1.\n\n#### Function Signature\n```python\ndef find_first_duplicate(lst: list[int]) -> int:\n``` \n\n#### Input\n- `lst` (list[int]): A list of unique integers.\n\n#### Output\n- Returns the first duplicate value in the input list. If there are no duplicates, returns -1.",
+    "code": "def find_first_duplicate(lst: list[int]) -> int:\n    seen = set()\n    for num in lst:\n        if num in seen:\n            return num\n        seen.add(num)\n    return -1",
+    "tests": [
+        "assert find_first_duplicate([1, 2, 3, 4, 5]) == -1",
+        "assert find_first_duplicate([1, 2, 3, 4, 2]) == 2",
+        "assert find_first_duplicate([1, 2, 3, 4, 5, 6]) == -1"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

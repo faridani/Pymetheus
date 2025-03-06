@@ -1,0 +1,11 @@
+{
+    "title": "Maximum Island Size",
+    "description": "Given an undirected graph represented as an adjacency list, find the maximum size of any connected component. An adjacency list representation is an abstract data type that represents a finite graph as a collection of arrays, where each array represents the set of vertices adjacent to a given vertex.\n\n#### Function Signature\n```python\ndef max_island_size(graph: dict) -> int:\n```\n\n#### Input\n- `graph` (dict): An adjacency list representation of an undirected graph. Each key is a node, and its corresponding value is a list of nodes that are directly connected to it.\n\n#### Output\n- Returns the maximum size of any connected component in the input graph.\n\nFor example, if the input graph is:\n```python\n{   'A': ['B', 'C'],\n    'B': ['A', 'D', 'E'],\n    'C': ['A', 'F'],\n    'D': ['B'],\n    'E': ['B', 'F'],\n    'F': ['C', 'E']\n}\n```then the function should return 6, because there is one connected component of size 6 (the subgraph containing nodes A-F).\n",
+    "code": "from collections import deque\n\ndef max_island_size(graph: dict) -> int:\n    visited = set()\n    max_size = 0\n    \n    for node in graph:\n        if node not in visited:\n            queue = deque([node])\n            size = 0\n            while queue:\n                current_node = queue.popleft()\n                if current_node not in visited:\n                    visited.add(current_node)\n                    size += 1\n                    for neighbor in graph[current_node]:\n                        if neighbor not in visited:\n                            queue.append(neighbor)\n            max_size = max(max_size, size)\n    \n    return max_size\n",
+    "tests": [
+        "assert max_island_size({'A': ['B'], 'B': ['A', 'C'], 'C': ['B']}) == 3",
+        "assert max_island_size({'A': ['B', 'C'], 'B': ['A', 'D', 'E'], 'C': ['A', 'F'], 'D': ['B'], 'E': ['B', 'F'], 'F': ['C', 'E']}) == 6",
+        "assert max_island_size({}) == 0"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

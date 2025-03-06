@@ -1,0 +1,11 @@
+{
+    "title": "Maximal Increasing Subsequence",
+    "description": "Write a function `max_increasing_subsequence` that takes as input an integer array and returns the length of the longest increasing subsequence.\r\n\r\n#### Function Signature\r\n```\ndef max_increasing_subsequence(arr: list[int]) -> int:\r\n``` \r\n\r\n#### Input\r\n- `arr` (list[int]): A non-empty list of integers.\r\n\r\n#### Output\r\n- Returns an integer representing the length of the longest increasing subsequence.",
+    "code": "",
+    "tests": [
+        "assert max_increasing_subsequence([10, 9, 2, 5, 3, 7, 101, 18]) == 6",
+        "assert max_increasing_subsequence([0, 1, 0, 3, 2, 5]) == 6",
+        "assert max_increasing_subsequence([15, 13, 12, 11, 10]) == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

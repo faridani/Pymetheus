@@ -1,0 +1,11 @@
+{
+    "title": "Even Fibonacci Numbers",
+    "description": "Write a function `even_fibonacci` that finds all the even Fibonacci numbers up to and including a given number (inclusive).\n\n#### Function Signature\n```python\ndef even_fibonacci(n: int) -> List[int]:\n``` \n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns a list of all even Fibonacci numbers up to and including the given number.\n",
+    "code": "def even_fibonacci(n: int) -> List[int]:\n    # Initialize the first two Fibonacci numbers as 0 and 1\n    fibs = [0, 1]\n    # Initialize a variable to store the next Fibonacci number\n    new_fib = 1\n    # Loop until we find a Fibonacci number that is greater than the given number\n    while new_fib <= n:\n        # Calculate the next Fibonacci number as the sum of the last two numbers in the list\n        new_fib = fibs[-1] + fibs[-2]\n        # If the new Fibonacci number is even, add it to the result list\n        if new_fib % 2 == 0:\n            fibs.append(new_fib)\n    # Return the list of even Fibonacci numbers up to and including the given number\n    return fibs[:n+1]\n",
+    "tests": [
+        "assert even_fibonacci(5) == [2, 8]",
+        "assert even_fibonacci(10) == [2, 8, 34]",
+        "assert even_fibonacci(30) == [2, 8, 34, 144, 376, 610, 980, 1597, 2584, 4181]"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

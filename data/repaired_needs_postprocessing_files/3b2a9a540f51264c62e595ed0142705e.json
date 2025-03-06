@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Find the Longest Substring Without Repeating Characters",
+    "description": "Given a string s, find the length of the longest substring without repeating characters. You may assume that there are no spaces in the string.\n\n#### Function Signature\n```python\ndef length_of_longest_substring(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing characters.\n\n#### Output\n- Returns the length of the longest substring without repeating characters.\n\n#### Example\nFor the input string \"abcabcbb\", your function should return 3, as the longest substring without repeating characters is \"abc\".",
+    "code": "",
+    "python": "def length_of_longest_substring(s: str) -> int:\n    n = len(s)\n    max_length = 0\n    start = 0\n    char_index_map = {}\n\n    for end in range(n):\n        if s[end] in char_index_map and char_index_map[s[end]] >= start:\n            start = char_index_map[s[end]] + 1\n        char_index_map[s[end]] = end\n        max_length = max(max_length, end - start + 1)\n\n    return max_length",
+    "tests": [
+        "assert length_of_longest_substring(\"abcabcbb\") == 3",
+        "assert length_of_longest_substring(\"abbccc\") == 3",
+        "assert length_of_longest_substring(\"babb\") == 2",
+        "assert length_of_longest_substring(\"abc\") == 3"
+    ],
+    "model": "aya:35b-repaired by Llama 3"
+}

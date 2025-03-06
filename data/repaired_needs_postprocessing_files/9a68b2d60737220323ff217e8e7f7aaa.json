@@ -1,0 +1,12 @@
+{
+    "title": "Easy String Compression",
+    "description": "You are given a string consisting of lowercase English letters. Write a function `compress_string` that compresses the string using run-length encoding. Run-length encoding replaces consecutive occurrences of the same character with the character followed by its count.",
+    "code": "def compress_string(s: str) -> str:\n    if not s:\n        return ''\n    compressed = ''\n    count = 1\n    prev_char = s[0]\n    for i in range(1, len(s)):\n        if s[i] == prev_char:\n            count += 1\n        else:\n            compressed += prev_char + (str(count) if count > 1 else '')\n            prev_char = s[i]\n            count = 1\n    compressed += prev_char + (str(count) if count > 1 else '')\n    return compressed",
+    "tests": [
+        "assert compress_string('aabccccaaa') == 'a2b1c4a3'",
+        "assert compress_string('abc') == 'abc'",
+        "assert compress_string('') == ''",
+        "assert compress_string('wwwwaaadexxxxxx') == 'w4a3d1e1x6'"
+    ],
+    "model": "gemma2:27b-repaired by Llama 3"
+}

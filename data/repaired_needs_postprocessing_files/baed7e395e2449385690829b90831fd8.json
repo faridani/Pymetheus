@@ -1,0 +1,18 @@
+{
+    "title": "Recursive Fibonacci Sequence (Hard)",
+    "description": "Write a recursive function named `fibonacci` that calculates the nth number of the Fibonacci sequence. The Fibonacci sequence is a series of numbers in which each number is the sum of the two preceding ones, usually starting with 0 and 1.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The position in the Fibonacci sequence to find the corresponding number.\n\n#### Output\n- Returns the nth number of the Fibonacci sequence as an integer.",
+    "code": "def fibonacci(n: int) -> int:\n    # Base cases\n    if n <= 1: return n\n    else:\n        # Recursive case\n        return fibonacci(n - 1) + fibonacci(n - 2)",
+    "tests": [
+        "assert fibonacci(0) == 0",
+        "assert fibonacci(1) == 1",
+        "assert fibonacci(2) == 1",
+        "assert fibonacci(3) == 2",
+        "assert fibonacci(4) == 3",
+        "assert fibonacci(5) == 5",
+        "assert fibonacci(6) == 8",
+        "assert fibonacci(7) == 13",
+        "assert fibonacci(8) == 21",
+        "assert fibonacci(9) == 34"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

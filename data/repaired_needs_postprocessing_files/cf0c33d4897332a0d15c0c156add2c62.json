@@ -1,0 +1,12 @@
+{
+    "title": "Prime Number Checker",
+    "description": "A prime number is a natural number greater than 1 that has no divisors other than 1 and itself. Given a list of integers, write a function `is_prime` that checks if all numbers in the list are prime.\n#### Function Signature\n```python\ndef is_prime(numbers: list[int]) -> bool:\n``` \n\n#### Input\n- `numbers` (list[int]): A list of integers.\n\n#### Output\n- Returns `True` if all numbers in the input list are prime, `False` otherwise.",
+    "code": "def is_prime(numbers: list[int]) -> bool:\n    def is_prime_helper(n: int) -> bool:\n        if n <= 1:\n            return False\n        for i in range(2, int(n ** 0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n    for num in numbers:\n        if not is_prime_helper(num):\n            return False\n    return True",
+    "tests": [
+        "assert is_prime([2, 3, 5]) == True",
+        "assert is_prime([1, 4, 6]) == False",
+        "assert is_prime([-1, 0, 1, 2]) == False",
+        "assert is_prime([]) == True"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

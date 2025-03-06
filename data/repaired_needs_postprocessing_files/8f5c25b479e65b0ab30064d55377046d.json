@@ -1,0 +1,12 @@
+{
+    "title": "Maximum Sum of Arithmetic Progression",
+    "description": "An arithmetic progression (AP) is a sequence of numbers where each term after the first is obtained by adding a fixed constant to the previous term. For example, 2, 5, 8, 11, 14 is an AP with common difference 3. The maximum sum of APs that can be formed using n distinct integers from 1 to m (inclusive) is unknown.\nWrite a function `max_sum_of_ap` that returns the maximum sum of APs that can be formed using n distinct integers from 1 to m (inclusive).\n#### Function Signature\n```\ndef max_sum_of_ap(n: int, m: int) -> int:\n``` \n\n#### Input\n- `n` (int): The number of distinct integers to use.\n- `m` (int): The upper bound for the integers.\n\n#### Output\n- Returns an integer representing the maximum sum of APs that can be formed using n distinct integers from 1 to m (inclusive).",
+    "code": "",
+    "tests": [
+        "assert max_sum_of_ap(3, 10) == 14",
+        "assert max_sum_of_ap(5, 15) == 30",
+        "assert max_sum_of_ap(7, 20) == 56",
+        "assert max_sum_of_ap(2, 1000) == 2016"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

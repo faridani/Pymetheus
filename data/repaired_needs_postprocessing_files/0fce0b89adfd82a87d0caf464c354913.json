@@ -1,0 +1,15 @@
+{
+    "title": "'Alphabet Position Checker (Easy)'",
+    "description": "Given a string, find the position of its first character in the alphabet. The string may contain letters, spaces and punctuation.\n#### Function Signature\n```\ndef get_alphabet_position(s: str) -> int:\n``` \n\n#### Input\n- `s` (str): A string that contains only one character at a time from the beginning.\n#### Output\n- Returns the position of the character in the alphabet as an integer.",
+    "code": "import string\ndef get_alphabet_position(s: str) -> int:\n    # Remove non-alphabetic characters\n    s = s.lower()\n    if len(s) != 1 or not s in string.ascii_letters:\n        raise ValueError('Input should contain only one alphabetic character at a time.')\n    else:\n        return ord(s) - 97 + 1",
+    "tests": [
+        "assert get_alphabet_position('a') == 1",
+        "assert get_alphabet_position('b') == 2",
+        "assert get_alphabet_position('c') == 3",
+        "assert get_alphabet_position('z') == 26",
+        "assert get_alphabet_position('A') == 27",
+        "assert get_alphabet_position('B') == 28",
+        "assert get_alphabet_position('C') == 29"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

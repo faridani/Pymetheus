@@ -1,0 +1,11 @@
+{
+    "title": "Fibonacci Spiral",
+    "description": "Create a function that generates a Fibonacci spiral. The function should take an integer `n` as input and return the coordinates of the nth point on the spiral. The spiral starts at the origin `(0, 0)` and each subsequent point is placed at the end of the previous line segment.\r\n\r\n#### Function Signature\r\n```\ndef fibonacci_spiral(n: int) -> tuple[tuple[int, int]]:\r\n``` \r\n\r\n#### Input\r\n- `n` (int): The number of points to generate on the spiral.\r\n\r\n#### Output\r\n- Returns a list of tuples, where each tuple contains the x and y coordinates of a point on the spiral. ",
+    "code": "\r\nimport math\r\n\r\ndef fibonacci_spiral(n: int) -> tuple[tuple[int, int]]:\r\n    if n <= 0:\r\n        return []\r\n\r\n    fib_numbers = [0, 1]\r\n    while len(fib_numbers) < n:\r\n        fib_numbers.append(fib_numbers[-1] + fib_numbers[-2])\r\n\r\n    x_coords = []\r\n    y_coords = []\r\n    for i in range(n):\r\n        radius = math.sqrt(i)\r\n        angle = math.pi * i / (n - 1)\r\n        x_coords.append(radius * math.cos(angle))\r\n        y_coords.append(radius * math.sin(angle))\r\n\r\n    return list(zip(x_coords, y_coords))",
+    "tests": [
+        "assert len(fibonacci_spiral(10)) == 10",
+        "assert set(fibonacci_spiral(10)) != {(0, 0)}",
+        "assert fibonacci_spiral(5) != []"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

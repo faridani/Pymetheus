@@ -1,0 +1,12 @@
+{
+    "title": "'Palindromic Substrings' - Hard",
+    "description": "Given a string `s`, return the number of non-empty palindromic substrings in it.\n\n#### Function Signature\n```python\ndef count_palindromes(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the number of non-empty palindromic substrings in the input string.",
+    "code": "import collections\ndef count_palindromes(s: str) -> int:\n    # Remove non-alphanumeric characters and convert to lowercase\n    s = ''.join(char for char in s if char in string.ascii_letters + string.digits).lower()\n    # Use a Counter to keep track of the number of each character seen in an odd position (the middle of a palindrome)\n    odd_chars = collections.Counter(s[1::2])\n    # Initialize a variable for the count of palindromes, and iterate through the keys of the odd_chars Counter\n    total = 0\n    for char in odd_chars.keys():\n        # If there are an even number of occurrences of this character, it cannot be part of a palindrome with another character\n        if odd_chars[char] % 2 == 0:\n            continue\n        # Calculate the midpoint (the center) of the palindrome, and check that it exists in the string\n        mid = s.index(char) + len(s[mid:].find(char)) - 1\n        if mid < len(s):\n            total += 1 + odd_chars[char] // 2\n    return total",
+    "tests": [
+        "assert count_palindromes('abba') == 3",
+        "assert count_palindromes('aa') == 1",
+        "assert count_palindromes('banana') == 6",
+        "assert count_palindromes('racecar') == 4"
+    ],
+    "model": "mistral:latest-repaired by Llama 3"
+}

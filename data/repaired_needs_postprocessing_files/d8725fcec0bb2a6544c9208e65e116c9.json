@@ -1,0 +1,12 @@
+{
+    "title": "Longest Common Subsequence",
+    "description": "A subsequence of a string `s` is a sequence that can be derived from `s` by deleting zero or more characters without changing the order of the remaining characters.\nWrite a function `longest_common_subsequence` that takes two strings as input and returns their longest common subsequence.\n\n#### Function Signature\n```python\ndef longest_common_subsequence(s1: str, s2: str) -> str:\n```\n\n#### Input\n- `s1` (str): The first string.\n- `s2` (str): The second string.\n\n#### Output\n- Returns the longest common subsequence of `s1` and `s2`. ",
+    "code": "def longest_common_subsequence(s1: str, s2: str) -> str:\n    m = [[0] * (len(s2) + 1) for _ in range(len(s1) + 1)]\n\n    for i in range(1, len(s1) + 1):\n        for j in range(1, len(s2) + 1):\n            if s1[i - 1] == s2[j - 1]:\n                m[i][j] = m[i - 1][j - 1] + 1\n            else:\n                m[i][j] = max(m[i - 1][j], m[i][j - 1])\n\n    lcs = ''\n    i, j = len(s1), len(s2)\n    while i > 0 and j > 0:\n        if s1[i - 1] == s2[j - 1]:\n            lcs = s1[i - 1] + lcs\n            i -= 1\n            j -= 1\n        elif m[i - 1][j] > m[i][j - 1]:\n            i -= 1\n        else:\n            j -= 1\n    return lcs",
+    "tests": [
+        "assert longest_common_subsequence('ABCDGH', 'AEDFHR') == 'ADH'",
+        "assert longest_common_subsequence('', '') == ''",
+        "assert longest_common_subsequence('', 'ABC') == ''",
+        "assert longest_common_subsequence('ABC', '') == ''"
+    ],
+    "model": "llama3.1:8b-repaired by Llama 3"
+}

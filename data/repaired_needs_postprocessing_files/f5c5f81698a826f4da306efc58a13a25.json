@@ -1,0 +1,12 @@
+{
+    "title": "Maximum Consecutive Ones",
+    "description": "Given a binary string, find the maximum number of consecutive ones that can be achieved by flipping at most two bits. Write a function `max_ones` that takes a binary string as input and returns the maximum number of consecutive ones.\n\n#### Function Signature\n```python\ndef max_ones(s: str) -> int:\n``` \n\n#### Input\n- `s` (str): A binary string containing only 0's and 1's.\n\n#### Output\n- Returns the maximum number of consecutive ones that can be achieved by flipping at most two bits.",
+    "code": "def max_ones(s: str) -> int:\n    n = len(s)\n    ones = 0\n    max_ones = 0\n    \n    for i in range(n):\n        if s[i] == '1':\n            ones += 1\n            max_ones = max(max_ones, ones)\n        else:\n            if ones > 2:\n                return n - 1\n            ones = 0\n    \n    return min(max_ones, n - ones)",
+    "tests": [
+        "assert max_ones('101010') == 5",
+        "assert max_ones('11111') == 6",
+        "assert max_ones('00000') == 0",
+        "assert max_ones('1101001') == 4"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}

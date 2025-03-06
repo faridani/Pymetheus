@@ -1,0 +1,11 @@
+{
+    "title": "Hardest Path Problem",
+    "description": "You are given a grid of size N x M, where each cell contains either 0 or 1. You can only move up, down, left, or right from any cell to an adjacent cell that has the same value (both 0 and 1). Write a function `hardest_path` that returns the length of the longest path in the grid.\n\n#### Function Signature\n```python\ndef hardest_path(grid: list[list[int]]) -> int:\n``` \n\n#### Input\n- `grid` (list[list[int]]): A 2D list representing the grid, where each cell contains either 0 or 1.\n\n#### Output\n- Returns the length of the longest path in the grid.\n",
+    "code": "from collections import deque\ndef hardest_path(grid: list[list[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n    rows, cols = len(grid), len(grid[0])\n    queue = deque([(i, j) for i in range(rows) for j in range(cols) if grid[i][j] == 1])\n    max_path_length = 0\n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n    while queue:\n        x, y = queue.popleft()\n        for dx, dy in directions:\n            nx, ny = x + dx, y + dy\n            if (0 <= nx < rows and 0 <= ny < cols and\n                grid[nx][ny] == grid[x][y] and\n                (nx, ny) not in queue):\n                queue.append((nx, ny))\n        max_path_length = max(max_path_length, len(queue))\n    return max_path_length",
+    "tests": [
+        "assert hardest_path([[0, 1], [1, 0]]) == 4",
+        "assert hardest_path([[1, 1], [1, 1]]) == 8",
+        "assert hardest_path([[0, 1, 0], [1, 1, 1], [0, 1, 0]]) == 6"
+    ],
+    "model": "llama3:latest-repaired by Llama 3"
+}
