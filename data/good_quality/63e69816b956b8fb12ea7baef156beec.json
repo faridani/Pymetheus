@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Counting Coins",
+    "description": "Write a function that counts the total number of coins, given a list of coin denominations and their respective quantities. The function should take two lists as input: one for coin denominations and one for their quantities.\n\n#### Function Signature\n```python\ndef count_coins(denominations: list[int], quantities: list[int]) -> int:\n```\n\n#### Input\n- `denominations` (list[int]): A list of coin denominations, where each denomination is an integer.\n- `quantities` (list[int]): A list of quantities corresponding to the coin denominations.\n\n#### Output\n- Returns the total number of coins.",
+    "code": "def count_coins(denominations: list[int], quantities: list[int]) -> int:\n    total = 0\n    for i in range(len(denominations)):\n        total += denominations[i] * quantities[i]\n    return total",
+    "tests": [
+        "assert count_coins([1, 5, 25], [2, 3, 4]) == 145",
+        "assert count_coins([10, 20], [1, 1]) == 60",
+        "assert count_coins([1, 5], [0, 0]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

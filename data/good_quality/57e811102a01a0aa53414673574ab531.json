@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Tree Height",
+    "description": "#### Problem Statement\nA tree is represented as a binary tree where each node has an integer value. The height of a tree is the number of nodes from the root to the leaf. Write a function `tree_height` that calculates the height of a given tree.\n\n#### Function Signature\n```python\ndef tree_height(root: TreeNode) -> int:\n```\n\n#### Input\n- `root` (TreeNode): The root node of the binary tree.\n\n#### Output\n- Returns the height of the binary tree.",
+    "code": "class TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef tree_height(root: TreeNode) -> int:\n    if root is None:\n        return 0\n    else:\n        left_height = tree_height(root.left)\n        right_height = tree_height(root.right)\n        if left_height > right_height:\n            return left_height + 1\n        else:\n            return right_height + 1",
+    "tests": [
+        "assert tree_height(TreeNode(5)) == 0",
+        "assert tree_height(TreeNode(5, TreeNode(3), TreeNode(8))) == 2",
+        "assert tree_height(TreeNode(1, TreeNode(2), TreeNode(3))) == 2",
+        "assert tree_height(None) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

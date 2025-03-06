@@ -1,0 +1,15 @@
+{
+    "title": "Minimum Windows Subarrays",
+    "description": "You are given an array of integers `nums` and a target integer `k`. A subarray is considered as a window if its length is at least `k`. Write a function that returns the minimum number of windows required to cover all elements in the array such that each element appears in exactly one window. If it's not possible to achieve this, return -1.\n\n#### Function Signature\n```python\ndef min_windows(nums: list[int), k: int) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n- `k` (int): The target length of each window.\n\n#### Output\n- Returns the minimum number of windows required to cover all elements in the array, or -1 if it's not possible.",
+    "code": "",
+    "\ndef min_windows(nums: list[int], k: int) -> int:\n    n = len(nums)\n    if k > n:\n        return -1\n\n    res = 0\n    left, right = 0, 0\n    while right < n:\n        if right - left + 1 >= k:\n            res += (right - left + 1) // k\n            left += min(k, right - left + 1)\n        else:\n            right += 1\n\n    return res": "",
+    "tests": [
+        "assert min_windows([1, 2, 3, 4], 2) == 2",
+        "assert min_windows([1, 2, 3, 4], 3) == 1",
+        "assert min_windows([1, 2, 3, 4], 5) == -1",
+        "assert min_windows([1, 2, 3, 4, 5], 2) == 2"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

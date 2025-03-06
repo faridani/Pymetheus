@@ -1,0 +1,12 @@
+{
+    "title": "Easy: Counting Islands",
+    "description": "Given a 2D grid of 0s and 1s, where 0 represents water and 1 represents land. Write a function `count_islands` that counts the number of islands in the given grid.\n\n#### Function Signature\n```python\ndef count_islands(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D grid of 0s and 1s, where 0 represents water and 1 represents land.\n\n#### Output\n- Returns the number of islands in the given grid.",
+    "code": "def count_islands(grid: list[list[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n    island_count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == 1:\n                self._dfs(grid, i, j)\n                island_count += 1\n    return island_count\n\ndef _dfs(self, grid: list[list[int]], i: int, j: int):\n    if i<0 or i>=len(grid) or j<0 or j>=len(grid[0]) or grid[i][j] == 0:\n        return\n    grid[i][j] = 0\n    self._dfs(grid, i-1, j)\n    self._dfs(grid, i+1, j)\n    self._dfs(grid, i, j-1)\n    self._dfs(grid, i, j+1)",
+    "tests": [
+        "assert count_islands([[0, 0, 1, 0], [0, 0, 1, 0], [1, 1, 1, 0]]) == 1",
+        "assert count_islands([[0, 0, 0, 0], [0, 1, 1, 0], [1, 1, 1, 1]]) == 4"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

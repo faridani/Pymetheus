@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Maximal Rectangle\", \"description\": \"Given a 2D binary matrix filled with `0`s and `1`s\", \"maximal_rectangle(matrix\": \"list[list[int]]) -> int:\\n```\\n\\n#### Input\\n- `matrix` (list[list[int]]): A 2D binary matrix filled with `0`s and `1`s.\\n\\n#### Output\\n- Returns the maximum area of a rectangle containing only `1`s that can be formed within the given matrix.\\n\\nNote: You are allowed to modify the input matrix but you should not create any new extra space or data structure.\\n\\nYou can assume that the input matrix is always valid (i.e.\", \"Hint\": \"Use a prefix sum array and iterate through the matrix once to solve this problem efficiently.\"}"
+}

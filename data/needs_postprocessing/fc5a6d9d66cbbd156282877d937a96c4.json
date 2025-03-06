@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Fibonacci Sum\\\", \\\"description\\\": \\\"Write a function `fib_sum` that calculates the sum of the first n Fibonacci numbers.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef fib_sum(n: int) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `n` (int): A non-negative integer representing the number of Fibonacci numbers to sum.\\\\n\\\\n#### Output\\\\n- Returns the sum of the first n Fibonacci numbers.\\\\n\\\", \\\"code\\\": \\\"def fib_sum(n: int) -> int:\\\\n    if n == 0:\\\\n        return 0\\\\n    elif n == 1:\\\\n        return 1\\\\n    else:\\\\n        a, b = 0, 1\\\\n        total = 0\\\\n        for _ in range(2, n + 1):\\\\n            total += b\\\\n            a, b = b, a + b\\\\n        return total\\\", \\\"tests\\\": [\\\"assert fib_sum(10) == 44\\\", \\\"assert fib_sum(20) == 6765\\\", \\\"assert fib_sum(30) == 832040\\\"] }\""
+}

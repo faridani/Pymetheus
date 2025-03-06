@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Sum of Prime Numbers",
+    "description": "Write a function `sum_of_primes` that calculates the sum of all prime numbers less than or equal to a given number `n`. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.\n\n#### Function Signature\n```python\ndef sum_of_primes(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The upper limit for the sum of prime numbers, inclusive.\n\n#### Output\n- Returns the sum of all prime numbers less than or equal to `n`.",
+    "code": "def sum_of_primes(n: int) -> int:\n    def is_prime(num: int) -> bool:\n        if num <= 1:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    prime_sum = 0\n    for num in range(2, n + 1):\n        if is_prime(num):\n            prime_sum += num\n\n    return prime_sum",
+    "tests": [
+        "assert sum_of_primes(10) == 17",
+        "assert sum_of_primes(50) == 1060",
+        "assert sum_of_primes(100) == 1060"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

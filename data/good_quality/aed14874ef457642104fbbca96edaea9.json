@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Island Size",
+    "description": "You are given a 2D array of characters representing an island, where each cell can be one of the following:\n- 'W' (water)\n- 'L' (land)\n\nWrite a function `max_island_size` that returns the size of the largest island in the given array.\n\n#### Function Signature\n```python\ndef max_island_size(island: list) -> int:\n```\n\n#### Input\n- `island` (list): A 2D array of characters representing an island.\n\n#### Output\n- Returns the size of the largest island in the given array.",
+    "code": "\nimport copy\n\ndef max_island_size(island: list) -> int:\n    if not island or not island[0]:\n        return 0\n\n    def dfs(i, j):\n        if i < 0 or i >= len(island) or j < 0 or j >= len(island[0]) or island[i][j] == 'W':\n            return 0\n        island[i][j] = 'W'\n        return 1 + dfs(i - 1, j) + dfs(i + 1, j) + dfs(i, j - 1) + dfs(i, j + 1)\n\n    max_size = 0\n    for i in range(len(island)):\n        for j in range(len(island[0])):\n            if island[i][j] == 'L':\n                size = dfs(i, j)\n                max_size = max(max_size, size)\n    return max_size",
+    "tests": [
+        "assert max_island_size([['W', 'W', 'L', 'W'], ['W', 'W', 'L', 'W'], ['L', 'L', 'L', 'L']]) == 4",
+        "assert max_island_size([['W', 'L', 'L', 'L'], ['W', 'L', 'L', 'L'], ['L', 'L', 'L', 'L']]) == 9",
+        "assert max_island_size([['W' for _ in range(5)] for _ in range(5)]) == 0",
+        "assert max_island_size([[*range(3)], [*range(3)]]) == 6"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

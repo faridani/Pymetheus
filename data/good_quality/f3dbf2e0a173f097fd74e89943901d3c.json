@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Prime Summation",
+    "description": "Given a list of integers, calculate the total sum of all prime numbers. Note that 2 is considered a prime number.\n\n#### Function Signature\n```python\ndef prime_sum(numbers: list[int]) -> int:\n```\n\n#### Input\n- `numbers` (list[int]): A list of integers.\n\n#### Output\n- Returns the total sum of all prime numbers in the input list.",
+    "code": "def prime_sum(numbers: list[int]) -> int:\n    def is_prime(n: int) -> bool:\n        if n <= 1:\n            return False\n        for i in range(2, int(n ** 0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n    total_sum = 0\n    for num in numbers:\n        if is_prime(num):\n            total_sum += num\n    return total_sum",
+    "tests": [
+        "assert prime_sum([2, 3, 5, 7]) == 17",
+        "assert prime_sum([1, 4, 6, 8, 10]) == 2",
+        "assert prime_sum([-1, -2, -3]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

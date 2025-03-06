@@ -1,0 +1,14 @@
+{
+    "title": "Sorting by Frequency",
+    "description": "Write a function `sort_by_frequency` that takes a list of strings as input and returns the sorted list based on the frequency of each string.\n\n#### Function Signature\n```python\ndef sort_by_frequency(strings: list[str]) -> list[str]:\n```\n\n#### Input\n- `strings` (list[str]): A list of strings where each string may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the input list sorted by the frequency of each string. The most frequent strings should come first in the output list.",
+    "code": "",
+    "\nimport collections\nfrom typing import List\n\ndef sort_by_frequency(strings: List[str]) -> List[str]:\n    # Count the frequency of each string using a dictionary\n    frequency = collections.Counter(strings)\n    \n    # Sort the input list based on the frequency of each string\n    sorted_strings = sorted(strings, key=lambda x: -frequency[x])\n    \n    return sorted_strings": "",
+    "tests": [
+        "assert sort_by_frequency(['apple', 'banana', 'apple']) == ['apple', 'banana']",
+        "assert sort_by_frequency(['hello', 'world', 'hello']) == ['hello', 'world']",
+        "assert sort_by_frequency(['a', 'b', 'c', 'd', 'e']) == ['e', 'd', 'c', 'b', 'a']"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

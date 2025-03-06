@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Counting Duplicates",
+    "description": "A string of parentheses, brackets and curly braces can be considered balanced if every opening symbol has a corresponding closing symbol. Write a function `count_duplicates` that counts the number of times each character appears in a given string.\n\n#### Function Signature\n```python\ndef count_duplicates(s: str) -> dict:\n```\n\n#### Input\n- `s` (str): A string containing characters, parentheses, brackets and curly braces.\n\n#### Output\n- Returns a dictionary where the keys are the unique characters in the input string and the values are the counts of each character.",
+    "code": "def count_duplicates(s: str) -> dict:\n    # Initialize an empty dictionary to store the count of each character\n    char_count = {}\n    for char in s:\n        if char in char_count:\n            char_count[char] += 1\n        else:\n            char_count[char] = 1\n    return char_count",
+    "tests": [
+        "assert count_duplicates('())(())') == {'(': 2, ')': 2}",
+        "assert count_duplicates('Hello World!') == {'H': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, '!': 1}",
+        "assert count_duplicates('{{}}') == {'}': 4}"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

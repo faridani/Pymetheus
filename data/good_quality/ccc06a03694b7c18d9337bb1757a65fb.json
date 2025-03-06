@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Island Hopper",
+    "description": "An island hopper is a sequence of islands that are connected by bridges. The goal is to find all possible island hopping routes between two given islands.\n\n#### Function Signature\n```python\ndef get_island_hopping_routes(start_island: str, end_island: str) -> list:\n```\n\n#### Input\n- `start_island` (str): The starting island.\n- `end_island` (str): The ending island.\n- `islands` (dict): A dictionary where the keys are island names and the values are lists of adjacent islands that can be reached from each island, excluding the start and end islands.\n\n#### Output\n- Returns a list of strings representing all possible island hopping routes between the start and end islands.",
+    "code": "import itertools\n\ndef get_island_hopping_routes(start_island: str, end_island: str, islands: dict) -> list:\n    routes = []\n    def dfs(current_island, path):\n        if current_island == end_island:\n            routes.append('->'.join(path))\n            return\n        for island in islands.get(current_island, []):\n            if island != start_island and island not in path:\n                dfs(island, path + [island])\n    dfs(start_island, [start_island])\n    return routes",
+    "tests": [
+        "assert get_island_hopping_routes('A', 'C', {'A': ['B'], 'B': ['A', 'C'], 'C': ['B']}) == ['A->B->C']",
+        "assert get_island_hopper(['A', 'B', 'C']) == [['A', 'B', 'C']]",
+        "assert get_island_hopping_routes('A', 'D', {'A': ['B'], 'B': ['A', 'C'], 'C': ['B', 'D']}) == ['A->B->C->D']",
+        "assert get_island_hopping_routes('E', 'E', {'E': []}) == []"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Tree of Words",
+    "description": "Consider a binary tree where each node has two children, left and right. Each node contains a string. The strings at the leaf nodes are all words from an English dictionary. Write a function `tree_of_words` that takes the root of this tree as input and returns the total number of unique words in the tree.\n\n#### Function Signature\n```python\ndef tree_of_words(root: TreeNode) -> int:\n```\n\n#### Input\n- `root` (TreeNode): The root node of the binary tree. Each node contains a string, and leaf nodes contain English dictionary words.\n\n#### Output\n- Returns the total number of unique words in the tree.",
+    "code": "class TreeNode:\n    def __init__(self, value: str, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef tree_of_words(root: TreeNode) -> int:\n    if root is None:\n        return 0\n    seen = set()\n    def dfs(node: TreeNode) -> int:\n        if node is None:\n            return 0\n        if node.left is None and node.right is None:\n            seen.add(node.value)\n            return len(seen)\n        return dfs(node.left) + dfs(node.right)\n    return dfs(root)",
+    "tests": [
+        "assert tree_of_words(None) == 0",
+        "assert tree_of_words(TreeNode('hello')) == 1",
+        "assert tree_of_words(TreeNode('world', TreeNode('apple'), TreeNode('banana'))) == 3",
+        "assert tree_of_words(TreeNode('cat', TreeNode('dog'), TreeNode('bird'))) == 3"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

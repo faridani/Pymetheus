@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Chessboard Knight Moves",
+    "description": "A chessboard has rows and columns labeled from A to H and 1 to 8 respectively. We can represent the position of a knight on the board as a pair (row, column). The knight moves according to certain rules: it moves in an L-shape (two squares in one direction, then one square to the side). Write a function `knight_moves` that generates all possible moves from a given starting position and returns them as a list of tuples. For example, if we start at (3, 2), the possible moves would be [(2,1),(2,3),(4,1),(4,3)].",
+    "code": "\ndef knight_moves(starting_position):\n    row = ord(starting_position[0]) - ord('A')\n    column = int(startting_position[1])\n    \n    moves = []\n    \n    for dr in [-2, -2]:\n        for dc in [-1, 1]:\n            new_row = row + dr\n            new_column = column + dc\n            \n            if (new_row >= 0 and new_column >= 1 and new_column <= 8):\n                move = chr(ord('A') + new_row) + str(new_column)\n                moves.append(move)\n\n    return moves",
+    "tests": [
+        "assert knight_moves(('3', '2')) == ['(2,1)', '(2,3)', '(4,1)', '(4,3)']",
+        "assert knight_moves(('8', '8')) == []"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

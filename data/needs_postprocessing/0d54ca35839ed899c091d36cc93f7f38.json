@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Sum of Unique Elements\\\", \\\"description\\\": \\\"Given a list of integers, write a function that calculates the sum of all unique elements. If the input list contains duplicate elements, each element should be counted only once.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef sum_unique_elements(lst: list) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `lst` (list): A list of integers containing duplicates.\\\\n\\\\n#### Output\\\\n- Returns the sum of all unique elements in the input list.\\\", \\\"code\\\": \\\"def sum_unique_elements(lst: list) -> int:\\\\n    return sum(set(lst))\\\\n\\\", \\\"tests\\\": [\\\"assert sum_unique_elements([1, 2, 3]) == 6\\\", \\\"assert sum_unique_elements([1, 2, 2, 3, 4, 5]) == 15\\\", \\\"assert sum_unique_elements([-1, -2, -3]) == -6\\\"] }\""
+}

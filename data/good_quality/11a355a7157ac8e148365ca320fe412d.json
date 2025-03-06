@@ -1,0 +1,14 @@
+{
+    "title": "Easiest Way to Reach the Sum",
+    "description": "In this classic puzzle, you are given a set of positive integers and you need to find out whether it's possible to reach the sum by using the following operations exactly once: addition, subtraction, multiplication. Write a function `can_reach_sum` that takes two parameters - a list of numbers and a target sum.\n\n#### Function Signature\n```python\ndef can_reach_sum(numbers: list[int], target_sum: int) -> bool:\n```\n\n#### Input\n- `numbers` (list[int]): A list of positive integers.\n- `target_sum` (int): The target sum you want to reach.\n\n#### Output\n- Returns `True` if it's possible to reach the target sum by using exactly one addition, subtraction and multiplication operation, `False` otherwise.",
+    "code": "\nfrom itertools import permutations\ndef can_reach_sum(numbers: list[int], target_sum: int) -> bool:\n    for ops in permutations(['+', '-', '*']):\n        result = eval(''.join(map(str, numbers)) + ' ' + ops[0] + ' '.join(map(str, [target_sum - sum(numbers)])))\n        if abs(result - target_sum) < 1e-9:\n            return True\n    return False",
+    "tests": [
+        "assert can_reach_sum([2,3], 4) == True",
+        "assert can_reach_sum([5,10], 15) == True",
+        "assert can_reach_sum([2,3,4], 7) == True",
+        "assert can_reach_sum([1,1,1], 0) == False"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

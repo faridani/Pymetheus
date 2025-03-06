@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Maximum Sum of Subarray after Alternating Operations",
+    "description": "Consider an array `a` consisting of `n` integers. We can perform two operations on this array:\n- `shift_left`: Shift all elements in the array one position to the left, effectively removing the first element and adding a new zero at the end.\n- `shift_right`: Remove the last element from the array, add a new zero at the beginning, and then shift all other elements one position to the right.\n\nWe want to maximize the sum of some subarray by repeatedly applying these two operations. Formally, we want to find the maximum sum of any contiguous subarray `a[i..j]` such that `i` is either 0 or 1, and each operation (either `shift_left` or `shift_right`) can be applied at most once.\n\n#### Function Signature\n```python\ndef max_sum_after_operations(a: list[int)) -> int:\n```\n\n#### Input\n- `a` (list[int]): A list of `n` integers.\n\n#### Output\n- Returns the maximum sum of any contiguous subarray that can be obtained by applying at most one operation each.",
+    "code": "",
+    "\nimport heapq\n\ndef max_sum_after_operations(a: list[int)) -> int:\n    n = len(a)\n    prefix_sum = [0] * (n + 1)\n    for i in range(n):\n        prefix_sum[i + 1] = prefix_sum[i] + a[i]\n    \n    heap = []\n    for i in range(2, n):  # Try all possible subarrays\n        prefix_sum_i = prefix_sum[i]\n        prefix_sum_j = prefix_sum[n - 1] - prefix_sum[i - 1]\n        total_sum = prefix_sum_i + prefix_sum_j\n        heapq.heappush(heap, -total_sum)  # Push the negative sum to simulate a min heap\n        \n    max_sum = 0\n    while heap:\n        max_sum -= heapq.heappop(heap)\n    \n    return max_sum": "",
+    "tests": [
+        "assert max_sum_after_operations([1, 2, 3]) == 9",
+        "assert max_sum_after_operations([-5, -4, -3]) == 6",
+        "assert max_sum_after_operations([0, 0, 0]) == 0",
+        "assert max_sum_after_operations([1, 2, 3, 4, 5]) == 15"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

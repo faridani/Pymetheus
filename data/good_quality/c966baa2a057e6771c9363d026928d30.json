@@ -1,0 +1,13 @@
+{
+    "title": "Number Sequence Generator",
+    "description": "A sequence of numbers is called an arithmetic progression if the difference between any two consecutive terms is constant. Write a function `arithmetic_progression` that generates and returns all possible sequences of integers from 1 to N, where each sequence has length M, and the difference between any two consecutive terms in the sequence is D.\n\n#### Function Signature\n```python\ndef arithmetic_progression(N: int, M: int, D: int) -> list[list[int]]:\n```\n\n#### Input\n- `N` (int): The maximum number for the sequences.\n- `M` (int): The length of each sequence.\n- `D` (int): The difference between any two consecutive terms in the sequence.\n\n#### Output\n- Returns a list of lists, where each sublist is a possible arithmetic progression with the given properties.",
+    "code": "def arithmetic_progression(N: int, M: int, D: int) -> list[list[int]]:\n    sequences = []\n    for i in range(D, N + 1):\n        sequence = [i]\n        for _ in range(1, M - 1):\n            sequence.append(sequence[-1] + D)\n        if len(sequence) == M and min(sequence) >= 1:\n            sequences.append(sequence)\n    return sequences",
+    "tests": [
+        "assert len(arithmetic_progression(10, 3, 2)) == 5",
+        "assert arithmetic_progression(15, 4, 3)[0] == [6]",
+        "assert len(arithmetic_progression(20, 5, 1)) == 12"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

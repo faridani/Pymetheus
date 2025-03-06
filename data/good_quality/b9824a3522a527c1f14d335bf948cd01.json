@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Fizz Buzz",
+    "description": "Write a function that generates the sequence of numbers from 1 to n, where n is an input number. If the number is divisible by 3, print 'Fizz'. If it's divisible by 5, print 'Buzz'. If it's divisible by both, print 'FizzBuzz'. Otherwise, just print the number.\n\n#### Function Signature\n```python\ndef fizz_buzz(n: int) -> None:\n```\n\n#### Input\n- `n` (int): An integer that specifies the upper limit of the sequence.\n\n#### Output\nNone. Print the sequence to the console.",
+    "code": "",
+    "\ndef fizz_buzz(n: int) -> None:\n    for i in range(1, n + 1):\n        if i % 3 == 0 and i % 5 == 0:\n            print('FizzBuzz')\n        elif i % 3 == 0:\n            print('Fizz')\n        elif i % 5 == 0:\n            print('Buzz')\n        else:\n            print(i)": "",
+    "tests": [
+        "assert list(fizz_buzz(15)) == ['1', '2', 'Fizz', '4', 'Buzz', 'Fizz', '7', '8', 'Fizz', 'Buzz', '11', 'Fizz', '13', '14', 'FizzBuzz']",
+        "assert list(fizz_buzz(20)) == ['1', '2', 'Fizz', '4', 'Buzz', 'Fizz', '7', '8', 'Fizz', 'Buzz', '11', 'Fizz', '13', '14', 'FizzBuzz', '16', '17', 'Fizz', '19', 'Buzz', '20']"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

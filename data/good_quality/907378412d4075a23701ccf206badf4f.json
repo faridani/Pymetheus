@@ -1,0 +1,12 @@
+{
+    "title": "Medium: Valid Sudoku",
+    "description": "Write a function `isValidSudoku` that takes a string representing the state of a partially filled-in standard 9x9 Sudoku grid (input as a 9x9 2D array, with empty cells represented by zero) and returns whether this Sudoku is valid.\n\n#### Function Signature\n```python\ndef isValidSudoku(board: list[list[int]]) -> bool:\n```\n\n#### Input\n- `board` (list of lists): A 2D list representing the state of a partially filled-in standard 9x9 Sudoku grid, with empty cells represented by zero.\n\n#### Output\n- Returns `True` if the input Sudoku is valid, `False` otherwise.",
+    "code": "import copy\n\ndef isValidSudoku(board: list[list[int]]) -> bool:\n    def is_valid_row(row: list[int]) -> bool:\n        seen = set()\n        for cell in row:\n            if cell != 0 and cell in seen:\n                return False\n            seen.add(cell)\n        return True\n    def is_valid_col(col: list[int]) -> bool:\n        seen = set()\n        for cell in col:\n            if cell != 0 and cell in seen:\n                return False\n            seen.add(cell)\n        return True\n    def is_valid_box(box: list[list[int]]) -> bool:\n        seen = set()\n        for row in box:\n            for cell in row:\n                if cell != 0 and cell in seen:\n                    return False\n                seen.add(cell)\n        return True\n    for i in range(9):\n        if not is_valid_row(board[i]):\n            return False\n    for j in range(9):\n        if not is_valid_col([board[i][j] for i in range(9)]):\n            return False\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            if not is_valid_box([row[j:j+3] for row in board[i:i+3]]):\n                return False\n    return True",
+    "tests": [
+        "assert isValidSudoku([[5,3,4,6,7,8,9,1,2], [6,7,8,9,1,2,3,4,5], [1,9,8,3,4,2,5,6,7], [8,5,9,7,6,3,4,2,1], [4,2,6,5,3,7,8,9,1], [7,1,3,9,8,5,6,4,2], [9,6,1,4,2,8,5,3,7], [5,7,2,8,9,1,4,6,3], [2,4,8,5,6,3,7,1,9]]) == True",
+        "assert isValidSudoku([[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,8,2],[0,6,9,4,5,1,3,7,6]]) == False"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

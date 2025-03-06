@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Finding the Shortest Path in a Maze",
+    "description": "Given a 2D array representing a maze, where '0's represent open spaces and '1's represent walls. Write a function `shortest_path` that finds the shortest path from the top-left corner to the bottom-right corner of the maze.\n\n#### Function Signature\n```python\ndef shortest_path(maze: list[list[int]]) -> list[tuple[int, int]]:\n```\n\n#### Input\n- `maze` (list[list[int]]): A 2D array representing a maze. '0's represent open spaces and '1's represent walls.\n\n#### Output\n- Returns the shortest path from the top-left corner to the bottom-right corner of the maze as a list of coordinates (rows, columns). If there is no possible path, return an empty list.",
+    "code": "",
+    "\nimport heapq\n\ndef shortest_path(maze: list[list[int]]) -> list[tuple[int, int]]:\n    # Get the dimensions of the maze\n    rows, cols = len(maze), len(maze[0])\n    \n    # Create a priority queue to store nodes to visit\n    queue = [(0, 0, [])]  # (distance, row, col, path)\n    \n    # Create a set to keep track of visited nodes\n    visited = set()\n    \n    while queue:\n        distance, row, col, path = heapq.heappop(queue)\n        \n        if (row, col) in visited:\n            continue\n        \n        visited.add((row, col))\n        \n        if row == rows - 1 and col == cols - 1:\n            return path + [(rows - 1, cols - 1)]\n        \n        # Explore neighbors\n        for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            nr, nc = row + dr, col + dc\n            \n            if 0 <= nr < rows and 0 <= nc < cols and maze[nr][nc] == 0 and (nr, nc) not in visited:\n                heapq.heappush(queue, (distance + 1, nr, nc, path + [(row, col)]))\n    \n    return []": "",
+    "tests": [
+        "assert shortest_path([[0, 1, 0], [0, 1, 0], [0, 0, 0]]) == [(0, 0), (1, 0), (2, 0), (2, 1), (2, 2)]",
+        "assert shortest_path([[0, 0, 0], [1, 1, 1], [0, 0, 0]]) == []"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

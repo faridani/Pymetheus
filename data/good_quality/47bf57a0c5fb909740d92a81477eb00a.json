@@ -1,0 +1,13 @@
+{
+    "title": "Maximum Score from Removing Boxes",
+    "description": "In this problem, you will be given a list of integers representing the heights of boxes. You need to find out the maximum score that can be obtained by removing boxes in a single pass (i.e., from left to right). The score for each box is its height. However, if a box is removed and it has a height greater than or equal to 3, all boxes with the same height as this one will also need to be removed. This means that once a box is removed, all boxes with the same height must also be removed. The goal is to find out the maximum score that can be obtained by removing these boxes.\n\n#### Function Signature\n```python\ndef max_score(heights: list[int]) -> int:\n```\n\n#### Input\n- `heights` (list[int]): A list of integers representing the heights of boxes.\n\n#### Output\n- Returns an integer representing the maximum score that can be obtained by removing these boxes.",
+    "code": "\nimport copy\n\ndef max_score(heights: list[int]) -> int:\n    # Initialize a dictionary to store the cumulative sum\n    cumulative_sum = {0: 0}\n\n    # Initialize the maximum score and the current height\n    max_score = 0\n    current_height = 0\n\n    for height in heights:\n        # Add the height of the current box to the cumulative sum\n        if height not in cumulative_sum:\n            cumulative_sum[height] = cumulative_sum.get(current_height, 0) + height\n        else:\n            # If the height is greater than or equal to 3, find the maximum score from the previous boxes\n            for i in range(cumulative_sum[current_height], -1, -1):\n                if i not in cumulative_sum:\n                    break\n            max_score = max(max_score, cumulative_sum[i] + (height - i) * len(heights))\n\n        # Update the current height\n        current_height = height\n\n    return max_score",
+    "tests": [
+        "assert max_score([3, 5, 2, 7, 2]) == 14",
+        "assert max_score([1, 1, 1, 1, 1]) == 5",
+        "assert max_score([10, 20, 30, 40, 50]) == 150"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

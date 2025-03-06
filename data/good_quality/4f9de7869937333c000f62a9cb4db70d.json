@@ -1,0 +1,15 @@
+{
+    "title": "Minimum Swaps to Sort Array",
+    "description": "Write a function `min_swaps` that takes an array of integers as input and returns the minimum number of swaps required to sort the array. \n\n#### Function Signature\n```python\ndef min_swaps(arr: list[int)) -> int:\n```\n\n#### Input\n- `arr` (list[int]): An array of integers.\n\n#### Output\n- Returns the minimum number of swaps required to sort the input array.",
+    "code": "",
+    "\nimport heapq\n\ndef min_swaps(arr: list[int)) -> int:\n    n = len(arr)\n    sorted_arr = sorted((x, i) for i, x in enumerate(arr))\n    visited = [False] * n\n    swaps = 0\n\n    for (val, i) in sorted_arr:\n        if visited[i]:\n            continue\n        cycle_size = 0\n        j = i\n        while not visited[j]:\n            visited[j] = True\n            j = arr[j]\n            cycle_size += 1\n        if cycle_size > 0:\n            swaps += (cycle_size - 1)\n    return swaps": "",
+    "tests": [
+        "assert min_swaps([3,2,5,1,7,4,6]) == 4",
+        "assert min_swaps([1, 2, 3]) == 0",
+        "assert min_swaps([2, 3, 1]) == 2",
+        "assert min_swaps([10, 12, 20, 30, 25, 40, 35, 45]) == 9"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

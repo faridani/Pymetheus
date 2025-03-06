@@ -1,0 +1,14 @@
+{
+    "title": "Easy: FizzBuzz Counter",
+    "description": "Write a function `fizzbuzz_counter` that takes an integer `n` as input and returns a list of strings. The function should generate the FizzBuzz sequence up to the given number `n`. In the FizzBuzz sequence, multiples of 3 are replaced with 'Fizz', multiples of 5 are replaced with 'Buzz', and multiples of both 3 and 5 are replaced with 'FizzBuzz'. For example, if `n` is 15, the function should return ['1', '2', 'Fizz', '4', 'Buzz', 'Fizz', '7', '8', 'Fizz', 'Buzz', '11', 'Fizz', '13', '14', 'FizzBuzz'].\n\n#### Function Signature\n```python\ndef fizzbuzz_counter(n: int) -> list[str]:\n```\n\n#### Input\n- `n` (int): The upper limit for the FizzBuzz sequence.\n\n#### Output\n- A list of strings representing the FizzBuzz sequence up to the given number `n`.",
+    "code": "def fizzbuzz_counter(n: int) -> list[str]:\n    result = []\n    for i in range(1, n+1):\n        if i % 3 == 0 and i % 5 == 0:\n            result.append('FizzBuzz')\n        elif i % 3 == 0:\n            result.append('Fizz')\n        elif i % 5 == 0:\n            result.append('Buzz')\n        else:\n            result.append(str(i))\n    return result",
+    "tests": [
+        "assert fizzbuzz_counter(15) == ['1', '2', 'Fizz', '4', 'Buzz', 'Fizz', '7', '8', 'Fizz', 'Buzz', '11', 'Fizz', '13', '14', 'FizzBuzz']",
+        "assert fizzbuzz_counter(3) == ['1', '2', 'Fizz']",
+        "assert fizzbuzz_counter(5) == ['1', '2', 'Fizz', '4', 'Buzz']",
+        "assert fizzbuzz_counter(10) == ['1', '2', 'Fizz', '4', 'Buzz', 'Fizz', '7', '8', 'Fizz', 'Buzz']"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

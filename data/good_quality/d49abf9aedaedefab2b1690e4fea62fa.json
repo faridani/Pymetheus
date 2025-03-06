@@ -1,0 +1,13 @@
+{
+    "title": "Max Path Sum in Binary Tree",
+    "description": "Given a binary tree, find the maximum sum of all paths that start from the root node to any leaf node. A path can be defined as a sequence of nodes where each node is connected by an edge.\n\n#### Function Signature\n```python\ndef max_path_sum(root: TreeNode) -> int:\n```\n\n#### Input\n- `root` (TreeNode): The root node of the binary tree.\n\n#### Output\n- Returns the maximum sum of all paths that start from the root node to any leaf node.",
+    "code": "\nclass TreeNode:\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\ndef max_path_sum(root: TreeNode) -> int:\n    def dfs(node):\n        if not node:\n            return 0\n        left_sum = max(dfs(node.left), 0)\n        right_sum = max(dfs(node.right), 0)\n        current_sum = node.val + left_sum + right_sum\n        nonlocal max_sum\n        max_sum = max(max_sum, current_sum)\n        return node.val + max(left_sum, right_sum)\n\n    if not root:\n        return 0\n\n    max_sum = float('-inf')\n    dfs(root)\n    return max_sum",
+    "tests": [
+        "assert max_path_sum(TreeNode(1)) == 1",
+        "assert max_path_sum(TreeNode(5, TreeNode(4), TreeNode(7))) == 11",
+        "assert max_path_sum(None) == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

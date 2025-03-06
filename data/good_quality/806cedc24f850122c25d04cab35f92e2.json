@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Time to Make Valid String",
+    "description": "Given a set of characters, we want to determine how many operations it will take to make all characters valid. A character is considered valid if its ASCII value is greater than or equal to 65 (the ASCII value for 'A') and less than 91 (the ASCII value for 'Z'). Write a function `min_time` that takes an integer array representing the frequency of each letter in English alphabet, and returns the minimum number of operations required to make all characters valid.\n\n#### Function Signature\n``python\ndef min_time(frequency: list[int]) -> int:\n```\n\n#### Input\n- `frequency` (list[int]): A list of integers representing the frequency of each letter in English alphabet, where the index corresponds to the letter's ASCII value minus 65.\n\n#### Output\n- Returns the minimum number of operations required to make all characters valid.",
+    "code": "def min_time(frequency: list[int]) -> int:\n    # Initialize count of invalid letters\n    invalid_count = sum(min(26 - i, f) for i, f in enumerate(frequency))\n    # For each letter that is not 'A' or 'Z', increment the count by its frequency\n    for i, f in enumerate(frequency):\n        if 0 < i < 25:\n            invalid_count += f\n    return invalid_count",
+    "tests": [
+        "assert min_time([1, 2, 3, 4, 5]) == 10",
+        "assert min_time([12, 13, 14, 15, 16]) == 40",
+        "assert min_time([0, 0, 0, 0, 0]) == 0",
+        "assert min_time([1, 1, 1, 1, 1]) == 5"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

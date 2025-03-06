@@ -1,0 +1,14 @@
+{
+    "title": "Counting Unique Substrings",
+    "description": "Write a function that takes as input two strings s1 and s2. The function should return the number of unique substrings common to both strings.\n\n#### Function Signature\n```python\ndef count_unique_substrings(s1: str, s2: str) -> int:\n```\n\n#### Input\n- `s1` (str), `s2` (str): Two strings that may contain letters, numbers, spaces, and punctuation.\n\n#### Output\n- Returns the number of unique substrings common to both input strings.",
+    "code": "import collections\n\ndef count_unique_substrings(s1: str, s2: str) -> int:\n    # Create a set of unique substrings for each string\n    substrings_s1 = set()\n    for i in range(len(s1)):\n        for j in range(i + 1, len(s1) + 1):\n            substring = s1[i:j]\n            if substring not in substrings_s1:\n                substrings_s1.add(substring)\n\n    substrings_s2 = set()\n    for i in range(len(s2)):\n        for j in range(i + 1, len(s2) + 1):\n            substring = s2[i:j]\n            if substring not in substrings_s2:\n                substrings_s2.add(substring)\n\n    # Count the number of unique substrings common to both strings\n    count = 0\n    for substring in substrings_s1:\n        if substring in substrings_s2:\n            count += 1\n    return count",
+    "tests": [
+        "assert count_unique_substrings('abc', 'cba') == 3",
+        "assert count_unique_substrings('abcd', 'cdab') == 4",
+        "assert count_unique_substrings('abcde', 'cdeab') == 5",
+        "assert count_unique_substrings('123456', '543216') == 6"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

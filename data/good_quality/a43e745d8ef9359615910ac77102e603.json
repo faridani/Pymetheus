@@ -1,0 +1,13 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Given a string `s` and an integer array `indices`, where `indices[i]` represents the starting index of the substring that contains the word at position `i`. Write a function `min_window_substring` that returns the minimum window substring that contains all the words in the given list. If there are multiple solutions, return any one.\n\n#### Function Signature\n```python\ndef min_window_substring(s: str, indices: list[int]) -> str:\n```\n\n#### Input\n- `s` (str): A string containing words separated by spaces.\n- `indices` (list[int]): A list of integers representing the starting index of each word in the input string.\n\n#### Output\n- Returns the minimum window substring that contains all the words in the given list. If there are multiple solutions, return any one.",
+    "code": "",
+    "\nimport re\n\ndef min_window_substring(s: str, indices: list[int]) -> str:\n    # Split the input string into words\n    words = s.split()\n    \n    # Initialize the minimum window substring with the first word\n    min_window = [words[0], indices[0]]\n    \n    # Iterate over each word and its index\n    for i in range(1, len(words)):\n        # Get the current word and its index\n        curr_word = words[i]\n        curr_index = indices[i]\n        \n        # Find the previous word's end index and the current word's start index\n        prev_end_index = min_window[1] + len(min_window[0].split()) * 3\n        curr_start_index = prev_end_index\n        \n        # Extract the minimum window substring\n        min_window_substr = s[curr_start_index:curr_index]\n        \n        # Update the minimum window substring if it's smaller\n        if len(min_window_substr) < len(min_window[0]):\n            min_window = [min_window_substr, curr_index]\n    \n    # Return the minimum window substring\n    return min_window[0]": "",
+    "tests": [
+        "assert min_window_substring('hello world this is a test', [5, 11, 13, 15, 18]) == 'this is'",
+        "assert min_window_substring('abc def xyz pqr', [4, 8, 12]) == 'def'"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

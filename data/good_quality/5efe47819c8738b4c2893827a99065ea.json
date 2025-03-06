@@ -1,0 +1,15 @@
+{
+    "title": "Maximal Segment Sum",
+    "description": "Given a 2D array `arr` of size `n x m`, where each cell contains an integer, find the maximum sum of a segment (a contiguous subarray) in the given 2D array.\n\n#### Function Signature\n```python\ndef maximal_segment_sum(arr: list[list[int]]) -> int:\n```\n\n#### Input\n- `arr` (list[list[int]]): A 2D array of size `n x m`, where each cell contains an integer.\n\n#### Output\n- Returns the maximum sum of a segment in the given 2D array.",
+    "code": "",
+    "\nimport itertools\n\ndef maximal_segment_sum(arr: list[list[int]]) -> int:\n    n, m = len(arr), len(arr[0])\n    max_sum = float('-inf')\n\n    for k in range(1, min(n, m) + 1):\n        for i in range(n - k + 1):\n            for j in range(m - k + 1):\n                segment_sum = sum(itertools.chain(*[arr[i + x][j:j+k] for x in range(k)]))\n                max_sum = max(max_sum, segment_sum)\n\n    return max_sum": "",
+    "tests": [
+        "assert maximal_segment_sum([[1, 2, 3], [4, 5, 6]]) == 18",
+        "assert maximal_segment_sum([[0, 1, -2, -1], [-2, 0, 1, 1], [1, 2, -2, 0]]) == 4",
+        "assert maximal_segment_sum([[-10, 20, 30], [40, 50, 60], [70, 80, 90]]) == 180",
+        "assert maximal_segment_sum([[5, 7, 3, 8, 9], [-1, -2, -3, -4, 10], [0, 0, 0, 0, 0], [11, 12, 13, 14, 15]]) == 49"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

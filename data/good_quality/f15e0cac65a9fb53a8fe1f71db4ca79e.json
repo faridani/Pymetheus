@@ -1,0 +1,14 @@
+{
+    "title": "Divisor Game (Medium)",
+    "description": "Alice and Bob play a game where they take turns picking numbers from a list of 5 integers. The first player to pick a number that is divisible by the sum of the previous numbers picked wins.\n\n#### Function Signature\n```python\ndef winner(a: list[int], b: list[int]) -> str:\n```\n\n#### Input\n- `a` (list[int]): Alice's moves, a list of 5 integers.\n- `b` (list[int]): Bob's moves, a list of 5 integers.\n\n#### Output\n- Returns `'Alice'` if Alice wins, `'Bob'` if Bob wins, and `'Tie'` if the game is a tie.",
+    "code": "def winner(a: list[int], b: list[int]) -> str:\n    total_a = sum(a)\n    total_b = sum(b)\n    for i in range(5):\n        if total_a % (a[i] + total_b) == 0 or total_b % (b[i] + a[i+1%5]) == 0:\n            return 'Alice' if i % 2 else 'Bob'\n    return 'Tie'",
+    "tests": [
+        "assert winner([3, 4, 7, 11, 12], [10, 15, 17, 20, 22]) == 'Alice'",
+        "assert winner([1, 5, 9, 13, 16], [2, 6, 8, 14, 18]) == 'Bob'",
+        "assert winner([3, 4, 7, 11, 12], [10, 15, 17, 20, 22]) == 'Alice'",
+        "assert winner([1, 5, 9, 13, 16], [2, 6, 8, 14, 18]) == 'Bob'"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

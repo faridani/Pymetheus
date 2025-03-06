@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Maximum Sum of a Subsequence",
+    "description": "Write a function `max_sum_subsequence` that takes a list of integers and returns the maximum sum of a subsequence from this list. A subsequence is a sequence that can be derived from another sequence by deleting some elements without changing the order of the remaining elements.\n\n#### Function Signature\n\n```\ndef max_sum_subsequence(lst: List[int]) -> int:\n```\n\n#### Input\n\n- `lst` (List[int]): A list of integers.\n\n#### Output\n\n- Returns the maximum sum of a subsequence from the input list.\n\nExample: For the list [3, 2, -1, 4, -2], the function should return 6, because the subsequence with maximum sum is [2, 4].",
+    "code": "from typing import List\n\ndef max_sum_subsequence(lst: List[int]) -> int:\n    n = len(lst)\n    dp = [[0] * (n + 1) for _ in range(n + 1)]\n    for i in range(n - 1, -1, -1):\n        for j in range(i, n):\n            if lst[i] > 0:\n                dp[i][j] = max(dp[i][j], dp[i + 1][j] + lst[i])\n            else:\n                dp[i][j] = max(dp[i][j], dp[i + 1][j])\n    return dp[0][n - 1]",
+    "tests": [
+        "assert max_sum_subsequence([3, 2, -1, 4, -2]) == 6",
+        "assert max_sum_subsequence([-2, 1, 3, -4, 5]) == 7"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

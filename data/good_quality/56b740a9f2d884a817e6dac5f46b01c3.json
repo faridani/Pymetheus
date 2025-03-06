@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Counting Duplicates",
+    "description": "Given a list of integers, write a function `count_duplicates` that returns the count of numbers that appear more than once. For example, given the list `[1, 2, 3, 2, 4, 5, 5]`, the function should return `2` because there are two duplicates: `2` and `5`.\n\n#### Function Signature\n```\ndef count_duplicates(lst: list[int]) -> int:\n```\n\n#### Input\n- `lst` (list[int]): A list of integers.\n\n#### Output\n- Returns an integer representing the count of numbers that appear more than once.",
+    "code": "",
+    "\ndef count_duplicates(lst: list[int]) -> int:\n    seen = set()\n    duplicates = set()\n    for num in lst:\n        if num in seen:\n            duplicates.add(num)\n        else:\n            seen.add(num)\n    return len(duplicates)": "",
+    "tests": [
+        "assert count_duplicates([1, 2, 3, 2, 4, 5, 5]) == 2",
+        "assert count_duplicates([1, 2, 3, 4, 5]) == 0",
+        "assert count_duplicates([1, 1, 1, 2, 2]) == 2"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

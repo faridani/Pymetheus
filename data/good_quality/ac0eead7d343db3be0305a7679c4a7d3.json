@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Path Sum (Hard)",
+    "description": "Given a 2D array of integers, where each element represents the cost to traverse from one cell to the next. Write a function `min_path_sum` that returns the minimum total cost to traverse the entire grid from the top-left corner to the bottom-right corner.\n\n#### Function Signature\n```python\ndef min_path_sum(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D array of integers, where each element represents the cost to traverse from one cell to the next. The grid is guaranteed to be rectangular and not empty.\n\n#### Output\n- Returns the minimum total cost to traverse the entire grid from the top-left corner to the bottom-right corner.",
+    "code": "",
+    "\nimport heapq\n\ndef min_path_sum(grid: list[list[int]]) -> int:\n    m, n = len(grid), len(grid[0])\n    dp = [[float('inf')] * n for _ in range(m)]\n    dp[0][0] = grid[0][0]\n    pq = [(grid[0][0], 0, 0)]\n\n    while pq:\n        cost, i, j = heapq.heappop(pq)\n        if i > 0 and dp[i-1][j] + grid[i][j] < dp[i][j]:\n            dp[i][j] = dp[i-1][j] + grid[i][j]\n            heapq.heappush(pq, (dp[i][j], i, j))\n        if j > 0 and dp[i][j-1] + grid[i][j] < dp[i][j]:\n            dp[i][j] = dp[i][j-1] + grid[i][j]\n            heapq.heappush(pq, (dp[i][j], i, j))\n\n    return dp[-1][-1]": "",
+    "tests": [
+        "assert min_path_sum([[5, 1, 2, 6, 7]],) == 12",
+        "assert min_path_sum([['0', '0', '0'], ['1', '1', '1'], ['2', '3', '4']]) == 7",
+        "assert min_path_sum([[10], [15], [20]]) == 45"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

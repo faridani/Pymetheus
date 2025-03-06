@@ -1,0 +1,12 @@
+{
+    "title": "Egg Carton Filler",
+    "description": "A farmer's market has a special requirement for the eggs to be packed in cartons. The cartons are rectangular with dimensions 6 inches long, 4 inches wide and 1 inch high. Write a function `fill_carton` that calculates the maximum number of eggs that can fit into the carton.\n\n#### Function Signature\n```python\ndef fill_carton() -> int:\n```\n\n#### Input\nNone.\n\n#### Output\n- Returns an integer representing the maximum number of eggs that can fit into the carton.",
+    "code": "import math\ndef fill_carton() -> int:\n    # Calculate the volume of the carton in cubic inches\n    volume = 6 * 4 * 1\n    # Calculate the number of eggs that can fit in the carton (assuming each egg is a sphere with a diameter of 2.25 inches)\n    max_eggs = math.floor(volume / ((2.25/2)**3 * 4/3 * math.pi))\n    return int(max_eggs)",
+    "tests": [
+        "assert fill_carton() == 24",
+        "assert fill_carton() == 24"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

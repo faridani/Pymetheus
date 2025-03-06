@@ -1,0 +1,14 @@
+{
+    "title": "Fibonacci Numbers Checker",
+    "description": "Write a function `check_fibonacci` that takes an integer `n` as input and returns `True` if `n` is a Fibonacci number, `False` otherwise. A Fibonacci number is defined as a number in the sequence 0, 1, 1, 2, 3, 5, 8, 13, ... where each subsequent number is the sum of the previous two.\n\n#### Function Signature\n```python\ndef check_fibonacci(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): An integer that may be a Fibonacci number or not.\n\n#### Output\n- Returns `True` if the input integer is a Fibonacci number, `False` otherwise.",
+    "code": "def check_fibonacci(n: int) -> bool:\n    a, b = 0, 1\n    while b <= n:\n        if b == n:\n            return True\n        a, b = b, a + b\n    return False",
+    "tests": [
+        "assert check_fibonacci(13) == True",
+        "assert check_fibonacci(14) == False",
+        "assert check_fibonacci(21) == True",
+        "assert check_fibonacci(22) == False"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

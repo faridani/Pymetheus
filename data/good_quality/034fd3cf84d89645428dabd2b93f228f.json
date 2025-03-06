@@ -1,0 +1,15 @@
+{
+    "title": "Finding the Shortest Path Between Cities",
+    "description": "The problem of finding the shortest path between cities on a map is a classic example of a graph traversal problem. The problem description below assumes that you are familiar with basic graph theory and algorithms.\n\n#### Problem Description\nA group of adventurers is planning to visit a set of cities in Europe. They have a map that shows the cities connected by roads, but they also know that some of these connections are blocked due to road maintenance or construction. Write a function `shortest_path` that takes as input two cities and returns the length of the shortest path between them.\n\n#### Function Signature\n```python\ndef shortest_path(city1: str, city2: str) -> int:\n```\n\n#### Input\n- `city1` (str): The name of one of the cities.\n- `city2` (str): The name of another city.\n\n#### Output\n- Returns the length of the shortest path between the two input cities, in kilometers. If there is no path between the two cities, return -1.",
+    "code": "",
+    "\nimport networkx as nx\nG = nx.Graph()\nG.add_nodes_from(['London', 'Paris', 'Berlin', 'Rome'])\nG.add_edge('London', 'Paris', weight=300)\nG.add_edge('London', 'Berlin', weight=400)\nG.add_edge('Paris', 'Berlin', weight=200)\nG.add_edge('Paris', 'Rome', weight=500)\nG.add_edge('Berlin', 'Rome', weight=600)\n\ndef shortest_path(city1: str, city2: str) -> int:\n    if not G.has_node(city1):\n        return -1\n    if not G.has_node(city2):\n        return -1\n    try:\n        path_length = nx.shortest_path_length(G, city1, city2)\n    except nx.NetworkXNoPath:\n        return -1\n    return int(path_length)": "",
+    "tests": [
+        "assert shortest_path('London', 'Paris') == 300",
+        "assert shortest_path('Berlin', 'Rome') == 600",
+        "assert shortest_path('Paris', 'Berlin') == 200",
+        "assert shortest_path('London', 'Rome') == -1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

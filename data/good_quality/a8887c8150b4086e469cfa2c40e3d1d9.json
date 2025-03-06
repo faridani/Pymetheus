@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Prime Factorization",
+    "description": "Write a function `prime_factors` that takes an integer `n` as input and returns its prime factors. The function should return the prime factors as a list of integers, in ascending order.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> list[int]:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns a list of prime factors of the input integer, in ascending order.",
+    "code": "def prime_factors(n: int) -> list[int]:\n    def is_prime(k: int) -> bool:\n        if k < 2:\n            return False\n        for i in range(2, int(k**0.5) + 1):\n            if k % i == 0:\n                return False\n        return True\n\n    factors = []\n    i = 2\n    while i * i <= n:\n        if n % i:\n            i += 1\n        else:\n            n //= i\n            while n % i == 0:\n                n //= i\n            factors.append(i)\n    if n > 1:\n        factors.append(n)\n\n    return sorted(factors)",
+    "tests": [
+        "assert prime_factors(100) == [2, 2, 5, 5]",
+        "assert prime_factors(28) == [2, 2, 7]",
+        "assert prime_factors(13195) == [5, 7, 13, 139]",
+        "assert prime_factors(600851475143) == [71, 23, 18661]"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

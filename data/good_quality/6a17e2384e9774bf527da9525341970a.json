@@ -1,0 +1,15 @@
+{
+    "title": "Max Sum of Unordered Subtrees",
+    "description": "Given a binary tree where each node contains an integer value, write a function `max_sum_unordered_subtrees` that returns the maximum sum of all unordered subtrees. A subtree is any path in the original tree from its root to one of its leaves.\n\n#### Function Signature\n```python\ndef max_sum_unordered_subtrees(root: TreeNode) -> int:\n```\n\n#### Input\n- `root` (TreeNode): The root node of a binary tree, where each node contains an integer value.\n\n#### Output\n- Returns the maximum sum of all unordered subtrees in the given binary tree.",
+    "code": "",
+    "\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef max_sum_unordered_subtrees(root: TreeNode) -> int:\n    if not root:\n        return 0\n\n    max_sum = float('-inf')\n    for node in traverse_tree(root):\n        max_sum = max(max_sum, sum_of_subtree(node))\n\n    return max_sum\n\n\ndef traverse_tree(node: TreeNode) -> list:\n    if not node:\n        return []\n\n    result = [node]\n    for child in [node.left, node.right]:\n        if child:\n            result.extend(traverse_tree(child))\n    return result\n\n\ndef sum_of_subtree(node: TreeNode) -> int:\n    if not node:\n        return 0\n\n    return node.val + sum_of_subtree(node.left) + sum_of_subtree(node.right)": "",
+    "tests": [
+        "assert max_sum_unordered_subtrees(None) == 0",
+        "assert max_sum_unordered_subtrees(TreeNode(1)) == 1",
+        "assert max_sum_unordered_subtrees(TreeNode(1, TreeNode(2), TreeNode(3))) == 6",
+        "assert max_sum_unordered_subtrees(TreeNode(1, TreeNode(-2, TreeNode(-4)), TreeNode(3))) == 8"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

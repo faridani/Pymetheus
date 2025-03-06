@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Validating a Credit Card",
+    "description": "Write a function `validate_credit_card` that checks if a given credit card number is valid. A credit card number is considered valid if it meets the following conditions:\n\n- It starts with a 4, 5 or 6.\n- The length of the number is between 13 and 16 digits (inclusive).\n- All non-digit characters are removed from the string.\n\n#### Function Signature\n```python\ndef validate_credit_card(card_number: str) -> bool:\n```\n\n#### Input\n- `card_number` (str): A credit card number that may contain letters, numbers, spaces and punctuation.\n\n#### Output\n- Returns `True` if the input string is a valid credit card number, `False` otherwise.",
+    "code": "import re\n\ndef validate_credit_card(card_number: str) -> bool:\n    # Remove non-digit characters from the string\n    card_number = re.sub('[^0-9]', '', card_number)\n    # Check if the number starts with 4, 5 or 6 and has length between 13 and 16\n    return card_number.startswith('4') or card_number.startswith('5') or card_number.startswith('6') and len(card_number) >= 13 and len(card_number) <= 16",
+    "tests": [
+        "assert validate_credit_card('4111-1111-1111-1111') == True",
+        "assert validate_credit_card('5105-0199-8943-2094') == True",
+        "assert validate_credit_card('abcde') == False",
+        "assert validate_credit_card('1234567890123456') == True"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

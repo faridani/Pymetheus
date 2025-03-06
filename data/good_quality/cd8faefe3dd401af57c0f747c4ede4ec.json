@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Island Size",
+    "description": "An island is a group of adjacent cells with the same value. Write a function that finds the maximum size of an island in a given grid.\n\n#### Function Signature\n```python\ndef max_island_size(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D grid where each cell can have one of two values, 0 or 1. The value 1 represents an island.\n\n#### Output\n- Returns the maximum size of an island in the given grid.",
+    "code": "def max_island_size(grid: list[list[int]]) -> int:\n    if not grid:\n        return 0\n    def dfs(row, col):\n        if row < 0 or row >= len(grid) or col < 0 or col >= len(grid[0]):\n            return 0\n        if grid[row][col] == 0:\n            return 0\n        grid[row][col] = 0\n        return 1 + dfs(row - 1, col) + dfs(row + 1, col) + dfs(row, col - 1) + dfs(row, col + 1)\n    max_size = 0\n    for row in range(len(grid)):\n        for col in range(len(grid[0])):\n            if grid[row][col] == 1:\n                size = dfs(row, col)\n                max_size = max(max_size, size)\n    return max_size",
+    "tests": [
+        "assert max_island_size([[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0]]) == 1",
+        "assert max_island_size([[0,0,1,0,0],[0,1,1,0,0],[0,1,0,0,0]]) == 4",
+        "assert max_island_size([[0,0,0,0,0],[0,1,1,1,0],[0,0,0,0,0]]) == 9",
+        "assert max_island_size([]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

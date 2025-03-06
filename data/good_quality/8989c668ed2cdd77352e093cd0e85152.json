@@ -1,0 +1,14 @@
+{
+    "title": "Elegant Ensemble",
+    "description": "Given a list of integers representing the weights of N people, find the maximum sum that can be achieved by pairing off each person with their partner having the same weight. The order of pairs does not matter.\n\n#### Function Signature\n```python\ndef max_sum(weights: list[int]) -> int:\n```\n\n#### Input\n- `weights` (list[int]): A list of N integers representing the weights of people, where 1 <= N <= 1000 and 1 <= weight <= 10^9.\n\n#### Output\n- Returns the maximum sum that can be achieved by pairing off each person with their partner having the same weight.",
+    "code": "from collections import Counter\ndef max_sum(weights: list[int]) -> int:\n    # Count the frequency of each weight\n    freq = Counter(weights)\n    # Initialize the maximum sum to 0\n    max_sum = 0\n    # Iterate over the frequencies, doubling each value and adding it to the total sum\n    for count in freq.values():\n        max_sum += count * (2 * count - 1)\n    return max_sum",
+    "tests": [
+        "assert max_sum([1, 3, 5, 2, 3, 5]) == 13",
+        "assert max_sum([10, 20, 30, 40, 50]) == 250",
+        "assert max_sum([1] * 1000) == 499500",
+        "assert max_sum([9] + [8] * 999) == 199996"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

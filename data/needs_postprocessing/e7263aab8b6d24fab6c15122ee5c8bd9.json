@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Maximum Sum of Two Elements Easy\\\", \\\"description\\\": \\\"#### Problem Description\\\\nGiven an array of integers, write a function that returns the maximum sum of two elements.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef max_sum_of_two_elements(arr: list[int]) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `arr` (list[int]): A list of integers.\\\\n\\\\n#### Output\\\\n- Returns the maximum sum of two elements in the input array.\\\\n\\\", \\\"code\\\": \\\"\\\\ndef max_sum_of_two_elements(arr: list[int]) -> int:\\\\n    return max(x + y for x, y in [(x, y) for x in arr for y in arr if x != y])\\\\n\\\", \\\"tests\\\": [\\\"assert max_sum_of_two_elements([1, 2, 3, 4, 5]) == 9\\\", \\\"assert max_sum_of_two_elements([-10, -20, -30, 0, 40]) == 70\\\", \\\"assert max_sum_of_two_elements([1, 1, 1, 1, 1]) == 2\\\", \\\"assert max_sum_of_two_elements([]) == None\\\"] }\""
+}

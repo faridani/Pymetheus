@@ -1,0 +1,14 @@
+{
+    "title": "Number of Islands",
+    "description": "Given an `m x n` grid filled with non-negative numbers, find the number of islands in the grid. An island is a group of contiguous cells that contain a value greater than 0.\n\n#### Function Signature\n```python\ndef num_islands(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D grid filled with non-negative numbers, where each cell contains either 0 or a positive integer. The grid is rectangular and does not contain any rows or columns with missing values.\n\n#### Output\n- Returns the number of islands in the grid.",
+    "code": "",
+    "\nimport copy\n\ndef num_islands(grid: list[list[int]]) -> int:\n    if not grid:\n        return 0\n    \n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] > 0:\n                count += 1\n                dfs(grid, i, j)\n                \n    return count\n\ndef dfs(grid: list[list[int]], i: int, j: int) -> None:\n    if i < 0 or j < 0 or i >= len(grid) or j >= len(grid[0]) or grid[i][j] <= 0:\n        return\n    \n    grid[i][j] = -1  # mark visited cell as -1\n    for x, y in [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]:\n        dfs(grid, x, y)": "",
+    "tests": [
+        "assert num_islands([[0,0,1,0,0],[0,0,1,0,0],[0,0,1,1,1],[0,1,1,1,1]]) == 1",
+        "assert num_islands([[0,0,1,0,0],[0,0,1,0,0],[0,0,1,1,1],[0,1,1,1,1],[1,1,1,1,1]]) == 5",
+        "assert num_islands([]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

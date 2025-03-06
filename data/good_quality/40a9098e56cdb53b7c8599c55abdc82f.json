@@ -1,0 +1,14 @@
+{
+    "title": "Longest Common Prefix Finder",
+    "description": "Given a list of strings, find the longest common prefix among all the strings. If there are multiple common prefixes with the same length, return any one of them.\n\n#### Function Signature\n```python\ndef longest_common_prefix(strings: list[str]) -> str:\n```\n\n#### Input\n- `strings` (list[str]): A list of strings.\n\n#### Output\n- Returns the longest common prefix among all the strings.",
+    "code": "def longest_common_prefix(strings: list[str]) -> str:\n    if not strings:\n        return \"\"\n    min_length = min(len(s) for s in strings)\n    for i in range(min_length):\n        char = strings[0][i]\n        for string in strings[1:]:\n            if len(string) <= i or string[i] != char:\n                return strings[0][:i]\n    return strings[0][:min_length]",
+    "tests": [
+        "assert longest_common_prefix([\"hello\", \"helloworld\", \"hell\"]) == 'hell'",
+        "assert longest_common_prefix([]) == ''",
+        "assert longest_common_prefix(['apple', 'apricot']) == 'ap'",
+        "assert longest_common_prefix(['', '', '']) == ''"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

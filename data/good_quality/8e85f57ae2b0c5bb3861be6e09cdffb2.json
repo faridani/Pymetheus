@@ -1,0 +1,13 @@
+{
+    "title": "Max Area of Island",
+    "description": "Given an m x n binary matrix grid, find the maximum area of an island that can be formed by flipping some number of 0's to 1's in the grid.\n\n#### Function Signature\n```python\ndef maxAreaOfIsland(grid: List[List[int]]) -> int:\n```\n\n#### Input\n- `grid` (List[List[int]]): A binary matrix where 0 represents water and 1 represents land.\n\n#### Output\n- Returns the maximum area of an island that can be formed by flipping some number of 0's to 1's in the grid.",
+    "code": "",
+    "\nfrom typing import List\n\ndef maxAreaOfIsland(grid: List[List[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n    \n    m, n = len(grid), len(grid[0])\n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n    \n    def dfs(i: int, j: int) -> int:\n        if i < 0 or i >= m or j < 0 or j >= n or grid[i][j] == 0:\n            return 0\n        \n        grid[i][j] = 0\n        area = 1\n        \n        for d in directions:\n            ni, nj = i + d[0], j + d[1]\n            area += dfs(ni, nj)\n        \n        return area\n    \n    max_area = 0\n    for i in range(m):\n        for j in range(n):\n            if grid[i][j] == 1:\n                max_area = max(max_area, dfs(i, j))\n    \n    return max_area": "",
+    "tests": [
+        "assert maxAreaOfIsland([[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0],[0,0,0,1,1]]) == 4",
+        "assert maxAreaOfIsland([[1,1,1,1],[1,1,0,1],[1,0,0,1],[1,1,1,1]]) == 6"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

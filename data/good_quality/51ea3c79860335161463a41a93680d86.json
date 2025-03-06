@@ -1,0 +1,15 @@
+{
+    "title": "Easy: Divisor Sum",
+    "description": "For a given integer `n`, find the sum of all divisors (excluding `n` itself). Write a function `divisor_sum` that calculates this sum.\n\n#### Function Signature\n```python\ndef divisor_sum(n: int) -> int:\n```\n\n#### Input\n- `n` (int): An integer for which you need to calculate the sum of its divisors.\n\n#### Output\n- Returns the sum of all divisors of the input integer, excluding the integer itself.",
+    "code": "",
+    "\ndef divisor_sum(n: int) -> int:\n    total = 0\n    for i in range(1, n):\n        if n % i == 0:\n            total += i\n    return total": "",
+    "tests": [
+        "assert divisor_sum(12) == 16",
+        "assert divisor_sum(24) == 28",
+        "assert divisor_sum(36) == 60",
+        "assert divisor_sum(48) == 84"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

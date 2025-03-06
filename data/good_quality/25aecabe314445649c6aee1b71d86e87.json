@@ -1,0 +1,12 @@
+{
+    "title": "Egg Drop Problem (Hard)",
+    "description": "Write a function to find the minimum number of attempts required to successfully drop eggs from a very high building, where each egg has a 50% chance of surviving a fall from `k` stories. The goal is to minimize the number of attempts while ensuring that all eggs are either found to be safe (i.e., survive any number of falls) or non-viable (i.e., do not survive at all). You can only start with one egg, and you must test them in a sequence from `k` stories down.\n\n#### Function Signature\n```python\ndef min_attempts(k: int) -> int:\n```\n\n#### Input\n- `k` (int): The number of floors in the building.\n\n#### Output\n- Returns the minimum number of attempts required to successfully drop eggs from a very high building.",
+    "code": "import math\n\ndef min_attempts(k: int) -> int:\n    # Initialize the minimum number of attempts as k\n    min_attemps = k\n    for i in range(1, k + 1):\n        # Calculate the number of attempts for the current egg test\n        attempts = math.ceil(math.log2(i))\n        # Update the minimum number of attempts if necessary\n        min_attemps = min(min_attemps, attempts)\n    return min_attemps",
+    "tests": [
+        "assert min_attempts(3) == 4",
+        "assert min_attempts(10) == 5"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

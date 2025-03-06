@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Finding the Shortest Common Supersequence",
+    "description": "Given two strings `s1` and `s2`, find the shortest common supersequence (SCS) of the two. A supersequence is a string that contains all characters from both `s1` and `s2`. The SCS should not contain any extra characters that are not present in either `s1` or `s2`.\n\n#### Function Signature\n```\ndef scs(s1: str, s2: str) -> str:\n```\n\n#### Input\n- `s1` (str): A string of unique characters.\n- `s2` (str): Another string of unique characters.\n\n#### Output\n- Returns the shortest common supersequence of the input strings as a single string.\n\nExample: If `s1 = \"abc\"` and `s2 = \"def\"`, the SCS would be `\"abcdef\"`.",
+    "code": "",
+    "\nimport functools\n\ndef scs(s1: str, s2: str) -> str:\n    m, n = len(s1), len(s2)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n\n    for i in range(m + 1):\n        for j in range(n + 1):\n            if i == 0:\n                dp[i][j] = j\n            elif j == 0:\n                dp[i][j] = i\n            elif s1[i - 1] == s2[j - 1]:\n                dp[i][j] = 1 + dp[i - 1][j - 1]\n            else:\n                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1])\n\n    i, j = m, n\n    result = []\n    while i > 0 or j > 0:\n        if i == 0:\n            result.append(s2[j - 1])\n            j -= 1\n        elif j == 0:\n            result.append(s1[i - 1])\n            i -= 1\n        elif s1[i - 1] == s2[j - 1]:\n            result.append(s1[i - 1])\n            i -= 1\n            j -= 1\n        else:\n            if dp[i - 1][j] < dp[i][j - 1] + 1:\n                result.append(s1[i - 1])\n                i -= 1\n            else:\n                result.append(s2[j - 1])\n                j -= 1\n\n    return ''.join(reversed(result))": "",
+    "tests": [
+        "assert scs('abc', 'def') == 'abcdef'",
+        "assert scs('abcd', 'cba') == 'abdcba'",
+        "assert scs('hello', 'world') == 'helloworld'"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

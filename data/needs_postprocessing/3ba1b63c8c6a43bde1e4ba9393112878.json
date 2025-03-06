@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"The Mysterious Island of Stones\", \"description\": \"A group of archaeologists are on a mission to explore an ancient island\", \"count_stones(island\": \"str) -> int:\\n```\\n\\n#### Input\\n- `island` (str): A 2D representation of the island\", \"input\": \"....\"}"
+}

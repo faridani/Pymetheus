@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Number of Islands",
+    "description": "You are given a 2D grid where each cell can be either land ('1') or water ('0'). You want to find the number of islands in this grid, where an island is defined as a group of connected land cells.\n\n#### Function Signature\n```python\ndef count_islands(grid: list) -> int:\n```\n\n#### Input\n- `grid` (list): A 2D list representing the grid. Each element is either '1' or '0'.\n\n#### Output\n- Returns the number of islands in the grid.",
+    "code": "import copy\n\ndef count_islands(grid: list) -> int:\n    if not grid:\n        return 0\n    def dfs(row: int, col: int, visited: set) -> None:\n        if row < 0 or row >= len(grid) or col < 0 or col >= len(grid[0]) or (row, col) in visited or grid[row][col] == '0':\n            return\n        visited.add((row, col))\n        dfs(row - 1, col, visited)\n        dfs(row + 1, col, visited)\n        dfs(row, col - 1, visited)\n        dfs(row, col + 1, visited)\n    count = 0\n    for row in range(len(grid)):\n        for col in range(len(grid[0])):\n            if grid[row][col] == '1' and (row, col) not in visited:\n                visited = set()\n                dfs(row, col, visited)\n                count += 1\n    return count",
+    "tests": [
+        "assert count_islands([['0','0','1','0','0'],\n                        ['0','0','1','0','0'],\n                        ['0','1','1','1','0'],\n                        ['0','1','0','0','0']]) == 1",
+        "assert count_islands([['0', '1', '0'], ['1', '1', '1'], ['0', '1', '0']]) == 2",
+        "assert count_islands([]) == 0",
+        "assert count_islands([['0'], ['0']]) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

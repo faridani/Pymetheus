@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Minimum Number of Moves to Make All Numbers Unique",
+    "description": "Given a list of integers, find the minimum number of moves required to make all numbers unique. A move is defined as incrementing or decrementing an integer by 1.\n\n#### Function Signature\n```python\ndef min_moves(lst: List[int]) -> int:\n```\n\n#### Input\n- `lst` (List[int]): A list of integers that may contain duplicates.\n\n#### Output\n- Returns the minimum number of moves required to make all numbers unique.",
+    "code": "",
+    "\nfrom typing import List\n\ndef min_moves(lst: List[int]) -> int:\n    # Sort the list in ascending order\n    lst.sort()\n    \n    # Initialize the count of moves\n    moves = 0\n    \n    # Iterate over the list starting from the second element (index 1)\n    for i in range(1, len(lst)):\n        # If the current number is not unique, increment the move count by 1\n        if lst[i] == lst[i - 1]:\n            moves += 1\n            # Decrement the current number until it becomes unique\n            while i > 0 and lst[i] <= lst[i - 1]:\n                lst[i] += 1\n                moves += 1\n                i -= 1\n    \n    return moves": "",
+    "tests": [
+        "assert min_moves([1, 2, 3]) == 0",
+        "assert min_moves([1, 1, 2]) == 2",
+        "assert min_moves([5, 6, 7]) == 0",
+        "assert min_moves([-1, -1, 1]) == 4"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

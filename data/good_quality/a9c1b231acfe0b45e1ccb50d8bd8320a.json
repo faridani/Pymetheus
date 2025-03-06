@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Counting Coins",
+    "description": "Tom has some coins that add up to a certain amount. He wants to know how many ways he can make change for this amount with American coins (penny, nickel, dime, quarter). Write a function `count_ways` that takes the total amount of money and the denominations of the coins as input and returns the number of ways Tom can make change.\n\n#### Function Signature\n```\ndef count_ways(total: int, denominations: list[int]) -> int:\n```\n\n#### Input\n- `total`: The total amount of money that Tom has (int).\n- `denominations`: A list of integers representing the denominations of the coins.\n\n#### Output\n- Returns the number of ways Tom can make change for the given amount using the provided coins.",
+    "code": "def count_ways(total: int, denominations: list[int]) -> int:\n    # Create a dictionary to store the number of ways Tom can make change for each amount up to total\n    dp = {0: 1}\n    for coin in denominations:\n        for i in range(coin, total + 1):\n            if i - coin not in dp:\n                dp[i] = 0\n            else:\n                dp[i] += dp[i - coin]\n    return dp[total]",
+    "tests": [
+        "assert count_ways(5, [1, 2]) == 4",
+        "assert count_ways(10, [1, 2, 5]) == 14",
+        "assert count_ways(20, [1, 5]) == 33"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

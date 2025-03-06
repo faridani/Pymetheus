@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Tree Traversals",
+    "description": "Given a tree represented as an adjacency list, write a function `tree_traversal` that performs the following tasks:\n\n#### Function Signature\n```python\ndef tree_traversal(tree: dict) -> str:\n```\n\n#### Input\n- `tree` (dict): A dictionary where each key is a node and its corresponding value is a list of child nodes.\n\n#### Output\n- Returns the string representation of the tree traversal (pre-order, in-order, or post-order).\n\nYou can choose to implement any one or more of these traversals. You may use recursion or iteration as you see fit.",
+    "code": "",
+    "\nimport collections\n\ndef tree_traversal(tree: dict) -> str:\n    def pre_order(node, result):\n        if node is None:\n            return\n        result.append(str(node))\n        for child in tree.get(node, []):\n            pre_order(child, result)\n\n    result = []\n    pre_order('A', result)\n    return ' '.join(result)": "",
+    "tests": [
+        "assert tree_traversal({'A': ['B', 'C'], 'B': ['D', 'E'], 'C': ['F'], 'D': [], 'E': [], 'F': []}) == 'A B D E F C'",
+        "assert tree_traversal({'A': ['B', 'C'], 'B': ['D', 'E'], 'C': ['F'], 'D': [], 'E': [], 'F': []}) == 'A B D E F C'"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

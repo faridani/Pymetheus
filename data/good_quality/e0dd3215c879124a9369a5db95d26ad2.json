@@ -1,0 +1,15 @@
+{
+    "title": "Catalan Numbers",
+    "description": "The Catalan numbers are a sequence of natural numbers that occur in various counting problems, often involving recursive structures. The first few Catalan numbers are 1, 2, 5, 14, 34, 89, 233, and 664. Write a function `catalan_number` that calculates the nth Catalan number.\n\n#### Function Signature\n```python\ndef catalan_number(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The index of the desired Catalan number.\n\n#### Output\n- Returns the nth Catalan number.",
+    "code": "",
+    "\ndef catalan_number(n: int) -> int:\n    a = [0] * (n + 1)\n    a[0] = a[1] = 1\n    for i in range(2, n + 1):\n        total = 0\n        for j in range(i):\n            total += a[j] * a[i - 1 - j]\n        a[i] = total\n    return a[n]": "",
+    "tests": [
+        "assert catalan_number(5) == 14",
+        "assert catalan_number(3) == 2",
+        "assert catalan_number(10) == 234",
+        "assert catalan_number(15) == 5348"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

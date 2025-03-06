@@ -1,0 +1,14 @@
+{
+    "title": "Minimum XOR Sum of Two Arrays",
+    "description": "Given two arrays of integers, find the minimum possible sum of their XOR (bitwise exclusive OR) values.\n\n#### Function Signature\n```\ndef min_xor_sum(arr1: list[int], arr2: list[int]) -> int:\n```\n\n#### Input\n- `arr1` (list[int]): The first array of integers.\n- `arr2` (list[int]): The second array of integers.\n\n#### Output\n- Returns the minimum possible sum of XOR values between elements in the two arrays.\n\nExample: If arr1 = [3, 5, 7] and arr2 = [9, 11, 12], your function should return the minimum possible sum of their XOR values, which is 4 + 8 + 0 = 12.",
+    "code": "\ndef min_xor_sum(arr1: list[int], arr2: list[int]) -> int:\n    max_val = max(max(arr1), max(arr2))\n    xor_sums = [0] * (max_val + 1)\n    \n    for num in arr1:\n        xor_sums[num ^ (num - 1)] += 1\n    for num in arr2:\n        xor_sums[num ^ (num - 1)] -= 1\n    \n    return sum(xor_sum for xor_sum, count in enumerate(xor_sums) if count > 0)",
+    "tests": [
+        "assert min_xor_sum([3, 5, 7], [9, 11, 12]) == 12",
+        "assert min_xor_sum([2, 2, 4], [1, 2, 2]) == 6",
+        "assert min_xor_sum([10, 20], [30, 40]) == 14",
+        "assert min_xor_sum([15, 16, 17], [18, 19, 21]) == 24"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

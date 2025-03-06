@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Guessing Game",
+    "description": "Write a function `guess_number` that takes two parameters, `start` and `end`, which are the range of numbers to guess. The function should return the number in this range that you think a computer might choose randomly.\n\n#### Function Signature\n```python\ndef guess_number(start: int, end: int) -> int:\n```\n\n#### Input\n- `start` (int): The start of the range.\n- `end` (int): The end of the range.\n\n#### Output\n- Returns an integer within the given range that a computer might choose randomly.",
+    "code": "",
+    "\nimport random\n\ndef guess_number(start: int, end: int) -> int:\n    # Make the computer's choice\n    return random.randint(start, end)": "",
+    "tests": [
+        "assert 0 <= guess_number(0, 10) <= 10",
+        "assert -5 <= guess_number(-10, 0) <= 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Counting Tree Nodes",
+    "description": "A tree node is a point where the tree branches out. A tree can be represented as an undirected graph, where each node has at most two children (the left child and the right child). Given the root of a binary tree and its height, write a function `count_tree_nodes` that returns the total number of nodes in the tree.\n\n#### Function Signature\n```python\ndef count_tree_nodes(root: any, height: int) -> int:\n```\n\n#### Input\n- `root`: The root node of the binary tree. Each node is represented as a dictionary containing its value and two child pointers (left and right).\n- `height`: The height of the binary tree.\n\n#### Output\n- Returns the total number of nodes in the binary tree.",
+    "code": "def count_tree_nodes(root: any, height: int) -> int:\n    if root is None:\n        return 0\n    else:\n        # Count the current node and recursively count the left and right subtrees.\n        return 1 + count_tree_nodes(root['left'], height - 1) + count_tree_nodes(root['right'], height - 1)",
+    "tests": [
+        "assert count_tree_nodes({'value': 'A', 'left': None, 'right': None}, 0) == 1",
+        "assert count_tree_nodes({'value': 'A', 'left': {'value': 'B', 'left': None, 'right': None}, 'right': None}, 1) == 3",
+        "assert count_tree_nodes({'value': 'A', 'left': {'value': 'B', 'left': {'value': 'C', 'left': None, 'right': None}, 'right': None}, 'right': None}, 2) == 5"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Trailing Zeros",
+    "description": "Write a function `trailing_zeros` that calculates the number of trailing zeros in a given factorial. For example, 5! = 120 has two trailing zeros (20 and 10), while 4! = 24 has one trailing zero.\n\n#### Function Signature\n\n```\ndef trailing_zeros(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer representing the factorial to calculate the number of trailing zeros for.\n\n#### Output\n- Returns the number of trailing zeros in the given factorial.",
+    "code": "\nimport math\n\ndef trailing_zeros(n: int) -> int:\n    count = 0\n    i = 5\n    while n / i >= 1:\n        count += math.floor(n / (i * 10))\n        i *= 5\n    return count",
+    "tests": [
+        "assert trailing_zeros(100) == 24",
+        "assert trailing_zeros(20) == 4",
+        "assert trailing_zeros(1) == 0",
+        "assert trailing_zeros(2) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

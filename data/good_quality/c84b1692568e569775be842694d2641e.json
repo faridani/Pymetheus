@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Maximum Sum of Subsequence with Constraints",
+    "description": "Given a list of integers `numbers` and two integers `k1` and `k2`, find the maximum sum of a subsequence that satisfies the following conditions:\n\n#### Conditions\n- The subsequence must contain at most `k1` elements.\n- The absolute difference between any two consecutive elements in the subsequence must be greater than or equal to `k2`.\n\n#### Function Signature\n```python\ndef max_sum_subsequence(numbers: list[int], k1: int, k2: int) -> int:\n```\n\n#### Input\n- `numbers` (list[int]): A list of integers.\n- `k1` (int): The maximum number of elements in the subsequence.\n- `k2` (int): The minimum absolute difference between any two consecutive elements in the subsequence.\n\n#### Output\n- Returns the maximum sum of a subsequence that satisfies the conditions.",
+    "code": "",
+    "\nfrom typing import List\n\ndef max_sum_subsequence(numbers: List[int], k1: int, k2: int) -> int:\n    n = len(numbers)\n    dp = [[0] * (k1 + 1) for _ in range(n + 1)]\n\n    for i in range(1, n + 1):\n        for j in range(1, min(i, k1) + 1):\n            if abs(numbers[i - 1] - numbers[i - 2]) >= k2:\n                dp[i][j] = max(dp[i - 1][j], dp[i - 2][j - 1] + numbers[i - 1])\n            else:\n                dp[i][j] = dp[i - 1][j]\n\n    return dp[n][k1]": "",
+    "tests": [
+        "assert max_sum_subsequence([1, 3, 5, 7], 4, 2) == 12",
+        "assert max_sum_subsequence([-10, -8, -6, -4, -2, 0], 5, 1) == 2",
+        "assert max_sum_subsequence([1, 2, 3, 4, 5], 3, 1) == 9"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

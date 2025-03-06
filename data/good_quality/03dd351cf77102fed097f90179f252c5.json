@@ -1,0 +1,14 @@
+{
+    "title": "Number of Islands II - Hard",
+    "description": "Given a grid of integers where `0` represents water and any positive integer represents an island, write a function that counts the number of islands in the grid. The function should return `0` if there are no islands.\n\n#### Function Signature\n```\ndef count_islands(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D list of integers where each element is either `0` (water) or a positive integer (island).\n\n#### Output\n- Returns the number of islands in the grid.\n\n#### Constraints\nThe input grid will not be empty and all elements in the grid will be either `0` or a positive integer.",
+    "code": "def count_islands(grid: list[list[int]]) -> int:\n    if not grid:\n        return 0\n\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] > 0:\n                self._dfs(grid, i, j)\n                count += 1\n\n    return count\n\n    def _dfs(self, grid: list[list[int]], x: int, y: int) -> None:\n        if x < 0 or x >= len(grid) or y < 0 or y >= len(grid[0]) or grid[x][y] <= 0:\n            return\n        grid[x][y] = 0\n        self._dfs(grid, x-1, y)\n        self._dfs(grid, x+1, y)\n        self._dfs(grid, x, y-1)\n        self._dfs(grid, x, y+1)",
+    "tests": [
+        "assert count_islands([[0,0,0,0],[1,0,1,0],[0,1,1,0]]) == 2",
+        "assert count_islands([]) == 0",
+        "assert count_islands([[]]) == 0",
+        "assert count_islands([[0,0,0,0]]) == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

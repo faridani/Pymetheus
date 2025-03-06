@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Binary Tree Maximum Path Sum",
+    "description": "A maximum path sum in a binary tree can start at any node, and then traverse either left or right child nodes before ending at the leaf nodes. Write a function `max_path_sum` that calculates the maximum possible sum from root to any leaf of the binary tree.\n\n#### Function Signature\n```python\ndef max_path_sum(root: TreeNode) -> int:\n```\n\n#### Input\n- `root` (TreeNode): The root node of the binary tree. Each node is represented as a tuple `(value, left_child, right_child)` where `value` is an integer and `left_child` and `right_child` are either `None` or another TreeNode.\n\n#### Output\n- Returns the maximum possible sum from root to any leaf of the binary tree.",
+    "code": "\nclass TreeNode:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\ndef max_path_sum(root: TreeNode) -> int:\n    if root is None:\n        return 0\n\n    max_sum = float('-inf')\n    stack = [(root, root.value)]\n\n    while stack:\n        node, current_sum = stack.pop()\n        max_sum = max(max_sum, current_sum)\n\n        if node.right:\n            stack.append((node.right, current_sum + node.right.value))\n        if node.left:\n            stack.append((node.left, current_sum + node.left.value))\n\n    return max_sum",
+    "tests": [
+        "assert max_path_sum(TreeNode(1, None, TreeNode(2))) == 3",
+        "assert max_path_sum(TreeNode(-10, TreeNode(-5), TreeNode(9))) == 14",
+        "assert max_path_sum(None) == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

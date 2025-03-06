@@ -1,0 +1,13 @@
+{
+    "title": "Minimum Time to Visit All Nodes",
+    "description": "In a weighted directed graph, we have a set of nodes and edges with corresponding weights. Each node has a unique id from 1 to n. Write a function `min_time` that calculates the minimum time required to visit all nodes exactly once starting from node 0.\n\n#### Function Signature\n```python\ndef min_time(graph: list[list[int]], n: int) -> int:\n```\n\n#### Input\n- `graph`: A weighted directed graph represented as an adjacency list. Each edge has a non-negative weight.\n- `n`: The number of nodes in the graph.\n\n#### Output\n- Returns the minimum time required to visit all nodes exactly once starting from node 0.",
+    "code": "",
+    "\nimport heapq\n\ndef min_time(graph, n):\n    # Create a priority queue to store the nodes and their distances\n    pq = [(0, 0)]  # (distance, node_id)\n    visited = set()\n    time = 0\n    \n    while pq:\n        distance, node = heapq.heappop(pq)\n        \n        if node not in visited:\n            visited.add(node)\n            time += distance\n            \n            for neighbor, weight in graph[node]:\n                if neighbor not in visited:\n                    heapq.heappush(pq, (weight + distance, neighbor))\n    \n    return time": "",
+    "tests": [
+        "assert min_time([[0, 1, 2], [1, 0, 3], [2, 1, 4]], 3) == 6",
+        "assert min_time([[0, 1, 2], [1, 0, 3], [2, 1, 4], [3, 2, 5]], 4) == 9"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

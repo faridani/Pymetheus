@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum Subarray of Unsorted Integers",
+    "description": "Given an array of integers, find the maximum sum of a subarray (a contiguous sequence of numbers) that can be formed by sorting all elements in ascending order. For example, if the input is `[3, 2, -6, 12, 0, 5, -1, 7]`, the maximum sum would be `12 + 0 + 5 = 17`.\n\n#### Function Signature\n```python\ndef max_sum_subarray(arr: list[int]) -> int:\n```\n\n#### Input\n- `arr` (list[int]): An unsorted array of integers.\n\n#### Output\n- Returns the maximum sum of a subarray that can be formed by sorting all elements in ascending order.",
+    "code": "",
+    "\nimport heapq\n\ndef max_sum_subarray(arr: list[int]) -> int:\n    # Convert the array to a heap\n    heap = []\n    for num in arr:\n        heapq.heappush(heap, -num)  # Negate numbers for max-heap behavior\n    \n    # Initialize variables for the maximum sum and the current sum\n    max_sum = 0\n    current_sum = 0\n\n    while heap:\n        # Extract the largest number from the heap (most negative)\n        num = -heapq.heappop(heap)\n        \n        # Update the current sum\n        current_sum += num\n        \n        # If the current sum exceeds the maximum sum, update the maximum sum\n        if current_sum > max_sum:\n            max_sum = current_sum\n        \n        # Reset the current sum if it becomes negative (new subarray starts)\n        if current_sum < 0:\n            current_sum = 0\n    \n    return max_sum": "",
+    "tests": [
+        "assert max_sum_subarray([3, 2, -6, 12, 0, 5, -1, 7]) == 17",
+        "assert max_sum_subarray([-2, 3, -4]) == 5",
+        "assert max_sum_subarray([1, 2, 3]) == 6"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Minimum Time to Collect All Gifts\", \"description\": \"There are N houses in a row\", \"min_time(N\": \"int\", \"K\": \"int) -> int:\\n```\\n\\n#### Input\\n- N (int): The number of houses.\\n- K (int): The number of keys you have.\\n\\n#### Output\\n- Returns the minimum time it takes to collect all gifts.\"}"
+}

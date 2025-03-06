@@ -1,0 +1,14 @@
+{
+    "title": "Economical Trip Planning",
+    "description": "In a given list of cities and their respective distances, find the total minimum cost required to visit each city exactly once and return to the starting point. You can travel from one city to another only if there's an edge between them in the graph.\n\n#### Function Signature\n```python\ndef economical_trip_planning(cities: list[tuple[str, int]]) -> int:\n```\n\n#### Input\n- `cities` (list[tuple[str, int]]): A list of tuples where each tuple contains a city name and its distance from the starting point.\n\n#### Output\n- Returns the total minimum cost required to visit each city exactly once and return to the starting point.",
+    "code": "",
+    "\nfrom collections import defaultdict\nimport math\n\ndef economical_trip_planning(cities: list[tuple[str, int]]) -> int:\n    # Build a graph with edges between cities\n    graph = defaultdict(list)\n    for city1, dist1 in cities:\n        for city2, dist2 in cities:\n            if city1 != city2 and (dist1 + dist2) == 0:\n                graph[city1].append(city2)\n                graph[city2].append(city1)\n\n    # Use a greedy approach to find the minimum cost\n    total_cost = 0\n    visited_cities = set()\n    current_city = cities[0][0]\n    while len(visited_cities) < len(cities):\n        min_distance = float('inf')\n        next_city = None\n        for city in graph[current_city]:\n            if city not in visited_cities:\n                distance = abs(city1 - int((city2 + dist1) / 2))\n                if distance < min_distance:\n                    min_distance = distance\n                    next_city = city\n        total_cost += min_distance\n        visited_cities.add(current_city)\n        current_city = next_city\n\n    return total_cost": "",
+    "tests": [
+        "assert economical_trip_planning([('A', 1), ('B', 2), ('C', 3), ('D', 4)]) == 6",
+        "assert economical_trip_planning([('A', 10), ('B', 15), ('C', 20), ('D', 25), ('E', 30)]) == 60",
+        "assert economical_trip_planning([('A', 5), ('B', 3), ('C', 7), ('D', 2), ('E', 1)]) == 10"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

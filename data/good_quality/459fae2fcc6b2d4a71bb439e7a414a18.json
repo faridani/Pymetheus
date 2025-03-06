@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Maximum Sum of Distinct Integers",
+    "description": "Consider an array of integers where each element represents a distinct integer. Write a function `max_sum` that calculates the maximum sum of k distinct elements from this array.\n\n#### Function Signature\n```\ndef max_sum(nums, k: int) -> int:\n```\n\n#### Input\n- `nums` (list): A list of integers where each element represents a distinct integer.\n- `k` (int): The number of distinct integers to select.\n\n#### Output\n- Returns the maximum sum of k distinct elements from the input array.",
+    "code": "def max_sum(nums, k: int) -> int:\n    nums.sort()\n    return sum(nums[-k:])",
+    "tests": [
+        "assert max_sum([1, 2, 3, 4, 5], 2) == 9",
+        "assert max_sum([-1, -2, -3], 2) == -1",
+        "assert max_sum([10, 20, 30, 40, 50], 3) == 60"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

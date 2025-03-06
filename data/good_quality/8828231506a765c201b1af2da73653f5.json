@@ -1,0 +1,14 @@
+{
+    "title": "Harshad Number Finder",
+    "description": "A Harshad number, also known as a Niven number, is an integer that is divisible by the sum of its digits. For example, 18 is a Harshad number because it is divisible by 9 (the sum of its digits). Write a function `harshad_numbers` that generates all the Harshad numbers within a given range.\n\n#### Function Signature\n```python\ndef harshad_numbers(start: int, end: int) -> list:\n```\n\n#### Input\n- `start` (int): The start of the range (inclusive).\n- `end` (int): The end of the range (exclusive).\n\n#### Output\n- Returns a list of Harshad numbers within the given range.",
+    "code": "\nimport math\n\ndef harshad_numbers(start: int, end: int) -> list:\n    def is_harshad(n: int) -> bool:\n        return n % sum(int(digit) for digit in str(n)) == 0\n\n    result = []\n    for i in range(start, end):\n        if is_harshad(i):\n            result.append(i)\n    return result",
+    "tests": [
+        "assert harshad_numbers(1, 1000).sort() == [4, 9, 12, 18, 20, 21, 24, 27, 30, 36, 42, 48, 54, 60, 63, 72, 81, 84, 90, 108, 126, 144, 162, 189, 198, 216, 243, 252, 270, 288, 324, 352, 378, 396, 432, 450, 486, 504, 540, 567, 576, 630, 648, 756, 810, 882, 972]",
+        "assert harshad_numbers(1000, 2000).sort() == [1020, 1080, 1200, 1260, 1368, 1440, 1512, 1560, 1680, 1728, 1800, 1848, 1920, 1968, 2016]",
+        "assert harshad_numbers(1, 10).sort() == [4]",
+        "assert harshad_numbers(100000, 101000).sort() == []"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Euler's Totient Function",
+    "description": "The Euler's totient function, denoted by \u03c6(n), is a fundamental arithmetic function that counts the positive integers up to n that are relatively prime to n. Write a function `totient` that calculates Euler's totient function for a given integer.\n\n#### Function Signature\n```\ndef totient(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer for which the Euler's totient function is calculated.\n\n#### Output\n- Returns an integer representing the value of Euler's totient function for the input `n`.\n\n#### Hints\n- The problem can be solved by using prime factorization and counting the powers of each prime factor.\n- You may want to use a helper function to calculate the number of factors of a given prime.\n\n#### Constraints\n- Your solution should work for inputs up to 10^6.",
+    "code": "\nimport math\n\ndef totient(n: int) -> int:\n    if n == 1:\n        return 1\n    result = n\n    p = 2\n    while p * p <= n:\n        count = 0\n        while n % (p * p) == 0:\n            n //= p * p\n            count += 1\n        if count > 0:\n            result -= (result // (p ** count)) * (p ** (count - 1))\n        p += 1\n    if n > 1:\n        result -= (result // n) * (n - 1)\n    return result",
+    "tests": [
+        "assert totient(10) == 4",
+        "assert totient(12) == 4",
+        "assert totient(20) == 8",
+        "assert totient(24) == 8"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

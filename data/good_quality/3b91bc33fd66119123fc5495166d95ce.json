@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Word Chaining",
+    "description": "In this problem, you are given a list of words and your task is to find the longest chain of words where each word starts with the last character of the previous word. Write a function `longest_chain` that takes a list of words as input and returns the length of the longest chain.\n\n#### Function Signature\n```python\ndef longest_chain(words: list[str]) -> int:\n```\n\n#### Input\n- `words` (list[str]): A list of English words.\n\n#### Output\n- Returns an integer representing the length of the longest chain of words.",
+    "code": "def longest_chain(words: list[str]) -> int:\n    # Create a dictionary to store the words that start with each character\n    char_to_words = {}\n    for word in words:\n        first_char = word[0]\n        if first_char not in char_to_words:\n            char_to_words[first_char] = [word]\n        else:\n            char_to_words[first_char].append(word)\n\n    # Initialize the longest chain length to 1, since a single word is a chain of length 1\n    longest_chain_length = 1\n    for words in char_to_words.values():\n        # For each set of words that start with the same character,\n        # find the longest chain by recursively calling the function on this set\n        current_chain_length = 0\n        for word in words:\n            if len(word) > current_chain_length:\n                current_chain_length = len(word)\n        longest_chain_length = max(longest_chain_length, current_chain_length + 1)\n    return longest_chain_length",
+    "tests": [
+        "assert longest_chain(['apple', 'banana', 'cherry']) == 3",
+        "assert longest_chain(['dog', 'cat', 'fish', 'bird']) == 2",
+        "assert longest_chain(['hello', 'world', 'python']) == 1",
+        "assert longest_chain(['a', 'b', 'c', 'd']) == 4"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

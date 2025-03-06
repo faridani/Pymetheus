@@ -1,0 +1,15 @@
+{
+    "title": "Easy: Closest Pair",
+    "description": "A set of points (x, y) is given. Find the pair of points with minimum distance. If there are multiple such pairs, return any one.\n\n#### Function Signature\n```python\ndef closest_pair(points: list[tuple[int, int]]) -> tuple[tuple[int, int], tuple[int, int]]:\n```\n\n#### Input\n- `points` (list[tuple[int, int]]): A list of pairs of integers representing the coordinates of the points.\n\n#### Output\n- Returns a tuple of two tuples of integers, each representing the coordinates of a point. These are the pair of points with minimum distance.",
+    "code": "",
+    "\nfrom math import sqrt\n\ndef closest_pair(points: list[tuple[int, int]]) -> tuple[tuple[int, int], tuple[int, int]]:\n    if len(points) <= 1:\n        return None\n    \n    min_distance = float('inf')\n    closest_pair_points = None\n    \n    for i in range(len(points)):\n        for j in range(i + 1, len(points)):\n            distance = sqrt((points[i][0] - points[j][0]) ** 2 + (points[i][1] - points[j][1]) ** 2)\n            if distance < min_distance:\n                min_distance = distance\n                closest_pair_points = ((points[i][0], points[i][1]), (points[j][0], points[j][1]))\n    \n    return closest_pair_points": "",
+    "tests": [
+        "assert closest_pair([(0, 0), (3, 4)]) == ((0, 0), (3, 4))",
+        "assert closest_pair([(-1, -2), (-3, -3)]) == ((-3, -3), (-1, -2))",
+        "assert closest_pair([(1, 2), (5, 6)]) == ((1, 2), (5, 6))",
+        "assert closest_pair([]) == None"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

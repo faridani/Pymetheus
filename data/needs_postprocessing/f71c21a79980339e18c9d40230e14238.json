@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Easy: Number of Unique Characters in a String\", \"code\": \"\", \"\\nimport collections\\n\\ndef unique_characters_count(s: str) -> int:\\n    counter = collections.Counter(s)\\n    return len([count for count in counter.values() if count == 1])\": \"\", \"tests\": [\"assert unique_characters_count('Hello World') == 3\", \"assert unique_characters_count('abcde') == 5\", \"assert unique_characters_count('aaaaaa') == 1\", \"assert unique_characters_count('aabbcc') == 2\"]}"
+}

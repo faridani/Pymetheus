@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Word Scrambles",
+    "description": "Write a function `unscramble` that takes two strings as input, the first being a scrambled word and the second being the correct word. The function should return `True` if the scrambled word is a permutation of the correct word, and `False` otherwise.\n\n#### Function Signature\n```python\ndef unscramble(scrambled: str, target: str) -> bool:\n```\n\n#### Input\n- `scrambled` (str): A string that represents a scrambled version of a word.\n- `target` (str): The correct word.\n\n#### Output\n- Returns `True` if the scrambled word is a permutation of the target word, `False` otherwise.",
+    "code": "def unscramble(scrambled: str, target: str) -> bool:\n    # Convert both strings to lowercase and sort them alphabetically\n    scrambled = sorted(scrambled.lower())\n    target = sorted(target.lower())\n    # Check if the two lists are equal\n    return scrambled == target,",
+    "tests": [
+        "assert unscramble('sgnid', 'dings') == True",
+        "assert unscramble('hello', 'hello') == True",
+        "assert unscramble('abcd', 'bacd') == False"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

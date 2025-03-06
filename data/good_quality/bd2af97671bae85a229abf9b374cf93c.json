@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Tree Node Sum",
+    "description": "A tree node represents a single node in a binary tree. Each node has an integer value and two child nodes, left and right.\n\n#### Function Signature\n```python\ndef sum_tree_node(t: TreeNode) -> int:\n```\n\n#### Input\n- `t` (TreeNode): A tree node with an integer value and two child nodes.\n\n#### Output\n- Returns the sum of all values in the subtree rooted at the given node.",
+    "code": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef sum_tree_node(t: TreeNode) -> int:\n    if t is None:\n        return 0\n    else:\n        return t.val + sum_tree_node(t.left) + sum_tree_node(t.right)",
+    "tests": [
+        "assert sum_tree_node(TreeNode(1)) == 1",
+        "assert sum_tree_node(TreeNode(2, TreeNode(4), TreeNode(5))) == 11",
+        "assert sum_tree_node(None) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

@@ -1,0 +1,15 @@
+{
+    "title": "Maximum Profit",
+    "description": "You are given an array of integers representing stock prices for a certain period. Your task is to find the maximum possible profit that can be achieved by buying and selling the stock at most once.\n\n#### Function Signature\n```python\ndef max_profit(prices: list[int]) -> int:\n```\n\n#### Input\n- `prices` (list[int]): A list of integers representing the stock prices for a certain period.\n\n#### Output\n- Returns the maximum possible profit that can be achieved by buying and selling the stock at most once.",
+    "code": "",
+    "\ndef max_profit(prices: list[int]) -> int:\n    if not prices:\n        return 0\n    min_price = prices[0]\n    max_profit = 0\n    for price in prices:\n        if price < min_price:\n            min_price = price\n        elif price - min_price > max_profit:\n            max_profit = price - min_price\n    return max_profit": "",
+    "tests": [
+        "assert max_profit([7,1,5,3,6,4]) == 5",
+        "assert max_profit([1,2,3,4,5]) == 4",
+        "assert max_profit([]) == 0",
+        "assert max_profit([1]) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

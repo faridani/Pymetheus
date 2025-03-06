@@ -1,0 +1,13 @@
+{
+    "title": "Maximum Sum of Divisible Subarrays",
+    "description": "Given a list of integers `numbers`, find the maximum sum of subarrays where each element in the subarray is divisible by 3.\n\n#### Function Signature\n```python\ndef max_sum_divisible_subarrays(numbers: list[int]) -> int:\n```\n\n#### Input\n- `numbers` (list[int]): A list of integers that may contain any values.\n\n#### Output\n- Returns the maximum sum of subarrays where each element is divisible by 3.",
+    "code": "\nimport itertools\n\ndef max_sum_divisible_subarrays(numbers: list[int]) -> int:\n    def sum_subarray(arr):\n        return sum(i for i in arr if i % 3 == 0)\n\n    max_sum = 0\n    for r in range(len(numbers) + 1):\n        for subarray in itertools.combinations(numbers, r):\n            if all(i % 3 == 0 for i in subarray):\n                max_sum = max(max_sum, sum_subarray(subarray))\n    return max_sum",
+    "tests": [
+        "assert max_sum_divisible_subarrays([3, 6, 9]) == 18",
+        "assert max_sum_divisible_subarrays([-3, -6, 0, 3]) == 0",
+        "assert max_sum_divisible_subarrays([1, 2, 3, 4, 5, 6]) == 9"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Max Sum of Subarray within K",
+    "description": "Given an array `arr` and an integer `K`, write a function `max_sum_subarray` that returns the maximum sum of a subarray of length `K`. The subarray can start anywhere in the original array.\n\n#### Function Signature\n```python\ndef max_sum_subarray(arr: list[int], K: int) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n- `K` (int): The length of the subarray.\n\n#### Output\n- Returns the maximum sum of a subarray of length `K`. If there is no such subarray, return -1.",
+    "code": "",
+    "\ndef max_sum_subarray(arr: list[int], K: int) -> int:\n    n = len(arr)\n    if K > n:\n        return -1\n    max_sum = float('-inf')\n    window_sum = sum(arr[:K])\n    max_sum = max(max_sum, window_sum)\n    for i in range(K, n):\n        window_sum = window_sum - arr[i-K] + arr[i]\n        max_sum = max(max_sum, window_sum)\n    return max_sum": "",
+    "tests": [
+        "assert max_sum_subarray([-2,-3,4], 2) == 6",
+        "assert max_sum_subarray([1, -2, 3, 10, -4, 7, 2 ,-5], 2) == 17",
+        "assert max_sum_subarray([-2, -3, 4, -1,-2, 1, 5,-3], 2) == 7"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

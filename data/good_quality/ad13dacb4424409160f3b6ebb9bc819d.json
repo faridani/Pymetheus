@@ -1,0 +1,14 @@
+{
+    "title": "Maximal Rectangle",
+    "description": "Given a 2D binary matrix `matrix` where each row represents the height of a building as an integer, find the maximum area of a rectangle that can be formed within the given buildings.\n\n#### Function Signature\n```python\ndef max_rectangle_area(matrix: List[List[int]]) -> int:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A 2D binary matrix where each row represents the height of a building as an integer, and each column is adjacent to its right.\n\n#### Output\n- Returns the maximum area of a rectangle that can be formed within the given buildings.",
+    "code": "",
+    "\nfrom typing import List\n\ndef max_rectangle_area(matrix: List[List[int]]) -> int:\n    if not matrix or not matrix[0]:\n        return 0\n    \n    m, n = len(matrix), len(matrix[0])\n    height_map = [0] * n\n    max_area = 0\n    \n    for row in matrix:\n        for i, h in enumerate(row):\n            height_map[i] = h\n        \n        left, right = 0, n - 1\n        while left < right:\n            min_height = min(height_map[left:right+1])\n            width = right - left\n            area = width * min_height\n            max_area = max(max_area, area)\n            \n            if height_map[left] < height_map[right]:\n                height_map[left] += height_map[left]\n                left += 1\n            else:\n                height_map[right] -= height_map[right-1]\n                right -= 1\n        \n        for i in range(n):\n            height_map[i] = 0\n    \n    return max_area": "",
+    "tests": [
+        "assert max_rectangle_area([[1,2,3,4],[5,6,7,8],[9,10,11,12]]) == 24",
+        "assert max_rectangle_area([]) == 0",
+        "assert max_rectangle_area([[0]]) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

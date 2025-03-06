@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Check for Consecutive Equal Characters",
+    "description": "Write a function that takes a string as input and returns `True` if the string contains at least two consecutive equal characters. For example, `\"hello\"` should return `False`, while `\"aabbcc\"` should return `True`. Note that you only need to check up to the second from last character.\n\n#### Function Signature\n```python\ndef has_consecutive_duplicates(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string of any length containing letters and/or digits.\n\n#### Output\n- Returns `True` if the input string contains at least two consecutive equal characters, `False` otherwise.",
+    "code": "def has_consecutive_duplicates(s: str) -> bool:\n    for i in range(len(s)-1):\n        if s[i] == s[i+1]:\n            return True\n    return False",
+    "tests": [
+        "assert not has_consecutive_duplicates('hello')",
+        "assert has_consecutive_duplicates('aabbcc')",
+        "assert has_consecutive_duplicates('abcdefg')",
+        "assert has_consecutive_duplicates('aaaabbbccc')"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

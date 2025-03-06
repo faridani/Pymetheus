@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Sum of Cubes\\\", \\\"description\\\": \\\"Given a list of integers, write a function that calculates the sum of their cubes.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef sum_of_cubes(lst: list[int]) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `lst` (list[int]): A list of integers.\\\\n\\\\n#### Output\\\\n- Returns the sum of the cubes of the input integers.\\\", \\\"code\\\": \\\"def sum_of_cubes(lst: list[int]) -> int:\\\\n    return sum(i**3 for i in lst)\\\\n\\\", \\\"tests\\\": [\\\"assert sum_of_cubes([1, 2, 3]) == 36\\\", \\\"assert sum_of_cubes([-1, -2, -3]) == -36\\\", \\\"assert sum_of_cubes([]) == 0\\\"] }\""
+}

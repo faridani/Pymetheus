@@ -1,0 +1,15 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Given two strings `s1` and `s2`, write a function that returns the minimum window substring of `s1` that contains all characters of `s2`.\n\n#### Function Signature\n```python\ndef min_window_substring(s1: str, s2: str) -> str:\n```\n\n#### Input\n- `s1` (str): The main string to find the minimum window substring from.\n- `s2` (str): The string that contains all characters we want to find in `s1`.\n\n#### Output\n- Returns the minimum window substring of `s1` that contains all characters of `s2`. If no such window exists, return an empty string.\n\nExample: For input `s1 = \"ADOBECODEBANC\"` and `s2 = \"ABC\"`, the output should be `\"BANC\"`.",
+    "code": "\nfrom collections import defaultdict\n\ndef min_window_substring(s1: str, s2: str) -> str:\n    if not s2 or not s1:\n        return ",
+    "s2": "dict_s2[char] += 1\n\n    required_chars = len(dict_s2)\n\n    left = 0\n    min_length = float('inf')\n    min_window =",
+    "range(len(s1))": "if s1[right] in dict_s2:\n            dict_s2[s1[right]] -= 1\n            if dict_s2[s1[right]] == 0:\n                formed_chars += 1\n\n        while left <= right and formed_chars == required_chars:\n            if right - left + 1 < min_length:\n                min_length = right - left + 1\n                min_window = s1[left:right + 1]\n\n            if s1[left] in dict_s2:\n                dict_s2[s1[left]] += 1\n                if dict_s2[s1[left]] > 0:\n                    formed_chars -= 1\n\n            left += 1\n\n    return min_window",
+    "tests": [
+        "assert min_window_substring(\"ADOBECODEBANC\", \"ABC\") == \"BANC\"",
+        "assert min_window_substring(\"\", \"ABC\") == \"\"",
+        "assert min_window_substring(\"ABCDEF\", \"ABC\") == \"ABC\""
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

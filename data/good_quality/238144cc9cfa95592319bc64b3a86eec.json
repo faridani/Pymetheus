@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Student Grade Calculator",
+    "description": "Create a function `calculate_grade` that takes two parameters: the student's score and the maximum possible score. The function should return the grade of the student, which will be one of the following: 'A' if the score is 90 or above, 'B' if the score is between 80 and 89, 'C' if the score is between 70 and 79, 'D' if the score is between 60 and 69, and 'F' for anything below 60.\n\n#### Function Signature\n```python\ndef calculate_grade(score: int, max_score: int) -> str:\n```\n\n#### Input\n- `score` (int): The student's score on a test or assignment.\n- `max_score` (int): The maximum possible score for the test or assignment.\n\n#### Output\n- Returns the grade of the student as a string ('A', 'B', 'C', 'D', or 'F').",
+    "code": "def calculate_grade(score: int, max_score: int) -> str:\n    if score >= 90 * (max_score / 100):\n        return 'A'\n    elif score >= 80 * (max_score / 100) and score < 90 * (max_score / 100):\n        return 'B'\n    elif score >= 70 * (max_score / 100) and score < 80 * (max_score / 100):\n        return 'C'\n    elif score >= 60 * (max_score / 100) and score < 70 * (max_score / 100):\n        return 'D'\n    else:\n        return 'F'",
+    "tests": [
+        "assert calculate_grade(95, 100) == 'A'",
+        "assert calculate_grade(80, 100) == 'B'",
+        "assert calculate_grade(65, 100) == 'D'",
+        "assert calculate_grade(50, 100) == 'F'"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

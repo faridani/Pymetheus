@@ -1,0 +1,14 @@
+{
+    "title": "Efficient Tower of Hanoi",
+    "description": "The Tower of Hanoi is a mathematical puzzle where we have three rods and n disks. The objective of the puzzle is to move the entire stack to another rod, obeying the following simple rules:\n\n1. Only one disk can be moved at a time.\n2. Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty rod.\n\nWrite a function `move_disks` that calculates the minimum number of moves required to solve the Tower of Hanoi puzzle for a given number of disks (n).\n\n#### Function Signature\n```\ndef move_disks(n: int) -> int:\n```",
+    "code": "from math import factorial\n\ndef move_disks(n: int) -> int:\n    # The minimum number of moves is equal to the total number of possible permutations minus one, because we can't leave the disks in their initial state.\n    return 2 * (factorial(2*n) // (factorial(n)**2)) - 1",
+    "tests": [
+        "assert move_disks(1) == 1",
+        "assert move_disks(2) == 3",
+        "assert move_disks(3) == 15",
+        "assert move_disks(4) == 31"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

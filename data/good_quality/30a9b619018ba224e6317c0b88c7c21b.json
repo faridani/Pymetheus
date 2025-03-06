@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Tree Intersection",
+    "description": "Given two trees represented as adjacency lists, find all common nodes between them. Write a function `common_nodes` that takes two lists of nodes and their children as input and returns a list of common nodes.\n\n#### Function Signature\n```python\ndef common_nodes(tree1: list[list], tree2: list[list]) -> list:\n```\n\n#### Input\n- `tree1` (list[list]): The first tree represented as an adjacency list, where each element is a node and its children are the next elements in the list.\n- `tree2` (list[list]): The second tree represented as an adjacency list, where each element is a node and its children are the next elements in the list.\n\n#### Output\n- Returns a list of common nodes between the two trees.",
+    "code": "def common_nodes(tree1: list[list], tree2: list[list]) -> list:\n    # Initialize an empty set to store common nodes\n    common = set()\n    # Iterate over each node in the first tree\n    for node in tree1:\n        # If the node exists in the second tree, add it to the set of common nodes\n        if node in tree2:\n            common.add(node)\n    # Convert the set of common nodes to a list and return it\n    return list(common)",
+    "tests": [
+        "assert common_nodes([['A', 'B'], ['B', 'C']], [['B', 'D'], ['C', 'E']]) == ['B']",
+        "assert common_nodes([['A', 'B'], ['B', 'C'], ['C', 'D']], [['B', 'E'], ['C', 'F']]) == ['B', 'C']",
+        "assert common_nodes([], []) == []",
+        "assert common_nodes([['A', 'B'], ['B', 'C']], []) == []"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

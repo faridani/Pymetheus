@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Maximum Sum of Two Elements",
+    "description": "Given an integer array `nums` and two integers `k1` and `k2`, return the maximum sum of two elements from `nums`. The two elements can be chosen independently.\n\n#### Function Signature\n```python\ndef maxSumTwoElements(nums: list[int], k1: int, k2: int) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n- `k1` (int): The first index to consider for the maximum sum.\n- `k2` (int): The second index to consider for the maximum sum.\n\n#### Output\n- Returns the maximum sum of two elements from `nums`, considering only elements at indices `k1` and `k2`.",
+    "code": "def maxSumTwoElements(nums: list[int], k1: int, k2: int) -> int:\n    return max(nums[k1] + nums[k2], key=lambda x: x)",
+    "tests": [
+        "assert maxSumTwoElements([3, 2, -1, 4, -3], 0, 1) == 6",
+        "assert maxSumTwoElements([-8, -9, 1, 5, 6], 1, 2) == 11",
+        "assert maxSumTwoElements([1, 2, 3, 4, 5], 0, 1) == 7"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

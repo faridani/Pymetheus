@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Maximum Sum of Subarray with Equal Sum and Frequency",
+    "description": "Given an array `nums` of integers, find the maximum sum of a subarray that has both equal sum and frequency.\n\n#### Function Signature\n```python\ndef max_equal_sum_and_freq(nums: list[int)) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers representing the array to be processed.\n\n#### Output\n- Returns the maximum sum of a subarray that has both equal sum and frequency. If no such subarray is found, return -1.",
+    "code": "",
+    "\nimport math\n\ndef max_equal_sum_and_freq(nums: list[int)) -> int:\n    n = len(nums)\n    total_sum = sum(nums)\n\n    if total_sum % 2 != 0:\n        return -1\n\n    target_sum = total_sum // 2\n    max_sum = -math.inf\n\n    for i in range(n):\n        current_sum = 0\n        freq = {}\n        for j in range(i, n):\n            current_sum += nums[j]\n            if current_sum == target_sum:\n                max_sum = max(max_sum, current_sum)\n                break\n            freq[nums[j]] = freq.get(nums[j], 0) + 1\n\n    return max_sum if max_sum != -math.inf else -1": "",
+    "tests": [
+        "assert max_equal_sum_and_freq([10, 2, 3, 4, 5]) == 15",
+        "assert max_equal_sum_and_freq([-1, 1, -1, 1]) == 0",
+        "assert max_equal_sum_and_freq([-1, -1, 1, 1]) == -1",
+        "assert max_equal_sum_and_freq([1, 2, 3, 4, 5]) == -1"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

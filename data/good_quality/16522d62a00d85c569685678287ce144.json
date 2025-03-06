@@ -1,0 +1,15 @@
+{
+    "title": "Easy: Counting the Number of Islands",
+    "description": "#### Problem\nA binary matrix represents a map where `0`s represent water and `1`s represent land. Write a function that counts the number of islands in the given map.\n\n#### Function Signature\n```python\ndef count_islands(matrix: list[list[int]]) -> int:\n```\n\n#### Input\n- `matrix` (list[list[int]]): A 2D list representing the binary matrix, where each element is either `0` or `1`. The outer list represents rows and the inner lists represent columns.\n\n#### Output\n- Returns the number of islands in the given map.",
+    "code": "",
+    "\nimport copy\n\ndef count_islands(matrix: list[list[int]]) -> int:\n    if not matrix:\n        return 0\n    \n    count = 0\n    for i in range(len(matrix)):\n        for j in range(len(matrix[0])):\n            if matrix[i][j] == 1:\n                temp_matrix = copy.deepcopy(matrix)\n                count += explore_island(temp_matrix, i, j) - 1\n    return count\n\ndef explore_island(matrix: list[list[int]], row: int, col: int) -> int:\n    if (row < 0 or row >= len(matrix) or \n        col < 0 or col >= len(matrix[0]) or \n        matrix[row][col] != 1):\n        return 0\n    \n    matrix[row][col] = 0\n    return 1 + explore_island(matrix, row - 1, col) + \\\n            explore_island(matrix, row + 1, col) + \\\n            explore_island(matrix, row, col - 1) + \\\n            explore_island(matrix, row, col + 1)": "",
+    "tests": [
+        "assert count_islands([[0,0,1,0,0],[1,0,1,1,0],[0,0,0,1,0],[0,0,0,1,1]]) == 1",
+        "assert count_islands([[0,0,1,0,0],[1,0,1,1,0],[0,0,0,1,0],[0,0,0,1,1],[0,0,0,0,0]]) == 1",
+        "assert count_islands([]) == 0",
+        "assert count_islands([[0]]) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

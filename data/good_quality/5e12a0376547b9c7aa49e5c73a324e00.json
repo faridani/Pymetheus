@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Maximal Rectangle",
+    "description": "Given a 2D binary matrix filled with 0s and 1s, return the largest rectangle that can be built using these blocks (or boxes) of size 1x1. The problem is to find the area of this maximal rectangle.\n\n#### Function Signature\n\n```python\ndef maximal_rectangle(matrix: List[List[int]]) -> int:\n```\n\n#### Input\n\n- `matrix` (List[List[int]]): A 2D binary matrix filled with 0s and 1s, where 0 represents an empty cell and 1 represents a full cell.\n\n#### Output\n\n- Returns the maximum area that can be formed by stacking these blocks vertically.\n\nNote: The answer should be returned as an integer. You are allowed to modify the input matrix in place.",
+    "code": "",
+    "\nimport heapq\nfrom collections import defaultdict\n\ndef maximal_rectangle(matrix)": "if not matrix:\n        return 0\n    \n    m",
+    "range(m)": "stack = []\n        for j in range(n):\n            if matrix[i][j] == 1:\n                height_map[i][j] = height_map[i-1][j] + 1 if i > 0 else 1\n            else:\n                height_map[i][j] = 0\n            \n            while stack and height_map[i][stack[-1]] >= height_map[i][j]:\n                last_idx = stack.pop()\n                width = j if not stack else j - stack[-1] - 1\n                \n                max_area = height_map[i][last_idx] * width\n                print(max_area)\n                \n    return result\n\n'''",
+    "tests": [
+        "assert maximal_rectangle([[0,0], [1,0]]) == 0",
+        "assert maximal_rectangle([[0,0,1],[1,0,0]]) == 2",
+        "assert maximal_rectangle([[0,0,0,0,0],[0,0,0,0,0],[1,1,1,1,1],[1,1,1,1,1]]) == 5"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

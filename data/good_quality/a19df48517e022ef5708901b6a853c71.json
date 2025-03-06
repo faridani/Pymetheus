@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Sum of Cubes",
+    "description": "The sum of cubes problem asks you to calculate the sum of the cube roots of each number in a given list. Write a function `sum_of_cubes` that takes a list of integers as input and returns the sum of their cube roots.\n\n#### Function Signature\n```python\ndef sum_of_cubes(lst: list[int]) -> float:\n```\n\n#### Input\n- `lst` (list[int]): A list of integers.\n\n#### Output\n- Returns the sum of the cube roots of each number in the input list.",
+    "code": "\nimport math\n\ndef sum_of_cubes(lst: list[int]) -> float:\n    return sum(math.cbrt(i) for i in lst)",
+    "tests": [
+        "assert round(sum_of_cubes([1, 2, 3])) == 5.0",
+        "assert round(sum_of_cubes([-1, -2, -3])) == -5.0",
+        "assert round(sum_of_cubes([10, 20, 30])) == 23.333333333333332"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

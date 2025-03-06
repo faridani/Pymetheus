@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Maximal Increasing Subsequence",
+    "description": "Given a list of integers, write a function `max_increasing_subsequence` that finds the length of the longest increasing subsequence (LIS). The sequence does not have to be strictly increasing, as long as it is monotonically increasing.\n\n#### Function Signature\n```python\ndef max_increasing_subsequence(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers that may contain duplicate values.\n\n#### Output\n- Returns the length of the longest increasing subsequence in the input list.\n- If the input list is empty, returns 0.",
+    "code": "",
+    "\ndef max_increasing_subsequence(nums: list[int]) -> int:\n    if not nums:\n        return 0\n    \n    dp = [1] * len(nums)\n    for i in range(1, len(nums)):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    \n    return max(dp)": "",
+    "tests": [
+        "assert max_increasing_subsequence([10, 22, 9, 33, 21, 50, 41, 60]) == 5",
+        "assert max_increasing_subsequence([1, 2, 3, 4, 5]) == 5",
+        "assert max_increasing_subsequence([-1, -2, -3, -4, -5]) == 5",
+        "assert max_increasing_subsequence([]) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

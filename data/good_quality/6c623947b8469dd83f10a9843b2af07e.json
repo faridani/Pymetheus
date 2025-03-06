@@ -1,0 +1,14 @@
+{
+    "title": "Fibonacci Primes",
+    "description": "A Fibonacci prime is a Fibonacci number that is also a prime number. In this problem, we'll write a function to check if a given integer is a Fibonacci prime.\n\n#### Function Signature\n```\ndef is_fibonacci_prime(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): An integer that may be a Fibonacci prime.\n\n#### Output\n- Returns `True` if the input integer is a Fibonacci prime, `False` otherwise.",
+    "code": "\nimport math\n\ndef is_fibonacci_prime(n: int) -> bool:\n    def is_prime(m: int) -> bool:\n        if m < 2:\n            return False\n        for i in range(2, int(math.sqrt(m)) + 1):\n            if m % i == 0:\n                return False\n        return True\n\n    a, b = 0, 1\n    while b < n:\n        a, b = b, a + b\n    return is_prime(n)",
+    "tests": [
+        "assert is_fibonacci_prime(13) == True",
+        "assert is_fibonacci_prime(20) == False",
+        "assert is_fibonacci_prime(89) == True",
+        "assert is_fibonacci_prime(144) == False"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

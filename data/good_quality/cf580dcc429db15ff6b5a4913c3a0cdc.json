@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Prime Factorizer",
+    "description": "Write a function that takes an integer as input and returns its prime factors. The function should return a list of tuples, where each tuple contains a prime factor and its power (i.e., how many times it appears in the factorization). For example, if the input is 12, the output should be [(2, 2), (3, 1)], meaning that 12 can be factored as 2^2 * 3. Do not include the number itself as a prime factor.\n\n#### Function Signature\n```python\ndef prime_factors(n: int) -> list[tuple[int, int]]:\n```\n\n#### Input\n- `n` (int): An integer to be factored.\n\n#### Output\n- A list of tuples, where each tuple contains a prime factor and its power.",
+    "code": "import math\n\ndef prime_factors(n: int) -> list[tuple[int, i]]:\n    factors = []\n    for i in range(2, int(math.sqrt(n)) + 1):\n        while n % i == 0:\n            if i not in (factors[-1][0] if len(factors) > 0 else None):\n                factors.append((i, 1))\n            n //= i\n    if n > 1:\n        factors.append((n, 1))\n    return factors",
+    "tests": [
+        "assert prime_factors(12) == [(2, 2), (3, 1)]",
+        "assert prime_factors(24) == [(2, 2), (3, 1)]",
+        "assert prime_factors(37) == [(37, 1)]",
+        "assert prime_factors(100) == [(2, 2), (5, 2)]"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

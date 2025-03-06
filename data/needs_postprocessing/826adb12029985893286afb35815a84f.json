@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Sum of Odd Numbers\\\", \\\"description\\\": \\\"Write a function `sum_odd` that takes an integer n as input and returns the sum of all odd numbers from 1 to n.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef sum_odd(n: int) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `n` (int): An integer representing the upper limit for the sum.\\\\n\\\\n#### Output\\\\n- Returns the sum of all odd numbers from 1 to n.\\\", \\\"code\\\": \\\"def sum_odd(n: int) -> int:\\\\n    total = 0\\\\n    for i in range(1, n+1):\\\\n        if i % 2 != 0:\\\\n            total += i\\\\n    return total\\\", \\\"tests\\\": [\\\"assert sum_odd(5) == 16\\\", \\\"assert sum_odd(10) == 25\\\", \\\"assert sum_odd(15) == 48\\\"] }\""
+}

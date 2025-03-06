@@ -1,0 +1,14 @@
+{
+    "title": "[Medium] Least Common Ancestor in a Binary Tree",
+    "description": "Given values of two nodes v1 and v2 in a binary tree, find the least common ancestor (LCA). You can assume that both nodes are present in the tree.\n\n#### Function Signature\n```python\ndef lca(root: Node, v1: int, v2: int) -> int:\n```\n\n#### Input\n- `root` (Node): The root node of a binary search tree.\n- `v1` (int): Value of the first node.\n- `v2` (int): Value of the second node.\n\n#### Output\n- Returns the value of the least common ancestor node.",
+    "code": "",
+    "class Node:\n    def __init__(self, key):\n        self.left = None\n        self.right = None\n        self.val = key\n\ndef lca(root: Node, v1: int, v2: int) -> int:\n    if root is None:\n        return None\n\n    if root.val > max(v1, v2):\n        return lca(root.left, v1, v2)\n\n    if root.val < min(v1, v2):\n        return lca(root.right, v1, v2)\n\n    return root.val": "",
+    "tests": [
+        "assert lca(Node(5), 3, 7) == 5",
+        "assert lca(Node(6), 6, 8) == 6",
+        "assert lca(Node(2), 1, 4) == 2"
+    ],
+    "difficulty": "medium",
+    "model": "codestral:22b",
+    "style": "Daily Coding Problem"
+}

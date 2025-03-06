@@ -1,0 +1,14 @@
+{
+    "title": "Sum of Distances to Meeting Time",
+    "description": "A group of friends plan a meeting at a specific time. Each friend has their own arrival and departure times, given as start and end times for the day in 24-hour format (HH:MM). Write a function `sum_of_distances` that calculates the total distance each friend needs to travel from their current location to the meeting point. Distance is calculated as the absolute difference between the meeting time and the friend's arrival or departure time, whichever is closer.\n\n#### Function Signature\n```python\ndef sum_of_distances(arrival_times: list[tuple[int]], departure_times: list[tuple[int]], meeting_time: tuple[int]) -> int:\n```\n\n#### Input\n- `arrival_times` (list of tuples): Each tuple contains the start and end times for a friend's arrival.\n- `departure_times` (list of tuples): Each tuple contains the start and end times for a friend's departure.\n- `meeting_time` (tuple): The time of the meeting, given as hours and minutes in 24-hour format.\n\n#### Output\n- Returns the total distance each friend needs to travel from their current location to the meeting point.",
+    "code": "\nimport datetime\n\ndef sum_of_distances(arrival_times: list[tuple[int]], departure_times: list[tuple[int]], meeting_time: tuple[int]) -> int:\n    # Convert times to datetime objects\n    arrival_dates = [datetime.datetime.combine(datetime.date.today(), datetime.time(hour=hour, minute=min)) for hour, min in arrival_times]\n    departure_dates = [datetime.datetime.combine(datetime.date.today(), datetime.time(hour=hour, minute=min)) for hour, min in departure_times]\n    meeting_date = datetime.datetime.combine(datetime.date.today(), datetime.time(*meeting_time))\n\n    # Calculate distances\n    total_distance = 0\n    for arrival, departure in zip(arrival_dates, departure_dates):\n        early_time = min(arrival, departure)\n        late_time = max(arrival, departure)\n        if early_time < meeting_date:\n            distance = (meeting_date - early_time).total_seconds() / 60\n        elif late_time > meeting_date:\n            distance = (late_time - meeting_date).total_seconds() / 60\n        else:\n            distance = (meeting_date - meeting_date).total_seconds() / 60\n        total_distance += distance\n\n    return int(total_distance)",
+    "tests": [
+        "assert sum_of_distances([(9, 10), (11, 12)], [(13, 14), (15, 16)], (12, 0)) == 21",
+        "assert sum_of_distances([(7, 8), (9, 10)], [(11, 12), (13, 14)], (10, 0)) == 30",
+        "assert sum_of_distances([], [], (12, 0)) == 0",
+        "assert sum_of_distances([(1, 2), (3, 4)], [], (2, 0)) == 6"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

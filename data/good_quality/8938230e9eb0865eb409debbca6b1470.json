@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Maximum Sum of Distinct Subarrays",
+    "description": "Given an array of integers, find the maximum sum of distinct subarrays that can be obtained by selecting at most one element from each contiguous segment of consecutive elements. The length of these segments can vary from 1 to the length of the input array.\n\n#### Function Signature\n```\ndef max_sum_distinct_subarrays(arr: list[int)) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum of distinct subarrays that can be obtained by selecting at most one element from each contiguous segment of consecutive elements.",
+    "code": "from typing import List\n\ndef max_sum_distinct_subarrays(arr: List[int]) -> int:\n    n = len(arr)\n    prefix_sum = [0] * (n + 1)\n    for i in range(n):\n        prefix_sum[i + 1] = prefix_sum[i] + arr[i]\n\n    max_sum = 0\n    left = 0\n    for right in range(1, n + 1):\n        while left < right and prefix_sum[right] - prefix_sum[left] > max_sum:\n            max_sum = prefix_sum[right] - prefix_sum[left]\n            left += 1\n        if left == right:\n            max_sum = max(max_sum, arr[left])\n    return max_sum",
+    "tests": [
+        "assert max_sum_distinct_subarrays([10, 20, 30, 40]) == 100",
+        "assert max_sum_distinct_subarrays([-5, -2, 1, 3, 4]) == 7",
+        "assert max_sum_distinct_subarrays([0, 0, 0, 0]) == 0",
+        "assert max_sum_distinct_subarrays([-10, -9, -8, -7, -6]) == -6"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum Subarray of Unsorted Integers (Hard)",
+    "description": "#### Problem Statement\nGiven a list of unsorted integers, find the maximum sum of a subarray within the given array.\n\n#### Function Signature\n```python\ndef max_sum_subarray(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of unsorted integers.\n\n#### Output\n- Returns the maximum sum of a subarray within the given array.\n\nConstraints:\n* The input list contains only integers.\n* The input list may contain negative numbers.\n* The input list is not empty.\n\nHint: You can use Kadane's algorithm to solve this problem.",
+    "code": "",
+    "\nimport itertools\n\ndef max_sum_subarray(nums: list[int]) -> int:\n    # Initialize maximum sum and current sum\n    max_sum = float('-inf')\n    current_sum = 0\n    \n    # Iterate over the array using itertools.groupby\n    for _, group in itertools.groupby(nums, key=lambda x: (x > 0)):\n        # Convert the group to a list and calculate the sum of positive or negative numbers\n        group_list = [int(x) for x in group]\n        if all(group_list):\n            current_sum = sum(group_list)\n        elif not any(group_list):\n            current_sum = -sum(group_list)\n        else:\n            if any(group_list):\n                current_sum = sum(group_list)\n            else:\n                current_sum = -sum(group_list)\n        \n        # Update the maximum sum\n        max_sum = max(max_sum, current_sum)\n    \n    return max_sum": "",
+    "tests": [
+        "assert max_sum_subarray([1,-2,3,10,-4,7,6]) == 16",
+        "assert max_sum_subarray([-5,-2,-3]) == -1",
+        "assert max_sum_subarray([0,1,2,3,4,5]) == 15"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

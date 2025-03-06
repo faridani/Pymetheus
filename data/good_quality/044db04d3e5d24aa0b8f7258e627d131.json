@@ -1,0 +1,13 @@
+{
+    "title": "Harmonious Chord Progressions",
+    "description": "A harmonious chord progression is a sequence of chords that sound pleasing to the ear. Write a function `is_harmonious` that determines whether a given sequence of chords is harmonious.\n\n#### Function Signature\n```python\ndef is_harmonious(chords: list) -> bool:\n```\n\n#### Input\n- `chords` (list): A list of chords, where each chord is represented as a string consisting of three notes separated by hyphens. For example, \"C-E-G\" or \"D-F-A\".\n- The length of the input list is between 1 and 10.\n\n#### Output\n- Returns `True` if the input sequence of chords is harmonious, `False` otherwise.\n- A harmonious chord progression is defined as one where each chord's third note (the middle note) is the same as the first note of the next chord. For example, \"C-E-G\" followed by \"E-G-B\" would be considered harmonious because the third note 'E' in the first chord matches the first note 'E' in the second chord.",
+    "code": "\nimport re\n\ndef is_harmonious(chords: list) -> bool:\n    for i in range(len(chords) - 1):\n        current_chord = chords[i]\n        next_chord = chords[i + 1]\n        if not re.match(r'^([A-G][b#]?)-(.)(.*)$', current_chord) or \\\n           not re.match(r'^([A-G][b#]?)-(.)-' + re.escape(current_chord.split('-')[2]) + '.*$', next_chord):\n            return False\n    return True",
+    "tests": [
+        "assert is_harmonious([\"C-E-G\", \"E-G-B\", \"G-B-D\"]) == True",
+        "assert is_harmonious([\"C-E-G\", \"D-F-A\"]) == False",
+        "assert is_harmonious([\"A-C#-E\", \"E-G-C#\", \"G-C#-E\"]) == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Longest Common Prefix Finder",
+    "description": "Find the longest common prefix of a list of strings.\n\n#### Problem Statement\nYou are given a list of strings. Your task is to find the longest string that is a prefix of all strings in the list.\n\n#### Function Signature\n```python\ndef longest_common_prefix(strings: List[str]) -> str:\n```\n\n#### Input\n- `strings` (List[str]): A list of strings.\n\n#### Output\n- Returns the longest common prefix of all strings in the input list. If there is no common prefix, returns an empty string.",
+    "code": "import os\nfrom typing import List\n\ndef longest_common_prefix(strings: List[str]) -> str:\n    if not strings:\n        return ''\n    prefix = ''\n    for chars in zip(*strings):\n        if len(set(chars)) == 1 and chars[0] != os.path.sep:\n            prefix += chars[0]\n        else:\n            break\n    return prefix",
+    "tests": [
+        "assert longest_common_prefix(['abc', 'abcd', 'abce']) == 'abc'",
+        "assert longest_common_prefix(['hello', 'world', 'helloworld']) == ''",
+        "assert longest_common_prefix(['file1.txt', 'file2.txt', 'file3.txt']) == 'file'",
+        "assert longest_common_prefix([]) == ''"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Euler Path Finder",
+    "description": "Given a graph represented as an adjacency list, find if there exists an Euler path in the graph. An Euler path is a path that visits every edge exactly once.\n\n#### Function Signature\n```python\ndef has_euler_path(graph: dict) -> bool:\n```\n\n#### Input\n- `graph` (dict): A dictionary representing the adjacency list of the graph, where each key is a node and its corresponding value is a list of neighboring nodes.\n\n#### Output\n- Returns `True` if there exists an Euler path in the graph, `False` otherwise.",
+    "code": "\nimport collections\n\ndef has_euler_path(graph: dict) -> bool:\n    # Calculate the indegree and outdegree for each node\n    indegrees = {node: 0 for node in graph}\n    outdegrees = {node: 0 for node in graph}\n\n    for node, neighbors in graph.items():\n        outdegrees[node] = len(neighbors)\n        for neighbor in neighbors:\n            indegrees[neighbor] += 1\n\n    # Check if there exists an Euler path\n    has_euler_path = True\n    nodes_to_process = collections.deque([node for node in graph if indegrees[node] == 0])\n\n    while nodes_to_process:\n        node = nodes_to_process.popleft()\n        outdegrees[node] -= 1\n\n        for neighbor in graph[node]:\n            indegrees[neighbor] -= 1\n            if indegrees[neighbor] == 0:\n                nodes_to_process.append(neighbor)\n\n    has_euler_path = all(outdegree == 0 for outdegree in outdegrees.values())\n\n    return has_euler_path",
+    "tests": [
+        "assert has_euler_path({'A': ['B', 'C'], 'B': ['A', 'D'], 'C': ['A', 'F'], 'D': ['B'], 'E': [], 'F': []}) == True",
+        "assert has_euler_path({'A': ['B'], 'B': ['A']}) == False",
+        "assert has_euler_path({'A': ['B', 'C'], 'B': ['A', 'D'], 'C': ['A'], 'D': ['B']}) == False"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

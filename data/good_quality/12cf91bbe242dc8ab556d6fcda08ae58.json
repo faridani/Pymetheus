@@ -1,0 +1,14 @@
+{
+    "title": "Sorting Numbers",
+    "description": "Given a list of numbers, write a function to sort them based on their binary representation. The output should be the same as the input if the input is already sorted in ascending order.\n\n#### Function Signature\n```python\ndef sort_numbers(nums: list[int]) -> list[int]:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers that needs to be sorted.\n\n#### Output\n- Returns a new list with the same integers as input, but sorted based on their binary representation.",
+    "code": "\nimport heapq\n\ndef sort_numbers(nums: list[int]) -> list[int]:\n    # Convert each number to its binary representation\n    bin_nums = [bin(num)[2:] for num in nums]\n\n    # Use a priority queue to sort the numbers\n    sorted_bin_nums = []\n    while any(bin_nums):\n        max_num = max((int(num, 2), num) for num in bin_nums)\n        sorted_bin_nums.append(max_num[1])\n        bin_nums.remove(max_num[1])\n\n    return [int(num, 2) for num in sorted_bin_nums]",
+    "tests": [
+        "assert sort_numbers([10, 5]) == [5, 10]",
+        "assert sort_numbers([3, 14]) == [3, 14]",
+        "assert sort_numbers([6, 8, 1, 4]) == [1, 4, 6, 8]",
+        "assert sort_numbers([]) == []"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

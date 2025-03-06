@@ -1,0 +1,13 @@
+{
+    "title": "Maximum Sum Subarray of Size K",
+    "description": "Given an array and a positive integer k, find the maximum sum of all subarrays of size k. Write a function `max_sum_subarray` that takes an array and an integer k as input and returns the maximum sum of all subarrays of size k.\n\n#### Function Signature\n```python\ndef max_sum_subarray(arr: list[int], k: int) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers representing an array.\n- `k` (int): The size of the subarrays to consider.\n\n#### Output\n- Returns the maximum sum of all subarrays of size k in the input array.",
+    "code": "def max_sum_subarray(arr: list[int], k: int) -> int:\n    n = len(arr)\n    if k > n:\n        return 0\n    prefix_sum = [0] * (n + 1)\n    for i in range(n):\n        prefix_sum[i + 1] = prefix_sum[i] + arr[i]\n    max_sum = float('-inf')\n    for i in range(n - k + 1):\n        max_sum = max(max_sum, prefix_sum[i + k] - prefix_sum[i])\n    return max_sum",
+    "tests": [
+        "assert max_sum_subarray([10, 5, 2], 3) == 17",
+        "assert max_sum_subarray([-1, 1, 2, 3, 4, 5], 3) == 9",
+        "assert max_sum_subarray([-1, 0, 1, 2, -1, -4], 2) == 6"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

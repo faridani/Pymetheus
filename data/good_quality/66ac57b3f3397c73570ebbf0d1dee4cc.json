@@ -1,0 +1,13 @@
+{
+    "title": "Longest Common Subsequence",
+    "description": "Given two strings `str1` and `str2`, write a function `longest_common_subsequence` that returns the length of their longest common subsequence.\n\n#### Function Signature\n```python\ndef longest_common_subsequence(str1: str, str2: str) -> int:\n```\n\n#### Input\n- `str1` (str): The first input string.\n- `str2` (str): The second input string.\n\n#### Output\n- Returns the length of the longest common subsequence between the two input strings.",
+    "code": "\nimport numpy as np\n\ndef longest_common_subsequence(str1: str, str2: str) -> int:\n    m = len(str1)\n    n = len(str2)\n\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n\n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            if str1[i - 1] == str2[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1] + 1\n            else:\n                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])\n\n    return dp[m][n]",
+    "tests": [
+        "assert longest_common_subsequence('abcde', 'ace') == 3",
+        "assert longest_common_subsequence('abcdefg', 'bdfghij') == 4",
+        "assert longest_common_subsequence('hello', 'goodbye') == 2"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

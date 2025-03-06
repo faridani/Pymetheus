@@ -1,0 +1,15 @@
+{
+    "title": "Medium: Valid Brackets Checker",
+    "description": "Write a function that checks if a given string of brackets is valid. A string of brackets is considered valid if it matches any of the following patterns:\n\n* `()` (empty string)\n* `(())` (nested parentheses)\n* `((()))` (double nested parentheses)\n\nThe input string will only contain the characters `'('`, `')'`. The function should return `True` if the input string is valid, and `False` otherwise.\n\n#### Function Signature\n```python\ndef are_brackets_valid(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain any number of opening and closing parentheses.\n\n#### Output\n- Returns `True` if the input string is valid, `False` otherwise.",
+    "code": "def are_brackets_valid(s: str) -> bool:\n    stack = []\n    for char in s:\n        if char == '(':\n            stack.append(char)\n        elif char == ')':\n            if not stack or stack.pop() != '(': return False\n    return not stack,",
+    "tests": [
+        "assert are_brackets_valid('') == True",
+        "assert are_brackets_valid('()') == True",
+        "assert are_brackets_valid('(()())') == True",
+        "assert are_brackets_valid('((()))') == True",
+        "assert are_brackets_valid(')()(') == False"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

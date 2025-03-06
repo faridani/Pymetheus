@@ -1,0 +1,14 @@
+{
+    "title": "Evenly Divided Rectangles",
+    "description": "A set of rectangles with integer coordinates and even sides are given. Your task is to find the number of such rectangles that can be evenly divided into 4 smaller rectangles.\n\n#### Function Signature\n```python\ndef evenly_divisible_rectangles(rectangles: list[tuple[int, int, int, int]]) -> int:\n```\n\n#### Input\n- `rectangles` (list[tuple[int, int, int, int]]): A list of tuples representing the coordinates and sizes of the rectangles. Each tuple has four integers: `(x1, y1, x2, y2)` where `(x1, y1)` is the top-left corner and `(x2, y2)` is the bottom-right corner.\n\n#### Output\n- Returns the number of rectangles that can be evenly divided into 4 smaller rectangles.",
+    "code": "",
+    "\nimport math\n\ndef evenly_divisible_rectangles(rectangles: list[tuple[int, int, int, int]]) -> int:\n    count = 0\n    for x1, y1, x2, y2 in rectangles:\n        if (x2 - x1) % 2 == 0 and (y2 - y1) % 2 == 0:\n            count += math.comb((x2 - x1), 2) * math.comb((y2 - y1), 2)\n    return count": "",
+    "tests": [
+        "assert evenly_divisible_rectangles([(0, 0, 4, 4)]) == 8",
+        "assert evenly_divisible_rectangles([(0, 0, 3, 3), (1, 1, 5, 5)]) == 20",
+        "assert evenly_divisible_rectangles([(0, 0, 2, 2), (0, 2, 2, 4)]) == 12"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

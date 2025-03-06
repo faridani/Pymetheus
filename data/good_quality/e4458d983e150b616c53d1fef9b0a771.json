@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Coin Change Problem",
+    "description": "You are given a list of coin denominations and an amount. Write a function that returns the minimum number of coins needed to make up the amount using the available coin denominations.\n\n#### Function Signature\n```python\ndef min_coins(coins, amount) -> int:\n```\n\n#### Input\n- `coins` (list): A list of integers representing the available coin denominations.\n- `amount` (int): The target amount to make up using the available coins.\n\n#### Output\n- Returns the minimum number of coins needed to make up the given amount. If it's not possible to make up the amount, return -1.",
+    "code": "def min_coins(coins, amount) -> int:\n    dp = [float('inf')] * (amount + 1)\n    dp[0] = 0\n    for coin in coins:\n        for i in range(coin, amount + 1):\n            dp[i] = min(dp[i], dp[i - coin] + 1)\n    return dp[amount] if dp[amount] != float('inf') else -1",
+    "tests": [
+        "assert min_coins([1, 2, 5], 11) == 3",
+        "assert min_coins([2], 3) == 2",
+        "assert min_coins([7, 3, 2], 4) == 2",
+        "assert min_coins([2], 1) == 1"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

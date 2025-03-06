@@ -1,0 +1,13 @@
+{
+    "title": "Sorting Puzzle",
+    "description": "A set of friends are trying to solve a puzzle. The puzzle consists of `n` strings, each containing a word or phrase from their favorite book. They want to sort these strings in such a way that the longest common prefix between any two adjacent strings is minimized.\n\n#### Function Signature\n```python\ndef minimize_prefix(s: list[str]) -> list[str]:\n```\n\n#### Input\n- `s` (list[str]): A list of `n` strings, each containing a word or phrase from their favorite book.\n\n#### Output\n- Returns a sorted list of strings where the longest common prefix between any two adjacent strings is minimized.",
+    "code": "\ndef minimize_prefix(s: list[str]) -> list[str]:\n    s = [x.lower() for x in s]\n    n = len(s)\n    result = []\n    while len(result) < n:\n        min_len = float('inf')\n        next_word = ''\n        for i in range(n):\n            if not result or len(s[i]) > len(result[-1]):\n                prefix = 0\n                j = 0\n                while j < len(s[i]) and s[i][j] == result[-1][j]:\n                    j += 1\n                    prefix += 1\n                if prefix < min_len:\n                    min_len = prefix\n                    next_word = s[i]\n        result.append(next_word)\n    return result",
+    "tests": [
+        "assert minimize_prefix(['hello', 'world', 'helloworld']) == ['hello', 'world', 'helloworld']",
+        "assert minimize_prefix(['abcde', 'abcdefg', 'abcdefgh']) == ['abcde', 'abcdef', 'abcdefgh']",
+        "assert minimize_prefix(['a', 'aa', 'aaa']) == ['a', 'aa', 'aaa']"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

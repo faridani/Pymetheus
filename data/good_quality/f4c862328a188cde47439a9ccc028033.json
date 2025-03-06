@@ -1,0 +1,18 @@
+{
+    "title": "Euler's Totient Function",
+    "description": "Euler's totient function, denoted by \u03c6(n), is a multiplicative function that counts the positive integers up to n that are relatively prime to n.\n\n#### Function Signature\n```python\ndef euler_totient(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer for which we want to calculate Euler's totient value.\n\n#### Output\n- Returns the value of Euler's totient function for the given input `n`.",
+    "code": "import math\n\ndef euler_totient(n: int) -> int:\n    result = n\n    p = 2\n    while p * p <= n:\n        if n % p == 0:\n            while n % p == 0:\n                n //= p\n            result -= result // p\n        p += 1\n    if n > 1:\n        result -= 1\n    return result",
+    "tests": [
+        "assert euler_totient(1) == 1",
+        "assert euler_totient(2) == 1",
+        "assert euler_totient(3) == 2",
+        "assert euler_totient(4) == 2",
+        "assert euler_totient(5) == 4",
+        "assert euler_totient(6) == 2",
+        "assert euler_totient(7) == 6",
+        "assert euler_totient(8) == 4"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

@@ -1,0 +1,15 @@
+{
+    "title": "Easy: Count Vowels",
+    "description": "Write a function `count_vowels` that counts the number of vowels in a given string.\n\n#### Function Signature\n```python\ndef count_vowels(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing any characters.\n\n#### Output\n- Returns the number of vowels in the input string.",
+    "code": "",
+    "\ndef count_vowels(s: str) -> int:\n    vowels = 'aeiouAEIOU'\n    return sum(1 for char in s if char in vowels)": "",
+    "tests": [
+        "assert count_vowels('hello world') == 3",
+        "assert count_vowels('AEIOU') == 5",
+        "assert count_vowels('bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ') == 0",
+        "assert count_vowels('aeiou') == 5"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

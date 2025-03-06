@@ -1,0 +1,14 @@
+{
+    "title": "Harmonic Series",
+    "description": "The harmonic series is the sum of the reciprocals of all positive integers.\n\n#### Function Signature\n```python\ndef harmonic_series(n: int) -> float:\n```\n\n#### Input\n- `n` (int): A non-negative integer indicating the number of terms to include in the harmonic series.\n\n#### Output\n- Returns the sum of the reciprocals of all positive integers up to and including `n`, accurate to 4 decimal places.",
+    "code": "import math\ndef harmonic_series(n: int) -> float:\n    result = 0.0\n    for i in range(1, n + 1):\n        result += 1 / i\n    return round(result, 4)",
+    "tests": [
+        "assert abs(harmonic_series(5) - 1.8393) < 0.0001",
+        "assert harmonic_series(1) == 1.0",
+        "assert harmonic_series(2) == 1.5",
+        "assert harmonic_series(10) == 2.9284"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

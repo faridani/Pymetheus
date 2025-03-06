@@ -1,0 +1,12 @@
+{
+    "title": "Minimum Path Sum III (Hard)",
+    "description": "Given a directed acyclic graph `G` with `n` nodes labeled from `0` to `n-1`, where each node has a value and a list of its children, write a function `min_path_sum` that finds the minimum path sum from node `0` to any leaf node.\n\n#### Function Signature\n```python\ndef min_path_sum(G: List[List[int]]) -> int:\n```\n\n#### Input\n- `G` (List[List[int]]): A directed acyclic graph, where each inner list represents a node with its value and children. For example, `[10, [1, 2, 3], [5, [6]]]` means there is a node with label `0` that has a value of `10` and two children labeled `1` and `2`, which have values `1` and `2` respectively, and another child labeled `3`, which has no further children. The node labeled `5` is a leaf node with a value of `5`. Node `6` is also a leaf node.\n\n#### Output\n- Returns the minimum path sum from node `0` to any leaf node.",
+    "code": "\nfrom typing import List\n\ndef min_path_sum(G: List[List[int]]) -> int:\n    memo = {}\n    \n    def dfs(node: int) -> int:\n        if node in memo:\n            return memo[node]\n        \n        if len(G[node]) == 0:\n            return G[node][0]\n        \n        min_sum = float('inf')\n        for child in G[node]:\n            min_sum = min(min_sum, child + dfs(child))\n        \n        memo[node] = min_sum\n        return min_sum\n    \n    return dfs(0)",
+    "tests": [
+        "assert min_path_sum([[10, [1, 2]], [5]]) == 15",
+        "assert min_path_sum([[1], [2, [3, [4]]]]) == 6"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Harmonious Chords",
+    "description": "Write a function `harmonious_chord` that takes as input two lists of strings representing notes in a musical chord. The function should return whether the input chords are harmonious, meaning they can be played together without creating any dissonant intervals.\n\n#### Function Signature\n```python\ndef harmonious_chord(chord1: list[str], chord2: list[str]) -> bool:\n```\n\n#### Input\n- `chord1` (list[str]): A list of strings representing the notes in the first musical chord.\n- `chord2` (list[str]): A list of strings representing the notes in the second musical chord.\n\n#### Output\n- Returns `True` if the input chords are harmonious, `False` otherwise.",
+    "code": "\nfrom music21 import *\n\ndef harmonious_chord(chord1: list[str], chord2: list[str]) -> bool:\n    # Convert notes to music21 pitches\n    pitch1 = [pitch.Note(note) for note in chord1]\n    pitch2 = [pitch.Note(note) for note in chord2]\n\n    # Check if the intervals between the notes are consonant\n    for i, note1 in enumerate(pitch1):\n        if i < len(pitch2):\n            interval = note1.mid().difference(pitch2[i].mid())\n            if not (interval.isPerfect() or interval.isMajor() or interval.isMinor()):\n                return False\n\n    # If all intervals are consonant, the chords are harmonious\n    return True",
+    "tests": [
+        "assert harmonious_chord(['C4', 'E4', 'G4'], ['D4', 'F4', 'A4']) == True",
+        "assert harmonious_chord(['C4', 'E4', 'G4'], ['E4', 'G4', 'B4']) == False",
+        "assert harmonious_chord(['C3', 'D#3', 'G3'], ['G2', 'B2', 'D4']) == True"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

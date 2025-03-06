@@ -1,0 +1,15 @@
+{
+    "title": "Easy: Leap Year Checker",
+    "description": "Write a function `is_leap_year` that checks if a given year is a leap year.\n\n#### Function Signature\n```python\ndef is_leap_year(year: int) -> bool:\n```\n\n#### Input\n- `year` (int): A positive integer representing the year.\n\n#### Output\n- Returns `True` if the input year is a leap year, `False` otherwise.",
+    "code": "",
+    "def is_leap_year(year: int) -> bool:\n    # Check if the year is divisible by 400\n    if year % 400 == 0:\n        return True\n    # If not, check if it's divisible by 100 but not by 400\n    elif year % 100 == 0 and year % 400 != 0:\n        return False\n    # If not, check if it's divisible by 4\n    else:\n        return year % 4 == 0": "",
+    "tests": [
+        "assert is_leap_year(2000) == True",
+        "assert is_leap_year(1900) == False",
+        "assert is_leap_year(2016) == True",
+        "assert is_leap_year(2017) == False"
+    ],
+    "difficulty": "easy",
+    "model": "codestral:22b",
+    "style": "Internationals Olympiad"
+}

@@ -1,0 +1,15 @@
+{
+    "title": "Maximize Sum of Three Numbers",
+    "description": "Given three integers, find the maximum sum of three numbers where each number can only be used once.\n\n#### Function Signature\n```python\ndef max_sum(a: int, b: int, c: int) -> int:\n```\n\n#### Input\n- `a`, `b`, and `c` (int): Three integers that need to be processed.\n\n#### Output\n- Returns the maximum sum of three numbers where each number can only be used once.",
+    "code": "",
+    "\ndef max_sum(a: int, b: int, c: int) -> int:\n    return max(max(a, b), c)": "",
+    "tests": [
+        "assert max_sum(1, 2, 3) == 6",
+        "assert max_sum(-1, -2, -3) == -1",
+        "assert max_sum(0, 1, 1) == 2",
+        "assert max_sum(5, 10, 15) == 20"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

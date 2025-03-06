@@ -1,0 +1,14 @@
+{
+    "title": "Catalan Numbers (Hard)",
+    "description": "The Catalan numbers are a sequence of natural numbers that occur in various counting problems, such as the number of ways to triangulate an n-gon. They are named after the mathematician Eug\u00e8ne Charles Catalan.\n\nWrite a function `catalan_number` that calculates the nth Catalan number.\n\n#### Function Signature\n```\ndef catalan_number(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A non-negative integer representing the position in the sequence of Catalan numbers.\n\n#### Output\n- Returns the nth Catalan number as an integer.\n\nNote: You can use any mathematical formula or method to calculate the Catalan number. However, you must prove that your function is correct by testing it for a few values of n.",
+    "code": "\nimport math\n\ndef catalan_number(n: int) -> int:\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    if n == 0 or n == 1:\n        return 1\n    else:\n        return math.floor((2 * (2 * n - 1)) / ((n + 1) * math.factorial(2 * n)))",
+    "tests": [
+        "assert catalan_number(0) == 1",
+        "assert catalan_number(1) == 1",
+        "assert catalan_number(2) == 2",
+        "assert catalan_number(3) == 5"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

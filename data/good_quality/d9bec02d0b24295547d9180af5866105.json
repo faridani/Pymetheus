@@ -1,0 +1,13 @@
+{
+    "title": "Minimum Time to Make the Flowers Bloom",
+    "description": "A garden has a series of flowers that bloom at different times. The time it takes for each flower to bloom can be represented by an integer array `flowers`. For example, `[1, 3, 5]` means the first flower blooms in 1 minute, the second in 3 minutes, and the third in 5 minutes.\n\nWrite a function `min_time_to_bloom` that finds the minimum time it takes to make all the flowers bloom. The function should take two inputs: an array of integers representing the times each flower takes to bloom (`flowers`) and an integer (`target_time`) that represents the maximum time allowed for the flowers to bloom.\n\n#### Function Signature\n```python\ndef min_time_to_bloom(flowers: list[int], target_time: int) -> int:\n```\n\n#### Input\n- `flowers` (list[int]): An array of integers representing the times each flower takes to bloom.\n- `target_time` (int): The maximum time allowed for the flowers to bloom.\n\n#### Output\n- Returns the minimum time it takes to make all the flowers bloom, or -1 if it is not possible to make all the flowers bloom within the target time.",
+    "code": "def min_time_to_bloom(flowers: list[int], target_time: int) -> int:\n    # Sort the flowers by their blooming times\n    sorted_flowers = sorted((time, index) for index, time in enumerate(flowers))\n    current_time = 0\n    for time, _ in sorted_flowers:\n        if current_time + time > target_time:\n            return -1\n        current_time += time\n    return current_time",
+    "tests": [
+        "assert min_time_to_bloom([1, 2, 3], 5) == 4",
+        "assert min_time_to_bloom([1, 3, 5, 10], 15) == 14",
+        "assert min_time_to_bloom([1, 2, 3, 4], 6) == -1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

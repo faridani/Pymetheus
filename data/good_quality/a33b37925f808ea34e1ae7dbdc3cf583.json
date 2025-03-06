@@ -1,0 +1,13 @@
+{
+    "title": "Hard: N-Queens Problem",
+    "description": "The N Queens puzzle is a problem of placing N queens on an N\u00d7N chessboard such that no two queens threaten each other. Given an integer N, print all distinct solutions to the N-queens puzzle. A solution requires the placement of N queens such that none are attacking each other.\n\n#### Function Signature\n```python\ndef solve_n_queens(N: int) -> List[List[str]]:\n```\n\n#### Input\n- `N` (int): The size of the chessboard and the number of queens.\n\n#### Output\n- Returns a list of all distinct solutions to the N-queens puzzle. Each solution is represented as a list of strings, where each string represents a row on the board with 'Q's indicating queen placements and '.' indicating empty spaces.",
+    "code": "",
+    "from typing import List\ndef solve_n_queens(N: int) -> List[List[str]]:\n    def is_safe(board, row, col):\n        for i in range(row):\n            if board[i][col] == 'Q':\n                return False\n        (i, j) = (row, col)\n        while i >= 0 and j >= 0:\n            if board[i][j] == 'Q':\n                return False\n            i -= 1\n            j -= 1\n        (i, j) = (row, col)\n        while i >= 0 and j < N:\n            if board[i][j] == 'Q':\n                return False\n            i -= 1\n            j += 1\n        return True\n    def solve(board, row):\n        if row == N:\n            solutions.append([''.join(row) for row in board])\n            return\n        for col in range(N):\n            if is_safe(board, row, col):\n                board[row][col] = 'Q'\n                solve(board, row + 1)\n                board[row][col] = '.'\n    solutions = []\n    empty_board = [['.' for _ in range(N)] for _ in range(N)]\n    solve(empty_board, 0)\n    return solutions": "",
+    "tests": [
+        "assert len(solve_n_queens(4)) == 2",
+        "assert all(len(sol) == 4 and all(len(row) == 4 for row in sol) for sol in solve_n_queens(4))"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "codestral:22b",
+    "style": "CodeChef"
+}

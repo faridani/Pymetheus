@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Unique Characters in a String",
+    "description": "Write a function `unique_chars` that takes a string as input and returns the number of unique characters in that string.\n\n#### Function Signature\n```python\ndef unique_chars(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing any sequence of characters.\n\n#### Output\n- Returns the number of unique characters in the input string.",
+    "code": "def unique_chars(s: str) -> int:\n    return len(set(s))",
+    "tests": [
+        "assert unique_chars('abcde') == 5",
+        "assert unique_chars('hello world') == 9",
+        "assert unique_chars('abcdefghijklmnopqrstuvwxyz') == 26"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

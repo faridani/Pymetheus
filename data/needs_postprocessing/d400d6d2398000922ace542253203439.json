@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Calculate the Sum of Digits\\\", \\\"description\\\": \\\"Write a function that calculates the sum of digits for a given number. The function should take an integer as input and return the sum of its digits.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef sum_of_digits(n: int) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `n` (int): A non-negative integer.\\\\n\\\\n#### Output\\\\n- Returns the sum of the digits in the input number.\\\\n\\\", \\\"code\\\": \\\"def sum_of_digits(n: int) -> int:\\\\n    if n < 0:\\\\n        raise ValueError('Input must be a non-negative integer')\\\\n    return sum(int(digit) for digit in str(n))\\\\n\\\", \\\"tests\\\": [\\\"assert sum_of_digits(123) == 6\\\", \\\"assert sum_of_digits(-123) == 'ValueError' if run locally else None\\\", \\\"assert sum_of_digits(999) == 27\\\", \\\"assert sum_of_digits(10) == 1\\\"] }\""
+}

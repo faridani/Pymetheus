@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Product of Subarrays",
+    "description": "Given an array of integers, find the maximum product that can be obtained by multiplying some of its subarrays. A subarray is a contiguous segment of the array.\n\n#### Function Signature\n```python\ndef max_product(subarrays: list[int]) -> int:\n```\n\n#### Input\n- `subarrays` (list[int]): A list of integers representing the values of the subarrays.\n\n#### Output\n- Returns the maximum product that can be obtained by multiplying some of its subarrays.",
+    "code": "def max_product(subarrays: list[int]) -> int:\n    if len(subarrays) == 1 and subarrays[0] < 0:\n        return subarrays[0]\n    if not all(isinstance(x, int) for x in subarrays):\n        raise ValueError('All elements of the input list must be integers')\n    n = len(subarrays)\n    dp = [[0] * (n + 1) for _ in range(n + 1)]\n    max_product_here = [0] * (n + 1)\n    for i in range(1, n):\n        for j in range(i + 1):\n            if subarrays[j - 1] < 0:\n                dp[i][j] = min(dp[i - 1][j], max_product_here[i - 1]) * abs(subarrays[j - 1])\n            else:\n                dp[i][j] = dp[i - 1][j]\n            if j == i and subarrays[j - 1] < 0:\n                max_product_here[i] = max_product_here[i - 1] + abs(subarrays[j - 1])\n            elif j > 0 and subarrays[j - 1] < 0:\n                max_product_here[i] = max(max_product_here[i], dp[i][j]\n                    if j == i else 0)\n    return max_product_here[-1]",
+    "tests": [
+        "assert max_product([-2,0,-1]) == 2",
+        "assert max_product([1,3,4,5,2,7,8,9,10,11,12,13,14,15,16,17,18,19,20]) == 120",
+        "assert max_product([-2,3,5]) == 6",
+        "assert max_product([0,-1]) == -1"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

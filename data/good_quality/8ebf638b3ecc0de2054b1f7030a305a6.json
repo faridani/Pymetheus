@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Maximum Sum Subarray",
+    "description": "Given an integer array `nums` and an integer `k`, find the maximum sum of a subarray that contains at most `k` elements. A subarray is a contiguous part of the array.\n\n#### Function Signature\n```python\ndef max_sum_subarray(nums: list[int], k: int) -> int:\n```\n#### Input\n- `nums` (list[int]): An integer array.\n- `k` (int): The maximum number of elements in the subarray.\n\n#### Output\n- Returns the maximum sum of a subarray that contains at most `k` elements.",
+    "code": "\ndef max_sum_subarray(nums: list[int], k: int) -> int:\n    n = len(nums)\n    prefix_sum = [0] * (n + 1)\n    \n    for i in range(n):\n        prefix_sum[i + 1] = prefix_sum[i] + nums[i]\n    \n    max_sum = float('-inf')\n    for i in range(k, n + 1):\n        max_sum = max(max_sum, prefix_sum[i] - prefix_sum[i - k])\n    \n    return max_sum",
+    "tests": [
+        "assert max_sum_subarray([-2, -3, 4], 2) == 6",
+        "assert max_sum_subarray([1, 4, 3, 10, 2, 3, 9], 3) == 18",
+        "assert max_sum_subarray([1, 2, 3], 1) == 1",
+        "assert max_sum_subarray([-1, -2, -3, -4, -5], 2) == -1"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

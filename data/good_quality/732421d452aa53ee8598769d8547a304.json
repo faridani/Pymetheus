@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Area Rectangle",
+    "description": "Given a list of points where each point is represented as a pair of integers (x, y), find the minimum area rectangle that can be formed by connecting four distinct points from the given list. The rectangle must have all its sides parallel to the x and y axes.\n\n#### Function Signature\n```python\ndef min_area_rectangle(points: List[Tuple[int, int]]) -> Tuple[float, float]:\n```\n\n#### Input\n- `points` (List[Tuple[int, int]]): A list of points where each point is represented as a pair of integers (x, y).\n\n#### Output\n- Returns a tuple containing the minimum area of the rectangle and its coordinates in the form (width, height).",
+    "code": "\nimport math\n\ndef min_area_rectangle(points: list[tuple[int, int]]) -> tuple[float, float]:\n    # Initialize minimum area and coordinates\n    min_area = float('inf')\n    min_coords = None\n    \n    for i in range(len(points)):\n        for j in range(i + 1, len(points)):\n            for k in range(j + 1, len(points)):\n                for last_point in range(k + 1, len(points)):\n                    # Check if the points form a rectangle\n                    if all((points[i][0] - points[j][0], points[j][1] - points[k][1]) == (points[k][0] - points[last_point][0], points[last_point][1] - points[i][1])):\n                        # Calculate area of the rectangle\n                        width = abs(points[i][0] - points[last_point][0])\n                        height = abs(points[j][1] - points[k][1])\n                        area = width * height\n                        \n                        if area < min_area:\n                            min_area = area\n                            min_coords = (width, height)\n    \n    return min_coords",
+    "tests": [
+        "assert min_area_rectangle([(0, 0), (2, 3), (4, 6), (1, 5)]) == (3.0, 3.0)",
+        "assert min_area_rectangle([(0, 0), (1, 0), (1, 1), (0, 1)]) == (1.0, 1.0)",
+        "assert min_area_rectangle([(0, 0), (2, 2), (4, 4), (6, 6)]) == (4.0, 4.0)",
+        "assert min_area_rectangle([(0, 0), (0, 3), (3, 0), (3, 3)]) == (3.0, 3.0)"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

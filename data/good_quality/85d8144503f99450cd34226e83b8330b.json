@@ -1,0 +1,14 @@
+{
+    "title": "Euler's Totient Function (Easy)",
+    "description": "Write a function that calculates Euler's totient function for a given number.\n\n#### Function Signature\n```python\ndef euler_totient(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the value of Euler's totient function for the input number.\nEuler's totient function, denoted by \u03c6(m), is a counting function that counts the positive integers up to m that are relatively prime to m.\nThe function should be able to handle inputs up to 1000000.",
+    "code": "\nimport math\n\ndef euler_totient(n: int) -> int:\n    if n == 1:\n        return 1\n    totient = n\n    p = 2\n    while p * p <= n:\n        if n % p == 0:\n            while n % p == 0:\n                n //= p\n            totient -= totient // p\n        p += 1\n    if n > 1:\n        totient -= 1\n    return totient",
+    "tests": [
+        "assert euler_totient(5) == 4",
+        "assert euler_totient(12) == 4",
+        "assert euler_totient(20) == 8",
+        "assert euler_totient(1000000) == 576273"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

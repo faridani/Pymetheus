@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Fibonacci Numbers in a Circular Array",
+    "description": "Given an array of integers, find all the pairs that sum up to a Fibonacci number. The array can be circularly rotated to account for indices wrapping around.\n\n#### Function Signature\n```python\ndef fibonacci_pairs(array: list[int]) -> list[tuple]:\n```\n\n#### Input\n- `array` (list[int]): A list of integers, possibly containing duplicates.\n\n#### Output\n- Returns a list of tuples, where each tuple contains two indices in the input array that sum up to a Fibonacci number. The order of the pair elements does not matter.",
+    "code": "from typing import List, Tuple\n\ndef fibonacci_pairs(array: List[int]) -> List[Tuple]:\n    memo = {0: 0, 1: 1}\n    def fib(n: int) -> int:\n        if n not in memo:\n            memo[n] = fib(n-1) + fib(n-2)\n        return memo[n]\n\n    result = []\n    for i in range(len(array)):\n        for j in range(i+1, len(array)+i):\n            j %= len(array)\n            if array[i] + array[j] in memo:\n                result.append((i, j))\n\n    return result",
+    "tests": [
+        "assert fibonacci_pairs([3, 6, 9]) == [(0, 2), (0, 1)]",
+        "assert fibonacci_pairs([10, 20, 30]) == [(0, 1)]",
+        "assert fibonacci_pairs([5, 8, 13, 21]) == [(0, 2), (1, 3)]"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

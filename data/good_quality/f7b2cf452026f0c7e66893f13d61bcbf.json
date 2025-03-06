@@ -1,0 +1,13 @@
+{
+    "title": "Fibonacci Primes",
+    "description": "A Fibonacci prime is a number in the Fibonacci sequence that is also prime. Write a function `fib_prime` that takes an integer `n` as input and returns a list of all Fibonacci primes less than or equal to `n`.\n\n#### Function Signature\n```\ndef fib_prime(n: int) -> list:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns a list of Fibonacci primes less than or equal to `n`.\n\n#### Constraints\n* The input number `n` will be in the range [1, 1000].\n\n#### Hints\n* You can use the formula for the nth Fibonacci number: F(n) = F(n-1) + F(n-2).\n* A prime number is a natural number greater than 1 that has no divisors other than 1 and itself.",
+    "code": "\ndef fib_prime(n: int) -> list:\n    def is_prime(m: int) -> bool:\n        if m < 2:\n            return False\n        for i in range(2, int(m ** 0.5) + 1):\n            if m % i == 0:\n                return False\n        return True\n\n    a, b = 0, 1\n    result = []\n    while b <= n:\n        if is_prime(b):\n            result.append(b)\n        a, b = b, a + b\n    return result",
+    "tests": [
+        "assert len(fib_prime(100)) == 25",
+        "assert fib_prime(20) == [2, 3, 5, 8]",
+        "assert fib_prime(1) == []"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

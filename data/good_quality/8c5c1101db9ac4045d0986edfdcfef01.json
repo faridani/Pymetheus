@@ -1,0 +1,15 @@
+{
+    "title": "Easy: Valid Parentheses Checker",
+    "description": "Write a function `is_valid_parentheses` that takes a string as input and returns `True` if the parentheses in the string are valid, `False` otherwise.\n\n#### Function Signature\n```python\ndef is_valid_parentheses(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain parentheses.\n\n#### Output\n- Returns `True` if the input string contains valid parentheses, `False` otherwise. For example, `(())`, `((()))`, and `(()))` are all valid, but `(()`, `(())` is not.",
+    "code": "def is_valid_parentheses(s: str) -> bool:\n    stack = []\n    for char in s:\n        if char == '(':\n            stack.append(char)\n        elif char == ')':\n            if len(stack) == 0:\n                return False\n            else:\n                stack.pop()\n    return len(stack) == 0",
+    "tests": [
+        "assert is_valid_parentheses(\"(())\") == True",
+        "assert is_valid_parentheses(\"((()))\") == True",
+        "assert is_valid_parentheses(\"(()))\") == False",
+        "assert is_valid_parentheses(\"(\") == False",
+        "assert is_valid_parentheses(\")\") == False"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

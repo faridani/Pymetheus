@@ -1,0 +1,13 @@
+{
+    "title": "Perimeter of a Polygon",
+    "description": "A polygon is a 2D shape with at least three sides. The perimeter of a polygon is the sum of all its side lengths. Write a function `polygon_perimeter` that calculates the perimeter of a given polygon.\n\n#### Function Signature\n```python\ndef polygon_perimeter(sides: list[tuple[float, float]]) -> float:\n```\n\n#### Input\n- `sides`: A list of tuples, where each tuple contains the length and width of a side of the polygon. For example, [(3, 4), (5, 6)] represents a rectangle with sides of length 3 and 5, and width 4 and 6 respectively.\n\n#### Output\n- Returns the perimeter of the input polygon as a float.",
+    "code": "\nimport math\n\ndef polygon_perimeter(sides: list[tuple[float, float]]) -> float:\n    # Calculate the perimeter\n    perimeter = 0.0\n    for side in sides:\n        length, width = side\n        perimeter += math.sqrt((length ** 2) + (width ** 2))\n    return perimeter",
+    "tests": [
+        "assert polygon_perimeter([(3, 4), (5, 6)]) == 15.707106781686564",
+        "assert polygon_perimeter([(1, 1), (1, 1), (1, 1)]) == 3.0",
+        "assert polygon_perimeter([]) == 0.0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

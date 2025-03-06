@@ -1,0 +1,15 @@
+{
+    "title": "Maximum Square",
+    "description": "Given an n x n 2D binary matrix filled with 0's and 1's, find the maximum area of a square that can be formed from the matrix. For example:\n\n```\n1 0 1 0 0\n1 0 1 0 0\n1 0 1 1 1\n1 1 1 1 1\n1 0 0 0 0\n```\nThe maximum area of the square that can be formed from this matrix is 4. Write a function `max_square_area` to solve this problem.\n\n#### Function Signature\n```python\ndef max_square_area(matrix: list[list[int]]) -> int:\n```\n\n#### Input\n- `matrix` (list[list[int]]): A 2D binary matrix filled with 0's and 1's, where 0 represents an empty cell and 1 represents a filled cell.\n\n#### Output\n- Returns the maximum area of a square that can be formed from the input matrix.",
+    "code": "",
+    "\nfrom typing import List\n\ndef max_square_area(matrix: List[List[int]]) -> int:\n    if not matrix or not matrix[0]:\n        return 0\n    \n    n = len(matrix)\n    m = [[0] * (n + 1) for _ in range(n + 1)]\n    \n    max_size = 0\n    for i in range(1, n + 1):\n        for j in range(1, n + 1):\n            if matrix[i - 1][j - 1]:\n                m[i][j] = min(m[i-1][j], m[i][j-1], m[i-1][j-1]) + 1\n                max_size = max(max_size, m[i][j])\n    \n    return max_size ** 2": "",
+    "tests": [
+        "assert max_square_area([[0, 0, 1, 0, 0], [0, 0, 1, 0, 0], [0, 1, 1, 1, 1], [1, 1, 1, 1, 1], [0, 0, 0, 0, 0]]) == 4",
+        "assert max_square_area([[1, 1, 1], [1, 1, 1], [1, 1, 1]]) == 9",
+        "assert max_square_area([]) == 0",
+        "assert max_square_area([[0]]) == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

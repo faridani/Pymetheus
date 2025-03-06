@@ -1,0 +1,14 @@
+{
+    "title": "Maximal Sum of Alternating Subarrays",
+    "description": "Given a 2D array `matrix` containing integers, find the maximal sum of an alternating subarray. An alternating subarray is defined as a sequence of elements where each element has a different sign (positive or negative) from its adjacent elements.\n\n#### Function Signature\n```python\ndef maximal_sum_alternating_subarray(matrix: list[list[int]]) -> int:\n```\n\n#### Input\n- `matrix` (list[list[int]]): A 2D array of integers, where each inner list has the same length.\n\n#### Output\n- Returns the maximal sum of an alternating subarray in the input matrix.",
+    "code": "",
+    "\ndef maximal_sum_alternating_subarray(matrix: list[list[int]]) -> int:\n    if not matrix or not matrix[0]:\n        return 0\n\n    rows, cols = len(matrix), len(matrix[0])\n    max_sum = float('-inf')\n\n    for left in range(cols):\n        temp = [0] * rows\n        for right in range(left, cols):\n            for i in range(rows):\n                temp[i] += matrix[i][right]\n            curr_max = 0\n            prev_sign = None\n            for val in temp:\n                if prev_sign is not None and (val > 0) == prev_sign:\n                    break\n                curr_sum = 0\n                sign = 1 if val > 0 else -1\n                for j in range(abs(val)):\n                    curr_sum += matrix[i][right - abs(j)]\n                    max_sum = max(max_sum, curr_sum)\n                    prev_sign = sign\n            left -= 1\n    return max_sum": "",
+    "tests": [
+        "assert maximal_sum_alternating_subarray([[1, 2, -3], [-4, 5, -6]]) == 7",
+        "assert maximal_sum_alternating_subarray([[-1, 0, 1], [1, -2, 3]]) == 2",
+        "assert maximal_sum_alternating_subarray([[1, 2], [3, 4]]) == 1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

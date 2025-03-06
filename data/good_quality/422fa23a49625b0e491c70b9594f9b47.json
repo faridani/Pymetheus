@@ -1,0 +1,13 @@
+{
+    "title": "Minimum Time to Visit All Friends",
+    "description": "A group of friends are planning a trip. They all have different arrival and departure times, but they must visit each other at some point during the day. Write a function that calculates the minimum time required for them to visit each other.\n\n#### Function Signature\n```python\ndef min_time_to_visit_all_friends(arrival_times: list[int], departure_times: list[int]) -> int:\n```\n\n#### Input\n- `arrival_times` (list[int]): A list of integers representing the arrival times of all friends.\n- `departure_times` (list<int>): A list of integers representing the departure times of all friends.\n\n#### Output\n- Returns the minimum time required for them to visit each other.",
+    "code": "def min_time_to_visit_all_friends(arrival_times: list[int], departure_times: list[int]) -> int:\n    max_arrival = max(arrival_times)\n    min_departure = min(departure_times)\n    return max_arrival + (24 - min_departure) if min_departure > 0 else 0",
+    "tests": [
+        "assert min_time_to_visit_all_friends([9, 10, 12], [15, 16, 18]) == 5",
+        "assert min_time_to_visit_all_friends([1, 2, 3], [4, 5, 6]) == 3",
+        "assert min_time_to_visit_all_friends([0, 0], [23, 24]) == 24"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

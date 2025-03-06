@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Divisible Numbers",
+    "description": "Write a function `max_sum_divisible` that takes an integer array and an integer as input, and returns the maximum sum of integers from the array that are divisible by the given integer. The array may contain negative numbers.\n\n#### Function Signature\n```python\ndef max_sum_divisible(arr: list[int], k: int) -> int:\n```\n\n#### Input\n- `arr` (list[int]): An integer array.\n- `k` (int): A positive integer.\n\n#### Output\n- Returns the maximum sum of integers from the input array that are divisible by the given integer.",
+    "code": "def max_sum_divisible(arr: list[int], k: int) -> int:\n    if not arr or k == 0:\n        return 0\n    sum_divisible = 0\n    for num in arr:\n        if num % k == 0:\n            sum_divisible += num\n    return max(0, sum_divisible)",
+    "tests": [
+        "assert max_sum_divisible([1, 2, 3], 2) == 4",
+        "assert max_sum_divisible([-10, -20, -30], 5) == -30",
+        "assert max_sum_divisible([], 3) == 0",
+        "assert max_sum_divisible([15, 30, 45], 15) == 90"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

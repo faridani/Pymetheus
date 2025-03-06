@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Maximal Rectangle",
+    "description": "Given a 2D binary matrix filled with 0's and 1's, find the maximal rectangle that can be obtained by rotating it. \n\n#### Function Signature\n```python\ndef maximal_rectangle(matrix: List[List[int]]) -> int:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A 2D binary matrix filled with 0's and 1's.\n\n#### Output\n- Returns the area of the maximal rectangle that can be obtained by rotating the input matrix.",
+    "code": "from typing import List\n\ndef maximal_rectangle(matrix: List[List[int]]) -> int:\n    if not matrix or not matrix[0]:\n        return 0\n    m, n = len(matrix), len(matrix[0])\n    max_area = 0\n    for i in range(m):\n        temp = [c for c in matrix[i]]\n        for j in range(n): temp.append(temp[j] or matrix[i][j])\n        stack = []\n        top, area, max_area = -1, 0, 0\n        for k, c in enumerate(temp):\n            if c:\n                if top == -1: top = k\n            else: top -= 1\n            if top == k-1:\n                stack.append((k, top))\n                top = -1\n                area += k\n            elif top > k-1:\n                while len(stack) and (stack[-1][0] < k or (stack[-1][0] == k and stack[-1][1] >= top)):\n                    p = stack.pop()\n                    if not top:\n                        top = p[1]\n                        area += p[0]\n                if len(stack): top = stack[-1][0]-1\n        while len(stack):\n            p = stack.pop()\n            if not top:\n                top = p[1]\n                area += p[0]\n        max_area = max(max_area, area)\n    return max_area",
+    "tests": [
+        "assert maximal_rectangle([[0, 1], [1, 0]]) == 2",
+        "assert maximal_rectangle([[0, 0, 1], [1, 0, 0], [0, 1, 0]]) == 3",
+        "assert maximal_rectangle([[1, 1, 1], [1, 0, 1], [1, 1, 1]]) == 6"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

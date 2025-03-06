@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Words",
+    "description": "Given a list of words and their corresponding frequencies, find the maximum sum of words that can be formed by selecting exactly one word from each distinct frequency. Write a function `max_sum` that takes a dictionary where keys are word frequencies and values are lists of words at that frequency.\n\n#### Function Signature\n```python\ndef max_sum(word_freqs: dict) -> int:\n```\n\n#### Input\n- `word_freqs` (dict): A dictionary where keys are integers representing word frequencies and values are lists of words at that frequency.\n\n#### Output\n- Returns the maximum sum of words that can be formed by selecting exactly one word from each distinct frequency.",
+    "code": "",
+    "\nimport heapq\n\ndef max_sum(word_freqs: dict) -> int:\n    # Create a priority queue to store word frequencies and their corresponding sums\n    freq_queue = []\n    for freq, words in word_freqs.items():\n        # Initialize the sum of words at this frequency to 0\n        word_sum = 0\n        # Add each word's length to the sum and push the frequency and sum onto the priority queue\n        for _ in range(len(words)):\n            word_sum += len(words[0])\n        heapq.heappush(freq_queue, (-freq, -word_sum))\n\n    # Initialize the maximum sum to 0\n    max_total_sum = 0\n    # Pop words from the highest frequency and add their sums to the maximum total sum\n    while freq_queue:\n        _, word_sum = heapq.heappop(freq_queue)\n        max_total_sum += word_sum\n\n    return max_total_sum": "",
+    "tests": [
+        "assert max_sum({1: ['apple'], 2: ['banana', 'orange']}) == 9",
+        "assert max_sum({3: ['hello', 'world'], 4: ['abc', 'def', 'ghi']}) == 21",
+        "assert max_sum({5: ['aaa'], 6: ['aaaa', 'aaaaa']}) == 15"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

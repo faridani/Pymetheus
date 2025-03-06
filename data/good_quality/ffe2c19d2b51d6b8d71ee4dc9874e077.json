@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Validating Binary Search Trees",
+    "description": "Given a binary search tree and its root, write a function `is_valid_bst` that checks if it is a valid binary search tree.\n\n#### Function Signature\n```python\ndef is_valid_bst(root: TreeNode) -> bool:\n```\n\n#### Input\n- `root` (TreeNode): The root of the binary search tree.\n\n#### Output\n- Returns `True` if the input tree is a valid binary search tree, `False` otherwise.",
+    "code": "\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef is_valid_bst(root: TreeNode) -> bool:\n    def helper(node, min_val=float('-inf'), max_val=float('inf')):\n        if not node:\n            return True\n        \n        if node.val <= min_val or node.val >= max_val:\n            return False\n        \n        return (helper(node.left, min_val, node.val) and\n                helper(node.right, node.val, max_val))\n    \n    return helper(root)",
+    "tests": [
+        "assert is_valid_bst(TreeNode(2, TreeNode(1), TreeNode(3))) == True",
+        "assert is_valid_bst(TreeNode(5, TreeNode(4), TreeNode(6))) == False",
+        "assert is_valid_bst(None) == True",
+        "assert is_valid_bst(TreeNode(10)) == True"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

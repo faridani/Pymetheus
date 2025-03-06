@@ -1,0 +1,13 @@
+{
+    "title": "Maximal Sum of Subarray",
+    "description": "Given a list of integers, find the maximum sum of any subarray within that list. A subarray is a contiguous sequence of elements within the array.\n\n#### Function Signature\n```python\ndef maximal_sum(arr: list[int]) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers, where each integer can be positive or negative.\n\n#### Output\n- Returns the maximum sum of any subarray within the input array.",
+    "code": "import itertools\n\ndef maximal_sum(arr: list[int]) -> int:\n    if not arr:\n        return 0\n    max_sum = float('-inf')\n    for window_size in range(1, len(arr) + 1):\n        for start_idx in range(len(arr) - window_size + 1):\n            window = arr[start_idx:start_idx + window_size]\n            current_sum = sum(window)\n            if current_sum > max_sum:\n                max_sum = current_sum\n    return max_sum",
+    "tests": [
+        "assert maximal_sum([-2, 3, -4]) == 5",
+        "assert maximal_sum([1, 2, 3, 10, -4, 10, 2, 100]) == 151",
+        "assert maximal_sum([]) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

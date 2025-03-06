@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Minimum Time to Collect All Flowers",
+    "description": "In the game of Pok\u00e9mon, you are given a map with some flowers and some paths that connect these flowers. Your goal is to collect all the flowers on this map. You start at one flower and then choose any adjacent flower to visit next. Once you have visited all the flowers, your journey will end.\n\n#### Function Signature\n```python\ndef min_time_to_collect_all_flowers(parent: dict) -> int:\n```\n\n#### Input\n- `parent` (dict): A dictionary representing the map where each key is a flower and its value is a list of adjacent flowers. For example, if parent = {0: [1, 2], 1: [0, 3], 2: [0, 4], 3: [1], 4: [2]}, it means that there are five flowers in total where flower 0 is connected to flowers 1 and 2, flower 1 is connected to flowers 0 and 3, and so on.\n\n#### Output\n- Returns the minimum time required to collect all the flowers.",
+    "code": "from collections import deque\n\ndef min_time_to_collect_all_flowers(parent: dict) -> int:\n    n = len(parent)\n    visited = set()\n    queue = deque([(0, 0)])\n    max_distance = 0\n\n    while queue:\n        node, distance = queue.popleft()\n        if node not in visited:\n            visited.add(node)\n            max_distance = max(max_distance, distance)\n            for neighbor in parent.get(node, []):\n                if neighbor not in visited:\n                    queue.append((neighbor, distance + 1))\n    return max_distance",
+    "tests": [
+        "assert min_time_to_collect_all_flowers({0: [1, 2], 1: [0, 3], 2: [0, 4], 3: [1], 4: [2]}) == 5",
+        "assert min_time_to_collect_all_flowers({0: [], 1: [0]}) == 1",
+        "assert min_time_to_collect_all_flowers({0: [1, 2, 3], 1: [0, 3], 2: [0, 4], 3: [1, 4], 4: [2, 3]}) == 5"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Domino Chain",
+    "description": "A domino chain is a sequence of dominos where each pair shares the same symbol on one side. Write a function `domino_chain` that takes as input two lists, `chain1` and `chain2`, representing two possible chains of dominos. The function should return the maximum length of a common sub-chain between the two chains.\n\n#### Function Signature\n```python\ndef domino_chain(chain1: list[tuple[str]], chain2: list[tuple[str]]) -> int:\n```\n\n#### Input\n- `chain1` (list[tuple[str]]): A list of tuples, where each tuple contains the symbols on both sides of a domino.\n- `chain2` (list[tuple[str]]): A list of tuples, where each tuple contains the symbols on both sides of a domino.\n\n#### Output\n- The maximum length of a common sub-chain between the two input chains.",
+    "code": "",
+    "\nfrom typing import List, Tuple\n\ndef domino_chain(chain1: List[Tuple[str]], chain2: List[Tuple[str]]) -> int:\n    m, n = len(chain1), len(chain2)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n    \n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            if chain1[i - 1] == chain2[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1] + 1\n            else:\n                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])\n    \n    return dp[m][n]": "",
+    "tests": [
+        "assert domino_chain([(\"A\", \"B\"), (\"C\", \"D\"), (\"E\", \"F\")], [(\"D\", \"C\"), (\"F\", \"E\"), (\"G\", \"H\")]) == 3",
+        "assert domino_chain([(\"X\", \"Y\"), (\"Z\", \"W\"), (\"P\", \"Q\"), (\"M\", \"N\")], [(\"W\", \"Z\"), (\"Q\", \"P\"), (\"N\", \"M\")]) == 4",
+        "assert domino_chain([(\"1\", \"2\"), (\"3\", \"4\"), (\"5\", \"6\")], [(\"7\", \"8\"), (\"9\", \"10\"), (\"11\", \"12\")]) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

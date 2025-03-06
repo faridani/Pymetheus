@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Graph Theory - Connected Components",
+    "description": "Given an undirected graph represented as a list of edges (where each edge is a tuple of two nodes), write a function `find_connected_components` that returns all connected components in the graph.\n\n#### Function Signature\n```python\ndef find_connected_components(edges: list[tuple[int, int]]) -> list[list[int]]:\n```\n\n#### Input\n- `edges` (list[tuple[int, int]]): A list of edges, where each edge is a tuple of two nodes in the graph.\n\n#### Output\n- Returns a list of connected components, where each component is represented as a list of node indices.",
+    "code": "",
+    "\nimport networkx as nx\nfrom typing import List, Tuple\n\ndef find_connected_components(edges: List[Tuple[int, int]]) -> List[List[int]]:\n    G = nx.Graph()\n    for u, v in edges:\n        G.add_edge(u, v)\n    \n    connected_components = list(nx.connected_components(G))\n    \n    return [[node + 1 for node in component] for component in connected_components]": "",
+    "tests": [
+        "assert find_connected_components([(0, 1), (1, 2), (3, 4)]) == [[1, 0], [2, 3, 4]]",
+        "assert find_connected_components([]) == []",
+        "assert find_connected_components([(0, 1), (1, 2), (2, 3), (3, 0)]) == [[0, 1, 2, 3]]"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

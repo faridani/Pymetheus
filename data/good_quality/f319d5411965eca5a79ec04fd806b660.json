@@ -1,0 +1,13 @@
+{
+    "title": "Eulerian Path Finder (Hard)",
+    "description": "Given an undirected graph represented as an adjacency list, find the longest possible Eulerian path that visits each edge exactly once. If no such path exists, return -1.\n\n#### Function Signature\n```python\ndef eulerian_path(graph: dict) -> int:\n```\n\n#### Input\n- `graph` (dict): A dictionary representing an undirected graph where each key is a node and its corresponding value is a list of neighboring nodes.\n\n#### Output\n- Returns the length of the longest possible Eulerian path that visits each edge exactly once. If no such path exists, return -1.",
+    "code": "\nimport collections\ndef eulerian_path(graph: dict) -> int:\n    # Initialize variables to keep track of edges and nodes\n    edges = 0\n    nodes = len(graph)\n    \n    # Count the number of incoming and outgoing edges for each node\n    in_degree = {node: 0 for node in graph}\n    out_degree = {node: 0 for node in graph}\n    for node, neighbors in graph.items():\n        out_degree[node] = len(neighbors)\n        for neighbor in neighbors:\n            in_degree[neighbor] += 1\n    \n    # Find nodes with no incoming edges and initialize a queue\n    queue = [node for node in graph if in_degree[node] == 0]\n    \n    # Perform BFS to find the longest Eulerian path\n    max_path_length = 0\n    while queue:\n        node = queue.pop(0)\n        edges += out_degree[node]\n        max_path_length += out_degree[node]\n        for neighbor in graph[node]:\n            in_degree[neighbor] -= 1\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    # Check if there's a node with remaining incoming edges\n    if any(in_degree.values()):\n        return -1\n    \n    return max_path_length",
+    "tests": [
+        "assert eulerian_path({'A': ['B', 'C'], 'B': ['D'], 'C': ['D'], 'D': []}) == 3",
+        "assert eulerian_path({'A': ['B'], 'B': ['A']}) == -1",
+        "assert eulerian_path({'A': ['B', 'C', 'D'], 'B': ['A'], 'C': ['D'], 'D': ['A', 'C']}) == 4"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Minimum Window Substring",
+    "description": "Write a function `min_window_substring` that takes two strings, `s` and `t`, as input. The function should return the minimum window substring of `s` that contains all characters in `t`. If no such substring exists, it returns an empty string.\n\n#### Function Signature\n```python\ndef min_window_substring(s: str, t: str) -> str:\n```\n\n#### Input\n- `s` (str): The main input string.\n- `t` (str): The target string that contains the characters to be found in `s`.\n\n#### Output\n- Returns the minimum window substring of `s` that contains all characters in `t`. If no such substring exists, it returns an empty string.",
+    "code": "from collections import defaultdict\n\ndef min_window_substring(s: str, t: str) -> str:\n    if not t or not s:\n        return ''\n    dict_t = defaultdict(int)\n    for char in t:\n        dict_t[char] += 1\n    required_chars = len(dict_t)\n    left, right = 0, 0\n    min_len = float('inf')\n    min_window = ''\n    while right < len(s):\n        if all(dict_t[char] > 0 for char in s[right: right + required_chars]):\n            while all(dict_t[char] > 0 for char in s[left:right + 1]):\n                if right - left + 1 < min_len:\n                    min_len = right - left + 1\n                    min_window = s[left:right + 1]\n                dict_t[s[left]] -= 1\n                left += 1\n            right += 1\n    return min_window",
+    "tests": [
+        "assert min_window_substring('ADOBECODEBANC', 'ABC') == 'BANC'",
+        "assert min_window_substring('ABCCBA', 'abc') == 'abc'",
+        "assert min_window_substring('', 'xyz') == ''",
+        "assert min_window_substring('hello', 'x') == ''"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

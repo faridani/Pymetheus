@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Find the Largest Square Submatrix of Zeros",
+    "description": "Given a binary matrix, find and return the size of the largest square submatrix that contains all zeros. A square submatrix is a submatrix that has an equal number of rows as columns.\n\n#### Function Signature\n```python\ndef largest_square_submatrix(matrix: List[List[int]]) -> int:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A 2D list of integers where each integer is either 0 or 1.\n\n#### Output\n- Returns the size of the largest square submatrix that contains all zeros. If no such submatrix exists, return 0.",
+    "code": "",
+    "from typing import List\n\ndef largest_square_submatrix(matrix: List[List[int]]) -> int:\n    if not matrix or not matrix[0]:\n        return 0\n\n    rows, cols = len(matrix), len(matrix[0])\n    dp = [[0] * (cols + 1) for _ in range(rows + 1)]\n    max_size = 0\n\n    for i in range(1, rows + 1):\n        for j in range(1, cols + 1):\n            if matrix[i - 1][j - 1] == 0:\n                dp[i][j] = min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1\n                max_size = max(max_size, dp[i][j])\n    return max_size": "",
+    "tests": [
+        "assert largest_square_submatrix([[0, 1, 1], [1, 0, 1], [1, 1, 0]]) == 2",
+        "assert largest_square_submatrix([[1, 1, 1], [1, 1, 1], [1, 1, 1]]) == 0",
+        "assert largest_square_submatrix([[0, 0, 0], [0, 0, 0], [0, 0, 0]]) == 3"
+    ],
+    "difficulty": "medium",
+    "model": "codestral:22b",
+    "style": "Facebook Hacker Cup"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Maximum Sum of Two Elements",
+    "description": "Given a list of integers, find the maximum sum that can be obtained by adding two distinct elements from the list. For example, if the input list is [1, 2, 3, 4], the maximum sum would be 5 (by adding 2 and 3). If there are multiple ways to get the same maximum sum, return any one of them.\n\n#### Function Signature\n```python\ndef max_sum(lst: list[int]) -> int:\n```\n\n#### Input\n- `lst` (list[int]): A list of integers.\n\n#### Output\n- Returns an integer representing the maximum sum that can be obtained by adding two distinct elements from the list.",
+    "code": "def max_sum(lst: list[int]) -> int:\n    if len(lst) < 2:\n        return -1  # Return -1 if the input list has less than 2 elements\n    max_sum = float('-inf')\n    for i in range(len(lst)):\n        for j in range(i + 1, len(lst)):\n            if lst[i] + lst[j] > max_sum:\n                max_sum = lst[i] + lst[j]\n    return max_sum",
+    "tests": [
+        "assert max_sum([1, 2, 3, 4]) == 5",
+        "assert max_sum([-1, -2, -3]) == -1",
+        "assert max_sum([10, 20, 30, 40, 50]) == 60"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Sudoku Solver",
+    "description": "The classic Sudoku problem! Given a partially filled-in grid and some clues, can you write a function to fill in the entire board?\n\n#### Function Signature\n```python\ndef solve_sudoku(board: list[list[int]]) -> bool:\n```\n\n#### Input\n- `board` (list of lists): A 9x9 grid, partially filled-in with integers from 1 to 9.\nEach row and column is represented as a list of 9 elements, where each element is either an integer or 0 (representing an empty cell).\n\n#### Output\n- Returns `True` if the board can be solved, and `False` otherwise.",
+    "code": "import copy\n\ndef solve_sudoku(board: list[list[int]]) -> bool:\n    def is_valid(board: list[list[int]], row: int, col: int, num: int) -> bool:\n        for x in range(9):\n            if board[row][x] == num or board[x][col] == num:\n                return False\n        start_row = row - row % 3\n        start_col = col - col % 3\n        for i in range(3):\n            for j in range(3):\n                if board[start_row + i][start_col + j] == num:\n                    return False\n        return True\n    def solve(board: list[list[int]]) -> bool:\n        for i in range(9):\n            for j in range(9):\n                if board[i][j] == 0:\n                    for num in range(1, 10):\n                        if is_valid(board, i, j, num):\n                            board[i][j] = num\n                            if solve(board):\n                                return True\n                            board[i][j] = 0\n                    return False\n        return True\n    return solve(copy.deepcopy(board))",
+    "tests": [
+        "assert solve_sudoku([[5,3,0,0,7,0,0,0,0], [6,0,0,1,9,5,0,0,0], [0,9,8,0,0,0,0,6,0]]) == True",
+        "assert solve_sudoku([[1,2,3],[4,5,6],[7,8,9]]) == False",
+        "assert solve_sudoku([[0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,8,6]]) == True",
+        "assert solve_sudoku([[1,2,3],[4,5,6],[7,8,9]]) == False"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

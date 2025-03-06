@@ -1,0 +1,14 @@
+{
+    "title": "Harshad Numbers Generator (Hard)",
+    "description": "A Harshad number, also known as a Niven number, is an integer that is divisible by the sum of its digits when written in a given base. For example, 18 is a Harshad number in base 10 because it is divisible by 9 (1+8=9). Write a function `harshad_numbers` that generates all Harshad numbers within a given range and returns them as a list.\n\n#### Function Signature\n```python\ndef harshad_numbers(start: int, end: int) -> list:\n```\n\n#### Input\n- `start` (int): The start of the range (inclusive).\n- `end` (int): The end of the range (inclusive).\n\n#### Output\n- Returns a list of all Harshad numbers within the given range.",
+    "code": "def harshad_numbers(start: int, end: int) -> list:\n    def is_harshad(n: int) -> bool:\n        sum_of_digits = sum(int(digit) for digit in str(n))\n        return n % sum_of_digits == 0\n    result = [num for num in range(start, end+1) if is_harshad(num)]\n    return result",
+    "tests": [
+        "assert harshad_numbers(10, 30) == [18, 20, 24, 27]",
+        "assert harshad_numbers(-10, 0) == [-9, -8, -6, -5, -3, -2, 0]",
+        "assert harshad_numbers(1, 50) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 18, 20, 24, 27, 30, 36, 42, 48]",
+        "assert harshad_numbers(-100, -1) == [-99, -88, -77, -66, -55, -44, -33, -22, -11, -9, -8, -6, -5, -3, -2, 0]"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

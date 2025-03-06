@@ -1,0 +1,15 @@
+{
+    "title": "Maximum Sum of Divisible Subarrays (Hard)",
+    "description": "Given an array `arr` and a positive integer `k`, write a function that finds the maximum sum of subarrays with length `k` where each element in the subarray is divisible by `k`. If no such subarray exists, return `-1`.\n\n#### Function Signature\n```python\ndef max_sum_divisible_subarrays(arr: list[int], k: int) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n- `k` (int): A positive integer.\n\n#### Output\n- Returns the maximum sum of subarrays with length `k` where each element in the subarray is divisible by `k`. If no such subarray exists, return `-1`.\n\n#### Constraints\n- The length of the input array is between 1 and 10^5.\n- The elements in the input array are integers between -10^9 and 10^9.\n\n#### Hints\n- You can use a sliding window approach to solve this problem.\n- Consider using a hashmap to store the cumulative sum of divisible subarrays.",
+    "code": "",
+    "\nimport math\n\ndef max_sum_divisible_subarrays(arr: list[int], k: int) -> int:\n    n = len(arr)\n    prefix_sum = [0] * (n + 1)\n    for i in range(n):\n        if arr[i] % k == 0:\n            prefix_sum[i + 1] = prefix_sum[i] + arr[i]\n        else:\n            prefix_sum[i + 1] = prefix_sum[i]\n\n    max_sum = -1\n    cumulative_sum = 0\n    for i in range(n):\n        if arr[i] % k == 0:\n            cumulative_sum += arr[i]\n            if (i + 1) >= k:\n                max_sum = max(max_sum, cumulative_sum)\n                cumulative_sum -= prefix_sum[i - k + 1]\n\n    return max_sum": "",
+    "tests": [
+        "assert max_sum_divisible_subarrays([2, 3, 4, 5], 2) == 12",
+        "assert max_sum_divisible_subarrays([10, 20, 30], 3) == -1",
+        "assert max_sum_divisible_subarrays([-50, 0, 20, 40], 10) == 60",
+        "assert max_sum_divisible_subarrays([100, 200, 300, 400, 500], 5) == 150"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

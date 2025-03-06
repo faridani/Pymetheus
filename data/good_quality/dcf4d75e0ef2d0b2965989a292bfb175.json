@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum Subarray",
+    "description": "Given an integer array `nums` and an integer `k`, find the maximum sum of a subarray with at most `k` elements.\n\n#### Function Signature\n```\ndef max_sum_subarray(nums: list[int], k: int) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A non-empty list of integers.\n- `k` (int): The maximum number of elements in the subarray.\n\n#### Output\n- Returns the maximum sum of a subarray with at most `k` elements.",
+    "code": "",
+    "\nimport heapq\n\ndef max_sum_subarray(nums: list[int], k: int) -> int:\n    max_heap = []\n    current_sum = 0\n    for num in nums:\n        current_sum += num\n        if len(max_heap) < k:\n            heapq.heappush(max_heap, -num)\n        else:\n            if -max_heap[0] > num:\n                current_sum -= heapq.heappop(max_heap) * -1\n                heapq.heappush(max_heap, -num)\n    return max(-heap for heap in max_heap)": "",
+    "tests": [
+        "assert max_sum_subarray([1, 3, -1, -2, -4, 5], 2) == 6",
+        "assert max_sum_subarray([-8, 1, 3, 0, -5, 10], 3) == 13",
+        "assert max_sum_subarray([20, 10, 15, 5], 3) == 40"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

@@ -1,0 +1,15 @@
+{
+    "title": "Minimum Time to Make All Numbers",
+    "description": "You are given an array of integers `nums` and an integer `target`. Your goal is to find the minimum time it takes to make all numbers in the array equal to the target. You can perform two types of operations: \n\n1. Increase each number by 1.\n2. Replace a number with the target.\n\nWrite a function `min_time_to_make_all_numbers_equal` that returns the minimum time required to make all numbers in the array equal to the target.\n\n#### Function Signature\n```python\ndef min_time_to_make_all_numbers_equal(nums: list[int], target: int) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n- `target` (int): The target value.\n\n#### Output\n- Returns the minimum time required to make all numbers in the array equal to the target.",
+    "code": "",
+    "\nimport heapq\ndef min_time_to_make_all_numbers_equal(nums, target):\n    # Calculate the difference between each number and the target\n    differences = [(abs(num - target), num) for num in nums]\n    \n    # Use a priority queue to find the maximum difference\n    max_diff = 0\n    heap = []\n    for diff, num in differences:\n        if num < target:\n            heapq.heappush(heap, (-diff, num))\n        else:\n            max_diff = max(max_diff, diff)\n    \n    # Calculate the minimum time required\n    time = 0\n    while heap:\n        diff, num = heapq.heappop(heap)\n        time += abs(num - target) + abs(diff) + max_diff\n    \n    return time": "",
+    "tests": [
+        "assert min_time_to_make_all_numbers_equal([1, 3, 5], 2) == 6",
+        "assert min_time_to_make_all_numbers_equal([-1, 0, 1], 0) == 2",
+        "assert min_time_to_make_all_numbers_equal([100, 200, 300], 250) == 550",
+        "assert min_time_to_make_all_numbers_equal([10, 20, 30, 40], 35) == 120"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

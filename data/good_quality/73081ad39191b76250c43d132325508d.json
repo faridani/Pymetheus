@@ -1,0 +1,14 @@
+{
+    "title": "Eulerian Path Checker (Hard)",
+    "description": "An Eulerian path is a path that uses every edge of a graph exactly once. Given a connected undirected graph, write a function `has_eulerian_path` that checks if it has an Eulerian path.\n\n#### Function Signature\n```python\ndef has_eulerian_path(graph: dict) -> bool:\n```\n\n#### Input\n- `graph` (dict): A dictionary representing the graph where each key is a node and its corresponding value is a list of neighboring nodes. For example, `{A: [B, C], B: [A, D], C: [A, D], D: [B, C]}` represents an undirected connected graph.\n\n#### Output\n- Returns `True` if the input graph has an Eulerian path, `False` otherwise.",
+    "code": "\nimport collections\n\ndef has_eulerian_path(graph):\n    # Check if the graph is connected\n    visited = set()\n    for node in graph:\n        if node not in visited:\n            stack = [node]\n            while stack:\n                current_node = stack.pop()\n                if current_node not in visited:\n                    visited.add(current_node)\n                    stack.extend(neighbor for neighbor in graph[current_node] if neighbor not in visited)\n\n    # Check if all edges are used\n    odd_degrees = 0\n    even_degrees = 0\n    for node in graph:\n        degree = len(graph[node])\n        if degree % 2 == 1:\n            odd_degrees += 1\n        else:\n            even_degrees += 1\n\n    # Check if there's an Eulerian path\n    return odd_degrees == 1 and even_degrees == len(graph) - 1",
+    "tests": [
+        "assert has_eulerian_path({A: [B, C], B: [A, D], C: [A, D], D: [B, C]}) == True",
+        "assert has_eulerian_path({A: [B], B: [A], C: [D], D: [C]}) == False",
+        "assert has_eulerian_path({A: [B, C], B: [A], C: [A], D: [E], E: [D]}) == True",
+        "assert has_eulerian_path({A: [], B: []}) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

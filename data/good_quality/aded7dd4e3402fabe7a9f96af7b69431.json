@@ -1,0 +1,14 @@
+{
+    "title": "Check for Consecutive Duplicates",
+    "description": "A sequence of numbers is called a run if it contains no more than one consecutive duplicate. For example, the sequence 1, 2, 3, 4, 5, 6 is a run, but the sequence 1, 2, 3, 4, 4, 5 is not because there are two consecutive duplicates (the number 4). Write a function `is_run` that takes a list of integers as input and returns `True` if the sequence is a run, and `False` otherwise.\n\n#### Function Signature\n```python\ndef is_run(nums: list[int]) -> bool:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers that may contain duplicates.\n\n#### Output\n- Returns `True` if the input sequence is a run, `False` otherwise.",
+    "code": "def is_run(nums: list[int]) -> bool:\n    for i in range(len(nums) - 1):\n        if nums[i] == nums[i + 1]:\n            return False\n    return True",
+    "tests": [
+        "assert is_run([1, 2, 3, 4, 5, 6]) == True",
+        "assert is_run([1, 2, 2, 3, 4, 5]) == False",
+        "assert is_run([1, 2, 3, 4, 4, 5]) == False",
+        "assert is_run([1, 2, 3, 4, 5, 6, 7]) == True"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

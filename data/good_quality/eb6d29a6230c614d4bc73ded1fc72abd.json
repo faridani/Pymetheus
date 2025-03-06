@@ -1,0 +1,14 @@
+{
+    "title": "Harmonious Notes",
+    "description": "A harmonious note is a musical note that has both a frequency and an amplitude. The notes are harmonious if the sum of their frequencies equals to their count. Write a function `harmonious_notes` that takes in a list of tuples, where each tuple contains two integers - the frequency and amplitude of a note.\n\n#### Function Signature\n```python\ndef harmonious_notes(notes: list[tuple[int, int]]) -> bool:\n```\n\n#### Input\n- `notes` (list[tuple[int, int]]): A list of tuples, where each tuple contains two integers - the frequency and amplitude of a note.\n\n#### Output\n- Returns `True` if the notes are harmonious, `False` otherwise.",
+    "code": "def harmonious_notes(notes: list[tuple[int, int]]) -> bool:\n    frequencies = [note[0] for note in notes]\n    total_frequency = sum(frequencies)\n    return len(notes) == total_frequency",
+    "tests": [
+        "assert harmonious_notes([(1, 2), (2, 3), (3, 4)]) == True",
+        "assert harmonious_notes([(1, 2), (2, 3), (5, 6)]) == False",
+        "assert harmonious_notes([(1, 1), (2, 2), (3, 3)]) == True",
+        "assert harmonious_notes([]) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

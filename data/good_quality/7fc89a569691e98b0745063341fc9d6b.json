@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Valid Hexadecimal Color",
+    "description": "Write a function `is_valid_hex_color` that checks if a given string represents a valid hexadecimal color code. A valid hexadecimal color code is one that starts with `#`, followed by six hexadecimal digits (0-9, a-f). Case should be ignored.\n\n#### Function Signature\n```python\ndef is_valid_hex_color(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, and the character `#`. \n\n#### Output\n- Returns `True` if the input string represents a valid hexadecimal color code, `False` otherwise.",
+    "code": "def is_valid_hex_color(s: str) -> bool:\n    if s.lower().startswith('#'): # Ignore case for the '#' symbol\n        return len(s) == 7 and all(c in '0123456789abcdef' for c in s[1:].lower())\n    else:\n        return False",
+    "tests": [
+        "assert is_valid_hex_color(\"#00FF00\") == True",
+        "assert is_valid_hex_color(\"##0000\") == False",
+        "assert is_valid_hex_color(\"ABCDEF\") == False",
+        "assert is_valid_hex_color(\"#AAAAAA\") == True"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

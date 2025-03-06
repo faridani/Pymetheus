@@ -1,0 +1,13 @@
+{
+    "title": "Counting Words",
+    "description": "Write a function that takes a string of text as input and returns the number of unique words in that text.\n\n#### Function Signature\n```python\ndef count_unique_words(text: str) -> int:\n```\n\n#### Input\n- `text` (str): A string of text that may contain multiple words, spaces, punctuation, and capitalization.\n\n#### Output\n- Returns the number of unique words in the input text.",
+    "code": "\ndef count_unique_words(text: str) -> int:\n    import re\n    words = re.split(r'\\W+', text.lower())\n    return len(set(words))",
+    "tests": [
+        "assert count_unique_words(\"Hello World, this is Python\") == 4",
+        "assert count_unique_words(\"Python is awesome, but JavaScript is better\") == 7",
+        "assert count_unique_words(\"This is a test string with only one unique word\") == 1"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Divisible Numbers",
+    "description": "Write a function `divisible_numbers` that takes two integers, `a` and `b`, as input. The function should return all numbers from `1` to `n` (inclusive) that are divisible by both `a` and `b`. Here, `n` is the maximum number up to which we need to check divisibility.\n\n#### Function Signature\n```python\ndef divisible_numbers(a: int, b: int, n: int) -> list[int]:\n```\n\n#### Input\n- `a` (int): The first divisor.\n- `b` (int): The second divisor.\n- `n` (int): The maximum number up to which we need to check divisibility.\n\n#### Output\n- A list of integers that are divisible by both `a` and `b`, from `1` to `n` (inclusive).",
+    "code": "def divisible_numbers(a: int, b: int, n: int) -> list[int]:\n    result = []\n    for i in range(1, n+1):\n        if i % a == 0 and i % b == 0:\n            result.append(i)\n    return result",
+    "tests": [
+        "assert divisible_numbers(2, 3, 10) == [6]",
+        "assert divisible_numbers(4, 8, 20) == [8, 16]",
+        "assert divisible_numbers(1, 5, 25) == [5]"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

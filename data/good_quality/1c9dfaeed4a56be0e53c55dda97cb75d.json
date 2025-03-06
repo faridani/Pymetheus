@@ -1,0 +1,15 @@
+{
+    "title": "[Medium] Longest Substring Without Repeating Characters",
+    "description": "Given a string `s`, find the length of the longest substring without repeating characters. Write a function `longest_substring` that takes in a string and returns an integer.\n\n#### Function Signature\n```python\ndef longest_substring(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string containing only English letters, digits, symbols, and spaces. The length of the string may be up to 50,000.\n\n#### Output\n- Returns an integer representing the length of the longest substring without repeating characters.",
+    "code": "",
+    "def longest_substring(s: str) -> int:\n    if not s:\n        return 0\n\n    max_len = 0\n    start = 0\n    char_index_map = {}\n\n    for end in range(len(s)):\n        if s[end] in char_index_map and char_index_map[s[end]] >= start:\n            start = char_index_map[s[end]] + 1\n        else:\n            max_len = max(max_len, end - start + 1)\n\n        char_index_map[s[end]] = end\n\n    return max_len": "",
+    "tests": [
+        "assert longest_substring(\"abcabcbb\") == 3",
+        "assert longest_substring(\"bbbbb\") == 1",
+        "assert longest_substring(\"pwwkew\") == 3",
+        "assert longest_substring(\" \") == 1"
+    ],
+    "difficulty": "medium",
+    "model": "codestral:22b",
+    "style": "Interview Query"
+}

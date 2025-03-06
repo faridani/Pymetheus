@@ -1,0 +1,14 @@
+{
+    "title": "Middle of the Range",
+    "description": "Given a list of integers, return the middle element(s). If the length of the list is odd, return only one middle element. If the length of the list is even, return both middle elements.\n\n#### Function Signature\n```python\ndef find_middle(nums: list) -> list:\n```\n\n#### Input\n- `nums` (list): A list of integers.\n\n#### Output\n- Returns a list containing the middle element(s).",
+    "code": "def find_middle(nums: list) -> list:\n    length = len(nums)\n    if length % 2 == 0:\n        return [nums[length // 2 - 1], nums[length // 2]]\n    else:\n        return [nums[length // 2 ]]",
+    "tests": [
+        "assert find_middle([5, 7, 9, 10]) == [9]",
+        "assert find_middle([4, 6, 8]) == [6, 7]",
+        "assert find_middle([1, 3, 5]) == [3]",
+        "assert find_middle([-1, 0, 1]) == [0]"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Maximum Island Size",
+    "description": "An island in a grid is defined as an area of connected ones that is not surrounded by edges. Write a function `max_island_size` that takes a 2D grid represented as a list of lists, where each element can be either 0 (representing water) or 1 (representing land). The function should return the maximum size of any island in the grid.\n\n#### Function Signature\n```python\ndef max_island_size(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D grid where each element is either 0 or 1, representing water and land respectively.\n\n#### Output\n- Returns the maximum size of any island in the grid.",
+    "code": "",
+    "\nfrom typing import List\n\ndef max_island_size(grid: List[List[int]]) -> int:\n    if not grid:\n        return 0\n\n    def dfs(i, j):\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == 0:\n            return 0\n        grid[i][j] = 0\n        return 1 + dfs(i - 1, j) + dfs(i + 1, j) + dfs(i, j - 1) + dfs(i, j + 1)\n\n    max_size = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == 1:\n                size = dfs(i, j)\n                max_size = max(max_size, size)\n    return max_size": "",
+    "tests": [
+        "assert max_island_size([[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0],[0,0,0,1,1]]) == 4",
+        "assert max_island_size([[1,1,0,0,0],[1,1,0,0,0],[0,0,1,0,0],[0,0,1,1,1]]) == 9"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

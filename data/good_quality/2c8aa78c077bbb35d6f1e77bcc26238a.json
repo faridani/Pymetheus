@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Number of Islands",
+    "description": "Given a non-empty array of unique positive integers, count the number of islands that can be formed by connecting adjacent cells. A cell is considered to be connected to itself.\n\n#### Function Signature\n```python\ndef count_islands(arr: list[int]) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A non-empty array of unique positive integers representing the grid dimensions, where each integer represents a row in the grid and the corresponding value is the number of columns in that row.\n\n#### Output\n- Returns the total number of islands that can be formed.",
+    "code": "def count_islands(arr: list[int]) -> int:\n    # Initialize the total number of islands to 0\n    total_islands = 0\n    # Iterate over each row in the grid\n    for row in arr:\n        # Calculate the length of the current row (number of columns)\n        row_length = row\n        # Calculate the total area of the current island\n        island_area = 1\n        # Initialize a flag to track if we are currently processing an island or not\n        is_processing_island = True\n        # Iterate over each cell in the grid, starting from the top-left and moving right then down\n        for col in range(row):\n            # If we are currently processing an island and this cell marks the end of that island\n            if is_processing_island and (col == row_length - 1 or arr[row][col] != island_area + 1):\n                # Increment the total number of islands by 1, since we just finished processing one island\n                total_islands += 1\n                # Reset the flag to indicate that we are no longer processing an island\n                is_processing_island = False\n            # If we are not currently processing an island and this cell marks the start of a new island\n            elif not is_processing_island and (col == 0 or arr[row][col - 1] != island_area):\n                # Increment the total number of islands by 1, since we just started processing a new island\n                total_islands += 1\n                # Set the flag to indicate that we are now processing this new island\n                is_processing_island = True\n                # Update the island area to be the current cell's value plus one\n                island_area += 1\n    return total_islands",
+    "tests": [
+        "assert count_islands([3, 2, 1]) == 2",
+        "assert count_islands([4, 4]) == 5",
+        "assert count_islands([1]) == 1"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

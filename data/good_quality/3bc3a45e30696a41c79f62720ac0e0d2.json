@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Given a string `s` and an integer `target`, find the minimum window substring that contains at least `target` occurrences of the character 'a'. If no such substring exists, return an empty string. The function should also ignore case sensitivity.\n\n#### Function Signature\n```python\ndef min_window_substring(s: str, target: int) -> str:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, spaces, and punctuation.\n- `target` (int): The minimum number of occurrences of the character 'a' in the window substring.\n\n#### Output\n- Returns a string that is the minimum window substring containing at least `target` occurrences of the character 'a', or an empty string if no such substring exists.",
+    "code": "from collections import defaultdict\n\ndef min_window_substring(s: str, target: int) -> str:\n    s = s.lower()\n    a_count = 0\n    window_counts = defaultdict(int)\n    for char in s:\n        if char == 'a': a_count += 1\n        window_counts[char] += 1\n    left, right = 0, 0\n    while right < len(s) and (window_counts['a'] < target or a_count < target):\n        if s[right] == 'a': a_count -= 1\n        window_counts[s[right]] -= 1\n        right += 1\n    left = 0\n    min_window = \"\"\n    while right < len(s) and (window_counts['a'] >= target or a_count >= target):\n        if s[left] == 'a': a_count += 1\n        window_counts[s[left]] += 1\n        if a_count >= target:\n            if not min_window or len(min_window) > right - left + 1:\n                min_window = s[left:right + 1]\n        left += 1\n    return min_window",
+    "tests": [
+        "assert min_window_substring('abaaaaa', 3) == 'baaaa'",
+        "assert min_window_substring('abcde', 2) == ''",
+        "assert min_window_substring('aaaaaa', 5) == 'aaaaaa'",
+        "assert min_window_substring('abcdefghijklmnopqrstuvwxyz', 1) == 'a'"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

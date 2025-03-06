@@ -1,0 +1,15 @@
+{
+    "title": "Egg Cellent Counting",
+    "description": "A farmer has a basket of eggs. Each egg has an integer number written on it, representing the day when that egg will hatch. The farmer wants to count how many eggs are left in the basket before the first egg hatches. Write a function `count_untouched_eggs` that takes as input the numbers written on the eggs and returns the total number of untouched eggs.\n\n#### Function Signature\n```python\ndef count_untouched_eggs(eggs: list[int]) -> int:\n```\n\n#### Input\n- `eggs` (list[int]): A list of integers representing the day when each egg will hatch.\n\n#### Output\n- Returns the total number of untouched eggs.",
+    "code": "",
+    "\ndef count_untouched_eggs(eggs: list[int]) -> int:\n    # Sort the eggs by their hatching days\n    eggs.sort()\n    \n    # Initialize a variable to store the total number of untouched eggs\n    untouched_eggs = 0\n    \n    # Iterate over the sorted eggs and increment the counter for each egg that has not yet hatched\n    for i, egg in enumerate(eggs):\n        if egg > i:\n            untouched_eggs += 1\n        else:\n            break\n    \n    return untouched_eggs": "",
+    "tests": [
+        "assert count_untouched_eggs([3, 2, 5, 4]) == 1",
+        "assert count_untouched_eggs([]) == 0",
+        "assert count_untouched_eggs([10, 20, 30]) == 0",
+        "assert count_untouched_eggs([1, 2, 3, 4, 5, 6]) == 5"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

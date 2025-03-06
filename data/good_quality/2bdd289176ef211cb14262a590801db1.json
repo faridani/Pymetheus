@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Maximum Sum of Unique Elements",
+    "description": "Given a sorted array `arr` and an integer `k`, find the maximum sum of unique elements that can be obtained by selecting at most `k` elements from `arr`. The selected elements must be in ascending order.\n\n#### Function Signature\n```python\ndef max_unique_sum(arr: list[int], k: int) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A sorted array of integers.\n- `k` (int): An integer that represents the maximum number of elements to select from `arr`.\n\n#### Output\n- Returns the maximum sum of unique elements that can be obtained by selecting at most `k` elements from `arr`. The selected elements must be in ascending order.",
+    "code": "from typing import List\n\ndef max_unique_sum(arr: List[int], k: int) -> int:\n    n = len(arr)\n    if k >= n:\n        return sum(set(arr))  # If we can select all elements, just take the unique ones\n    total_sum = 0\n    prev_num = float('-inf')\n    for i in range(k):\n        while arr[i] <= prev_num:\n            i += 1\n        if i == k:\n            break\n        total_sum += arr[i]\n        prev_num = arr[i]\n    return total_sum",
+    "tests": [
+        "assert max_unique_sum([1, 2, 3, 4, 5], 2) == 9",
+        "assert max_unique_sum([-1, -2, -3, -4, -5], 3) == -6",
+        "assert max_unique_sum([1, 2, 3, 4, 5], 0) == 0",
+        "assert max_unique_sum([10, 20, 30, 40, 50], 1) == 10"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Harmonious Strings (Hard)",
+    "description": "A harmonious string is a string that contains only characters 'a', 'b' and 'c'. The string is said to be harmonious if it does not contain any substring which is a rotation of another substring. Write a function `is_harmonious` that checks if a given string is harmonious.\n\n#### Function Signature\n```python\ndef is_harmonious(s: str) -> bool:\n```\n\n#### Input\n- `s` (str): A string containing only characters 'a', 'b' and 'c'.\n\n#### Output\n- Returns `True` if the input string is harmonious, `False` otherwise.",
+    "code": "def is_harmonious(s: str) -> bool:\n    # Sort the characters in the string\n    s = sorted(s)\n    for i in range(len(s)-2):\n        if s[i] == s[i+1] and s[i] == s[i+2]:\n            return False\n    return True",
+    "tests": [
+        "assert is_harmonious('abc') == True",
+        "assert is_harmonious('aabbcc') == False",
+        "assert is_harmonious('abcbac') == True",
+        "assert is_harmonious('aaabbbccc') == False"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

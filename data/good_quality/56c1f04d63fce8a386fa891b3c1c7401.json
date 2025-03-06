@@ -1,0 +1,13 @@
+{
+    "title": "Maximum Sum of Alternating Subarrays",
+    "description": "Given a 2D array `arr` where each row represents an integer array, find the maximum sum of alternating subarrays. A subarray is considered as alternating if all elements in it are either even or odd.\n\n#### Function Signature\n```python\ndef max_sum_alternating_subarrays(arr: list[list[int]]) -> int:\n```\n\n#### Input\n- `arr` (list[list[int]]): A 2D array where each row represents an integer array.\n\n#### Output\n- Returns the maximum sum of alternating subarrays.",
+    "code": "def max_sum_alternating_subarrays(arr: list[list[int]]) -> int:\n    total_sum = 0\n    for i in range(len(arr)):\n        prev_type = None\n        current_sum = 0\n        for j in range(len(arr[i])):\n            if arr[i][j] % 2 == 0 and prev_type is None or arr[i][j] % 2 != 0 and prev_type == 0:\n                current_sum += arr[i][j]\n                prev_type = arr[i][j] % 2\n            else:\n                total_sum = max(total_sum, current_sum)\n                current_sum = 0\n                prev_type = None\n        total_sum = max(total_sum, current_sum)\n    return total_sum",
+    "tests": [
+        "assert max_sum_alternating_subarrays([[1, 2], [3, 4], [5, 6]]) == 9",
+        "assert max_sum_alternating_subarrays([[10, 20, 30], [40, 50, 60], [70, 80, 90]]) == 210",
+        "assert max_sum_alternating_subarrays([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == 18"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

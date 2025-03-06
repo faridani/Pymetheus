@@ -1,0 +1,15 @@
+{
+    "title": "Anagram Finder",
+    "description": "Write a function that takes two strings as input and checks if the second string is an anagram of the first. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef are_anagrams(str1: str, str2: str) -> bool:\n```\n\n#### Input\n- `str1` (str): The first string.\n- `str2` (str): The second string.\n\n#### Output\n- Returns `True` if the second string is an anagram of the first, `False` otherwise.",
+    "code": "",
+    "\nimport collections\n\ndef are_anagrams(str1: str, str2: str) -> bool:\n    # Convert both strings to lowercase\n    str1 = str1.lower()\n    str2 = str2.lower()\n\n    # Count the frequency of each character in both strings\n    freq_str1 = collections.Counter(str1)\n    freq_str2 = collections.Counter(str2)\n\n    # Check if the frequency counts are equal for both strings\n    return freq_str1 == freq_str2": "",
+    "tests": [
+        "assert are_anagrams('listen', 'silent') == True",
+        "assert are_anagrams('hello', 'olleh') == True",
+        "assert are_anagrams('abcde', 'edcba') == True",
+        "assert are_anagrams('abcdefg', 'gfedbca') == False"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

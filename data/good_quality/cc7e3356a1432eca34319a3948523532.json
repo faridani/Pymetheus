@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Maximum Profit from Transactions",
+    "description": "You are given a list of transactions, where each transaction is represented as a tuple of two integers, `buy` and `sell`. The profit from a transaction is calculated as `(sell - buy)`, assuming the sell price is after the buy price. Your task is to write a function that calculates the maximum possible total profit.\n\n#### Function Signature\n```python\ndef max_profit(transactions: list[tuple[int, int]]) -> int:\n```\n\n#### Input\n- `transactions` (list[tuple[int, int]]): A list of transactions, where each transaction is represented as a tuple of two integers, `buy` and `sell`.\n\n#### Output\n- Returns the maximum possible total profit.",
+    "code": "\ndef max_profit(transactions: list[tuple[int, int]]) -> int:\n    max_profit = 0\n    for buy, sell in transactions:\n        max_profit += (sell - buy)\n    return max_profit",
+    "tests": [
+        "assert max_profit([(1,2), (3,4)]) == 3",
+        "assert max_profit([(10,20),(5,15)]) == 25",
+        "assert max_profit([]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

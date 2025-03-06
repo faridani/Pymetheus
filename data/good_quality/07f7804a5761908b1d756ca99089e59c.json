@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Maximum Sum of Subarray With No More Than K Elements",
+    "description": "Write a function `max_sum_of_subarray` that finds the maximum sum of subarrays with no more than k elements from an input list of integers. For example, if you have the array `[1, 2, 3, -4, 5, 6]` and `k = 3`, then the possible subarrays are `[1], [2], [3], [-4], [5], [6], [1, 2], [2, 3], [3, -4], [5, 6], [1, 2, 3]`. The maximum sum of these subarrays is `10` (from the subarray `[1, 2, 3]`).\n\n#### Function Signature\n```python\ndef max_sum_of_subarray(lst: list[int], k: int) -> int:\n```\n\n#### Input\n- `lst` (list[int]): A list of integers.\n- `k` (int): The maximum number of elements in the subarrays.\n\n#### Output\n- Returns the maximum sum of all possible subarrays with no more than k elements.",
+    "code": "\nimport heapq\n\ndef max_sum_of_subarray(lst: list[int], k: int) -> int:\n    heap = []\n    total_sum = 0\n    for i in range(k):\n        total_sum += lst[i]\n        if len(heap) > 0 and -heap[0][0] > total_sum:\n            total_sum -= heapq.heappop(heap)[0]\n        else:\n            heapq.heappush(heap, (-lst[i], i))\n    max_sum = total_sum\n    for i in range(k, len(lst)):\n        total_sum += lst[i]\n        if -heap[0][0] > total_sum:\n            total_sum -= heapq.heappop(heap)[0]\n        else:\n            heapq.heappush(heap, (-lst[i], i))\n        max_sum = max(max_sum, total_sum)\n    return max_sum",
+    "tests": [
+        "assert max_sum_of_subarray([1, 2, 3, -4, 5, 6], 3) == 10",
+        "assert max_sum_of_subarray([-1, 0, 1, 2], 2) == 3",
+        "assert max_sum_of_subarray([-10, 1, 2, 3], 2) == 5"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Binary Search in a Tree",
+    "description": "Given an unsorted binary search tree, write a function `find_kth_largest` that finds the k-th largest element in the tree.\n\n#### Function Signature\n```python\ndef find_kth_largest(root: TreeNode, k: int) -> int:\n```\n\n#### Input\n- `root`: The root node of an unsorted binary search tree. Each node has a value and two children (left and right).\n- `k`: An integer representing the k-th largest element to find.\n\n#### Output\n- Returns the k-th largest element in the tree, or -1 if the input is invalid.",
+    "code": "class TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef find_kth_largest(root: TreeNode, k: int) -> int:\n    stack = []\n    while True:\n        while root:\n            stack.append(root)\n            root = root.right\n        if not stack:\n            return -1\n        node = stack.pop()\n        k -= 1\n        if k == 0:\n            return node.value\n        root = node.left",
+    "tests": [
+        "assert find_kth_largest(TreeNode(5, TreeNode(3), TreeNode(6)), 2) == 5",
+        "assert find_kth_largest(TreeNode(5, TreeNode(4), TreeNode(8, TreeNode(7), TreeNode(9))), 1) == 9",
+        "assert find_kth_largest(None, 1) == -1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Elegant Tree Traversal",
+    "description": "Given a tree represented as an adjacency list where each node has at most 5 children, write a function `tree_traversal` that performs a depth-first traversal of the tree. The tree nodes are labeled from 1 to n and their values are integers. Your task is to sum up all the values in the tree.\n\n#### Function Signature\n```python\ndef tree_traversal(root: int) -> int:\n```\n\n#### Input\n- `root` (int): The root node of the tree.\n\n#### Output\n- Returns the sum of all values in the tree.",
+    "code": "",
+    "\nimport collections\n\ndef tree_traversal(root: int) -> int:\n    graph = collections.defaultdict(list)\n    visited = set()\n\n    def dfs(node):\n        if node not in visited:\n            visited.add(node)\n            return sum(dfs(child) for child in graph[node]) + node\n\n    return dfs(root)": "",
+    "tests": [
+        "assert tree_traversal(1) == 6",
+        "assert tree_traversal(2) == 15",
+        "assert tree_traversal(3) == 21"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

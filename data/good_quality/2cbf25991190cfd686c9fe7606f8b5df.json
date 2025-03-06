@@ -1,0 +1,14 @@
+{
+    "title": "Finding all unique paths from top to bottom",
+    "description": "Imagine you are standing at the top of a staircase, and the staircase has N steps. Each step can either go up or down by 1 unit, but never repeat a path that's already been taken. Write a function `unique_paths` that returns a list of all unique paths from the top to bottom.\n\n#### Function Signature\n```python\ndef unique_paths(n: int) -> list:\n```\n\n#### Input\n- `n` (int): The number of steps in the staircase.\n\n#### Output\n- Returns a list of all unique paths from the top to bottom, where each path is represented as a list of step movements (+1 or -1).",
+    "code": "",
+    "\nimport itertools\n\ndef unique_paths(n: int) -> list:\n    if n == 0:\n        return [[]]\n\n    paths = []\n    for prev_path in unique_paths(n-1):\n        new_path = [step + 1] + prev_path\n        new_path.reverse()\n        paths.append(new_path)\n        paths.append([-x for x in new_path])\n\n    return list(set(map(tuple, paths)))": "",
+    "tests": [
+        "assert len(unique_paths(3)) == 8",
+        "assert unique_paths(0) == [[]]",
+        "assert set(map(lambda x: tuple(x), unique_paths(2))) == {(1,), (-1,), (1, -1), (-1, 1), (1, 1), (-1, -1)}"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

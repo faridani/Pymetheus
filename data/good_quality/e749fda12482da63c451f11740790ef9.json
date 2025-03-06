@@ -1,0 +1,14 @@
+{
+    "title": "Counting Islands",
+    "description": "An island is a group of connected land with no lakes or rivers. Write a function `count_islands` that takes a 2D list representing the world and returns the number of islands.\n\n#### Function Signature\n```python\ndef count_islands(world: list[list[str]]) -> int:\n```\n\n#### Input\n- `world` (list[list[str]]): A 2D list where each element is either 'L' for land or 'W' for water.\n\n#### Output\n- Returns the number of islands in the world.",
+    "code": "from typing import List\n\ndef count_islands(world: List[List[str]]) -> int:\n    if not world:\n        return 0\n\n    def dfs(i, j):\n        if i < 0 or j < 0 or i >= len(world) or j >= len(world[0]) or world[i][j] == 'W':\n            return\n        world[i][j] = 'W'\n        for x, y in [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)]:\n            dfs(x, y)\n\n    count = 0\n    for i in range(len(world)):\n        for j in range(len(world[0])):\n            if world[i][j] == 'L':\n                dfs(i, j)\n                count += 1\n    return count",
+    "tests": [
+        "assert count_islands([['L', 'W'], ['L', 'L']]) == 2",
+        "assert count_islands([['L' for _ in range(3)] for _ in range(3)]) == 9",
+        "assert count_islands([]) == 0",
+        "assert count_islands([['W' for _ in range(3)] for _ in range(3)]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

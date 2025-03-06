@@ -1,0 +1,14 @@
+{
+    "title": "Euler's Totient Function",
+    "description": "Euler's totient function \u03c6(n) gives the number of positive integers less than or equal to n that are relatively prime to n. For example, \u03c6(10) = 4 since there are four numbers less than or equal to 10 which are coprime to 10: 1, 3, 7 and 9. Write a function `euler_totient` that calculates Euler's totient function for a given positive integer `n`. \n\n#### Function Signature\n```python\ndef euler_totient(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the value of Euler's totient function \u03c6(n).\n\nNote that this problem involves calculating prime factors and is a challenging mathematical problem. You can use any known algorithms or techniques to solve it, but you are not allowed to import any modules that provide functions for calculating prime numbers or their factors.",
+    "code": "\nimport math\n\ndef euler_totient(n: int) -> int:\n    if n <= 1:\n        return n\n    \n    totient = 0\n    p = 2\n    while p * p <= n:\n        if n % p == 0:\n            while n % p == 0:\n                n //= p\n            totient += p - (p % 2)\n        else:\n            p += 1\n    \n    if n > 1:\n        totient += n - (n % 2) + 1\n    \n    return totient",
+    "tests": [
+        "assert euler_totient(10) == 4",
+        "assert euler_totient(12) == 4",
+        "assert euler_totient(15) == 8",
+        "assert euler_totient(20) == 8"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

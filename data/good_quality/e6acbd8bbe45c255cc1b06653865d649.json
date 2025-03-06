@@ -1,0 +1,13 @@
+{
+    "title": "Fibonacci Series Pruner",
+    "description": "The Fibonacci sequence is a series of numbers where the next number is the sum of the previous two. The sequence starts with 0 and 1. Given an integer n, write a function that returns the nth number in the Fibonacci sequence, but prune the sequence after each number to remove all even numbers.\n\n#### Function Signature\n```python\ndef prune_fibonacci(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The index of the Fibonacci number you want to find.\n\n#### Output\n- Returns the nth Fibonacci number with all even numbers removed from the sequence.",
+    "code": "def prune_fibonacci(n: int) -> int:\n    a, b = 0, 1\n    for _ in range(n):\n        if b % 2 == 1:\n            yield b\n        a, b = b, a + b",
+    "tests": [
+        "assert list(prune_fibonacci(5)) == [1, 1, 2, 3]",
+        "assert list(prune_fibonacci(10)) == [1, 1, 2, 3, 5, 8]",
+        "assert list(prune_fibonacci(15)) == [1, 1, 2, 3, 5, 8, 13]"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

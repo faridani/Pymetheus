@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Easy: Array Pair Sum\", \"code\": \"\\ndef pair_sum(arr):\\n    n = len(arr)\\n    arr.sort()\\n    total = 0\\n    for i in range(n // 2):\\n        total += (arr[i] + arr[n - i - 1])\\n    return total\", \"tests\": [\"assert pair_sum([3, 3]) == 6\", \"assert pair_sum([-10, 5, 0, 5, -10]) == 15\", \"assert pair_sum([1, 2, 3, 4]) == 10\", \"assert pair_sum([]) == 0\"]}"
+}

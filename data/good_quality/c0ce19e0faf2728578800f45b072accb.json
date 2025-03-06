@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Finding Maximum Sum of Subarray with No More than K Consecutive Ones",
+    "description": "Given a binary array `arr` and an integer `k`, find the maximum sum of a subarray that has no more than `k` consecutive ones. A subarray is a contiguous part of the array.\n\n#### Function Signature\n```python\ndef max_sum_of_subarray(arr: list[int], k: int) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A binary array containing 0s and 1s.\n- `k` (int): An integer representing the maximum number of consecutive ones in a subarray.\n\n#### Output\n- Returns the maximum sum of a subarray that has no more than `k` consecutive ones.",
+    "code": "",
+    "\ndef max_sum_of_subarray(arr: list[int], k: int) -> int:\n    n = len(arr)\n    prefix_sum = [0] * (n + 1)\n    for i in range(n):\n        if arr[i] == 1:\n            prefix_sum[i + 1] = prefix_sum[i] + 1\n        else:\n            prefix_sum[i + 1] = prefix_sum[i]\n    \n    max_sum = float('-inf')\n    for i in range(k, n - k + 1):\n        if arr[i] == 0:\n            max_sum = max(max_sum, prefix_sum[i + k] - prefix_sum[i - k])\n    \n    return max_sum": "",
+    "tests": [
+        "assert max_sum_of_subarray([0, 1, 0, 1], 2) == 1",
+        "assert max_sum_of_subarray([1, 0, 1, 1, 0, 1, 1], 3) == 4",
+        "assert max_sum_of_subarray([1, 1, 1, 1, 1], 5) == 5",
+        "assert max_sum_of_subarray([0, 0, 0, 0, 0], 2) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

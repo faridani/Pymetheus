@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Minimum Insertions to Make a Binary Search Tree Sorted",
+    "description": "Given an array of distinct integers, construct the smallest binary search tree that can be created from these numbers. A binary search tree (BST) is a data structure in which each node has at most two children, referred to as the left child and the right child. The left child of a node contains keys less than or equal to the key in the node. The right child of a node contains keys greater than the key in the node. Write a function `bst_insertions` that calculates the minimum number of insertions needed to make this array sorted.\n\n#### Function Signature\n```python\ndef bst_insertions(arr: list) -> int:\n```\n\n#### Input\n- `arr` (list): A list of distinct integers.\n\n#### Output\n- Returns the minimum number of insertions needed to make this array sorted.",
+    "code": "def bst_insertions(arr: list) -> int:\n    if len(arr) <= 1:\n        return 0\n    arr.sort()\n    prev = arr[0]\n    insertions = 0\n    for num in arr[1:]:\n        if num < prev:\n            insertions += 1\n        else:\n            prev = num\n    return insertions",
+    "tests": [
+        "assert bst_insertions([5,3]) == 2",
+        "assert bst_insertions([10,7,12,5,6,3]) == 4",
+        "assert bst_insertions([]) == 0",
+        "assert bst_insertions([1]) == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

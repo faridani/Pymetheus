@@ -1,0 +1,14 @@
+{
+    "title": "Counting Duplicates",
+    "description": "Given a list of integers, count and return the number of duplicates. A duplicate is an integer that appears more than once in the list.\n\n#### Function Signature\n```python\ndef count_duplicates(lst: list[int]) -> int:\n```\n\n#### Input\n- `lst` (list[int]): A list of positive integers.\n\n#### Output\n- Returns the number of duplicates in the input list.",
+    "code": "",
+    "\nimport collections\n\ndef count_duplicates(lst: list[int]) -> int:\n    counter = collections.Counter(lst)\n    return sum(1 for val, count in counter.items() if count > 1)": "",
+    "tests": [
+        "assert count_duplicates([1, 2, 3, 4, 5]) == 0",
+        "assert count_duplicates([1, 2, 2, 3, 3, 3]) == 2",
+        "assert count_duplicates([1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5]) == 6"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

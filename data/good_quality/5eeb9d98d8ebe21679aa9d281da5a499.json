@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Fizz Buzz Counter",
+    "description": "Write a function `fizz_buzz_counter` that takes an integer `n` as input and returns the number of times the numbers from 1 to `n` (inclusive) contain the strings 'fizz', 'buzz', or both. For example, for `n = 15`, the output should be 7 because the multiples of 3 are 'fizz' (3, 6, 9), the multiples of 5 are 'buzz' (5, 10), and the multiple of both 3 and 5 is 'fizzbuzz' (15).\n\n#### Function Signature\n```python\ndef fizz_buzz_counter(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The upper bound for counting Fizz Buzz numbers.\n\n#### Output\n- Returns the number of times the numbers from 1 to `n` contain 'fizz', 'buzz', or both.",
+    "code": "def fizz_buzz_counter(n: int) -> int:\n    count = 0\n    for i in range(1, n + 1):\n        if i % 15 == 0:\n            count += 1\n        elif i % 5 == 0 and i % 3 != 0:\n            count += 1\n        elif i % 3 == 0 and i % 5 != 0:\n            count += 1\n    return count",
+    "tests": [
+        "assert fizz_buzz_counter(15) == 7",
+        "assert fizz_buzz_counter(20) == 10",
+        "assert fizz_buzz_counter(25) == 12"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

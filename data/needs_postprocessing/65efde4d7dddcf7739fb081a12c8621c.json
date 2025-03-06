@@ -1,0 +1,4 @@
+{
+    "model": "codestral:22b",
+    "response": "\"{ \\\"title\\\": \\\"Hard: Sum of Digits Factorial\\\", \\\"description\\\": \\\"Given a positive integer n, find the sum of digits of n! (n factorial).\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef sum_of_digits_factorial(n: int) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `n` (int): A positive integer less than or equal to 100.\\\\n\\\\n#### Output\\\\n- Returns an integer representing the sum of digits of n! (n factorial).\\\\n\\\", \\\"code\\\": \\\"import math\\\\ndef sum_of_digits_factorial(n: int) -> int:\\\\n    # Calculate factorial\\\\n    fact = str(math.factorial(n))\\\\n    # Calculate sum of digits\\\\n    return sum([int(digit) for digit in fact])\\\\n\\\", \\\"tests\\\": [\\\"assert sum_of_digits_factorial(5) == 15\\\", \\\"assert sum_of_digits_factorial(20) == 27\\\", \\\"assert sum_of_digits_factorial(30) == 45\\\"] }\""
+}

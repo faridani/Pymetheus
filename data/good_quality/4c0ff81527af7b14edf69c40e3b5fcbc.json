@@ -1,0 +1,15 @@
+{
+    "title": "Minimum Time to Make the Flowers Line Up",
+    "description": "A flower arrangement consists of a sequence of flowers. In order for the flowers to line up, we need to make sure that all the flowers are facing in the same direction. Each flower has an angle, and we can rotate it by 90 degrees to change its facing direction.\n\n#### Function Signature\n```python\ndef min_time_to_align(flowers: List[int]) -> int:\n```\n\n#### Input\n- `flowers` (List[int]): A list of integers representing the angles of the flowers, where each angle is between 0 and 90 degrees.\n\n#### Output\n- Returns the minimum time it takes to make all the flowers line up. Each rotation takes one unit of time.",
+    "code": "",
+    "\nfrom typing import List\n\ndef min_time_to_align(flowers: List[int]) -> int:\n    # Convert each angle to its equivalent facing direction\n    facing_directions = [angle // 45 for angle in flowers]\n    \n    # Calculate the total number of rotations needed\n    total_rotations = sum(abs(facing_direction - 0) for facing_direction in facing_directions)\n    \n    return total_rotations": "",
+    "tests": [
+        "assert min_time_to_align([30, 60, 90]) == 2",
+        "assert min_time_to_align([45, 135, 225]) == 3",
+        "assert min_time_to_align([0, 0, 0]) == 0",
+        "assert min_time_to_align([1, 1, 1]) == 3"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

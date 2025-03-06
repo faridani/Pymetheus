@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Sum of Sides",
+    "description": "A triangle is a polygon with three sides. A right-angled triangle is a triangle whose one angle is 90 degrees (a quarter turn). Write a function that calculates the sum of the squares of the lengths of the sides of a right-angled triangle.\n\n#### Function Signature\n```\ndef sum_of_squares(a: int, b: int, c: int) -> int:\n```",
+    "code": "\ndef sum_of_squares(a: int, b: int, c: int) -> int:\n    # Check if the lengths satisfy the triangle inequality\n    if a + b <= c or a + c <= b or b + c <= a:\n        return -1  # Return -1 to indicate invalid input\n    \n    # Calculate and return the sum of squares\n    return a**2 + b**2 + c**2",
+    "tests": [
+        "assert sum_of_squares(3, 4, 5) == 50",
+        "assert sum_of_squares(6, 8, 10) == 130",
+        "assert sum_of_squares(1, 1, 1000) == -1"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

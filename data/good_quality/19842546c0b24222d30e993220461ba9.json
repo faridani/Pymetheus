@@ -1,0 +1,13 @@
+{
+    "title": "Minimum Time to Meet In A Circle",
+    "description": "Given a list of integers representing the positions of people in a circle, where each position is represented by an integer from 1 to n (inclusive), find the minimum time it takes to meet everyone at the same position. The positions are numbered starting from 0.\n\n#### Function Signature\n```python\ndef min_meeting_time(people: list[int]) -> int:\n```\n\n#### Input\n- `people` (list[int]): A list of integers representing the positions of people in a circle, where each position is represented by an integer from 1 to n (inclusive).\n\n#### Output\n- Returns the minimum time it takes to meet everyone at the same position.",
+    "code": "\nfrom math import gcd\ndef min_meeting_time(people: list[int]) -> int:\n    # Calculate the total number of people\n    total_people = len(people)\n    \n    # Initialize the meeting time with 1, since we can always meet in one step\n    meeting_time = 1\n    \n    # Find the greatest common divisor (GCD) of all differences between two positions\n    for i in range(total_people):\n        for j in range(i+1, total_people):\n            meeting_time = max(meeting_time, abs(people[i] - people[j]))\n    \n    # Since we can always meet at position 0, the actual meeting time is the GCD of all differences\n    return meeting_time * gcd(*[abs(p) for p in (people[1] - people[0], *(p2 - p1 for p1, p2 in zip(people, people[1:])))])",
+    "tests": [
+        "assert min_meeting_time([5, 3, 4]) == 3",
+        "assert min_meeting_time([1, 2, 3, 4, 5]) == 6",
+        "assert min_meeting_time([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]) == 20"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

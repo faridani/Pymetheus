@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Fruit Basket",
+    "description": "You are given a list of fruits, where each fruit is represented as a string. Write a function that calculates the total weight of all fruits in the basket. Each fruit has its own unique weight, which is stored in a dictionary `fruit_weights`. The keys of the dictionary are the names of the fruits, and the values are their corresponding weights.\n\n#### Function Signature\n```python\ndef total_weight(fruits: list[str], fruit_weights: dict[str, int]) -> int:\n```\n\n#### Input\n- `fruits` (list[str]): A list of strings representing the names of the fruits in the basket.\n- `fruit_weights` (dict[str, int]): A dictionary where keys are the names of the fruits and values are their corresponding weights.\n\n#### Output\n- Returns the total weight of all fruits in the basket.",
+    "code": "def total_weight(fruits: list[str], fruit_weights: dict[str, int]) -> int:\n    return sum(fruit_weights[fruit] for fruit in fruits)",
+    "tests": [
+        "assert total_weight(['apple', 'banana'], {'apple': 100, 'banana': 200}) == 300",
+        "assert total_weight(['orange'], {'orange': 150}) == 150",
+        "assert total_weight([], {'apple': 100, 'banana': 200}) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

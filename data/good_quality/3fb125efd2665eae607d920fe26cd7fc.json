@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Sum of All Permutations",
+    "description": "Write a function `sum_of_permutations` that takes an integer `n` as input and returns the sum of all permutations of integers from 1 to `n`. For example, if `n` is 3, the function should return `1 + 2 + 3 + 12 + 13 + 23 + 132 + 131 + 213 + 312 + 321 = 621.\n\n#### Function Signature\n```python\ndef sum_of_permutations(n: int) -> int:\n```\n\n#### Input\n- `n` (int): An integer representing the number of elements to generate permutations for.\n\n#### Output\n- Returns the sum of all permutations of integers from 1 to `n`. ",
+    "code": "import itertools\n\ndef sum_of_permutations(n: int) -> int:\n    # Generate all permutations of integers from 1 to n\n    perms = list(itertools.permutations(range(1, n + 1), n))\n    # Convert each permutation into a string and add it to the total sum\n    total_sum = sum(''.join(map(str, perm)).count('1') * int(''.join(map(str, perm))) for perm in perms)\n    return total_sum",
+    "tests": [
+        "assert sum_of_permutations(3) == 621",
+        "assert sum_of_permutations(4) == 19456",
+        "assert sum_of_permutations(5) == 1036820"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

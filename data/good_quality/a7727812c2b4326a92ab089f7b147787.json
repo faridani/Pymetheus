@@ -1,0 +1,13 @@
+{
+    "title": "N-Queens Puzzle",
+    "description": "The N-queens puzzle is a classic problem in computer science. Write a function `solve_n_queens` that places N queens on an NxN chessboard such that no queen attacks any other. The function should return a 2D list of size NxN, where each element is either 'Q' (representing a queen) or '.' (representing an empty space). The function should try to find all possible solutions and return them as a list of 2D lists.\n\n#### Function Signature\n```python\ndef solve_n_queens(n: int) -> List[List[str]]:\n```\n\n#### Input\n- `n` (int): The size of the chessboard, which is also the number of queens to place.\n\n#### Output\n- Returns a list of 2D lists, where each 2D list represents one possible solution. Each element in the 2D list is either 'Q' or '.'.",
+    "code": "\nimport itertools\nimport copy\n\ndef solve_n_queens(n: int) -> List[List[str]]:\n    def is_valid(board, row, col):\n        for i in range(row):\n            if board[i][col] == 'Q':\n                return False\n        for i, j in zip(range(row), range(col - 1, -1, -1)):\n            if board[i][j] == 'Q':\n                return False\n        for i, j in zip(range(row), range(col + 1, n)):\n            if board[i][j] == 'Q':\n                return False\n        return True\n\n    def place_queens(board):\n        solutions = []\n        if len(board) > 0 and all(all(x != '.' for x in row) for row in board):\n            solutions.append(board[:])\n        else:\n            for i in range(len(board)):\n                for j in range(len(board[0])):\n                    if board[i][j] == '.':\n                        new_board = copy.deepcopy(board)\n                        new_board[i][j] = 'Q'\n                        place_queens(new_board)\n        return solutions\n\n    solutions = []\n    for row in itertools.product('.', *(['.']*n)):\n        if is_valid(list(row), 0, 0):\n            solutions.extend(place_queens([list(x) for x in row]))\n    return [['.' for _ in range(n)] for _ in range(n)]",
+    "tests": [
+        "assert len(solve_n_queens(1)) == 1",
+        "assert len(solve_n_queens(2)) == 0",
+        "assert len(solve_n_queens(3)) == 2"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

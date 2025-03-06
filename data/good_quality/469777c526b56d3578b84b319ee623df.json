@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Matrix Median",
+    "description": "Given a 2D list of integers representing a matrix, find the median of all numbers that appear in more than one row. If no such number exists, return -1.\n\n#### Function Signature\n```python\ndef matrix_median(matrix: list[list[int]]) -> int:\n```\n\n#### Input\n- `matrix` (list[list[int]]): A 2D list of integers representing a matrix.\n\n#### Output\n- Returns the median of all numbers that appear in more than one row. If no such number exists, return -1.",
+    "code": "import statistics\n\ndef matrix_median(matrix: list[list[int]]) -> int:\n    counts = {}\n    for col in zip(*matrix):\n        counts[tuple(sorted(col))] += 1\n    median_count = statistics.median([count for count in counts.values() if count > 1])\n    median_nums = [num for num, count in counts.items() if count == median_count]\n    return -1 if not median_nums else int(statistics.median(median_nums))",
+    "tests": [
+        "assert matrix_median([[1, 2], [3, 4]]) == -1",
+        "assert matrix_median([[1, 1, 2], [2, 2, 3], [3, 3, 4]]) == 2",
+        "assert matrix_median([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == -1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

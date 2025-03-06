@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Sieve of Eratosthenes\", \"code\": \"\", \"\\nimport math\\n\\ndef sieve_of_eratosthenes(n: int) -> list:\\n    # Create a boolean array, prime, of size n+1\\n    prime = [True] * (n + 1)\\n    prime[0] = prime[1] = False\\n    \\n    # Iterate from 2 to sqrt(n)\\n    for p in range(2, math.isqrt(n) + 1):\\n        if prime[p]:\\n            # Update all multiples of p\\n            for i in range(p * p, n + 1, p):\\n                prime[i] = False\\n    \\n    # Return a list of all prime numbers up to n\\n    return [p for p in range(2, n + 1) if prime[p]]\\n\\ndef main():\\n    n = int(input(\": \"nter the number:\", \"__main__\": \"main()\", \",\": \"ests\", \"assert sieve_of_eratosthenes(20) == [2, 3, 5, 7, 11, 13, 17, 19]\": \"assert len(sieve_of_eratosthenes(100)) > 25\"}"
+}

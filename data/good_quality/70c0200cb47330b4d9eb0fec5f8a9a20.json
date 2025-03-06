@@ -1,0 +1,13 @@
+{
+    "title": "Hardest Puzzle: Maximum Cuts",
+    "description": "A sequence of `n` integers and a number `k` are given. The task is to find the maximum number of cuts that can be made so that all remaining sequences have lengths divisible by `k`. Write a function `max_cuts` that takes as input an integer array `arr` and an integer `k`, and returns the maximum number of such cuts.\n\n#### Function Signature\n```python\ndef max_cuts(arr: list[int), k: int) -> int:\n```\n\n#### Input\n- `arr`: A sequence of `n` integers.\n- `k`: An integer that represents the divisor.\n\n#### Output\n- Returns the maximum number of cuts that can be made so that all remaining sequences have lengths divisible by `k`.",
+    "code": "from typing import List\n\ndef max_cuts(arr: List[int], k: int) -> int:\n    n = len(arr)\n    total_sum = sum(arr)\n    if total_sum % k != 0:\n        return 0\n    else:\n        left_sum = 0\n        cuts = 0\n        for i in range(n):\n            left_sum += arr[i]\n            if left_sum % k == 0 and (i == n - 1 or (arr[i + 1] % k != 0)):\n                cuts += 1\n    return cuts",
+    "tests": [
+        "assert max_cuts([3, 9, 5], 3) == 2",
+        "assert max_cuts([12, 15, 10, 6], 4) == 3",
+        "assert max_cuts([7, 5, 11], 1) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

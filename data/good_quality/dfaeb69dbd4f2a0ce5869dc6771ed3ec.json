@@ -1,0 +1,15 @@
+{
+    "title": "Maximum Sum of Non-Adjacent Elements",
+    "description": "#### Problem\nGiven an array of integers, find the maximum sum of non-adjacent elements. For example, if the input array is `[2, 7, 9, 3, 1]`, the output should be `12` because the maximum sum of non-adjacent elements is `2 + 9 + 1 = 12`. Write a function `max_sum` that solves this problem.\n\n#### Function Signature\n```python\ndef max_sum(arr: list[int)) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum of non-adjacent elements in the input array.",
+    "code": "",
+    "\ndef max_sum(arr: list[int)) -> int:\n    if len(arr) <= 1:\n        return sum(arr)\n    dp = [0] * (len(arr) + 1)\n    for i in range(1, len(arr)):\n        dp[i] = max(dp[i-1], arr[i-1] + dp[i-2])\n    return dp[-1]": "",
+    "tests": [
+        "assert max_sum([2, 7, 9, 3, 1]) == 12",
+        "assert max_sum([1, 2, 3, 4, 5]) == 9",
+        "assert max_sum([]) == 0",
+        "assert max_sum([1]) == 1"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

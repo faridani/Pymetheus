@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Counting Triangles",
+    "description": "In a regular triangle, the perimeter of two sides is equal to the third side. Write a function `count_triangles` that takes an integer `n` as input and returns the number of triangles with perimeters less than or equal to `n`. The function should consider only integers for the lengths of the sides.\n\n#### Function Signature\n```python\ndef count_triangles(n: int) -> int:\n```\n\n#### Input\n- `n` (int): An integer representing the maximum perimeter of a triangle.\n\n#### Output\n- Returns an integer representing the number of triangles with perimeters less than or equal to `n`.",
+    "code": "def count_triangles(n: int) -> int:\n    count = 0\n    for a in range(1, n // 2 + 1):\n        for b in range(a, n // 2 + 1):\n            c = n - a - b\n            if a + b > c and a + c > b and b + c > a:\n                count += 1\n    return count",
+    "tests": [
+        "assert count_triangles(10) == 6",
+        "assert count_triangles(5) == 3",
+        "assert count_triangles(20) == 35"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

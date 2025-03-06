@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Domino Chain Checker",
+    "description": "Write a function `check_chain` that takes a list of integers representing the lengths of adjacent dominoes in a chain. The function should return the maximum number of consecutive dominoes that can be placed together to form a single, unbroken chain.\n\n#### Function Signature\n```python\ndef check_chain(dominoes: list[int]) -> int:\n```\n\n#### Input\n- `dominoes` (list[int]): A list of integers where each integer represents the length of an adjacent domino in the chain.\n\n#### Output\n- Returns the maximum number of consecutive dominoes that can be placed together to form a single, unbroken chain.",
+    "code": "def check_chain(dominoes: list[int]) -> int:\n    max_chain = 0\n    current_chain = 0\n    for length in dominoes:\n        if length > 1:\n            current_chain += length - 1\n        else:\n            current_chain += 1\n        max_chain = max(max_chain, current_chain)\n    return max_chain",
+    "tests": [
+        "assert check_chain([3,2,5,4]) == 7",
+        "assert check_chain([1,2,1]) == 3",
+        "assert check_chain([2,3,1,2]) == 4",
+        "assert check_chain([1,1,1,1]) == 4"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Maximal Rectangle",
+    "description": "Given a 2D binary matrix `matrix` where each row is a slice of a binary array, return the size of the maximal rectangle that can be formed by combining some of these slices. You may think about this problem as finding all rectangles with maximum area in a set of barcodes.\n\n#### Function Signature\n```python\ndef max_area_of_island(matrix: List[List[bool]]) -> int:\n```\n\n#### Input\n- `matrix` (List[List[bool]]): A 2D binary matrix where each row is a slice of a binary array.\n\n#### Output\n- Returns the size of the maximal rectangle that can be formed by combining some of these slices.",
+    "code": "\ndef max_area_of_island(matrix: List[List[bool]]) -> int:\n    if not matrix:\n        return 0\n\n    m, n = len(matrix), len(matrix[0])\n    max_area = 0\n    visited = [[False for _ in range(n)] for _ in range(m)]\n\n    def dfs(i, j):\n        area = 1\n        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]\n        stack = [(i, j)]\n        visited[i][j] = True\n\n        while stack:\n            x, y = stack.pop()\n            for dx, dy in directions:\n                nx, ny = x + dx, y + dy\n                if 0 <= nx < m and 0 <= ny < n and matrix[nx][ny] and not visited[nx][ny]:\n                    area += 1\n                    stack.append((nx, ny))\n                    visited[nx][ny] = True\n\n        return area\n\n    for i in range(m):\n        for j in range(n):\n            if matrix[i][j] and not visited[i][j]:\n                max_area = max(max_area, dfs(i, j))\n\n    return max_area",
+    "tests": [
+        "assert max_area_of_island([[0, 1]]) == 1",
+        "assert max_area_of_island([[1, 1], [1, 0]]) == 4",
+        "assert max_area_of_island([[1, 0, 0], [0, 1, 1], [0, 1, 0]]) == 4",
+        "assert max_area_of_island([]) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

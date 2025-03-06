@@ -1,0 +1,15 @@
+{
+    "title": "Minimum Distance to Sort Array (Hard)",
+    "description": "Given an array of integers, write a function `min_distance_to_sort` that returns the minimum number of operations needed to sort the array. An operation consists of swapping two elements in the array.\n\n#### Function Signature\n```python\ndef min_distance_to_sort(arr: List[int]) -> int:\n```\n\n#### Input\n- `arr` (List[int]): A list of integers.\n\n#### Output\n- Returns the minimum number of operations needed to sort the array.",
+    "code": "",
+    "\nimport itertools\nfrom typing import List\n\ndef min_distance_to_sort(arr: List[int]) -> int:\n    # Generate all possible permutations of the array\n    permutations = list(itertools.permutations(arr))\n    \n    # Initialize the minimum distance to a large value\n    min_distance = float('inf')\n    \n    for permutation in permutations:\n        # Calculate the number of operations needed to sort this permutation\n        distance = 0\n        sorted_permutation = sorted(permutation)\n        for i, num in enumerate(sorted_permutation):\n            if num != permutation[i]:\n                distance += 1\n        min_distance = min(min_distance, distance)\n    \n    return min_distance": "",
+    "tests": [
+        "assert min_distance_to_sort([4, 2, 5, 3]) == 3",
+        "assert min_distance_to_sort([1, 2, 3, 4]) == 0",
+        "assert min_distance_to_sort([-10, -9, -8]) == 3",
+        "assert min_distance_to_sort([]) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

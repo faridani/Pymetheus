@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Subarray K",
+    "description": "Given an integer array `nums` and an integer `k`, return the maximum sum of any subarray of length `k`. If there are multiple solutions, return one of them.\n\n#### Function Signature\n```python\ndef max_sum_subarray(nums: list[int), k: int) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers representing the input array.\n- `k` (int): The length of the subarray to consider.\n\n#### Output\n- Returns the maximum sum of any subarray of length `k`.",
+    "code": "\ndef max_sum_subarray(nums: list[int], k: int) -> int:\n    if len(nums) < k:\n        return 0\n    \n    max_sum = float('-inf')\n    window_sum = sum(nums[:k])\n    \n    for i in range(len(nums) - k):\n        max_sum = max(max_sum, window_sum)\n        window_sum -= nums[i]\n        window_sum += nums[i + k]\n    \n    return max_sum",
+    "tests": [
+        "assert max_sum_subarray([1, 2, 3, 4, 5], 2) == 9",
+        "assert max_sum_subarray([-2, -3, 4, -1, -2, 1, 5, -3], 2) == 7",
+        "assert max_sum_subarray([1, -1, 5, -5, 9, -9], 2) == 14",
+        "assert max_sum_subarray([-1, -2, -3, -4, -5], 1) == -1"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

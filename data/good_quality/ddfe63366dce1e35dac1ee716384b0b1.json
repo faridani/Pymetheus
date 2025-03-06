@@ -1,0 +1,16 @@
+{
+    "title": "Hard: Matrix Rotation Checker",
+    "description": "Given two matrices, write a function `is_rotation` that checks if one matrix is a rotation of the other. A matrix can be rotated clockwise or counterclockwise by 90 degrees, 180 degrees, or 270 degrees. All four rotations are considered valid.\n\n#### Function Signature\n```python\ndef is_rotation(matrix1: List[List[int]], matrix2: List[List[int]]) -> bool:\n```\n\n#### Input\n- `matrix1` (List[List[int]]): A 2D list representing a square matrix of integers.\n- `matrix2` (List[List[int]]): Another 2D list representing a square matrix of integers.\n\n#### Output\n- Returns `True` if the second matrix is a rotation of the first matrix, `False` otherwise. Assume that both matrices have the same dimensions and contain only unique elements.",
+    "code": "",
+    "from typing import List\ndef is_rotation(matrix1: List[List[int]], matrix2: List[List[int]]) -> bool:\n    def rotate_90(matrix):\n        return [list(reversed(row)) for row in zip(*matrix)]\n\n    if matrix1 == matrix2:\n        return True\n    for _ in range(3):\n        matrix1 = rotate_90(matrix1)\n        if matrix1 == matrix2:\n            return True\n    return False": "",
+    "tests": [
+        "assert is_rotation([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[7, 4, 1], [8, 5, 2], [9, 6, 3]]) == True",
+        "assert is_rotation([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[3, 6, 9], [2, 5, 8], [1, 4, 7]]) == True",
+        "assert is_rotation([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == True",
+        "assert is_rotation([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[9, 8, 7], [6, 5, 4], [3, 2, 1]]) == True",
+        "assert is_rotation([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[1, 4, 7], [2, 5, 8], [3, 6, 9]]) == False"
+    ],
+    "difficulty": "super hard",
+    "model": "codestral:22b",
+    "style": "HackerRank"
+}

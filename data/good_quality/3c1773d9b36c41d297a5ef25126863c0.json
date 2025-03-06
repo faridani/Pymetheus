@@ -1,0 +1,15 @@
+{
+    "title": "Maximum Area of Island",
+    "description": "Given a binary matrix `grid` where each 1 represents an island and 0 represents water, write a function that finds the maximum area of any island.\n\n#### Function Signature\n```python\ndef max_island_area(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A binary grid where each 1 represents an island and 0 represents water. The grid is rectangular with dimensions `m x n`. Each cell contains either a 0 or a 1.\n\n#### Output\n- Returns the maximum area of any island in the grid.",
+    "code": "",
+    "\nimport heapq\n\ndef max_island_area(grid: list[list[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n    \n    m, n = len(grid), len(grid[0])\n    visited = [[False] * n for _ in range(m)]\n    \n    max_area = 0\n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n    \n    for i in range(m):\n        for j in range(n):\n            if grid[i][j] == 1 and not visited[i][j]:\n                area = dfs(grid, visited, i, j)\n                max_area = max(max_area, area)\n                \n    return max_area\n\ndef dfs(grid: list[list[int]], visited: list[list[bool]], i: int, j: int) -> int:\n    if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or not grid[i][j] or visited[i][j]:\n        return 0\n    \n    visited[i][j] = True\n    area = 1\n    queue = [(i, j)]\n    \n    while queue:\n        x, y = heapq.heappop(queue)\n        for dx, dy in directions:\n            nx, ny = x + dx, y + dy\n            if nx >= 0 and nx < len(grid) and ny >= 0 and ny < len(grid[0]) and grid[nx][ny] == 1 and not visited[nx][ny]:\n                area += 1\n                visited[nx][ny] = True\n                heapq.heappush(queue, (nx, ny))\n    \n    return area": "",
+    "tests": [
+        "assert max_island_area([[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0],[0,1,1,0,0]]) == 4",
+        "assert max_island_area([[1,1,0,0,0],[0,1,0,0,0],[1,1,1,0,0]]) == 5",
+        "assert max_island_area([]) == 0",
+        "assert max_island_area([[]]) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

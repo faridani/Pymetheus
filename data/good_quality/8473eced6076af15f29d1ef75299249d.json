@@ -1,0 +1,14 @@
+{
+    "title": "Euler's Totient Function",
+    "description": "Euler's totient function, denoted by \u03c6(n), counts the positive integers up to n that are relatively prime to n. Given a list of numbers, find the Euler's totient value for each number in the list.\n\n#### Function Signature\n```python\ndef euler_totient(numbers: list) -> list:\n```\n\n#### Input\n- `numbers` (list): A list of integers.\n\n#### Output\n- Returns a list of integers where each integer is the Euler's totient value corresponding to the input numbers.\n\nNote that 1 is considered relatively prime to every number. For example, \u03c6(1) = 1, \u03c6(2) = 1, \u03c6(3) = 2, \u03c6(4) = 2, \u03c6(5) = 4, \u03c6(6) = 2, and so on.\n\n#### Hints\n- Use a helper function to find the Euler's totient value for each number.\n- You can use the formula \u03c6(n) = n * (1 - 1/p) where p is the prime factor of n. However, this might not be efficient for large numbers.\n- Think about how you can use set operations to solve this problem efficiently.",
+    "code": "",
+    "\ndef euler_totient(numbers: list) -> list:\n    def find_prime_factors(n: int) -> set:\n        factors = set()\n        i = 2\n        while i * i <= n:\n            if n % i:\n                i += 1\n            else:\n                n //= i\n                factors.add(i)\n        if n > 1:\n            factors.add(n)\n        return factors\n\n    result = []\n    for num in numbers:\n        prime_factors = find_prime_factors(num)\n        totient_value = num\n        for factor in prime_factors:\n            totient_value *= (1 - 1 / factor)\n        result.append(int(totient_value))\n\n    return result": "",
+    "tests": [
+        "assert euler_totient([2, 3, 4]) == [1, 2, 2]",
+        "assert euler_totient([5, 6, 7, 8, 9]) == [4, 2, 4, 4, 6]",
+        "assert euler_totient([10, 15, 20]) == [4, 8, 12]"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

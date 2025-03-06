@@ -1,0 +1,14 @@
+{
+    "title": "Fibonacci Tree Traversal",
+    "description": "Given a binary tree where each node contains a value and two children (left and right), write a function `traverse` that traverses the tree in pre-order, post-order, or in-order. The function should return a list of values representing the nodes visited during the traversal.\n\n#### Function Signature\n```python\ndef traverse(root: TreeNode) -> list:\n```\n\n#### Input\n- `root` (TreeNode): The root node of the binary tree.\n- `type` (str): The type of traversal to perform. Can be one of 'pre', 'post', or 'in'.\n\n#### Output\n- Returns a list of values representing the nodes visited during the specified traversal.",
+    "code": "",
+    "\nclass TreeNode:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef traverse(root: TreeNode, type: str) -> list:\n    result = []\n    if type == 'pre':\n        _traverse_pre(root, result)\n    elif type == 'post':\n        _traverse_post(root, result)\n    elif type == 'in':\n        _traverse_in(root, result)\n    return result\n\ndef _traverse_pre(node: TreeNode, result: list):\n    if node is None:\n        return\n    result.append(node.value)\n    _traverse_pre(node.left, result)\n    _traverse_pre(node.right, result)\n\ndef _traverse_post(node: TreeNode, result: list):\n    if node is None:\n        return\n    _traverse_post(node.left, result)\n    _traverse_post(node.right, result)\n    result.append(node.value)\n\ndef _traverse_in(node: TreeNode, result: list):\n    if node is None:\n        return\n    _traverse_in(node.left, result)\n    result.append(node.value)\n    _traverse_in(node.right, result)": "",
+    "tests": [
+        "assert traverse(TreeNode(1, TreeNode(2), TreeNode(3)), 'pre') == [1, 2, 3]",
+        "assert traverse(TreeNode(1, None, TreeNode(3)), 'post') == [1, 3]",
+        "assert traverse(TreeNode(1, TreeNode(2), TreeNode(3)), 'in') == [1, 2, 3]"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

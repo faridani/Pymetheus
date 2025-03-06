@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Sudoku Solver",
+    "description": "Sudoku is a well-known puzzle game where you need to fill in numbers on a 9x9 grid, with some numbers already given. The goal is to place each number from 1 to 9 exactly once in each row, column and 3x3 sub-grid so that the resulting grid does not contain any duplicate values.\n\n#### Function Signature\n```python\ndef solve_sudoku(board: list[list[int]]) -> bool:\n```\n\n#### Input\n- `board` (list[list[int]]): A 9x9 grid of integers, where 0 represents an empty cell. The board may contain some numbers already filled in.\n\n#### Output\n- Returns `True` if the input Sudoku puzzle can be solved, `False` otherwise.",
+    "code": "",
+    "\ndef solve_sudoku(board: list[list[int]]) -> bool:\n    def is_valid(board, row, col, num):\n        for x in range(9):\n            if board[row][x] == num:\n                return False\n\n        for x in range(9):\n            if board[x][col] == num:\n                return False\n\n        start_row = row - row % 3\n        start_col = col - col % 3\n        for i in range(3):\n            for j in range(3):\n                if board[i + start_row][j + start_col] == num:\n                    return False\n        return True\n\n    def solve(board):\n        for i in range(9):\n            for j in range(9):\n                if board[i][j] == 0:\n                    for num in range(1, 10):\n                        if is_valid(board, i, j, num):\n                            board[i][j] = num\n                            if solve(board):\n                                return True\n                            else:\n                                board[i][j] = 0\n                    return False\n        return True\n\n    if not solve(board):\n        return False\n    return True": "",
+    "tests": [
+        "assert solve_sudoku([[5,3,4,6,7,8,9,1,2], [6,7,8,9,1,2,3,4,5], [1,2,3,4,5,6,7,8,9], [5,6,7,8,9,1,2,3,4], [9,1,2,3,4,5,6,7,8], [7,8,9,1,2,3,4,5,6], [3,4,5,6,7,8,9,1,2], [4,5,6,7,8,9,1,2,3], [8,9,1,2,3,4,5,6,7]]) == True",
+        "assert solve_sudoku([[0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,8,2], [0,0,3,6,7,5,1,4,9], [0,8,2,0,0,14,13,11,10], [5,9,7,4,3,12,15,16,17]]) == True",
+        "assert solve_sudoku([[5,3,4,6,7,8,9,1,2], [6,7,8,9,1,2,3,4,5], [1,2,3,4,5,6,7,8,9], [5,6,7,8,9,1,2,3,4], [9,1,2,3,4,5,6,7,8], [7,8,9,1,2,3,4,5,6], [3,4,5,6,7,8,9,1,2], [4,5,6,7,8,9,1,2,0], [8,9,1,2,3,4,5,6,0]]) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

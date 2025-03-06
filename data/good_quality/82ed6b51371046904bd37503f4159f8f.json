@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Tree Traversal",
+    "description": "A tree is represented as an adjacency list, where each node is associated with a value and a list of its children. Write a function that performs a depth-first search (DFS) traversal on the tree and returns the maximum sum of values along any path from the root to a leaf.\n\n#### Function Signature\n```python\ndef max_path_sum(root: dict, values: dict) -> int:\n```\n\n#### Input\n- `root` (dict): The root node of the tree, represented as a dictionary with keys 'value' and 'children'. Each child is also a dictionary with the same format.\n- `values` (dict): A dictionary mapping node values to their indices in the array. This is used for debugging purposes only.\n\n#### Output\n- Returns the maximum sum of values along any path from the root to a leaf.",
+    "code": "",
+    "\nimport heapq\n\ndef max_path_sum(root, values):\n    max_sum = float('-inf')\n    \n    def dfs(node, current_sum):\n        nonlocal max_sum\n        current_sum += node['value']\n        \n        if not node['children']:\n            max_sum = max(max_sum, current_sum)\n            return\n        \n        for child in node['children']:\n            dfs(child, current_sum)\n    \n    dfs(root, 0)\n    \n    return max_sum": "",
+    "tests": [
+        "assert max_path_sum({'value': 1, 'children': [{'value': 2, 'children': []}, {'value': -1, 'children': []}]} , {}) == 2",
+        "assert max_path_sum({'value': 3, 'children': [{'value': 5, 'children': []}, {'value': 2, 'children': [{'value': 7, 'children': []}]}]}, {}) == 9",
+        "assert max_path_sum({'value': 1, 'children': []}, {}) == 1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

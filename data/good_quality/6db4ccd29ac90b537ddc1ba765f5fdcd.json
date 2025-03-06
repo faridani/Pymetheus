@@ -1,0 +1,14 @@
+{
+    "title": "The Mysterious Treehouse Maze",
+    "description": "In this problem, we are given a treehouse maze that consists of several rooms connected by doors. Each room has a unique number and contains either a key or a door to another room. Our goal is to find the shortest path from the starting room to the room containing the treasure.\n\n#### Function Signature\n```python\ndef solve_maze(maze: list[list[tuple[int, str]]]) -> int:\n```\n\n#### Input\n- `maze` (list of lists): A 2D array representing the treehouse maze. Each inner list represents a room, and each tuple in that list contains two elements: the first is the number of the room that can be accessed from this room (or -1 if there's no door), and the second is either 'key' or 'door'. The starting room is assumed to be at index 0.\n\n#### Output\n- Returns the minimum number of steps required to reach the treasure room. If it's not possible to reach the treasure, return -1.",
+    "code": "import heapq\ndef solve_maze(maze: list[list[tuple[int, str]]]) -> int:\n    start_room = 0\n    rooms_to_visit = [(0, start_room)]\n    visited_rooms = set()\n    shortest_path = float('inf')\n\n    while rooms_to_visit:\n        current_steps, current_room = heapq.heappop(rooms_to_visit)\n        if current_room not in visited_rooms:\n            visited_rooms.add(current_room)\n            if maze[current_room][1] == 'key':\n                return current_steps\n            for door_room, door_type in maze[current_room]:  # Find the door to another room.\n                if door_type == 'door' and door_room not in visited_rooms:\n                    heapq.heappush(rooms_to_visit, (current_steps + 1, door_room))\n        if current_steps > shortest_path:\n            break\n    return -1",
+    "tests": [
+        "assert solve_maze([[(0, 'key'), (1, 'door')]]) == 2",
+        "assert solve_maze([[(0, 'key'), (1, 'key')]]) == 2",
+        "assert solve_maze([[(0, 'key'), (1, 'door'), (-1, 'key')]]) == 3",
+        "assert solve_maze([[(0, 'door'), (-1, 'door')]]) == -1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

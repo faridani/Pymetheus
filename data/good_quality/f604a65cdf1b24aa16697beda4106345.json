@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Sum of Digits",
+    "description": "Write a function `sum_of_digits` that calculates the sum of all digits in an integer.\n\n#### Function Signature\n```python\ndef sum_of_digits(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- The sum of all digits in the input integer.",
+    "code": "def sum_of_digits(n: int) -> int:\n    # Convert the number to a string to easily access each digit\n    n_str = str(n)\n    # Initialize a variable to store the sum of the digits\n    total_sum = 0\n    # Iterate over each character in the string (each digit in the number)\n    for char in n_str:\n        # Add the integer value of the character (the digit) to the total sum\n        total_sum += int(char)\n    return total_sum",
+    "tests": [
+        "assert sum_of_digits(12345) == 15",
+        "assert sum_of_digits(9) == 9",
+        "assert sum_of_digits(-1) == 0",
+        "assert sum_of_digits(100) == 1"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

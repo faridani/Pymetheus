@@ -1,0 +1,15 @@
+{
+    "title": "Fibonacci Primes",
+    "description": "A Fibonacci prime is a prime number that can be written as the sum of two or more consecutive Fibonacci numbers. For example, 13 and 89 are Fibonacci primes because they can be expressed as 2 + 3, 5 + 8, 5 + 14, and so on. Implement a function `is_fibonacci_prime` that takes an integer as input and returns `True` if the number is a Fibonacci prime, and `False` otherwise.\n\n#### Function Signature\n```python\ndef is_fibonacci_prime(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer that may or may not be a Fibonacci prime.\n\n#### Output\n- Returns `True` if the input number is a Fibonacci prime, `False` otherwise.",
+    "code": "",
+    "\nimport math\n\ndef is_fibonacci_prime(n: int) -> bool:\n    def is_prime(m: int) -> bool:\n        if m < 2:\n            return False\n        for i in range(2, int(math.sqrt(m)) + 1):\n            if m % i == 0:\n                return False\n        return True\n\n    a, b = 0, 1\n    while b <= n:\n        a, b = b, a + b\n    return is_prime(n)": "",
+    "tests": [
+        "assert is_fibonacci_prime(13) == True",
+        "assert is_fibonacci_prime(89) == True",
+        "assert is_fibonacci_prime(2) == False",
+        "assert is_fibonacci_prime(3) == False"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

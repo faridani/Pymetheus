@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Non-Overlapping Segments",
+    "description": "Given a list of integers representing the lengths of non-overlapping segments, write a function `max_sum` that returns the maximum sum of these segments. A segment can only be included once.\n\n#### Function Signature\n```python\ndef max_sum(segments: List[int]) -> int:\n```\n\n#### Input\n- `segments` (List[int]): A list of integers representing the lengths of non-overlapping segments.\n\n#### Output\n- Returns the maximum sum of these segments.",
+    "code": "\nfrom typing import List\n\ndef max_sum(segments: List[int]) -> int:\n    n = len(segments)\n    dp = [[0, 0] for _ in range(n + 1)]\n    dp[0][0], dp[0][1] = 0, 0\n    \n    for i in range(1, n + 1):\n        if segments[i - 1] % 2 == 0:\n            dp[i][0], dp[i][1] = max(dp[i - 1][0], dp[i - 1][1]), dp[i - 1][1]\n        else:\n            dp[i][0], dp[i][1] = dp[i - 1][0], max(dp[i - 1][0], dp[i - 1][1])\n    \n    return dp[n][1]",
+    "tests": [
+        "assert max_sum([2, 3, 4]) == 9",
+        "assert max_sum([5, 6, 7]) == 18",
+        "assert max_sum([1, 2, 3, 4, 5]) == 15",
+        "assert max_sum([]) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

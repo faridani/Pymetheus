@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Domino Toppling",
+    "description": "Given a list of dominoes, where each domino is represented as a tuple of two integers representing its end points (0 to 99), write a function `topple` that simulates the process of toppling the dominoes. The function should return a boolean indicating whether all dominoes can be toppled in one step or not.\n\n#### Function Signature\n```python\ndef topple(dominoes: list[tuple[int, int]]) -> bool:\n```\n\n#### Input\n- `dominoes` (list[tuple[int, int]]): A list of dominoes, where each domino is represented as a tuple of two integers representing its end points.\n\n#### Output\n- Returns `True` if all dominoes can be toppled in one step, `False` otherwise.",
+    "code": "",
+    "\nfrom typing import List, Tuple\n\ndef topple(dominoes: List[Tuple[int, int]]) -> bool:\n    # Sort the dominoes based on their end points\n    dominoes.sort(key=lambda x: x[1])\n\n    for i in range(len(dominoes) - 1):\n        if dominoes[i][0] >= dominoes[i + 1][0]:\n            return False\n\n    return True": "",
+    "tests": [
+        "assert topple([(0, 10), (5, 20), (15, 30)]) == True",
+        "assert topple([(0, 10), (5, 15), (15, 20)]) == False"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

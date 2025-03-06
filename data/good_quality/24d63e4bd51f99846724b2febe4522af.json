@@ -1,0 +1,12 @@
+{
+    "title": "Fibonacci-like Triangle",
+    "description": "Write a function `triangle` that generates the nth Fibonacci-like triangle. The Fibonacci sequence starts with 0 and 1, and each subsequent number is the sum of the previous two. A Fibonacci-like triangle is formed by replacing each number in the Fibonacci sequence with its corresponding row index plus one.\n\n#### Function Signature\n```python\ndef triangle(n: int) -> str:\n```\n\n#### Input\n- `n` (int): The size of the desired Fibonacci-like triangle.\n\n#### Output\n- Returns a string representation of the nth Fibonacci-like triangle.",
+    "code": "\ndef triangle(n):\n    fib_sequence = [0, 1]\n    for _ in range(2, n+1):\n        fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])\n\n    triangle_str = ''\n    row = 1\n    for num in fib_sequence:\n        triangle_str += str(row).rjust(len(str(num))) + ' '\n        if (row ** 2) + (num ** 2) >= n * (n + 1) // 2:\n            break\n        row += 1\n    return triangle_str.strip()",
+    "tests": [
+        "assert triangle(10) == '      0       1\\n     1       2\\n     3       5\\n     8      13\\n    21      34\\n' ",
+        "assert triangle(20) == '              0              1\\n             1              1\\n            1              2\\n           2              3\\n          3              5\\n         5              8\\n        8             13\\n      13             21\\n     21             34\\n    34            55\\n   55            89\\n' "
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

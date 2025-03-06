@@ -1,0 +1,14 @@
+{
+    "title": "Number of Islands",
+    "description": "Given a 2D binary matrix `grid` containing only 0s (representing water) and 1s (representing land), count the number of islands. An island is any connected group of 1s.\n\n#### Function Signature\n\n```python\ndef num_islands(grid: list[list[int]]) -> int:\n```\n\n#### Input\n\n- `grid` (list[list[int]]): A 2D binary matrix containing only 0s and 1s, where 0 represents water and 1 represents land.\n\n#### Output\n\n- Returns the number of islands in the given grid.",
+    "code": "",
+    "\ndef num_islands(grid: list[list[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n    \n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[i])):\n            if grid[i][j] == 1:\n                dfs(grid, i, j)\n                count += 1\n                \n    return count\n\ndef dfs(grid: list[list[int]], i: int, j: int) -> None:\n    if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[i]) or grid[i][j] != 1:\n        return\n    \n    grid[i][j] = -1\n    for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:\n        dfs(grid, i + dx, j + dy)": "",
+    "tests": [
+        "assert num_islands([[0,0,0,0,0],[0,1,1,1,0],[0,1,0,1,0],[0,1,1,1,0]]) == 1",
+        "assert num_islands([[0,0,0,0,0],[0,0,1,0,0],[0,0,1,0,0],[0,0,1,0,0]]) == 4",
+        "assert num_islands([]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

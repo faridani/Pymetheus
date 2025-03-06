@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Unique Characters\\\", \\\"description\\\": \\\"Given a string, write a function that returns the number of unique characters in it.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef count_unique_chars(s: str) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `s` (str): A string containing any characters.\\\\n\\\\n#### Output\\\\n- Returns the number of unique characters in the input string.\\\", \\\"code\\\": \\\"def count_unique_chars(s: str) -> int:\\\\n    return len(set(s))\\\\n\\\", \\\"tests\\\": [\\\"assert count_unique_chars(\\\\\\\"abc\\\\\\\") == 3\\\", \\\"assert count_unique_chars(\\\\\\\"aabbcc\\\\\\\") == 3\\\", \\\"assert count_unique_chars(\\\\\\\"abcdefghijklmnopqrstuvwxyz\\\\\\\") == 26\\\", \\\"assert count_unique_chars(\\\\\\\"\\\\\\\") == 0\\\"] }\""
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Fibonacci Number Generator",
+    "description": "Given a list of integers, generate all Fibonacci numbers that are present in the list. A Fibonacci number is a number that appears in the sequence 0, 1, 1, 2, 3, 5, 8, 13, ... where each number is the sum of the two preceding ones. Write a function `fibonacci_numbers` that takes a list of integers as input and returns a new list containing all Fibonacci numbers present in the original list.\n\n#### Function Signature\n```python\ndef fibonacci_numbers(lst: list[int]) -> list[int]:\n```\n\n#### Input\n- `lst` (list[int]): A list of integers that may contain Fibonacci numbers.\n\n#### Output\n- Returns a new list containing all Fibonacci numbers present in the input list.",
+    "code": "\nimport math\n\ndef fibonacci_numbers(lst: list[int]) -> list[int]:\n    def is_fibonacci(n: int) -> bool:\n        if n < 0:\n            return False\n        a, b = 0, 1\n        while b <= n:\n            if b == n:\n                return True\n            a, b = b, a + b\n        return False\n\n    fib_numbers = []\n    for num in lst:\n        if is_fibonacci(num):\n            fib_numbers.append(num)\n    return fib_numbers",
+    "tests": [
+        "assert fibonacci_numbers([0, 1, 2, 3, 5, 8, 13]) == [0, 1, 2, 3, 5, 8, 13]",
+        "assert fibonacci_numbers([1, 2, 3, 4, 5, 6, 7, 10]) == [1, 2, 3, 5, 8]",
+        "assert fibonacci_numbers([-1, -2, -3, -5, -8, -13]) == []",
+        "assert fibonacci_numbers([0, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]) == [0, 1, 1, 2, 3, 5, 8, 13]"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

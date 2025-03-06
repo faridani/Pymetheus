@@ -1,0 +1,12 @@
+{
+    "title": "Counting Islands",
+    "description": "Given a binary matrix, where 0 represents water and 1 represents land, write a function that counts the number of islands in the given matrix. An island is defined as a group of connected land cells.\n\n#### Function Signature\n```python\ndef count_islands(matrix: list[list[int]]) -> int:\n```\n\n#### Input\n- `matrix` (list[list[int]]): A binary matrix, where 0 represents water and 1 represents land.\n\n#### Output\n- Returns the number of islands in the given matrix.",
+    "code": "from typing import List\n\ndef count_islands(matrix: List[List[int]]) -> int:\n    if not matrix or not matrix[0]:\n        return 0\n\n    rows, cols = len(matrix), len(matrix[0])\n    visited = [[False] * cols for _ in range(rows)]\n\n    def dfs(r: int, c: int) -> None:\n        if r < 0 or r >= rows or c < 0 or c >= cols or matrix[r][c] == 0 or visited[r][c]:\n            return\n\n        visited[r][c] = True\n        for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            nr, nc = r + dr, c + dc\n            if 0 <= nr < rows and 0 <= nc < cols and matrix[nr][nc] == 1 and not visited[nr][nc]:\n                dfs(nr, nc)\n\n    island_count = 0\n    for r in range(rows):\n        for c in range(cols):\n            if matrix[r][c] == 1 and not visited[r][c]:\n                dfs(r, c)\n                island_count += 1\n\n    return island_count",
+    "tests": [
+        "assert count_islands([[0,0,0,0,0],[0,1,0,0,0],[0,0,1,0,0],[0,0,0,1,1]]) == 1",
+        "assert count_islands([[0,0,0,0,0],[0,1,0,0,0],[0,0,1,1,1],[0,0,1,1,1]]) == 4"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

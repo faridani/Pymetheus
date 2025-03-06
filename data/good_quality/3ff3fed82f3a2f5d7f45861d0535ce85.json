@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Non-Adjacent Elements",
+    "description": "Given a list of non-negative integers, find the maximum sum that can be obtained by selecting some or all elements from the list. The selected elements must not have any adjacent pairs in the list.\n\n#### Function Signature\n```\ndef max_sum(arr: list) -> int:\n```\n\n#### Input\n- `arr` (list): A list of non-negative integers.\n\n#### Output\n- Returns the maximum sum that can be obtained by selecting some or all elements from the list, considering that adjacent elements cannot be selected.",
+    "code": "def max_sum(arr: list) -> int:\n    if not arr:\n        return 0\n    incl = excl = 0\n    for i in range(len(arr)):\n        new_excl = max(incl, excl)\n        incl = excl + arr[i]\n        excl = new_excl\n    return max(incl, excl)",
+    "tests": [
+        "assert max_sum([2, 7, 9, 3, 4]) == 12",
+        "assert max_sum([2, 1, 5, 8, 2]) == 10",
+        "assert max_sum([]) == 0",
+        "assert max_sum([1, 2]) == 2"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

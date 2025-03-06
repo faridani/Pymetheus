@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Tower of Hanoi",
+    "description": "The Tower of Hanoi is a mathematical puzzle where we have three rods and n disks. The objective of the game is to move the entire stack to another rod, obeying the following simple rules:\n- Only one disk can be moved at a time.\n- Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty rod.\n- No disk may be placed on top of a smaller disk.\n\nWrite a function `tower_of_hanoi` that takes as input the number of disks `n`, and returns the minimum number of moves required to solve the Tower of Hanoi puzzle.\n\n#### Function Signature\n```python\ndef tower_of_hanoi(n: int) -> int:\n```\n\n#### Constraints\n- `1 <= n <= 10`",
+    "code": "",
+    "\ndef tower_of_hanoi(n: int) -> int:\n    if n == 1:\n        return 1\n    else:\n        return 2 * tower_of_hanoi(n - 1) + 1": "",
+    "tests": [
+        "assert tower_of_hanoi(1) == 1",
+        "assert tower_of_hanoi(2) == 3",
+        "assert tower_of_hanoi(3) == 7",
+        "assert tower_of_hanoi(4) == 15"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

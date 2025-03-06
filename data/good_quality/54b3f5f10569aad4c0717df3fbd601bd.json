@@ -1,0 +1,13 @@
+{
+    "title": "Easiest Path to the Treasure",
+    "description": "In an enchanted forest, there are N treasures hidden at different points. Each treasure has a unique ID from 1 to N and its distance from the starting point is denoted by the height of the tree at that point. The height of each tree varies between 0 and H. A path to the treasure can only be made through trees with the same height, so the total distance traveled will always be equal to the difference in heights between the two end points of the path.\n\nWrite a function `easiest_path` that takes an integer array `heights`, where each index represents the height of a tree at that point. It should return the ID of the treasure with the minimum total distance from the starting point to any other treasure, considering all possible paths between each pair of treasures.\n\n#### Function Signature\n```python\ndef easiest_path(heights: list) -> int:\n```\n\n#### Input\n- `heights` (list): A list of integers representing the height of each tree at that point. The length of the list is N, where N is the number of treasures.\n\n#### Output\n- Returns the ID of the treasure with the minimum total distance from the starting point to any other treasure.",
+    "code": "def easiest_path(heights: list) -> int:\n    n = len(heights)\n    min_distance = float('inf')\n    for i in range(n):\n        for j in range(i+1, n):\n            distance = sum(abs(heights[i] - heights[k]) for k in range(min(i, j), max(i, j)+1))\n            if distance < min_distance:\n                min_distance = distance\n    return i",
+    "tests": [
+        "assert easiest_path([0, 3, 2, 4]) == 0",
+        "assert easiest_path([5, 3, 4]) == 0",
+        "assert easiest_path([1, 2, 1]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

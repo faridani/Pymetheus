@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Check if Array is Rotated Binary Search Tree",
+    "description": "A rotated binary search tree is a binary search tree where all elements are rotated either to the left or right. In other words, every node in the right subtree of the root has a value greater than the root, and every node in the left subtree of the root has a value less than the root. Write a function `is_rotated_bst` that checks if a given binary tree is a rotated binary search tree.\n\n#### Function Signature\n```python\ndef is_rotated_bst(root: TreeNode) -> bool:\n```\n\n#### Input\n- `root` (TreeNode): The root of the binary tree.\n\n#### Output\n- Returns `True` if the input tree is a rotated binary search tree, `False` otherwise.",
+    "code": "",
+    "\nclass TreeNode:\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\ndef is_rotated_bst(root: TreeNode) -> bool:\n    def dfs(node):\n        if node is None:\n            return True\n        left_max = float('-inf')\n        right_min = float('inf')\n        if node.left:\n            left_max = max(left_max, node.left.val)\n        if node.right:\n            right_min = min(right_min, node.right.val)\n        return node.val >= left_max and node.val <= right_min\n\n    return dfs(root)": "",
+    "tests": [
+        "assert is_rotated_bst(TreeNode(1, TreeNode(2), TreeNode(3))) == True",
+        "assert is_rotated_bst(TreeNode(4, TreeNode(2, TreeNode(1), TreeNode(3)), None)) == True",
+        "assert is_rotated_bst(None) == True",
+        "assert is_rotated_bst(TreeNode(5)) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

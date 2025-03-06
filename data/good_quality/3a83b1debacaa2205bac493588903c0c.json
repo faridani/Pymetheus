@@ -1,0 +1,13 @@
+{
+    "title": "Fibonacci Generator",
+    "description": "The Fibonacci sequence is a series of numbers where the next number is the sum of the previous two. Write a function that generates and returns a list of `n` Fibonacci numbers.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> list:\n```\n\n#### Input\n- `n` (int): The number of Fibonacci numbers to generate.\n\n#### Output\n- Returns a list of the first `n` Fibonacci numbers.",
+    "code": "def fibonacci(n: int) -> list:\n    fib_sequence = [0, 1]\n    while len(fib_sequence) < n:\n        next_number = fib_sequence[-1] + fib_sequence[-2]\n        fib_sequence.append(next_number)\n    return fib_sequence[:n]",
+    "tests": [
+        "assert len(fibonacci(10)) == 10",
+        "assert all(x in fibonacci(5) for x in [0, 1, 1, 2, 3])",
+        "assert len(fibonacci(20)) == 20"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

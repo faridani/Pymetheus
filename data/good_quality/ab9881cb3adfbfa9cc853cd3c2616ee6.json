@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Factorials of Fibonacci Numbers",
+    "description": "The Fibonacci sequence is a series of numbers in which each number is the sum of the two preceding ones, usually starting with 0 and 1. The factorial of a number n is calculated as the product of all positive integers up to n. For example, 5! = 5 * 4 * 3 * 2 * 1 = 120. Write a function `fib_factorial` that calculates the factorial of each Fibonacci number up to a given limit.\n\n#### Function Signature\n```python\ndef fib_factorial(limit: int) -> dict:\n```\n\n#### Input\n- `limit` (int): The maximum Fibonacci number to calculate factorials for.\n\n#### Output\n- Returns a dictionary where the keys are Fibonacci numbers up to `limit`, and the values are their corresponding factorials.",
+    "code": "def fib_factorial(limit: int) -> dict:\n    def fibonacci(n: int) -> int:\n        if n <= 1:\n            return n\n        else:\n            return fibonacci(n-1) + fibonacci(n-2)\n    factorials = {}\n    a, b = 0, 1\n    while a <= limit:\n        factorials[a] = 1\n        for i in range(1, int(a ** 0.5) + 1):\n            if a % i == 0:\n                k = a // i\n                if i * k == a:\n                    factorials[a] *= i\n                    break\n                elif k < i:\n                    continue\n        for i in range(int(a ** 0.5), 0, -1):\n            if a % i == 0:\n                k = a // i\n                if i * k == a:\n                    factorials[a] *= i\n                    break\n        a, b = b, a + b\n    return factorials",
+    "tests": [
+        "assert fib_factorial(10) == {0: 1, 1: 1, 2: 2, 3: 6, 5: 120, 8: 40320}",
+        "assert fib_factorial(20) == {0: 1, 1: 1, 2: 2, 3: 6, 5: 120, 8: 40320, 13: 1935360}"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Finding the Shortest Path in a Maze",
+    "description": "You are given a 2D array `maze` representing a maze, where `0`s represent empty cells and `1`s represent walls. The goal is to find the shortest path from the top-left cell `(0,0)` to the bottom-right cell `(n-1,m-1)`, where `n` and `m` are the number of rows and columns in the maze respectively.\n\n#### Function Signature\n```python\ndef shortest_path(maze: list[list[int]]) -> int:\n```\n\n#### Input\n- `maze` (list[list[int]]): A 2D array representing a maze, where `0`s represent empty cells and `1`s represent walls.\n\n#### Output\n- Returns the length of the shortest path from the top-left cell to the bottom-right cell. If there is no possible path, return `-1`.",
+    "code": "from collections import deque\n\ndef shortest_path(maze: list[list[int]]) -> int:\n    n = len(maze)\n    m = len(maze[0])\n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n    queue = deque([(0, 0, 0)])\n    visited = set((0, 0))\n\n    while queue:\n        x, y, dist = queue.popleft()\n        if x == n-1 and y == m-1:\n            return dist\n        for dx, dy in directions:\n            nx, ny = x+dx, y+dy\n            if 0 <= nx < n and 0 <= ny < m and maze[nx][ny] == 0 and (nx, ny) not in visited:\n                queue.append((nx, ny, dist+1))\n                visited.add((nx, ny))\n    return -1",
+    "tests": [
+        "assert shortest_path([[0, 0], [0, 1]]) == 2",
+        "assert shortest_path([[0, 0, 0], [0, 1, 1], [0, 0, 0]]) == 5",
+        "assert shortest_path([[0, 0, 0], [1, 1, 1], [0, 0, 0]]) == -1",
+        "assert shortest_path([[0, 1, 0], [0, 1, 0], [0, 0, 0]]) == 3"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

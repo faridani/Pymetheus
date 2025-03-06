@@ -1,0 +1,13 @@
+{
+    "title": "Divisible Matrix",
+    "description": "A matrix is said to be divisible if the sum of each row and column is equal. Write a function `is_divisible` that takes as input a 2D list representing a matrix, where elements are integers or floats, and returns `True` if the matrix is divisible, `False` otherwise.\n\n#### Function Signature\n```python\ndef is_divisible(matrix: list[list[float]]) -> bool:\n```\n\n#### Input\n- `matrix` (list[list[float]]): A 2D list representing a matrix where elements are integers or floats.\n\n#### Output\n- Returns `True` if the input matrix is divisible, `False` otherwise.",
+    "code": "\nimport math\n\ndef is_divisible(matrix: list[list[float]]) -> bool:\n    # Check rows\n    for row in matrix:\n        if round(sum(row)) != 0:\n            return False\n\n    # Check columns\n    for col_idx in range(len(matrix[0])):\n        column_sum = sum([row[col_idx] for row in matrix])\n        if round(column_sum) != 0:\n            return False\n\n    return True",
+    "tests": [
+        "assert is_divisible([[1, 2], [3, -4]]) == True",
+        "assert is_divisible([[1.5, 2.2], [3.8, -4.9]]) == True",
+        "assert is_divisible([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == False"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

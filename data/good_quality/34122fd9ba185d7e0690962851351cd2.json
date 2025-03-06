@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Word Chain",
+    "description": "Given a list of words, find the longest possible chain of words where each word is related to the previous one by having only one character different. For example, if the input list contains ['cat', 'bat', 'hat'], the output should be ['cat', 'bat', 'hat'] as these words are in a chain. Write a function `word_chain` that finds the longest possible word chain.\n\n#### Function Signature\n```python\ndef word_chain(words: list[str]) -> list[str]:\n```\n\n#### Input\n- `words` (list of str): A list of strings, each containing only letters.\n\n#### Output\n- Returns a list of strings that represents the longest possible chain of words.",
+    "code": "",
+    "\nfrom collections import deque\n\ndef word_chain(words: list[str]) -> list[str]:\n    # Create a graph where each node is a word and an edge exists between two nodes if they are one character different\n    graph = {}\n    for word in words:\n        for i in range(len(word)):\n            key = (word[:i], word[i+1:])\n            if key not in graph:\n                graph[key] = []\n            graph[key].append(word)\n\n    # Perform BFS to find the longest chain\n    visited = set()\n    max_chain = []\n    for node in words:\n        if node not in visited:\n            queue = deque([(node, [node])])\n            while queue:\n                current_word, chain = queue.popleft()\n                if len(chain) > len(max_chain):\n                    max_chain = chain\n                for neighbor in graph.get((current_word[:1], current_word[1:]), []):\n                    if neighbor not in visited:\n                        visited.add(neighbor)\n                        queue.append((neighbor, chain + [neighbor]))\n\n    return max_chain": "",
+    "tests": [
+        "assert word_chain(['cat', 'bat', 'hat']) == ['cat', 'bat', 'hat']",
+        "assert word_chain(['apple', 'apply', 'aple']) == ['apple', 'apply']"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

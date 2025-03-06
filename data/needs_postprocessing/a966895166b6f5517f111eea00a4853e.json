@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Even and Odd Digits\\\", \\\"description\\\": \\\"Write a function `even_odd` that takes an integer as input and returns the count of even and odd digits separately. The output should be a tuple in the format `(even, odd)`. For example, if the input is 1389, the output should be (2, 3).\\\", \\\"code\\\": \\\"def even_odd(n: int) -> tuple:\\\\n    even = 0\\\\n    odd = 0\\\\n    for digit in str(n):\\\\n        if int(digit) % 2 == 0:\\\\n            even += 1\\\\n        else:\\\\n            odd += 1\\\\n    return (even, odd)\\\", \\\"tests\\\": [\\\"assert even_odd(1389) == (2, 3)\\\", \\\"assert even_odd(10000000) == (5, 0)\\\", \\\"assert even_odd(1234567) == (3, 4)\\\", \\\"assert even_odd(1111) == (0, 4)\\\"] }\""
+}

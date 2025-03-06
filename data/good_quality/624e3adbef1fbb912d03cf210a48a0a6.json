@@ -1,0 +1,14 @@
+{
+    "title": "Counting Magic Squares",
+    "description": "A magic square is a grid of numbers from 1 to N^2, where the sum of each row, column and diagonal is equal. Write a function `count_magic_squares` that counts the number of magic squares for a given size `N`. The input is an integer `N`, the output is an integer representing the count of magic squares.\n\n#### Function Signature\n```\ndef count_magic_squares(N: int) -> int:\n```\n\n#### Input\n- `N` (int): An integer representing the size of the grid.\n\n#### Output\n- Returns an integer representing the count of magic squares.\n\nSome hints:\nThe problem involves a lot of mathematical calculations, you should try to use some advanced mathematical concepts to solve this problem efficiently.\nYou can start by implementing a simple brute-force solution and then optimize it using mathematical properties.",
+    "code": "",
+    "\nimport math\n\ndef count_magic_squares(N: int) -> int:\n    def is_magic_square(grid):\n        n = len(grid)\n        for i in range(n):\n            row_sum = sum(grid[i])\n            col_sum = 0\n            for j in range(n):\n                col_sum += grid[j][i]\n            if row_sum != col_sum or row_sum != (n * (n * n + 1) // 2):\n                return False\n        diagonal_sum1 = 0\n        diagonal_sum2 = 0\n        for i in range(n):\n            diagonal_sum1 += grid[i][i]\n            diagonal_sum2 += grid[i][n - i - 1]\n        if diagonal_sum1 != col_sum or diagonal_sum2 != col_sum:\n            return False\n        return True\n\n    count = 0\n    for i in range(1, N + 1):\n        grid = [[0] * N for _ in range(N)]\n        for k in range(N): \n            for j in range(k+1):\n                if math.sqrt((N/2 - k)**2 + (j-0.5)**2) == i:\n                    r, c = divmod(i - 1, N)\n                    grid[r][c] = k+1\n        if is_magic_square(grid):\n            count += 1\n    return count": "",
+    "tests": [
+        "assert count_magic_squares(3) == 8",
+        "assert count_magic_squares(4) == 32",
+        "assert count_magic_squares(5) == 144"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

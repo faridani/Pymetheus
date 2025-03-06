@@ -1,0 +1,15 @@
+{
+    "title": "Easy: Closest Pair Sum",
+    "description": "Given a list of integers, find the pair with the smallest sum that is greater than or equal to a given target number. If no such pair exists, return -1.\n\n#### Function Signature\n```python\ndef closest_pair_sum(nums: list[int], target: int) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n- `target` (int): The target number.\n\n#### Output\n- Returns the sum of the pair with the smallest sum that is greater than or equal to the target. If no such pair exists, return -1.",
+    "code": "",
+    "\ndef closest_pair_sum(nums: list[int], target: int) -> int:\n    nums.sort()\n    left, right = 0, len(nums) - 1\n    closest_sum = float('inf')\n    \n    while left < right:\n        current_sum = nums[left] + nums[right]\n        if current_sum >= target and abs(current_sum - target) < abs(closest_sum - target):\n            closest_sum = current_sum\n        if current_sum < target:\n            left += 1\n        else:\n            right -= 1\n    \n    return closest_sum if closest_sum != float('inf') else -1": "",
+    "tests": [
+        "assert closest_pair_sum([1, 2, 3, 4], 5) == 5",
+        "assert closest_pair_sum([-1, 0, 1, 2], 3) == 3",
+        "assert closest_pair_sum([10, 20, 30], 35) == 30",
+        "assert closest_pair_sum([1, 2, 3], 7) == -1"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

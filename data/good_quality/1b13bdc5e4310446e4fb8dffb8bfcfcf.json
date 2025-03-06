@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Sum of Subsets",
+    "description": "Given a list of integers and an integer target, find all unique subsets that sum up to the target.\n\n#### Function Signature\n```python\ndef find_subsets(nums: list[int], target: int) -> list[tuple[int]]:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n- `target` (int): The target sum.\n\n#### Output\n- Returns a list of tuples, where each tuple contains the elements of a subset that sums up to the target. Each subset is unique and does not contain duplicates.",
+    "code": "\ndef find_subsets(nums: list[int], target: int) -> list[tuple[int]]:\n    def backtrack(remain: int, comb: list[int], start: int):\n        if remain == 0:\n            result.append(tuple(sorted(comb)))\n            return\n        for i in range(start, len(nums)):\n            if nums[i] > remain:\n                break\n            if nums[i] <= remain:\n                comb.append(nums[i])\n                backtrack(remain - nums[i], comb, i)\n                comb.pop()\n        return\n\n    result = []\n    backtrack(target, [], 0)\n    return [subset for subset in set(tuple(sorted(subset)) for subset in result) if sum(subset) == target]",
+    "tests": [
+        "assert len(find_subsets([1, 2, 3], 4)) == 7 and all(sum(subset) == 4 for subset in find_subsets([1, 2, 3], 4))",
+        "assert len(find_subsets([1, 2, 3], 5)) == 6 and all(sum(subset) == 5 for subset in find_subsets([1, 2, 3], 5))",
+        "assert len(find_subsets([], 0)) == 1 and set(find_subsets([], 0)[0]) == {0}",
+        "assert len(find_subsets([-1, 0, 1], 0)) == 2"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

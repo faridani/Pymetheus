@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Counting FizzBuzz\\\", \\\"description\\\": \\\"Write a function `fizz_buzz` that takes an integer `n` as input and returns the count of numbers from 1 to `n` that are divisible by either 3 or 5. For example, if `n` is 15, your function should return 8 because there are 8 numbers in the range [1, 15] that are divisible by either 3 or 5: 3, 5, 6, 9, 10, 12, 15.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef fizz_buzz(n: int) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `n` (int): An integer greater than 0.\\\", \\\"code\\\": \\\"def fizz_buzz(n: int) -> int:\\\\n    count = 0\\\\n    for i in range(1, n+1):\\\\n        if i % 3 == 0 or i % 5 == 0:\\\\n            count += 1\\\\n    return count\\\", \\\"tests\\\": [\\\"assert fizz_buzz(15) == 8\\\", \\\"assert fizz_buzz(20) == 10\\\", \\\"assert fizz_buzz(100) == 25\\\"] }\""
+}

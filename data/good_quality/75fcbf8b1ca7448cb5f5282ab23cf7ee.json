@@ -1,0 +1,13 @@
+{
+    "title": "Maximum Average Subtree",
+    "description": "Given the root of a binary tree, find the maximum average value of a subtree that has at most one node. If there are multiple such subtrees with the same maximum average, return any one of them.\n\n#### Function Signature\n```python\ndef maxAverageSubtree(root: TreeNode) -> float:\n```\n\n#### Input\n- `root` (TreeNode): The root of a binary tree.\n\n#### Output\n- Returns the maximum average value of a subtree that has at most one node. If there are multiple such subtrees with the same maximum average, return any one of them.",
+    "code": "class TreeNode:\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\ndef maxAverageSubtree(root: TreeNode) -> float:\n    if not root:\n        return 0\n    \n    total_sum = sum_of_tree(root)\n    \n    max_avg = float('-inf')\n    \n    def dfs(node, parent=None):\n        nonlocal max_avg\n        \n        if node is None:\n            return 0, 0\n        \n        if parent == 'left':\n            left_sum = sum_of_tree(node.left) + node.val\n            right_sum = sum_of_tree(node.right)\n        elif parent == 'right':\n            right_sum = sum_of_tree(node.right) + node.val\n            left_sum = sum_of_tree(node.left)\n        else:\n            left_sum = sum_of_tree(node.left)\n            right_sum = sum_of_tree(node.right)\n\n        total = left_sum + right_sum + node.val\n        avg = total / (1 if parent else 2)\n\n        max_avg = max(max_avg, avg)\n\n        return total, avg\n\n    dfs(root)\n\n    return max_avg",
+    "tests": [
+        "assert maxAverageSubtree(TreeNode(4)) == 3.0",
+        "assert maxAverageSubtree(TreeNode(5, TreeNode(2), TreeNode(8))) == 4.0",
+        "assert maxAverageSubtree(None) == 0.0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

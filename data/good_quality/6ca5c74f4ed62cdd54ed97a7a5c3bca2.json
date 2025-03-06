@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Minimum Time Required to Finish Tasks",
+    "description": "You are given a list of tasks with their respective times and deadlines. Write a function that calculates the minimum time required to finish all tasks before their deadlines.\n\n#### Function Signature\n```python\ndef min_time_required(tasks: list) -> int:\n```\n\n#### Input\n- `tasks` (list): A list of tasks where each task is represented as a tuple `(time, deadline)` and `time` and `deadline` are integers. The time represents the amount of time required to finish the task and the deadline represents the maximum allowed time to finish the task.\n\n#### Output\n- Returns the minimum time required to finish all tasks before their deadlines.",
+    "code": "def min_time_required(tasks: list) -> int:\n    if not tasks:\n        return 0\n    max_deadline = max(task[1] for task in tasks)\n    return sum(time for time, _ in tasks) + (max_deadline - 1) * len(tasks)",
+    "tests": [
+        "assert min_time_required([(2,3), (4,5)]) == 10",
+        "assert min_time_required([(1,2),(2,4)]) == 4",
+        "assert min_time_required([]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

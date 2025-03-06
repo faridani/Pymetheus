@@ -1,0 +1,13 @@
+{
+    "title": "Max Contiguous Subarray Sum",
+    "description": "Given an integer array `nums`, return the maximum sum of a contiguous subarray within the array. If you have figured out the complete solution, feel free to add it. But if you haven't you should still try to solve it yourself.\n\n#### Function Signature\n```python\ndef maxSubArray(nums: list[int)) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A non-empty integer array.\n\n#### Output\n- Returns the maximum sum of a contiguous subarray within the input array.",
+    "code": "def maxSubArray(nums: list[int]) -> int:\n    if len(nums) == 1:\n        return nums[0]\n    current_sum = max_sum = nums[0]\n    for num in nums[1:]:\n        current_sum = max(num, current_sum + num)\n        max_sum = max(max_sum, current_sum)\n    return max_sum",
+    "tests": [
+        "assert maxSubArray([-2,1,-3,4,-1,2,1,-5,4]) == 6",
+        "assert maxSubArray([1]) == 1",
+        "assert maxSubArray([-1,-2,-3,-4,-5]) == -1"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

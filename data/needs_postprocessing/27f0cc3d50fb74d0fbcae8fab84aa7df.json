@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Sum of Squares\\\", \\\"description\\\": \\\"Find the sum of the squares of all numbers from 1 to n. Write a function `sum_of_squares` that takes an integer `n` as input and returns the sum of the squares of all numbers from 1 to `n`. For example, if you call `sum_of_squares(3)`, it should return `14`, which is `1^2 + 2^2 + 3^2`.\\\", \\\"code\\\": \\\"\\\\ndef sum_of_squares(n: int) -> int:\\\\n    total = 0\\\\n    for i in range(1, n+1):\\\\n        total += i ** 2\\\\n    return total\\\\n\\\", \\\"tests\\\": [\\\"assert sum_of_squares(3) == 14\\\", \\\"assert sum_of_squares(10) == 385\\\", \\\"assert sum_of_squares(5) == 55\\\"] }\""
+}

@@ -1,0 +1,18 @@
+{
+    "title": "[Hard] Minimum Window Substring",
+    "description": "Given two strings s and t, return the minimum window in s which will contain all the characters in t. If there is no such window in s that covers all characters in t, return an empty string \"\". If there are multiple such windows, return the one with the smallest length.\n\n#### Function Signature\n```python\ndef minWindow(s: str, t: str) -> str:\n```\n\n#### Input\n- `s` (str): A string containing lowercase English letters and digits.\n- `t` (str): A string consisting of unique characters from s.\n\n#### Output\n- Returns the minimum window in s which will contain all the characters in t. If there is no such window, return an empty string.",
+    "code": "",
+    "def minWindow(s: str, t: str) -> str:\n        if not t or not s:\n            return ": "dict_t = Counter(t)\n\n        required = len(dict_t)\n\n        l, r = 0, 0\n\n        formed = 0\n\n        window_counts = {}\n\n        ans = float(",
+    "inf": "None, None\n\n        while r < len(s):\n            character = s[r]\n            window_counts[character] = window_counts.get(character, 0) + 1\n\n            if character in dict_t and window_counts[character] == dict_t[character]:\n                formed += 1\n\n            while l <= r and formed == required:\n                character = s[l]\n\n                if r - l + 1 < ans[0]:\n                    ans = (r - l + 1, l, r)\n\n                window_counts[character] -= 1\n                if character in dict_t and window_counts[character] < dict_t[character]:\n                    formed -= 1\n\n                l += 1\n\n            r += 1\n        return",
+    "float(": "nf",
+    "s[ans[1]": "ans[2] + 1]",
+    "tests": [
+        "assert minWindow(\"ADOBECODEBANC\", \"ABC\") == \"BANC\"",
+        "assert minWindow(\"a\", \"aa\") == \"\"",
+        "assert minWindow(\"a\", \"b\") == \"\"",
+        "assert minWindow(\"abcdebdde\", \"bde\") in [\"bcde\", \"cdeb\"]"
+    ],
+    "difficulty": "super hard",
+    "model": "codestral:22b",
+    "style": "LeetCode"
+}

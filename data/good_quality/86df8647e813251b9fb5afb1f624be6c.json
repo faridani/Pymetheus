@@ -1,0 +1,13 @@
+{
+    "title": "Harmonious Graph",
+    "description": "A harmonious graph is a directed acyclic graph (DAG) such that for every pair of nodes u and v, if there exists an edge from u to v, then there does not exist any path from v to u. Write a function `is_harmonious` that checks whether a given graph represented as a list of edges is harmonious.\n\n#### Function Signature\n```python\ndef is_harmonious(edges: List[Tuple[int, int]]) -> bool:\n```\n\n#### Input\n- `edges` (List[Tuple[int, int]]): A list of directed edges, where each edge is represented as a tuple of two integers indicating the source and destination nodes.\n\n#### Output\n- Returns `True` if the input graph is harmonious, `False` otherwise.",
+    "code": "\nimport collections\nfrom typing import List, Tuple\n\ndef is_harmonious(edges: List[Tuple[int, int]]) -> bool:\n    # Build a dictionary to represent the graph as an adjacency list\n    graph = collections.defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v)\n\n    # Perform a depth-first search to detect any cycles\n    visited = set()\n    current_path = set()\n\n    def dfs(node):\n        visited.add(node)\n        current_path.add(node)\n\n        for neighbor in graph[node]:\n            if neighbor not in visited or neighbor in current_path:\n                return False\n\n        current_path.remove(node)\n        return True\n\n    # Check all nodes for cycles\n    for node in graph:\n        if node not in visited and not dfs(node):\n            return False\n\n    # If no cycles were detected, the graph is harmonious\n    return True",
+    "tests": [
+        "assert is_harmonious([(0, 1), (1, 2), (2, 3)]) == True",
+        "assert is_harmonious([(0, 1), (1, 2), (2, 0)]) == False",
+        "assert is_harmonious([(0, 1), (1, 2), (2, 3), (3, 4)]) == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

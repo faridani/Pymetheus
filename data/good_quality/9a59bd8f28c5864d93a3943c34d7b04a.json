@@ -1,0 +1,15 @@
+{
+    "title": "Medium: Validating IP Addresses",
+    "description": "An IP address is a 32-bit number written in dotted decimal notation, which looks like `192.0.2.1`. Write a function that takes an IP address as input and returns `True` if the address is valid (i.e., each part of the address is between 0 and 255) and `False` otherwise.\n\n#### Function Signature\n```python\ndef is_valid_ip(ip: str) -> bool:\n```\n\n#### Input\n- `ip` (str): An IP address in dotted decimal notation, for example, `192.0.2.1`.",
+    "code": "",
+    "\ndef is_valid_ip(ip: str) -> bool:\n    parts = ip.split('.')\n    if len(parts) != 4:\n        return False\n    for part in parts:\n        try:\n            value = int(part)\n            if value < 0 or value > 255:\n                return False\n        except ValueError:\n            return False\n    return True": "",
+    "tests": [
+        "assert is_valid_ip('192.0.2.1') == True",
+        "assert is_valid_ip('256.0.2.1') == False",
+        "assert is_valid_ip('192.0.a.1') == False",
+        "assert is_valid_ip('1.2.3.4') == True"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

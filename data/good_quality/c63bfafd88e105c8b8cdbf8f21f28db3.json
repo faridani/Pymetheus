@@ -1,0 +1,15 @@
+{
+    "title": "Number of Subarrays with Sum Equal to K",
+    "description": "A subarray of an array is a contiguous part of the array. Write a function `count_subarrays` that takes an integer array and an integer `k` as input, and returns the number of subarrays in the given array where the sum of elements is equal to `k`.\n\n#### Function Signature\n```\ndef count_subarrays(arr: list[int], k: int) -> int:\n```\n\n#### Input\n- `arr` (list[int]): An integer array.\n- `k` (int): The target sum.\n\n#### Output\n- Returns the number of subarrays in the given array where the sum of elements is equal to `k`.\n\n#### Constraints\nThe input array can contain negative integers. Make sure to handle this case correctly.\n\n#### Hints\nYou may want to consider using a hashmap or dictionary to store the cumulative sum and its count.",
+    "code": "",
+    "\nfrom collections import defaultdict\n\ndef count_subarrays(arr: list[int], k: int) -> int:\n    n = len(arr)\n    cum_sum = [0] * (n + 1)\n    for i in range(n):\n        cum_sum[i + 1] = cum_sum[i] + arr[i]\n\n    count_map = defaultdict(int)\n    count_map[0] = 1\n\n    ans = 0\n    for i in range(1, n + 1):\n        for j in range(i):\n            if cum_sum[i] - cum_sum[j] == k:\n                ans += 1\n            else:\n                count_map[cum_sum[i] - cum_sum[j]] += 1\n\n    return ans": "",
+    "tests": [
+        "assert count_subarrays([1, 2, 3, 4], 5) == 3",
+        "assert count_subarrays([-1, 0, 1, 2, 3, 4], 1) == 2",
+        "assert count_subarrays([1, 1, 1, 1], 2) == 2",
+        "assert count_subarrays([-1, -1, 1, 1], 0) == 2"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

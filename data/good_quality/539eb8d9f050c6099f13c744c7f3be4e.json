@@ -1,0 +1,14 @@
+{
+    "title": "Fruitful Harvest",
+    "description": "Write a function `harvest_fruits` that takes a list of fruit trees and their corresponding harvest counts as input. The function should return the total number of fruits harvested from all trees.\n\n#### Function Signature\n```python\ndef harvest_fruits(fruit_trees: dict) -> int:\n```\n\n#### Input\n- `fruit_trees` (dict): A dictionary where keys are fruit types (e.g., 'apple', 'banana') and values are the corresponding harvest counts.\n\n#### Output\n- Returns the total number of fruits harvested from all trees.",
+    "code": "def harvest_fruits(fruit_trees: dict) -> int:\n    total_harvest = 0\n    for tree, count in fruit_trees.items():\n        total_harvest += count\n    return total_harvest",
+    "tests": [
+        "assert harvest_fruits({'apple': 5, 'banana': 3, 'orange': 2}) == 10",
+        "assert harvest_fruits({'grapes': 8, 'strawberry': 4, 'peach': 6}) == 18",
+        "assert harvest_fruits({}) == 0",
+        "assert harvest_fruits({'lemon': 1, 'kiwi': 2, 'pineapple': 3}) == 6"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

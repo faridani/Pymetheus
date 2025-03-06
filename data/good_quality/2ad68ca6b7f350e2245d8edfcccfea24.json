@@ -1,0 +1,13 @@
+{
+    "title": "String Compression",
+    "description": "Implement a function called `compress_string` that compresses a given string by removing consecutive duplicates and replacing them with the character repeated the number of times it appears consecutively.\n\n#### Function Signature\n```python\ndef compress_string(s: str) -> str:\n```\n\n#### Input\n- `s` (str): A string containing any characters.\n\n#### Output\n- Returns a compressed string where consecutive duplicates are replaced with the character repeated the number of times it appears consecutively.",
+    "code": "import itertools\n\ndef compress_string(s: str) -> str:\n    groups = [''.join(g) for k, g in itertools.groupby(s)]\n    return ''.join(f'{char}{len(list(group))}' if len(list(group)) > 1 else char for char, group in zip(s, groups))",
+    "tests": [
+        "assert compress_string('aaaabbbccc') == 'a3b3c3'",
+        "assert compress_string('abcde') == 'abcde'",
+        "assert compress_string('aaabbccdd') == 'a2b2c2d2'"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Sum of Two Numbers",
+    "description": "Given two arrays, `numbers1` and `numbers2`, find the sum of all pairs of numbers that are present in both arrays. The input arrays contain only positive integers.\n\n#### Function Signature\n```python\ndef sum_of_pairs(numbers1: list[int], numbers2: list[int]) -> int:\n```\n\n#### Input\n- `numbers1` (list[int]): A list of positive integers.\n- `numbers2` (list[int]): Another list of positive integers.\n\n#### Output\n- Returns the sum of all pairs of numbers that are present in both input arrays.",
+    "code": "",
+    "\nimport itertools\n\ndef sum_of_pairs(numbers1: list[int], numbers2: list[int]) -> int:\n    # Find common elements between two sets\n    common = set(numbers1) & set(numbers2)\n    # Calculate the sum of all pairs\n    total_sum = 0\n    for num in common:\n        total_sum += num * 2  # Each pair contributes to the sum twice (once for each number)\n    return total_sum": "",
+    "tests": [
+        "assert sum_of_pairs([1, 2, 3], [4, 5]) == 7",
+        "assert sum_of_pairs([10, 20, 30], [30, 40]) == 90",
+        "assert sum_of_pairs([1, 2], []) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Word Scrambler",
+    "description": "Write a function `unscramble` that takes two strings as input. The first string represents a scrambled set of letters, and the second string represents a word from a dictionary. The function should return True if it's possible to unscramble the scrambled letters into the given word, and False otherwise.\n\n#### Function Signature\n```python\ndef unscramble(scrambled: str, target: str) -> bool:\n```\n\n#### Input\n- `scrambled` (str): A string that contains a set of scrambled letters.\n- `target` (str): A string representing the word from a dictionary.\n\n#### Output\n- Returns `True` if it's possible to unscramble the scrambled letters into the given word, and `False` otherwise.",
+    "code": "from collections import Counter\n\ndef unscramble(scrambled: str, target: str) -> bool:\n    # Convert both strings to lowercase\n    scrambled = scrambled.lower()\n    target = target.lower()\n    # Count the frequency of each letter in both strings\n    scrambled_count = Counter(scrambled)\n    target_count = Counter(target)\n    # Check if the frequency of each letter is the same for both strings\n    return scrambled_count == target_count,",
+    "tests": [
+        "assert unscramble('sretoh', 'others') == True",
+        "assert unscramble('abc', 'cba') == False",
+        "assert unscramble('xxyyzz', 'xyzzy') == True",
+        "assert unscramble('hello', 'world') == False"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

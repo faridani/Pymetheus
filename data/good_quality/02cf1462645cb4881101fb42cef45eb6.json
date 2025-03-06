@@ -1,0 +1,13 @@
+{
+    "title": "Minimum Time to Make All Days Connected",
+    "description": "#### Problem\nYou are given a graph represented as an adjacency list, where each node is labeled with a day of the week (from 0 to 6), and two nodes are connected if the corresponding days are not consecutive.\nWrite a function `min_time_to_connect` that returns the minimum time it takes to make all days connected, or -1 if this is impossible.\n#### Function Signature\n```python\ndef min_time_to_connect(days: list[list[int]]) -> int:\n```\n\n#### Input\n- `days` (list of lists): A graph represented as an adjacency list, where each node is labeled with a day of the week (from 0 to 6), and two nodes are connected if the corresponding days are not consecutive.\n\n#### Output\n- Returns the minimum time it takes to make all days connected, or -1 if this is impossible.",
+    "code": "def min_time_to_connect(days: list[list[int]]) -> int:\n    # Initialize a set of visited nodes and a variable for the minimum time\n    visited = set()\n    min_time = 0\n\n    def dfs(node: int) -> None:\n        # Mark the current node as visited\n        visited.add(node)\n\n        # Iterate over all nodes that are connected to the current node\n        for neighbor in days[node]:\n            if neighbor not in visited:\n                # If the neighbor has not been visited, recursively visit it and increment the minimum time\n                dfs(neighbor)\n                min_time += 1\n    \n    # Iterate over all nodes and visit each one that has not been visited yet\n    for i in range(len(days)):\n        if i not in visited:\n            dfs(i)\n    \n    return -1 if len(visited) != len(days) else min_time",
+    "tests": [
+        "assert min_time_to_connect([[0], [1, 2], [3, 4, 5]]) == 2",
+        "assert min_time_to_connect([[0, 1], [1, 2], [2, 3], [3, 4]]) == 1",
+        "assert min_time_to_connect([[0, 1, 2], [1, 2, 3], [2, 3, 4], [3, 4, 5]]) == -1"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

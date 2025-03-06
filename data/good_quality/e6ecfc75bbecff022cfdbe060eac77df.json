@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Checking if a Number is Prime",
+    "description": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. Write a function `is_prime` that checks if a given integer is a prime number.\n\n#### Function Signature\n```python\ndef is_prime(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): An integer greater than or equal to 2.\n\n#### Output\n- Returns `True` if the input integer is a prime, `False` otherwise.",
+    "code": "\ndef is_prime(n: int) -> bool:\n    if n <= 1:\n        return False\n    for i in range(2, n):\n        if n % i == 0:\n            return False\n    return True",
+    "tests": [
+        "assert is_prime(7) == True",
+        "assert is_prime(8) == False",
+        "assert is_prime(2) == True",
+        "assert is_prime(11) == True"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

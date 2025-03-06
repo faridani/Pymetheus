@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Tower of Hanoi",
+    "description": "The Tower of Hanoi is a classic mathematical puzzle that can be solved by making a series of moves with three rods and a set of disks. The goal is to move the entire stack from one rod to another, subject to certain rules.\n\n#### Function Signature\n```\ndef hanoi_moves(num_disks: int) -> list:\n```\n\n#### Input\n- `num_disks` (int): The number of disks in the initial stack.\n\n#### Output\n- Returns a list of moves, where each move is represented as a tuple `(start_rod, end_rod, disk)` indicating that disk is moved from start_rod to end_rod.\n\nNote: A move is only valid if it satisfies the rules:\n- Only one disk can be moved at a time.\n- A disk can only be moved from one rod to another if there are no disks on top of it.\n- All disks must be stacked in decreasing order of size on the final rod.",
+    "code": "",
+    "\nimport math\n\ndef hanoi_moves(num_disks: int) -> list:\n    def move_disk(start_rod, end_rod, disk):\n        return (start_rod, end_rod, disk)\n\n    moves = []\n    for i in range(num_disks):\n        if i == 0:\n            moves.append(move_disk('A', 'C', i))\n        elif i == num_disks - 1:\n            moves.append(move_disk('B', 'D', i))\n        else:\n            half_disks = math.floor((num_disks + 1) / 2)\n            for j in range(half_disks):\n                moves.append(move_disk('A', 'C', j))\n            for k in range(num_disks - 1, half_disks, -1):\n                moves.append(move_disk('B', 'D', k))\n\n    return moves": "",
+    "tests": [
+        "assert len(hanoi_moves(3)) == 7",
+        "assert hanoi_moves(1) == [('A', 'C', 0)]",
+        "assert hanoi_moves(2) == [('A', 'C', 0), ('B', 'D', 1)]",
+        "assert hanoi_moves(4) == [('A', 'C', 0), ('A', 'C', 1), ('B', 'D', 2), ('B', 'D', 3)]"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

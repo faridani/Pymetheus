@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Check if a number is perfect\\\", \\\"description\\\": \\\"A perfect number is a positive integer that is equal to the sum of its positive divisors, excluding itself. For example, 6 is a perfect number because its divisors are 1, 2, and 3, which add up to 6.\\\\n\\\\n#### Function Signature\\\\n```\\\\ndef is_perfect(n: int) -> bool:\\\\n```\\\", \\\"code\\\": \\\"def is_perfect(n: int) -> bool:\\\\n    sum_divisors = 0\\\\n    for i in range(1, n):\\\\n        if n % i == 0:\\\\n            sum_divisors += i\\\\n    return sum_divisors == n\\\\n\\\", \\\"tests\\\": [\\\"assert is_perfect(6) == True\\\", \\\"assert is_perfect(28) == True\\\", \\\"assert is_perfect(12) == False\\\", \\\"assert is_perfect(496) == True\\\"] }\""
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Cost to Make Array Equal",
+    "description": "You are given an array of integers and a target sum. The cost of making each element equal to the average of the array is proportional to the absolute difference between the element and the average. Write a function `min_cost` that returns the minimum total cost to make all elements in the array equal to the target sum.\n\n#### Function Signature\n```python\ndef min_cost(arr: list[int], target_sum: int) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n- `target_sum` (int): The target sum that all elements in the array should be equal to.\n\n#### Output\n- Returns the minimum total cost to make all elements in the array equal to the target sum.",
+    "code": "\ndef min_cost(arr: list[int], target_sum: int) -> int:\n    n = len(arr)\n    average = sum(arr) / n\n    total_cost = 0\n    for num in arr:\n        total_cost += abs(num - average)\n    return total_cost",
+    "tests": [
+        "assert min_cost([1, 2, 3], 2) == 4",
+        "assert min_cost([5, 10, 15], 8) == 18",
+        "assert min_cost([-1, 0, 1], -1) == 1",
+        "assert min_cost([2, 4, 6], 4) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Non-Adjacent Elements",
+    "description": "Given a list of integers, write a function `max_sum` that returns the maximum sum of non-adjacent elements. For example, given the list `[2, 7, 9, 3, 1]`, the function should return `12` because the maximum sum of non-adjacent elements is obtained by selecting the first and third elements (`2 + 9 = 11`) or the second and fourth elements (`7 + 3 = 10`). If there are no non-adjacent elements left, return `-1`.\n\n#### Function Signature\n```python\ndef max_sum(nums: list) -> int:\n```\n\n#### Input\n- `nums` (list): A list of integers.\n\n#### Output\n- Returns the maximum sum of non-adjacent elements. If there are no non-adjacent elements left, returns `-1`.",
+    "code": "from typing import List\n\ndef max_sum(nums: List[int]) -> int:\n    if len(nums) == 0:\n        return -1\n    elif len(nums) == 1:\n        return nums[0]\n    else:\n        include_last = nums[-1] + (max_sum(nums[:-2]) if len(nums) > 2 else 0)\n        exclude_last = max_sum(nums[:-1])\n        return max(include_last, exclude_last)",
+    "tests": [
+        "assert max_sum([2, 7, 9, 3, 1]) == 12",
+        "assert max_sum([]) == -1",
+        "assert max_sum([1]) == 1",
+        "assert max_sum([1, 2, 3, 4]) == 6"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

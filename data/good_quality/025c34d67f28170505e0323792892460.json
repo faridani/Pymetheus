@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Arithmetic Series",
+    "description": "#### Problem\nGiven a list of numbers and an integer k, find the maximum sum of arithmetic series that can be obtained by selecting at most k consecutive terms from the given list.\n\n#### Function Signature\n```python\ndef max_sum_arithmetic_series(lst: list[int], k: int) -> int:\n```\n\n#### Input\n- `lst` (list[int]): A list of integers where each integer is a term in an arithmetic series.\n- `k` (int): The maximum number of consecutive terms that can be selected to form the arithmetic series.\n\n#### Output\n- Returns the maximum sum of arithmetic series that can be obtained by selecting at most k consecutive terms from the given list.",
+    "code": "\nimport math\n\ndef max_sum_arithmetic_series(lst: list[int], k: int) -> int:\n    n = len(lst)\n    if k > n // 2:\n        return sum(lst)\n\n    max_sum = float('-inf')\n    for i in range(n - k + 1):\n        diff = (lst[i + k - 1] - lst[i]) // (k - 1)\n        curr_sum = 0\n        for j in range(k):\n            curr_sum += lst[i + j]\n        max_sum = max(max_sum, curr_sum)\n\n    return max_sum",
+    "tests": [
+        "assert max_sum_arithmetic_series([1, 2, 3, 4, 5], 3) == 9",
+        "assert max_sum_arithmetic_series([-10, -8, -6, -4, -2], 2) == -12",
+        "assert max_sum_arithmetic_series([1, 2, 3, 4, 5, 6], 1) == 6",
+        "assert max_sum_arithmetic_series([-1, -2, -3, -4, -5], 2) == -7"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

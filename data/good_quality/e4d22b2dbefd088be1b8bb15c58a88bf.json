@@ -1,0 +1,15 @@
+{
+    "title": "Eulerian Cycles",
+    "description": "An Eulerian cycle is a closed walk that traverses each edge of a graph exactly once. In this problem, we are given an undirected graph represented as an adjacency list.\n\n#### Function Signature\n```python\ndef eulerian_cycle(graph: dict) -> list:\n```\n\n#### Input\n- `graph` (dict): A dictionary representing the adjacency list of the graph, where each key is a node and its corresponding value is a list of neighboring nodes.\n\n#### Output\n- Returns a list of nodes that represents an Eulerian cycle in the graph. If no such cycle exists, return an empty list.",
+    "code": "",
+    "\nimport itertools\n\ndef eulerian_cycle(graph: dict) -> list:\n    # Find all edges\n    edges = []\n    for node1 in graph:\n        for node2 in graph[node1]:\n            if (node2, node1) not in [(u, v) for u in graph for v in graph[u]]:\n                edges.append((node1, node2))\n    edges.sort()\n\n    # Find a starting node with an odd degree\n    start_node = None\n    degrees = {node: 0 for node in graph}\n    for edge in edges:\n        if edge[1] not in [edge[0]]:  # Avoid duplicate edges\n            degrees[edge[0]] += 1\n            degrees[edge[1]] -= 1\n    for node, degree in degrees.items():\n        if degree % 2 != 0:\n            start_node = node\n\n    # Construct the Eulerian cycle\n    current_node = start_node\n    path = [current_node]\n    visited = set()\n    while True:\n        next_edges = [(node, edge[1]) for edge in edges if edge[0] == current_node and edge[1] not in visited]\n        if len(next_edges) > 0:\n            next_edge = min(next_edges)\n            path.append(next_edge[1])\n            visited.add(next_edge[1])\n            current_node = next_edge[1]\n        else:\n            break\n\n    # Add the remaining edges to complete the cycle\n    for edge in edges:\n        if edge[0] == current_node and edge[1] not in path:\n            path.append(edge[1])\n            visited.add(edge[1])\n            current_node = edge[1]\n\n    return path": "",
+    "tests": [
+        "assert eulerian_cycle({'A': ['B', 'C'], 'B': ['D'], 'C': ['B'], 'D': ['C']}) == ['A', 'B', 'D', 'C', 'B', 'A']",
+        "assert eulerian_cycle({'A': ['B'], 'B': ['A']}) == []",
+        "assert eulerian_cycle({'A': ['B', 'C'], 'B': ['A', 'D'], 'C': ['B'], 'D': ['C']}) == ['A', 'B', 'D', 'C', 'B', 'A']",
+        "assert eulerian_cycle({'A': ['B', 'C'], 'B': ['A', 'C'], 'C': ['B']}) == []"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

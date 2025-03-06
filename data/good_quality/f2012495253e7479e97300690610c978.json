@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Subsequences",
+    "description": "Write a function `max_sum_subsequence` that finds the maximum sum of subsequences of length `k` from an array `arr`. A subsequence is a sequence of characters obtained by deleting some elements from the original array. For example, if `arr = [1, 2, 3]`, then `[1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]` are all subsequences of length `k=3`.\n\n#### Function Signature\n```python\ndef max_sum_subsequence(arr: list[int], k: int) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n- `k` (int): The length of the subsequences.\n\n#### Output\n- Returns the maximum sum of subsequences of length `k`.",
+    "code": "\ndef max_sum_subsequence(arr: list[int], k: int) -> int:\n    n = len(arr)\n    if k > n:\n        return 0\n\n    max_sum = float('-inf')\n    for i in range(n - k + 1):\n        subsequence_sum = sum(arr[i:i+k])\n        max_sum = max(max_sum, subsequence_sum)\n\n    return max_sum",
+    "tests": [
+        "assert max_sum_subsequence([1, 2, 3], 3) == 6",
+        "assert max_sum_subsequence([-10, -20, -30], 2) == -60",
+        "assert max_sum_subsequence([5, 4, 3, 2, 1], 2) == 9",
+        "assert max_sum_subsequence([-50, 0, 100, 50, -25], 2) == 150"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

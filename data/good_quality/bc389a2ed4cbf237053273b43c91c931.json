@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Tree Traversal",
+    "description": "Given a binary tree where each node has an integer value, write a function `sum_path_lengths` that calculates the sum of the lengths of all paths from the root to any leaf node.\n\n#### Function Signature\n```python\ndef sum_path_lengths(root: 'Node') -> int:\n```\n\n#### Input\n- `root` ('Node'): The root node of a binary tree. Each node has an integer value and two child nodes (left and right).\n\n#### Output\n- Returns the sum of the lengths of all paths from the root to any leaf node.",
+    "code": "",
+    "\nclass Node:\n    def __init__(self, val: int, left: 'Node' = None, right: 'Node' = None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef sum_path_lengths(root: 'Node') -> int:\n    if root is None:\n        return 0\n    \n    def traverse(node: 'Node', path_length: int) -> int:\n        if node is None:\n            return 0\n        \n        path_length += 1\n        if node.left is None and node.right is None:\n            return path_length\n        else:\n            return traverse(node.left, path_length) + traverse(node.right, path_length)\n    \n    return traverse(root, 0)": "",
+    "tests": [
+        "assert sum_path_lengths(Node(1, Node(2), Node(3))) == 5",
+        "assert sum_path_lengths(Node(4, Node(2, Node(6), None), Node(3, None, Node(7)))) == 11",
+        "assert sum_path_lengths(None) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

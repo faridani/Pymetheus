@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Find the Missing Number\\\", \\\"description\\\": \\\"Given a list of numbers, find the missing number from the sequence. The input list contains consecutive integers starting from 1, except one number is missing.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef find_missing_number(numbers: list[int]) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `numbers` (list[int]): A list of numbers representing a sequence with one missing number.\\\\n\\\\n#### Output\\\\n- Returns the missing number from the sequence.\\\\n\\\", \\\"code\\\": \\\"def find_missing_number(numbers: list[int]) -> int:\\\\n    n = len(numbers) + 1\\\\n    total_sum = sum(range(1, n+1))\\\\n    return total_sum - sum(numbers)\\\\n\\\", \\\"tests\\\": [\\\"assert find_missing_number([1,2,3,5]) == 4\\\", \\\"assert find_missing_number([1,2,3,4,6]) == 5\\\", \\\"assert find_missing_number([1,2,3,4,5,7]) == 6\\\"] }\""
+}

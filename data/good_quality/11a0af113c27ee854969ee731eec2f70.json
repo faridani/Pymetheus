@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Dominoes Alignment",
+    "description": "Given a list of dominoes, where each domino is represented as a string in the format `A-B` (e.g., `3-4`, `6-2`, etc.), and an integer `target_length`, write a function that returns the longest chain of dominoes that can be aligned vertically to form a sequence of numbers from 1 to `target_length`. If no such chain exists, return an empty list.\n\n#### Function Signature\n```python\ndef align_dominoes(dominoes: List[str], target_length: int) -> List[str]:\n```\n\n#### Input\n- `dominoes` (List[str]): A list of dominoes in the format `A-B`.\n- `target_length` (int): The desired length of the sequence.\n\n#### Output\n- Returns a list of strings, where each string represents a domino that can be aligned vertically to form a sequence of numbers from 1 to `target_length`. If no such chain exists, return an empty list.",
+    "code": "\nimport re\n\ndef align_dominoes(dominoes: List[str], target_length: int) -> List[str]:\n    # Parse the dominoes into a dictionary where each key is a number and each value is a list of dominoes that have that number\n    domino_dict = {}\n    for domino in dominoes:\n        num1, num2 = map(int, re.match(r'(\\d)-(\\d)', domino).groups())\n        if num1 not in domino_dict:\n            domino_dict[num1] = []\n        if num2 not in domino_dict:\n            domino_dict[num2] = []\n        domino_dict[num1].append(domino)\n        domino_dict[num2].append(domino)\n\n    # Find the longest chain of dominoes that can be aligned vertically to form a sequence of numbers from 1 to target_length\n    max_chain = []\n    for i in range(1, target_length + 1):\n        if i not in domino_dict:\n            return []\n        current_chain = [domino_dict[i][0]]\n        next_num = int(current_chain[0].split('-')[1])\n        while next_num != i and len(domino_dict[next_num]) > 0:\n            current_chain.append(domino_dict[next_num].pop(0))\n            next_num = int(current_chain[-1].split('-')[1])\n        if len(current_chain) > len(max_chain):\n            max_chain = current_chain\n\n    return max_chain",
+    "tests": [
+        "assert align_dominoes(['3-4', '4-5', '2-3', '5-6'], 6) == ['3-4', '4-5', '5-6']",
+        "assert align_dominoes(['1-2', '2-3', '3-4', '4-5', '5-6'], 6) == ['1-2', '2-3', '3-4', '4-5', '5-6']",
+        "assert align_dominoes(['1-2', '2-3', '3-1'], 3) == ['1-2', '2-3']",
+        "assert align_dominoes(['1-1', '2-2', '3-3'], 3) == []"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

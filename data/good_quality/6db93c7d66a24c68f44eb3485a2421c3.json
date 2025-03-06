@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Counting Rectangles",
+    "description": "A rectangle is a quadrilateral with all sides having integer lengths. Write a function that counts the number of rectangles that can be formed using given coordinates as corners.\n\n#### Function Signature\n```python\ndef count_rectangles(x1, y1, x2, y2, x3, y3, x4, y4: tuple[int, int]) -> int:\n```\n\n#### Input\n- `x1`, `y1`, `x2`, `y2`, `x3`, `y3`, `x4`, `y4` (int): Coordinates of the four corners of the rectangles.\n\n#### Output\n- Returns the number of unique rectangles that can be formed using the given coordinates as corners.",
+    "code": "",
+    "\nimport math\n\ndef count_rectangles(x1, y1, x2, y2, x3, y3, x4, y4: tuple[int, int]) -> int:\n    def distance(p1: tuple[int, int], p2: tuple[int, int]) -> float:\n        return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)\n\n    def is_rectangle(p1: tuple[int, int], p2: tuple[int, int], p3: tuple[int, int], p4: tuple[int, int]) -> bool:\n        return distance(p1, p2) == distance(p3, p4) and distance(p1, p3) == distance(p2, p4)\n\n    rectangles = 0\n    for i in range(4):\n        for j in range(i + 1, 4):\n            if is_rectangle((x1, y1), (x2, y2), (x[i+2], y[i+2]), (x[j+2], y[j+2])):\n                rectangles += 1\n    return rectangles": "",
+    "tests": [
+        "assert count_rectangles(0, 0, 3, 4, 1, 1, 2, 3) == 2",
+        "assert count_rectangles(-1, -1, 0, 0, 1, 1, 2, 2) == 4",
+        "assert count_rectangles(0, 0, 5, 6, 3, 3, 7, 8) == 8"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

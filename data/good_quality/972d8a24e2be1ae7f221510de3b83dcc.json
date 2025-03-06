@@ -1,0 +1,13 @@
+{
+    "title": "Fibonacci Tree Traversal",
+    "description": "A tree node has a value and two child nodes. Write a function `traverse` that traverses the tree in pre-order (root -> left -> right) and returns the sum of all node values.\n\n#### Function Signature\n```python\ndef traverse(node: any) -> int:\n```\n\n#### Input\n- `node` (any): The root of a binary tree. Each node has an integer value and two child nodes.\n\n#### Output\n- Returns the sum of all node values in pre-order traversal.",
+    "code": "\ndef traverse(node: any) -> int:\n    if node is None:\n        return 0\n\n    total = node.value\n    total += traverse(node.left)\n    total += traverse(node.right)\n\n    return total\n\nclass TreeNode:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None",
+    "tests": [
+        "assert traverse(TreeNode(1)) == 1",
+        "assert traverse(TreeNode(1, TreeNode(2), TreeNode(3))) == 6",
+        "assert traverse(None) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

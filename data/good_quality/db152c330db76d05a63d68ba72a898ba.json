@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Tower of Hanoi",
+    "description": "The Tower of Hanoi is a mathematical puzzle where we have three rods and n disks. The objective of the puzzle is to move the entire stack to another rod, obeying the following simple rules:\n- Only one disk can be moved at a time.\n- Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty rod.\n- No disk may be placed on top of a smaller disk.\n\nWrite a function `move_disks` that takes as input three lists representing the initial state of the rods (rods A, B, and C), and returns a list of moves required to move all disks from rod A to rod C. The function should return an empty list if it's not possible to move all disks.\n\n#### Function Signature\n```python\ndef move_disks(rod_a: List[str], rod_b: List[str], rod_c: List[str]) -> List[List[int]]:\n```\n\n#### Input\n- `rod_a`, `rod_b`, and `rod_c` (List[str]): The initial state of the rods, where each string represents a stack with disks.\n\n#### Output\n- A list of moves required to move all disks from rod A to rod C. Each move is represented as a list containing the source rod index (0 for rod A, 1 for rod B, or 2 for rod C) and the target rod index. If it's not possible to move all disks, return an empty list.",
+    "code": "import heapq\n\ndef move_disks(rod_a, rod_b, rod_c):\n    if len(rod_a) + len(rod_b) < len(rod_c):\n        return []\n    moves = []\n    stack = [(len(rod_a), 0, 1)]\n    while stack:\n        n_disks, source, target = heapq.heappop(stack)\n        if not rod_a or not rod_b and target == 2:\n            return []\n        for i in range(n_disks):\n            if source == 0 and len(rod_a) > i + 1:\n                disk = rod_a[i+1]\n                heapq.heappush(stack, (i, 0, 1))\n                moves.append([source, target])\n            elif source == 1 and len(rod_b) > i + 1:\n                disk = rod_b[i+1]\n                heapq.heappush(stack, (i, 1, 2))\n                moves.append([source, target])\n            else:\n                break\n    return moves",
+    "tests": [
+        "assert move_disks(['A', 'B'], [], ['C']) == [[0, 2], [1, 2]]",
+        "assert move_disks(['A', 'B', 'C'], [], []) == [[0, 2], [1, 2]]",
+        "assert move_disks(['A', 'B', 'C', 'D'], ['E'], []) == [[0, 2], [1, 2], [0, 2]]",
+        "assert move_disks([], ['A', 'B'], ['C']) == []"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

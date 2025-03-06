@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Binary Search Tree Iterator",
+    "description": "Write a function `bst_iterator` that performs an in-order traversal on a binary search tree and returns its elements as a list. The BST is given as the root node of the tree, where each node has a value and two children (left and right). The function should stop when it reaches the end of the tree or when the input `end_node` is reached.\n\n#### Function Signature\n```python\ndef bst_iterator(root: 'Node', end_node: 'Node') -> list:\n```\n\n#### Input\n- `root` ('Node'): The root node of the binary search tree.\n- `end_node` ('Node'): The node at which to stop the traversal.\n\n#### Output\n- Returns a list of values in the order they would be visited during an in-order traversal of the BST, up to and including the value of the `end_node`, if it is encountered.",
+    "code": "",
+    "\nclass Node:\n    def __init__(self, val: int):\n        self.val = val\n        self.left = None\n        self.right = None\n\ndef bst_iterator(root: 'Node', end_node: 'Node') -> list:\n    result = []\n    stack = [(root, False)]\n    \n    while stack:\n        node, is_end = stack.pop()\n        \n        if node == end_node:\n            return result\n        \n        if node:\n            if not is_end:\n                stack.append((node.right, False))\n                stack.append((node, True))\n                stack.append((node.left, False))\n            else:\n                result.append(node.val)\n    \n    return result": "",
+    "tests": [
+        "assert bst_iterator(Node(5, None, Node(3, Node(1), Node(4))), Node(4)) == [1, 3, 4]",
+        "assert bst_iterator(Node(2, Node(1, None, Node(3)), Node(4, Node(6), Node(7))), Node(6)) == [1, 2, 3, 4, 6]",
+        "assert bst_iterator(None, None) == []",
+        "assert bst_iterator(Node(-5, Node(-8, None, Node(-4)), Node(-2)), Node(-4)) == [-8, -5, -4]"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

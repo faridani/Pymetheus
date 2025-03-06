@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Fibonacci Sequence",
+    "description": "The Fibonacci sequence starts with 0 and 1, and each subsequent number is the sum of the previous two. Write a function `fibonacci` that returns the nth number in this sequence.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The position of the desired number in the Fibonacci sequence. It's guaranteed to be a non-negative integer.\n\n#### Output\n- Returns the nth number in the Fibonacci sequence.",
+    "code": "",
+    "def fibonacci(n: int) -> int:\n    if n <= 1:\n        return n\n    else:\n        a, b = 0, 1\n        for _ in range(2, n + 1):\n            a, b = b, a + b\n        return b": "",
+    "tests": [
+        "assert fibonacci(0) == 0",
+        "assert fibonacci(1) == 1",
+        "assert fibonacci(6) == 8"
+    ],
+    "difficulty": "easy",
+    "model": "codestral:22b",
+    "style": "SPOJ"
+}

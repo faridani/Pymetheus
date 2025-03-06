@@ -1,0 +1,13 @@
+{
+    "title": "Easy - Simple Fraction Calculator",
+    "description": "Write a function `calculate_fraction` that takes two integer values, the numerator and denominator of a fraction, and returns their sum. The result should also be returned as a fraction in its simplest form.\n\n#### Function Signature\n```python\ndef calculate_fraction(numerator: int, denominator: int) -> str:\n```\n\n#### Input\n- `numerator` (int): The numerator of the fraction.\n- `denominator` (int): The denominator of the fraction.\n\n#### Output\n- Returns a string representing the sum of the input fraction and another fraction with the same numerator and denominator, in its simplest form. For example, if you calculate the sum of 1/2 and 1/2, the function should return '1/1'.",
+    "code": "\ndef calculate_fraction(numerator: int, denominator: int) -> str:\n    # Calculate the sum of the fractions\n    result_numerator = numerator * denominator + numerator\n    result_denominator = denominator ** 2\n\n    # Find the greatest common divisor\n    gcd = lambda x, y: y if x == 0 else gcd(y % x, x)\n\n    # Simplify the fraction\n    simple_numerator = result_numerator // gcd(result_numerator, result_denominator)\n    simple_denominator = result_denominator // gcd(result_numerator, result_denominator)\n\n    return f'{simple_numerator}/{simple_denominator}'",
+    "tests": [
+        "assert calculate_fraction(1, 2) == '1/1'",
+        "assert calculate_fraction(2, 3) == '5/3'",
+        "assert calculate_fraction(10, 20) == '11/2'"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

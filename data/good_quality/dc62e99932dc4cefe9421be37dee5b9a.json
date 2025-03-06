@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Time to Make a String Palindromic",
+    "description": "A palindromic string is a string that reads the same backwards as forwards. Write a function that takes a string and returns the minimum number of operations (insertions, deletions, or substitutions) needed to make the string palindromic.\n\n#### Function Signature\n```python\ndef min_time_to_palindrome(s: str) -> int:\n```\n\n#### Input\n- `s` (str): A string that may contain letters, numbers, and spaces.\n\n#### Output\n- Returns the minimum number of operations needed to make the input string palindromic.",
+    "code": "import collections\n\ndef min_time_to_palindrome(s: str) -> int:\n    s = s.lower()\n    t = s + '#' + ''.join(reversed(s))\n    l, r = 0, len(t) - 1\n    operations = 0\n    while l < r:\n        if t[l] == t[r]: # If characters at both ends are the same, move both pointers.\n            l += 1\n            r -= 1\n        else: # If characters are different, increment the operations counter and move the pointer that is closer to the other one.\n            operations += 1\n            if l < r:\n                l += 1\n            elif l == r:\n                break\n            else:\n                r -= 1\n    return operations",
+    "tests": [
+        "assert min_time_to_palindrome('a') == 0",
+        "assert min_time_to_palindrome('aa') == 0",
+        "assert min_time_to_palindrome('abc') == 3",
+        "assert min_time_to_palindrome('abcba') == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

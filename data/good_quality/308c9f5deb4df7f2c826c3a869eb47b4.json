@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Minimum Time to Make the Flowers Line Up",
+    "description": "The garden has N flowers, numbered from 1 to N. Some of these flowers are facing east and some are facing west. The time it takes for a flower to face the opposite direction is one unit. You want to make all the flowers line up in the same direction (either all facing east or all facing west). Write a function `minimum_time` that returns the minimum number of units you need to spend so that all the flowers will be facing the same way.\n\n#### Function Signature\n```python\ndef minimum_time(flowers: list) -> int:\n```\n\n#### Input\n- `flowers`: A list of integers where each integer represents whether the corresponding flower is facing east (1) or west (-1).\n\n#### Output\n- Returns the minimum number of units you need to spend so that all the flowers will be facing the same way.",
+    "code": "",
+    "\nimport math\n\ndef minimum_time(flowers: list) -> int:\n    total = 0\n    for i in range(len(flowers)):\n        if flowers[i] == 1:\n            total += min(i, len(flowers) - i)\n        else:\n            total += min(i + 1, len(flowers) - (i + 1))\n    return total": "",
+    "tests": [
+        "assert minimum_time([1, 2, 3, 4]) == 5",
+        "assert minimum_time([-1, -2, -3, -4]) == 0",
+        "assert minimum_time([1, -2, 3, -4]) == 7",
+        "assert minimum_time([1, -1, 2, 3, 4, -2, -1]) == 10"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

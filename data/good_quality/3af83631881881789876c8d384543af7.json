@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Finding the Shortest Path",
+    "description": "Given a graph represented as an adjacency list and two nodes A and B, find the length of the shortest path from node A to node B. The graph may contain negative-weight edges.\n\n#### Function Signature\n```python\ndef shortest_path(graph, start, end) -> int:\n```\n\n#### Input\n- `graph` (dict): A dictionary representing the adjacency list of the graph.\n- `start` (int): The starting node.\n- `end` (int): The target node.\n\n#### Output\n- Returns the length of the shortest path from the start node to the end node. If no path exists, returns -1.",
+    "code": "",
+    "\nimport heapq\n\ndef shortest_path(graph, start, end):\n    # Initialize distances\n    distances = {node: float('inf') for node in graph}\n    distances[start] = 0\n    \n    # Create priority queue with start node\n    pq = [(0, start)]\n    \n    while pq:\n        current_distance, current_node = heapq.heappop(pq)\n        \n        if current_distance > distances[current_node]:\n            continue\n        \n        for neighbor, weight in graph[current_node].items():\n            distance = current_distance + weight\n            \n            if distance < distances[neighbor]:\n                distances[neighbor] = distance\n                heapq.heappush(pq, (distance, neighbor))\n    \n    return -1 if distances[end] == float('inf') else distances[end]": "",
+    "tests": [
+        "assert shortest_path({'A': {'B': 2, 'C': 3}, 'B': {'D': 1}, 'C': {'B': -2}}, 'A', 'D') == 4",
+        "assert shortest_path({'A': {'B': 2, 'C': 3}, 'B': {'D': 1}, 'C': {'B': -2}}, 'A', 'C') == 0",
+        "assert shortest_path({'A': {'B': 2, 'C': 3}, 'B': {'D': 1}, 'C': {'B': -2}}, 'A', 'G') == -1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

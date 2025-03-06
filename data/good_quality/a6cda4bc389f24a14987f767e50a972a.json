@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Average Rainfall Calculator",
+    "description": "Given a list of cities and their corresponding average rainfall values, write a function that calculates the average rainfall for all cities.\n\n#### Function Signature\n```\ndef average_rainfall(cities_and_rainfall: dict) -> float:\n```\n\n#### Input\n- `cities_and_rainfall` (dict): A dictionary where keys are city names and values are their corresponding average rainfall values.\n\n#### Output\n- Returns the average rainfall for all cities as a float.",
+    "code": "",
+    "\nimport statistics\n\ndef average_rainfall(cities_and_rainfall: dict) -> float:\n    return statistics.mean(list(cities_and_rainfall.values()))": "",
+    "tests": [
+        "assert round(average_rainfall({'City A': 10, 'City B': 20, 'City C': 30}), 2) == 20.0",
+        "assert average_rainfall({'City D': 15}) == 15.0",
+        "assert average_rainfall({}) == 0.0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

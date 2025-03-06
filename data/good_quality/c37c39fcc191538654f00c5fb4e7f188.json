@@ -1,0 +1,17 @@
+{
+    "title": "Medium: Fizz Buzz",
+    "description": "Write a function `fizz_buzz` that takes an integer `n` as input and returns a list of strings. The function should print the numbers from 1 to `n`, replacing multiples of 3 with 'Fizz', multiples of 5 with 'Buzz', and multiples of both 3 and 5 with 'FizzBuzz'.\n\n#### Function Signature\n```python\ndef fizz_buzz(n: int) -> list[str]:\n```\n\n#### Input\n- `n` (int): An integer that represents the upper limit.\n\n#### Output\n- A list of strings, where each string is either a number or 'Fizz', 'Buzz', or 'FizzBuzz'.",
+    "code": "\ndef fizz_buzz(n: int) -> list[str]:\n    result = []\n    for i in range(1, n + 1):\n        if i % 3 == 0 and i % 5 == 0:\n            result.append('FizzBuzz')\n        elif i % 3 == 0:\n            result.append('Fizz')\n        elif i % 5 == 0:\n            result.append('Buzz')\n        else:\n            result.append(str(i))\n    return result",
+    "tests": [
+        "assert len(fizz_buzz(15)) == 15",
+        "assert '1' in fizz_buzz(15)",
+        "assert '2' in fizz_buzz(15)",
+        "assert 'FizzBuzz' in fizz_buzz(15)",
+        "assert '4' in fizz_buzz(15)",
+        "assert '3' not in fizz_buzz(15)",
+        "assert '5' not in fizz_buzz(15)"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

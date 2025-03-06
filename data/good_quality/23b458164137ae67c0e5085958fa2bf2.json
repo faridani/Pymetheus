@@ -1,0 +1,14 @@
+{
+    "title": "Fibonacci Numbers",
+    "description": "Write a function `fibonacci` that generates the Fibonacci sequence up to a given number. The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, usually starting with 0 and 1.\n\n#### Function Signature\n```python\ndef fibonacci(n: int) -> list:\n```\n\n#### Input\n- `n` (int): The maximum value up to which you want to generate the Fibonacci sequence.\n\n#### Output\n- Returns a list of integers representing the Fibonacci sequence up to `n`.",
+    "code": "def fibonacci(n: int) -> list:\n    if n < 0:\n        raise ValueError('n must be a non-negative integer')\n    fib_sequence = [0, 1]\n    while True:\n        next_number = fib_sequence[-1] + fib_sequence[-2]\n        if next_number > n:\n            break\n        fib_sequence.append(next_number)\n    return fib_sequence",
+    "tests": [
+        "assert len(fibonacci(10)) == 8",
+        "assert len(fibonacci(20)) == 21",
+        "assert fibonacci(-5) is None",
+        "assert any(i > 1000 for i in fibonacci(500))"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

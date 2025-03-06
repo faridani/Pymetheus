@@ -1,0 +1,14 @@
+{
+    "title": "[Hard] Fibonacci Sequence Modulo",
+    "description": "Given a positive integer `n`, write a function `fib_mod` that calculates the last digit of the n-th number in the Fibonacci sequence. The Fibonacci sequence is defined as follows: F[0] = 0, F[1] = 1, and for n > 1, F[n] = F[n-1] + F[n-2].\n\n#### Function Signature\n```python\ndef fib_mod(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the last digit of the n-th number in the Fibonacci sequence.",
+    "code": "",
+    "def fib_mod(n: int) -> int:\n        # Create a list to store the last digits of the numbers in the Fibonacci sequence\n        fib = [0, 1]\n        # Generate the rest of the sequence up to n\n        for i in range(2, n+1):\n            fib.append((fib[i-1] + fib[i-2]) % 10)\n        return fib[n]": "",
+    "tests": [
+        "assert fib_mod(3) == 2",
+        "assert fib_mod(10) == 5",
+        "assert fib_mod(20) == 5"
+    ],
+    "difficulty": "hard",
+    "model": "codestral:22b",
+    "style": "Codeforces"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Maximal Square",
+    "description": "Write a function `maximal_square` that takes as input an array of strings, where each string represents a row of characters, and returns the size of the maximal square submatrix (i.e., the number of rows and columns) with the property that all characters in the submatrix are the same.\n\n#### Function Signature\n```\ndef maximal_square(grid: list[list[str]]) -> int:\n```",
+    "code": "\nimport itertools\n\ndef maximal_square(grid: list[list[str]]) -> int:\n    if not grid or not any(grid):\n        return 0\n\n    max_size = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == '*':\n                continue\n            size = 1\n            while (i + size <= len(grid) and \n                   j + size <= len(grid[0]) and \n                   all(grid[k][l] == grid[i][j] for k, l in itertools.product(range(i, i+size), range(j, j+size)))):\n                size += 1\n            max_size = max(max_size, size)\n    return max_size * max_size",
+    "tests": [
+        "assert maximal_square([['A', '1'], ['B', '2']]) == 1",
+        "assert maximal_square([['X', 'O'], ['O', '*'], ['O', '*']]) == 3",
+        "assert maximal_square([['1', '1', '1'], ['2', '2', '2']]) == 3"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

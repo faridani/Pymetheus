@@ -1,0 +1,13 @@
+{
+    "title": "Elegant Sum of Even Fibonacci Numbers",
+    "description": "Fibonacci sequence is a series of numbers where a number is the addition of the last two numbers: 0, 1, 1, 2, 3, 5, 8, 13, ... A problem is that you are asked to write a function `even_fib_sum` that calculates the sum of all even Fibonacci numbers up to the input number. For example if the input number is 100, the function should return 44 (0 + 2 + 8).\n\n#### Function Signature\n```python\ndef even_fib_sum(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns an integer that is the sum of all even Fibonacci numbers up to the input number.",
+    "code": "\ndef even_fib_sum(n: int) -> int:\n    if n < 0:\n        raise ValueError('Input must be a non-negative integer')\n\n    fib_sequence = [0, 1]\n    even_sum = 0\n\n    while True:\n        next_value = fib_sequence[-1] + fib_sequence[-2]\n\n        if next_value > n:\n            break\n\n        if next_value % 2 == 0:\n            even_sum += next_value\n\n        fib_sequence.append(next_value)\n\n    return even_sum",
+    "tests": [
+        "assert even_fib_sum(100) == 44",
+        "assert even_fib_sum(500) == 4782",
+        "assert even_fib_sum(-1) == None"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

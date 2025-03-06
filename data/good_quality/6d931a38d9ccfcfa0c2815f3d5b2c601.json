@@ -1,0 +1,14 @@
+{
+    "title": "Sum of Divisors",
+    "description": "The sum of divisors of a number is the sum of all its factors, excluding itself. For example, the sum of divisors of 12 is 1+2+3+4+6 = 16.\n\n#### Function Signature\n```python\ndef sum_of_divisors(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the sum of all divisors of the input number, excluding itself.",
+    "code": "def sum_of_divisors(n: int) -> int:\n    def is_divisor(i: int) -> bool:\n        return n % i == 0 and i != 1\n    return sum(i for i in range(2, n) if is_divisor(i)) + n - 1,",
+    "tests": [
+        "assert sum_of_divisors(12) == 16",
+        "assert sum_of_divisors(24) == 30",
+        "assert sum_of_divisors(36) == 48",
+        "assert sum_of_divisors(42) == 60"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

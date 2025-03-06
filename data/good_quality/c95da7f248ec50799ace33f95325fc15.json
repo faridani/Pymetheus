@@ -1,0 +1,15 @@
+{
+    "title": "Easy: Domino Pile",
+    "description": "You are given a list of integers representing the heights of dominoes stacked on top of each other. Write a function `max_domino_height` that returns the maximum height of the pile when the tallest domino is at the bottom.\n\n#### Function Signature\n```python\ndef max_domino_height(domino_pile: list[int]) -> int:\n```\n\n#### Input\n- `domino_pile` (list[int]): A list of integers representing the heights of dominoes stacked on top of each other.\n\n#### Output\n- Returns the maximum height of the pile when the tallest domino is at the bottom.",
+    "code": "",
+    "\ndef max_domino_height(domino_pile: list[int]) -> int:\n    # Initialize the maximum height to 0\n    max_height = 0\n    \n    # Iterate over the stack in reverse order (from top to bottom)\n    for height in reversed(domino_pile):\n        # Update the maximum height if a taller domino is found at the bottom\n        max_height += height\n    \n    return max_height": "",
+    "tests": [
+        "assert max_domino_height([1, 2, 3]) == 6",
+        "assert max_domino_height([4, 5, 6]) == 15",
+        "assert max_domino_height([]) == 0",
+        "assert max_domino_height([10]) == 10"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

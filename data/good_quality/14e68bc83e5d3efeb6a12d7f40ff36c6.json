@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Maximum Score from Game",
+    "description": "A game of maximum score can be played as follows:\nIn this game, we are given a set of cards with values from 1 to n. We start with a hand that contains some cards and try to get the highest possible score by selecting cards in sequence.\nEach card has its value written on it, and if we draw two cards with the same number, their sum is added as points to our total score. For instance, if we have 1, 2, and 3, then we can select these in any order: 1+2=3, 2+3=5, or 1+3=4.\nWe want to find the maximum possible score that we can get from this game.\n\n#### Function Signature\n```python\ndef max_score(cards: list[int]) -> int:\n```\n\n#### Input\n- `cards` (list[int]): A list of integers representing the values on the cards.\n\n#### Output\n- Returns the maximum possible score that can be obtained from the given set of cards.",
+    "code": "def max_score(cards: list[int]) -> int:\n    n = len(cards)\n    dp = [0] * (n + 1)\n    for i in range(1, n):\n        for j in range(i):\n            if cards[i] == cards[j]:\n                dp[i+1] = max(dp[i+1], dp[j]+cards[i])\n    return max(dp)",
+    "tests": [
+        "assert max_score([2, 3, 5, 6]) == 7",
+        "assert max_score([1, 2, 3, 4, 5, 6]) == 9",
+        "assert max_score([1, 2, 3, 4, 5, 5, 5]) == 15"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

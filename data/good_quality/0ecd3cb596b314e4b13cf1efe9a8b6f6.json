@@ -1,0 +1,13 @@
+{
+    "title": "Euler's Totient Function",
+    "description": "Euler's totient function, denoted by \u03c6(n), is the number of positive integers less than or equal to n that are relatively prime to n. Write a function `euler_totient` that calculates Euler's totient function for a given integer `n`. \n\n#### Function Signature\n```python\ndef euler_totient(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the value of Euler's totient function for the input `n`.",
+    "code": "def euler_totient(n: int) -> int:\n    result = 0\n    for i in range(1, n+1):\n        is_coprime = True\n        for j in range(2, int(i**0.5) + 1):\n            if i % j == 0:\n                is_coprime = False\n                break\n        if is_coprime:\n            result += 1\n    return result",
+    "tests": [
+        "assert euler_totient(10) == 4",
+        "assert euler_totient(15) == 8",
+        "assert euler_totient(20) == 12"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

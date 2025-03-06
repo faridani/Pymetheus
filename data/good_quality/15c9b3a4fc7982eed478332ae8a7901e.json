@@ -1,0 +1,14 @@
+{
+    "title": "Elegant Elevators (Medium)",
+    "description": "In a building, there are multiple elevators. Each elevator has its own unique ID and it can move up or down between the floors. The movement of each elevator is represented by a sequence of 'U' and 'D' characters where 'U' means up and 'D' means down.\n\n#### Function Signature\n```python\ndef elegant_elevators(elevator_movements: str) -> bool:\n```\n\n#### Input\n- `elevator_movements` (str): A string that represents the movement of each elevator. It's a sequence of 'U' and 'D' characters where 'U' means up and 'D' means down.\n\n#### Output\n- Returns `True` if the elevators are moving in an elegant way, `False` otherwise. An elevator movement is considered elegant if for every pair of consecutive movements (either both are 'U' or both are 'D'), there's at least one 'U' and one 'D' character.",
+    "code": "def elegant_elevators(elevator_movements: str) -> bool:\n    # Check if the number of 'U' characters is equal to the number of 'D' characters\n    u_count = elevator_movements.count('U')\n    d_count = elevator_movements.count('D')\n    if u_count != d_count:\n        return False\n\n    # Check if for every pair of consecutive movements, there's at least one 'U' and one 'D' character\n    for i in range(len(elevator_movements) - 1):\n        if (elevator_movements[i] == elevator_movements[i + 1]):\n            return False\n    return True",
+    "tests": [
+        "assert elegant_elevators(\"UUDUUDDD\") == True",
+        "assert elegant_elevators(\"DUUDDDD\") == False",
+        "assert elegant_elevators(\"UUD\") == True",
+        "assert elegant_elevators(\"DUDUDUDUDUD\") == False"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

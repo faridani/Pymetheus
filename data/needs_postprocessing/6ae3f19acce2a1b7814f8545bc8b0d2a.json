@@ -1,0 +1,4 @@
+{
+    "model": "codestral:22b",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Sum of Multiples\\\", \\\"description\\\": \\\"Write a function `sum_of_multiples` that finds the sum of all multiples of 3 or 5 below a given number `n`. If a number is a multiple of both 3 and 5, it should only be counted once.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef sum_of_multiples(n: int) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `n` (int): A positive integer.\\\\n\\\\n#### Output\\\\n- Returns the sum of all multiples of 3 or 5 below `n`. If a number is a multiple of both 3 and 5, it should only be counted once.\\\", \\\"code\\\": \\\"def sum_of_multiples(n: int) -> int:\\\\n    return sum(i for i in range(n) if i % 3 == 0 or i % 5 == 0)\\\\n\\\", \\\"tests\\\": [\\\"assert sum_of_multiples(10) == 23\\\", \\\"assert sum_of_multiples(20) == 78\\\", \\\"assert sum_of_multiples(1) == 0\\\"] }\""
+}

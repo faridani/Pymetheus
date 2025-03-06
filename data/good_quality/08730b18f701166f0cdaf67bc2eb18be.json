@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Tree Traversal",
+    "description": "Write a function `tree_traversal` that takes as input the root of a binary tree and returns the sum of all node values. The tree is represented as a dictionary where each key represents a node, and its corresponding value is another dictionary representing the left child and right child nodes.\n\n#### Function Signature\n```python\ndef tree_traversal(root: dict) -> int:\n```\n\n#### Input\n- `root` (dict): The root of a binary tree. Each key in this dictionary represents a node, and its corresponding value is another dictionary representing the left child and right child nodes.\n\n#### Output\n- Returns the sum of all node values in the tree.",
+    "code": "",
+    "\ndef tree_traversal(root: dict) -> int:\n    total = 0\n    if root is None:\n        return total\n\n    total += root['value']\n    left_sum = tree_traversal(root.get('left', {})) if 'left' in root else 0\n    right_sum = tree_traversal(root.get('right', {})) if 'right' in root else 0\n    return total + left_sum + right_sum": "",
+    "tests": [
+        "assert tree_traversal({'value': 1, 'left': {'value': 2}, 'right': {'value': 3}}) == 6",
+        "assert tree_traversal({'value': 4, 'left': None}) == 4",
+        "assert tree_traversal({'value': 5, 'right': {'value': 6, 'right': {'value': 7}}}) == 18"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

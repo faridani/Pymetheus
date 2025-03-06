@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Valid Square",
+    "description": "A valid square is a set of integers that satisfies the following conditions:\n- The first row contains one more element than the second row.\n- The first two rows are equal to the last two rows (ignoring the order).\n\n#### Function Signature\n```python\ndef has_valid_square(matrix: list) -> bool:\n```\n\n#### Input\n- `matrix` (list): A 2D list of integers, where each inner list represents a row in the matrix.\n- The matrix will have at least one row and all rows will have the same number of columns.\n\n#### Output\n- Returns `True` if the input matrix is a valid square, `False` otherwise.",
+    "code": "def has_valid_square(matrix: list) -> bool:\n    # Check if the first two rows are equal to the last two rows (ignoring the order)\n    if not (matrix[0] + matrix[1] == matrix[-2] + matrix[-1]):\n        return False\n    # Check if the first row has one more element than the second row\n    if len(matrix[0]) != len(matrix[1]) + 1:\n        return False\n    # If all conditions are met, the square is valid\n    return True",
+    "tests": [
+        "assert has_valid_square([[1,2],[3,4]]) == True",
+        "assert has_valid_square([[1,2,3],[4]]) == False",
+        "assert has_valid_square([[1,2,3,4],[5,6,7,8],[9,10,11,12,13]]) == True"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

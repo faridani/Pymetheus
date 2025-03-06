@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Perfect Triangle",
+    "description": "A perfect triangle is a right-angled triangle with integer side lengths where the sum of the squares of any two sides is equal to the square of the third side (Heron's Formula). Write a function `is_perfect_triangle` that checks if three given integers can form a perfect triangle.\n\n#### Function Signature\n```python\ndef is_perfect_triangle(a: int, b: int, c: int) -> bool:\n```\n\n#### Input\n- `a`, `b`, and `c` (int): Three integer side lengths of the triangle.\n\n#### Output\n- Returns `True` if the three integers can form a perfect triangle, `False` otherwise.",
+    "code": "def is_perfect_triangle(a: int, b: int, c: int) -> bool:\n    # Calculate the semi-perimeter\n    s = (a + b + c) / 2\n    # Check if Heron's Formula holds true\n    return (s * (s - a) * (s - b) * (s - c)) ** 0.5 == int((s * (s - a) * (s - b) * (s - c)) ** 0.5)",
+    "tests": [
+        "assert is_perfect_triangle(3, 4, 5) == True",
+        "assert is_perfect_triangle(1, 2, 3) == False",
+        "assert is_perfect_triangle(10, 20, 30) == True"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

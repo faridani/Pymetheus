@@ -1,0 +1,14 @@
+{
+    "title": "Counting Triangles",
+    "description": "Given an integer n, find the number of ways to draw 3 non-parallel lines in a plane such that all three lines intersect at exactly one point. Each line is represented by two distinct points on the plane, and no three points are collinear.\n\n#### Function Signature\n```\ndef count_triangles(n: int) -> int:\n```",
+    "code": "from math import comb\n\ndef count_triangles(n: int) -> int:\n    # Calculate the number of ways to choose 3 distinct points from n+2 points (including the intersection point)\n    return comb(n + 2, 3)",
+    "tests": [
+        "assert count_triangles(0) == 1",
+        "assert count_triangles(4) == 15",
+        "assert count_triangles(10) == 455",
+        "assert count_triangles(-1) == 'Input should be a non-negative integer'"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

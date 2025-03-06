@@ -1,0 +1,15 @@
+{
+    "title": "Minimum Window Substring",
+    "description": "Given two strings `s1` and `s2`, find the minimum window substring in `s1` that contains all characters of `s2`. The function should return the length of this minimum window. If no such window exists, the function returns -1.\n\n#### Function Signature\n```python\ndef min_window_substring(s1: str, s2: str) -> int:\n```\n\n#### Input\n- `s1` (str): The main string that contains all characters of `s2`. \n- `s2` (str): A substring that should be found in `s1`. \n\n#### Output\n- Returns the length of the minimum window substring in `s1` that contains all characters of `s2`, or -1 if no such window exists.",
+    "code": "",
+    "\nfrom collections import Counter\n\ndef min_window_substring(s1: str, s2: str) -> int:\n    if not s2:\n        return 0\n    \n    s1_counter = Counter(s1)\n    s2_counter = Counter(s2)\n    \n    for char in s2_counter:\n        if s2_counter[char] > s1_counter.get(char, 0):\n            return -1\n    \n    required_chars = len(s2_counter)\n    formed_chars = 0\n    \n    window_counts = {}\n    min_window_len = float('inf')\n    \n    left = 0\n    right = 0\n    \n    while right < len(s1):\n        character = s1[right]\n        window_counts[character] = window_counts.get(character, 0) + 1\n        \n        while formed_chars == required_chars and left <= right:\n            character = s1[left]\n            \n            if right - left + 1 < min_window_len:\n                min_window_len = right - left + 1\n            \n            window_counts[character] -= 1\n            if window_counts[character] == 0:\n                formed_chars -= 1\n            \n            left += 1\n        \n        right += 1\n    \n    return min_window_len if min_window_len != float('inf') else -1": "",
+    "tests": [
+        "assert min_window_substring('ADOBECODEBANC', 'ABC') == 4",
+        "assert min_window_substring('HelloWorld', 'world') == 7",
+        "assert min_window_substring('ABCD', 'CD') == 2",
+        "assert min_window_substring('', 'abc') == -1"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

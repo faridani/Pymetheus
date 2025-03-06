@@ -1,0 +1,12 @@
+{
+    "title": "Number of Divisors",
+    "description": "Write a function `divisors_count` that takes an integer `n` as input and returns the count of all numbers from 1 to `n` (inclusive) that have exactly three divisors. Note that `0` is not considered a divisor.\n\n#### Function Signature\n```python\ndef divisors_count(n: int) -> int:\n```\n\n#### Input\n- `n` (int): An integer greater than or equal to 1.\n\n#### Output\n- Returns the count of all numbers from 1 to `n` that have exactly three divisors.",
+    "code": "\nimport math\n\ndef divisors_count(n: int) -> int:\n    def count_divisors(k: int) -> int:\n        count = 0\n        for i in range(1, math.isqrt(k) + 1):\n            if k % i == 0:\n                if i * i == k:\n                    count += 1\n                else:\n                    count += 2\n        return count\n\n    total_count = 0\n    for i in range(1, n + 1):\n        total_count += (count_divisors(i) == 3)\n\n    return total_count",
+    "tests": [
+        "assert divisors_count(10) == 4",
+        "assert divisors_count(20) == 6"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

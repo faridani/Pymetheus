@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Fruit Basket Filler",
+    "description": "A fruit basket can hold up to 5 fruits. Write a function `fill_basket` that takes a list of fruits and returns the maximum number of fruits that can be placed in the basket, without exceeding its capacity.\n\n#### Function Signature\n```python\ndef fill_basket(fruits: list) -> int:\n```\n\n#### Input\n- `fruits` (list): A list of strings representing different types of fruits.\n\n#### Output\n- Returns an integer indicating the maximum number of fruits that can be placed in the basket.",
+    "code": "\ndef fill_basket(fruits: list) -> int:\n    if len(fruits) > 5:\n        return 5\n    else:\n        return len(fruits)",
+    "tests": [
+        "assert fill_basket(['apple', 'banana']) == 2",
+        "assert fill_basket(['apple', 'banana', 'cherry']) == 3",
+        "assert fill_basket(['apple', 'banana', 'cherry', 'date', 'elderberry']) == 5",
+        "assert fill_basket([]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

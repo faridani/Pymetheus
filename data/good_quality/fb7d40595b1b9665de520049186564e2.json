@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Area of Island",
+    "description": "Given a 2D array, which represents a binary image where `0` means an empty cell and `1` means a filled cell. Write a function `max_area_of_island` that returns the maximum area of an island in the given binary image.\n\n#### Function Signature\n```python\ndef max_area_of_island(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D array where each cell is either `0` (empty) or `1` (filled). The grid may contain multiple islands.\n\n#### Output\n- Returns the maximum area of an island in the given binary image. If there are no islands, returns `0`.",
+    "code": "\ndef max_area_of_island(grid: list[list[int]]) -> int:\n    if not grid or not grid[0]:\n        return 0\n\n    def dfs(i, j):\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] != 1:\n            return 0\n        grid[i][j] = 0\n        return 1 + dfs(i - 1, j) + dfs(i + 1, j) + dfs(i, j - 1) + dfs(i, j + 1)\n\n    max_area = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == 1:\n                area = dfs(i, j)\n                max_area = max(max_area, area)\n    return max_area",
+    "tests": [
+        "assert max_area_of_island([[0,0,1,0,0],[1,0,1,1,0],[0,1,1,1,0],[0,0,0,1,0]]) == 4",
+        "assert max_area_of_island([[0,0,0,1,0,0,0,1,0,0],[0,0,0,1,0,0,0,1,0,0],[0,0,0,1,1,0,0,0,1,0],[0,0,0,0,0,0,0,0,1,0]]) == 9",
+        "assert max_area_of_island([[0,0,0],[0,0,0],[0,0,0]]) == 0",
+        "assert max_area_of_island([[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]]) == 25"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

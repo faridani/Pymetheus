@@ -1,0 +1,13 @@
+{
+    "title": "Elegant Tower of Hanoi",
+    "description": "The Tower of Hanoi is a classic mathematical puzzle. It consists of three rods and n disks. The objective of the puzzle is to move the entire stack to another rod, obeying the following simple rules:\n\n- Only one disk can be moved at a time.\n- Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty rod.\n- No disk may be placed on top of a smaller disk.\n\nWrite a function `hanoi_move` that takes the current state of the puzzle as input and returns the next move. The state is represented by a tuple `(disk, from_rod, to_rod)`, where `disk` is the number of the disk (1-indexed), `from_rod` is the rod where the disk is currently located, and `to_rod` is the rod where the disk will be moved.\n\n#### Function Signature\n```python\ndef hanoi_move(state: tuple) -> tuple:\n```\n\n#### Input\n- `state` (tuple): A tuple representing the current state of the puzzle. The format is `(disk, from_rod, to_rod)`, where:\n  - `disk` (int): The number of the disk (1-indexed).\n  - `from_rod` (str): The rod where the disk is currently located.\n  - `to_rod` (str): The rod where the disk will be moved.\n\n#### Output\n- A tuple representing the next move. The format is `(disk, from_rod, to_rod)`.",
+    "code": "def hanoi_move(state: tuple) -> tuple:\n    # Check if the state is valid\n    if not (1 <= state[0] <= 3 and state[1] in ['A', 'B', 'C'] and state[2] in ['A', 'B', 'C']):\n        raise ValueError('Invalid state')\n    # Find the largest disk that can be moved from rod A to rod C\n    max_disk = 0\n    for i in range(1, 4):\n        if state[1] == 'A' and state[2] == 'C' and i <= state[0]:\n            max_disk = i\n            break\n    # If there is no disk to move, the puzzle is solved\n    if max_disk == 0:\n        return None\n    # Return the next move\n    return (max_disk, state[1], state[2])",
+    "tests": [
+        "assert hanoi_move((1, 'A', 'C')) == (1, 'A', 'C')",
+        "assert hanoi_move((2, 'B', 'A')) == (2, 'B', 'C')",
+        "assert hanoi_move((3, 'A', 'B')) == None"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

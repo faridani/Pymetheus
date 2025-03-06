@@ -1,0 +1,13 @@
+{
+    "title": "The Great Pizza Delivery",
+    "description": "You are a pizza delivery person for a popular pizzeria. You have to deliver pizzas to customers all over the city. The city is divided into rectangles, and each rectangle has a unique id (1-100). Each pizza delivery has a start point, end point, and the type of pizza being delivered. Write a function that takes a list of pizza deliveries as input and returns the total number of distinct pizzas delivered to each rectangular region.\n\n#### Function Signature\n```python\ndef count_pizzas(deliveries: list[tuple[str, int, str]]) -> dict:\n```\n\n#### Input\n- `deliveries` (list[tuple[str, int, str]]): A list of pizza deliveries where each delivery is a tuple containing the start and end points as strings ('start' or 'end'), and the type of pizza being delivered as a string.\n\n#### Output\n- Returns a dictionary where the keys are the rectangle ids (1-100) and the values are the total number of distinct pizzas delivered to that region.",
+    "code": "from collections import defaultdict\n\ndef count_pizzas(deliveries: list[tuple[str, int, str]]) -> dict:\n    pizza_counts = defaultdict(set)\n    for delivery in deliveries:\n        start, end, pizza_type = delivery\n        if start == 'start':\n            pizza_id = int(end[1:]) - 1\n        else:\n            pizza_id = int(start[1:]) - 1\n        pizza_counts[pizza_id].add(pizza_type)\n    return {k: len(v) for k, v in pizza_counts.items()}",
+    "tests": [
+        "assert count_pizzas([('start', '3', 'pepperoni'), ('end', '2', 'pepperoni'), ('start', '4', 'hawaiian')]) == {1: 2}",
+        "assert count_pizzas([('start', '10', 'veggie'), ('end', '9', 'veggie'), ('start', '12', 'cheese')]) == {11: 1}",
+        "assert count_pizzas([]) == {}"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

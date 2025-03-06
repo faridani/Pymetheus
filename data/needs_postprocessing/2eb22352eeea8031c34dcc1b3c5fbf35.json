@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Max Sum of Subarray\", \"description\": \"Given an array of integers, write a function that returns the maximum sum of any contiguous subarray within it.\\n\\n#### Function Signature\\n```python\\ndef max_sum_subarray(arr: list[int)) -> int:\\n```\\n\\n#### Input\\n- `arr` (list[int]): A list of integers.\\n\\n#### Output\\n- Returns the maximum sum of any contiguous subarray within the input array.\", \"code\": \"\\ndef max_sum_subarray(arr: list[int)) -> int:\\n    max_sum = float('-inf')\\n    current_sum = 0\\n\\n    for num in arr:\\n        current_sum = max(num, current_sum + num)\\n        max_sum = max(max_sum, current_sum)\\n\\n    return max_sum\", \"tests\": [\"assert max_sum_subarray([-2,1,-3,4,-1,2,1,-5,4]) == 6\", \"assert max_sum_subarray([1, -2, 3, 10, -4, 7, 2, -5]) == 12\", \"assert max_sum_subarray([0]) == 0\", \"assert max_sum_subarray([-1, -2, -3, -4, -5]) == -1\"]}"
+}

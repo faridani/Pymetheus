@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of a Tree",
+    "description": "Consider a tree where each node has at most 5 children. The value of each node is either 0 or the sum of its child nodes' values. Write a function `max_sum_tree` that returns the maximum possible sum of all nodes in such a tree.\n\n#### Function Signature\n```python\ndef max_sum_tree(root: int, children: list[int]) -> int:\n```\n\n#### Input\n- `root`: The value of the root node (0 or positive integer).\n- `children`: A list of 5 integers representing the values of the child nodes.\n\n#### Output\n- Returns the maximum possible sum of all nodes in the tree.",
+    "code": "",
+    "\nimport itertools\n\ndef max_sum_tree(root: int, children: list[int]) -> int:\n    # Generate all possible combinations of values for each node\n    possibilities = [0] + list(range(1, root + 1))\n    combinations = []\n    for combination in itertools.product(possibilities, repeat=5):\n        child_sums = [sum(combination[:i+1]) for i in range(len(combination))]\n        if all(child_sum % (root + 1) == 0 for child_sum in child_sums):\n            combinations.append(sum(child_sums))\n\n    # Return the maximum possible sum\n    return max(combinations)": "",
+    "tests": [
+        "assert max_sum_tree(3, [2, 4, 5, 7, 8]) == 27",
+        "assert max_sum_tree(1, [0, 0, 0, 0, 0]) == 1",
+        "assert max_sum_tree(2, [1, 2, 3, 4, 5]) == 6"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

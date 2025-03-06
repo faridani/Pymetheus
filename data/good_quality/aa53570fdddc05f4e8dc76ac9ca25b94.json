@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Binary Tree Inorder Traversal",
+    "description": "Given a binary tree and its root node, write a function `inorder_traversal` that returns the inorder traversal of the tree as a list.\n\n#### Function Signature\n```python\ndef inorder_traversal(root: TreeNode) -> List[int]:\n```\n\n#### Input\n- `root` (TreeNode): The root node of the binary tree.\n\n#### Output\n- Returns a list of integers representing the inorder traversal of the tree.",
+    "code": "",
+    "\nimport collections\nclass TreeNode:\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\ndef inorder_traversal(root: TreeNode) -> list[int]:\n    if root is None:\n        return []\n\n    result = []\n    stack = collections.deque()\n    current = root\n\n    while True:\n        if current is not None:\n            stack.append(current)\n            current = current.left\n        elif stack:\n            node = stack.pop()\n            result.append(node.val)\n            current = node.right\n        else:\n            break\n\n    return result": "",
+    "tests": [
+        "assert inorder_traversal(None) == []",
+        "assert inorder_traversal(TreeNode(1)) == [1]",
+        "assert inorder_traversal(TreeNode(2, TreeNode(4), TreeNode(5))) == [2, 4, 5]",
+        "assert inorder_traversal(TreeNode(2, TreeNode(4, TreeNode(6)), TreeNode(3, TreeNode(7)))) == [2, 4, 6, 3, 7]"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

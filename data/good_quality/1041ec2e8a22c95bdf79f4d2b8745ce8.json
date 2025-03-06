@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Maximum Sum of Unique Integers",
+    "description": "Given an integer array `nums` and an integer `k`, return the maximum sum of `k` unique integers that can be obtained by selecting elements from `nums`. The elements in `nums` are not necessarily distinct, but each element must be selected exactly once. The function should take into account the fact that there is no penalty for selecting duplicate values.\n\n#### Function Signature\n```\ndef max_unique_sum(nums: list[int], k: int) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of unique integers.\n- `k` (int): The number of unique integers to select from `nums`.\n\n#### Output\n- Returns the maximum sum of `k` unique integers that can be obtained by selecting elements from `nums`.\n\nExample: If `nums = [1, 2, 3, 4, 5]` and `k = 3`, then the function should return `9` because the three unique integers with the highest sum are `[4, 3, 2]`.",
+    "code": "",
+    "\nimport heapq\n\ndef max_unique_sum(nums: list[int], k: int) -> int:\n    # Remove duplicates from nums\n    nums = list(set(nums))\n    \n    # Sort nums in descending order\n    nums.sort(reverse=True)\n    \n    # Select the top k unique integers\n    selected_integers = heapq.nlargest(k, nums)\n    \n    return sum(selected_integers)": "",
+    "tests": [
+        "assert max_unique_sum([1, 2, 3, 4, 5], 3) == 9",
+        "assert max_unique_sum([-1000, -500, 0, 500, 1000], 3) == 1500",
+        "assert max_unique_sum([1, 2, 3, 4, 5], 5) == 15",
+        "assert max_unique_sum([], 1) == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

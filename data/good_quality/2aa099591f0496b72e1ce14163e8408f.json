@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Windows Subtrees",
+    "description": "Given a binary tree where each node has an integer value and two child nodes (left and right), write a function `min_windows` that returns the minimum number of windows needed to cover all integers in the range [L, R] for a given binary tree.\n\n#### Function Signature\n```python\ndef min_windows(root: Optional[Node], L: int, R: int) -> int:\n```\n\n#### Input\n- `root` (Optional[Node]): The root node of the binary tree. Each Node has an integer value and two child nodes (left and right).\n- `L` (int): The lower bound of the range [L, R].\n- `R` (int): The upper bound of the range [L, R].\n\n#### Output\n- Returns the minimum number of windows needed to cover all integers in the range [L, R] for the given binary tree.",
+    "code": "class Node:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef min_windows(root: Optional[Node], L: int, R: int) -> int:\n    if root is None:\n        return 0\n    windows = set()\n    def dfs(node: Node, curr_min: int, curr_max: int):\n        if node is None:\n            return\n        if curr_min <= L and curr_max >= R:\n            for val in range(curr_min, curr_max + 1):\n                if val not in windows:\n                    windows.add(val)\n        dfs(node.left, min(node.val, curr_min), max(node.val, curr_max))\n        dfs(node.right, min(node.val, curr_min), max(node.val, curr_max))\n    dfs(root, float('inf'), float('-inf'))\n    return len(windows)",
+    "tests": [
+        "assert min_windows(None, 1, 3) == 0",
+        "assert min_windows(Node(2), 1, 3) == 1",
+        "assert min_windows(Node(1, Node(2), Node(3)), 1, 3) == 1",
+        "assert min_windows(Node(1, Node(2), Node(4)), 2, 4) == 2"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

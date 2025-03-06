@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Minimum Deletions to Make Array Unique",
+    "description": "Given a list of integers, write a function that returns the minimum number of deletions required to make the array unique. The array is considered unique if all elements are distinct.\n\n#### Function Signature\n```\ndef min_deletions(arr: list[int)) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the minimum number of deletions required to make the array unique.",
+    "code": "from typing import List\n\ndef min_deletions(arr: List[int]) -> int:\n    # Sort the array in ascending order\n    arr.sort()\n    # Initialize a variable to store the minimum deletions\n    min_del = 0\n    # Iterate over the array starting from the second element (index 1)\n    for i in range(1, len(arr)):\n        # If the current element is the same as the previous one, increment the deletion count\n        if arr[i] == arr[i - 1]:\n            min_del += 1\n    # Return the minimum deletions required to make the array unique\n    return min_del",
+    "tests": [
+        "assert min_deletions([2,3,5,7]) == 0",
+        "assert min_deletions([1,1,2,3]) == 2",
+        "assert min_deletions([10,20,30,40,50]) == 0",
+        "assert min_deletions([4,4,6,6,8,8]) == 4"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

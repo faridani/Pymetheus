@@ -1,0 +1,14 @@
+{
+    "title": "Number Sequence Checker",
+    "description": "Write a function that checks if a given list of integers represents a valid number sequence. A number sequence is considered valid if each term in the sequence is either one more or one less than its previous term.\n\n#### Function Signature\n```python\ndef is_valid_sequence(lst: list[int]) -> bool:\n```\n\n#### Input\n- `lst` (list[int]): A list of integers that may represent a number sequence.\n\n#### Output\n- Returns `True` if the input list represents a valid number sequence, `False` otherwise.",
+    "code": "\ndef is_valid_sequence(lst: list[int]) -> bool:\n    for i in range(1, len(lst)):\n        if abs(lst[i] - lst[i-1]) != 1:\n            return False\n    return True",
+    "tests": [
+        "assert is_valid_sequence([2, 3, 4, 5]) == True",
+        "assert is_valid_sequence([10, 9, 8, 7]) == True",
+        "assert is_valid_sequence([1, 1, 1]) == True",
+        "assert is_valid_sequence([1, 3, 5, 2]) == False"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

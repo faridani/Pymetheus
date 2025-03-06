@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Prime Factorization",
+    "description": "Write a function `prime_factors` that takes an integer `n` as input and returns a list of its prime factors. The function should return all prime numbers less than or equal to the square root of `n` that divide `n`. If `n` is a perfect square, it should be included in the list. Note that the order of the prime factors does not matter.\n\n#### Function Signature\n```\ndef prime_factors(n: int) -> list:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns a list of prime numbers less than or equal to the square root of `n` that divide `n`.",
+    "code": "import math\n\ndef prime_factors(n: int) -> list:\n    factors = []\n    for i in range(2, int(math.sqrt(n)) + 1):\n        while n % i == 0:\n            factors.append(i)\n            n //= i\n    if n > 1:\n        factors.append(n)\n    return factors",
+    "tests": [
+        "assert prime_factors(315) == [3, 3, 5, 7]",
+        "assert prime_factors(48) == [2, 2, 2, 2, 2, 3]",
+        "assert prime_factors(10) == [2, 5]",
+        "assert prime_factors(1) == []"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

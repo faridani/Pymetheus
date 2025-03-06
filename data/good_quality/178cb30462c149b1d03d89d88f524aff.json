@@ -1,0 +1,14 @@
+{
+    "title": "Longest Increasing Subsequence",
+    "description": "Given an array of integers, find the length of the longest increasing subsequence. A subsequence is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.\n\n#### Function Signature\n```python\ndef longest_increasing_subsequence(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers, where each integer is between 1 and 1000.\n\n#### Output\n- Returns the length of the longest increasing subsequence in the input array.",
+    "code": "\ndef longest_increasing_subsequence(nums: list[int]) -> int:\n    if not nums:\n        return 0\n\n    dp = [1] * len(nums)\n    for i in range(1, len(nums)):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n\n    return max(dp)",
+    "tests": [
+        "assert longest_increasing_subsequence([1, 2, 3, 4]) == 4",
+        "assert longest_increasing_subsequence([1, 3, 6, 7]) == 4",
+        "assert longest_increasing_subsequence([1, 3, 5, 8]) == 3",
+        "assert longest_increasing_subsequence([]) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

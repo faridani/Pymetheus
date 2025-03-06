@@ -1,0 +1,12 @@
+{
+    "title": "Maximum Sum of Subarray in a 2D Array",
+    "description": "You are given a 2D array `matrix` where each cell contains an integer. A subarray is defined as any sequence of cells read left-to-right and top-to-bottom from the matrix, i.e., a contiguous block of cells.\n\nWrite a function `max_sum_subarray` that returns the maximum sum of all possible subarrays in the given 2D array.\n\n#### Function Signature\n```python\ndef max_sum_subarray(matrix: list[list[int]]) -> int:\n```\n\n#### Input\n- `matrix` (list[list[int]]): A 2D array where each cell contains an integer.\n\n#### Output\n- Returns the maximum sum of all possible subarrays in the given matrix.",
+    "code": "def max_sum_subarray(matrix: list[list[int]]) -> int:\n    if not matrix or not matrix[0]:\n        return 0\n\n    n, m = len(matrix), len(matrix[0])\n    prefix_sums = [[0] * (m + 1) for _ in range(n + 1)]\n\n    for i in range(1, n + 1):\n        for j in range(1, m + 1):\n            prefix_sums[i][j] = matrix[i-1][j-1] + prefix_sums[i-1][j] + prefix_sums[i][j-1] - prefix_sums[i-1][j-1]\n\n    max_sum = float('-inf')\n\n    for i in range(1, n + 1):\n        for j in range(1, m + 1):\n            for k in range(i):\n                for col_start in range(j):\n                    max_sum = max(max_sum, prefix_sums[i][j] - prefix_sums[k][j] - prefix_sums[i][col_start] + prefix_sums[k][col_start])\n\n    return max_sum",
+    "tests": [
+        "assert max_sum_subarray([[1, 2, 3], [4, 5, 6]]) == 21",
+        "assert max_sum_subarray([[-10, 1, -20], [-2, -1, -15], [0, -25, 1]]) == 7"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

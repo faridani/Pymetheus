@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Number of Moves to Equalize Teams",
+    "description": "You are given an array `skill_scores` of unique integers representing the skill levels of `n` students. The goal is to divide these students into `k` teams such that each team has approximately equal total skill level.\n\nWrite a function `min_moves_to_equalize_teams` that returns the minimum number of moves required to form `k` teams with as close to equal average skill level as possible.\n\n#### Function Signature\n```python\ndef min_moves_to_equalize_teams(skill_scores: list[int], k: int) -> int:\n```\n\n#### Input\n- `skill_scores`: A list of unique integers representing the skill levels of students (length is a multiple of `k`).\n- `k`: The number of teams to divide the students into.\n\n#### Output\n- Returns the minimum number of moves required to form `k` teams with as close to equal average skill level as possible. A move is defined as swapping two students from different teams.",
+    "code": "\ndef min_moves_to_equalize_teams(skill_scores: list[int], k: int) -> int:\n    total_skill = sum(skill_scores)\n    team_size, remainder = divmod(len(skill_scores), k)\n    if remainder != 0:\n        team_size += 1\n\n    moves = 0\n    for i in range(k):\n        team_skill = sum(skill_scores[i*team_size:(i+1)*team_size])\n        diff = abs(team_skill - (total_skill // k))\n        moves += min(diff, total_skill % k)\n\n    return moves",
+    "tests": [
+        "assert min_moves_to_equalize_teams([10, 20, 30, 40, 50], 2) == 3",
+        "assert min_moves_to_equalize_teams([1, 2, 3, 4, 5], 3) == 0",
+        "assert min_moves_to_equalize_teams([1, 2, 3, 4, 5, 6], 2) == 2",
+        "assert min_moves_to_equalize_teams([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5) == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

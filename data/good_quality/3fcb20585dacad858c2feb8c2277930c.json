@@ -1,0 +1,13 @@
+{
+    "title": "Sorting Magic",
+    "description": "Given a list of integers and an integer K, sort the list such that the sum of the elements at each index from 0 to K-1 is equal to the original sum divided by (K+1). If there are multiple ways to achieve this, any one of them should be accepted.\n\n#### Function Signature\n```python\ndef magic_sort(nums: list[int], k: int) -> list[int]:\n```\n\n#### Input\n- `nums` (list[int]): A list of positive integers.\n- `k` (int): The number of elements to consider in the sum calculation.\n\n#### Output\n- Returns a sorted list of integers according to the problem description.",
+    "code": "from typing import List\n\ndef magic_sort(nums: List[int], k: int) -> List[int]:\n    n = len(nums)\n    total_sum = sum(nums)\n    target_sum = total_sum // (k + 1)\n\n    left, right = 0, n - 1\n    sorted_nums = [0] * n\n\n    for i in range(n):\n        if i < k:\n            while nums[right] > target_sum and right > left:\n                right -= 1\n            sorted_nums[i] = nums[right]\n            right -= 1\n        else:\n            while nums[left] <= target_sum and left <= right:\n                left += 1\n            sorted_nums[i] = nums[left - 1]\n\n    return sorted_nums",
+    "tests": [
+        "assert magic_sort([5, 2, 3, 7], 2) == [2, 2, 3, 5]",
+        "assert magic_sort([10, 8, 6, 4], 3) == [4, 4, 6, 10]",
+        "assert magic_sort([1, 2, 3, 4], 0) == [1, 2, 3, 4]"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

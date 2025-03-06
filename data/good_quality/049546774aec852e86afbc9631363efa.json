@@ -1,0 +1,14 @@
+{
+    "title": "Cyclic Permutations of a String",
+    "description": "Given a string, write a function `cyclic_permutations` that generates all possible cyclic permutations of the input string. A cyclic permutation is a sequence where the last character of the original string becomes the first character.\n\n#### Function Signature\n```python\ndef cyclic_permutations(s: str) -> list[str]:\n```\n\n#### Input\n- `s` (str): The input string for which you need to generate all possible cyclic permutations.\n\n#### Output\n- Returns a list of strings where each string is a cyclic permutation of the original string.",
+    "code": "from itertools import permutations\nimport re\n\ndef cyclic_permutations(s: str) -> list[str]:\n    s = re.sub(r'[^a-zA-Z0-9]', '', s).lower()\n    return [''.join(p) for p in permutations(s, len(s))]",
+    "tests": [
+        "assert 'abc' in cyclic_permutations('abc')",
+        "assert 'cba' in cyclic_permutations('abc')",
+        "assert 'bca' in cyclic_permutations('abc')",
+        "assert len(cyclic_permutations('hello world')) == 12"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

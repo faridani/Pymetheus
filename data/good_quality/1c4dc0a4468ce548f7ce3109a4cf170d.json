@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Array Median",
+    "description": "Write a function that calculates the median of an array of integers. The median is the middle value when the numbers are sorted. If there are an even number of elements, return the average of the two middle values.\n\n#### Function Signature\n```python\ndef median(arr: list[int]) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the median of the input array as an integer.",
+    "code": "def median(arr: list[int]) -> int:\n    arr.sort()\n    n = len(arr)\n    if n % 2 == 1:\n        return arr[n//2]\n    else:\n        return (arr[n//2 - 1] + arr[n//2]) // 2",
+    "tests": [
+        "assert median([3, 1, 4]) == 3",
+        "assert median([1, 2, 3, 4, 5]) == 3",
+        "assert median([1, 1, 1, 2]) == 1",
+        "assert median([]) == None"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Chessboard Filling",
+    "description": "Create a function `fill_chessboard` that takes an integer `n` representing the size of the chessboard and returns the minimum number of moves required to fill the entire board with distinct pieces. The function should use recursion, memoization, and backtracking. Note that a knight's move is considered one unit.\n\n#### Function Signature\n```python\ndef fill_chessboard(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The size of the chessboard, which must be an odd number greater than 1.\n\n#### Output\n- Returns the minimum number of moves required to fill the entire board with distinct pieces.",
+    "code": "",
+    "\nimport heapq\n\ndef fill_chessboard(n: int) -> int:\n    if n % 2 == 0:\n        raise ValueError(": "he size of the chessboard must be an odd number greater than 1.",
+    "moves)": "if board in memo:\n            return memo[board]\n        if all(piece > 0 for piece in board):\n            return moves\n        min_moves = float('inf')\n        for i, j in [(1, 2), (2, 1), (-1, -2), (-2, -1), (1, -2), (-1, 2), (2, -1), (-2, 1)]:\n            new_board = [piece + 1 if piece == i else piece for piece in board]\n            new_moves = moves + 1\n            if len(set(new_board)) <= n:\n                min_moves = min(min_moves, dfs(new_board, new_moves))\n        memo[board] = min_moves\n        return min_moves\n\n    return dfs([0] * (n ** 2), 0)",
+    "tests": [
+        "assert fill_chessboard(3) == 5",
+        "assert fill_chessboard(5) == 9"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

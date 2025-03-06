@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Sum of Divisors",
+    "description": "Write a function `sum_of_divisors` that calculates the sum of all divisors (excluding 1 and the number itself) for a given integer.\n\n#### Function Signature\n```python\ndef sum_of_divisors(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the sum of all divisors (excluding 1 and the number itself).",
+    "code": "def sum_of_divisors(n: int) -> int:\n    if n <= 0:\n        return 0\n    total = 0\n    for i in range(2, n):\n        if n % i == 0:\n            total += i\n    return total",
+    "tests": [
+        "assert sum_of_divisors(10) == 18",
+        "assert sum_of_divisors(28) == 30",
+        "assert sum_of_divisors(-1) == 0",
+        "assert sum_of_divisors(6) == 8"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

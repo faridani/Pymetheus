@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Minimum Window Substring",
+    "description": "Given two strings `s1` and `s2`, find the minimum window substring from `s1` that contains all characters of `s2`. If there are multiple such substrings, return the first one. The function should take as input two strings `s1` and `s2`, and return a string representing the minimum window substring.\n\n#### Function Signature\n```python\ndef min_window_substring(s1: str, s2: str) -> str:\n```\n\n#### Input\n- `s1` (str): The original string.\n- `s2` (str): The target string containing the characters to find in `s1`. \n\n#### Output\n- Returns a string representing the minimum window substring from `s1` that contains all characters of `s2`, or an empty string if no such substring exists.",
+    "code": "from collections import Counter\n\ndef min_window_substring(s1: str, s2: str) -> str:\n    # Create a counter for the target string `s2`\n    s2_count = Counter(s2)\n    required_chars = len(s2_count)\n    left = 0\n    min_len = float('inf')\n    min_substr = ''\n    for right in range(len(s1)):\n        while left <= right and all(s1[i] in s2_count for i in range(left, right+1)):\n            if right - left + 1 < min_len:\n                min_len = right - left + 1\n                min_substr = s1[left:right+1]\n            left += 1\n    return min_substr",
+    "tests": [
+        "assert min_window_substring('ABCBA', 'B') == 'BC'",
+        "assert min_window_substring('ADOBECODEBANC', 'ABC') == 'BANC'",
+        "assert min_window_substring('hello', 'o') == 'lo'",
+        "assert min_window_substring('abacdeff', '') == ''"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

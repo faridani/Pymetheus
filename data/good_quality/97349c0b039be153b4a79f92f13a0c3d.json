@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Movie Title Censorer",
+    "description": "Write a function `censor_movie_title` that takes a movie title as input and returns the title with all words containing less than 3 characters censored out. For example, if the input is 'The Matrix', the output should be 'The ...'. If there are no words with less than 3 characters, the function should return the original title.\n\n#### Function Signature\n```python\ndef censor_movie_title(title: str) -> str:\n```\n\n#### Input\n- `title` (str): A movie title that may contain multiple words separated by spaces.\n\n#### Output\n- Returns a censored version of the input title where all words containing less than 3 characters are replaced with '...' and the rest of the title remains unchanged.",
+    "code": "def censor_movie_title(title: str) -> str:\n    words = title.split()\n    censored_words = []\n    for word in words:\n        if len(word) < 3:\n            censored_words.append('...')\n        else:\n            censored_words.append(word)\n    return ' '.join(censored_words)",
+    "tests": [
+        "assert censor_movie_title('The Matrix') == 'The ...'",
+        "assert censor_movie_title('abc def') == 'abc ... def'",
+        "assert censor_movie_title('123') == '...'"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Max Min of Subarrays",
+    "description": "Given a list of integers and an integer `k`, find the maximum and minimum sum of subarrays with exactly `k` elements. For example, if we have the array `[3, 2, -1, -4, -3, -2, 5, 6]` and `k = 4`, the maximum sum is `10` (from the subarray `[2, -1, -4, -3]`) and the minimum sum is `-8` (from the subarray `[-2, -3, 5, 6]`). Write a function `max_min_subarrays` that calculates these values.\n\n#### Function Signature\n```python\ndef max_min_subarrays(arr: list[int], k: int) -> tuple[int, int]:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n- `k` (int): The number of elements in the subarray.\n\n#### Output\n- Returns a tuple `(max_sum, min_sum)` where `max_sum` is the maximum sum of subarrays with exactly `k` elements and `min_sum` is the minimum sum of subarrays with exactly `k` elements.",
+    "code": "import statistics\n\ndef max_min_subarrays(arr: list[int], k: int) -> tuple[int, int]:\n    if k > len(arr):\n        return (0, 0)\n    sums = [sum(arr[i-k+1:i+1]) for i in range(k-1, len(arr))]\n    max_sum = statistics.fmean(sums)\n    min_sum = statistics.fmean(sums)\n    return (int(max_sum), int(min_sum))",
+    "tests": [
+        "assert max_min_subarrays([3, 2, -1, -4, -3, -2, 5, 6], 4) == (10, -8)",
+        "assert max_min_subarrays([-2, 0, 7, 2, -5, 7], 3) == (9, -5)",
+        "assert max_min_subarrays([1, 2, 3, 4, 5, 6], 2) == (7, 1)",
+        "assert max_min_subarrays([-10, 20, -30, 40, -50, 60], 4) == (110, -90)"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

@@ -1,0 +1,15 @@
+{
+    "title": "Census Data Analysis",
+    "description": "Write a function that takes as input a list of tuples, where each tuple represents a person and contains their age, sex (0 for female, 1 for male), and country of origin. The function should return the total population by country of origin.\n\n#### Function Signature\n```\ndef census_data_analysis(people: list[tuple]) -> dict:\n``` \n\n#### Input\n- `people` (list[tuple]): A list of tuples, where each tuple contains a person's age, sex, and country of origin.\n\n#### Output\n- Returns a dictionary with the countries as keys and the total population for each country as values.",
+    "code": "",
+    "\nimport collections\n\ndef census_data_analysis(people: list[tuple]) -> dict:\n    # Initialize an empty dictionary to store the population by country\n    population_by_country = collections.defaultdict(int)\n\n    # Iterate over each person in the data\n    for age, sex, country in people:\n        # Increment the population count for this country\n        population_by_country[country] += 1\n\n    # Convert the defaultdict back into a regular dictionary\n    population_by_country = dict(population_by_country)\n\n    return population_by_country": "",
+    "tests": [
+        "assert census_data_analysis([30, 0, 'USA']) == {'USA': 1}",
+        "assert census_data_analysis([25, 1, 'Canada'], [45, 0, 'USA'], [30, 1, 'Mexico']) == {'Canada': 1, 'USA': 2, 'Mexico': 1}",
+        "assert census_data_analysis([]) == {}",
+        "assert census_data_analysis([(30, 0, 'USA'), (25, 1, 'USA')]) == {'USA': 2}"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

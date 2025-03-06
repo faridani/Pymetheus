@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Profit from Stock Transactions",
+    "description": "A stock broker wants to make as much profit as possible by buying and selling stocks. He can buy a maximum of k times, but he has the option to sell at any time. Write a function `max_profit` that calculates the maximum possible profit.\n\n#### Function Signature\n```python\ndef max_profit(prices: list[int], k: int) -> int:\n```\n\n#### Input\n- `prices` (list<int>): A list of stock prices where each price is an integer.\n- `k` (int): The number of times the broker can buy a stock.\n\n#### Output\n- Returns the maximum possible profit.",
+    "code": "\nimport heapq\n\ndef max_profit(prices: list[int], k: int) -> int:\n    if not prices or k == 0:\n        return 0\n    \n    n = len(prices)\n    dp = [[0] * (k + 1) for _ in range(n)]\n    \n    for i in range(k):\n        max_diff = 0\n        for j in range(i, n - 1):\n            diff = prices[j + 1] - prices[j]\n            if diff > max_diff:\n                max_diff = diff\n            dp[j][i + 1] = max(dp[j][i], dp[j + 1][i] + max_diff)\n    \n    return dp[0][k]",
+    "tests": [
+        "assert max_profit([7, 6, 5, 4, 3, 2, 1], 1) == 7",
+        "assert max_profit([10, 22, 5, 35, 17, 21], 3) == 49",
+        "assert max_profit([], 0) == 0",
+        "assert max_profit([1], 0) == 0"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

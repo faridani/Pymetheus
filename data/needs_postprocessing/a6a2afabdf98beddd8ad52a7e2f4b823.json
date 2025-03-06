@@ -1,0 +1,4 @@
+{
+    "model": "codestral:22b",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Maximum Product of Two Integers\\\", \\\"description\\\": \\\"Given an integer array `nums`, find the maximum value obtained by multiplying two numbers from the array.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef max_product(nums: List[int]) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `nums` (List[int]): A list of integers where each integer is in the range [-1000, 1000]. The length of `nums` is at least 2.\\\\n\\\\n#### Output\\\\n- Returns an integer representing the maximum product that can be obtained by multiplying two numbers from the array.\\\", \\\"code\\\": \\\"def max_product(nums: List[int]) -> int:\\\\n    nums.sort()\\\\n    return max(nums[-1]*nums[-2], nums[0]*nums[1])\\\", \\\"tests\\\": [\\\"assert max_product([3,7,-5,-8,9,2,-6]) == 90\\\", \\\"assert max_product([-4,-3,-2,-1,60]) == 72\\\", \\\"assert max_product([-2,0,-1]) == 0\\\"] }\""
+}

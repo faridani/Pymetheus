@@ -1,0 +1,15 @@
+{
+    "title": "Sudoku Validator (Hard)",
+    "description": "Write a function `is_valid_sudoku` that checks if a given 9x9 Sudoku grid is valid. A Sudoku grid is valid when each row, column, and 3x3 sub-grid contains the numbers 1-9 without repetition.\n\n#### Function Signature\n```python\ndef is_valid_sudoku(grid: list[list[int]]) -> bool:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 9x9 Sudoku grid, where each cell is an integer from 0 to 9. If a cell contains 0, it means the cell is empty.\n\n#### Output\n- Returns `True` if the input grid is valid, `False` otherwise.",
+    "code": "",
+    "\nimport copy\n\ndef is_valid_sudoku(grid: list[list[int]]) -> bool:\n    # Check each row\n    for row in grid:\n        seen = set()\n        for num in row:\n            if num == 0 or num not in seen:\n                seen.add(num)\n            else:\n                return False\n    \n    # Check each column\n    for col in zip(*grid):\n        seen = set()\n        for num in col:\n            if num == 0 or num not in seen:\n                seen.add(num)\n            else:\n                return False\n    \n    # Check each 3x3 sub-grid\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            seen = set()\n            for k in range(i, i+3):\n                for num in grid[k][j:j+3]:\n                    if num == 0 or num not in seen:\n                        seen.add(num)\n                    else:\n                        return False\n    \n    return True": "",
+    "tests": [
+        "assert is_valid_sudoku([[5,3,4,6,7,8,9,1,2],[6,7,8,9,1,2,3,4,5],[1,2,3,4,5,6,7,8,9],[5,6,7,8,9,1,2,3,4],[3,4,5,6,7,8,9,1,2],[8,9,1,2,3,4,5,6,7],[4,5,6,7,8,9,1,2,3],[7,8,9,1,2,3,4,5,6],[6,7,8,9,1,2,3,4,5]]) == True",
+        "assert is_valid_sudoku([[5,3,4,6,7,8,9,1,0],[6,7,8,9,1,2,3,4,5],[1,2,3,4,5,6,7,8,9],[5,6,7,8,9,1,2,3,4],[3,4,5,6,7,8,9,1,2],[8,9,1,2,3,4,5,6,7],[4,5,6,7,8,9,1,2,3],[7,8,9,1,2,3,4,5,6],[6,0,8,9,1,2,3,4,5]]) == False",
+        "assert is_valid_sudoku([[1,2,3,4,5,6,7,8,9],[4,5,6,7,8,9,1,2,3],[7,8,9,1,2,3,4,5,6],[3,4,5,6,7,8,9,1,2],[2,1,0,0,0,0,0,0,0]]) == True",
+        "assert is_valid_sudoku([[1,2,3,4,5,6,7,8,0],[4,5,6,7,8,9,1,2,3],[7,8,9,1,2,3,4,5,6],[3,4,5,6,7,8,9,1,2],[2,1,0,0,0,0,0,0,0]]) == False"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

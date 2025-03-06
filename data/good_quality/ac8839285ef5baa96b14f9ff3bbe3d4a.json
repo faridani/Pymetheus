@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Divisors of a Number",
+    "description": "A divisor of an integer `n` is an integer that divides `n` evenly without leaving a remainder. For example, the divisors of 6 are 1, 2, 3, and 6. Write a function `divisors` that takes an integer `n` as input and returns a sorted list of all its divisors.\n\n#### Function Signature\n```python\ndef divisors(n: int) -> list:\n```\n\n#### Input\n- `n` (int): An integer for which to find the divisors.\n\n#### Output\n- Returns a sorted list of all divisors of the input number.",
+    "code": "def divisors(n: int) -> list:\n    result = set()\n    for i in range(1, n + 1):\n        if n % i == 0:\n            result.add(i)\n    return sorted(list(result))",
+    "tests": [
+        "assert divisors(6) == [1, 2, 3, 6]",
+        "assert divisors(12) == [1, 2, 3, 4, 6, 12]",
+        "assert divisors(25) == [1, 5, 25]"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

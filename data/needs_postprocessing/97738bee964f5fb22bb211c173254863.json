@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Array Median\\\", \\\"description\\\": \\\"Write a function `array_median` that takes an array of integers as input and returns the median value of the array. The median is the middle value when the array is sorted in ascending order.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef array_median(arr: list[int]) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `arr` (list[int]): A list of integers.\\\\n\\\\n#### Output\\\\n- Returns the median value of the input array as an integer.\\\", \\\"code\\\": \\\"import statistics\\\\n\\\\ndef array_median(arr: list[int]) -> int:\\\\n    return statistics.median(arr)\\\\n\\\", \\\"tests\\\": [\\\"assert array_median([1, 2, 3, 4, 5]) == 3\\\", \\\"assert array_median([-1, -2, 0, 1, 2]) == 0\\\", \\\"assert array_median([]) == None\\\"] }\""
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Find the Missing Number",
+    "description": "You are given a sequence of n integers where the first and last elements are equal. The sequence is missing one number. Write a function `find_missing_number` that finds this missing number.\n\n#### Function Signature\n```python\ndef find_missing_number(arr: list[int]) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of n integers where the first and last elements are equal. The sequence is missing one number.\n\n#### Output\n- Returns the missing number in the sequence.",
+    "code": "def find_missing_number(arr: list[int]) -> int:\n    n = len(arr)\n    total_sum = (n * (n + 1)) // 2\n    first_last_diff = arr[0] - arr[-1]\n    return total_sum - (arr[0] + first_last_diff)//2",
+    "tests": [
+        "assert find_missing_number([1, 2, 3, 4]) == 5",
+        "assert find_missing_number([-10, -9, -8, -7, -6, -5]) == -4",
+        "assert find_missing_number([1, 2, 3, 5]) == 4",
+        "assert find_missing_number([-1, 0, 1]) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Prime Numbers in a Range",
+    "description": "Given two integers, `start` and `end`, write a function `prime_numbers_in_range` that returns all prime numbers within the range `[start, end]`. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.\n\n#### Function Signature\n```python\ndef prime_numbers_in_range(start: int, end: int) -> list[int]:\n```\n\n#### Input\n- `start` (int): The starting integer of the range (inclusive).\n- `end` (int): The ending integer of the range (inclusive).\n\n#### Output\n- Returns a list of integers that are prime numbers within the given range.",
+    "code": "\nimport math\n\ndef prime_numbers_in_range(start: int, end: int) -> list[int]:\n    def is_prime(n: int) -> bool:\n        if n <= 1:\n            return False\n        for i in range(2, int(math.sqrt(n)) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    prime_numbers = []\n    for num in range(start, end + 1):\n        if is_prime(num):\n            prime_numbers.append(num)\n    return prime_numbers",
+    "tests": [
+        "assert set(prime_numbers_in_range(10, 20)) == {11, 13, 17, 19}",
+        "assert set(prime_numbers_in_range(-5, 5)) == set()",
+        "assert set(prime_numbers_in_range(1, 100)) == {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97}"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

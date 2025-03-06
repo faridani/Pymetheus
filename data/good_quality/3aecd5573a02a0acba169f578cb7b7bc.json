@@ -1,0 +1,14 @@
+{
+    "title": "Validate Credit Card Numbers",
+    "description": "Write a function that validates credit card numbers. The function should take as input a string representing the credit card number, and return `True` if the card number is valid, and `False` otherwise.\n\n#### Function Signature\n```python\ndef validate_credit_card_number(card_number: str) -> bool:\n```\n\n#### Input\n- `card_number` (str): A string representing a credit card number.\n\n#### Output\n- Returns `True` if the input card number is valid, and `False` otherwise.",
+    "code": "import re\n\ndef validate_credit_card_number(card_number: str) -> bool:\n    # Check if the card number contains only digits\n    if not re.match(r'^\\d+$', card_number):\n        return False\n    # Validate credit card numbers using Luhn algorithm\n    def luhn_algorithm(card_number: str) -> bool:\n        sum = 0\n        for i, c in enumerate(reversed(card_number)):\n            if i % 2 == 1:\n                d = int(c) * 2\n                if d > 9:\n                    d -= 9\n            else:\n                d = int(c)\n            sum += d\n        return sum % 10 == 0\n    return luhn_algorithm(card_number)",
+    "tests": [
+        "assert validate_credit_card_number('4003856797588857') == True",
+        "assert validate_credit_card_number('1234567890123456') == False",
+        "assert validate_credit_card_number('4111-1111-1111-1111') == False",
+        "assert validate_credit_card_number('5105-019745-4454-0003') == True"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

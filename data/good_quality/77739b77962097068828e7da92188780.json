@@ -1,0 +1,14 @@
+{
+    "title": "Elegant Evenings",
+    "description": "An elegant evening is a perfect combination of music, dance, and good company. Write a function `evening_score` that calculates the score of an evening based on its duration, number of couples dancing, and average happiness of each couple.\n\n#### Function Signature\n```python\ndef evening_score(duration: int, couples_dancing: int, average_happiness: float) -> float:\n```\n\n#### Input\n- `duration` (int): The duration of the evening in minutes.\n- `couples_dancing` (int): The number of couples dancing during the evening.\n- `average_happiness` (float): The average happiness of each couple on a scale from 0 to 1, where 0 is unhappy and 1 is ecstatic.\n\n#### Output\n- Returns the score of the evening as a float value between 0 and 10.",
+    "code": "import math\n\ndef evening_score(duration: int, couples_dancing: int, average_happiness: float) -> float:\n    # Calculate the base score based on the duration of the evening\n    base_score = (duration / 60) * 2\n    # Add points for each couple dancing, with a bonus for having more than 5 couples\n    if couples_dancing > 5:\n        couples_bonus = 1.5\n    else:\n        couples_bonus = 1\n    score = base_score + (couples_dancing * couples_bonus)\n    # Apply a cap to the maximum happiness, and then add points for average happiness\n    max_happiness = math.min(average_happiness * 10, 8)\n    return min(score + max_happiness, 10.0)",
+    "tests": [
+        "assert evening_score(90, 6, 0.7) == 9.3",
+        "assert evening_score(60, 4, 0.5) == 5.5",
+        "assert evening_score(120, 8, 1.0) == 10.0",
+        "assert evening_score(30, 2, 0.2) == 2.6"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

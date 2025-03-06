@@ -1,0 +1,13 @@
+{
+    "title": "Maximum Profit from Trading",
+    "description": "Imagine you are a trader and you have access to the stock prices of two companies, A and B. Your goal is to maximize your profit by buying the cheaper stock at the start of the day, holding it until the end of the day, then selling both stocks at their closing prices.\n\n#### Function Signature\n```python\ndef max_profit(prices_a: list, prices_b: list) -> int:\n```\n\n#### Input\n- `prices_a` (list): A list of integers representing the stock prices of company A at each hour of the day. The list will have exactly 24 elements.\n- `prices_b` (list): A list of integers representing the stock prices of company B at each hour of the day. The list will have exactly 24 elements.\n\n#### Output\n- Returns the maximum possible profit that can be achieved by trading the two companies' stocks.",
+    "code": "def max_profit(prices_a: list, prices_b: list) -> int:\n    # Initialize minimum price for each company and maximum profit so far\n    min_price_a = prices_a[0]\n    min_price_b = prices_b[0]\n    max_profit_so_far = 0\n\n    for i in range(1, len(prices_a)):\n        if prices_a[i] < min_price_a:\n            min_price_a = prices_a[i]\n        if prices_b[i] < min_price_b:\n            min_price_b = prices_b[i]\n        profit_at_end_of_day = max((prices_a[i] - min_price_a), (prices_b[i] - min_price_b))\n        max_profit_so_far = max(max_profit_so_far, profit_at_end_of_day)\n\n    return max_profit_so_far",
+    "tests": [
+        "assert max_profit([1, 2, 3, 4, 5], [10, 9, 8, 7, 6]) == 5",
+        "assert max_profit([20, 15, 30, 25, 35], [40, 45, 50, 55, 60]) == 25",
+        "assert max_profit([1, 2, 3, 4], [9, 8, 7, 6]) == 5"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Daily Coding Problem"
+}

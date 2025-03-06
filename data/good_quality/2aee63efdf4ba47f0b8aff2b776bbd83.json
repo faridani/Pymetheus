@@ -1,0 +1,15 @@
+{
+    "title": "[Hard] Sum of Two Numbers",
+    "description": "Given a list of numbers and a target number, find two unique numbers from the list that add up to the target.\n\n#### Function Signature\n```python\ndef sum_of_two(nums: List[int], target: int) -> Tuple[int, int]:\n```\n\n#### Input\n- `nums` (List[int]): A list of unique integers.\n- `target` (int): The target integer to find the sum of two numbers for.\n\n#### Output\n- Returns a tuple containing two unique numbers from the input list that add up to the target. If no such pair exists, return None.",
+    "code": "",
+    "from typing import List, Tuple\n\ndef sum_of_two(nums: List[int], target: int) -> Tuple[int, int]:\n    if not nums or len(nums) < 2:\n        return None\n\n    nums.sort()\n\n    left, right = 0, len(nums) - 1\n\n    while left < right:\n        current_sum = nums[left] + nums[right]\n        if current_sum == target:\n            return (nums[left], nums[right])\n        elif current_sum < target:\n            left += 1\n        else:\n            right -= 1\n    return None": "",
+    "tests": [
+        "assert sum_of_two([2, 7, 11, 15], 9) == (2, 7)",
+        "assert sum_of_two([3, 2, 4], 6) == (2, 4)",
+        "assert sum_of_two([3, 3], 6) == None",
+        "assert sum_of_two([-1, -2, 0, 1, 2, 3], 5) == (-2, 7)"
+    ],
+    "difficulty": "hard",
+    "model": "codestral:22b",
+    "style": "Daily Coding Problem"
+}

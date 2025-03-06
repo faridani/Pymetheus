@@ -1,0 +1,13 @@
+{
+    "title": "Tree Height",
+    "description": "Given a binary tree, where each node contains an integer value and two children (left and right), write a function `max_height` that calculates the maximum height of this binary tree. The height of a tree is the number of nodes along the longest path from the root node down to the leaf nodes.\n\n#### Function Signature\n```python\ndef max_height(root: TreeNode) -> int:\n```\n\n#### Input\n- `root` (TreeNode): The root node of the binary tree.\n\n#### Output\n- Returns the maximum height of the binary tree.",
+    "code": "\nclass TreeNode:\n    def __init__(self, x):\n        self.val = x\n        self.left = None\n        self.right = None\n\ndef max_height(root: TreeNode) -> int:\n    if root is None:\n        return 0\n    \n    left_height = max_height(root.left)\n    right_height = max_height(root.right)\n\n    if left_height > right_height:\n        return left_height + 1\n    else:\n        return right_height + 1",
+    "tests": [
+        "assert max_height(TreeNode(1, TreeNode(2), None)) == 2",
+        "assert max_height(None) == 0",
+        "assert max_height(TreeNode(1, TreeNode(2, TreeNode(3), None), TreeNode(4, None, None))) == 3"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

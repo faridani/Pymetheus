@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Average of Subarrays",
+    "description": "Write a function `average_of_subarrays` that calculates the average of all subarrays within a given array. For example, if you are given the array `[1, 2, 3]`, your function should return `[[1], [2], [3], [1, 2], [2, 3], [1, 3], [1, 2, 3]]` with their corresponding averages. The average of an empty subarray is considered to be `0`. #### Function Signature\n```python\ndef average_of_subarrays(nums: list) -> list:\n```\n\n#### Input\n- `nums` (list): A list of integers.\n\n#### Output\n- Returns a list of lists where each sublist contains the subarray and its average. The averages are floating point numbers. For example, `[1, 2, 3]` should return `[ [1], [1.0], [2, 3], [1, 2], [2.0], [3], [1, 2, 3], [1.5]]`. Note that the average of an empty subarray is `0.0`, not `None`.",
+    "code": "from itertools import chain, combinations\n\ndef average_of_subarrays(nums: list) -> list:\n    averages = []\n    for r in range(1, len(nums) + 1):\n        for subarray in chain(*map(lambda x: combinations(nums, x), range(r))):\n            average = sum(subarray) / len(subarray)\n            averages.append([list(subarray), round(average, 2)])\n    return averages",
+    "tests": [
+        "assert average_of_subarrays([1, 2, 3]) == [[1], [1.0], [2, 3], [1, 2], [2.0], [3], [1, 2, 3], [1.5]]",
+        "assert average_of_subarrays([]) == []",
+        "assert average_of_subarrays([4]) == [[4], [4.0]]"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

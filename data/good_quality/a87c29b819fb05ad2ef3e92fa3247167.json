@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Sum of Cubes",
+    "description": "Write a function `sum_of_cubes` that calculates the sum of cubes of all numbers from 1 to `n`. For example, if `n` is 3, the function should return `1^3 + 2^3 + 3^3`, which is equal to `1 + 8 + 27 = 36.\n\n#### Function Signature\n```python\ndef sum_of_cubes(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The upper limit of the range of numbers for which the sum of cubes will be calculated.\n\n#### Output\n- Returns the sum of cubes of all numbers from 1 to `n`.",
+    "code": "def sum_of_cubes(n: int) -> int:\n    total = 0\n    for i in range(1, n + 1):\n        total += i ** 3\n    return total",
+    "tests": [
+        "assert sum_of_cubes(3) == 36",
+        "assert sum_of_cubes(4) == 84",
+        "assert sum_of_cubes(5) == 225"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

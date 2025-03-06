@@ -1,0 +1,13 @@
+{
+    "title": "Eager Beaver",
+    "description": "#### Problem\nA beaver, eager to collect as many sticks as possible for its dam, has been assigned a task by its fellow beavers. They have divided the forest into several sections and given the beaver a list of numbers that represent the total number of sticks available in each section.\n\nThe beaver must now find out which section it can visit first to collect the most sticks. The condition is that the beaver can only visit one section at a time, and once visited, it cannot revisit that section. It can, however, move on to another section after visiting the previous one.\n\n#### Function Signature\n```python\ndef eager_bee(s: list[int]) -> int:\n```\n\n#### Input\n- `s` (list[int]): A list of integers representing the total number of sticks available in each section.\n\n#### Output\n- Returns the index of the first section that contains the most sticks. If there are multiple sections with the same maximum number of sticks, returns the index of the first such section.",
+    "code": "def eager_bee(s: list[int]) -> int:\n    return s.index(max(s))",
+    "tests": [
+        "assert eager_bee([1, 2, 3]) == 0",
+        "assert eager_bee([10, 20, 30]) == 1",
+        "assert eager_bee([5, 15, 25]) == 1"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

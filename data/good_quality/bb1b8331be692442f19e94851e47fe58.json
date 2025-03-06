@@ -1,0 +1,13 @@
+{
+    "title": "Maximum Area of a Histogram",
+    "description": "Given a sequence of integers representing the heights of bars in a histogram, write a function to find the maximum area that can be enclosed by two adjacent bars. The area is calculated as the product of the height and the distance between the bars.\n\n#### Function Signature\n```python\ndef max_histogram_area(heights: list[int)) -> int:\n```\n\n#### Input\n- `heights` (list[int]): A sequence of integers representing the heights of bars in a histogram.\n\n#### Output\n- Returns the maximum area that can be enclosed by two adjacent bars.",
+    "code": "\nimport math\n\ndef max_histogram_area(heights: list[int]) -> int:\n    stack = []\n    max_area = 0\n    index = 0\n    \n    while index < len(heights):\n        if not stack or heights[index] >= heights[stack[-1]]:\n            stack.append(index)\n            index += 1\n        else:\n            top = stack.pop()\n            width = index if not stack else index - stack[-1] - 1\n            max_area = max(max_area, heights[top] * width)\n    \n    while stack:\n        top = stack.pop()\n        width = index if not stack else len(heights) - stack[-1] - 1\n        max_area = max(max_area, heights[top] * width)\n    \n    return max_area",
+    "tests": [
+        "assert max_histogram_area([2, 1, 5, 6, 2, 3]) == 10",
+        "assert max_histogram_area([1, 8, 6, 2, 5, 4, 8, 7, 1]) == 48",
+        "assert max_histogram_area([0]) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

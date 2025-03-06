@@ -1,0 +1,15 @@
+{
+    "title": "Fibonacci Primes",
+    "description": "A Fibonacci prime is a positive integer that is the sum of two distinct Fibonacci numbers. Write a function `is_fib_prime` that checks if a given number is a Fibonacci prime.\n\n#### Function Signature\n```python\ndef is_fib_prime(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns `True` if the input number is a Fibonacci prime, `False` otherwise.",
+    "code": "",
+    "\nimport math\n\ndef is_fib_prime(n: int) -> bool:\n    # Check if n is a Fibonacci number\n    def is_fibonacci(k: int) -> bool:\n        sqrt_5 = math.sqrt(5)\n        phi = (1 + sqrt_5) / 2\n        psi = (1 - sqrt_5) / 2\n        return round(phi ** k / sqrt_5) == k\n\n    # Check if n is the sum of two distinct Fibonacci numbers\n    for i in range(1, int(math.log(n)) + 1):\n        if is_fibonacci(i) and is_fibonacci(n - i):\n            return True\n    return False": "",
+    "tests": [
+        "assert is_fib_prime(89) == True",
+        "assert is_fib_prime(78) == False",
+        "assert is_fib_prime(144) == True",
+        "assert is_fib_prime(233) == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

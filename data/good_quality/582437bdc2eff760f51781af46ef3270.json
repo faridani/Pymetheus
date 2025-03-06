@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Maximum Sum of a Path in Binary Tree",
+    "description": "Given the root of a binary tree, find the maximum sum of a path from the root to any leaf. A path is defined as a series of nodes connected by edges where each edge connects a node with one of its children or parents.\n\n#### Function Signature\n```python\ndef max_sum_of_path(root: TreeNode) -> int:\n```\n\n#### Input\n- `root` (TreeNode): The root of the binary tree, which is an instance of the `TreeNode` class defined below.\n\n#### Output\n- Returns the maximum sum of a path from the root to any leaf in the binary tree.",
+    "code": "",
+    "\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef max_sum_of_path(root: TreeNode) -> int:\n    max_sum = float('-inf')\n\n    def dfs(node, current_sum):\n        nonlocal max_sum\n        if node is None:\n            return 0\n        current_sum += node.val\n        if node.left is None and node.right is None:\n            max_sum = max(max_sum, current_sum)\n        else:\n            dfs(node.left, current_sum)\n            dfs(node.right, current_sum)\n        return current_sum\n\n    dfs(root, 0)\n    return max_sum": "",
+    "tests": [
+        "assert max_sum_of_path(TreeNode(1)) == 1",
+        "assert max_sum_of_path(TreeNode(5, TreeNode(2), TreeNode(3))) == 9",
+        "assert max_sum_of_path(TreeNode(10, TreeNode(2, TreeNode(5), TreeNode(7)), TreeNode(8))) == 18"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

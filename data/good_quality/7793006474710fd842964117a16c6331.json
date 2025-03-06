@@ -1,0 +1,12 @@
+{
+    "title": "Sorting Sentences by Length",
+    "description": "Write a function that sorts sentences in a given list of strings based on their length. The shorter sentences should come first. If two sentences have the same length, they should be sorted alphabetically.\n\n#### Function Signature\n```python\ndef sort_sentences(sentences: list[str]) -> list[str]:\n```\n\n#### Input\n- `sentences` (list[str]): A list of strings representing sentences.\n\n#### Output\n- Returns a new list with the sentences in sorted order by length and then alphabetically.",
+    "code": "def sort_sentences(sentences: list[str]) -> list[str]:\n    return sorted(sentences, key=lambda s: (len(s), s.lower()))",
+    "tests": [
+        "assert sort_sentences(['Hello', 'World', 'This', 'is']) == ['This', 'is', 'Hello', 'World']",
+        "assert sort_sentences(['Python is great', 'Java is also good', 'C++ is ok']) == ['ok', 'is', 'also', 'great', 'good', 'Python', 'Java', 'C++']"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

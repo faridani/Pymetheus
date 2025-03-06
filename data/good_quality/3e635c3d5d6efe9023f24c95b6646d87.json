@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Finding Common Elements",
+    "description": "Given two lists of integers, find and return all common elements between them. Note that each list may contain duplicate values.\n\n#### Function Signature\n```python\ndef find_common_elements(list1: list[int], list2: list[int]) -> list[int]:\n```\n\n#### Input\n- `list1` (list[int]): The first list of integers.\n- `list2` (list[int]): The second list of integers.\n\n#### Output\n- Returns a list of common elements between the two input lists.",
+    "code": "\ndef find_common_elements(list1: list[int], list2: list[int]) -> list[int]:\n    # Convert the input lists to sets for efficient lookup\n    set1 = set(list1)\n    set2 = set(list2)\n\n    # Initialize an empty set to store common elements\n    common_elements = set()\n\n    # Iterate over the first set and check if each element is in the second set\n    for num in set1:\n        if num in set2:\n            common_elements.add(num)\n\n    # Convert the set of common elements back to a list and return it\n    return list(common_elements)",
+    "tests": [
+        "assert find_common_elements([1, 2, 3], [2, 4, 5]) == [2]",
+        "assert find_common_elements([-10, -8, 7, 6], [-8, 6, 7, 9]) == [-8, 6, 7]",
+        "assert find_common_elements([1, 1, 1], [1, 2, 3]) == [1]"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

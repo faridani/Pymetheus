@@ -1,0 +1,15 @@
+{
+    "title": "Maximum Sum of Distinct Subarrays Easy",
+    "description": "A subarray is a contiguous segment of an array. Given an integer array `nums` and an integer `k`, find the maximum sum of `k` distinct subarrays.\n\n#### Function Signature\n```\ndef max_sum_distinct_subarrays(nums: list[int], k: int) -> int:\n``` \n\n#### Input\n- `nums` (list[int]): A list of integers representing the array.\n- `k` (int): The number of distinct subarrays to find.\n\n#### Output\n- Returns the maximum sum of `k` distinct subarrays. If there are less than `k` unique subarrays, return `-1`.",
+    "code": "",
+    "\nfrom itertools import combinations\ndef max_sum_distinct_subarrays(nums: list[int], k: int) -> int:\n    n = len(nums)\n    prefix_sums = [0] * (n + 1)\n    for i in range(n):\n        prefix_sums[i + 1] = prefix_sums[i] + nums[i]\n\n    max_sum = float('-inf')\n    seen_subarrays = set()\n\n    for r in range(1, k + 1):\n        for subarray in combinations(range(n), r):\n            subarray_sum = prefix_sums[subarray[-1] + 1] - prefix_sums[subarray[0]]\n            if tuple(sorted(subarray)) not in seen_subarrays:\n                seen_subarrays.add(tuple(sorted(subarray)))\n                max_sum = max(max_sum, subarray_sum)\n\n    return max_sum if k <= len(seen_subarrays) else -1": "",
+    "tests": [
+        "assert max_sum_distinct_subarrays([1, 2, 3], 2) == 5",
+        "assert max_sum_distinct_subarrays([-10, -20, -30, -40], 4) == 0",
+        "assert max_sum_distinct_subarrays([1, 2, 3, 4, 5], 3) == 9",
+        "assert max_sum_distinct_subarrays([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5) == 25"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

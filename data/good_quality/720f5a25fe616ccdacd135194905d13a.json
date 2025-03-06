@@ -1,0 +1,13 @@
+{
+    "title": "Sum of Digits for a Series of Numbers",
+    "description": "Write a function `sum_of_digits` that calculates the sum of digits of a series of numbers. The function should take two parameters: an integer `n`, which is the number of terms in the series, and a list of integers `nums`, where each element in the list represents a term in the series.\n\n#### Function Signature\n```python\ndef sum_of_digits(n: int, nums: list[int]) -> int:\n```\n\n#### Input\n- `n` (int): The number of terms in the series.\n- `nums` (list[int]): A list of integers representing the terms in the series.\n\n#### Output\n- Returns the sum of digits of all terms in the series.",
+    "code": "def sum_of_digits(n: int, nums: list[int]) -> int:\n    total_sum = 0\n    for num in nums:\n        total_sum += sum(int(digit) for digit in str(num))\n    return total_sum",
+    "tests": [
+        "assert sum_of_digits(3, [18, 19, 20]) == 6",
+        "assert sum_of_digits(2, [1, 4]) == 10",
+        "assert sum_of_digits(5, [10, 15, 25, 30, 40]) == 35"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

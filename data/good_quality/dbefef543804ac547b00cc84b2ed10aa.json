@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Sum of Digits",
+    "description": "Given a positive integer n, calculate the sum of its digits. Example, if n = 123, then the sum of its digits would be 1 + 2 + 3 = 6.\n\n#### Function Signature\n```python\ndef sum_of_digits(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the sum of the digits of the input integer.",
+    "code": "def sum_of_digits(n: int) -> int:\n    # Convert the number to a string to iterate over its digits\n    str_n = str(n)\n    # Initialize a variable to hold the sum of the digits\n    total_sum = 0\n    # Iterate over each character (digit) in the string representation of n\n    for digit in str_n:\n        # Add the integer value of the current digit to the total sum\n        total_sum += int(digit)\n    return total_sum",
+    "tests": [
+        "assert sum_of_digits(123) == 6",
+        "assert sum_of_digits(45) == 9",
+        "assert sum_of_digits(999) == 27"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

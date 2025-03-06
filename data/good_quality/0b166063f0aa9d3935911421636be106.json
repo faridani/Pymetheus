@@ -1,0 +1,12 @@
+{
+    "title": "N-Queens Problem",
+    "description": "The N-Queens problem is a classic problem in computer science. It asks to place n queens on an NxN chessboard such that no two queens attack each other. Write a function `solve_n_queens` that takes an integer `n` as input and returns a list of lists, where each inner list represents the position of a queen on the board.\n\n#### Function Signature\n```python\ndef solve_n_queens(n: int) -> List[List[int]]:\n```\n\n#### Input\n- `n` (int): The size of the chessboard and the number of queens to place.\n\n#### Output\n- A list of lists, where each inner list contains two integers representing the row and column of a queen on the board.",
+    "code": "import copy\n\ndef solve_n_queens(n: int) -> List[List[int]]:\n    def is_valid(board, row, col):\n        for i in range(row):\n            if board[i][col] == 1:\n                return False\n        left_col = col\n        right_col = col\n        for i in range(row):\n            if left_col > 0 and board[i][left_col - 1] == 1:\n                left_col -= 1\n            else:\n                break\n        for i in range(row, n):\n            if right_col < n - 1 and board[i][right_col + 1] == 1:\n                right_col += 1\n            else:\n                break\n        return left_col >= 0 and right_col < n and all(board[i][left_col:i+1] != 1 for i in range(row))\n\n    def place_queens(n, row):\n        if row == n:\n            return [[]]\n        boards = []\n        for col in range(n):\n            board = copy.deepcopy(place_queens(n, row + 1)[0])\n            board.append([row, col])\n            if is_valid(board, row, col):\n                boards.extend([[*board[0], *board[-1]]] + place_queens(n, row + 1))\n        return boards\n\n    return place_queens(n, 0)",
+    "tests": [
+        "assert len(solve_n_queens(4)) == 8",
+        "assert solve_n_queens(3) == [[0, 0], [1, 1], [2, 2]]"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

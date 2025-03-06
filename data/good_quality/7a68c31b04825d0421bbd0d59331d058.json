@@ -1,0 +1,14 @@
+{
+    "title": "Ternary Tree Traversal",
+    "description": "Write a function that traverses a ternary tree and calculates the sum of all node values.\n\n#### Function Signature\n```\ndef ternary_tree_traversal(root: dict) -> int:\n```\n\n#### Input\n- `root` (dict): The root node of the ternary tree, where each node is represented as a dictionary with keys 'left', 'middle', and 'right' representing the left child, middle child, and right child respectively. Each node also contains an integer value.\n\n#### Output\n- Returns the sum of all node values in the ternary tree.\n\nNote: The ternary tree can be empty (i.e., root is None).\n\nExample: If the input tree looks like this:\n\n      1\n     / \\\n    2   3\n   / \\ / \\\n  4 5 6 7\n\nThe output should be 28 (1 + 2 + 3 + 4 + 5 + 6 + 7).\n\n#### Constraints\n- The input tree will not contain any cycles.\n- Each node in the tree will have a unique value.\n\nHint: You can use recursion to solve this problem. Think about how you would traverse an empty ternary tree, and then extend that logic to handle non-empty trees.",
+    "code": "",
+    "\ndef ternary_tree_traversal(root: dict) -> int:\n    if root is None:\n        return 0\n    else:\n        return root['value'] + ternary_tree_traversal(root.get('left', {})) + ternary_tree_traversal(root.get('middle', {})) + ternary_tree_traversal(root.get('right', {}))": "",
+    "tests": [
+        "assert ternary_tree_traversal({'value': 1, 'left': {'value': 2, 'left': {}, 'middle': {}, 'right': {}}, 'middle': {'value': 3, 'left': {}, 'middle': {}, 'right': {}}}) == 7",
+        "assert ternary_tree_traversal({'value': 0, 'left': {}, 'middle': {'value': 2, 'left': {}, 'middle': {}, 'right': {}}, 'right': {}}) == 2",
+        "assert ternary_tree_traversal(None) == 0"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

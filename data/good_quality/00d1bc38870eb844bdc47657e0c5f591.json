@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of a Triangle",
+    "description": "In this problem, you are given a list of lists, where each sublist represents the edges of a triangle. The goal is to find the maximum sum of all possible triangles that can be formed from these edges.\n\n#### Function Signature\n```python\ndef max_triangle_sum(triangles: List[List[int]]) -> int:\n```\n\n#### Input\n- `triangles` (List[List[int]]): A list of lists, where each sublist contains the lengths of three edges of a triangle.\n\n#### Output\n- Returns the maximum sum of all possible triangles that can be formed from these edges.",
+    "code": "from typing import List\n\ndef max_triangle_sum(triangles: List[List[int]]) -> int:\n    def is_triangle(edge1, edge2, edge3) -> bool:\n        return edge1 + edge2 > edge3 and edge1 + edge3 > edge2 and edge2 + edge3 > edge1\n\n    max_sum = 0\n    for triangle in triangles:\n        if is_triangle(*triangle):\n            max_sum += sum(triangle)\n    return max_sum",
+    "tests": [
+        "assert max_triangle_sum([[5, 6, 7], [10, 12, 15]]) == 33",
+        "assert max_triangle_sum([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == 24",
+        "assert max_triangle_sum([[1, 1, 1], [2, 2, 2], [3, 3, 3]]) == 6",
+        "assert max_triangle_sum([[]]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

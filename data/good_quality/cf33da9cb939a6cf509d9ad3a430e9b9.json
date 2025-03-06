@@ -1,0 +1,15 @@
+{
+    "title": "Medium: Number of Islands",
+    "description": "Write a function `count_islands` that takes as input a 2D list `grid` representing a map with islands, where `grid[i][j]` is either 'W' for water or 'L' for land. The function should return the number of islands in the grid.\n\n#### Function Signature\n```\ndef count_islands(grid: List[List[str]]) -> int:\n```\n\n#### Input\n- `grid` (List[List[str]]): A 2D list representing a map with islands, where 'W' is water and 'L' is land.\n\n#### Output\n- Returns the number of islands in the grid.",
+    "code": "",
+    "\nimport heapq\nfrom typing import List\n\ndef count_islands(grid: List[List[str]]) -> int:\n    if not grid:\n        return 0\n\n    rows, cols = len(grid), len(grid[0])\n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n    visited = [[False] * cols for _ in range(rows)]\n\n    def dfs(r, c):\n        if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] != 'L' or visited[r][c]:\n            return\n        visited[r][c] = True\n        for dr, dc in directions:\n            dfs(r + dr, c + dc)\n\n    count = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 'L' and not visited[r][c]:\n                dfs(r, c)\n                count += 1\n\n    return count": "",
+    "tests": [
+        "assert count_islands([['W', 'W', 'W'], ['W', 'L', 'W'], ['W', 'W', 'W']]) == 1",
+        "assert count_islands([['W', 'W', 'W', 'W', 'W'], ['W', 'L', 'L', 'L', 'W'], ['W', 'W', 'W', 'W', 'W']]) == 2",
+        "assert count_islands([['W', 'W', 'W', 'W', 'W', 'W'], ['W', 'W', 'L', 'L', 'L', 'W'], ['W', 'W', 'W', 'W', 'W', 'W']]) == 3",
+        "assert count_islands([['W', 'W', 'W', 'W', 'W', 'W', 'W'], ['W', 'W', 'W', 'L', 'L', 'L', 'W'], ['W', 'W', 'W', 'W', 'W', 'W', 'W']]) == 4"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

@@ -1,0 +1,15 @@
+{
+    "title": "Median of a Stream of Integers (Medium)",
+    "description": "Design an algorithm to find the median of a stream of integers. The class should follow these rules:\n- It must include a method `insert(int val)` that adds a new number into the data stream.\n- It must include a method `getMedian()` that returns the median of all numbers currently in the data stream.\n\n#### Function Signature\n```\nclass MedianCalculator:\n    def __init__(self):\n        self.max_heap = []\n        self.min_heap = []\n\n    def insert(self, val: int) -> None:\n        # Your code here\n\n    def getMedian(self) -> float:\n        # Your code here\n```\n\n#### Input\n- `val` (int): A new integer to be inserted into the data stream.\n\n#### Output\n- Returns the median of all integers currently in the data stream.",
+    "code": "\nimport heapq\n\nclass MedianCalculator:\n    def __init__(self):\n        self.max_heap = []\n        self.min_heap = []\n\n    def insert(self, val: int) -> None:\n        if not self.max_heap or val < -self.max_heap[0]:\n            heapq.heappush(self.max_heap, -val)\n        else:\n            heapq.heappush(self.min_heap, val)\n\n        if len(self.max_heap) > len(self.min_heap) + 1:\n            heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))\n        elif len(self.min_heap) > len(self.max_heap):\n            heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))\n\n    def getMedian(self) -> float:\n        if len(self.max_heap) == len(self.min_heap):\n            return (-self.max_heap[0] + self.min_heap[0]) / 2\n        else:\n            return -self.max_heap[0]",
+    "tests": [
+        "assert MedianCalculator().getMedian() == float('inf'), 'Initial median is infinity'",
+        "assert MedianCalculator().insert(1).getMedian() == 1",
+        "assert MedianCalculator().insert(2).getMedian() == 1.5",
+        "assert MedianCalculator().insert(3).getMedian() == 2",
+        "assert MedianCalculator().insert(-1).insert(0).getMedian() == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

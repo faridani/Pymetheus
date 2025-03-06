@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Non-Adjacent Elements",
+    "description": "#### Problem Statement\nYou are given a list of integers `nums` where each integer represents the sum of a pair of adjacent elements from another list. Your task is to find the maximum sum that can be obtained by choosing some of these pairs. You cannot choose any two adjacent elements.\n\n#### Function Signature\n```\ndef max_sum_non_adjacent(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums` (List[int]): A list of integers where each integer represents the sum of a pair of adjacent elements from another list.\n\n#### Output\n- Returns the maximum sum that can be obtained by choosing some of these pairs.",
+    "code": "",
+    "\nimport functools\n\ndef max_sum_non_adjacent(nums):\n    if len(nums) <= 2:\n        return max(0, max(nums))\n    \n    @functools.lru_cache(None)\n    def dp(i):\n        if i < 2:\n            return max(0, nums[i])\n        return max(dp(i-1), dp(i-2) + nums[i])\n\n    return dp(len(nums)-1)": "",
+    "tests": [
+        "assert max_sum_non_adjacent([5, 10, 15, 20]) == 30",
+        "assert max_sum_non_adjacent([-3, -4, 0, 3]) == 6",
+        "assert max_sum_non_adjacent([1, 2, 3]) == 4"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

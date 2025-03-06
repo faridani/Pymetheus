@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Treehouse of Mirrors",
+    "description": "You are given a tree with nodes labeled from 1 to n. Each node has an integer value and two child nodes (either both children exist or neither does). A tree is considered a Treehouse of Mirrors if for every node, the sum of its children's values equals the value of the node itself, and this property holds recursively until you reach leaf nodes. Write a function `treehouse_of_mirrors` that checks whether a given tree is a Treehouse of Mirrors.\n\n#### Function Signature\n```python\ndef treehouse_of_mirrors(root: TreeNode) -> bool:\n```\n\n#### Input\n- `root` (TreeNode): The root node of the tree.",
+    "code": "class TreeNode:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\ndef treehouse_of_mirrors(root: TreeNode) -> bool:\n    def dfs(node: TreeNode) -> tuple:\n        if node is None:\n            return 0, True\n        left_sum, left_mirrored = dfs(node.left)\n        right_sum, right_mirrored = dfs(node.right)\n        current_sum = node.value + left_sum + right_sum\n        return current_sum, current_sum == node.value and left_mirrored and right_mirrored\n\n    return dfs(root)[1]",
+    "tests": [
+        "assert treehouse_of_mirrors(TreeNode(3)) == True",
+        "assert treehouse_of_mirrors(TreeNode(2, TreeNode(4), TreeNode(-1))) == False",
+        "assert treehouse_of_mirrors(TreeNode(5, TreeNode(7), TreeNode(3, TreeNode(-6), TreeNode(2)))) == True"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

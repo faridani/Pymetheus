@@ -1,0 +1,14 @@
+{
+    "title": "Counting Tree Leaves",
+    "description": "In this problem, we are given a binary tree where each node has a value and two children (left child and right child). We want to count the number of leaves in the tree. A leaf is a node that does not have any children.\n\n#### Function Signature\n```python\ndef count_leaves(root: Node) -> int:\n```\n\n#### Input\n- `root` (Node): The root of the binary tree.\n\n#### Output\n- Returns the number of leaves in the tree.",
+    "code": "",
+    "\nclass Node:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef count_leaves(root: Node) -> int:\n    if root is None:\n        return 0\n    \n    if root.left is None and root.right is None:\n        return 1\n    \n    return count_leaves(root.left) + count_leaves(root.right)": "",
+    "tests": [
+        "assert count_leaves(Node(2, Node(4), Node(5))) == 2",
+        "assert count_leaves(Node(3, Node(6, Node(8)), Node(7))) == 1",
+        "assert count_leaves(None) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

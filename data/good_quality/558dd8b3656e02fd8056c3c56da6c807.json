@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Evenly Distributed Integers",
+    "description": "Given a list of integers, write a function `even_distribution` that determines if the given list contains evenly distributed integers. A list is said to be evenly distributed if for any integer k in the range from 1 to n (where n is the size of the list), there are at most two elements in the list that are congruent to k modulo n.\n\n#### Function Signature\n```python\ndef even_distribution(nums: list[int]) -> bool:\n```\n\n#### Input\n- `nums` (list[int]): A list of integers.\n\n#### Output\n- Returns `True` if the input list contains evenly distributed integers, `False` otherwise.",
+    "code": "def even_distribution(nums: list[int]) -> bool:\n    n = len(nums)\n    for k in range(1, n+1):\n        count = 0\n        for num in nums:\n            if (num % n) == k % n:\n                count += 1\n            if count > 2:\n                return False\n    return True",
+    "tests": [
+        "assert even_distribution([1, 2, 3, 4, 5]) == True",
+        "assert even_distribution([1, 2, 3, 6, 7]) == False",
+        "assert even_distribution([]) == True",
+        "assert even_distribution([1]) == True"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

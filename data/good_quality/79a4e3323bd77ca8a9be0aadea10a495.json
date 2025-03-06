@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Sudoku Validator",
+    "description": "Sudoku is a 9x9 grid, divided into nine 3x3 sub-grids or \"regions.\" Some numbers are already filled in (we'll call these the given numbers), and the goal is to fill in the remaining empty cells with the numbers from 1 to 9 such that each row, column, and region contains each number exactly once. Write a function `validate_sudoku` that takes a 2D list representing a Sudoku board as input and returns `True` if it's a valid Sudoku board, and `False` otherwise.\n\n#### Function Signature\n```python\ndef validate_sudoku(board: list[list[int]]) -> bool:\n```\n\n#### Input\n- `board` (list[list[int]]): A 2D list representing a Sudoku board. Each cell in the grid can be an integer from 1 to 9 or 0 if it's empty.\n\n#### Output\n- Returns `True` if the input Sudoku board is valid, and `False` otherwise.",
+    "code": "\nimport copy\n\ndef validate_sudoku(board: list[list[int]]) -> bool:\n    # Check each row\n    for row in board:\n        seen = set()\n        for num in row:\n            if num == 0:\n                continue\n            if num in seen:\n                return False\n            seen.add(num)\n\n    # Check each column\n    for col_idx in range(len(board[0])):\n        seen = set()\n        for row in board:\n            if row[col_idx] == 0:\n                continue\n            if row[col_idx] in seen:\n                return False\n            seen.add(row[col_idx])\n\n    # Check each region\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            seen = set()\n            for x in range(i, i+3):\n                for y in range(j, j+3):\n                    if board[x][y] == 0:\n                        continue\n                    if board[x][y] in seen:\n                        return False\n                    seen.add(board[x][y])\n\n    # If we've reached this point, the Sudoku is valid\n    return True",
+    "tests": [
+        "assert validate_sudoku([[5,3,4,6,7,8,9,1,2], [6,7,8,9,1,2,3,4,5], [1,9,8,3,4,2,5,6,7], [8,5,9,7,6,3,4,2,1], [4,2,6,8,5,3,7,9,1], [7,1,3,9,2,4,8,5,6], [9,6,1,5,3,7,2,8,4], [2,8,7,1,4,9,6,3,5], [3,4,5,2,8,6,1,7,9]]) == True",
+        "assert validate_sudoku([[5,3,4,6,7,8,9,1,0], [6,7,8,9,1,2,3,4,5], [1,9,8,3,4,2,5,6,7], [8,5,9,7,6,3,4,2,1], [4,2,6,8,5,3,7,9,1], [7,1,3,9,2,4,8,5,6], [9,6,1,5,3,7,2,8,4], [2,8,7,1,4,9,6,3,5], [3,4,5,2,8,6,1,7,9]]) == False",
+        "assert validate_sudoku([[0 for _ in range(9)] for _ in range(9)]) == False",
+        "assert validate_sudoku([[1,2,3],[4,5,6],[7,8,9]]) == True"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

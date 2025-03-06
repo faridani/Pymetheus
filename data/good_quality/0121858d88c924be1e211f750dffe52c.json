@@ -1,0 +1,14 @@
+{
+    "title": "Counting Trees",
+    "description": "You are given an undirected graph, represented as a list of edges where each edge is represented by two integers (the nodes that the edge connects). Write a function `count_trees` that counts the number of trees in the graph. A tree in this context is a connected subgraph with no cycles.\n\n#### Function Signature\n```python\ndef count_trees(edges: List[Tuple[int, int]]) -> int:\n```\n\n#### Input\n- `edges` (List[Tuple[int, int]]): A list of edges where each edge is represented by two integers (the nodes that the edge connects).\n\n#### Output\n- Returns the number of trees in the graph.",
+    "code": "",
+    "\nimport collections\n\ndef count_trees(edges):\n    # Create an adjacency list representation of the graph\n    graph = collections.defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v)\n        graph[v].append(u)\n\n    # Initialize the tree counter\n    trees = 0\n\n    # Iterate over all nodes\n    for node in range(len(graph)):\n        # If the node has not been visited yet\n        if node not in set().union(*graph.values()):\n            # Perform DFS to count the number of nodes reachable from this node\n            stack = [node]\n            visited = {node}\n            while stack:\n                current_node = stack.pop()\n                for neighbor in graph[current_node]:\n                    if neighbor not in visited:\n                        stack.append(neighbor)\n                        visited.add(neighbor)\n            # If the number of nodes reachable from this node is equal to 1\n            if len(visited) == 1:\n                trees += 1\n\n    return trees": "",
+    "tests": [
+        "assert count_trees([(0, 1), (1, 2)]) == 3",
+        "assert count_trees([(0, 1), (1, 2), (2, 3), (3, 4)]) == 4",
+        "assert count_trees([]) == 0"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

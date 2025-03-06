@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Maximum Sum of Distinct Elements",
+    "description": "Given a list of integers and an integer k, find the maximum sum of k distinct elements from the list. If there are multiple solutions with the same maximum sum, return any one of them.\n\n#### Function Signature\n```python\ndef max_sum(k: int, numbers: list[int]) -> list[int]:\n```\n\n#### Input\n- `k` (int): The number of distinct elements to select.\n- `numbers` (list[int]): A list of integers.\n\n#### Output\n- Returns a list of k distinct integers from the input list with maximum sum.",
+    "code": "\ndef max_sum(k: int, numbers: list[int]) -> list[int]:\n    from typing import List\n    import heapq\n\n    # Convert the list to a heap\n    heap = []\n    for num in numbers:\n        if not heap or num > heap[0]:\n            heapq.heappush(heap, num)\n        else:\n            heapq.heappushpop(heap, num)\n\n    # Select k distinct elements with maximum sum\n    max_sum = 0\n    selected = []\n    while k > 0 and heap:\n        val = -heapq.heappop(heap)  # Convert the heap to a min heap\n        if len(selected) < k or val + sum(selected[-k:]) > max_sum:\n            selected.append(val)\n            max_sum = val + sum(selected[-k:])\n    return selected",
+    "tests": [
+        "assert sorted(max_sum(3, [1, 2, 3, 4, 5])) == [4, 5, 6]",
+        "assert len(set(max_sum(2, [10, 40, 20, 50, 30]))) == 2",
+        "assert max_sum(1, [5]) == [5]",
+        "assert sorted(max_sum(3, [1, 2, 3, 4, 5])) == [4, 5, 6]"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

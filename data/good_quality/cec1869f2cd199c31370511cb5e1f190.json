@@ -1,0 +1,15 @@
+{
+    "title": "Coin Change II",
+    "description": "Consider a set of coins with denominations 1, 5 and 25. Write a function `coin_change` that calculates the number of ways to make change for a given amount using these coins.\n\n#### Function Signature\n```python\ndef coin_change(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The amount for which you want to calculate the number of ways to make change.\n\n#### Output\n- Returns the number of ways to make change for the given amount using coins with denominations 1, 5 and 25.",
+    "code": "",
+    "\nimport functools\n\ndef coin_change(n: int) -> int:\n    # Create a list to store the minimum number of coins needed for each amount from 0 to n\n    dp = [float('inf')] * (n + 1)\n    \n    # Base case: it takes 0 coins to make change for 0 amount\n    dp[0] = 0\n    \n    # For each amount from 1 to n\n    for i in range(1, n + 1):\n        # If the current amount is less than or equal to 25, \n        # then we can use a coin of denomination 25\n        if i >= 25:\n            dp[i] = min(dp[i], dp[i - 25] + 1)\n        \n        # For each denomination (1, 5 and 25)\n        for j in range(3):\n            # If the current amount is less than or equal to the denomination, \n            # then we can use a coin of that denomination\n            if i >= j * (1 if j == 0 else 5 if j == 1 else 25):\n                dp[i] = min(dp[i], dp[i - j * (1 if j == 0 else 5 if j == 1 else 25)] + 1)\n    \n    # The number of ways to make change is the minimum number of coins needed for the given amount\n    return dp[n]": "",
+    "tests": [
+        "assert coin_change(5) == 4",
+        "assert coin_change(10) == 14",
+        "assert coin_change(25) == 279",
+        "assert coin_change(50) == 5996"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}

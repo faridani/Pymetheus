@@ -1,0 +1,13 @@
+{
+    "title": "Harmonious Notes",
+    "description": "A melody consists of a series of notes that can be described by their frequencies (in Hz). A harmonious note sequence is one where the difference between each consecutive pair of notes is a whole number. Write a function `harmonious_notes` that takes as input two lists of integers representing the start and end notes of a range, and returns whether the sequence of all possible notes within this range is harmonious.\n\n#### Function Signature\n```python\ndef harmonious_notes(start: list[int], end: list[int]) -> bool:\n```\n\n#### Input\n- `start` (list[int]): A list of two integers representing the start note of a range.\n- `end` (list[int]): A list of two integers representing the end note of a range.\n\n#### Output\n- Returns `True` if the sequence of all possible notes within this range is harmonious, `False` otherwise.",
+    "code": "",
+    "\nimport math\n\ndef harmonious_notes(start: list[int], end: list[int]) -> bool:\n    start = min(start)\n    end = max(end)\n\n    for i in range(min(start), max(end) + 1):\n        if not all(math.isclose(i, j) or math.isclose(j, i) for j in range(i - 1, i + 2)):\n            return False\n\n    return True": "",
+    "tests": [
+        "assert harmonious_notes([261.63, 329.63], [523.25, 659.26]) == True",
+        "assert harmonious_notes([293.66, 329.63], [587.33, 659.26]) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

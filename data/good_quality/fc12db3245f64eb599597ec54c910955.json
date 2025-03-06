@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Fizz Buzz",
+    "description": "Write a function `fizz_buzz` that takes an integer `n` as input and returns a string that represents the Fizz Buzz sequence up to `n`. In this sequence, each number from 1 to `n` is replaced by one of three strings:\n- `\"Fizz\"` if the number is divisible by 3,\n- `\"Buzz\"` if the number is divisible by 5,\n- The original number as a string otherwise.\n\n#### Function Signature\n```python\ndef fizz_buzz(n: int) -> str:\n```\n\n#### Input\n- `n` (int): An integer that represents the upper limit of the Fizz Buzz sequence.\n\n#### Output\n- A string that represents the Fizz Buzz sequence up to `n`. Each number from 1 to `n` is replaced by one of three strings: `\"Fizz\"`, `\"Buzz\"`, or the original number as a string.",
+    "code": "def fizz_buzz(n: int) -> str:\n    result = ''\n    for i in range(1, n+1):\n        if i % 3 == 0 and i % 5 == 0:\n            result += 'FizzBuzz '\n        elif i % 3 == 0:\n            result += 'Fizz '\n        elif i % 5 == 0:\n            result += 'Buzz '\n        else:\n            result += str(i) + ' '\n    return result.strip()",
+    "tests": [
+        "assert fizz_buzz(15) == '1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz'",
+        "assert fizz_buzz(3) == '1 2 Fizz'",
+        "assert fizz_buzz(10) == '1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz'",
+        "assert fizz_buzz(100) == '1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 20 FizzBuzz 22 Fizz 23 24 Fizz Buzz 26 Fizz 27 28 Fizz Buzz 30 Fizz 31 32 FizzBuzz 34 Fizz 35 36 Fizz Buzz 38 Fizz 39 40 FizzBuzz 41 Fizz 42 43 FizzBuzz 44 Fizz 45 46 Fizz Buzz 48 Fizz 49 50 FizzBuzz 52 Fizz 53 54 FizzBuzz 55 Fizz 56 57 Fizz Buzz 58 Fizz 59 60 FizzBuzz 61 Fizz 62 63 FizzBuzz 64 Fizz 65 66 Fizz Buzz 68 Fizz 69 70 FizzBuzz 71 Fizz 72 73 FizzBuzz 74 Fizz 75 76 Fizz Buzz 77 Fizz 78 79 FizzBuzz 80 Fizz 81 82 FizzBuzz 83 Fizz 84 85 Fizz Buzz 86 Fizz 87 88 FizzBuzz 89 Fizz 90 FizzBuzz'"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

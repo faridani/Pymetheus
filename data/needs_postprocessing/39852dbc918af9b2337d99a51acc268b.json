@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Euler's Discrete Logarithm\", \"description\": \"Find the discrete logarithm of 2^p + 3^p modulo p for p = 1 to 100. The discrete logarithm is defined as y = x^d (mod n) where gcd(x, n) = 1 and 0 <= d < phi(n).\\n\\n#### Function Signature\\n```\\ndef euler_discrete_logarithm(p: int) -> None:\\n```\\n\\n#### Input\\n- `p` (int): An integer from 1 to 100.\\n\\n#### Output\\n- Prints the discrete logarithm of 2^p + 3^p modulo p for each value of p.\", \"code\": \"\\nimport math\\n\\ndef euler_discrete_logarithm(p: int) -> None:\\n    for i in range(1, p + 1):\\n        n = i\\n        x = pow(2, i) + pow(3, i)\\n        y = 0\\n        while (x - 1) % n != 0:\\n            x = ((x * y) % n)\\n            y = (y + 1) % math.gcd(n, x)\\n        print(f\", \"y}.\": \", 'tests': [\\\"print(euler_discrete_logarithm(100))\\\"]\"}"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Closest Pair of Integers",
+    "description": "Write a function `closest_pair` that takes as input two lists of integers, `nums1` and `nums2`, and returns the smallest absolute difference between any pair of numbers from these lists. If no such pair exists (i.e., all numbers are distinct), return 0.\n\n#### Function Signature\n```python\ndef closest_pair(nums1: list[int], nums2: list[int]) -> int:\n```\n\n#### Input\n- `nums1` and `nums2` (list[int]): Two lists of integers, each containing at least one number.\n\n#### Output\n- Returns the smallest absolute difference between any pair of numbers from these lists. If no such pair exists, returns 0.",
+    "code": "def closest_pair(nums1: list[int], nums2: list[int]) -> int:\n    if not set(nums1).intersection(set(nums2)):\n        return 0\n    min_diff = float('inf')\n    for num1 in nums1:\n        for num2 in nums2:\n            diff = abs(num1 - num2)\n            if diff < min_diff:\n                min_diff = diff\n    return int(min_diff)",
+    "tests": [
+        "assert closest_pair([3, 5, 7], [1, 4]) == 0",
+        "assert closest_pair([-5, 10, 20], [-10, -5, 5]) == 5",
+        "assert closest_pair([2, 3, 8], [1, 6]) == 1",
+        "assert closest_pair([0], [0]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ICPC"
+}

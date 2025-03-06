@@ -1,0 +1,13 @@
+{
+    "title": "Find the Smallest Rectangle",
+    "description": "Given a set of rectangles with coordinates (x1, y1), (x2, y1), (x1, y2), and (x2, y2) for each rectangle, find the smallest possible area that can be covered by at most one rectangle. The function should return the minimum possible area.\n\n#### Function Signature\n```python\ndef min_area(rectangles: list[tuple[int, int, int, int]]) -> int:\n```\n\n#### Input\n- `rectangles` (list[tuple[int, int, int, int]]): A list of rectangles where each rectangle is represented as a tuple of four integers `(x1, y1), (x2, y1), (x1, y2), and (x2, y2)`.\n\n#### Output\n- Returns the minimum possible area that can be covered by at most one rectangle.",
+    "code": "\nfrom typing import List, Tuple\n\ndef min_area(rectangles: List[Tuple[int, int, int, int]]) -> int:\n    max_x1 = max(x1 for x1, _, _, _ in rectangles)\n    max_y2 = max(y2 for _, _, _, y2 in rectangles)\n    \n    min_x2 = min(x2 for x1, _, x2, _ in rectangles)\n    min_y1 = min(y1 for _, y1, _, _ in rectangles)\n\n    return (max_x1 - min_x2) * (max_y2 - min_y1)",
+    "tests": [
+        "assert min_area([(0, 0, 3, 4), (1, 1, 4, 5)]) == 8",
+        "assert min_area([(0, 0, 3, 4), (2, 2, 5, 6)]) == 9",
+        "assert min_area([(1, 1, 3, 3), (4, 4, 6, 6)]) == 16"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

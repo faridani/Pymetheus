@@ -1,0 +1,14 @@
+{
+    "title": "Elegant Divisions",
+    "description": "#### Problem Statement\nWrite a function that takes an integer `n` as input and returns a list of all integers from 1 to `n` (inclusive) whose decimal representation can be divided into exactly two parts when read from left to right. The division is considered 'elegant' if the parts have equal sum.\n\n#### Function Signature\n```python\ndef elegant_divisions(n: int) -> list[int]:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns a list of integers from 1 to `n` that have exactly two parts when their decimal representation is read from left to right, and the sum of these parts is equal.",
+    "code": "def elegant_divisions(n: int) -> list[int]:\n    result = []\n    for i in range(1, n+1):\n        num_str = str(i)\n        part_sum = 0\n        parts = 0\n        for j, char in enumerate(num_str):\n            part_sum += int(char)\n            if (j + 1) % 2 == 0:\n                parts += 1\n            if j > len(str(int(part_sum / 2))):\n                break\n        if parts * 2 == len(num_str) and part_sum == 2 * sum(map(int, num_str)):\n            result.append(i)\n    return result",
+    "tests": [
+        "assert elegant_divisions(1000) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+        "assert elegant_divisions(20) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]",
+        "assert elegant_divisions(50) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]",
+        "assert elegant_divisions(100) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "AtCoder"
+}

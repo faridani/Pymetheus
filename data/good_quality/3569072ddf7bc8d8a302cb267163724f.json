@@ -1,0 +1,13 @@
+{
+    "title": "Maximum Sum of an Increasing Subsequence",
+    "description": "Given a list of integers, find the maximum sum of an increasing subsequence. A subsequence is a sequence that can be derived from another sequence by deleting some elements without changing the order of the remaining elements.\n\n#### Function Signature\n```\ndef max_increasing_subsequence_sum(arr: list) -> int:\n```\n\n#### Input\n- `arr` (list): A list of integers.\n\n#### Output\n- Returns the maximum sum of an increasing subsequence in the input array.",
+    "code": "\ndef max_increasing_subsequence_sum(arr: list) -> int:\n    if not arr:\n        return 0\n\n    dp = [0] * len(arr)\n    dp[0] = arr[0]\n\n    for i in range(1, len(arr)):\n        dp[i] = arr[i]\n        for j in range(i):\n            if arr[i] > arr[j]:\n                dp[i] = max(dp[i], dp[j] + arr[i])\n\n    return max(dp)",
+    "tests": [
+        "assert max_increasing_subsequence_sum([10, 70, 60, 80, 30]) == 230",
+        "assert max_increasing_subsequence_sum([1, 2, 3, 4, 5]) == 15",
+        "assert max_increasing_subsequence_sum([]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

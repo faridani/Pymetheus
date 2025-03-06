@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Check if a Number is Powerful",
+    "description": "A number n is said to be powerful if for every prime factor p of n, (p^k) is also a divisor of n, where k is the multiplicity of p as a factor of n. Write a function `is_powerful` that takes an integer and returns True if it is powerful, False otherwise.\n\n#### Function Signature\n```python\ndef is_powerful(n: int) -> bool:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns `True` if the input number is powerful, `False` otherwise.",
+    "code": "import math\ndef is_powerful(n: int) -> bool:\n    def prime_factors(n: int) -> list:\n        i = 2\n        factors = []\n        while i * i <= n:\n            if n % i:\n                j = 2\n                while j * i <= n and n % (j * i):\n                    j += 1\n                factors.extend([i] * j)\n                n //= i * i\n            else:\n                n //= i\n        if n > 1:\n            factors.append(n)\n        return factors\n    factors = prime_factors(n)\n    for factor in set(factors):\n        exponent = 0\n        while n % (factor ** (exponent + 1)) == 0:\n            exponent += 1\n        if exponent != len([f for f in factors if f == factor]):\n            return False\n    return True",
+    "tests": [
+        "assert is_powerful(16) == True",
+        "assert is_powerful(18) == True",
+        "assert is_powerful(4) == False",
+        "assert is_powerful(2**17) == True"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

@@ -1,0 +1,16 @@
+{
+    "title": "Euler Totient Function",
+    "description": "The Euler totient function, denoted as \u03c6(n), is a mathematical function that counts the positive integers up to a given number n that are relatively prime to n. In other words, it counts the numbers less than or equal to n that are coprime to n.\n\n#### Function Signature\n```python\ndef euler_totient(n: int) -> int:\n```\n\n#### Input\n- `n` (int): A positive integer.\n\n#### Output\n- Returns the value of \u03c6(n).",
+    "code": "",
+    "\nimport math\n\ndef euler_totient(n: int) -> int:\n    result = 0\n    for i in range(1, n + 1):\n        if math.gcd(i, n) == 1:\n            result += 1\n    return result": "",
+    "tests": [
+        "assert euler_totient(1) == 1",
+        "assert euler_totient(2) == 1",
+        "assert euler_totient(3) == 2",
+        "assert euler_totient(4) == 2",
+        "assert euler_totient(5) == 4"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

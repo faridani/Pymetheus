@@ -1,0 +1,13 @@
+{
+    "title": "Tree Traversals",
+    "description": "Given a binary tree, implement functions to traverse the tree using pre-order, in-order, and post-order traversals. The traversal functions should return a list of node values. For example, if the tree is 1 -> 2 -> 3, then the pre-order traversal would be [1, 2, 3], the in-order traversal would be [1, 2, 3], and the post-order traversal would be [3, 2, 1].\n\n#### Function Signature\n```python\ndef traverse_tree(root: Node) -> list:\n```\n\n#### Input\n- `root` (Node): The root of a binary tree.\n\n#### Output\n- Returns a list of node values in the specified traversal order.",
+    "code": "\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n\ndef traverse_tree(root: Node) -> list:\n    result = []\n    \n    if root is not None:\n        # Pre-order traversal\n        result.append(root.value)\n        result.extend(traverse_tree(root.left) if root.left else [])\n        result.extend(traverse_tree(root.right) if root.right else [])\n\n        # In-order traversal\n        if root.left:\n            result.extend(traverse_tree(root.left))\n        result.append(root.value)\n        if root.right:\n            result.extend(traverse_tree(root.right))\n\n        # Post-order traversal\n        if root.right:\n            result.extend(traverse_tree(root.right))\n        if root.left:\n            result.extend(traverse_tree(root.left))\n        result.append(root.value)\n\n    return result",
+    "tests": [
+        "assert traverse_tree(Node(1)) == [1]",
+        "assert traverse_tree(Node(1, Node(2), Node(3))) == [1, 2, 3, 3, 2, 1]",
+        "assert traverse_tree(None) == []"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

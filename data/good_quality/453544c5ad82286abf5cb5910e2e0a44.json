@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Minimum Distance Between Two Words",
+    "description": "Given a list of words, find the minimum distance between two given words. The distance between two words is defined as the number of words that are not the target word in between the two words.\n\n#### Function Signature\n```python\ndef min_distance(words: List[str], target1: str, target2: str) -> int:\n```\n\n#### Input\n- `words` (List[str]): A list of words where all words are unique.\n- `target1` (str): The first target word.\n- `target2` (str): The second target word.\n\n#### Output\n- Returns the minimum distance between the two target words in the input list. If either target is not found, return -1.",
+    "code": "\nimport heapq\n\ndef min_distance(words, target1, target2):\n    word_index = {word: i for i, word in enumerate(words)}\n    queue = [(0, target1)]\n    seen = set()\n    min_dist = float('inf')\n\n    while queue:\n        dist, word = heapq.heappop(queue)\n        if word == target2:\n            return dist\n        if word not in seen:\n            seen.add(word)\n            for i in range(len(words)):\n                if words[i] == word:\n                    for j in range(i-1, -1, -1):\n                        if words[j] != word and words[j] not in seen:\n                            heapq.heappush(queue, (dist + 1, words[j]))\n                            break\n                    for j in range(i+1, len(words)):\n                        if words[j] != word and words[j] not in seen:\n                            heapq.heappush(queue, (dist + 1, words[j]))\n                            break\n\n    return -1",
+    "tests": [
+        "assert min_distance(['apple', 'banana', 'orange', 'grape', 'kiwi'], 'banana', 'kiwi') == 2",
+        "assert min_distance(['apple', 'banana', 'orange', 'grape', 'kiwi'], 'kiwi', 'banana') == -1",
+        "assert min_distance(['apple', 'banana', 'orange', 'grape', 'kiwi'], 'apple', 'grape') == 3"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

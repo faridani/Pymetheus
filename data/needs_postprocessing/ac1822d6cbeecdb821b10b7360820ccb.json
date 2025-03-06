@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Maximum Sum of Three Elements\\\", \\\"description\\\": \\\"Given three arrays A, B and C of the same size, containing integers from 1 to n, return the maximum sum of three elements from these arrays.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef max_sum(A: list[int], B: list[int], C: list[int]) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `A` (list[int]), `B` (list[int]), `C` (list[int]): Three lists of integers from 1 to n.\\\\n\\\\n#### Output\\\\n- Returns the maximum sum of three elements from these arrays.\\\", \\\"code\\\": \\\"def max_sum(A: list[int], B: list[int], C: list[int]) -> int:\\\\n    return max(max(a, b, c) for a, b, c in zip(A, B, C))\\\\n\\\", \\\"tests\\\": [\\\"assert max_sum([1, 2, 3], [4, 5, 6], [7, 8, 9]) == 15\\\", \\\"assert max_sum([-1, 0, 1], [-2, -1, 0], [-3, -2, -1]) == 0\\\", \\\"assert max_sum([10, 20, 30], [40, 50, 60], [70, 80, 90]) == 100\\\"] }\""
+}

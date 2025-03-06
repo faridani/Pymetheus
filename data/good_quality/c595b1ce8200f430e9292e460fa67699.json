@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Binary Search Tree Balancer",
+    "description": "A binary search tree (BST) is a binary tree where each node has at most two children, referred to as the left child and the right child. A BST is valid if for every node in the tree, all elements in its left subtree are less than the element in that node, and all elements in its right subtree are greater than the element in that node. Write a function `balance_bst` that takes a list of integers as input and returns a balanced binary search tree where each node has at most two children.\n\n#### Function Signature\n```python\ndef balance_bst(nums: List[int]) -> TreeNode:\n```\n\n#### Input\n- `nums` (List[int]): A list of integers that represents the values in the BST.\n\n#### Output\n- Returns a balanced binary search tree where each node has at most two children. Each node is represented as an instance of the `TreeNode` class, which has attributes `val`, `left`, and `right` representing its value, left child, and right child respectively.",
+    "code": "class TreeNode:\n    def __init__(self, val=0):\n        self.val = val\n        self.left = None\n        self.right = None\n\ndef balance_bst(nums: List[int]) -> TreeNode:\n    if not nums:\n        return None\n    \n    mid = len(nums) // 2\n    root = TreeNode(nums[mid])\n    \n    if mid > 0:\n        root.left = balance_bst(nums[:mid])\n    if mid < len(nums) - 1:\n        root.right = balance_bst(nums[mid+1:])\n    \n    return root",
+    "tests": [
+        "assert balance_bst([1,2,3]) == TreeNode(val=2, left=TreeNode(val=1), right=TreeNode(val=3))",
+        "assert balance_bst([-1,-2,0,1,2,3]) == TreeNode(val=0, left=TreeNode(val=-2), right=TreeNode(val=2, left=TreeNode(val=-1), right=TreeNode(val=3)))"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

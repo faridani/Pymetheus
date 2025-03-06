@@ -1,0 +1,15 @@
+{
+    "title": "Hard: Sudoku Validator",
+    "description": "A Sudoku puzzle is a 9x9 grid filled with numbers from 1 to 9, such that each row, column and 3x3 sub-grid contains the numbers from 1 to 9 exactly once. Write a function `validate_sudoku` that checks if a given 2D list represents a valid Sudoku puzzle.\n\n#### Function Signature\n```\ndef validate_sudoku(board: [[int]]) -> bool:\n```\n\n#### Input\n- `board` (2D list of integers): A 9x9 grid filled with numbers from 0 to 9, where 0 represents an empty cell.\n\n#### Output\n- Returns `True` if the input Sudoku puzzle is valid, `False` otherwise.",
+    "code": "",
+    "\nimport copy\n\ndef validate_sudoku(board: [[int]]) -> bool:\n    # Check rows\n    for row in board:\n        seen = set()\n        for num in row:\n            if num != 0 and num in seen:\n                return False\n            seen.add(num)\n\n    # Check columns\n    for col_idx in range(9):\n        seen = set()\n        for row in board:\n            num = row[col_idx]\n            if num != 0 and num in seen:\n                return False\n            seen.add(num)\n\n    # Check 3x3 sub-grids\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            seen = set()\n            for k in range(3):\n                for num in board[i+k][j:j+3]:\n                    if num != 0 and num in seen:\n                        return False\n                    seen.add(num)\n\n    return True": "",
+    "tests": [
+        "assert validate_sudoku([[5,3,4,6,7,8,9,1,2], [6,7,8,9,1,2,3,4,5], [1,9,8,3,4,2,5,6,7], [8,5,9,7,6,3,4,2,1], [4,2,6,8,5,3,7,9,1], [7,1,3,9,2,4,8,5,6], [9,6,1,5,3,7,2,8,4], [2,8,4,1,6,5,3,7,9], [3,4,5,2,8,9,1,6,7]]) == True",
+        "assert validate_sudoku([[0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [1,2,3,4,5,6,7,8,9], [10,11,12,13,14,15,16,17,18], [19,20,21,22,23,24,25,26,27]]) == False",
+        "assert validate_sudoku([[1,2,3], [4,5,6], [7,8,9]]) == True",
+        "assert validate_sudoku([[0,0,0], [0,0,0], [0,0,0]]) == True"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeWars"
+}

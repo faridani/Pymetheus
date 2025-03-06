@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "{\"title\": \"Minimum Absolute Difference in a Sorted Array\", \"description\": \"Given an array of distinct integers, return the minimum absolute difference between any two elements. The array will be sorted.\\n\\n#### Function Signature\\n```\\ndef min_abs_diff(arr: list[int)) -> int:\\n```\\n\\n#### Input\\n- `arr` (list[int]): A sorted array of distinct integers\\n\\n#### Output\\n- Returns the minimum absolute difference between any two elements in the input array\", \"code\": \"\\ndef min_abs_diff(arr: list[int)) -> int:\\n    if len(arr) < 2:\\n        return 0\\n\\n    return min([abs(arr[i] - arr[i+1]) for i in range(len(arr)-1)])\", \"tests\": [\"assert min_abs_diff([3,6,9,10]) == 1\", \"assert min_abs_diff([4,5,7,8]) == 1\", \"assert min_abs_diff([0,1,2,3]) == 1\", \"assert min_abs_diff([1]) == 0\"]}"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Maximum Sum of an Increasing Subsequence",
+    "description": "Write a function `max_sum_is` that finds the maximum sum of a strictly increasing subsequence within an array.\n\n#### Function Signature\n```python\ndef max_sum_is(arr: list[int]) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum of a strictly increasing subsequence in the input array.",
+    "code": "def max_sum_is(arr: list[int]) -> int:\n    n = len(arr)\n    dp = [0] * n\n    for i in range(1, n):\n        dp[i] = arr[i]\n        for j in range(i):\n            if arr[i] > arr[j]:\n                dp[i] = max(dp[i], dp[j] + arr[i])\n    return max(dp)",
+    "tests": [
+        "assert max_sum_is([1, 2, 3, 4, 5]) == 15",
+        "assert max_sum_is([-1, -2, -3, -4, -5]) == -1",
+        "assert max_sum_is([1, 2, -3, 4, -5]) == 3",
+        "assert max_sum_is([10, 20, 30, 40, 50]) == 150"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "ACM-ICPC"
+}

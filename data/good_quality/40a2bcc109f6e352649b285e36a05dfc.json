@@ -1,0 +1,12 @@
+{
+    "title": "Harsh Math Problem: Permutations and Combinations",
+    "description": "The math problem: You have a set of 5 unique books, including one novel by Hemingway, one mystery novel by Agatha Christie, and three romance novels. If you were to randomly select 3 out of the 5 books, what is the probability that none of them are romance novels? Assume that each book has an equal chance of being selected.\n\n#### Function Signature\n```python\ndef find_probability() -> float:\n```\n\n#### Input\n- None\n\n#### Output\n- Returns a floating point number representing the probability that none of the 3 randomly selected books are romance novels.",
+    "code": "",
+    "\nimport math\nfrom itertools import combinations\n\ndef find_probability():\n    # Calculate the total number of permutations for selecting 3 out of 5 books\n    total_permutations = math.comb(5, 3)\n\n    # Calculate the number of ways to select 3 non-romance novels out of the remaining 2 romance novels and 2 other books\n    non_romance_combinations = math.comb(2, 0) * math.comb(3, 3)\n\n    # Calculate the probability by dividing the favorable outcomes (non-romance novels selected) by the total possible outcomes\n    probability = non_romance_combinations / total_permutations\n\n    return float(probability)": "",
+    "tests": [
+        "assert abs(find_probability() - 0.375) < 1e-10"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Codecademy"
+}

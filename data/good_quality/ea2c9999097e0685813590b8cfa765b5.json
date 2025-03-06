@@ -1,0 +1,14 @@
+{
+    "title": "Cascading Squares",
+    "description": "A cascading square is a sequence of perfect squares that increases by 1 with each step. Write a function `cascading_squares` that takes two integers, `start` and `end`, and returns the number of times the sum of consecutive natural numbers equals or exceeds any perfect square in the range from `start` to `end`. \n#### Function Signature\n```python\ndef cascading_squares(start: int, end: int) -> int:\n```\n#### Input\n- `start` (int): The starting value for the sequence.\n- `end` (int): The ending value for the sequence.\n\n#### Output\n- Returns an integer indicating how many times the sum of consecutive natural numbers equals or exceeds any perfect square in the given range.",
+    "code": "\nimport math\n\ndef cascading_squares(start: int, end: int) -> int:\n    count = 0\n    for i in range(start, end + 1):\n        n = 0\n        sum_val = 0\n        while True:\n            n += 1\n            sum_val += n\n            if math.isqrt(sum_val) ** 2 == sum_val:\n                break\n        count += 1\n    return count",
+    "tests": [
+        "assert cascading_squares(10,20) == 5",
+        "assert cascading_squares(1,100) == 15",
+        "assert cascading_squares(-10,-1) == 0",
+        "assert cascasing_squares(50,60) == 2"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

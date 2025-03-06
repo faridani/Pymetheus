@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Array Max Min",
+    "description": "Given an array of integers, find the maximum and minimum values. Write a function `max_min` that takes an array as input and returns a tuple containing the maximum and minimum values in the array.\n\n#### Function Signature\n```python\ndef max_min(arr: list[int]) -> (int, int):\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns a tuple `(max_val, min_val)` where `max_val` is the maximum value in the array and `min_val` is the minimum value in the array.",
+    "code": "def max_min(arr: list[int]) -> (int, int):\n    return (max(arr), min(arr))",
+    "tests": [
+        "assert max_min([1, 2, 3, 4, 5]) == (5, 1)",
+        "assert max_min([-10, -5, 0, 5, 10]) == (10, -10)",
+        "assert max_min([100, 50, 20, 10, 5]) == (100, 5)"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Competitive Programming"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Check if an Array is a Rotation of Another",
+    "description": "Given two arrays, write a function `is_rotation` that checks whether the second array is a rotation of the first. A rotation occurs when one array is obtained by rotating another array by some fixed number of positions.\n\n#### Function Signature\n```python\ndef is_rotation(arr1: list[int], arr2: list[int]) -> bool:\n```\n\n#### Input\n- `arr1` (list[int]): The first integer array.\n- `arr2` (list[int]): The second integer array to check if it's a rotation of the first array.\n\n#### Output\n- Returns `True` if `arr2` is a rotation of `arr1`, `False` otherwise.",
+    "code": "\ndef is_rotation(arr1: list[int], arr2: list[int]) -> bool:\n    n = len(arr1)\n    for i in range(n):\n        if arr1 == arr2[i:i+n]:\n            return True\n    return False",
+    "tests": [
+        "assert is_rotation([3, 5, 9], [9, 3, 5]) == True",
+        "assert is_rotation([1, 2, 3], [2, 3, 1]) == True",
+        "assert is_rotation([4, 5], [5, 4]) == False",
+        "assert is_rotation([1, 2, 3, 4], [3, 4, 1, 2]) == True"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "LeetCode"
+}

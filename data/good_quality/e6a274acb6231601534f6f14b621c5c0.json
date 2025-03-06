@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Beautiful Tree",
+    "description": "In a forest, there are many beautiful trees. A tree is considered beautiful if it has exactly three levels of branches, and every level has at least one branch. Write a function `is_beautiful_tree` that takes the structure of the tree as input and returns whether the tree is beautiful or not.\n\n#### Function Signature\n```python\ndef is_beautiful_tree(tree: list) -> bool:\n```\n\n#### Input\n- `tree` (list): A list representing the structure of the tree, where each element in the list represents a level of branches. Each element is either a string or an empty list.\n    * If the element is a string, it represents a leaf node.\n    * If the element is an empty list, it represents an internal node with no child nodes.\n    * If the element is a non-empty list, it represents an internal node with child nodes. The child nodes are stored in the list.\n\n#### Output\n- Returns `True` if the tree is beautiful, `False` otherwise.",
+    "code": "def is_beautiful_tree(tree: list) -> bool:\n    # Check if the tree has exactly three levels of branches\n    return len(tree) == 3 and all(isinstance(level, (list, str)) for level in tree)",
+    "tests": [
+        "assert is_beautiful_tree([]) == False",
+        "assert is_beautiful_tree(['leaf']) == True",
+        "assert is_beautiful_tree([[], []]) == False",
+        "assert is_beautiful_tree([['leaf'], ['leaf'], ['leaf']]) == True"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

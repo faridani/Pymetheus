@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Subarrays",
+    "description": "Given a list of integers, find the maximum sum that can be obtained by selecting subarrays (contiguous sequences of elements) and adding their sums. Note that a single-element array is considered a valid subarray.\n\n#### Function Signature\n```python\ndef max_sum_subarrays(arr: list[int]) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers, where the length is at least 1.\n\n#### Output\n- Returns an integer representing the maximum sum that can be obtained by selecting subarrays and adding their sums.\n\n#### Constraints\nThe input array will have at most 1000 elements, and each element will be a non-negative integer.\n\nNote: You are not allowed to use any external libraries or modules. Your solution must only rely on built-in Python functions and data structures.",
+    "code": "",
+    "\ndef max_sum_subarrays(arr: list[int]) -> int:\n    n = len(arr)\n    dp = [0] * (n + 1)\n    \n    for i in range(1, n + 1):\n        if i == 1:\n            dp[i] = arr[0]\n        else:\n            dp[i] = max(dp[i-1], arr[i-1])\n            \n    return max(dp)": "",
+    "tests": [
+        "assert max_sum_subarrays([3, -2, 0, 4]) == 5",
+        "assert max_sum_subarrays([-1, 2, -3, 10, 5, 1]) == 17",
+        "assert max_sum_subarrays([0]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Facebook Hacker Cup"
+}

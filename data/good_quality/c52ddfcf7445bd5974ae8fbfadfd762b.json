@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Minimum Window Substring",
+    "description": "Given two strings `s1` and `s2`, write a function that finds the minimum window substring of `s1` that contains all characters from `s2`. If no such window exists, return an empty string.\n\n#### Function Signature\n```python\ndef min_window(s1: str, s2: str) -> str:\n```\n\n#### Input\n- `s1` (str): A string containing any characters.\n- `s2` (str): A string containing the characters that must be present in the minimum window substring.\n\n#### Output\n- Returns the minimum window substring of `s1` that contains all characters from `s2`, or an empty string if no such window exists.",
+    "code": "from collections import Counter\n\ndef min_window(s1: str, s2: str) -> str:\n    if not set(s2).issubset(set(s1)):\n        return \"\"\n    counter_s1 = Counter(s1)\n    counter_s2 = Counter(s2)\n    for i in range(len(s1)):\n        for j in range(i + 1, len(s1) + 1):\n            if all(counter_s2[c] <= counter_s1[slice(i, j)].get(c, 0) for c in s2):\n                return s1[i:j]\n    return \"\"",
+    "tests": [
+        "assert min_window('ABCwindowabc', 'wabc') == 'window'",
+        "assert min_window('ABCD', 'AB') == 'AB'",
+        "assert min_window('ABCD', 'CDE') == ''",
+        "assert min_window('HelloWorld', 'llo') == 'llo'"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

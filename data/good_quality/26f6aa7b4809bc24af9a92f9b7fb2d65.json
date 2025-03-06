@@ -1,0 +1,13 @@
+{
+    "title": "[Hard] Matrix Rotation",
+    "description": "Given a matrix of integers, write a function that rotates it 90 degrees clockwise. This means the first row becomes the last column, the second row becomes the second-to-last column, and so on.\n\n#### Function Signature\n```python\ndef rotate_matrix(matrix: List[List[int]]) -> List[List[int]]:\n```\n\n#### Input\n- `matrix` (List[List[int]]): A 2D list of integers representing a matrix.\n\n#### Output\n- Returns the rotated matrix as a new 2D list. The original matrix should not be modified.",
+    "code": "",
+    "\nfrom typing import List\n\ndef rotate_matrix(matrix: List[List[int]]) -> List[List[int]]:\n    return [list(reversed(i)) for i in zip(*matrix)]\n     ": "",
+    "tests": [
+        "assert rotate_matrix([[1,2,3],[4,5,6],[7,8,9]]) == [[7,4,1],[8,5,2],[9,6,3]]",
+        "assert rotate_matrix([[1,2],[3,4]]) == [[3,1],[4,2]]"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "codestral:22b",
+    "style": "TopCoder"
+}

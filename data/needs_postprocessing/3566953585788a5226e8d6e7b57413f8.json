@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Counting Words\\\", \\\"description\\\": \\\"Write a function `count_words` that takes as input a string and returns the number of words in that string.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef count_words(s: str) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `s` (str): A string containing one or more words.\\\\n\\\\n#### Output\\\\n- Returns the number of words in the input string.\\\", \\\"code\\\": \\\"def count_words(s: str) -> int:\\\\n    return len(s.split())\\\\n\\\", \\\"tests\\\": [\\\"assert count_words('Hello, World!') == 2\\\", \\\"assert count_words('This is a test string.') == 5\\\", \\\"assert count_words('   ') == 0\\\", \\\"assert count_words('One word only...') == 1\\\"] }\""
+}

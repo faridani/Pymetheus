@@ -1,0 +1,4 @@
+{
+    "model": "llama3:latest",
+    "response": "\"{ \\\"title\\\": \\\"Easy: Sum of Divisors\\\", \\\"description\\\": \\\"#### Problem\\\\nA positive integer n has exactly 5 divisors. For example, the number 24 has divisors {1, 2, 3, 4, 8, 12, 24}. Write a function `sum_of_divisors` that takes an integer as input and returns the sum of all its divisors.\\\\n\\\\n#### Function Signature\\\\n```python\\\\ndef sum_of_divisors(n: int) -> int:\\\\n```\\\\n\\\\n#### Input\\\\n- `n` (int): A positive integer with exactly 5 divisors.\\\\n\\\\n#### Output\\\\n- Returns the sum of all divisors of the input integer.\\\\n\\\", \\\"code\\\": \\\"\\\\ndef sum_of_divisors(n: int) -> int:\\\\n    total = 0\\\\n    for i in range(1, n + 1):\\\\n        if n % i == 0:\\\\n            total += i\\\\n    return total\\\\n\\\", \\\"tests\\\": [\\\"assert sum_of_divisors(24) == 60\\\", \\\"assert sum_of_divisors(7) == 8\\\", \\\"assert sum_of_divisors(11) == 12\\\"] }\""
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Maximum Product of Three",
+    "description": "Given an array of integers, find the maximum product of three numbers. The array may contain negative numbers.\n\n#### Function Signature\n```python\ndef max_product_of_three(a: list[int)) -> int:\n```\n\n#### Input\n- `a` (list[int]): A list of 3 or more integers.\n\n#### Output\n- Returns the maximum product of three numbers from the input array.",
+    "code": "",
+    "\ndef max_product_of_three(a: list[int]) -> int:\n    a.sort()\n    return max(a[0] * a[-1] * a[-2], a[-1] * a[-2] * a[-3])": "",
+    "tests": [
+        "assert max_product_of_three([-10, -5, 4, 8, 20]) == 80",
+        "assert max_product_of_three([1, 2, 3, 4, 5]) == 60",
+        "assert max_product_of_three([-5, 0, 2, 3, 100]) == 300"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "HackerRank"
+}

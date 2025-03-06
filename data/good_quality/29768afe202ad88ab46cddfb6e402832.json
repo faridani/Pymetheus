@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Subarray within a Circular Array",
+    "description": "Given an array of integers, you are asked to find the maximum sum of a subarray within the circular array. A circular array means that the last element is connected to the first element and the first element is connected to the last element.\n\n#### Function Signature\n```python\ndef max_sum_circular(arr: list[int)) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum sum of a subarray within the circular array.\n\nNote that if there are multiple maximum sums, you can return any one of them. Also, note that the array will always contain at least one element.\n\nFor example, given the array [3, -2, 2, -3], the maximum sum of a subarray is 8 which occurs at the subarray [2, -3].",
+    "code": "",
+    "\nimport itertools\n\ndef max_sum_circular(arr: list[int)) -> int:\n    n = len(arr)\n    \n    # Calculate the maximum sum of a subarray within the linear array\n    max_linear_sum = max(sum(subarray) for subarray in itertools.chain(*[iter(arr)] * (n + 1)))\n    \n    # Calculate the maximum sum of a subarray that wraps around from the end to the start\n    max_wraparound_sum = max((sum(subarray) if i < n else sum(subarray) - arr[i]) \n                             for i, subarray in enumerate(itertools.zip_longest(*[iter(arr)] * (n + 1))))\n    \n    # Return the maximum of the two sums\n    return max(max_linear_sum, max_wraparound_sum)": "",
+    "tests": [
+        "assert max_sum_circular([3, -2, 2, -3]) == 8",
+        "assert max_sum_circular([-5, -3, 3, 4, 6]) == 13",
+        "assert max_sum_circular([-1, 10, 20, 30, 40, 50]) == 155"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

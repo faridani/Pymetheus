@@ -1,0 +1,14 @@
+{
+    "title": "Graph Isomorphism Checker",
+    "description": "Given two graphs, determine if they are isomorphic. A graph is a collection of nodes connected by edges. Two graphs are considered isomorphic if one can be transformed into the other through a series of node relabelings and edge rewirings.\n\n#### Function Signature\n```python\ndef are_isomorphic(graph1: dict, graph2: dict) -> bool:\n```\n\n#### Input\n- `graph1` (dict): A dictionary representing the first graph. The keys in the dictionary represent nodes, and the values are lists of neighboring nodes.\n- `graph2` (dict): A dictionary representing the second graph. The keys in the dictionary represent nodes, and the values are lists of neighboring nodes.\n\n#### Output\n- Returns `True` if the two graphs are isomorphic, `False` otherwise.",
+    "code": "\nimport collections\nfrom itertools import permutations\n\ndef are_isomorphic(graph1: dict, graph2: dict) -> bool:\n    # Check if the number of nodes is the same in both graphs\n    if len(graph1) != len(graph2):\n        return False\n\n    # Initialize a set to store node relabelings for graph1\n    relabelings = set()\n    \n    # Iterate over all possible relabelings of nodes in graph1\n    for perm in permutations(range(len(graph1))):\n        relabeled_graph1 = {k: v for k, v in zip(map(str, perm), list(graph1.values()))}\n        \n        # Check if the relabeled graph is isomorphic to graph2\n        if are_isomorphic_helper(relabelled_graph1, graph2):\n            return True\n\n    return False\n\n\ndef are_isomorphic_helper(graph1: dict, graph2: dict) -> bool:\n    # Initialize a set to store node relabelings for graph2\n    relabelings = set()\n    \n    # Iterate over all possible relabelings of nodes in graph2\n    for perm in permutations(range(len(graph2))):\n        relabeled_graph2 = {k: v for k, v in zip(map(str, perm), list(graph2.values()))}\n        \n        # Check if the relabeled graph is a permutation of graph1\n        return relabeled_graph1 == relabeled_graph2\n\n    return False",
+    "tests": [
+        "assert are_isomorphic({'A': ['B', 'C'], 'B': ['A', 'D'], 'C': ['A'], 'D': ['B']}, {'0': ['1', '2'], '1': ['0', '3'], '2': ['0'], '3': ['1']}) == True",
+        "assert are_isomorphic({'A': ['B', 'C'], 'B': ['A', 'D'], 'C': ['A'], 'D': ['B']}, {'E': ['F', 'G'], 'F': ['E', 'H'], 'G': ['E'], 'H': ['F']}) == True",
+        "assert are_isomorphic({'A': ['B', 'C'], 'B': ['A', 'D'], 'C': ['A'], 'D': ['B']}, {'0': ['1', '2'], '1': ['3'], '2': ['0'], '3': ['1']}) == False",
+        "assert are_isomorphic({'A': ['B', 'C'], 'B': ['A', 'D'], 'C': ['A'], 'D': ['B']}, {'E': ['F', 'G'], 'F': ['H'], 'G': ['E'], 'H': ['F']}) == False"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codewars"
+}

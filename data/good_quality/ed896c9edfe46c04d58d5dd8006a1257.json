@@ -1,0 +1,14 @@
+{
+    "title": "Easy: Counting Trees",
+    "description": "Given an integer n, find the number of binary trees that can be formed with exactly `n` nodes. A binary tree is a tree-like structure where each node has at most two children, referred to as the left child and the right child.\n\n#### Function Signature\n```\ndef count_trees(n: int) -> int:\n```\n\n#### Input\n- `n` (int): The number of nodes in the binary trees.\n\n#### Output\n- Returns an integer representing the number of binary trees that can be formed with exactly `n` nodes.",
+    "code": "\nimport math\n\ndef count_trees(n: int) -> int:\n    if n == 0:\n        return 1\n    total = 0\n    for i in range(n):\n        total += math.comb(n - 1, i) * count_trees(i)\n    return total",
+    "tests": [
+        "assert count_trees(3) == 5",
+        "assert count_trees(4) == 14",
+        "assert count_trees(5) == 44",
+        "assert count_trees(6) == 156"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Google Code Jam"
+}

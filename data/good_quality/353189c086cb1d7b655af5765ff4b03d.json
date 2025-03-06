@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Tree Diameter",
+    "description": "Given the root of a binary tree, write a function to find the diameter of the tree. The diameter of a binary tree is the length of the longest path between any two nodes in a tree.\n\n#### Function Signature\n```python\ndef tree_diameter(root) -> int:\n```\n\n#### Input\n- `root` (Node): The root node of a binary tree, where each node has an integer value and two child nodes.\n\n#### Output\n- Returns the diameter of the tree.",
+    "code": "",
+    "\nclass Node:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\ndef tree_diameter(root):\n    def max_depth(node):\n        if node is None:\n            return 0\n        return 1 + max(max_depth(node.left), max_depth(node.right))\n\n    def diameter(node, depth):\n        if node is None:\n            return 0, depth - 1\n        left_height = max_depth(node.left)\n        right_height = max_depth(node.right)\n        left_diameter = diameter(node.left, depth + left_height) if left_height > 0 else (0, depth)\n        right_diameter = diameter(node.right, depth + right_height) if right_height > 0 else (0, depth)\n        return max(left_diameter[1], right_diameter[1]), left_height + right_height\n\n    return diameter(root, 1)[0]\n\n# Tests\nassert tree_diameter(Node(1)) == 0\nassert tree_diameter(Node(1, Node(2), Node(3))) == 2\nassert tree_diameter(Node(1, Node(2, Node(4)), Node(3, Node(5)))) == 3": "",
+    "tests": [
+        "assert tree_diameter(Node(1)) == 0",
+        "assert tree_diameter(Node(1, Node(2), Node(3))) == 2",
+        "assert tree_diameter(Node(1, Node(2, Node(4)), Node(3, Node(5)))) == 3"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

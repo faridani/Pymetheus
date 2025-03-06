@@ -1,0 +1,14 @@
+{
+    "title": "Euler's Spiral: Find the Nth Point",
+    "description": "Euler's spiral, also known as the arclength spiral or the logarithmic spiral, is a mathematical concept used to describe the growth of certain organisms. It is defined by the equation `r = a * exp(b*t)`, where `r` is the radial distance from the origin, `a` and `b` are constants, and `t` is time.\n\nWrite a function `euler_spiral_nth_point` that takes two parameters: `N` (the Nth point to find) and `params` (a tuple of `(a, b)`), and returns the coordinates (`x`, `y`) of the Nth point on Euler's spiral.\n\n#### Function Signature\n```python\ndef euler_spiral_nth_point(N: int, params: tuple) -> tuple:\n```\n\n#### Input\n- `N` (int): The Nth point to find on Euler's spiral.\n- `params` (tuple): A tuple of `(a, b)` coefficients for Euler's spiral equation.\n\n#### Output\n- Returns a tuple (`x`, `y`) representing the coordinates of the Nth point on Euler's spiral.",
+    "code": "",
+    "\nimport math\ndef euler_spiral_nth_point(N: int, params: tuple) -> tuple:\n    a, b = params\n    t = 0\n    r_sum = 0\n    \n    for _ in range(N):\n        r = a * math.exp(b * t)\n        x = r * math.cos(t)\n        y = r * math.sin(t)\n        r_sum += r\n        \n        if r_sum > N:\n            return (x, y)\n        \n        t += 0.1\n    \n    return (0, 0)  # or raise an exception, depending on the desired behavior": "",
+    "tests": [
+        "assert euler_spiral_nth_point(10, (2, 0.5)) == (-0.3453115111421743, -1.111139456555553)",
+        "assert euler_spiral_nth_point(20, (1, 0.25)) == (0.43269144125531556, 1.3574444444444445)",
+        "assert euler_spiral_nth_point(30, (3, -0.2)) == (0.0, 0.0)"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

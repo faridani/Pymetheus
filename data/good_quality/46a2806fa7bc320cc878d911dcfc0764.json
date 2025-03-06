@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Islands",
+    "description": "You are given a 2D grid of size `n x m` where each cell can be either land (`0`) or water (`1`). You want to find the maximum sum of islands that you can visit by starting at any cell and moving up, down, left, or right. Each time you enter an island, you can only stay within its borders. Note that islands are not necessarily connected.\n\n#### Function Signature\n```python\ndef max_sum_of_islands(grid: list[list[int]]) -> int:\n```\n\n#### Input\n- `grid` (list[list[int]]): A 2D grid where each cell can be either land (`0`) or water (`1`).",
+    "code": "",
+    "\nimport heapq\n\ndef max_sum_of_islands(grid):\n    if not grid:\n        return 0\n    \n    n, m = len(grid), len(grid[0])\n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n    \n    def dfs(i, j):\n        if i < 0 or i >= n or j < 0 or j >= m:\n            return 0\n        if grid[i][j] == 1:\n            return 0\n        \n        temp = grid[i][j]\n        grid[i][j] = 1\n        total_sum = temp\n        for d in directions:\n            total_sum += dfs(i + d[0], j + d[1])\n        \n        grid[i][j] = temp\n        return total_sum\n\n    max_sum = 0\n    heap = []\n    \n    for i in range(n):\n        for j in range(m):\n            if grid[i][j] == 0:\n                heapq.heappush(heap, (dfs(i, j), i, j))\n    \n    while heap:\n        _, i, j = heapq.heappop(heap)\n        max_sum += dfs(i, j)\n    \n    return max_sum": "",
+    "tests": [
+        "assert max_sum_of_islands([[1, 0], [0, 1]]) == 2",
+        "assert max_sum_of_islands([[0, 0, 0], [0, 1, 0], [0, 0, 0]]) == 3",
+        "assert max_sum_of_islands([[1, 1, 1], [1, 1, 1], [1, 1, 1]]) == 9"
+    ],
+    "difficulty": "super hard",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

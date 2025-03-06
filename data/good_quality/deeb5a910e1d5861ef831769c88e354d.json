@@ -1,0 +1,13 @@
+{
+    "title": "Medium: Word Chain",
+    "description": "Write a function that generates a list of words that form a chain. The word chain should be formed by taking the last letter of each word and using it as the first letter of the next word.\n\n#### Function Signature\n```python\ndef find_word_chain(words: list) -> list:\n```\n\n#### Input\n- `words` (list): A list of words that can be used to form a chain.\n\n#### Output\n- Returns a list of words that form a chain where the last letter of each word is the first letter of the next word. If no such chain exists, return an empty list.",
+    "code": "\ndef find_word_chain(words: list) -> list:\n    if not words:\n        return []\n\n    current_word = None\n    word_chain = [words[0]]\n    for word in words:\n        last_letter = word[-1].lower()\n        while not current_word or not current_word[-1] == last_letter:\n            current_word = next((w for w in words if w and w[0].lower() == last_letter), None)\n            if not current_word:\n                return []\n        word_chain.append(current_word)\n    return word_chain",
+    "tests": [
+        "assert find_word_chain(['cat', 'turtle', 'rabit', 'bat']) == ['cat', 'rat', 'tiger', 'rainbow']",
+        "assert find_word_chain([]) == []",
+        "assert find_word_chain(['apple', 'banana', 'cherry', 'dog']) == []"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Exercism"
+}

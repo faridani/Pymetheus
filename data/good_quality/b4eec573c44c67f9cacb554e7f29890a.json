@@ -1,0 +1,14 @@
+{
+    "title": "Easily find the minimum difference",
+    "description": "Write a function `min_diff` that takes two lists of integers as input and returns the minimum absolute difference between any two elements from these lists.\n\n#### Function Signature\n```python\ndef min_diff(list1: list[int], list2: list[int]) -> int:\n```\n\n#### Input\n- `list1` (list[int]): The first list of integers.\n- `list2` (list[int]): The second list of integers.\n\n#### Output\n- Returns the minimum absolute difference between any two elements from the input lists.",
+    "code": "def min_diff(list1: list[int], list2: list[int]) -> int:\n    if len(list1) > 0 and len(list2) > 0:\n        set1 = set(list1)\n        set2 = set(list2)\n        min_diff = float('inf')\n        for num1 in set1:\n            for num2 in set2:\n                if abs(num1 - num2) < min_diff:\n                    min_diff = abs(num1 - num2)\n        return min_diff\n    else:\n        return 0",
+    "tests": [
+        "assert min_diff([1, 4], [6, 8]) == 1",
+        "assert min_diff([-5, 3], [-2, 10]) == 1",
+        "assert min_diff([1, 2], []) == 0",
+        "assert min_diff([], [1, 2]) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

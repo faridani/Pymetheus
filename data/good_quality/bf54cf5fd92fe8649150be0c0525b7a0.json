@@ -1,0 +1,14 @@
+{
+    "title": "Cyclic Permutations",
+    "description": "Given a list of integers, find all unique cyclic permutations (i.e., rotations) of the list. For example, if the input is [1, 2, 3], the output should be [[1, 2, 3], [3, 1, 2], [2, 3, 1]]. Write a function `cyclic_permutations` that takes a list of integers as input and returns all unique cyclic permutations.\n\n#### Function Signature\n```python\ndef cyclic_permutations(nums: list) -> list:\n```\n\n#### Input\n- `nums` (list): A list of integers.\n\n#### Output\n- Returns a list of lists, where each inner list is a unique cyclic permutation of the input list.",
+    "code": "",
+    "\ndef cyclic_permutations(nums):\n    n = len(nums)\n    result = []\n    \n    for i in range(n):\n        temp = nums[i:]\n        for j in range(len(temp)):\n            if j == 0:\n                result.append(temp + nums[:i])\n            else:\n                temp = [temp[0]] + temp[1:]\n                result.append(temp + nums[:i])\n                \n    return list(set(map(tuple, result)))": "",
+    "tests": [
+        "assert cyclic_permutations([1, 2, 3]) == [[1, 2, 3], [3, 1, 2], [2, 3, 1]]",
+        "assert cyclic_permutations([4, 5, 6]) == [[4, 5, 6], [6, 4, 5], [5, 6, 4]]",
+        "assert cyclic_permutations([7, 8]) == [[7, 8], [8, 7]]"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "HackerEarth"
+}

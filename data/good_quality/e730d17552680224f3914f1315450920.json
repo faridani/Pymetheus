@@ -1,0 +1,14 @@
+{
+    "title": "Maximum Sum of Arithmetic Series",
+    "description": "Given a list of integers, each representing the difference between consecutive terms in an arithmetic series, find the maximum sum that can be achieved by selecting subsets of these differences and combining them into arithmetic series.\n\n#### Function Signature\n```python\ndef max_sum(diffs: List[int]) -> int:\n```\n\n#### Input\n- `diffs` (List[int]): A list of integers where each integer represents the difference between consecutive terms in an arithmetic series.\n\n#### Output\n- Returns the maximum sum that can be achieved by selecting subsets of these differences and combining them into arithmetic series.",
+    "code": "\nfrom typing import List\nimport itertools\n\ndef max_sum(diffs: List[int]) -> int:\n    def is_arithmetic_series(serie: List[int]) -> bool:\n        return all(b - a for a, b in zip(serie, serie[1:]))\n\n    diffs.sort()\n    dp = [0] * (len(diffs) + 1)\n    for i in range(len(diffs)):\n        for j in range(i, -1, -1):\n            if is_arithmetic_series(diffs[j:i+1]):\n                dp[i+1] = max(dp[i+1], dp[j] + sum(diffs[j:i+1]))\n    return max(0, *dp)",
+    "tests": [
+        "assert max_sum([-10, -5, 2, 7]) == 12",
+        "assert max_sum([3, 4, 5, 6]) == 20",
+        "assert max_sum([-2, 1, 2]) == 4",
+        "assert max_sum([-10, -5, 0, 1, 2, 3]) == 10"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

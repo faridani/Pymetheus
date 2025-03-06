@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Find the Most Frequent Element in a List of Lists",
+    "description": "Given a list of lists, where each sublist contains integers. Write a function `most_frequent` that returns the most frequently occurring element across all sublists.\n\n#### Function Signature\n```python\ndef most_frequent(lists_of_lists: list[list[int]]) -> int:\n```\n\n#### Input\n- `lists_of_lists` (list of lists): A list containing multiple sublists, where each sublist contains integers.\n\n#### Output\n- Returns the most frequently occurring element across all sublists.",
+    "code": "from collections import Counter\n\ndef most_frequent(lists_of_lists: list[list[int]]) -> int:\n    # Flatten the list of lists into a single list\n    flat_list = [element for sublist in lists_of_lists for element in sublist]\n    # Count the occurrences of each element using the Counter class\n    counts = Counter(flat_list)\n    # Return the most frequently occurring element\n    return counts.most_common(1)[0][0]",
+    "tests": [
+        "assert most_frequent([[1, 2], [2, 3], [4, 5]]) == 2",
+        "assert most_frequent([[1, 2, 3], [2, 2, 3], [3, 3, 3]]) == 3",
+        "assert most_frequent([[1, 2], [2, 3], [4, 5, 6]]) == 2"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

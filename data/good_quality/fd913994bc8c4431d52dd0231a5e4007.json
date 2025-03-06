@@ -1,0 +1,14 @@
+{
+    "title": "Minimum Time to Make the Flowers Bloom",
+    "description": "A farmer has N flowers planted in a row, and each flower takes K days to bloom. The farmer can water any number of flowers at once. However, for every M consecutive flowers that he waters, the time it takes for them all to bloom increases by 1 day. Write a function `min_time` that calculates the minimum time required to make all the flowers bloom.\n\n#### Function Signature\n```python\ndef min_time(N: int, K: int, M: int) -> int:\n```\n\n#### Input\n- `N` (int): The number of flowers planted in a row.\n- `K` (int): The number of days it takes for each flower to bloom.\n- `M` (int): The maximum consecutive flowers that can be watered at once.\n\n#### Output\n- Returns the minimum time required to make all the flowers bloom.",
+    "code": "def min_time(N: int, K: int, M: int) -> int:\n    return N // M * (K + M - 1) + max(0, N % M) * K",
+    "tests": [
+        "assert min_time(5, 3, 2) == 9",
+        "assert min_time(10, 4, 3) == 20",
+        "assert min_time(15, 5, 5) == 30",
+        "assert min_time(1, 2, 1) == 2"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Codeforces"
+}

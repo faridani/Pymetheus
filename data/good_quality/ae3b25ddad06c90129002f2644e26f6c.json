@@ -1,0 +1,15 @@
+{
+    "title": "Easy: Max Product of Three",
+    "description": "Given an array of integers, find the maximum product that can be obtained by multiplying three numbers from the array.\n\n#### Function Signature\n```python\ndef max_product(arr: list[int)) -> int:\n```\n\n#### Input\n- `arr` (list[int]): A list of integers.\n\n#### Output\n- Returns the maximum product that can be obtained by multiplying three numbers from the input array.",
+    "code": "",
+    "\nimport itertools\n\ndef max_product(arr: list[int]) -> int:\n    # Generate all possible triplets\n    triplets = list(itertools.combinations(arr, 3))\n    \n    # Initialize the maximum product\n    max_prod = float('-inf')\n    \n    # Iterate over each triplet and calculate its product\n    for t in triplets:\n        prod = 1\n        for n in t:\n            prod *= n\n        # Update the maximum product if necessary\n        if prod > max_prod:\n            max_prod = prod\n    \n    return max_prod": "",
+    "tests": [
+        "assert max_product([3, 2, 5]) == 30",
+        "assert max_product([-1, -10, 0, 2]) == 20",
+        "assert max_product([1, 2, 3]) == 6",
+        "assert max_product([-1, 1, 0]) == 0"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "TopCoder"
+}

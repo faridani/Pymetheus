@@ -1,0 +1,15 @@
+{
+    "title": "Easiest Medium - Perimeter and Area of Polygons",
+    "description": "Write a function `polygon_properties` that calculates the perimeter and area of a polygon given its vertices. A polygon is defined as a list of 2D points where each point is represented by a tuple or list containing two real numbers (x, y). The input will always be valid, i.e., it will contain at least three points.\n\n#### Function Signature\n```python\ndef polygon_properties(verts: list[tuple[float, float]]) -> tuple[float, float]:\n```\n\n#### Input\n- `verts` (list[tuple[float, float]]): A list of 2D points representing the vertices of a polygon.\n\n#### Output\n- Returns a tuple containing the perimeter and area of the input polygon. The perimeter should be returned as a floating point number with at least two decimal places. The area should be returned as an integer.",
+    "code": "",
+    "\nimport math\n\ndef polygon_properties(verts: list[tuple[float, float]]) -> tuple[float, float]:\n    n = len(verts)\n    perimeter = 0\n    for i in range(n):\n        x1, y1 = verts[i]\n        x2, y2 = verts[(i + 1) % n]\n        perimeter += math.sqrt((x2 - x1)**2 + (y2 - y1)**2)\n\n    area = 0.5 * abs(sum(x*verts[(i+1)%n][1] - verts[i][1]*x for i, (x, y) in enumerate(verts)) \n                      for x, y in verts)\n    \n    return round(perimeter, 2), int(area)": "",
+    "tests": [
+        "assert polygon_properties([(0.0, 0.0), (3.0, 0.0), (4.5, 2.5), (1.5, 2.5)]) == (15.0, 6)",
+        "assert polygon_properties([(-1.0, -1.0), (-1.0, 1.0), (1.0, 1.0), (1.0, -1.0)]) == (4.0, 2)",
+        "assert polygon_properties([(0.0, 0.0), (3.0, 0.0), (6.0, 0.0), (9.0, 0.0)]) == (18.0, 0)",
+        "assert polygon_properties([(-1.0, -1.0), (-2.0, -2.0), (-3.0, -3.0), (-4.0, -4.0)]) == (8.66, 6)"
+    ],
+    "difficulty": "hard",
+    "model": "llama3:latest",
+    "style": "CodeChef"
+}

@@ -1,0 +1,13 @@
+{
+    "title": "[Medium] Sum of Subarray Ranges",
+    "description": "Given an array of integers, find the sum of all subarray ranges. A subarray range is defined as the difference between the maximum and minimum element in a subarray. Write a function `subArrayRanges` that calculates this sum.\n\n#### Function Signature\n```python\ndef subArrayRanges(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums` (List[int]): A list of integers representing the input array.\n\n#### Output\n- Returns an integer representing the sum of all subarray ranges in the given input array.",
+    "code": "",
+    "from typing import List\n\ndef subArrayRanges(nums: List[int]) -> int:\n    total = 0\n    for i in range(len(nums)):\n        max_val, min_val = nums[i], nums[i]\n        for j in range(i + 1, len(nums)):\n            max_val = max(max_val, nums[j])\n            min_val = min(min_val, nums[j])\n            total += max_val - min_val\n    return total": "",
+    "tests": [
+        "assert subArrayRanges([1, 2, 3]) == 4",
+        "assert subArrayRanges([4, -2, -3, 4, 1]) == 59"
+    ],
+    "difficulty": "medium",
+    "model": "codestral:22b",
+    "style": "SPOJ"
+}

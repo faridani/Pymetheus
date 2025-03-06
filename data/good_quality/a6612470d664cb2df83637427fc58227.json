@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Longest Common Prefix",
+    "description": "Find the longest common prefix between two strings.\n\n#### Function Signature\n```python\ndef longest_common_prefix(s1: str, s2: str) -> str:\n```\n\n#### Input\n- `s1` (str): The first string.\n- `s2` (str): The second string.\n\n#### Output\n- Returns the longest common prefix between the two input strings.",
+    "code": "def longest_common_prefix(s1: str, s2: str) -> str:\n    i = 0\n    while i < len(s1) and i < len(s2) and s1[i] == s2[i]:\n        i += 1\n    return s1[:i]",
+    "tests": [
+        "assert longest_common_prefix('abc', 'abcd') == 'a'",
+        "assert longest_common_prefix('hello', 'world') == ''",
+        "assert longest_common_prefix('abcdefg', 'abcefgh') == 'abc'"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "CodeSignal"
+}

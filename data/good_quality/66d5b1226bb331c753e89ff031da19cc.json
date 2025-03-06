@@ -1,0 +1,14 @@
+{
+    "title": "Medium: Closest Pair",
+    "description": "Given a list of 2D points, find the closest pair of points. Write a function `closest_pair` that takes a list of points as input and returns the minimum distance between any two points in the list.\n\n#### Function Signature\n```python\ndef closest_pair(points: [(int, int)]) -> float:\n```\n\n#### Input\n- `points` (list): A list of 2D points, where each point is a tuple of two integers representing the x and y coordinates.\n\n#### Output\n- Returns the minimum distance between any two points in the input list.",
+    "code": "",
+    "\nimport math\n\ndef closest_pair(points: [(int, int)]) -> float:\n    # Sort the points by their x-coordinates\n    points.sort(key=lambda point: point[0])\n\n    min_distance = float('inf')\n\n    for i in range(len(points) - 1):\n        for j in range(i + 1, len(points)):\n            distance = math.sqrt((points[i][0] - points[j][0]) ** 2 + (points[i][1] - points[j][1]) ** 2)\n            if distance < min_distance:\n                min_distance = distance\n\n    return min_distance": "",
+    "tests": [
+        "assert closest_pair([(-3, 10), (-3, 7), (15, -22)]) == 13.0",
+        "assert closest_pair([(0, 0), (1, 2), (2, 4), (5, 8)]) == 1.0",
+        "assert closest_pair([(0, 0), (1, 3), (2, 6), (5, 9)]) == 2.8284271247461903"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Interview Query"
+}

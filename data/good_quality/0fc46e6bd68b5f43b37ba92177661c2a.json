@@ -1,0 +1,13 @@
+{
+    "title": "Easy: Permutations of a String",
+    "description": "Write a function `permutations` that takes a string as input and returns all possible permutations of the characters in the string. The function should return these permutations as a list of strings.\n\n#### Function Signature\n```python\ndef permutations(s: str) -> list:\n```\n\n#### Input\n- `s` (str): A string containing any number of unique characters.\n\n#### Output\n- Returns a list of all possible permutations of the input string.",
+    "code": "import itertools\ndef permutations(s: str) -> list:\n    # Convert the string to a list of characters for permutation generation\n    s = list(s)\n    # Generate all permutations of the string and convert them back to strings\n    return [''.join(p) for p in itertools.permutations(s)]",
+    "tests": [
+        "assert len(permutations('abc')) == 6",
+        "assert 'cba' in permutations('abc')",
+        "assert 'bca' in permutations('abc')"
+    ],
+    "difficulty": "easy",
+    "model": "llama3:latest",
+    "style": "Project Euler"
+}
