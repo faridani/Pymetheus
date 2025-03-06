@@ -1,0 +1,12 @@
+{
+    "title": "Hard: Anagram Finder",
+    "description": "An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. Write a function `find_anagrams` that takes a list of words as input and returns a dictionary where the keys are the sorted strings of each unique word in the input list, and the values are lists containing all anagrams for that key.\n\n#### Function Signature\n```python\ndef find_anagrams(words: list[str]) -> dict:\n```\n\n#### Input\n- `words` (list[str]): A list of strings representing words.\n\n#### Output\n- Returns a dictionary where keys are sorted string representations of unique words and values are lists containing all anagrams for that key.",
+    "code": "from collections import defaultdict\n\ndef find_anagrams(words: list[str]) -> dict:\n    anagram_dict = defaultdict(list)\n    for word in words:\n        sorted_word = ''.join(sorted(word))\n        anagram_dict[sorted_word].append(word)\n    return dict(anagram_dict)",
+    "tests": [
+        "assert find_anagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']) == {'aet': ['eat', 'tea', 'ate'], 'ant': ['tan', 'nat'], 'abt': ['bat']}",
+        "assert find_anagrams(['listen', 'silent', 'enlist']) == {'eilnst': ['listen', 'silent', 'enlist']}"
+    ],
+    "difficulty": "super hard",
+    "model": "gemma2:27b",
+    "style": "Codecademy"
+}

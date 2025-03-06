@@ -1,0 +1,15 @@
+{
+    "title": "Medium: Counting Prime Factors",
+    "description": "The function `count_prime_factors(n: int)` should return the number of prime factors for a given positive integer, including duplicates. For example:\n- count_prime_factors(10) => 2 (because 10 = 2 * 5)\n- count_prime_factors(18) => 2 (because 18 = 2 * 3 * 3)\n\n#### Function Signature\n```python\ndef count_prime_factors(n: int) -> int:\n```\n\n### Input Format\n- `n` (int): A positive integer greater than 1.\n\n### Output Format  \n- Returns the number of prime factors for the input integer, counting duplicates.\n\n### Constraints and Hints\n- You might find a helper function to check if a number is prime useful.",
+    "code": "",
+    "\nimport math\n\ndef count_prime_factors(n: int) -> int:\n    factor_count = 0\n    # Handle even numbers first\n    while n % 2 == 0:\n        factor_count += 1\n        n //= 2\n    \n    for i in range(3, int(math.sqrt(n)) + 1, 2):\n        # Check if `i` is a prime factor of `n`\n        while n % i == 0:\n            factor_count += 1\n            n //= i\n            \n    # If `n` is still greater than 2 after dividing by all primes less than its square root,\n    # it must be a prime number itself.\n    if n > 2:\n        factor_count += 1\n    \n    return factor_count\n\ntests = [\n    'assert count_prime_factors(10) == 2', \n    'assert count_prime_factors(18) == 2',\n    'assert count_prime_factors(35) == 1',\n    'assert count_prime_factors(49) == 1'\n]": "",
+    "tests": [
+        "assert count_prime_factors(10) == 2",
+        "assert count_prime_factors(18) == 2",
+        "assert count_prime_factors(35) == 1",
+        "assert count_prime_factors(49) == 1"
+    ],
+    "difficulty": "medium",
+    "model": "qwen2:7b",
+    "style": "Project Euler"
+}

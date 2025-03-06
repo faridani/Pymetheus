@@ -1,0 +1,13 @@
+{
+    "title": "Sum of Sums",
+    "description": "Write a function `sum_of_sums` that calculates the sum of the sums of all subsets of a given set of integers. A subset is a collection of zero or more distinct elements from the original set.\n\n#### Function Signature\n```python\ndef sum_of_sums(nums: list[int]) -> int:\n```\n\n#### Input\n- `nums` (list[int]): A list of unique integers.\n\n#### Output\n- Returns the sum of the sums of all subsets of the input list.",
+    "code": "def sum_of_sums(nums: list[int]) -> int:\n    n = len(nums)\n    total_sum = 0\n    for i in range(2 ** n):\n        subset_sum = 0\n        for j in range(n):\n            if (i & (1 << j)):\n                subset_sum += nums[j]\n        total_sum += subset_sum\n    return total_sum",
+    "tests": [
+        "assert sum_of_sums([1, 2]) == 7",
+        "assert sum_of_sums([-1, 0, 1]) == 4",
+        "assert sum_of_sums([]) == 0"
+    ],
+    "difficulty": "medium",
+    "model": "llama3:latest",
+    "style": "Internationals Olympiad"
+}

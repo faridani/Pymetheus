@@ -1,0 +1,14 @@
+{
+    "title": "Interleaving String Checker",
+    "description": "Given two strings, `s1` and `s2`, an interleaving string is created by taking characters from `s1` and `s2` in turn. For example, if `s1 = \"abc\" and s2 = \"xyz\"`, then one possible interleaving string is \"abxy\". Write a function `is_interleaving` that checks if a given string `t` is an interleaving of `s1` and `s2`.\n\n#### Function Signature\n```python\ndef is_interleaving(s1: str, s2: str, t: str) -> bool:\n```\n\n#### Input\n- `s1` (str): A string that will be used to create the interleaving string.\n- `s2` (str): Another string that will be used to create the interleaving string.\n- `t` (str): The alleged interleaving string of `s1` and `s2`.\n\n#### Output\n- Returns `True` if `t` is an interleaving of `s1` and `s2`, `False` otherwise.\n\n#### Hint\nYou can use dynamic programming to solve this problem. Create a 2D table where `dp[i][j]` represents whether the substring `t[0:i+j]` is an interleaving of `s1[0:i]` and `s2[0:j]`. Then, iterate through `t` and fill in the table.\n\n#### Constraints\n- `1 <= s1.length, s2.length <= 1000`\n- `1 <= t.length <= 2000`\n- All strings contain only lowercase letters.",
+    "code": "def is_interleaving(s1: str, s2: str, t: str) -> bool:\n    # Create a 2D table to store the dynamic programming results\n    dp = [[False] * (len(s2) + 1) for _ in range(len(s1) + 1)]\n    # Initialize the base cases\n    for i in range(len(s1) + 1):\n        dp[i][0] = True\n    for j in range(len(s2) + 1):\n        dp[0][j] = True\n    # Fill in the table\n    for i in range(1, len(s1) + 1):\n        for j in range(1, len(s2) + 1):\n            if s1[i-1] == s2[j-1]:\n                dp[i][j] = dp[i-1][j-1]\n            else:\n                dp[i][j] = (dp[i-1][j] or dp[i][j-1])\n    # Check if the entire t is an interleaving\n    return dp[len(s1)][len(s2)]",
+    "tests": [
+        "assert is_interleaving(\"abc\", \"xyz\", \"abxy\") == True",
+        "assert is_interleaving(\"abc\", \"xyz\", \"abxzz\") == False",
+        "assert is_interleaving(\"abc\", \"xyz\", \"axbyz\") == True",
+        "assert is_interleaving(\"abc\", \"xyz\", \"abcz\") == False"
+    ],
+    "difficulty": "super hard",
+    "model": "aya:35b",
+    "style": "CodeSignal"
+}

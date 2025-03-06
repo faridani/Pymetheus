@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Greatest Common Divisor (GCD)",
+    "description": "The greatest common divisor (GCD) of two numbers is the largest positive integer that divides both of them without leaving a remainder. Write a function `gcd` that calculates the GCD of two integers using the Euclidean algorithm.\n\n#### Function Signature\n```python\ndef gcd(a: int, b: int) -> int:\n```\n\n#### Input\n- `a` (int): A non-negative integer.\n- `b` (int): A non-negative integer. Both inputs are guaranteed to be integers within the range of -2^31 and 2^31 - 1.\n\n#### Output\n- Returns the greatest common divisor of `a` and `b`.",
+    "code": "def gcd(a: int, b: int) -> int:\n    while b != 0:\n        a, b = b, a % b\n    return abs(a)",
+    "tests": [
+        "assert gcd(48, 18) == 6",
+        "assert gcd(-10, 25) == 5",
+        "assert gcd(17, 5) == 1",
+        "assert gcd(1987, 3835) == 47"
+    ],
+    "difficulty": "hard",
+    "model": "mistral-nemo:latest",
+    "style": "Exercism"
+}

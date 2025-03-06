@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Tree Traversal",
+    "description": "Given a binary tree, traverse the tree in such a way that each node's value is equal to the sum of its left and right children. If a node has no child or both children are null, its value should be 0.\n\n#### Function Signature\n```python\ndef traverse_tree(root: TreeNode) -> None:\n```\n\n#### Input\n- `root` (TreeNode): The root of the binary tree.\n\n#### Output\n- Modifies the values of each node in the tree to make the condition above true.",
+    "code": "class TreeNode:\n    def __init__(self, value=0, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef traverse_tree(root: TreeNode) -> None:\n    if root is None:\n        return\n    root.value = (root.left.value if root.left else 0) + (root.right.value if root.right else 0)\n    traverse_tree(root.left)\n    traverse_tree(root.right)",
+    "tests": [
+        "assert traverse_tree(TreeNode(1, TreeNode(2), TreeNode(3))) == None",
+        "assert traverse_tree(TreeNode(5, TreeNode(2, TreeNode(1)), TreeNode(8, TreeNode(7)))) == None",
+        "assert traverse_tree(None) == None"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "llama3:latest",
+    "style": "SPOJ"
+}

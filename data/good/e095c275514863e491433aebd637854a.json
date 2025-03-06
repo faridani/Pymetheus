@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Knights on a Chessboard",
+    "description": "Given an N x N chessboard represented as a list of lists, where 0 represents an empty square and 1 represents a knight, determine the minimum number of moves required for any knight to reach every other square on the board.  Assume knights move according to standard chess rules.\n\n#### Function Signature\n```python\ndef min_knight_moves(board: list[list[int]]) -> int:\n```\n\n#### Input\n- `board` (list[list[int]]): An N x N list of lists representing the chessboard, where 0 represents an empty square and 1 represents a knight.\n\n#### Output\n- Returns the minimum number of moves required for any knight to reach every other square on the board. If no knight can reach all squares, return -1.",
+    "code": "from collections import deque\n\ndef min_knight_moves(board: list[list[int]]) -> int:\n    n = len(board)\n    if sum(row.count(1) for row in board) != 1:\n        return -1\n    start_x, start_y = next((i, j) for i in range(n) for j in range(n) if board[i][j] == 1)\n\n    moves = [(2, 1), (1, 2), (-1, 2), (-2, 1), (-2, -1), (-1, -2), (1, -2), (2, -1)]\n    queue = deque([(start_x, start_y, 0)])\n    visited = set([(start_x, start_y)])\n\n    while queue:\n        x, y, moves_taken = queue.popleft()\n        if all(board[i][j] != 0 for i in range(n) for j in range(n)):\n            return moves_taken\n        for dx, dy in moves:\n            nx, ny = x + dx, y + dy\n            if 0 <= nx < n and 0 <= ny < n and (nx, ny) not in visited and board[nx][ny] != 1:\n                queue.append((nx, ny, moves_taken + 1))\n                visited.add((nx, ny))\n    return -1",
+    "tests": [
+        "board = [[0, 0, 0, 1], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]; assert min_knight_moves(board) == 6",
+        "board = [[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]; assert min_knight_moves(board) == 3",
+        "board = [[0, 0, 1, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]; assert min_knight_moves(board) == -1"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "gemma2:27b",
+    "style": "CodeSignal"
+}

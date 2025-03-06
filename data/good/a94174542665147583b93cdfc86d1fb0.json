@@ -1,0 +1,13 @@
+{
+    "title": "Anagram Grouping Checker (Hard)",
+    "description": "Given an array of strings, group the anagrams together. An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, using all the original letters exactly once.\n\n#### Function Signature\n```python\ndef groupAnagrams(strs: List[str]) -> List[List[str]]:\n```\n\n#### Input\n- `strs` (List[str]): An array of strings, where the length of each string is 1 <= len(strs[i]) <= 20, and the size of strs is at most 5000.\n\n#### Output\n- Returns a list of lists containing grouped anagrams from the input array. Each group should be sorted lexicographically.",
+    "code": "from collections import defaultdict\nfrom typing import List\ndef groupAnagrams(strs: List[str]) -> List[List[str]]:\n    if not strs:\n        return []\n    anagram_map = defaultdict(list)\n    for s in strs:\n        sorted_word = ''.join(sorted(s))\n        anagram_ebank[sorted_word].append(s)\n    result = [group for group in anagram_bank.values()]\n    return result",
+    "tests": [
+        "assert groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']) == [['ate','eat','tea'], ['nat','tan'], ['bat']]",
+        "assert groupAnagrams([]) == []",
+        "assert groupAnagrams(['listen', 'silent', 'enlist', 'inlets']) == [['enlist','inlets','listen','silent']]"
+    ],
+    "difficulty": "super hard",
+    "model": "phi3:14b",
+    "style": "LeetCode"
+}

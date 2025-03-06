@@ -1,0 +1,14 @@
+{
+    "title": "Fibonacci Sequence Generator (Medium)",
+    "description": "Generate a Fibonacci sequence up to the n-th term. The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, starting from 0 and 1. Write a function `generate_fibonacci` that generates a list containing the first `n` terms of the Fibonacci sequence.\n\n#### Function Signature\n```python\ndef generate_fibonacci(n: int) -> List[int]:\n```\n\n#### Input\n- `n` (int): The number of terms in the Fibonacci sequence to be generated. Must be a positive integer.\n\n#### Output\n- Returns a list containing the first `n` numbers of the Fibonacci sequence.",
+    "code": "from typing import List\n\ndef generate_fibonacci(n: int) -> List[int]:\n    if n <= 0:\n        return []\n    elif n == 1:\n        return [0]\n    fib = [0, 1]\n    for i in range(2, n):\n        next_number = fib[-1] + fib[-2]\n        fib.append(next_number)\n    return fib",
+    "tests": [
+        "assert generate_fibonacci(5) == [0, 1, 1, 2, 3]",
+        "assert generate_fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]",
+        "assert generate_fibonacci(0) == []",
+        "assert generate_fibonacci(1) == [0]"
+    ],
+    "difficulty": "hard",
+    "model": "phi3:14b",
+    "style": "Codewars"
+}

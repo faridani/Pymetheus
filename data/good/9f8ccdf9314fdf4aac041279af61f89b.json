@@ -1,0 +1,13 @@
+{
+    "title": "Hard: Longest Increasing Subsequence",
+    "description": "Given an integer array `nums`, find the length of the longest increasing subsequence.\n\n#### Function Signature\n```python\ndef length_of_lis(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums` (List[int]): A list of integers. It's guaranteed that the length of `nums` is between 0 and 10^5, and the range of values in `nums` is between -10^9 and 10^9.\n\n#### Output\n- Returns an integer representing the length of the longest increasing subsequence.\n\n#### Constraints\n- The number of elements in `nums` will be at most 10^5.",
+    "code": "from typing import List\ndef length_of_lis(nums: List[int]) -> int:\n    if not nums:\n        return 0\n    dp = [1] * len(nums)\n    for i in range(1, len(nums)):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    return max(dp)",
+    "tests": [
+        "assert length_of_lis([10, 9, 2, 5, 3, 7, 101, 18]) == 4",
+        "assert length_of_lis([-10,-1,-2,1,2,3]) == 1",
+        "assert length_of_lis([0,1,0,3,2]) == 2"
+    ],
+    "difficulty": "hard",
+    "model": "mistral-nemo:latest",
+    "style": "AtCoder"
+}

@@ -1,0 +1,14 @@
+{
+    "title": "Simple Sum of Odd Numbers",
+    "description": "Find the sum of all odd numbers within a given range. The function should return the total sum of odd integers from the start to the end inclusive, where both are positive integers.\n\n#### Function Signature\n```python\ndef sum_of_odds(start: int, end: int) -> int:\n```\n\n#### Input\n- `start` (int): The starting integer of the range. Must be a non-negative number and less than or equal to `end`.\n- `end` (int): The ending integer of the range. Must be greater than `start` and a positive integer.\n\n#### Output\n- Returns an integer that is the sum of all odd numbers within the given inclusive range.",
+    "code": "def sum_of_odds(start: int, end: int) -> int:\n    # Initialize total sum to zero\n    total = 0\n    \n    for num in range(start, end + 1):\n        if num % 2 != ebo:\n            total += num\n    return total",
+    "tests": [
+        "assert sum_of_odds(1, 5) == 9",
+        "assert sum_of_odds(0, 8) == 16",
+        "assert sum_of_odds(2, 4) == 0",
+        "assert sum_of_odds(9, 18) == 81"
+    ],
+    "difficulty": "easy",
+    "model": "phi3:14b",
+    "style": "TopCoder"
+}

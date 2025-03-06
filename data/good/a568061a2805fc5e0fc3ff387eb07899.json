@@ -1,0 +1,16 @@
+{
+    "title": "Graph Connectivity",
+    "description": "Given an undirected graph represented by an adjacency list, write a function that determines if the entire graph can be traversed starting from any node. This problem involves finding if there is at least one path between all nodes in the graph.",
+    "\n\n#### Function Signature": "python\ndef find_graph_connectivity(graph: dict) -> bool:\n```",
+    "Input": "- `graph`: a dictionary representing an undirected graph, where keys are nodes (integers) and values are lists of neighboring nodes.\n\n#### Output\n- Returns `True` if the entire graph can be traversed starting from any node, otherwise returns `False`.",
+    "code": "\nimport networkx as nx\n\ndef find_graph_connectivity(graph: dict) -> bool:\n    # Create a NetworkX graph\n    graph = nx.Graph()\n    for node in graph:\n        graph.add_node(node)\n    for nodes in graph.values():\n        for node in nodes:\n            if node != list(nodes)[0]:\n                graph.add_edge(*nodes)\n\n    # Check connectivity\n    return nx.is_connected(graph)",
+    "tests": [
+        "assert find_graph_connectivity({1: [2, 3], 2: [1, 3], 3: [1, 2]}) == True",
+        "assert find_graph_connectivity({1: [], 2: []}) == False",
+        "assert find_graph_connectivity({1: [2, 3], 4: [5, 6], 7: [8, 9], 10: [11, 12]}) == True",
+        "assert find_graph_connectivity({1: [], 2: [3], 4: []}) == False"
+    ],
+    "difficulty": "super hard",
+    "model": "qwen2:7b",
+    "style": "LeetCode"
+}

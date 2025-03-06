@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Longest Common Subsequence",
+    "description": "\nA longest common subsequence (LCS) problem is the task of finding the longest sequence which can be derived from both sequences by deleting some items without changing order of the remaining elements. For example, given two strings \"MN6PQR\" and \"m3N2PR\", their LCS could be \"MNP2R\". Write a function `longest_common_subsequence` that takes in two strings as input and returns the length of the longest common subsequence.\n\n#### Function Signature\n\n```python\ndef longest_common_subsequence(s1: str, s2: str) -> int:\n```\n\n#### Input\n- `s1` (str): A string containing only lowercase English letters.\n- `s2` (str): Another string containing only lowercase English letters.\n\n#### Output\n- Returns an integer representing the length of the longest common subsequence.",
+    "code": "import numpy as np\n\ndef longest_common_subsequence(s1: str, s2: str) -> int:\n    # Convert strings to arrays with 0 for False and 1 for True\n    arr_s1 = [ord(char) - ord('a') for char in s1]\n    arr_s2 = [ord(char) - ord('a') for char in s2]\n\n    # Create a DP table for LCS calculation\n    dp_table = np.zeros((len(s1), len(s2)), dtype=int)\n\n    # Fill the dp_table using dynamic programming\n    for i, c1 in enumerate(arr_s1):\n        for j, c2 in enumerate(arr_s2):\n            if c1 == c2:\n                dp_table[i][j] = dp_table[i-1][j-1] + 1\n            else:\n                dp_table[i][j] = max(dp_table[i-1][j], dp_table[i][j-1])\n\n    # The last cell contains the length of LCS\n    return int(dp_table[-1][-1])",
+    "tests": [
+        "assert longest_common_subsequence(\"MN6PQR\", \"m3N2PR\") == 5",
+        "assert longest_common_subsequence(\"ABC\", \"ACB\") == 2",
+        "assert longest_common_subsequence(\"ABCDEF\", \"ABC\") == 3",
+        "assert longest_common_subsequence(\"abcdxyz\", \"abxyz\") == 5"
+    ],
+    "difficulty": "super hard",
+    "model": "qwen2:7b",
+    "style": "Competitive Programming"
+}

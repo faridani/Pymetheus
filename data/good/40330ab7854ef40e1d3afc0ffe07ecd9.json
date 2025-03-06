@@ -1,0 +1,14 @@
+{
+    "title": "Hard: Infinite Palindromic Substrings",
+    "description": "\nA palindrome substring is a sequence of characters that reads the same backward as forward and can be found within a string. Consider the function `count_infinite_palindromes(s: str) -> int` which counts all unique substrings in `s` that are palindromes and occur infinitely often in every possible expansion of these substrings.\n\nFor example, if we have a string `\"aba\"`, \"a\", \"b\", and \"a\" are considered as palindromic substrings because they can be expanded infinitely within themselves to form palindromes like \"aa\", \"bb\", etc. If the input is `\"aaa\"`, then all substrings of this string will count towards the infinite occurrences, making its output `6` (`\"a\" * 3`, `\"aa\"`, and `\"aaa\"`).\n\n#### Function Signature\n```python\ndef count_infinite_palindromes(s: str) -> int:\n```\n#### Input\n- `s` (str): A string of lower case letters.\n\n#### Output\n- Returns an integer representing the number of unique substrings in `s` that are palindromic and occur infinitely often in every possible expansion.",
+    "code": "\nimport collections\n\ndef count_infinite_palindromes(s: str) -> int:\n    def is_palindrome(sub):\n        return sub == sub[::-1]\n    \n    n = len(s)\n    dp = [collections.defaultdict(int) for _ in range(n)]\n    res = 0\n    # Dynamic Programming with Longest Palindromic Subsequence (LPS)\n    for i in range(n-1, -1, -1):\n        for j in range(i+1, n):\n            if s[i] == s[j]:\n                dp[i][j] = dp[i+1][j-1] + 2\n            else:\n                dp[i][j] = max(dp[i+1][j], dp[i][j-1])\n            \n            # Check for infinite palindrome substrings\n            prefix_len = min(dp[i][j], j - i)\n            suffix_len = min(1, prefix_len)  # Minimum of 1 as a substring length is at least 1\n            \n            if prefix_len >= 2 * (j - i):\n                res += prefix_len // 2 + suffix_len\n                \n    return res",
+    "tests": [
+        "assert count_infinite_palindromes(\"abba\") == 4",
+        "assert count_infinite_palindromes(\"aaabaaa\") == 7",
+        "assert count_infinite_palindromes(\"abc\") == 3",
+        "assert count_infinite_palindromes(\"abaaba\") == 9"
+    ],
+    "difficulty": "insanely difficult",
+    "model": "qwen2:7b",
+    "style": "Interview Query"
+}

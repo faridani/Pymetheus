@@ -1,0 +1,15 @@
+{
+    "title": "Missing Number Finder (Medium)",
+    "description": "A list of numbers from 1 to n, with one number missing. Write a function `find_missing` that finds the missing number.\n\n#### Function Signature\n```python\ndef find_missing(nums: List[int]) -> int:\n```\n\n#### Input\n- `nums` (List[int]): A list of integers from 1 to n with one integer missing. The length of the list is always at least 2 and never exceeds 100,000.\n\n#### Output\n- Returns an integer which is the missing number in the sequence.",
+    "code": "",
+    "from typing import List\ndef find_missing(nums: List[int]) -> int:\n    expected_sum = sum(range(1, len(nums) + 2))\n    actual_sum = sum(nums)\n    return expected_sum - actual_sum": "",
+    "tests": [
+        "assert find_missing([1, 2, 4]) == 3",
+        "assert find_missing([2, 3]) == 1",
+        "assert find_missing([5, 6, 7, 8, 9, 10, 11, 12, 13, 14]) == 4",
+        "assert find_missing(list(range(1, 101))) == None"
+    ],
+    "difficulty": "hard",
+    "model": "phi3:14b",
+    "style": "TopCoder"
+}
