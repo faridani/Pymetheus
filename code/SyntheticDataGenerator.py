@@ -6,7 +6,7 @@ from helpers import save_response_to_file, get_proper_models, clear_terminal
 from constants import template, difficulties, styles
 from collections import Counter    
 import json
-from cleanup import cleanup_response, correct_json_using_deepseek_r1, validate_response_content
+from cleanup import cleanup_response, validate_response_content
 
 clear_terminal()
 
@@ -84,6 +84,7 @@ while True:
         print(20*"\n")
         print(f"Generating {difficulty} question from {model} in the style of {style}...")
         content_with_difficulty = content.replace("**REPLACE WITH DIFFICULTY**", difficulty)
+       
         response = ask_codellama(model, content_with_difficulty)
         
 
